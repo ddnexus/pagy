@@ -15,9 +15,9 @@ class Pagy
               when Integer
                 a_lambda.(item)
               when String
-                %(<a role="link" aria-disabled="true" aria-current="page" class="current">#{page_label(item)}</a>)
+                %(<a role="link" aria-disabled="true" aria-current="page">#{page_label(item)}</a>)
               when :gap
-                %(<a role="link" aria-disabled="true" class="gap">#{I18n.translate('pagy.gap')}</a>)
+                %(<a role="separator" aria-disabled="true">#{I18n.translate('pagy.gap')}</a>)
               else
                 raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
               end

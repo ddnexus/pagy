@@ -50,7 +50,7 @@ You can use a few method to create a simple collection paginated with the `:offs
 => "/path?example=123&page=100"
 
 >> puts pagy.series_nav
-<nav class="pagy nav" aria-label="Pages"><a role="link" aria-disabled="true" aria-label="Previous">&lt;</a><a role="link" aria-disabled="true" aria-current="page" class="current">1</a><a href="/path?example=123&page=2">2</a><a href="/path?example=123&page=3">3</a><a href="/path?example=123&page=4">4</a><a href="/path?example=123&page=5">5</a><a role="link" aria-disabled="true" class="gap">&hellip;</a><a href="/path?example=123&page=100">100</a><a href="/path?example=123&page=2" aria-label="Next">&gt;</a></nav>
+<nav class="pagy nav" aria-label="Pages"><a role="link" aria-disabled="true" aria-label="Previous">&lt;</a><a role="link" aria-disabled="true" aria-current="page">1</a><a href="/path?example=123&page=2">2</a><a href="/path?example=123&page=3">3</a><a href="/path?example=123&page=4">4</a><a href="/path?example=123&page=5">5</a><a role="separator" aria-disabled="true" >&hellip;</a><a href="/path?example=123&page=100">100</a><a href="/path?example=123&page=2" aria-label="Next">&gt;</a></nav>
 => nil
 
 >> puts pagy.input_nav_js
