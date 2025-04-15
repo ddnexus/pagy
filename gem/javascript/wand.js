@@ -63,6 +63,7 @@
       hue: { name: "--H", unit: "" },
       saturation: { name: "--S", unit: "" },
       lightness: { name: "--L", unit: "" },
+      alpha: { name: "--A", unit: "" },
       spacing: { name: "--spacing", unit: "rem" },
       padding: { name: "--padding", unit: "rem" },
       rounding: { name: "--rounding", unit: "rem" },
@@ -72,17 +73,28 @@
       lineHeight: { name: "--line-height", unit: "" }
     };
     function updateColorRamps() {
+      const b = controls.brightness.input.value;
+      let darker, lighter;
+      if (b === "-1") {
+        darker = "black";
+        lighter = "%23404040";
+      } else {
+        darker = "%23B0B0B0";
+        lighter = "white";
+      }
+      const gridUrl = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Crect width='5' height='5' fill='${darker}'/%3E%3Crect x='5' width='5' height='5' fill='${lighter}'/%3E%3Crect y='5' width='5' height='5' fill='${lighter}'/%3E%3Crect x='5' y='5' width='5' height='5' fill='${darker}'/%3E%3C/svg%3E")`;
       const h = controls.hue.input.value;
       const s = controls.saturation.input.value;
       const l = controls.lightness.input.value;
-      controls.saturation.input.style.background = `linear-gradient(to right, hsl(${h}, 0%, ${l}%), hsl(${h}, 100%, ${l}%))`;
-      controls.lightness.input.style.background = `linear-gradient(to right, hsl(${h}, ${s}%, 0%), hsl(${h}, ${s}%, 50%), hsl(${h}, ${s}%, 100%))`;
+      controls.saturation.input.style.background = `linear-gradient(to right, hsl(${h} 0 ${l}), hsl(${h} 100 ${l}))`;
+      controls.lightness.input.style.background = `linear-gradient(to right, hsl(${h} ${s} 0), hsl(${h} ${s} 50), hsl(${h} ${s} 100))`;
+      controls.alpha.input.style.backgroundImage = `linear-gradient(to right, hsla(${h} ${s} ${l} / 0), hsla(${h} ${s} ${l} / 1)), ${gridUrl}`;
     }
     for (const [id, c] of Object.entries(controls)) {
       c.input = shadow.getElementById(id);
-      c.input.addEventListener("input", (e) => {
+      c.input.addEventListener("input", () => {
         updateStyle();
-        if (["hue", "saturation", "lightness"].includes(id)) {
+        if (["hue", "saturation", "lightness", "alpha"].includes(id)) {
           updateColorRamps();
         }
         presetMenu.value = "";
@@ -96,6 +108,7 @@
         --H: 0;
         --S: 0;
         --L: 50;
+        --A: 1;
         --spacing: 0.125rem;
         --padding: 0.75rem;
         --rounding: 1.75rem;
@@ -111,6 +124,7 @@
         --H: 0;
         --S: 0;
         --L: 60;
+        --A: 1;
         --spacing: 0.125rem;
         --padding: 0.75rem;
         --rounding: 1.75rem;
@@ -126,6 +140,7 @@
         --H: 231;
         --S: 28;
         --L: 60;
+        --A: 1;
         --spacing: 0.1875rem;
         --padding: 1rem;
         --rounding: 0.375rem;
@@ -135,12 +150,13 @@
         --line-height: 1.25;
       }
       `,
-      Pilloween: ` 
+      Pilloween: `
       .pagy {
         --B: -1;
         --H: 20;
         --S: 80;
         --L: 50;
+        --A: 1;
         --spacing: 0.375rem;
         --padding: 0.75rem;
         --rounding: 1.125rem;
@@ -156,6 +172,7 @@
         --H: 78;
         --S: 70;
         --L: 38;
+        --A: 1;
         --spacing: 0.1875rem;
         --padding: 0.625rem;
         --rounding: 0.75rem;
@@ -171,6 +188,7 @@
         --H: 27;
         --S: 63;
         --L: 17;
+        --A: 1;
         --spacing: 0.0625rem;
         --padding: 0.5rem;
         --rounding: 1.125rem;
@@ -186,6 +204,7 @@
         --H: 255;
         --S: 63;
         --L: 43;
+        --A: 1;
         --spacing: 0rem;
         --padding: 0.875rem;
         --rounding: 0rem;
@@ -201,6 +220,7 @@
         --H: 174;
         --S: 40;
         --L: 70;
+        --A: 1;
         --spacing: 0.125rem;
         --padding: 0.75rem;
         --rounding: 1.125rem;
@@ -216,6 +236,7 @@
         --H: 51;
         --S: 27;
         --L: 64;
+        --A: 1;
         --spacing: 0.1875rem;
         --padding: 0.75rem;
         --rounding: 0.75rem;
@@ -525,7 +546,7 @@
           font-family: 'Pattaya', sans-serif;
           font-size: ${scale * 1.4}rem;
           text-shadow: ${scale * 0.0625}rem
-                       ${scale * 0.0625}rem 
+                       ${scale * 0.0625}rem
                        0 rgba(0,0,0,1);
           margin-right: ${scale * 0.125}rem;
         }
@@ -546,20 +567,20 @@
           padding: ${scale * 0.8}rem ${scale}rem;
           border-top: ${scale * 0.15}rem solid ${pagyColor};
           border-bottom: ${scale * 0.15}rem solid ${pagyColor};
-          height: ${scale * 29.7}rem;
+          height: ${scale * 32}rem;
         }
         #controls {
           display: grid;
           grid-template-columns: min-content 1fr;
           grid-template-rows: ${scale * 1.5}rem
                                   ${scale * 0.7}rem
-                              repeat(3, ${scale * 1.3}rem)
+                              repeat(4, ${scale * 1.3}rem)
                                   ${scale * 0.7}rem
                               repeat(4, ${scale * 1.3}rem)
                                   ${scale * 0.7}rem
                               repeat(3, ${scale * 1.3}rem)
                                   ${scale * 0.7}rem
-                              ${scale * 12}rem;
+                              ${scale * 13}rem;
           grid-column-gap: ${scale * 0.625}rem;
         }
         #controls hr.separator {
@@ -578,41 +599,43 @@
         }
         #hue {
           background: linear-gradient(to right, hsl(0, 100%, 50%), hsl(60, 100%, 50%), hsl(120, 100%, 50%), hsl(180, 100%, 50%), hsl(240, 100%, 50%), hsl(300, 100%, 50%), hsl(360, 100%, 50%));
-          height: ${scale * 0.8}rem; /* Adjusted for thumb visibility */
         }
-        #saturation {
-          background: linear-gradient(to right, hsl(0, 0%, 50%), hsl(0, 100%, 50%)); /* Placeholder - JS will update */
-          height: ${scale * 0.8}rem; /* Adjusted for thumb visibility */
-        }
-        #lightness {
-          background: linear-gradient(to right, hsl(0, 100%, 0%), hsl(0, 100%, 50%), hsl(0, 100%, 100%)); /* Placeholder - JS will update */
-          height: ${scale * 0.8}rem; /* Adjusted for thumb visibility */
-        }
-        #hue, #saturation, #lightness {
+        #hue, #saturation, #lightness, #alpha {
           -webkit-appearance: none;
           appearance: none;
           width: 100%;
-          border-radius: ${scale * 0.5}rem; /* Rounded track */
+          border-radius: ${scale * 0.5}rem;
           outline: none;
+          height: ${scale * 0.8}rem;
           box-shadow: inset 0 0 ${scale * 0.1}rem rgba(0,0,0,0.5);
         }
-        #hue::-webkit-slider-thumb, #saturation::-webkit-slider-thumb, #lightness::-webkit-slider-thumb {
+        #hue::-webkit-slider-thumb,
+        #saturation::-webkit-slider-thumb,
+        #lightness::-webkit-slider-thumb,
+        #alpha::-webkit-slider-thumb {
           -webkit-appearance: none;
           appearance: none;
-          width: ${scale}rem; /* Thumb size */
-          height: ${scale}rem; /* Thumb size */
+          width: ${scale}rem;
+          height: ${scale}rem;
           background: transparent;
           border: ${scale * 0.15}rem solid ${baseColor};
           border-radius: 50%;
           cursor: pointer;
         }
-        #hue::-moz-range-thumb, #saturation::-moz-range-thumb, #lightness::-moz-range-thumb {
-          width: ${scale}rem; /* Thumb size */
-          height: ${scale}rem; /* Thumb size */
+        #hue::-moz-range-thumb,
+        #saturation::-moz-range-thumb,
+        #lightness::-moz-range-thumb,
+        #alpha::-moz-range-thumb {
+          width: ${scale}rem;
+          height: ${scale}rem;
           background: transparent;
           border: ${scale * 0.15}rem solid ${baseColor};
           border-radius: 50%;
           cursor: pointer;
+        }
+        #alpha {
+          background-size: auto, ${scale * 0.5}rem ${scale * 0.5}rem; /* gradient, grid */
+          background-repeat: no-repeat, repeat; /* gradient, grid *//
         }
         #controls label {
           font-weight: 600;
@@ -649,7 +672,7 @@
           width: 100%;
           resize: none;
           font-weight: 500;
-          box-sizing: border-box;  
+          box-sizing: border-box;
           position: relative;
           margin-top: ${scale * 0.25}rem;
           color: white;
@@ -661,7 +684,7 @@
           color: ${lightGray};
           position: absolute;
           top: ${scale * 0.8}rem;
-          right: ${scale * 0.6}rem;
+          right: ${scale}rem;
           cursor: pointer;
         }
         .copy-feedback {
@@ -792,11 +815,13 @@
             </select>
             <hr class="separator">
             <label for="hue">Hue</label>
-            <input type="range" id="hue" min="0" max="360">
+            <input type="range" id="hue" min="0" max="360" step="0.1">
             <label for="saturation">Saturation</label>
-            <input type="range" id="saturation" min="0" max="100">
+            <input type="range" id="saturation" min="0" max="100" step="0.1">
             <label for="lightness">Lightness</label>
-            <input type="range" id="lightness" min="0" max="100">
+            <input type="range" id="lightness" min="0" max="100" step="0,1">
+            <label for="alpha">Alpha</label>
+            <input type="range" id="alpha" min="0" max="1" step="0.01">
             <hr class="separator">
             <label for="spacing">Spacing</label>
             <input type="range" id="spacing" min="0" max="1.5" step="0.0625">
@@ -852,7 +877,7 @@
             <dl>
               <dt>Brightness</dt>
                 <dd>Toggle between Light and Dark theming calculation. Adjust the lightness after toggling.</dd>
-              <dt>Hue, Saturation, Lightness</dt>
+              <dt>Hue, Saturation, Lightness, Alpha</dt>
                 <dd>Generate any color, however notice that the automatic calculations work better within certain ranges/combinations.</dd>
               <dt>Spacing, Padding, Rounding, Borders</dt>
                 <dd>Control the layout and overall look.</dd>
@@ -869,8 +894,6 @@
                     <li><span class="material-symbols-rounded help-copy-icon failure">error</span> <span class="button-desc">Failed! Feedback</li>
                   </ul>
                 </dd>
-              <dt>Opacity</dt>
-                <dd>It's a rarely used setting, so we didn't add it ATM. Just manually set the <code>--opacity</code> in your CSS Override if you need it.</dd>
             </dl>
             <h4>Customizing</h4>
             <p>You can change Pagy's styling quite radically, by just setting a few CSS Custom Properties:
