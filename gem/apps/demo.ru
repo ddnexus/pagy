@@ -25,8 +25,8 @@ if VERSION != Pagy::VERSION
   Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")
 end
 
-APP_MODE = :demo
-# APP_MODE = :screenshot
+# APP_MODE = :demo
+APP_MODE = :screenshot
 # APP_MODE = :mask
 
 # Bundle
@@ -394,6 +394,8 @@ class PagyDemo < Sinatra::Base
                                       id: 'series-nav',
                                       aria_label: 'Pages series_nav') %>
           <%= highlight(html) %>
+
+          <%= '(Now change the page number to page 11)' unless APP_MODE == :demo %>
 
           <h2>@pagy.series_nav_js<br/>
             <%= '(capture page-11 showing 7, 9, and 11 slots)' unless APP_MODE == :demo %>
