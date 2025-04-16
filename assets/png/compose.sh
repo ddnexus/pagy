@@ -23,7 +23,7 @@
 #   * Slots: please, capture the 3 slots size for bootstrap and bulma as well (e.g.:
 #                   series_nav_js-7-bootstrap, series_nav_js-9-bootstrap, series_nav_js-11-bootstrap,
 #                   series_nav_js-7-bulma, series_nav_js-9-bulma, series_nav_js-11-bulma
-#     )s indicated in their pages
+#     ) as indicated in their pages. You will need to re-size the screen in order to do this.
 
 # 3. SCREENSHOT MASKS
 #   * Comment the `APP_MODE = :screenshot` line and uncomment the `APP_MODE = :mask`
