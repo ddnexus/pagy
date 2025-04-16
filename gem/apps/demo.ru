@@ -395,7 +395,11 @@ class PagyDemo < Sinatra::Base
                                       aria_label: 'Pages series_nav') %>
           <%= highlight(html) %>
 
-          <%= '(Now change the page number to page 11)' unless APP_MODE == :demo %>
+          <% unless APP_MODE == :demo %>
+            <%= '<br/>' * 3%>
+            <%= '(Now change the page number to page 11)'  %>
+            <%= '<br/>' * 3%>
+          <% end %>
 
           <h2>@pagy.series_nav_js<br/>
             <%= '(capture page-11 showing 7, 9, and 11 slots)' unless APP_MODE == :demo %>
