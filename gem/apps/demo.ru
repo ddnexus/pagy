@@ -25,8 +25,8 @@ if VERSION != Pagy::VERSION
   Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")
 end
 
-# APP_MODE = :demo
-APP_MODE = :screenshot
+APP_MODE = :demo
+# APP_MODE = :screenshot
 # APP_MODE = :mask
 
 # Bundle
