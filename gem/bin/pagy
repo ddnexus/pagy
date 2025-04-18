@@ -3,7 +3,7 @@
 
 VERSION = '10.0.0'
 LINUX   = RbConfig::CONFIG['host_os'].include?('linux')
-HOST    = '0.0.0.0'
+HOST    = 'localhost'
 PORT    = '8000'
 
 require_relative '../lib/optimist'

@@ -10,8 +10,8 @@ class Pagy
   def bulma_input_nav_js(classes: 'pagination', **)
     a_lambda = a_lambda(**)
     input    = %(<input name="page" type="number" min="1" max="#{@last}" value="#{@page}" aria-current="page") +
-               %(style="text-align: center; width: #{@last.to_s.length + 1}rem; height: 1.7rem; margin:0 0.3rem; ) +
-               %(border: none; border-radius: 4px; padding: 0; font-size: 1.1rem; color: white; ) +
+               %(style="text-align: center; width: #{@page.to_s.length + 1}rem; line-height: 1.2rem; ) +
+               %(border: none; border-radius: .25rem; padding: .0625rem; color: white; ) +
                %(background-color: #485fc7;">#{A_TAG})
     html     = %(<ul class="pagination-list">#{bulma_html_for(:previous, a_lambda)}<li class="pagination-link"><label>#{
                  I18n.translate('pagy.input_nav_js', page_input: input, pages: @last)

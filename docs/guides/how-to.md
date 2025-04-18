@@ -405,7 +405,7 @@ You may want to look at the actual output interactively by running:
 pagy demo
 ```
 
-...and point your browser to  http://0.0.0.0:8000/template
+...and point your browser to  http://127.0.0.1:8000/template
 !!!
 
 ==- Use Pagy with a non-rack app

@@ -42,7 +42,7 @@ This command runs your `rackup` app with a `puma` server. On Linux platforms, it
 pagy path/to/your-repro.ru
 ```
 
-Open a browser and navigate to http://0.0.0.0:8000
+Open a browser and navigate to http://127.0.0.1:8000
 
 Edit it at will.
 
@@ -75,7 +75,7 @@ Run the interactive demo from your terminal:
 pagy demo
 ```
 
-...and point your browser to http://0.0.0.0:8000
+...and point your browser to http://127.0.0.1:8000
 !!!
 
 _Run `pagy clone demo` to inspect the app file_
@@ -95,7 +95,7 @@ Run the interactive demo from your terminal:
 pagy calendar
 ```
 
-...and point your browser to http://0.0.0.0:8000
+...and point your browser to http://127.0.0.1:8000
 !!!
 
 _Run `pagy clone calendar` to inspect the app file._
@@ -121,7 +121,7 @@ pagy keyset
 pagy keyset_sequel
 ```
 
-...and point your browser to http://0.0.0.0:8000
+...and point your browser to http://127.0.0.1:8000
 !!!
 
 _Run for example `pagy clone keyset` to inspect the keyset app file._

@@ -45,7 +45,7 @@ Try this method in the [Pagy Console](../../sandbox/console.md):
 
 ```ruby
 >> puts @pagy.series_nav
-<nav class="pagy series-nav" aria-label="Pages"><a href="/path?example=123&page=2" aria-label="Previous">&lt;</a><a href="/path?example=123&page=1">1</a><a href="/path?example=123&page=2">2</a><a role="link" aria-disabled="true" aria-current="page" class="current">3</a><a href="/path?example=123&page=4">4</a><a href="/path?example=123&page=5">5</a><a role="link" aria-disabled="true" class="gap">&hellip;</a><a href="/path?example=123&page=50">50</a><a href="/path?example=123&page=4" aria-label="Next">&gt;</a></nav>
+<nav class="pagy series-nav" aria-label="Pages"><a href="/path?example=123&page=2" aria-label="Previous">&lt;</a><a href="/path?example=123&page=1">1</a><a href="/path?example=123&page=2">2</a><a role="link" aria-disabled="true" aria-current="page" class="current">3</a><a href="/path?example=123&page=4">4</a><a href="/path?example=123&page=5">5</a><a role="separator" aria-disabled="true">&hellip;</a><a href="/path?example=123&page=50">50</a><a href="/path?example=123&page=4" aria-label="Next">&gt;</a></nav>
 => nil
 
 >> puts @pagy.series_nav(:bulma, id: 'my-nav', aria_label: 'Products', slots: 3)

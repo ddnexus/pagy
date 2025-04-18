@@ -15,9 +15,9 @@
     <% if item.is_a?(Integer) %>
       <%= a_lambda.(item) %>
     <% elsif item.is_a?(String) %>
-      <a role="link" aria-disabled="true" aria-current="page" class="current"><%= item %></a>
+      <a role="link" aria-disabled="true" aria-current="page"><%= item %></a>
     <% elsif item == :gap %>
-      <a role="link" aria-disabled="true" class="gap">&hellip;</a>
+      <a role="separator" aria-disabled="true">&hellip;</a>
     <% end %>
   <% end %>
   <%# Next page link %>

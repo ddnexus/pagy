@@ -28,23 +28,33 @@
     @apply flex space-x-[var(--spacing)] font-[var(--font-weight)]
     text-[length:var(--font-size)] text-[var(--text)]
     leading-[var(--line-height)];
-    a:not(.gap) {
+
+    a:not([role="separator"]) { /* all but gaps */
       @apply block rounded-[var(--rounding)] px-[var(--padding)] py-[calc(var(--padding)/3)] bg-[var(--background)]
       border-solid  border-[var(--background-current)] border-[length:var(--border-width)] opacity-[var(--opacity)];
-      &:hover {
-        @apply bg-[var(--background-hover)] text-[var(--text-hover)];
-      }
-      &:not([href]) { /* disabled links */
-        @apply cursor-default bg-[var(--background)]  opacity-[calc(var(--opacity)*.5)];
-      }
-      &.current {
-        @apply bg-[var(--background-current)] text-[var(--text-current)] opacity-[var(--opacity)];
-      }
     }
+
+    a[href]:hover { /* all links on hover */
+      @apply bg-[var(--background-hover)] text-[var(--text-hover)];
+    }
+
+    a:not([href]) { /* all but links */
+      @apply cursor-default
+    }
+
+    a[role="link"]:not([aria-current]) { /* disabled links */
+      @apply opacity-[calc(var(--opacity)*.6)];
+    }
+
+    a[aria-current] {  /* current page */
+      @apply bg-[var(--background-current)] text-[var(--text-current)];
+    }
+
     label {
       @apply inline-block whitespace-nowrap rounded-[var(--rounding)] px-[var(--padding)]
       py-[calc(var(--padding)/3-var(--border-width))]
       bg-[var(--background)] border-solid border-[length:var(--border-width)] border-[var(--background-current)];
+
       input {
         @apply text-[var(--text)] text-[length:var(--font-size)] leading-[var(--line-height)] rounded-[calc(var(--rounding)/2)]
         font-[var(--font-weight)] bg-[var(--background-input)] border-[length:var(--border-width)] border-[var(--background-current)];

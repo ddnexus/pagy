@@ -25,17 +25,15 @@ You don't need any stylesheets if you use nav tag with `:bootstrap` or `:bulma` 
 #### HTML Structure of Nav Bars
 
 To ensure a minimalistic valid output, complete with all the ARIA attributes, pagy outputs a single line with the minimum number of tags
-and class attributes required to identify all the parts of the nav bars:
+and attributes required to identify all the parts of the nav bars:
 
 - The output of `series_nav` and `series_nav_js` helpers, is a series of `a` tags inside a `nav` tag wrapper.
 - The disabled links are so because they are missing the `href` attributes.
 - The `pagy nav` and `pagy nav-js` classes are assigned to the `nav` tag.
-- The `current` and `gap` classes are assigned to the specific `a` tags.
 
 !!! Tips
 
-- The stylesheet targets the disabled `a` tags using the `pagy a:not([href])` selector.
-- You can make the `gap` look like the other pages by removing the `:not(.gap)`
+- You can target the `gap` with `a:not([role="separator"])`
 - You can target the previous and next links by using `pagy a:first-child` and `pagy a:last-child` pseudo classes
 
 !!!

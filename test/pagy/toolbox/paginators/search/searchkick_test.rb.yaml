@@ -21,6 +21,18 @@ searchkick__controller_methods___pagy_searchkick_test_0002_paginates_results_wit
   - R-a-58
   - R-a-59
   - R-a-60
+searchkick__controller_methods___pagy_searchkick_test_0003_paginates_with_options:
+  :results:
+  - R-b-11
+  - R-b-12
+  - R-b-13
+  - R-b-14
+  - R-b-15
+  - R-b-16
+  - R-b-17
+  - R-b-18
+  - R-b-19
+  - R-b-20
 searchkick__controller_methods___pagy_searchkick_test_0001_paginates_response_with_defaults:
   :results:
   - R-B-a-41
@@ -43,15 +55,3 @@ searchkick__controller_methods___pagy_searchkick_test_0001_paginates_response_wi
   - R-B-a-58
   - R-B-a-59
   - R-B-a-60
-searchkick__controller_methods___pagy_searchkick_test_0003_paginates_with_options:
-  :results:
-  - R-b-11
-  - R-b-12
-  - R-b-13
-  - R-b-14
-  - R-b-15
-  - R-b-16
-  - R-b-17
-  - R-b-18
-  - R-b-19
-  - R-b-20

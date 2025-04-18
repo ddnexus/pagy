@@ -1,83 +1,81 @@
 ---
-Pagy_nav_test__previous_tag_test_0003_renders_the_previous_tag_for_page_6:
-  :r1: <a href="/foo?page=5" rel="prev" aria-label="Previous">&lt;</a>
-  :r2: <a href="/foo?page=5+7" rel="prev" aria-label="Previous">&lt;</a>
-  :r3: <a href="/foo?page=5" rel="prev" aria-label="My previous page">PREV</a>
-  :r4: <a href="/foo?page=5+7" rel="prev" aria-label="My previous page">PREV</a>
 Pagy_nav_test__previous_tag_test_0001_renders_the_previous_tag_for_page_1:
   :r1: <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
   :r2: <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
   :r3: <a role="link" aria-disabled="true" aria-label="My previous page">PREV</a>
   :r4: <a role="link" aria-disabled="true" aria-label="My previous page">PREV</a>
-Pagy_nav_test__previous_tag_test_0004_renders_the_previous_tag_for_page_50:
-  :r1: <a href="/foo?page=49" rel="prev" aria-label="Previous">&lt;</a>
-  :r2: <a href="/foo?page=49+50" rel="prev" aria-label="Previous">&lt;</a>
-  :r3: <a href="/foo?page=49" rel="prev" aria-label="My previous page">PREV</a>
-  :r4: <a href="/foo?page=49+50" rel="prev" aria-label="My previous page">PREV</a>
 Pagy_nav_test__previous_tag_test_0002_renders_the_previous_tag_for_page_3:
   :r1: <a href="/foo?page=2" rel="prev" aria-label="Previous">&lt;</a>
   :r2: <a href="/foo?page=2+4" rel="prev" aria-label="Previous">&lt;</a>
   :r3: <a href="/foo?page=2" rel="prev" aria-label="My previous page">PREV</a>
   :r4: <a href="/foo?page=2+4" rel="prev" aria-label="My previous page">PREV</a>
-Pagy_nav_test__nav_js_test_0001_renders_single_and_multiple_pages_when_used_with_Pagy__Offset__Countless:
-  :plain_1_0: <nav class="pagy series-nav-js" aria-label="Page" data-pagy="WyJzbmoiLFsiPGEgcm9sZT1cImxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiIGFyaWEtbGFiZWw9XCJQcmV2aW91c1wiPiZsdDs8L2E+IiwiPGEgaHJlZj1cIi9mb28/cGFnZT1QICsxXCI+TDwvYT4iLCI8YSBjbGFzcz1cImN1cnJlbnRcIiByb2xlPVwibGlua1wiIGFyaWEtY3VycmVudD1cInBhZ2VcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPkw8L2E+IiwiPGEgY2xhc3M9XCJnYXBcIiByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+JmhlbGxpcDs8L2E+IiwiPGEgcm9sZT1cImxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiIGFyaWEtbGFiZWw9XCJOZXh0XCI+Jmd0OzwvYT4iXSxbWzBdLFtbIjEiXV0sbnVsbF1d"></nav>
-  :extras_1_0: <nav id="test-nav-id" class="pagy-rjs pagy series-nav-js" aria-label="Page"
-    data-pagy="WyJzbmoiLFsiPGEgcm9sZT1cImxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiIGFyaWEtbGFiZWw9XCJQcmV2aW91c1wiPiZsdDs8L2E+IiwiPGEgaHJlZj1cIi9mb28/cGFnZT1QICsxXCI+TDwvYT4iLCI8YSBjbGFzcz1cImN1cnJlbnRcIiByb2xlPVwibGlua1wiIGFyaWEtY3VycmVudD1cInBhZ2VcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPkw8L2E+IiwiPGEgY2xhc3M9XCJnYXBcIiByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+JmhlbGxpcDs8L2E+IiwiPGEgcm9sZT1cImxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiIGFyaWEtbGFiZWw9XCJOZXh0XCI+Jmd0OzwvYT4iXSxbWzYwMCwwXSxbWyIxIl0sWyIxIl1dLG51bGxdXQ=="></nav>
-  :plain_2_23: <nav class="pagy series-nav-js" aria-label="Pages" data-pagy="WyJzbmoiLFsiPGEgaHJlZj1cIi9mb28/cGFnZT0xKzNcIiByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cIlByZXZpb3VzXCI+Jmx0OzwvYT4iLCI8YSBocmVmPVwiL2Zvbz9wYWdlPVAgKzNcIj5MPC9hPiIsIjxhIGNsYXNzPVwiY3VycmVudFwiIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwicGFnZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+TDwvYT4iLCI8YSBjbGFzcz1cImdhcFwiIHJvbGU9XCJsaW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT4iLCI8YSBocmVmPVwiL2Zvbz9wYWdlPTMrM1wiIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+Il0sW1swXSxbWzEsIjIiLDNdXSxudWxsXV0="></nav>
-  :extras_2_23: <nav id="test-nav-id" class="pagy-rjs pagy series-nav-js" aria-label="Pages"
-    data-pagy="WyJzbmoiLFsiPGEgaHJlZj1cIi9mb28/cGFnZT0xKzNcIiByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cIlByZXZpb3VzXCI+Jmx0OzwvYT4iLCI8YSBocmVmPVwiL2Zvbz9wYWdlPVAgKzNcIj5MPC9hPiIsIjxhIGNsYXNzPVwiY3VycmVudFwiIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwicGFnZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+TDwvYT4iLCI8YSBjbGFzcz1cImdhcFwiIHJvbGU9XCJsaW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT4iLCI8YSBocmVmPVwiL2Zvbz9wYWdlPTMrM1wiIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+Il0sW1s2MDAsMF0sW1sxLCIyIiwzXSxbMSwiMiIsM11dLG51bGxdXQ=="></nav>
-Pagy_nav_test__nav_js_test_0002_renders_first,_intermediate_and_last_pages_with_required_steps:
-  :plain_1: <nav class="pagy series-nav-js" aria-label="Pages" data-pagy="WyJzbmoiLFsiPGEgcm9sZT1cImxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiIGFyaWEtbGFiZWw9XCJQcmV2aW91c1wiPiZsdDs8L2E+IiwiPGEgaHJlZj1cIi9mb28/cGFnZT1QIFwiPkw8L2E+IiwiPGEgY2xhc3M9XCJjdXJyZW50XCIgcm9sZT1cImxpbmtcIiBhcmlhLWN1cnJlbnQ9XCJwYWdlXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5MPC9hPiIsIjxhIGNsYXNzPVwiZ2FwXCIgcm9sZT1cImxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPiZoZWxsaXA7PC9hPiIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9MlwiIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+Il0sW1swXSxbWyIxIiwyLDMsNCw1LCJnYXAiLDUwXV0sbnVsbF1d"></nav>
-  :extras_1: <nav id="test-nav-id" class="pagy-rjs pagy series-nav-js" aria-label="Pages"
-    data-pagy="WyJzbmoiLFsiPGEgcm9sZT1cImxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiIGFyaWEtbGFiZWw9XCJQcmV2aW91c1wiPiZsdDs8L2E+IiwiPGEgaHJlZj1cIi9mb28/cGFnZT1QIFwiPkw8L2E+IiwiPGEgY2xhc3M9XCJjdXJyZW50XCIgcm9sZT1cImxpbmtcIiBhcmlhLWN1cnJlbnQ9XCJwYWdlXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5MPC9hPiIsIjxhIGNsYXNzPVwiZ2FwXCIgcm9sZT1cImxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPiZoZWxsaXA7PC9hPiIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9MlwiIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+Il0sW1s2MDAsMF0sW1siMSIsMiwzLDQsNSwiZ2FwIiw1MF0sWyIxIiwyLDMsNCw1XV0sbnVsbF1d"></nav>
-  :plain_20: <nav class="pagy series-nav-js" aria-label="Pages" data-pagy="WyJzbmoiLFsiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwiUHJldmlvdXNcIj4mbHQ7PC9hPiIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9UCBcIj5MPC9hPiIsIjxhIGNsYXNzPVwiY3VycmVudFwiIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwicGFnZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+TDwvYT4iLCI8YSBjbGFzcz1cImdhcFwiIHJvbGU9XCJsaW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT4iLCI8YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJOZXh0XCI+Jmd0OzwvYT4iXSxbWzBdLFtbMSwiZ2FwIiwxOSwiMjAiLDIxLCJnYXAiLDUwXV0sbnVsbF1d"></nav>
-  :extras_20: <nav id="test-nav-id" class="pagy-rjs pagy series-nav-js" aria-label="Pages"
-    data-pagy="WyJzbmoiLFsiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwiUHJldmlvdXNcIj4mbHQ7PC9hPiIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9UCBcIj5MPC9hPiIsIjxhIGNsYXNzPVwiY3VycmVudFwiIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwicGFnZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+TDwvYT4iLCI8YSBjbGFzcz1cImdhcFwiIHJvbGU9XCJsaW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT4iLCI8YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJOZXh0XCI+Jmd0OzwvYT4iXSxbWzYwMCwwXSxbWzEsImdhcCIsMTksIjIwIiwyMSwiZ2FwIiw1MF0sWzE4LDE5LCIyMCIsMjEsMjJdXSxudWxsXV0="></nav>
-  :plain_50: <nav class="pagy series-nav-js" aria-label="Pages" data-pagy="WyJzbmoiLFsiPGEgaHJlZj1cIi9mb28/cGFnZT00OVwiIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwiUHJldmlvdXNcIj4mbHQ7PC9hPiIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9UCBcIj5MPC9hPiIsIjxhIGNsYXNzPVwiY3VycmVudFwiIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwicGFnZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+TDwvYT4iLCI8YSBjbGFzcz1cImdhcFwiIHJvbGU9XCJsaW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT4iLCI8YSByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCIgYXJpYS1sYWJlbD1cIk5leHRcIj4mZ3Q7PC9hPiJdLFtbMF0sW1sxLCJnYXAiLDQ2LDQ3LDQ4LDQ5LCI1MCJdXSxudWxsXV0="></nav>
-  :extras_50: <nav id="test-nav-id" class="pagy-rjs pagy series-nav-js" aria-label="Pages"
-    data-pagy="WyJzbmoiLFsiPGEgaHJlZj1cIi9mb28/cGFnZT00OVwiIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwiUHJldmlvdXNcIj4mbHQ7PC9hPiIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9UCBcIj5MPC9hPiIsIjxhIGNsYXNzPVwiY3VycmVudFwiIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwicGFnZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+TDwvYT4iLCI8YSBjbGFzcz1cImdhcFwiIHJvbGU9XCJsaW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT4iLCI8YSByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCIgYXJpYS1sYWJlbD1cIk5leHRcIj4mZ3Q7PC9hPiJdLFtbNjAwLDBdLFtbMSwiZ2FwIiw0Niw0Nyw0OCw0OSwiNTAiXSxbNDYsNDcsNDgsNDksIjUwIl1dLG51bGxdXQ=="></nav>
-  :keyset: <nav class="pagy series-nav-js" aria-label="Pages" data-pagy="WyJzbmoiLFsiPGEgaHJlZj1cIi9mb28/cGFnZT0xXCIgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJQcmV2aW91c1wiPiZsdDs8L2E+IiwiPGEgaHJlZj1cIi9mb28/cGFnZT1QIFwiPkw8L2E+IiwiPGEgY2xhc3M9XCJjdXJyZW50XCIgcm9sZT1cImxpbmtcIiBhcmlhLWN1cnJlbnQ9XCJwYWdlXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5MPC9hPiIsIjxhIGNsYXNzPVwiZ2FwXCIgcm9sZT1cImxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPiZoZWxsaXA7PC9hPiIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9M1wiIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+Il0sW1swXSxbWzEsIjIiLDNdXSxudWxsXSxbImtleSIsInBhZ2UiLDMsWzIsMSxbImRvbmtleSIsIlRpbm8iLDddXV1d"></nav>
+Pagy_nav_test__previous_tag_test_0004_renders_the_previous_tag_for_page_50:
+  :r1: <a href="/foo?page=49" rel="prev" aria-label="Previous">&lt;</a>
+  :r2: <a href="/foo?page=49+50" rel="prev" aria-label="Previous">&lt;</a>
+  :r3: <a href="/foo?page=49" rel="prev" aria-label="My previous page">PREV</a>
+  :r4: <a href="/foo?page=49+50" rel="prev" aria-label="My previous page">PREV</a>
+Pagy_nav_test__previous_tag_test_0003_renders_the_previous_tag_for_page_6:
+  :r1: <a href="/foo?page=5" rel="prev" aria-label="Previous">&lt;</a>
+  :r2: <a href="/foo?page=5+7" rel="prev" aria-label="Previous">&lt;</a>
+  :r3: <a href="/foo?page=5" rel="prev" aria-label="My previous page">PREV</a>
+  :r4: <a href="/foo?page=5+7" rel="prev" aria-label="My previous page">PREV</a>
 Pagy_nav_test__nav_test_0001_renders_first,_intermediate_and_last_pages:
   :plain_1: <nav class="pagy series-nav" aria-label="Pages"><a role="link" aria-disabled="true"
-    aria-label="Previous">&lt;</a><a role="link" aria-disabled="true" aria-current="page"
-    class="current">1</a><a href="/foo?page=2" rel="next">2</a><a href="/foo?page=3">3</a><a
-    href="/foo?page=4">4</a><a href="/foo?page=5">5</a><a role="link" aria-disabled="true"
-    class="gap">&hellip;</a><a href="/foo?page=50">50</a><a href="/foo?page=2" rel="next"
-    aria-label="Next">&gt;</a></nav>
+    aria-label="Previous">&lt;</a><a role="link" aria-disabled="true" aria-current="page">1</a><a
+    href="/foo?page=2" rel="next">2</a><a href="/foo?page=3">3</a><a href="/foo?page=4">4</a><a
+    href="/foo?page=5">5</a><a role="separator" aria-disabled="true">&hellip;</a><a
+    href="/foo?page=50">50</a><a href="/foo?page=2" rel="next" aria-label="Next">&gt;</a></nav>
   :extras_1: <nav id="test-nav-id" class="pagy series-nav" aria-label="Pages"><a role="link"
     aria-disabled="true" aria-label="Previous">&lt;</a><a role="link" aria-disabled="true"
-    aria-current="page" class="current">1</a><a href="/foo?page=2" rel="next">2</a><a
-    href="/foo?page=3">3</a><a href="/foo?page=4">4</a><a href="/foo?page=5">5</a><a
-    role="link" aria-disabled="true" class="gap">&hellip;</a><a href="/foo?page=50">50</a><a
-    href="/foo?page=2" rel="next" aria-label="Next">&gt;</a></nav>
+    aria-current="page">1</a><a href="/foo?page=2" rel="next">2</a><a href="/foo?page=3">3</a><a
+    href="/foo?page=4">4</a><a href="/foo?page=5">5</a><a role="separator" aria-disabled="true">&hellip;</a><a
+    href="/foo?page=50">50</a><a href="/foo?page=2" rel="next" aria-label="Next">&gt;</a></nav>
   :plain_20: <nav class="pagy series-nav" aria-label="Pages"><a href="/foo?page=19"
-    rel="prev" aria-label="Previous">&lt;</a><a href="/foo?page=1">1</a><a role="link"
-    aria-disabled="true" class="gap">&hellip;</a><a href="/foo?page=19" rel="prev">19</a><a
-    role="link" aria-disabled="true" aria-current="page" class="current">20</a><a
-    href="/foo?page=21" rel="next">21</a><a role="link" aria-disabled="true" class="gap">&hellip;</a><a
-    href="/foo?page=50">50</a><a href="/foo?page=21" rel="next" aria-label="Next">&gt;</a></nav>
+    rel="prev" aria-label="Previous">&lt;</a><a href="/foo?page=1">1</a><a role="separator"
+    aria-disabled="true">&hellip;</a><a href="/foo?page=19" rel="prev">19</a><a role="link"
+    aria-disabled="true" aria-current="page">20</a><a href="/foo?page=21" rel="next">21</a><a
+    role="separator" aria-disabled="true">&hellip;</a><a href="/foo?page=50">50</a><a
+    href="/foo?page=21" rel="next" aria-label="Next">&gt;</a></nav>
   :extras_20: <nav id="test-nav-id" class="pagy series-nav" aria-label="Pages"><a
     href="/foo?page=19" rel="prev" aria-label="Previous">&lt;</a><a href="/foo?page=1">1</a><a
-    role="link" aria-disabled="true" class="gap">&hellip;</a><a href="/foo?page=19"
-    rel="prev">19</a><a role="link" aria-disabled="true" aria-current="page" class="current">20</a><a
-    href="/foo?page=21" rel="next">21</a><a role="link" aria-disabled="true" class="gap">&hellip;</a><a
-    href="/foo?page=50">50</a><a href="/foo?page=21" rel="next" aria-label="Next">&gt;</a></nav>
+    role="separator" aria-disabled="true">&hellip;</a><a href="/foo?page=19" rel="prev">19</a><a
+    role="link" aria-disabled="true" aria-current="page">20</a><a href="/foo?page=21"
+    rel="next">21</a><a role="separator" aria-disabled="true">&hellip;</a><a href="/foo?page=50">50</a><a
+    href="/foo?page=21" rel="next" aria-label="Next">&gt;</a></nav>
   :plain_50: <nav class="pagy series-nav" aria-label="Pages"><a href="/foo?page=49"
-    rel="prev" aria-label="Previous">&lt;</a><a href="/foo?page=1">1</a><a role="link"
-    aria-disabled="true" class="gap">&hellip;</a><a href="/foo?page=46">46</a><a href="/foo?page=47">47</a><a
+    rel="prev" aria-label="Previous">&lt;</a><a href="/foo?page=1">1</a><a role="separator"
+    aria-disabled="true">&hellip;</a><a href="/foo?page=46">46</a><a href="/foo?page=47">47</a><a
     href="/foo?page=48">48</a><a href="/foo?page=49" rel="prev">49</a><a role="link"
-    aria-disabled="true" aria-current="page" class="current">50</a><a role="link"
-    aria-disabled="true" aria-label="Next">&gt;</a></nav>
+    aria-disabled="true" aria-current="page">50</a><a role="link" aria-disabled="true"
+    aria-label="Next">&gt;</a></nav>
   :extras_50: <nav id="test-nav-id" class="pagy series-nav" aria-label="Pages"><a
     href="/foo?page=49" rel="prev" aria-label="Previous">&lt;</a><a href="/foo?page=1">1</a><a
-    role="link" aria-disabled="true" class="gap">&hellip;</a><a href="/foo?page=46">46</a><a
+    role="separator" aria-disabled="true">&hellip;</a><a href="/foo?page=46">46</a><a
     href="/foo?page=47">47</a><a href="/foo?page=48">48</a><a href="/foo?page=49"
-    rel="prev">49</a><a role="link" aria-disabled="true" aria-current="page" class="current">50</a><a
+    rel="prev">49</a><a role="link" aria-disabled="true" aria-current="page">50</a><a
     role="link" aria-disabled="true" aria-label="Next">&gt;</a></nav>
   :keyset: <nav class="pagy series-nav" aria-label="Pages" data-pagy="WyJrIixbImtleSIsInBhZ2UiLDMsWzIsMSxbImRvbmtleSIsIlRpbm8iLDddXV1d"><a
     href="/foo?page=1" rel="prev" aria-label="Previous">&lt;</a><a href="/foo?page=1"
-    rel="prev">1</a><a role="link" aria-disabled="true" aria-current="page" class="current">2</a><a
+    rel="prev">1</a><a role="link" aria-disabled="true" aria-current="page">2</a><a
     href="/foo?page=3" rel="next">3</a><a href="/foo?page=3" rel="next" aria-label="Next">&gt;</a></nav>
+Pagy_nav_test__nav_js_test_0002_renders_first,_intermediate_and_last_pages_with_required_steps:
+  :plain_1: <nav class="pagy series-nav-js" aria-label="Pages" data-pagy="WyJzbmoiLFsiPGEgcm9sZT1cImxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiIGFyaWEtbGFiZWw9XCJQcmV2aW91c1wiPiZsdDs8L2E+IiwiPGEgaHJlZj1cIi9mb28/cGFnZT1QIFwiPkw8L2E+IiwiPGEgcm9sZT1cImxpbmtcIiBhcmlhLWN1cnJlbnQ9XCJwYWdlXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5MPC9hPiIsIjxhIHJvbGU9XCJzZXBhcmF0b3JcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPiZoZWxsaXA7PC9hPiIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9MlwiIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+Il0sW1swXSxbWyIxIiwyLDMsNCw1LCJnYXAiLDUwXV0sbnVsbF1d"></nav>
+  :extras_1: <nav id="test-nav-id" class="pagy-rjs pagy series-nav-js" aria-label="Pages"
+    data-pagy="WyJzbmoiLFsiPGEgcm9sZT1cImxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiIGFyaWEtbGFiZWw9XCJQcmV2aW91c1wiPiZsdDs8L2E+IiwiPGEgaHJlZj1cIi9mb28/cGFnZT1QIFwiPkw8L2E+IiwiPGEgcm9sZT1cImxpbmtcIiBhcmlhLWN1cnJlbnQ9XCJwYWdlXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5MPC9hPiIsIjxhIHJvbGU9XCJzZXBhcmF0b3JcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPiZoZWxsaXA7PC9hPiIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9MlwiIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+Il0sW1s2MDAsMF0sW1siMSIsMiwzLDQsNSwiZ2FwIiw1MF0sWyIxIiwyLDMsNCw1XV0sbnVsbF1d"></nav>
+  :plain_20: <nav class="pagy series-nav-js" aria-label="Pages" data-pagy="WyJzbmoiLFsiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwiUHJldmlvdXNcIj4mbHQ7PC9hPiIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9UCBcIj5MPC9hPiIsIjxhIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwicGFnZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+TDwvYT4iLCI8YSByb2xlPVwic2VwYXJhdG9yXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT4iLCI8YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJOZXh0XCI+Jmd0OzwvYT4iXSxbWzBdLFtbMSwiZ2FwIiwxOSwiMjAiLDIxLCJnYXAiLDUwXV0sbnVsbF1d"></nav>
+  :extras_20: <nav id="test-nav-id" class="pagy-rjs pagy series-nav-js" aria-label="Pages"
+    data-pagy="WyJzbmoiLFsiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwiUHJldmlvdXNcIj4mbHQ7PC9hPiIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9UCBcIj5MPC9hPiIsIjxhIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwicGFnZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+TDwvYT4iLCI8YSByb2xlPVwic2VwYXJhdG9yXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT4iLCI8YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJOZXh0XCI+Jmd0OzwvYT4iXSxbWzYwMCwwXSxbWzEsImdhcCIsMTksIjIwIiwyMSwiZ2FwIiw1MF0sWzE4LDE5LCIyMCIsMjEsMjJdXSxudWxsXV0="></nav>
+  :plain_50: <nav class="pagy series-nav-js" aria-label="Pages" data-pagy="WyJzbmoiLFsiPGEgaHJlZj1cIi9mb28/cGFnZT00OVwiIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwiUHJldmlvdXNcIj4mbHQ7PC9hPiIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9UCBcIj5MPC9hPiIsIjxhIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwicGFnZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+TDwvYT4iLCI8YSByb2xlPVwic2VwYXJhdG9yXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT4iLCI8YSByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCIgYXJpYS1sYWJlbD1cIk5leHRcIj4mZ3Q7PC9hPiJdLFtbMF0sW1sxLCJnYXAiLDQ2LDQ3LDQ4LDQ5LCI1MCJdXSxudWxsXV0="></nav>
+  :extras_50: <nav id="test-nav-id" class="pagy-rjs pagy series-nav-js" aria-label="Pages"
+    data-pagy="WyJzbmoiLFsiPGEgaHJlZj1cIi9mb28/cGFnZT00OVwiIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwiUHJldmlvdXNcIj4mbHQ7PC9hPiIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9UCBcIj5MPC9hPiIsIjxhIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwicGFnZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+TDwvYT4iLCI8YSByb2xlPVwic2VwYXJhdG9yXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT4iLCI8YSByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCIgYXJpYS1sYWJlbD1cIk5leHRcIj4mZ3Q7PC9hPiJdLFtbNjAwLDBdLFtbMSwiZ2FwIiw0Niw0Nyw0OCw0OSwiNTAiXSxbNDYsNDcsNDgsNDksIjUwIl1dLG51bGxdXQ=="></nav>
+  :keyset: <nav class="pagy series-nav-js" aria-label="Pages" data-pagy="WyJzbmoiLFsiPGEgaHJlZj1cIi9mb28/cGFnZT0xXCIgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJQcmV2aW91c1wiPiZsdDs8L2E+IiwiPGEgaHJlZj1cIi9mb28/cGFnZT1QIFwiPkw8L2E+IiwiPGEgcm9sZT1cImxpbmtcIiBhcmlhLWN1cnJlbnQ9XCJwYWdlXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5MPC9hPiIsIjxhIHJvbGU9XCJzZXBhcmF0b3JcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPiZoZWxsaXA7PC9hPiIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9M1wiIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+Il0sW1swXSxbWzEsIjIiLDNdXSxudWxsXSxbImtleSIsInBhZ2UiLDMsWzIsMSxbImRvbmtleSIsIlRpbm8iLDddXV1d"></nav>
+Pagy_nav_test__nav_js_test_0001_renders_single_and_multiple_pages_when_used_with_Pagy__Offset__Countless:
+  :plain_1_0: <nav class="pagy series-nav-js" aria-label="Page" data-pagy="WyJzbmoiLFsiPGEgcm9sZT1cImxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiIGFyaWEtbGFiZWw9XCJQcmV2aW91c1wiPiZsdDs8L2E+IiwiPGEgaHJlZj1cIi9mb28/cGFnZT1QICsxXCI+TDwvYT4iLCI8YSByb2xlPVwibGlua1wiIGFyaWEtY3VycmVudD1cInBhZ2VcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPkw8L2E+IiwiPGEgcm9sZT1cInNlcGFyYXRvclwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+JmhlbGxpcDs8L2E+IiwiPGEgcm9sZT1cImxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiIGFyaWEtbGFiZWw9XCJOZXh0XCI+Jmd0OzwvYT4iXSxbWzBdLFtbIjEiXV0sbnVsbF1d"></nav>
+  :extras_1_0: <nav id="test-nav-id" class="pagy-rjs pagy series-nav-js" aria-label="Page"
+    data-pagy="WyJzbmoiLFsiPGEgcm9sZT1cImxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiIGFyaWEtbGFiZWw9XCJQcmV2aW91c1wiPiZsdDs8L2E+IiwiPGEgaHJlZj1cIi9mb28/cGFnZT1QICsxXCI+TDwvYT4iLCI8YSByb2xlPVwibGlua1wiIGFyaWEtY3VycmVudD1cInBhZ2VcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPkw8L2E+IiwiPGEgcm9sZT1cInNlcGFyYXRvclwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+JmhlbGxpcDs8L2E+IiwiPGEgcm9sZT1cImxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiIGFyaWEtbGFiZWw9XCJOZXh0XCI+Jmd0OzwvYT4iXSxbWzYwMCwwXSxbWyIxIl0sWyIxIl1dLG51bGxdXQ=="></nav>
+  :plain_2_23: <nav class="pagy series-nav-js" aria-label="Pages" data-pagy="WyJzbmoiLFsiPGEgaHJlZj1cIi9mb28/cGFnZT0xKzNcIiByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cIlByZXZpb3VzXCI+Jmx0OzwvYT4iLCI8YSBocmVmPVwiL2Zvbz9wYWdlPVAgKzNcIj5MPC9hPiIsIjxhIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwicGFnZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+TDwvYT4iLCI8YSByb2xlPVwic2VwYXJhdG9yXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT4iLCI8YSBocmVmPVwiL2Zvbz9wYWdlPTMrM1wiIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+Il0sW1swXSxbWzEsIjIiLDNdXSxudWxsXV0="></nav>
+  :extras_2_23: <nav id="test-nav-id" class="pagy-rjs pagy series-nav-js" aria-label="Pages"
+    data-pagy="WyJzbmoiLFsiPGEgaHJlZj1cIi9mb28/cGFnZT0xKzNcIiByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cIlByZXZpb3VzXCI+Jmx0OzwvYT4iLCI8YSBocmVmPVwiL2Zvbz9wYWdlPVAgKzNcIj5MPC9hPiIsIjxhIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwicGFnZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+TDwvYT4iLCI8YSByb2xlPVwic2VwYXJhdG9yXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT4iLCI8YSBocmVmPVwiL2Zvbz9wYWdlPTMrM1wiIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+Il0sW1s2MDAsMF0sW1sxLCIyIiwzXSxbMSwiMiIsM11dLG51bGxdXQ=="></nav>
 Pagy_nav_test__input_nav_js_test_0001_renders_first,_intermediate_and_last_pages:
   :plain_1: '<nav class="pagy input-nav-js" aria-label="Pages" data-pagy="WyJpbmoiLCIvZm9vP3BhZ2U9UCAiXQ=="><a
     role="link" aria-disabled="true" aria-label="Previous">&lt;</a><label>Page <input
@@ -114,23 +112,23 @@ Pagy_nav_test__input_nav_js_test_0001_renders_first,_intermediate_and_last_pages
     name="page" type="number" min="1" max="6" value="6" aria-current="page" style="text-align:
     center; width: 2rem; padding: 0;"><a style="display: none;">#</a> of 6</label><a
     role="link" aria-disabled="true" aria-label="Next">&gt;</a></nav>'
-Pagy_nav_test__next_tag_test_0003_renders_the_next_tag_for_page_6:
-  :r1: <a href="/foo?page=7" rel="next" aria-label="Next">&gt;</a>
-  :r2: <a href="/foo?page=7+7" rel="next" aria-label="Next">&gt;</a>
-  :r3: <a href="/foo?page=7" rel="next" aria-label="My next page">NEXT</a>
-  :r4: <a href="/foo?page=7+7" rel="next" aria-label="My next page">NEXT</a>
 Pagy_nav_test__next_tag_test_0001_renders_the_next_tag_for_page_1:
   :r1: <a href="/foo?page=2" rel="next" aria-label="Next">&gt;</a>
   :r2: <a role="link" aria-disabled="true" aria-label="Next">&gt;</a>
   :r3: <a href="/foo?page=2" rel="next" aria-label="My next page">NEXT</a>
-  :r4: <a role="link" aria-disabled="true" aria-label="My next page">NEXT</a>
-Pagy_nav_test__next_tag_test_0004_renders_the_next_tag_for_page_50:
-  :r1: <a role="link" aria-disabled="true" aria-label="Next">&gt;</a>
-  :r2: <a role="link" aria-disabled="true" aria-label="Next">&gt;</a>
-  :r3: <a role="link" aria-disabled="true" aria-label="My next page">NEXT</a>
   :r4: <a role="link" aria-disabled="true" aria-label="My next page">NEXT</a>
 Pagy_nav_test__next_tag_test_0002_renders_the_next_tag_for_page_3:
   :r1: <a href="/foo?page=4" rel="next" aria-label="Next">&gt;</a>
   :r2: <a href="/foo?page=4+4" rel="next" aria-label="Next">&gt;</a>
   :r3: <a href="/foo?page=4" rel="next" aria-label="My next page">NEXT</a>
   :r4: <a href="/foo?page=4+4" rel="next" aria-label="My next page">NEXT</a>
+Pagy_nav_test__next_tag_test_0004_renders_the_next_tag_for_page_50:
+  :r1: <a role="link" aria-disabled="true" aria-label="Next">&gt;</a>
+  :r2: <a role="link" aria-disabled="true" aria-label="Next">&gt;</a>
+  :r3: <a role="link" aria-disabled="true" aria-label="My next page">NEXT</a>
+  :r4: <a role="link" aria-disabled="true" aria-label="My next page">NEXT</a>
+Pagy_nav_test__next_tag_test_0003_renders_the_next_tag_for_page_6:
+  :r1: <a href="/foo?page=7" rel="next" aria-label="Next">&gt;</a>
+  :r2: <a href="/foo?page=7+7" rel="next" aria-label="Next">&gt;</a>
+  :r3: <a href="/foo?page=7" rel="next" aria-label="My next page">NEXT</a>
+  :r4: <a href="/foo?page=7+7" rel="next" aria-label="My next page">NEXT</a>
