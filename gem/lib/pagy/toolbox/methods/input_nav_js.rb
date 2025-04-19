@@ -15,4 +15,5 @@ class Pagy
                  next_tag(a_lambda)})
     wrap_input_nav_js(html, 'pagy input-nav-js', **)
   end
+  alias pagy_input_nav_js input_nav_js
 end

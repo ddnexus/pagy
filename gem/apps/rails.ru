@@ -7,11 +7,11 @@
 #    https://ddnexus.github.io/pagy/playground/#2-rails-app
 #
 # BIN HELP
-#    bundle exec pagy -h
+#    pagy -h
 #
 # DEV USAGE
-#    bundle exec pagy clone rails
-#    bundle exec pagy ./rails.ru
+#    pagy clone rails
+#    pagy ./rails.ru
 #
 # URL
 #    http://127.0.0.1:8000

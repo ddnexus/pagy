@@ -7,14 +7,14 @@
 #    https://ddnexus.github.io/pagy/playground/#3-demo-app
 #
 # BIN HELP
-#    bundle exec pagy -h
+#    pagy -h
 #
 # DEMO USAGE
-#    bundle exec pagy demo
+#    pagy demo
 #
 # DEV USAGE
-#    bundle exec pagy clone demo
-#    bundle exec pagy ./demo.ru
+#    pagy clone demo
+#    pagy ./demo.ru
 #
 # URL
 #    http://127.0.0.1:8000
@@ -24,10 +24,6 @@ VERSION = '10.0.0'
 if VERSION != Pagy::VERSION
   Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")
 end
-
-APP_MODE = :demo
-# APP_MODE = :screenshot
-# APP_MODE = :mask
 
 # Bundle
 require 'bundler/inline'
@@ -40,7 +36,7 @@ gemfile(!Pagy::ROOT.join('pagy.gemspec').exist?) do
 end
 
 # pagy initializer
-NAMES = { pagy:      { css_anchor: 'pagy-scss' },
+NAMES = { pagy:      { css_anchor: 'pagy-css' },
           tailwind:  { css_anchor: 'pagy-tailwind-css' },
           bootstrap: { style: :bootstrap, classes: 'pagination pagination-sm' },
           bulma:     { style: :bulma, classes: 'pagination is-small' } }.freeze
@@ -63,7 +59,7 @@ class PagyDemo < Sinatra::Base
     collection      = MockCollection.new
     @pagy, @records = pagy(:offset, collection)
 
-    erb :template, locals: { pagy: @pagy, name: 'template', css_anchor: 'pagy-scss' }
+    erb :template, locals: { pagy: @pagy, name: 'template', css_anchor: 'pagy-css' }
   end
 
   get('/javascript/:file') do
@@ -97,14 +93,11 @@ class PagyDemo < Sinatra::Base
     def style_menu
       html = +%(<div id="style-menu"> )
       NAMES.each_key do |style|
-        next unless APP_MODE == :demo || %i[pagy bootstrap bulma].include?(style)
-
         name    = style.to_s
         name[0] = name[0].capitalize
         html << %(<a href="/#{style}">#{name}</a>)
       end
-      (html << %(<a href="/template">Template</a>)) if APP_MODE == :demo
-      html << %(</div>)
+      html << %(<a href="/template">Template</a></div>)
     end
 
     def highlight(html, format: :html)
@@ -140,7 +133,7 @@ class PagyDemo < Sinatra::Base
         <style>
           @media screen { html, body {
             font-size: 1rem;
-            line-height: 1.2s;
+            line-height: 1.2;
             padding: 0;
             margin: 0;
           } }
@@ -149,14 +142,11 @@ class PagyDemo < Sinatra::Base
           *::after {
             box-sizing: border-box;
           }
-          input[type="number"],
-          input[type="range"] {
-            all: revert;
-          }
           body {
             margin: 0 !important;
             font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
             color: #303030 !important;
+            background-color: #f5f5f5 !important;
           }
           svg {
             position: fixed;
@@ -272,43 +262,6 @@ class PagyDemo < Sinatra::Base
             --line-height: 1.75;
           }
         </style>
-        <% if APP_MODE != :demo %>
-        <style>
-          .pagy, .pagy-bootstrap, .pagy-bulma {
-            padding: .5em;
-          }
-         details, span.notes {
-            display: none;
-          }
-        </style>
-        <% end %>
-        <% if APP_MODE == :mask %>
-        <style>
-          .pagy, .pagy-bootstrap, .pagy-bulma {
-            background-color: black !important;
-          }
-          .pagy *:not([role="separator"]) {
-            background-color: white !important;
-          }
-          .pagy a:not(.gap):not([href]) { /* disabled and current */
-            opacity: 1 !important;
-          }
-          .pagy *, .pagy-bootstrap *,
-          .pagy-bulma a,
-          .pagy-bulma label,
-          .pagy-bulma .pagination-ellipsis  {
-            color: white !important;
-          }
-          .pagy-bootstrap .page-item .page-link,
-          .pagy-bulma li.pagination-link,
-          .pagy-bulma input,
-          .pagy-bulma a, .pagy-bulma a.pagination-previous, .pagy-bulma a.pagination-next {
-            border-color: white !important;
-            background-color: white !important;
-            opacity: 1;
-          }
-        </style>
-        <% end %>
       </head>
       <body>
         <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
@@ -381,13 +334,10 @@ class PagyDemo < Sinatra::Base
       <div id="main-container">
         <div id="content">
           <hr id="top-hr">
-          <% if APP_MODE == :demo %>
-            <h2>@records</h2>
-            <p id="records"><%= @records.join(',') %></p>
-          <% end %>
+          <h2>@records</h2>
+          <p id="records"><%= @records.join(',') %></p>
 
           <h2>@pagy.series_nav<br/>
-            <%= '(capture page-1)' unless APP_MODE == :demo %>
             <span class="notes">Series nav <code>{slots: 7}</code></span>
           </h2>
           <%= html = @pagy.series_nav(style, classes:,
@@ -395,14 +345,7 @@ class PagyDemo < Sinatra::Base
                                       aria_label: 'Pages series_nav') %>
           <%= highlight(html) %>
 
-          <% unless APP_MODE == :demo %>
-            <%= '<br/>' * 3%>
-            <%= '(Now change the page number to page 11)'  %>
-            <%= '<br/>' * 3%>
-          <% end %>
-
           <h2>@pagy.series_nav_js<br/>
-            <%= '(capture page-11 showing 7, 9, and 11 slots)' unless APP_MODE == :demo %>
             <span class="notes">Responsive nav: <code>{steps: {0 => 5, 500 => 7, 600 => 9, 700 => 11}}</code><br/>
             (Resize the window to see)
             </span>
@@ -413,29 +356,19 @@ class PagyDemo < Sinatra::Base
                                          steps: { 0 => 5, 500 => 7, 600 => 9, 700 => 11 }) %>
           <%= highlight(html) %>
 
-          <h2>@pagy.input_nav_js<br>
-            <%= '(capture page-11)' unless APP_MODE == :demo %>
-          </h2>
+          <h2>@pagy.input_nav_js</h2>
           <%= html = @pagy.input_nav_js(style, classes:,
                                         id: 'input-nav-js',
                                         aria_label: 'Pages inpup_nav_js') %>
           <%= highlight(html) %>
 
-          <% if name.match(/pagy|tailwind/) || APP_MODE == :demo %>
-            <h2>@pagy.limit_tag_js</h2>
-            <%= html = @pagy.limit_tag_js(id: 'limit-tag-js') %>
-            <%= highlight(html) %>
-          <% end %>
+          <h2>@pagy.limit_tag_js</h2>
+          <%= html = @pagy.limit_tag_js(id: 'limit-tag-js') %>
+          <%= highlight(html) %>
 
-          <% if name.match(/pagy|tailwind/) && APP_MODE != :demo %>
-            <h2>anchor_tags</h2>
-            <nav class="pagy" id="anchor-tags" aria-label="Pagy prev-next"><%= @pagy.previous_tag + ' ' + @pagy.next_tag %></nav>
-          <% end %>
-          <% if APP_MODE == :demo %>
-            <h2>@pagy.info_tag</h2>
-            <%= html = @pagy.info_tag(id: 'pagy-info') %>
-            <%= highlight(html) %>
-          <% end %>
+          <h2>@pagy.info_tag</h2>
+          <%= html = @pagy.info_tag(id: 'pagy-info') %>
+          <%= highlight(html) %>
           <br><br> <!-- bulma fix -->
         </div>
       </div>

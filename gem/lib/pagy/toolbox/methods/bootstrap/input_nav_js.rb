@@ -10,7 +10,7 @@ class Pagy
   def bootstrap_input_nav_js(classes: 'pagination', **)
     a_lambda = a_lambda(**)
     input    = %(<input name="page" type="number" min="1" max="#{last}" value="#{@page}" aria-current="page" ) +
-               %(style="text-align: center; width: #{@page.to_s.length + 1}rem; padding: .125rem; border-radius: .125rem; ) +
+               %(style="text-align: center; width: #{@page.to_s.length + 1}rem; padding: 0; border-radius: .25rem; ) +
                %(border: none; display: inline-block;" class="page-link active">#{A_TAG})
     html     = %(<ul class="#{classes}">#{
                  bootstrap_html_for(:previous, a_lambda)

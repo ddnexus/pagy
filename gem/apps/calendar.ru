@@ -7,11 +7,11 @@
 #    https://ddnexus.github.io/pagy/playground/#5-calendar-app
 #
 # BIN HELP
-#    bundle exec pagy -h
+#    pagy -h
 #
 # DEV USAGE
-#    bundle exec pagy clone calendar
-#    bundle exec pagy ./calendar.ru
+#    pagy clone calendar
+#    pagy ./calendar.ru
 #
 # URL
 #    http://127.0.0.1:8000

@@ -7,11 +7,11 @@
 #    https://ddnexus.github.io/pagy/playground/#5-keyset-apps
 #
 # BIN HELP
-#    bundle exec pagy -h
+#    pagy -h
 #
 # DEV USAGE
-#    bundle exec pagy clone keyset
-#    bundle exec pagy ./keyset.ru
+#    pagy clone keyset
+#    pagy ./keyset.ru
 #
 # URL
 #    http://127.0.0.1:8000

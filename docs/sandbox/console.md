@@ -28,7 +28,7 @@ You can use a few method to create a simple collection paginated with the `:offs
 => {example: "123"}
 
 >> collection
-=> Collection
+=> Pagy::Console::Collection
 
 >> pagy, records = pagy(:offset, collection.new, limit: 10) # Example pagination of sample data
 => [#<Pagy::Offset:0x00007fb92fb35840 @count=1000, @from=1, @in=10, @in_range=true, @last=100, @limit=10, @next=2, @offset=0, @options={limit: 10, limit_key: :limit, page_key: :page, page: 1, request: {base_url: "http://www.example.com", path: "/path", query: {example: "123"}}, count: 1000}, @page=1, @to=10>, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]

@@ -16,10 +16,9 @@ opts = Optimist.options do
     Pagy #{VERSION} (https://ddnexus.github.io/pagy/playground)
     Playground to showcase, clone and develop pagy APPs
     APPs
-    #{ apps.map do |name, path|
-         "  #{name}#{' ' * (27 - name.length)}#{File.readlines(path)[3].sub('#    ', '').strip}"
-       end.join("\n")
-     }
+    #{ apps.filter_map do |name, path|
+         "  #{name}#{' ' * (27 - name.length)}#{File.readlines(path)[3].sub('#    ', '').strip}" unless name.eql?('docshots')
+       end.join("\n") }
     USAGE
       pagy APP [options]         Showcase APP from the installed gem
       pagy clone APP             Clone APP to the current dir

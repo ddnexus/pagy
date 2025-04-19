@@ -81,11 +81,11 @@ See [Common Nav Styles](../methods#common-nav-styles)
 - `steps: { 0 => 5, 540 => 7, 720 => 9 }`
   - Enable responsiveness. Assign different number of `:slots` to different tag widths.
 
-See also other applicabe options: [series_nav Options](series_nav#options)
+See also other appicable options: [Common Nav Options](../methods#common-nav-options) and [Common URL Options](../paginators#common-url-options)
 
 ==- In Depth: `:steps` Option
 
-Notice: when `:steps` is not set, the `series_nav_js` behaves exactly as a `series_nav`: just faster.
+Notice: when `:steps` is not set, the `series_nav_js` behaves almost as a `series_nav`: just faster.
 
 Set it as a hash, where the keys are integers representing the widths in pixels, and the values are the `:slots` options to be
 applied for those widths.
@@ -100,6 +100,11 @@ option in the [How to control the pagination bar](../../guides/how-to#control-th
 
 You can set any number of steps with any arbitrary width/slots. The only requirement is
 that the `:steps` hash must always contain the `0` width, or a `Pagy::OptionsError` exception will be raised.
+!!!
+
+!!! Notice
+
+The `:slots` and `:compact` options used by the `series_nav` are not directly available.
 !!!
 
 #### Setting the right steps

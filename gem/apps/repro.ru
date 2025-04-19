@@ -7,11 +7,11 @@
 #    https://ddnexus.github.io/pagy/playground/#1-repro-app
 #
 # BIN HELP
-#    bundle exec pagy -h
+#    pagy -h
 #
 # DEV USAGE
-#    bundle exec pagy clone repro
-#    bundle exec pagy ./repro.ru
+#    pagy clone repro
+#    pagy ./repro.ru
 #
 # URL
 #    http://127.0.0.1:8000

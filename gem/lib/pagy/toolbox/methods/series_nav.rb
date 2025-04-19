@@ -25,4 +25,5 @@ class Pagy
     html << next_tag(a_lambda)
     wrap_series_nav(html, 'pagy series-nav', **)
   end
+  alias pagy_series_nav series_nav
 end

@@ -13,6 +13,8 @@ class Pagy
       end
 
       def GET = @params  # rubocop:disable Naming/MethodName
+
+      def cookies = {}
     end
 
     class Collection < Array
