@@ -195,7 +195,7 @@ class PagyDocshots < Sinatra::Base
           h1 {
             font-size: 2rem;
             font-weight: bold;
-          } 
+          }
           h4 {
             font-size: 1rem;
             font-weight: bold;
@@ -328,7 +328,7 @@ class PagyDocshots < Sinatra::Base
         <hr><br>
         <a href="/pagy?meth=anchor_tags">pagy-anchor_tags.png</a></br>
         <a href="/pagy?meth=limit_tag_js">pagy-limit_tag_js.png</a></br>
-  
+
         <% %w[pagy bootstrap bulma].each do |style| %>
         <a href="/<%= style %>?meth=series_nav"><%= style %>-series_nav.png</a></br>
         <a href="/<%= style %>?meth=series_nav_js&slots=7&page=11"><%= style %>-series_nav_js-7.png</a></br>
