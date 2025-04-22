@@ -2,6 +2,32 @@ document.head.insertAdjacentHTML("afterbegin", `
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`);
 const fontIsolation = (async () => {
+  const PAGY_WAND_FONT_CACHE_KEY = "pagy-wand-processed-fonts";
+  const cachedDataJson = sessionStorage.getItem(PAGY_WAND_FONT_CACHE_KEY);
+  if (cachedDataJson) {
+    try {
+      const cachedData = JSON.parse(cachedDataJson);
+      if (typeof cachedData.fontFaceRules === "string" && typeof cachedData.processedComponentCss === "string") {
+        if (cachedData.fontFaceRules) {
+          const styleEl = document.createElement("style");
+          styleEl.id = "pagy-wand-font-css";
+          styleEl.textContent = cachedData.fontFaceRules;
+          if (document.head) {
+            document.head.appendChild(styleEl);
+          } else {
+            document.addEventListener("DOMContentLoaded", () => document.head.appendChild(styleEl), { once: true });
+          }
+        }
+        return { processedComponentCss: cachedData.processedComponentCss };
+      } else {
+        console.warn("Pagy Wand: Invalid cached font data structure found. Refetching.");
+        sessionStorage.removeItem(PAGY_WAND_FONT_CACHE_KEY);
+      }
+    } catch (e) {
+      console.error("Pagy Wand: Failed to parse cached font data. Refetching.", e);
+      sessionStorage.removeItem(PAGY_WAND_FONT_CACHE_KEY);
+    }
+  }
   const icons = "check_circle,content_copy,error,help,tune,visibility,visibility_off";
   const fontDefinitions = [
     {
@@ -54,13 +80,27 @@ const fontIsolation = (async () => {
   }
   const processedResults = await Promise.all(fontDefinitions.map((def) => processGoogleFontCSS(def.url, def.fontMappings, def.classMappings)));
   const allFontFaceRules = processedResults.map((r) => r.fontFaceRules).join("\n");
+  const allComponentCss = processedResults.map((r) => r.componentCss).join("\n");
   if (allFontFaceRules) {
     const styleEl = document.createElement("style");
     styleEl.id = "pagy-wand-font-css";
     styleEl.textContent = allFontFaceRules;
-    document.head.appendChild(styleEl);
+    if (document.head) {
+      document.head.appendChild(styleEl);
+    } else {
+      document.addEventListener("DOMContentLoaded", () => document.head.appendChild(styleEl), { once: true });
+    }
   }
-  return { processedComponentCss: processedResults.map((r) => r.componentCss).join("\n") };
+  try {
+    const dataToCache = {
+      fontFaceRules: allFontFaceRules,
+      processedComponentCss: allComponentCss
+    };
+    sessionStorage.setItem(PAGY_WAND_FONT_CACHE_KEY, JSON.stringify(dataToCache));
+  } catch (e) {
+    console.error("Pagy Wand: Failed to save font data to sessionStorage.", e);
+  }
+  return { processedComponentCss: allComponentCss };
 })();
 document.addEventListener("DOMContentLoaded", async () => {
   const PRESET = "pagy-wand-preset";
@@ -167,10 +207,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const style = document.getElementById("pagy-wand-default");
   document.head.appendChild(style);
   const shadow = host.attachShadow({ mode: "closed" });
+  const { processedComponentCss } = await fontIsolation;
   shadow.innerHTML = `
     <!--suppress CssInvalidPropertyValue -->
     <style>
-      ${(await fontIsolation).processedComponentCss}
+      ${processedComponentCss}
       #panel select, #panel select option, #panel input[type="range"] {
         font-family: 'PagyWand-Sans', sans-serif;
         cursor: pointer;

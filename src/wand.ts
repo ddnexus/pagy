@@ -17,7 +17,42 @@ document.head.insertAdjacentHTML('afterbegin', `
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`);
 
 const fontIsolation = (async () => {
-  // --- URLs and Mappings ---
+  // --- Cache Key ---
+  const PAGY_WAND_FONT_CACHE_KEY = 'pagy-wand-processed-fonts';
+
+  // --- Check Cache ---
+  const cachedDataJson = sessionStorage.getItem(PAGY_WAND_FONT_CACHE_KEY);
+  if (cachedDataJson) {
+    try {
+      const cachedData = JSON.parse(cachedDataJson);
+      // Basic check for expected structure
+      if (typeof cachedData.fontFaceRules === 'string' && typeof cachedData.processedComponentCss === 'string') {
+        // Inject cached @font-face rules
+        if (cachedData.fontFaceRules) {
+          const styleEl = document.createElement('style');
+          styleEl.id = 'pagy-wand-font-css';
+          styleEl.textContent = cachedData.fontFaceRules;
+          // Check if head exists before appending (safer)
+          if (document.head) {
+            document.head.appendChild(styleEl);
+          } else {
+            // Fallback if head isn't ready (less likely with IIFE placement)
+            document.addEventListener('DOMContentLoaded', () => document.head.appendChild(styleEl), { once: true });
+          }
+        }
+        // Return cached data structure (containing component CSS)
+        return { processedComponentCss: cachedData.processedComponentCss };
+      } else {
+        console.warn("Pagy Wand: Invalid cached font data structure found. Refetching.");
+        sessionStorage.removeItem(PAGY_WAND_FONT_CACHE_KEY); // Clear invalid cache
+      }
+    } catch (e) {
+      console.error("Pagy Wand: Failed to parse cached font data. Refetching.", e);
+      sessionStorage.removeItem(PAGY_WAND_FONT_CACHE_KEY); // Clear corrupted cache
+    }
+  }
+
+  // --- Cache Miss: Proceed with fetching and processing ---
   const icons = 'check_circle,content_copy,error,help,tune,visibility,visibility_off';  // Alpha sorted icon names
   const fontDefinitions = [
     {
@@ -91,15 +126,35 @@ const fontIsolation = (async () => {
 
   // --- Inject @font-face rules into head ---
   const allFontFaceRules = processedResults.map(r => r.fontFaceRules).join('\n');
+  const allComponentCss = processedResults.map(r => r.componentCss).join('\n'); // Combine component CSS here
+
   if (allFontFaceRules) {
     const styleEl = document.createElement('style');
     styleEl.id    = 'pagy-wand-font-css';
     styleEl.textContent = allFontFaceRules;
-    document.head.appendChild(styleEl);
+    // Check if head exists before appending (safer)
+    if (document.head) {
+      document.head.appendChild(styleEl);
+    } else {
+      // Fallback if head isn't ready (less likely with IIFE placement)
+      document.addEventListener('DOMContentLoaded', () => document.head.appendChild(styleEl), { once: true });
+    }
+  }
+
+  // --- Cache the results ---
+  try {
+    const dataToCache = {
+      fontFaceRules: allFontFaceRules,
+      processedComponentCss: allComponentCss // Cache combined component CSS
+    };
+    sessionStorage.setItem(PAGY_WAND_FONT_CACHE_KEY, JSON.stringify(dataToCache));
+  } catch (e) {
+    // Avoid crashing if storage is full or restricted
+    console.error("Pagy Wand: Failed to save font data to sessionStorage.", e);
   }
 
   // --- Combine component CSS rules from Google (will contain renamed .pagy-wand-symbol) ---
-  return { processedComponentCss:  processedResults.map(r => r.componentCss).join('\n') };
+  return { processedComponentCss: allComponentCss }; // Return combined component CSS
 })();
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -206,10 +261,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.head.appendChild(style);
   const shadow = host.attachShadow({ mode: 'closed' });
 
+  // --- Await fontIsolation (resolves immediately if cached) ---
+  const { processedComponentCss } = await fontIsolation;
+
   shadow.innerHTML = `
     <!--suppress CssInvalidPropertyValue -->
     <style>
-      ${(await fontIsolation).processedComponentCss}
+      ${processedComponentCss}
       #panel select, #panel select option, #panel input[type="range"] {
         font-family: 'PagyWand-Sans', sans-serif;
         cursor: pointer;
