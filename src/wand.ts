@@ -1,7 +1,7 @@
 type Mappings = {
-    original:string
-    custom:string
-  }[];
+  original:string
+  custom:string
+}[];
 
 type Controls = {
   [key: string]: {
@@ -103,15 +103,7 @@ const fontIsolation = (async () => {
 })();
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // Cookie handling
-  const B64SafeEncode = (unicode:string) => btoa(String.fromCharCode(...(new TextEncoder).encode(unicode)))
-                                              .replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : "");
-  const B64Decode     = (base64:string) => (new TextDecoder()).decode(Uint8Array.from(atob(base64), c => c.charCodeAt(0)));
-
-  const encodeBool    = (bool:boolean) =>  bool ? 'true' : 'false';
-  const decodeBool    = (str:string) => str === 'true';
-
-  // Cookie names
+  // Session Storage Keys
   const PRESET       = 'pagy-wand-preset';
   const OVERRIDE     = 'pagy-wand-override';
   const POSITION     = 'pagy-wand-position';
@@ -119,25 +111,31 @@ document.addEventListener('DOMContentLoaded', async () => {
   const HELP_CHK     = 'pagy-wand-help-chk';
   const LIVE_CHK     = 'pagy-wand-live-chk';
 
-  // Cookie functions
-  function deleteCookie(name:string) {
-    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  // Helper functions for Session Storage
+  function getSessionItem(key: string): string | null {
+    return sessionStorage.getItem(key);
   }
 
-  function setCookie(name:string, value:string) {
-    document.cookie = `${name}=${B64SafeEncode(value)}; path=/`;
-  }
-
-  function getCookie(name:string) : string | null {
-    const cookieName  = `${name}=`;
-    const cookieArray = document.cookie.split(';');
-    for (let i = 0; i < cookieArray.length; i++) {
-      let cookie = cookieArray[i].trim();
-      if (cookie.startsWith(cookieName)) {
-        return B64Decode(cookie.substring(cookieName.length));
-      }
+  function setSessionItem(key: string, value: string | boolean | object) {
+    if (typeof value === 'string') {
+      sessionStorage.setItem(key, value);
+    } else {
+      sessionStorage.setItem(key, JSON.stringify(value));
     }
-    return null;
+  }
+
+  function removeSessionItem(key: string) {
+    sessionStorage.removeItem(key);
+  }
+
+  function getSessionBoolean(key: string, defaultValue: boolean): boolean {
+    const value = sessionStorage.getItem(key);
+    return value !== null ? JSON.parse(value) : defaultValue;
+  }
+
+  function getSessionObject<T>(key: string): T | null {
+    const value = sessionStorage.getItem(key);
+    return value ? JSON.parse(value) : null;
   }
 
   function hslaToRgba(hsla: { hue: string, saturation: string, lightness: string, alpha: string }): string {
@@ -309,7 +307,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         border-top: ${s*.15}rem solid ${wandColor};
         border-bottom: ${s*.15}rem solid ${wandColor};
         height: ${s*33}rem;
-        background: linear-gradient(to bottom, 
+        background: linear-gradient(to bottom,
                                       ${wandTint}  0%,
                                       ${lightGray} 5%,
                                       ${lightGray} 95%,
@@ -324,7 +322,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         grid-column-gap: ${s*.625}rem;
         padding: ${s*.25}rem ${s}rem;
       }
-      .controls-brightness { 
+      .controls-brightness {
         padding-top: 0;
         border-top: none;
         grid-template-rows: ${s*1.5}rem;
@@ -490,7 +488,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
       .copy-feedback.failure {
         background-color: red;
-      } 
+      }
       #help {
         padding-left: ${s}rem;
         padding-right: ${s}rem;
@@ -718,17 +716,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   const presetMenu    = <HTMLSelectElement>shadow.getElementById('preset-menu');
 
   const controlsChk   = <HTMLInputElement>shadow.getElementById('controls-chk');
-  controlsChk.checked = decodeBool(getCookie(CONTROLS_CHK) ?? 'false');
+  controlsChk.checked = getSessionBoolean(CONTROLS_CHK, false);
   const controlsIcon  = <HTMLElement>shadow.getElementById('controls-icon');
   const controlsDiv   = <HTMLElement>shadow.getElementById('controls');
 
   const helpChk       = <HTMLInputElement>shadow.getElementById('help-chk');
-  helpChk.checked     = decodeBool(getCookie(HELP_CHK) ?? 'false');
+  helpChk.checked     = getSessionBoolean(HELP_CHK, false);
   const helpIcon      = <HTMLElement>shadow.getElementById('help-icon');
   const helpDiv       = <HTMLElement>shadow.getElementById('help');
 
   const liveChk       = <HTMLInputElement>shadow.getElementById('live-chk');
-  liveChk.checked     = decodeBool(getCookie(LIVE_CHK) ?? 'true');
+  liveChk.checked     = getSessionBoolean(LIVE_CHK, true);
   const liveIcon      = <HTMLElement>shadow.getElementById('live-icon');
   const liveStyle     = <HTMLStyleElement>document.getElementById('pagy-wand-default');
 
@@ -783,7 +781,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const finalize = () => {
       updateStyle();
       presetMenu.value = '';
-      setCookie(PRESET, '');
+      setSessionItem(PRESET, '');
     }
     if (id === 'hex8') {
       c.input!.addEventListener('change', () => {
@@ -956,8 +954,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   function applyPreset(name:string | null) {
     const css = name
-                ? (deleteCookie(OVERRIDE), presets[name])
-                : getCookie(OVERRIDE);
+                ? (removeSessionItem(OVERRIDE), presets[name])
+                : getSessionItem(OVERRIDE);
     css?.match(/--[^:]+:\s*[^;]+/g)?.forEach((match) => {
       let [cssVarName, value] = match.split(':');
       cssVarName = cssVarName.trim();
@@ -969,16 +967,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       }
     });
-    setCookie(PRESET, name || '');
+    setSessionItem(PRESET, name || '');
     updateStyle();
   }
   presetMenu.addEventListener('change', (e) => applyPreset((<HTMLSelectElement>e.target).value));
 
   // Initial load logic
-  const preset     = getCookie(PRESET) ?? 'Default';
+  const preset     = getSessionItem(PRESET) ?? 'Default';
   presetMenu.value = preset; // Set dropdown value first
   // Check for override *after* setting preset dropdown, apply override if exists
-  const initialOverride = getCookie(OVERRIDE);
+  const initialOverride = getSessionItem(OVERRIDE);
   if (initialOverride) {
     applyPreset(null); // Apply override
     presetMenu.value = ''; // Unselect preset in the dropdown
@@ -997,29 +995,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     override += '}';
     overrideArea!.value = override;
     styleTagOverride.textContent = liveChk.checked ? override : '';
-    // Save override cookie only if a preset is NOT selected
+    // Save override sessionStorage only if a preset is NOT selected
     if (presetMenu.value === '') {
-      setCookie(OVERRIDE, override);
+      setSessionItem(OVERRIDE, override);
     } else {
-      // If a preset *is* selected, delete any override cookie
-      deleteCookie(OVERRIDE);
+      // If a preset *is* selected, delete any override sessionStorage
+      removeSessionItem(OVERRIDE);
     }
     updateColorRamps();
   }
 
-  // getCookiePosition function
-  function getCookiePosition() {
-    const position = getCookie(POSITION);
-    if (position) {
-      const [left, top] = position.split(',');
-      return { left: parseInt(left), top: parseInt(top) };
-    }
-    return null;
+  // getSessionPosition function
+  function getSessionPosition(): { left: number; top: number } | null {
+    return getSessionObject<{ left: number; top: number }>(POSITION);
   }
 
-  // setCookiePosition function
-  function setCookiePosition(left: string|number, top: string|number) {
-    setCookie(POSITION, `${left},${top}`);
+  // setSessionPosition function
+  function setSessionPosition(left: string | number, top: string | number) {
+    setSessionItem(POSITION, { left: parseFloat(String(left)), top: parseFloat(String(top)) });
   }
 
   // Viewport function
@@ -1052,7 +1045,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     panel.style.left = `${newLeft}px`;
     panel.style.top  = `${newTop}px`;
     // Save the *panel's* final position
-    setCookiePosition(newLeft, newTop);
+    setSessionPosition(newLeft, newTop);
   }
 
   // Resize event listener
@@ -1062,8 +1055,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     resizeTimeout = window.setTimeout(keepTopBarInView, 250);
   });
 
-  // Set position from cookie (or transition-center it)
-  const position = getCookiePosition();
+  // Set position from sessionStorage (or transition-center it)
+  const position = getSessionPosition();
 
   if (position && !isNaN(position.left) && !isNaN(position.top)) { // Added NaN check for robustness
     panel.style.left = `${position.left}px`;
@@ -1080,7 +1073,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const rect       = panel.getBoundingClientRect();
         panel.style.top  = rect.top + 'px';
         panel.style.left = rect.left + 'px';
-        setCookiePosition(rect.left, rect.top);
+        setSessionPosition(rect.left, rect.top);
         panel.classList.remove('initial');
         panel.classList.remove('centered');
       }
@@ -1111,15 +1104,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     const newTop     = e.clientY - offsetY;
     panel.style.left = `${newLeft}px`;
     panel.style.top  = `${newTop}px`;
-    setCookiePosition(newLeft, newTop);
+    // Note: Position is saved on mouseup now
   });
 
-  document.addEventListener('mouseup', () => {
+  document.addEventListener('mouseup', (e) => {
     if (!dragging) return;
 
     dragging = false;
     topBar.style.cursor = 'move';
+    // Save final position after drag ends
+    const finalLeft = e.clientX - offsetX;
+    const finalTop  = e.clientY - offsetY;
+    setSessionPosition(finalLeft, finalTop);
   });
+
 
   // Toggles (Original structure)
   // Controls
@@ -1134,7 +1132,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       controlsIcon.classList.remove('selected-icon');
       controlsDiv.style.display = 'none';
     }
-    setCookie(CONTROLS_CHK, encodeBool(controlsChk.checked));
+    setSessionItem(CONTROLS_CHK, controlsChk.checked);
   }
   controlsSwitcher();
   controlsChk.addEventListener('change', controlsSwitcher);
@@ -1150,7 +1148,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       helpIcon.classList.remove('selected-icon');
       helpDiv.style.display = 'none';
     }
-    setCookie(HELP_CHK, encodeBool(helpChk.checked));
+    setSessionItem(HELP_CHK, helpChk.checked);
   }
   helpSwitcher();
   helpChk.addEventListener('change', helpSwitcher);
@@ -1167,7 +1165,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       liveStyle.disabled   = true;
     }
     updateStyle(); // take care of the override if not checked
-    setCookie(LIVE_CHK, encodeBool(liveChk.checked));
+    setSessionItem(LIVE_CHK, liveChk.checked);
   }
   liveSwitcher(); // <-- Call immediately after definition
   liveChk.addEventListener('change', liveSwitcher);

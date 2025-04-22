@@ -63,32 +63,32 @@ const fontIsolation = (async () => {
   return { processedComponentCss: processedResults.map((r) => r.componentCss).join("\n") };
 })();
 document.addEventListener("DOMContentLoaded", async () => {
-  const B64SafeEncode = (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode))).replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : "");
-  const B64Decode = (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)));
-  const encodeBool = (bool) => bool ? "true" : "false";
-  const decodeBool = (str) => str === "true";
   const PRESET = "pagy-wand-preset";
   const OVERRIDE = "pagy-wand-override";
   const POSITION = "pagy-wand-position";
   const CONTROLS_CHK = "pagy-wand-controls-chk";
   const HELP_CHK = "pagy-wand-help-chk";
   const LIVE_CHK = "pagy-wand-live-chk";
-  function deleteCookie(name) {
-    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  function getSessionItem(key) {
+    return sessionStorage.getItem(key);
   }
-  function setCookie(name, value) {
-    document.cookie = `${name}=${B64SafeEncode(value)}; path=/`;
-  }
-  function getCookie(name) {
-    const cookieName = `${name}=`;
-    const cookieArray = document.cookie.split(";");
-    for (let i = 0;i < cookieArray.length; i++) {
-      let cookie = cookieArray[i].trim();
-      if (cookie.startsWith(cookieName)) {
-        return B64Decode(cookie.substring(cookieName.length));
-      }
+  function setSessionItem(key, value) {
+    if (typeof value === "string") {
+      sessionStorage.setItem(key, value);
+    } else {
+      sessionStorage.setItem(key, JSON.stringify(value));
     }
-    return null;
+  }
+  function removeSessionItem(key) {
+    sessionStorage.removeItem(key);
+  }
+  function getSessionBoolean(key, defaultValue) {
+    const value = sessionStorage.getItem(key);
+    return value !== null ? JSON.parse(value) : defaultValue;
+  }
+  function getSessionObject(key) {
+    const value = sessionStorage.getItem(key);
+    return value ? JSON.parse(value) : null;
   }
   function hslaToRgba(hsla) {
     const h = parseFloat(hsla.hue) / 360;
@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         border-top: ${s * 0.15}rem solid ${wandColor};
         border-bottom: ${s * 0.15}rem solid ${wandColor};
         height: ${s * 33}rem;
-        background: linear-gradient(to bottom, 
+        background: linear-gradient(to bottom,
                                       ${wandTint}  0%,
                                       ${lightGray} 5%,
                                       ${lightGray} 95%,
@@ -283,7 +283,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         grid-column-gap: ${s * 0.625}rem;
         padding: ${s * 0.25}rem ${s}rem;
       }
-      .controls-brightness { 
+      .controls-brightness {
         padding-top: 0;
         border-top: none;
         grid-template-rows: ${s * 1.5}rem;
@@ -449,7 +449,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
       .copy-feedback.failure {
         background-color: red;
-      } 
+      }
       #help {
         padding-left: ${s}rem;
         padding-right: ${s}rem;
@@ -672,15 +672,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   const topBar = shadow.getElementById("top-bar");
   const presetMenu = shadow.getElementById("preset-menu");
   const controlsChk = shadow.getElementById("controls-chk");
-  controlsChk.checked = decodeBool(getCookie(CONTROLS_CHK) ?? "false");
+  controlsChk.checked = getSessionBoolean(CONTROLS_CHK, false);
   const controlsIcon = shadow.getElementById("controls-icon");
   const controlsDiv = shadow.getElementById("controls");
   const helpChk = shadow.getElementById("help-chk");
-  helpChk.checked = decodeBool(getCookie(HELP_CHK) ?? "false");
+  helpChk.checked = getSessionBoolean(HELP_CHK, false);
   const helpIcon = shadow.getElementById("help-icon");
   const helpDiv = shadow.getElementById("help");
   const liveChk = shadow.getElementById("live-chk");
-  liveChk.checked = decodeBool(getCookie(LIVE_CHK) ?? "true");
+  liveChk.checked = getSessionBoolean(LIVE_CHK, true);
   const liveIcon = shadow.getElementById("live-icon");
   const liveStyle = document.getElementById("pagy-wand-default");
   const copyIcon = shadow.getElementById("copy-icon");
@@ -732,7 +732,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const finalize = () => {
       updateStyle();
       presetMenu.value = "";
-      setCookie(PRESET, "");
+      setSessionItem(PRESET, "");
     };
     if (id === "hex8") {
       c.input.addEventListener("change", () => {
@@ -902,7 +902,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     presetMenu.appendChild(option);
   }
   function applyPreset(name) {
-    const css = name ? (deleteCookie(OVERRIDE), presets[name]) : getCookie(OVERRIDE);
+    const css = name ? (removeSessionItem(OVERRIDE), presets[name]) : getSessionItem(OVERRIDE);
     css?.match(/--[^:]+:\s*[^;]+/g)?.forEach((match) => {
       let [cssVarName, value] = match.split(":");
       cssVarName = cssVarName.trim();
@@ -914,13 +914,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
       }
     });
-    setCookie(PRESET, name || "");
+    setSessionItem(PRESET, name || "");
     updateStyle();
   }
   presetMenu.addEventListener("change", (e) => applyPreset(e.target.value));
-  const preset = getCookie(PRESET) ?? "Default";
+  const preset = getSessionItem(PRESET) ?? "Default";
   presetMenu.value = preset;
-  const initialOverride = getCookie(OVERRIDE);
+  const initialOverride = getSessionItem(OVERRIDE);
   if (initialOverride) {
     applyPreset(null);
     presetMenu.value = "";
@@ -938,22 +938,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     overrideArea.value = override;
     styleTagOverride.textContent = liveChk.checked ? override : "";
     if (presetMenu.value === "") {
-      setCookie(OVERRIDE, override);
+      setSessionItem(OVERRIDE, override);
     } else {
-      deleteCookie(OVERRIDE);
+      removeSessionItem(OVERRIDE);
     }
     updateColorRamps();
   }
-  function getCookiePosition() {
-    const position = getCookie(POSITION);
-    if (position) {
-      const [left, top] = position.split(",");
-      return { left: parseInt(left), top: parseInt(top) };
-    }
-    return null;
+  function getSessionPosition() {
+    return getSessionObject(POSITION);
   }
-  function setCookiePosition(left, top) {
-    setCookie(POSITION, `${left},${top}`);
+  function setSessionPosition(left, top) {
+    setSessionItem(POSITION, { left: parseFloat(String(left)), top: parseFloat(String(top)) });
   }
   const viewport = () => ({
     width: window.visualViewport ? window.visualViewport.width : document.documentElement.clientWidth,
@@ -976,7 +971,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     panel.style.left = `${newLeft}px`;
     panel.style.top = `${newTop}px`;
-    setCookiePosition(newLeft, newTop);
+    setSessionPosition(newLeft, newTop);
   }
   let resizeTimeout;
   window.addEventListener("resize", () => {
@@ -984,7 +979,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       clearTimeout(resizeTimeout);
     resizeTimeout = window.setTimeout(keepTopBarInView, 250);
   });
-  const position = getCookiePosition();
+  const position = getSessionPosition();
   if (position && !isNaN(position.left) && !isNaN(position.top)) {
     panel.style.left = `${position.left}px`;
     panel.style.top = `${position.top}px`;
@@ -999,7 +994,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const rect = panel.getBoundingClientRect();
         panel.style.top = rect.top + "px";
         panel.style.left = rect.left + "px";
-        setCookiePosition(rect.left, rect.top);
+        setSessionPosition(rect.left, rect.top);
         panel.classList.remove("initial");
         panel.classList.remove("centered");
       }
@@ -1025,13 +1020,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     const newTop = e.clientY - offsetY;
     panel.style.left = `${newLeft}px`;
     panel.style.top = `${newTop}px`;
-    setCookiePosition(newLeft, newTop);
   });
-  document.addEventListener("mouseup", () => {
+  document.addEventListener("mouseup", (e) => {
     if (!dragging)
       return;
     dragging = false;
     topBar.style.cursor = "move";
+    const finalLeft = e.clientX - offsetX;
+    const finalTop = e.clientY - offsetY;
+    setSessionPosition(finalLeft, finalTop);
   });
   function controlsSwitcher() {
     if (controlsChk.checked) {
@@ -1044,7 +1041,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       controlsIcon.classList.remove("selected-icon");
       controlsDiv.style.display = "none";
     }
-    setCookie(CONTROLS_CHK, encodeBool(controlsChk.checked));
+    setSessionItem(CONTROLS_CHK, controlsChk.checked);
   }
   controlsSwitcher();
   controlsChk.addEventListener("change", controlsSwitcher);
@@ -1058,7 +1055,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       helpIcon.classList.remove("selected-icon");
       helpDiv.style.display = "none";
     }
-    setCookie(HELP_CHK, encodeBool(helpChk.checked));
+    setSessionItem(HELP_CHK, helpChk.checked);
   }
   helpSwitcher();
   helpChk.addEventListener("change", helpSwitcher);
@@ -1073,7 +1070,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       liveStyle.disabled = true;
     }
     updateStyle();
-    setCookie(LIVE_CHK, encodeBool(liveChk.checked));
+    setSessionItem(LIVE_CHK, liveChk.checked);
   }
   liveSwitcher();
   liveChk.addEventListener("change", liveSwitcher);
