@@ -239,7 +239,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         position: fixed;
         z-index: 1000;
         overflow: hidden;
-        transition: transform 1s ease-in;
       }
       #panel.initial {
         top: 0;
@@ -247,7 +246,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         transform: translate(-50%, 0) scale(0.1) rotate(0deg);
       }
       #panel.centered {
-        transform: translate(calc(50vw - 50%), calc(50vh - 50%)) scale(1) rotate(1080deg);
+        transition: transform 2.5s ease-in-out;
+        transform: translate(calc(50vw - 50%), calc(50vh - 50%)) scale(1) rotate(2160deg);
       }
       #panel pre, #panel code, #panel kbd, #panel samp {
         font-family: 'PagyWand-Mono', monospace;
@@ -475,6 +475,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         border-radius: ${s * 0.2}rem;
         font-weight: 700;
         white-space: nowrap;
+        align-self: center;
         color: white;
         opacity: 0;
         visibility: hidden;
@@ -1144,4 +1145,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
   copyIcon.addEventListener("click", copyToClipboard);
+  const transitionStyleTag = document.createElement("style");
+  transitionStyleTag.id = "pagy-wand-transition";
+  transitionStyleTag.textContent = `
+    .pagy a, .pagy label {
+        transition: background-color 0.3s ease,
+                    color 0.3s ease,
+                    border-color 0.3s ease,
+                    padding 0.3s ease,
+                    margin-left 0.3s ease,
+                    margin-right 0.3s ease,
+                    font-size 0.3s ease,
+                    font-weight 0.3s ease,
+                    line-height 0.3s ease,
+                    border-radius 0.3s ease
+    }
+  `;
+  document.head.appendChild(transitionStyleTag);
 });
