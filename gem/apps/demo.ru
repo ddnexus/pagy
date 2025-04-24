@@ -36,10 +36,11 @@ gemfile(!Pagy::ROOT.join('pagy.gemspec').exist?) do
 end
 
 # pagy initializer
-NAMES = { pagy:      { css_anchor: 'pagy-css' },
-          tailwind:  { css_anchor: 'pagy-tailwind-css' },
-          bootstrap: { style: :bootstrap, classes: 'pagination pagination-sm' },
-          bulma:     { style: :bulma, classes: 'pagination is-small' } }.freeze
+SECTIONS = { pagy:      { css_anchor: 'pagy-css' },
+             tailwind:  { css_anchor: 'pagy-tailwind-css' },
+             bootstrap: { style: :bootstrap, classes: 'pagination pagination-sm' },
+             bulma:     { style: :bulma, classes: 'pagination is-small' },
+             template:  { css_anchor: 'pagy-css', template: :template } }.freeze
 
 # Sinatra setup
 require 'sinatra/base'
@@ -53,13 +54,6 @@ class PagyDemo < Sinatra::Base
 
   get '/' do
     redirect '/pagy'
-  end
-
-  get '/template' do
-    collection      = MockCollection.new
-    @pagy, @records = pagy(:offset, collection)
-
-    erb :template, locals: { pagy: @pagy, name: 'template', css_anchor: 'pagy-css' }
   end
 
   get('/javascript/:file') do
@@ -78,26 +72,54 @@ class PagyDemo < Sinatra::Base
   end
 
   # One route/action per style
-  NAMES.each do |name, value|
-    get("/#{name}") do
+  SECTIONS.each do |section, value|
+    get("/#{section}") do
       collection      = MockCollection.new
       @pagy, @records = pagy(:offset, collection)
-      erb :page, locals: { name:,
-                           style: value[:style],
-                           classes: value[:classes],
-                           css_anchor: value[:css_anchor] }
+      erb value[:template] || :page,
+          locals: { section:,
+                    pagy:       @pagy,
+                    style:      value[:style],
+                    classes:    value[:classes],
+                    css_anchor: value[:css_anchor] }
     end
   end
+
+  PAGY_LIKE_HEAD =
+    %(#{Pagy.wand_tag if ENV['CY_TEST'] != 'true'}
+      <style>
+        /* black/white backdrop color based on --B */
+        .pagy { background-color: hsl(0 0 calc(100 * var(--B))) !important; }
+      </style>).freeze
 
   helpers do
     def style_menu
       html = +%(<div id="style-menu"> )
-      NAMES.each_key do |style|
-        name    = style.to_s
+      SECTIONS.each_key do |section|
+        name    = section.to_s
         name[0] = name[0].capitalize
-        html << %(<a href="/#{style}">#{name}</a>)
+        html << %(<a href="/#{section}">#{name}</a>)
       end
-      html << %(<a href="/template">Template</a></div>)
+      html << %(</div>)
+      html
+    end
+
+    def head_for(section)
+      case section
+      when :pagy, :template
+        %(#{PAGY_LIKE_HEAD}
+        <link rel="stylesheet" href="/stylesheet/pagy.css">)
+      when :tailwind
+        %(#{PAGY_LIKE_HEAD}
+        <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+        <style type="text/tailwindcss">
+          #{Pagy::ROOT.join('stylesheet/pagy-tailwind.css').read}
+        </style>)
+      when :bootstrap
+        %(<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">)
+      when :bulma
+        %(<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">)
+      end
     end
 
     def highlight(html, format: :html)
@@ -116,17 +138,15 @@ class PagyDemo < Sinatra::Base
 
   # Views
   template :layout do
-    <<~'HTML'
+    <<~HTML
       <!DOCTYPE html>
       <html lang="en">
       <head>
         <title>Pagy Demo App</title>
-        <script src="/javascript/pagy.js"></script>
-        <script>
-          window.addEventListener("load", Pagy.init);
-        </script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <%= erb :"#{name}_head" if defined?(name) %>
+        <%= head_for(section) %>
+        <script src="/javascript/pagy.js"></script>
+        <script>window.addEventListener("load", Pagy.init);</script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
@@ -141,6 +161,9 @@ class PagyDemo < Sinatra::Base
           *::before,
           *::after {
             box-sizing: border-box;
+          }
+          html {
+            background-color: transparent !important; /* Fix for Bulma */
           }
           body {
             margin: 0 !important;
@@ -281,50 +304,9 @@ class PagyDemo < Sinatra::Base
     HTML
   end
 
-  WAND_HEAD = <<~ERB
-    <%= Pagy.wand_tag if ENV["CY_TEST"] != "true"%>
-    <style>
-      /* black/white backdrop color based on --B */
-      .pagy { background-color: hsl(0 0 calc(100 * var(--B))) !important; }
-    </style>
-  ERB
-
-  template :pagy_head do
-    <<~ERB
-      #{WAND_HEAD}
-      <link rel="stylesheet" href="/stylesheet/pagy.css">
-    ERB
-  end
-
-  template :tailwind_head do
-    <<~ERB
-      #{WAND_HEAD}
-      <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
-      <style type="text/tailwindcss">
-        <%= Pagy::ROOT.join('stylesheet/pagy-tailwind.css').read %>
-      </style>
-    ERB
-  end
-
-  template :bootstrap_head do
-    <<~ERB
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    ERB
-  end
-
-  template :bulma_head do
-    <<~ERB
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    ERB
-  end
-
-  template :template_head do
-    '<link rel="stylesheet" href="/stylesheet/pagy.css">'
-  end
-
   template :page do
     <<~ERB
-      <h1><%= title = name.to_s; title[0] = title[0].capitalize; title %></h1>
+      <h1><%= title = section.to_s; title[0] = title[0].capitalize; title %></h1>
 
       <% if css_anchor %>
         <p>Check the <u><i><b><a href="http://ddnexus.github.io/pagy/resources/stylesheet/#<%= css_anchor %>" target="blank"><%= css_anchor.gsub('-', '.') %></a></b></u></i>
@@ -369,7 +351,6 @@ class PagyDemo < Sinatra::Base
           <h2>@pagy.info_tag</h2>
           <%= html = @pagy.info_tag(id: 'pagy-info') %>
           <%= highlight(html) %>
-          <br><br> <!-- bulma fix -->
         </div>
       </div>
     ERB
@@ -389,8 +370,10 @@ class PagyDemo < Sinatra::Base
 
        <h2>Rendered ERB template</h2>
 
-       <%# We don't inline the template here, so we can highlight it more easily %>
-       <%= html = ERB.new(TEMPLATE).result(binding) %>
+       <div class="backdrop">
+         <%# We don't inline the template here, so we can highlight it more easily %>
+         <%= html = ERB.new(TEMPLATE).result(binding) %>
+       </div>
        <%= highlight(TEMPLATE, format: :erb) %>
        <%= highlight(html) %>
      ERB
@@ -402,7 +385,7 @@ class PagyDemo < Sinatra::Base
 
     <%# The a variable below is set to a lambda that generates the a tag %>
     <%# Usage: anchor_tag = a_lambda.(page_number, text, classes: nil, aria_label: nil) %>
-    <% a_lambda = pagy.send(:a_lambda) %>
+    <% a_lambda = @pagy.send(:a_lambda) %>
     <nav class="pagy series-nav" aria-label="Pages">
       <%# Previous page link %>
       <% if pagy.previous %>

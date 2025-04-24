@@ -16,25 +16,25 @@ opts = Optimist.options do
     Pagy #{VERSION} (https://ddnexus.github.io/pagy/playground)
     Playground to showcase, clone and develop pagy APPs
     APPs
-    #{ apps.filter_map do |name, path|
-         "  #{name}#{' ' * (27 - name.length)}#{File.readlines(path)[3].sub('#    ', '').strip}" unless name.eql?('docshots')
+    #{ apps.map do |name, path|
+         "  #{name}#{' ' * (18 - name.length)}#{File.readlines(path)[3].sub('#    ', '').strip}"
        end.join("\n") }
     USAGE
-      pagy APP [options]         Showcase APP from the installed gem
-      pagy clone APP             Clone APP to the current dir
-      pagy APPFILE [options]     Develop APPFILE from local path
+      pagy APP [opts]   Showcase APP from the installed gem
+      pagy clone APP    Clone APP to the current dir
+      pagy FILE [opts]  Develop app FILE from local path
     EXAMPLES
-      pagy demo                  Showcase demo at http://#{HOST}:#{PORT}
-      pagy clone repro           Clone repro to ./repro.ru
-      pagy ~/my-repro.ru         Develop ~/my-repro.ru at#{HOST}:#{PORT}
+      pagy demo         Showcase demo at http://#{HOST}:#{PORT}
+      pagy clone repro  Clone repro to ./repro.ru (rename it)
+      pagy ~/myapp.ru   Develop ~/myapp.ru at #{HOST}:#{PORT}
   HEAD
   text 'Rackup options'
-  opt :env,     'Environment',                  default: 'development'
-  opt :host,    'Host',                         default: HOST, short: :o
-  opt :port,    'Port',                         default: PORT
+  opt :env,     'Environment', default: 'development'
+  opt :host,    'Host',        default: HOST, short: :o
+  opt :port,    'Port',        default: PORT
   if LINUX
     text 'Rerun options'
-    opt :rerun, 'Enable rerun for development', default: true
+    opt :rerun, 'Enable rerun for development'
     opt :clear, 'Clear screen before each rerun'
   end
   text 'Other options'

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -e
+
+port=${2:-8088}
+
+root="$(git rev-parse --show-toplevel)"
+. "$root/scripts/cd-and-back.sh"
+cd "$root/scripts/docshots"
+
+app_url=http://127.0.0.1:$port
+outdir=$root/assets/images
+
+start-test "bundle exec $root/gem/bin/pagy $PWD/docshots.ru -p $port" $app_url \
+           "bun run $PWD/capture.js $app_url $outdir"

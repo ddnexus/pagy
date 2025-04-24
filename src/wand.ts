@@ -835,14 +835,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     const sample                 = <HTMLElement>shadow.getElementById('color-sample');
     sample.style.backgroundImage = `linear-gradient(to right, hsla(${h} ${s} ${l} / ${a}), hsla(${h} ${s} ${l} / ${a})), ${gridUrl}`;
   }
+
   // Init controls
+  const finalize = () => {
+    updateOverride();
+    presetMenu.value = '';
+    setSessionItem(PRESET, '');
+  }
   for (const [id, c] of Object.entries(controls)) {
     c.input = <HTMLInputElement>shadow.getElementById(id);
-    const finalize = () => {
-      updateStyle();
-      presetMenu.value = '';
-      setSessionItem(PRESET, '');
-    }
     if (id === 'hex8') {
       c.input!.addEventListener('change', () => {
         const hsla                       = rgbaToHsla(controls.hex8.input!.value);
@@ -1005,6 +1006,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   `
   };
+  // Populate preset options
   for (const presetName in presets) {
     const option       = document.createElement('option');
     option.value       = presetName;
@@ -1013,9 +1015,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function applyPreset(name:string | null) {
-    const css = name
-                ? (removeSessionItem(OVERRIDE), presets[name])
-                : getSessionItem(OVERRIDE);
+    const css = name ? presets[name] : getSessionItem(OVERRIDE);
     css?.match(/--[^:]+:\s*[^;]+/g)?.forEach((match) => {
       let [cssVarName, value] = match.split(':');
       cssVarName = cssVarName.trim();
@@ -1028,7 +1028,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     });
     setSessionItem(PRESET, name || '');
-    updateStyle();
+    updateOverride();
   }
   presetMenu.addEventListener('change', (e) => applyPreset((<HTMLSelectElement>e.target).value));
 
@@ -1045,7 +1045,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Style handling
-  function updateStyle() {
+  function updateOverride() {
     let override = `.pagy {\n`;
     Object.values(controls).forEach((c) => {
       if (c.name !== '') {
@@ -1055,13 +1055,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     override += '}';
     overrideArea!.value = override;
     styleTagOverride.textContent = liveChk.checked ? override : '';
-    // Save override sessionStorage only if a preset is NOT selected
-    if (presetMenu.value === '') {
-      setSessionItem(OVERRIDE, override);
-    } else {
-      // If a preset *is* selected, delete any override sessionStorage
-      removeSessionItem(OVERRIDE);
-    }
+    setSessionItem(OVERRIDE, override);
     updateColorRamps();
   }
 
@@ -1075,36 +1069,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     setSessionItem(POSITION, { left: parseFloat(String(left)), top: parseFloat(String(top)) });
   }
 
-  // Viewport function
-  const viewport = () => ({
-    width:  window.visualViewport ? window.visualViewport.width  : document.documentElement.clientWidth,
-    height: window.visualViewport ? window.visualViewport.height : document.documentElement.clientHeight,
-  });
-
   // keepTopBarInView function
   function keepTopBarInView() {
-    const v     = viewport();
-    const rect  = topBar.getBoundingClientRect();
-    let newLeft = panel.offsetLeft; // Use panel's current position
-    let newTop  = panel.offsetTop;
+    const width  = window.visualViewport ? window.visualViewport.width  : document.documentElement.clientWidth;
+    const height = window.visualViewport ? window.visualViewport.height : document.documentElement.clientHeight;
+    const rect   = topBar.getBoundingClientRect();
+    let newLeft  = panel.offsetLeft; // Use panel's current position
+    let newTop   = panel.offsetTop;
     // Check if the topBar is off-screen horizontally
     if (rect.left < 0) {
       newLeft = panel.offsetLeft - rect.left; // Adjust panel left
-    } else if (rect.right > v.width) {
+    } else if (rect.right > width) {
       // Correct calculation: adjust by how much the right edge is past the viewport width
-      newLeft = panel.offsetLeft - (rect.right - v.width);
+      newLeft = panel.offsetLeft - (rect.right - width);
     }
     // Check if the topBar is off-screen vertically
     if (rect.top < 0) {
       newTop = panel.offsetTop - rect.top; // Adjust panel top
-    } else if (rect.bottom > v.height) {
-      // Correct calculation: adjust by how much the bottom edge is past the viewport height
-      newTop = panel.offsetTop - (rect.bottom - v.height);
+    } else if (rect.bottom > height) {
+      newTop = panel.offsetTop - (rect.bottom - height);
     }
     // Apply potentially adjusted positions
     panel.style.left = `${newLeft}px`;
     panel.style.top  = `${newTop}px`;
-    // Save the *panel's* final position
     setSessionPosition(newLeft, newTop);
   }
 
@@ -1153,7 +1140,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     offsetX  = e.clientX - panel.offsetLeft;
     offsetY  = e.clientY - panel.offsetTop;
     topBar.style.cursor    = 'grab';
-    panel.style.transition = 'none'; // Disable transition during drag for responsiveness
   });
 
   document.addEventListener('mousemove', (e) => {
@@ -1164,7 +1150,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const newTop     = e.clientY - offsetY;
     panel.style.left = `${newLeft}px`;
     panel.style.top  = `${newTop}px`;
-    // Note: Position is saved on mouseup now
   });
 
   document.addEventListener('mouseup', (e) => {
@@ -1172,7 +1157,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     dragging = false;
     topBar.style.cursor = 'move';
-    // Save final position after drag ends
+    // Save the final position after drag ends
     const finalLeft = e.clientX - offsetX;
     const finalTop  = e.clientY - offsetY;
     setSessionPosition(finalLeft, finalTop);
@@ -1224,7 +1209,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       liveIcon.textContent = 'visibility_off';
       liveStyle.disabled   = true;
     }
-    updateStyle(); // take care of the override if not checked
+    updateOverride();
     setSessionItem(LIVE_CHK, liveChk.checked);
   }
   liveSwitcher(); // <-- Call immediately after definition
@@ -1269,18 +1254,21 @@ document.addEventListener('DOMContentLoaded', async () => {
   const transitionStyleTag = document.createElement('style');
   transitionStyleTag.id = 'pagy-wand-transition';
   transitionStyleTag.textContent = `
-    .pagy a, .pagy label {
-        transition: background-color 0.3s ease,
-                    color 0.3s ease,
-                    border-color 0.3s ease,
-                    padding 0.3s ease,
-                    margin-left 0.3s ease,
-                    margin-right 0.3s ease,
-                    font-size 0.3s ease,
-                    font-weight 0.3s ease,
-                    line-height 0.3s ease,
-                    border-radius 0.3s ease
+    .pagy {
+      transition: background-color 0.3s ease
     }
-  `;
+    .pagy a, .pagy label {
+      transition: background-color 0.3s ease,
+                  color 0.3s ease,
+                  border-color 0.3s ease,
+                  padding 0.3s ease,
+                  margin-left 0.3s ease,
+                  margin-right 0.3s ease,
+                  font-size 0.3s ease,
+                  font-weight 0.3s ease,
+                  line-height 0.3s ease,
+                  border-radius 0.3s ease
+    }
+    `;
   document.head.appendChild(transitionStyleTag);
 });

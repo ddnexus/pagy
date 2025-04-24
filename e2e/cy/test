@@ -12,7 +12,7 @@ cd "$root/e2e"
 test () {
 	NODE_NO_WARNINGS=1 \
 	start-test "CY_TEST=true bundle exec $root/gem/bin/pagy $app -p $port -q > /dev/null" "http://0.0.0.0:$port" \
-	"cypress run --quiet --config baseUrl=http://0.0.0.0:$port --spec cypress/e2e/$app.cy.ts"
+	"cypress run --quiet --config baseUrl=http://127.0.0.1:$port --spec cypress/e2e/$app.cy.ts"
 }
 
 if [[ -z $app ]]
