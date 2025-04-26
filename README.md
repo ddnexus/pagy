@@ -22,7 +22,7 @@ _Agnostic pagination in plain ruby_
 
 <a href="https://ddnexus.github.io/pagy/sandbox/playground/#3-demo-app">
   <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">
-</a><br/>
+</a><br><br>
 
 ### <span style="font-size: .65em; vertical-align: middle">💚</span> Version 10
 
@@ -148,9 +148,9 @@ _(Available time units: year, quarter, month, week, and day)_
 
 Default, :bootstrap and :bulma styles shown.
 
-<img src="assets/images/series_nav.png" width="288"><br/>
-<img src="assets/images/series_nav-bootstrap.png" width="248"><br/>
-<img src="assets/images/series_nav-bulma.png" width="304"><br/>
+<img src="assets/images/pagy-series_nav.png" width="310"><br/>
+<img src="assets/images/bootstrap-series_nav.png" width="255"><br/>
+<img src="assets/images/bulma-series_nav.png" width="342"><br/>
 
 ```erb
 <!-- Render nav bar helpers with different styles -->
@@ -173,9 +173,8 @@ Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
 
 Dynamically fills the container width.
 
-<img src="assets/images/series_nav_js-7.png" width="288"><br/>
-<img src="assets/images/series_nav_js-9.png" width="358"><br/>
-<img src="assets/images/series_nav_js-11.png" width="428"><br/>
+<img src="assets/images/pagy-series_nav_js-7.png" width="312"><br/>
+<img src="assets/images/pagy-series_nav_js-9.png" width="390"><br/>
 
 ```erb
 <!-- Render client side nav bar helpers of different types and styles -->
@@ -188,7 +187,7 @@ Dynamically fills the container width.
 
 **Fastest!** Combines navigation and info in minimum space.
 
-<img src="assets/images/input_nav_js.png" width="204"><br/>
+<img src="assets/images/pagy-input_nav_js.png" width="229"><br/>
 
 ```erb
 <%== @pagy.input_nav_js %> <!-- default style -->
@@ -218,11 +217,11 @@ Dynamically fills the container width.
 
 ### <span style="font-size: .65em; vertical-align: middle">💚</span> Credits
 
-Many thanks to:
+Special thanks to:
 
 - [Ben Koshy](https://github.com/benkoshy) for his contributions to the documentation, user support and interaction with external
   frameworks
-- [JetBrains](http://www.jetbrains.com?from=https%3A%2F%2Fgithub.com%2Fddnexus%2Fpagy) for their free OpenSource license project
+- [JetBrains](http://www.jetbrains.com?from=https%3A%2F%2Fgithub.com%2Fddnexus%2Fpagy) for their free OpenSource license.
 - [The Stargazers](https://github.com/ddnexus/pagy/stargazers) for showing their support
 
 <br/>

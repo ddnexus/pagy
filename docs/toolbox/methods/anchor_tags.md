@@ -15,7 +15,7 @@ categories:
 ---
 
 :::raised
-![](../../assets/images/anchor_tags.png){width=73}
+![](../../assets/images/pagy-anchor_tags.png){width=73}
 :::
 <br/>
 

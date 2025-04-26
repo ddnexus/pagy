@@ -20,7 +20,7 @@ Simply add the appropriate file(s) and statements as outlined below.
 
 - `pagy.mjs` _ES6 module for buiders like webpacker, esbuild, parcel, etc._
 - `pagy.min.js` _A compact (~2.6k) minified [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) file_
-- `pagy.js` _A plain [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) file, ideal for debugging, accompanied by `pagy.js.map`_
+- `pagy.js` _A plain [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) file, ideal for debugging, accompanied by its map_
 - `pagy.js.map` _A source map file designed for debugging purposes_
 - `pagy.d.ts` _Pagy TypeScript type definitions for advanced integration or customization_
 

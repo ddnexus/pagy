@@ -18,7 +18,7 @@ class Pagy
     end
 
     # Generate the script and style tags to implement the wand
-    def wand_tag(scale: 1)
+    def wand_tags(scale: 1)
       <<~HTML
         <script id="pagy-wand" data-scale="#{scale}">
           #{ROOT.join('javascript/wand.js').read}

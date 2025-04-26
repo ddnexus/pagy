@@ -53,5 +53,5 @@ The `nav` elements are `landmark  roles`, and should be distinctly labeled.
 - Disabled links include the `aria-disabled="true"` attribute.
 - The current page is marked with the `aria-current="page"` attribute.
 - The `role="link"` attribute is applied to link elements in styles that lack an `a` tag or a `href` attribute.
-
+- The `role="separator"` is applied to the `:gap`.
 +++

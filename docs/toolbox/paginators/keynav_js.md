@@ -27,7 +27,7 @@ Nav bar links beyond the last or highest visited page are not displayed.
 @pagy, @records = pagy(:keynav_js, collection, **options)
 ```
 
-- `@pagy` is the pagination instance. It provides the [instance methods](../methods#methods) to use in your code.
+- `@pagy` is the pagination instance. It provides the [readers](#readers) and the [instance methods](../methods#methods) to use in your code.
 - `@records` is the eager-loaded `Array` of the page records.
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#5-keyset-apps)
@@ -36,6 +36,11 @@ Nav bar links beyond the last or highest visited page are not displayed.
 
 It's easier to understand if you familiarize with the [:keyset](keyset.md) docs.
 !!!
+
+==- Readers
+
+See also [Keyset Readers](keyset#readers)
+
 
 ==- Glossary
 

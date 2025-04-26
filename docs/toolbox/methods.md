@@ -35,7 +35,7 @@ Unused code consumes no memory.
 
 ==- Common Nav Styles
 
-- No arguments: default pagy style
+- No arguments: default `:pagy` style
 - `:bootstrap`
   - Set `classes: 'pagination pagination-sm any-class'` style option to override the default `'pagination'` class.
 - `:bulma`

@@ -28,7 +28,7 @@ Nav bar links beyond the last or highest visited page are not displayed.
 @pagy, @records = pagy(:countless, collection, **options)
 ```
 
-- `@pagy` is the pagination instance. It provides the [instance methods](../methods#methods) to use in your code.
+- `@pagy` is the pagination instance. It provides the [readers](#readers) and the [instance methods](../methods#methods) to use in your code.
 - `@records` represents the eager-loaded `Array` of records for the page.
 
 ==- Options

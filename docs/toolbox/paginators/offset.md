@@ -25,6 +25,9 @@ It **fully** supports all the helpers and navigators.
 @pagy, @records = pagy(:offset, collection, **options)
 ```
 
+- `@pagy` is the pagination instance. It provides the [readers](#readers) and the [instance methods](../methods#methods) to use in your code.
+- `@records` represents the eager-loaded `Array` of records for the page.
+
 ==- Options
 
 - `count_over: true`

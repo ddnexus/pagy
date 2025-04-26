@@ -15,18 +15,44 @@ categories:
 
 ---
 
-:::raised
-![](../../assets/images/series_nav_js-11.png){width=428}
-:::
++++Pagy
 
 :::raised
-![](../../assets/images/series_nav_js-9.png){width=358}
+![](../../assets/images/pagy-series_nav_js-11.png){width=428}
+:::
+:::raised
+![](../../assets/images/pagy-series_nav_js-9.png){width=358}
+:::
+:::raised
+![](../../assets/images/pagy-series_nav_js-7.png){width=288}
 :::
 
++++Bootstrap
+
 :::raised
-![](../../assets/images/series_nav_js-7.png){width=288}
+![](../../assets/images/bootstrap-series_nav_js-11.png){width=428}
 :::
-<br/>
+:::raised
+![](../../assets/images/bootstrap-series_nav_js-9.png){width=358}
+:::
+:::raised
+![](../../assets/images/bootstrap-series_nav_js-7.png){width=288}
+:::
+
++++Bulma
+
+:::raised
+![](../../assets/images/bulma-series_nav_js-11.png){width=428}
+:::
+:::raised
+![](../../assets/images/bulma-series_nav_js-9.png){width=358}
+:::
+:::raised
+![](../../assets/images/bulma-series_nav_js-7.png){width=288}
+:::
+
++++
+
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
 

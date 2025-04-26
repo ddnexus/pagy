@@ -16,15 +16,15 @@ categories:
 ---
 
 :::raised
-![series_nav](../../assets/images/series_nav.png){width=288}
+![series_nav](../../assets/images/pagy-series_nav.png){width=288}
 
 ---
 
-![series_nav(:bootstrap)](../../assets/images/series_nav-bootstrap.png){width=248}
+![series_nav(:bootstrap)](../../assets/images/bootstrap-series_nav.png){width=248}
 
 ---
 
-![series_nav(:bulma)](../../assets/images/series_nav-bulma.png){width=304}
+![series_nav(:bulma)](../../assets/images/bulma-series_nav.png){width=304}
 :::
 <br/>
 
