@@ -1,14 +1,14 @@
 ---
-links_hash__links_hash_test_0001_returns_the_ordered_links:
+urls_hash__urls_hash_test_0001_returns_the_ordered_links:
   :result:
     :first: "/foo?page%5Bsize%5D=10"
     :previous: "/foo?page%5Bnumber%5D=2&page%5Bsize%5D=10"
     :next: "/foo?page%5Bnumber%5D=4&page%5Bsize%5D=10"
     :last: "/foo?page%5Bnumber%5D=100&page%5Bsize%5D=10"
-links_hash__links_hash_(keyset)_test_0001_returns_the_ordered_links:
+urls_hash__urls_hash_(keyset)_test_0001_returns_the_ordered_links:
   :keyset_result:
     :first: "/foo?page%5Bsize%5D=10"
     :next: "/foo?page%5Blatest%5D=WzMwXQ&page%5Bsize%5D=10"
-links_hash__links_hash_(keyset)_test_0002_sets_the_next_value_to_null_when_the_link_is_unavailable:
+urls_hash__urls_hash_(keyset)_test_0002_sets_the_next_value_to_null_when_the_link_is_unavailable:
   :keyset_result:
     :first: "/foo?page%5Bsize%5D=50"

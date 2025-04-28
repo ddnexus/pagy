@@ -5,7 +5,7 @@ class Pagy
     paths = { public:    { page_url:                'page_url',
                            data_hash:               'data_hash',
                            headers_hash:            'headers_hash',
-                           links_hash:              'links_hash',
+                           urls_hash:               'urls_hash',
                            next_tag:                'anchor_tags',
                            previous_tag:            'anchor_tags',
                            input_nav_js:            'input_nav_js',

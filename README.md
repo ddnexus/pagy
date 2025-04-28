@@ -94,7 +94,7 @@ _See all the available [paginators](http://ddnexus.github.io/pagy/toolbox/pagina
 # JSON:API nested query string. E.g.: ?page[number]=2&page[size]=100
 @pagy, @records = pagy(:offset, Product.all, jsonapi: true)
 @pagy, @records = pagy(:keyset, Product.order(my_order).all, jsonapi: true)
-render json: { links: @pagy.links_hash, data: @records }
+render json: { links: @pagy.urls_hash, data: @records }
 ```
 
 ##### JSON-client pagination

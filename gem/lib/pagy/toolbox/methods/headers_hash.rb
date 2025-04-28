@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative 'links_hash'
+require_relative 'urls_hash'
 
 # Add pagination response headers
 class Pagy
   # Generate a hash of RFC-8288-compliant http headers
   def headers_hash(headers_map: @options[:headers_map] ||
     { page: 'current-page', limit: 'page-limit', count: 'total-count', pages: 'total-pages' }, **)
-    links = links_hash(**, absolute: true).map { |key, link| %(<#{link}>; rel="#{key}") }.join(', ')
+    links = urls_hash(**, absolute: true).map { |key, url| %(<#{url}>; rel="#{key}") }.join(', ')
     { 'link' => links }.tap do |hash|
       hash[headers_map[:page]]  = @page.to_s if @page && headers_map[:page]
       hash[headers_map[:limit]] = @limit.to_s if headers_map[:limit] && !calendar?
