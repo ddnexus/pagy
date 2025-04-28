@@ -12,7 +12,7 @@ categories:
 !!!success It works with all paginators
 !!!
 
-Try this method in the [Pagy Console](../../sandbox/console.md):
+==- Examples
 
 ```ruby
 >> @pagy, @records = pagy(:offset, collection.new, page: 3)

@@ -42,17 +42,25 @@ see [Maximizing Performance](../../guides/how-to#maximize-performance)) still ne
 <%== @pagy.input_nav_js(:bootstrap, **options) %>
 <%== @pagy.input_nav_js(:bulma, **options) %>
 ```
-Try this method in the [Pagy Console](../../sandbox/console.md):
+
+==- Examples
 
 ```ruby
+>> include Pagy::Console
+=> Object
+
+>> @pagy, @records = pagy(:offset, collection.new, page: 3)
+=> [#<Pagy::Offset:0x00007f0b3c132998 @count=1000, @from=41, @in=20, @in_range=true, @last=50, @limit=20, @next=4, @offset=40, @options={limit: 20, limit_key: "limit", page_key: "page", page: 3, count: 1000}, @page=3, @previous=2, @request=#<Pagy::Request:0x00007f0b3c7ac530 @base_url="http://www.example.com", @cookie=nil, @jsonapi=nil, @path="/path", @query={example: "123"}>, @to=60>, [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]]
+
 >> puts @pagy.input_nav_js
-<nav class="pagy input-nav-js" aria-label="Pages" data-pagy="WyJjaiIsIi9wYXRoP2V4YW1wbGU9MTIzJnBhZ2U9UCAiXQ=="><a href="/path?example=123&page=2" aria-label="Previous">&lt;</a><label>Page <input name="page" type="number" min="1" max="50" value="3" aria-current="page" style="text-align: center; width: 3rem; padding: 0;"><a style="display: none;">#</a> of 50</label><a href="/path?example=123&page=4" aria-label="Next">&gt;</a></nav>
+<nav class="pagy input-nav-js" aria-label="Pages" data-pagy="WyJpbmoiLCIvcGF0aD9leGFtcGxlPTEyMyZwYWdlPVAgIl0="><a href="/path?example=123&page=2" rel="prev" aria-label="Previous">&lt;</a><label>Page <input name="page" type="number" min="1" max="50" value="3" aria-current="page" style="text-align: center; width: 2rem; padding: 0;"><a style="display: none;">#</a> of 50</label><a href="/path?example=123&page=4" rel="next" aria-label="Next">&gt;</a></nav>
 => nil
 
->> puts @pagy.input_nav_js(:bulma, id: 'combo-nav', aria_label: 'My Pages')
-<nav id="combo-nav" class="pagy-bulma input-nav-js pagination is-centered" aria-label="My Pages" data-pagy="WyJjaiIsIi9wYXRoP2V4YW1wbGU9MTIzJnBhZ2U9UCAiXQ=="><a href="/path?example=123&page=2" class="pagination-previous" aria-label="Previous">&lt;</a><a href="/path?example=123&page=4" class="pagination-next" aria-label="Next">&gt;</a><ul class="pagination-list"><li class="pagination-link"><label>Page <input name="page" type="number" min="1" max="50" value="3" aria-current="page"style="text-align: center; width: 3rem; height: 1.7rem; margin:0 0.3rem; border: none; border-radius: 4px; padding: 0; font-size: 1.1rem; color: white; background-color: #485fc7;"><a style="display: none;">#</a> of 50</label></li></ul></nav>
+>> puts @pagy.input_nav_js(:bulma, id: 'input-nav', aria_label: 'My pages')
+<nav id="input-nav" class="pagy-bulma input-nav-js pagination" aria-label="My pages" data-pagy="WyJpbmoiLCIvcGF0aD9leGFtcGxlPTEyMyZwYWdlPVAgIl0="><ul class="pagination-list"><li><a href="/path?example=123&page=2" class="pagination-previous" rel="prev" aria-label="Previous">&lt;</a></li><li class="pagination-link"><label>Page <input name="page" type="number" min="1" max="50" value="3" aria-current="page"style="text-align: center; width: 2rem; line-height: 1.2rem; border: none; border-radius: .25rem; padding: .0625rem; color: white; background-color: #485fc7;"><a style="display: none;">#</a> of 50</label></li><li><a href="/path?example=123&page=4" class="pagination-next" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
 => nil
-```   
+```
+
 ==- Caveats
 
 !!!danger Overriding `*_js` helpers is not recommended

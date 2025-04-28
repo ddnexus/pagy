@@ -26,7 +26,7 @@ The best way to integrate the pagy style with your app is adding the `PagyWand` 
 ```
 
 :::raised
-![PagyWnd](../assets/images/pagy-wand.png){width=607}
+![PagyWand](../assets/images/pagy-wand.png){width=607}
 :::
 <br>
 
@@ -57,9 +57,9 @@ and attributes required to identify all the parts of the nav bars:
 
 !!!success
 
-You can customize all the colors by just overriding the CSS variables.
+Color variables are calculated automatically, however you can customize any color by just overriding its variable.
 
-Use the GUI editor in the [Demo app](../sandbox/playground#3-demo-app).
+Use the [Pagy Wand](#pagy-wand) right in your app or in the [Demo app](../sandbox/playground#3-demo-app).
 !!!
 
 +++ pagy.css

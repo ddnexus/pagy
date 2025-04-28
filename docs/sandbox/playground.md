@@ -124,7 +124,7 @@ pagy keyset_sequel
 ...and point your browser to http://127.0.0.1:8000
 !!!
 
-_Run for example `pagy clone keyset` to inspect the keyset app file._
+_Run for example `pagy clone keyset` to inspect the cloned keyset app file._
 
 ### Troubleshooting
 

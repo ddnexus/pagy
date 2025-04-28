@@ -26,14 +26,14 @@ Simply add the appropriate file(s) and statements as outlined below.
 
 #### 2. Make the file available to your app
 
-Depending on your app's architecture, you have a couple of options:
+Depending on your app's architecture, you have a couple of options. Just pick one to uncomment in the [pagy.rb initializer](../toolbox/initializer.md):
 
-- **Add the Pagy JavaScript path to the assets path** 
+- **For apps with an assets pipeline...** 
   - _Compatible with Propshaft, Importmaps, Sprockets, and similar tools._
   ```ruby
   Rails.application.config.assets.paths << Pagy::ROOT.join('javascript')
   ```
-- **Alternatively, uncomment/edit the following lines in the [pagy.rb initializer](../toolbox/initializer.md)**
+- **For apps with a builder...**
   - _This works with builders like esbuild, Webpack, jsbundling-rails, etc._
   ```ruby 
   # Example for Rails

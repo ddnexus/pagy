@@ -146,15 +146,15 @@ _(Available time units: year, quarter, month, week, and day)_
 
 ##### `series_nav` 
 
-Default, :bootstrap and :bulma styles shown.
+Default `:pagy`, `:bootstrap` and `:bulma` styles shown.
 
 <img src="assets/images/pagy-series_nav.png" width="310"><br/>
 <img src="assets/images/bootstrap-series_nav.png" width="255"><br/>
 <img src="assets/images/bulma-series_nav.png" width="342"><br/>
 
 ```erb
-<!-- Render nav bar helpers with different styles -->
-<%== @pagy.series_nav %> <!-- default style -->
+<!-- Render client side nav bar helpers with different html and styles -->
+<%== @pagy.series_nav %> <!-- pagy style -->
 <%== @pagy.series_nav(:bootstrap) %>
 <%== @pagy.series_nav(:bulma) %>
 ```
@@ -177,8 +177,8 @@ Dynamically fills the container width.
 <img src="assets/images/pagy-series_nav_js-9.png" width="390"><br/>
 
 ```erb
-<!-- Render client side nav bar helpers of different types and styles -->
-<%== @pagy.series_nav_js %> <!-- default style -->
+<!-- Render client side nav bar helpers with different html and styles -->
+<%== @pagy.series_nav_js %> <!-- pagy style -->
 <%== @pagy.series_nav_js(:bootstrap) %>
 <%== @pagy.series_nav_js(:bulma) %>
 ```
@@ -190,10 +190,25 @@ Dynamically fills the container width.
 <img src="assets/images/pagy-input_nav_js.png" width="229"><br/>
 
 ```erb
-<%== @pagy.input_nav_js %> <!-- default style -->
+<!-- Render client side nav inout helpers with different html and styles -->
+<%== @pagy.input_nav_js %> <!-- pagy style -->
 <%== @pagy.input_nav_js(:bootstrap) %>
 <%== @pagy.input_nav_js(:bulma) %>
 ```
+
+### Pagy Wand
+
+Integrate pagy with your app's themes interactively. You just need a single line in your page/layout `head`:
+
+```erb
+<%== Pagy.wand_tags %>
+```
+
+<img src="assets/images/pagy-wand.png" width="607"><br/>
+
+<a href="https://ddnexus.github.io/pagy/sandbox/playground/#3-demo-app">
+  <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">
+</a><br><br>
 
 ### <span style="font-size: .65em; vertical-align: middle">💚</span> Support and Docs
 

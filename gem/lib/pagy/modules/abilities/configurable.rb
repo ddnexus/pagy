@@ -26,6 +26,9 @@ class Pagy
         <style id="pagy-wand-default">
           #{ROOT.join('stylesheet/pagy.css').read}
         </style>
+        <script>
+          #{ROOT.join('javascript/ai-widget.js').read}
+        </script>
       HTML
     end
   end

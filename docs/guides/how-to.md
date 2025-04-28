@@ -12,11 +12,11 @@ icon: tools
 
 This page provides practical tips and examples to help you effectively use Pagy.
 
-You can also [ask the Pagy-trained AI](https://gurubase.io/g/pagy) for instant answers to questions not covered on this page.
+You can also [ask the Pagy AI](https://gurubase.io/g/pagy) for instant answers to questions not covered on this page.
 
 ==- Choose the right pagination technique
 
-[AI-powered answer](https://gurubase.io/g/pagy/choose-between-pagy-offset-countless-keyset)
+[Pagy AI answer](https://gurubase.io/g/pagy/choose-between-pagy-offset-countless-keyset)
 
 ==- Control the items per page
 

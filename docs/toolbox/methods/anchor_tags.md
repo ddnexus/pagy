@@ -36,7 +36,7 @@ Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `:co
 <%== @pagy.next_tag %>
 ```
 
-Try this method in the [Pagy Console](../../sandbox/console.md):
+==- Examples
 
 ```ruby
 >> puts @pagy.previous_tag

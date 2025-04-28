@@ -30,7 +30,12 @@ The `limit_tag_js` allows the user to select any arbitrary limit per page, up to
 <%== @pagy.limit_tag_js %>
 ```
 
-Try this method in the [Pagy Console](../../sandbox/console.md):
+!!!success Pagy requests the _right_ page number
+
+After selecting a new limit, pagy reloads the page that roughly contains the same items shown before the reload.
+!!!
+
+==- Examples
 
 ```ruby
 >> puts @pagy.limit_tag_js(client_max_limit: 100)
@@ -41,11 +46,6 @@ Try this method in the [Pagy Console](../../sandbox/console.md):
 <span id="my-elector" class="pagy limit-tag-js" data-pagy="WyJzaiIsNDEsIi9wYXRoP2V4YW1wbGU9MTIzJnBhZ2U9UCAiXQ=="><label>Show <input name="limit" type="number" min="1" max="" value="20" style="padding: 0; text-align: center; width: 3rem;"><a style="display: none;">#</a> Products per page</label></span>
 => nil
 ```
-
-!!!success Pagy requests the _right_ page number
-
-After selecting a new limit, pagy reloads the page that roughly contains the same items shown before the reload.
-!!!
 
 ==- Caveats
 

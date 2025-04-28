@@ -23,7 +23,7 @@ Unused code consumes no memory.
 
 [:icon-list-unordered: data_hash](methods/data_hash.md)<br/>
 [:icon-list-unordered: headers_hash](methods/headers_hash.md)<br/>
-[:icon-list-unordered: links_hash](methods/links_hash.md)<br/>
+[:icon-list-unordered: urls_hash](methods/urls_hash.md)<br/>
 [:icon-arrow-right: page_url](methods/page_url.md)<br/>
 [:icon-code: series_nav](methods/series_nav.md)<br/>
 [:icon-code: series_nav_js](methods/series_nav_js.md)<br/>

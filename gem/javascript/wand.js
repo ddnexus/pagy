@@ -681,7 +681,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <dt>Spacing, Padding, Rounding, Borders</dt>
               <dd>Control the layout and overall look.</dd>
             <dt>Font Size, Font Weight, Line Height</dt>
-              <dd>Control the typography of the page links.</dd>
+              <dd>Control the typography of the page links. Notice that the <code>font-family</code> is inherited from your app.</dd>
             <dt>Interactions</dt>
               <dd>The combination of Padding, Font Size, Line Height, controls the internal proportions of the page links.</dd>
             <dt>CSS Override</dt>

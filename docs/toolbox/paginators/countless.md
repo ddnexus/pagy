@@ -12,16 +12,11 @@ categories:
 
 ---
 
-`:countless` is an OFFSET paginator that avoids the `COUNT` query, reducing the number of queries per rendering by one.
+`:countless` is an OFFSET paginator that avoids the `COUNT` query, reducing the number of queries per request by one.
 
 !!!warning Consider using the `:keynav_js` paginator when possible!
 
 The [:keynav_js](keynav_js.md) offers identical UI features but utilizes the faster `keyset` pagination.
-!!!
-
-!!! warning Caveat
-
-Nav bar links beyond the last or highest visited page are not displayed.
 !!!
 
 ```ruby Controller 
@@ -44,5 +39,9 @@ See also [Offset Options](offset#options)
 ==- Readers
 
 See [Offset Readers](offset#readers)
+
+==- Caveat
+
+Nav bar links beyond the last or highest visited page are not displayed.
 
 ===

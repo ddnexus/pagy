@@ -241,7 +241,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `jsonapi`
 
-- Rename any existing `pagy_jsonapi_links(@pagy, ...)` to `@pagy.links_hash(...)`.
+- Rename any existing `pagy_jsonapi_links(@pagy, ...)` to `@pagy.urls_hash(...)`.
   - _Notice that the `nil` links are now removed as the `JSON:API` specifications require._
 - Enable the feature by passing the `jsonapi: true` option to the `pagy` method.
 

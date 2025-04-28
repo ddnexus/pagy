@@ -36,7 +36,7 @@ You can use a few method to create a simple collection paginated with the `:offs
 >> pagy.data_hash
 => {url_template: "/path?example=123&page=P ", first_url: "/path?example=123", previous_url: "/path?example=123&page=", page_url: "/path?example=123&page=1", next_url: "/path?example=123&page=2", last_url: "/path?example=123&page=100", count: 1000, page: 1, limit: 10, last: 100, in: 10, from: 1, to: 10, previous: nil, next: 2, options: {limit: 10, limit_key: :limit, page_key: :page, page: 1, request: {base_url: "http://www.example.com", path: "/path", query: {example: "123"}}, count: 1000}}
 
->> pagy.links_hash
+>> pagy.urls_hash
 => {first: "/path?example=123", next: "/path?example=123&page=2", last: "/path?example=123&page=100"}
 => nil
 

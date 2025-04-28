@@ -1,4 +1,5 @@
 <script>
+  <!-- widget_ai_start -->
   document.addEventListener('DOMContentLoaded', () => {
     function loadWidget() {
       const hostname = window.location.hostname;
@@ -6,8 +7,8 @@
       script.async   = true;
       script.src     = 'https://widget.gurubase.io/widget.latest.min.js';
       script.id      = 'guru-widget-id';
-      if (hostname === 'localhost') {
-        script.dataset.widgetId = '3KQKermq-OB8my3Bejl3SFhI1Twk4XTufo7rTY4yUIc';
+      if (hostname === 'localhost' || hostname === '127.0.0.1') {
+        script.dataset.widgetId = 'djgBhRlpdH8b07oj0Gsaerz69Xfs0FXMuUluyOo2iR4';
         script.dataset.iconUrl  = 'http://localhost:5000/pagy/assets/images/pagy-the-frog.png';
       } else {
         if (hostname === 'ddnexus.github.io') {
@@ -62,9 +63,9 @@
       };
       attemptEditing();
     }
-
     editChatWidget();
   });
+  <!-- widget_ai_end -->
 </script>
 <style>
   .raised {

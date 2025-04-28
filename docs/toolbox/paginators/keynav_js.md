@@ -12,14 +12,9 @@ categories:
 
 ---
 
-`:keynav_js` is a fast KEYSET paginator that supports the UI.
+`:keynav_js` is a fast KEYSET paginator that supports the UI. It's a pagy exclusive technique.
 
-!!! warning Caveat
-
-Nav bar links beyond the last or highest visited page are not displayed.
-!!!
-
-- It requires [JavaScript Support](../../resources/javascript.md) and a browser that implements `sessionStorage`.
+- It requires [JavaScript Support](../../resources/javascript.md) and a browser that implements `sessionStorage` _(largely supported by all browsers nowaday)_.
   - If those conditions are not met, it falls back to the [:countless](countless.md) paginator seamlessly.
     :::
 
@@ -32,7 +27,7 @@ Nav bar links beyond the last or highest visited page are not displayed.
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#5-keyset-apps)
 
-!!!warning These documents integrate the [:keyset](keyset.md) documentation.
+!!!warning This documentation integrates the [:keyset](keyset.md) documentation.
 
 It's easier to understand if you familiarize with the [:keyset](keyset.md) docs.
 !!!
@@ -57,7 +52,7 @@ Integrates the [Keyset Glossary](keyset#glossary)
 ==- How it works
 
 The Keynav pagination adds the numeric variables (`@page`, `@last`, `@prev`, `@next`, `@in`) to its instances, supporting their usage
-with the UI. It does so by transparently exchanging data back and forth with the client, that stores the state of the pagination.
+with the UI. It does so by transparently exchanging data with the client, that stores the state of the pagination.
 
 You can use the `:keyset_js` paginator as you would use the [:countless paginator](countless.md). You just need
 the [Keyset Setup](keyset#setup) and [JavaScript Support](../../resources/javascript.md), to get a lot more performance.
@@ -122,5 +117,9 @@ user by:
 - Automatically compacting the empty (or almost empty) visited pages.
 - Automatically splitting the excessively grown visited pages.
   !!!
+
+==- Caveat
+
+Nav bar links beyond the last or highest visited page are not displayed.
 
 ===

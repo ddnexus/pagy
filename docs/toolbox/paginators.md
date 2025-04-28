@@ -30,7 +30,7 @@ You can use it to paginate ANY collection, with ANY technique:
 ```
 - `:offset`, `:keyset`, etc. are symbols identifying the [paginator](#paginators) to use, i.e. the internal method handling that type of pagination.
 - `@pagy` is the pagination istance. It provides methods for every UI components and helpers to use in your code.
-- `@records` are the records belonging to the requested page
+- `@records` are the records belonging to the requested page.
 
 ### Paginators
 

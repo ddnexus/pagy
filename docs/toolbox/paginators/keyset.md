@@ -56,7 +56,7 @@ There are a few peculiar aspects of the keyset pagination technique that you mig
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `offset pagination` | The technique to fetch each page by incrementing the `offset` from the collection start.<br/>It requires two queries per page (or only one if you use [countless](countless.md)): it's slow toward the end of big tables.<br/>It can be used for a rich frontend: it's the classic pagy pagination.                                        |
 | `keyset pagination` | The technique to fetch the next page starting after the latest fetched record in a `uniquely ordered` collection.<br/>It requires only one query per page (without OFFSET). if properly indexed, it's the fastest technique, regardless of the table size and position. Supports only infinite pagination, with no other frontend helpers. |
-| `keynav pagination` | The pagy exclusive technique to use `keyset` pagination, providing **nearly complete** support for **most** navigation helpers. The fasted technique with UI capabilities.                                                                                                                                                                 |
+| `keynav pagination` | The pagy exclusive technique to use `keyset` pagination, providing **nearly complete** UI support. The fasted technique with UI capabilities.                                                                                                                                                                                              |
 | `uniquely ordered`  | The property of a `set`, when the concatenation of the values of the ordered columns is unique for each record. It is similar to a composite primary `key` for the ordered table, but dynamically based on the `keyset` columns.                                                                                                           |
 | `set`               | The `uniquely ordered` `ActiveRecord::Relation` or `Sequel::Dataset` collection to paginate.                                                                                                                                                                                                                                               |
 | `keyset`            | The hash of column/order pairs. Pagy extracts it from the order of the `set`.                                                                                                                                                                                                                                                              |
@@ -98,22 +98,22 @@ Ensure that your set is `uniquely ordered`, and that your tables have the approp
 
 Depending on your order requirements, here is how you set it up:
 
-+++ Specific order requirements
-!!!success If you need a specific ordering...
-
-- **In order to make it work**...
-  - Ensure that at least one of your ordered columns is unique OR append your primary keys to your order
-- **In order to make it fast**...<br/>
-  - Ensure that you create a unique composite DB index, including the exact same columns and ordering direction of your set.
-
-!!!
-
 +++ No order requirements
 !!!success If you don't need any specific ordering...
 
 `order(:id)` is the simplest choice because the `id` column is unique and already indexed.
 
 It is fast out of the box without any setup.
+<br><br><br><br>
+!!!
+
++++ Specific order requirements
+!!!success If you need a specific ordering...
+
+- **In order to make it work**...
+  - Ensure the uniquenes of the last ordered columns OR append your primary keys to your order.
+- **In order to make it fast**...<br/>
+  - Ensure to have an index including the exact same columns and ordering direction of your set.
 
 !!!
 +++

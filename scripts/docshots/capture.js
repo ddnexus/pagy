@@ -28,6 +28,13 @@ async function captureScreenshots() {
                                      });
     const page = await browser.newPage();
 
+    await page.setViewport({
+                             width: 1280,  // Or any suitable width
+                             height: 800,   // Or any suitable height
+                             deviceScaleFactor: 2, // Simulate a Retina/HiDPI display (2x pixels)
+                           });
+    console.log('Set viewport with deviceScaleFactor: 2');
+
     console.log(`Navigating to initial URL: ${appURL}`);
     await page.goto(appURL, { waitUntil: 'networkidle0' });
     console.log('Initial page loaded.');
@@ -67,7 +74,7 @@ async function captureScreenshots() {
       linkHrefs.push(href);
     }
 
-    // --- 3. Remove first link (assuming it's the current page) ---
+    // --- 3. Remove the first link (assuming it's the current page) ---
     const remainingHrefs = linkHrefs.slice(1); // Create a new array excluding the first element
     console.log(`   Collected ${linkHrefs.length} links. Processing ${remainingHrefs.length} remaining links.`);
 
