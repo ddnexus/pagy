@@ -71,12 +71,12 @@ describe "sync_javascript" do
   end
 end
 
-describe 'Pagy.wand_tags' do
+describe 'Pagy.dev_tags' do
   let(:js_content) { Pagy::ROOT.join('javascript/wand.js').read }
   let(:css_content) { Pagy::ROOT.join('stylesheet/pagy.css').read }
 
   it 'generates the wand tag with default scale' do
-    generated_html = Pagy.wand_tags # scale: 1 is default
+    generated_html = Pagy.dev_tags # scale: 1 is default
 
     # Check script tag structure and content using regex for flexibility with whitespace
     _(generated_html).must_match %r{<script id="pagy-wand" data-scale="1">\s*#{Regexp.escape(js_content)}\s*</script>}m
@@ -85,7 +85,7 @@ describe 'Pagy.wand_tags' do
   end
 
   it 'generates the wand tag with custom scale' do
-    generated_html = Pagy.wand_tags(scale: 2.5)
+    generated_html = Pagy.dev_tags(scale: 2.5)
 
     # Check script tag structure and content with custom scale
     _(generated_html).must_match %r{<script id="pagy-wand" data-scale="2\.5">\s*#{Regexp.escape(js_content)}\s*</script>}m

@@ -17,18 +17,18 @@ class Pagy
       (names - targets).each { |filename| FileUtils.rm_f(File.join(destination, filename)) }
     end
 
-    # Generate the script and style tags to implement the wand
-    def wand_tags(scale: 1)
+    # Generate the script and style tags to help development
+    def dev_tags(wand_scale: 1)
       <<~HTML
-        <script id="pagy-wand" data-scale="#{scale}">
+        <script id="pagy-ai-widget">
+          document.addEventListener('wand-positioned', #{ROOT.join('javascript/ai_widget.js').read});
+        </script>
+        <script id="pagy-wand" data-scale="#{wand_scale}">
           #{ROOT.join('javascript/wand.js').read}
         </script>
         <style id="pagy-wand-default">
           #{ROOT.join('stylesheet/pagy.css').read}
         </style>
-        <script>
-          #{ROOT.join('javascript/ai-widget.js').read}
-        </script>
       HTML
     end
   end

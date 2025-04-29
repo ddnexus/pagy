@@ -166,6 +166,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const HELP_CHK     = 'pagy-wand-help-chk';
   const LIVE_CHK     = 'pagy-wand-live-chk';
 
+  const normalize = (str: string) => str.trim().replace(/\s+/g, ' ');
+
   // Helper functions for Session Storage
   function getSessionItem(key: string): string | null {
     return sessionStorage.getItem(key);
@@ -294,7 +296,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     ${s* .0625}rem
                     rgba(0,0,0,.4);
         position: fixed;
-        z-index: 1000;
+        z-index: 10000;
         overflow: hidden;
       }
       #panel.initial {
@@ -703,11 +705,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         <div id="help" class="content">
           <h4>Install</h4>
             <dl>
-              <dt>Load it in HTML head</dt>
+              <dt>Add this line in your HTML head</dt>
               <dd>
-                <code><%== Pagy.wand_tags %></code>
-                <p>You can pass the optional <code>scale</code> factor argument to change the size of the Wand.
-                  <br>Default: <code>scale: 1</code></p>
+                <p><code><%== Pagy.dev_tags %></code></p>
+                <p>You can pass the optional <code>wand_scale</code> argument to change the size of the Wand.
+                  <br>Default: <code>wand_scale: 1</code></p>
               </dd>
             </dl>
           <h4>Wand</h4>
@@ -743,7 +745,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               <dd>The combination of Padding, Font Size, Line Height, controls the internal proportions of the page links.</dd>
             <dt>CSS Override</dt>
               <dd>
-                <p>The current set of <code>.pagy</code> rules.</p>
+                The current set of <code>.pagy</code> rules.
                 <ul style="list-style-type: none; padding-left: 0; margin: 0;">
                   <li><span class="pagy-wand-symbol help-copy-icon">content_copy</span> <span class="button-desc">Copy the CSS Override</span></li>
                   <li><span class="pagy-wand-symbol help-copy-icon success">check_circle</span> <span class="button-desc">Copied! Feedback</li>
@@ -840,7 +842,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const finalize = () => {
     updateOverride();
     presetMenu.value = '';
-    setSessionItem(PRESET, '');
   }
   for (const [id, c] of Object.entries(controls)) {
     c.input = <HTMLInputElement>shadow.getElementById(id);
@@ -860,151 +861,152 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
+  // PRESETS
   const presets:Presets = {
     Default: `
-  .pagy {
-    --B: 1;
-    --H: 0;
-    --S: 0;
-    --L: 50;
-    --A: 1;
-    --spacing: 0.125rem;
-    --padding: 0.75rem;
-    --rounding: 1.75rem;
-    --border-width: 0rem;
-    --font-size: 0.875rem;
-    --font-weight: 600;
-    --line-height: 1.75;
-  }
-  `,
+      .pagy {
+        --B: 1;
+        --H: 0;
+        --S: 0;
+        --L: 50;
+        --A: 1;
+        --spacing: 0.125rem;
+        --padding: 0.75rem;
+        --rounding: 1.75rem;
+        --border-width: 0rem;
+        --font-size: 0.875rem;
+        --font-weight: 600;
+        --line-height: 1.75;
+      }
+    `,
     Dark: `
-  .pagy {
-    --B: -1;
-    --H: 0;
-    --S: 0;
-    --L: 60;
-    --A: 1;
-    --spacing: 0.125rem;
-    --padding: 0.75rem;
-    --rounding: 1.75rem;
-    --border-width: 0rem;
-    --font-size: 0.875rem;
-    --font-weight: 600;
-    --line-height: 1.75;
-  }
-  `,
+      .pagy {
+        --B: -1;
+        --H: 0;
+        --S: 0;
+        --L: 60;
+        --A: 1;
+        --spacing: 0.125rem;
+        --padding: 0.75rem;
+        --rounding: 1.75rem;
+        --border-width: 0rem;
+        --font-size: 0.875rem;
+        --font-weight: 600;
+        --line-height: 1.75;
+      }
+    `,
     MidnighExpress: `
-  .pagy {
-    --B: -1;
-    --H: 231;
-    --S: 28;
-    --L: 60;
-    --A: 1;
-    --spacing: 0.1875rem;
-    --padding: 1rem;
-    --rounding: 0.375rem;
-    --border-width: 0rem;
-    --font-size: 1rem;
-    --font-weight: 450;
-    --line-height: 1.25;
-  }
-  `,
+      .pagy {
+        --B: -1;
+        --H: 231;
+        --S: 28;
+        --L: 60;
+        --A: 1;
+        --spacing: 0.1875rem;
+        --padding: 1rem;
+        --rounding: 0.375rem;
+        --border-width: 0rem;
+        --font-size: 1rem;
+        --font-weight: 450;
+        --line-height: 1.25;
+      }
+    `,
     Pilloween:`
-  .pagy {
-    --B: -1;
-    --H: 20;
-    --S: 80;
-    --L: 50;
-    --A: 1;
-    --spacing: 0.375rem;
-    --padding: 0.75rem;
-    --rounding: 1.125rem;
-    --border-width: 0.0625rem;
-    --font-size: 0.875rem;
-    --font-weight: 600;
-    --line-height: 1.5;
-  }
-  `,
+      .pagy {
+        --B: -1;
+        --H: 20;
+        --S: 80;
+        --L: 50;
+        --A: 1;
+        --spacing: 0.375rem;
+        --padding: 0.75rem;
+        --rounding: 1.125rem;
+        --border-width: 0.0625rem;
+        --font-size: 0.875rem;
+        --font-weight: 600;
+        --line-height: 1.5;
+      }
+    `,
     Peppermint:`
-  .pagy {
-    --B: 1;
-    --H: 78;
-    --S: 70;
-    --L: 38;
-    --A: 1;
-    --spacing: 0.1875rem;
-    --padding: 0.625rem;
-    --rounding: 0.75rem;
-    --border-width: 0rem;
-    --font-size: 0.875rem;
-    --font-weight: 550;
-    --line-height: 1.75;
-  }
-  `,
+      .pagy {
+        --B: 1;
+        --H: 78;
+        --S: 70;
+        --L: 38;
+        --A: 1;
+        --spacing: 0.1875rem;
+        --padding: 0.625rem;
+        --rounding: 0.75rem;
+        --border-width: 0rem;
+        --font-size: 0.875rem;
+        --font-weight: 550;
+        --line-height: 1.75;
+      }
+    `,
     CocoaBeans:`
-  .pagy {
-    --B: 1;
-    --H: 27;
-    --S: 63;
-    --L: 17;
-    --A: 1;
-    --spacing: 0.0625rem;
-    --padding: 0.5rem;
-    --rounding: 1.125rem;
-    --border-width: 0rem;
-    --font-size: 0.875rem;
-    --font-weight: 600;
-    --line-height: 2.5;
-  }
-  `,
+      .pagy {
+        --B: 1;
+        --H: 27;
+        --S: 63;
+        --L: 17;
+        --A: 1;
+        --spacing: 0.0625rem;
+        --padding: 0.5rem;
+        --rounding: 1.125rem;
+        --border-width: 0rem;
+        --font-size: 0.875rem;
+        --font-weight: 600;
+        --line-height: 2.5;
+      }
+    `,
     PurpleStripe: `
-  .pagy {
-    --B: 1;
-    --H: 255;
-    --S: 63;
-    --L: 43;
-    --A: 1;
-    --spacing: 0rem;
-    --padding: 0.875rem;
-    --rounding: 0rem;
-    --border-width: 0rem;
-    --font-size: 0.875rem;
-    --font-weight: 300;
-    --line-height: 1.5;
-  }
-  `,
+      .pagy {
+        --B: 1;
+        --H: 255;
+        --S: 63;
+        --L: 43;
+        --A: 1;
+        --spacing: 0rem;
+        --padding: 0.875rem;
+        --rounding: 0rem;
+        --border-width: 0rem;
+        --font-size: 0.875rem;
+        --font-weight: 300;
+        --line-height: 1.5;
+      }
+    `,
     GhostInThought: `
-  .pagy {
-    --B: 1;
-    --H: 174;
-    --S: 40;
-    --L: 70;
-    --A: 1;
-    --spacing: 0.125rem;
-    --padding: 0.75rem;
-    --rounding: 1.125rem;
-    --border-width: 0rem;
-    --font-size: 0.875rem;
-    --font-weight: 450;
-    --line-height: 1.75;
-  }
-  `,
-    VintageScent:`
-  .pagy {
-    --B: 1;
-    --H: 51;
-    --S: 27;
-    --L: 64;
-    --A: 1;
-    --spacing: 0.1875rem;
-    --padding: 0.75rem;
-    --rounding: 0.75rem;
-    --border-width: 0.0625rem;
-    --font-size: 0.875rem;
-    --font-weight: 300;
-    --line-height: 1.75;
-  }
-  `
+      .pagy {
+        --B: 1;
+        --H: 174;
+        --S: 40;
+        --L: 70;
+        --A: 1;
+        --spacing: 0.125rem;
+        --padding: 0.75rem;
+        --rounding: 1.125rem;
+        --border-width: 0rem;
+        --font-size: 0.875rem;
+        --font-weight: 450;
+        --line-height: 1.75;
+      }
+    `,
+    VintageScent: `
+      .pagy {
+        --B: 1;
+        --H: 51;
+        --S: 27;
+        --L: 64;
+        --A: 1;
+        --spacing: 0.1875rem;
+        --padding: 0.75rem;
+        --rounding: 0.75rem;
+        --border-width: 0.0625rem;
+        --font-size: 0.875rem;
+        --font-weight: 300;
+        --line-height: 1.75;
+      }
+    `
   };
   // Populate preset options
   for (const presetName in presets) {
@@ -1013,10 +1015,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     option.textContent = presetName;
     presetMenu.appendChild(option);
   }
+  presetMenu.value = ''; // no assigned preset yet
+  // Apply preset on menu selection
+  presetMenu.addEventListener('change', (e) => {
+    const name = (<HTMLSelectElement>e.target).value;
+    setSessionItem(PRESET, name);
+    applyCSS(presets[name]);
+  });
 
-  function applyPreset(name:string | null) {
-    const css = name ? presets[name] : getSessionItem(OVERRIDE);
-    css?.match(/--[^:]+:\s*[^;]+/g)?.forEach((match) => {
+  // Read the CSS string, apply the variable values to the inputs and update the override
+  function applyCSS(css:string) {
+    css.match(/--[^:]+:\s*[^;]+/g)?.forEach((match) => {
       let [cssVarName, value] = match.split(':');
       cssVarName = cssVarName.trim();
       value = value.trim().replace(/[a-zA-Z%]+$/, '');
@@ -1027,24 +1036,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       }
     });
-    setSessionItem(PRESET, name || '');
     updateOverride();
   }
-  presetMenu.addEventListener('change', (e) => applyPreset((<HTMLSelectElement>e.target).value));
 
   // Initial load logic
-  const preset     = getSessionItem(PRESET) ?? 'Default';
-  presetMenu.value = preset; // Set dropdown value first
-  // Check for override *after* setting preset dropdown, apply override if exists
   const initialOverride = getSessionItem(OVERRIDE);
-  if (initialOverride) {
-    applyPreset(null); // Apply override
-    presetMenu.value = ''; // Unselect preset in the dropdown
+  const presetName      = getSessionItem(PRESET) ?? 'Default';
+  const presetCSS       = normalize(presets[presetName]);
+  if (initialOverride && initialOverride !== presetCSS) {
+    applyCSS(initialOverride);
   } else {
-    applyPreset(preset); // Apply preset if no override
+    presetMenu.value = presetName
+    applyCSS(presetCSS)
   }
 
-  // Style handling
+  // Update the override area and save its content
   function updateOverride() {
     let override = `.pagy {\n`;
     Object.values(controls).forEach((c) => {
@@ -1055,7 +1061,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     override += '}';
     overrideArea!.value = override;
     styleTagOverride.textContent = liveChk.checked ? override : '';
-    setSessionItem(OVERRIDE, override);
+    setSessionItem(OVERRIDE, normalize(override));
     updateColorRamps();
   }
 
@@ -1103,11 +1109,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   // Set the position from sessionStorage (or transition-center it)
-  const position = getSessionPosition();
+  const position       = getSessionPosition();
+  const wandPositioned = new CustomEvent('wand-positioned');
 
   if (position && !isNaN(position.left) && !isNaN(position.top)) {
     panel.style.left = `${position.left}px`;
     panel.style.top  = `${position.top}px`;
+    document.dispatchEvent(wandPositioned);
   } else {
     panel.classList.add('initial'); // Start with initial styles (transform/opacity)
     requestAnimationFrame(() => {
@@ -1123,6 +1131,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         setSessionPosition(rect.left, rect.top);
         panel.classList.remove('initial');
         panel.classList.remove('centered');
+        document.dispatchEvent(wandPositioned);
       }
     }, { once: true }); // Important: Run only once
   }
@@ -1162,7 +1171,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const finalTop  = e.clientY - offsetY;
     setSessionPosition(finalLeft, finalTop);
   });
-
 
   // Toggles (Original structure)
   // Controls

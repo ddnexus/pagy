@@ -24,7 +24,7 @@ _Agnostic pagination in plain ruby_
   <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">
 </a><br><br>
 
-### <span style="font-size: .65em; vertical-align: middle">💚</span> Version 10
+### <span style="font-size: .65em; vertical-align: middle">💚</span> Version 43 (The Leap)
 
 #### A complete redesign of the legacy code.
 
@@ -198,13 +198,13 @@ Dynamically fills the container width.
 
 ### Pagy Wand
 
-Integrate pagy with your app's themes interactively. You just need a single line in your page/layout `head`:
+Integrate pagy with your app's themes interactively. You need only a single line in your page/layout `head` to get the Pagy Wand and the Pagy AI:
 
 ```erb
-<%== Pagy.wand_tags %>
+<%== Pagy.dev_tags %>
 ```
 
-<img src="assets/images/pagy-wand.png" width="607"><br/>
+<img src="assets/images/pagy-wand.png" width="606"><br/>
 
 <a href="https://ddnexus.github.io/pagy/sandbox/playground/#3-demo-app">
   <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">

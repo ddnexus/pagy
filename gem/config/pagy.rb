@@ -8,7 +8,7 @@
 # For example:
 #
 # Pagy.options[:limit] = 10               # Limit the items per page
-# Pagy.options[:client_max_limit] = 100  # The client can request a limit up to 100
+# Pagy.options[:client_max_limit] = 100   # The client can request a limit up to 100
 # Pagy.options[:max_pages] = 200          # Allow only 200 pages
 # Pagy.options[:jsonapi] = true           # Use JSON:API compliant URLs
 
@@ -32,7 +32,7 @@
 # Pagy::I18n.pathnames << Rails.root.join('config/locales')
 
 
-############# Calendar Localization for non-en locles ###########################
+############# Calendar Localization for non-en locales ###########################
 # Add your desired locales to the list and uncomment the following line to enable them,
 # regardless of whether you use the I18n gem for translations or not, whether with
 # Rails or not.

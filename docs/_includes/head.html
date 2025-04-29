@@ -1,24 +1,32 @@
+<!-- ai_widget_start -->
 <script>
-  <!-- widget_ai_start -->
   document.addEventListener('DOMContentLoaded', () => {
     function loadWidget() {
-      const hostname = window.location.hostname;
       const script   = document.createElement('script');
-      script.async   = true;
-      script.src     = 'https://widget.gurubase.io/widget.latest.min.js';
-      script.id      = 'guru-widget-id';
-      if (hostname === 'localhost' || hostname === '127.0.0.1') {
-        script.dataset.widgetId = 'djgBhRlpdH8b07oj0Gsaerz69Xfs0FXMuUluyOo2iR4';
-        script.dataset.iconUrl  = 'http://localhost:5000/pagy/assets/images/pagy-the-frog.png';
-      } else {
-        if (hostname === 'ddnexus.github.io') {
+      const hostname = window.location.hostname;
+      switch (hostname) {
+        case '127.0.0.1':
+          script.dataset.widgetId = '_rXLissYyqe-dJ9vGGGXzmJwavoW0GvuzQPEq5BZjP8';
+          // script.dataset.iconUrl  = 'http://localhost:5000/pagy/assets/images/pagy-the-frog.png';
+          break;
+        case 'localhost':
+          script.dataset.widgetId = 'djgBhRlpdH8b07oj0Gsaerz69Xfs0FXMuUluyOo2iR4';
+          script.dataset.iconUrl  = 'http://localhost:5000/pagy/assets/images/pagy-the-frog.png';
+          script.dataset.margins  = '{"bottom": "1.48rem", "right": "6rem"}';
+          break;
+        case 'ddnexus.github.io':
           script.dataset.widgetId = 'HKtFSPZLGiAXOdBWS4rSAxEkqv8czIbJoQdMEwCqgEc';
           script.dataset.iconUrl  = 'https://ddnexus.github.io/pagy/assets/images/pagy-the-frog.png';
-        }
+          script.dataset.margins  = '{"bottom": "1.48rem", "right": "6rem"}';
+          break;
+        default:
+          console.error('Pagy AI - Unknown hostname: ', hostname);
       }
+      script.async               = true;
+      script.src                 = 'https://widget.gurubase.io/widget.latest.min.js';
+      script.id                  = 'guru-widget-id';
       script.dataset.text        = 'Pagy AI';
       script.dataset.bgColor     = '#1f7a1f';
-      script.dataset.margins     = '{"bottom": "1.48rem", "right": "6rem"}';
       script.dataset.lightMode   = 'false';
       script.dataset.tooltipSide = 'bottom';
       document.head.appendChild(script);
@@ -65,8 +73,8 @@
     }
     editChatWidget();
   });
-  <!-- widget_ai_end -->
 </script>
+<!-- ai_widget_end -->
 <style>
   .raised {
     padding: .5em !important;
