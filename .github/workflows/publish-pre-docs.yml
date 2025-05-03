@@ -1,9 +1,9 @@
-name: Publish Docs
+name: Publish Pre Docs
 on:
   workflow_dispatch:
   push:
     branches:
-      - 'master' # run only for master
+      - 'master-pre' # run only for master-pre
 
 jobs:
   skip_check:
@@ -47,10 +47,16 @@ jobs:
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 9.0.x
+
       - uses: retypeapp/action-build@v3
         with:
           config_path: docs/
-      - uses: retypeapp/action-github-pages@latest
+          url: '{"url": "url: "https://ddnexus.github.io/pagy-pre"}'
+
+      - name: Deploy Pre-Release Docs to pagy-pre repository
+        uses: peaceiris/actions-gh-pages@v4 # Using v4, check for latest if needed
         with:
-          branch: docsite
-          update-branch: true
+          personal_token: ${{ secrets.PAGY_PRE_DOCS_PAT }}
+          external_repository: ddnexus/pagy-pre
+          publish_branch: docsite
+          publish_dir: ${{ env.RETYPE_OUTPUT_PATH }}
