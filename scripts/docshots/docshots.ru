@@ -35,19 +35,19 @@ require 'sinatra/base'
 class PagyDocshots < Sinatra::Base
   include Pagy::Method
 
-  get('/javascript/:file') do
+  get('/javascripts/:file') do
     format = params[:file].split('.').last
     if format == 'js'
       content_type 'application/javascript'
     elsif format == 'map'
       content_type 'application/json'
     end
-    send_file Pagy::ROOT.join('javascript', params[:file])
+    send_file Pagy::ROOT.join('javascripts', params[:file])
   end
 
-  get('/stylesheet/:file') do
+  get('/stylesheets/:file') do
     content_type 'text/css'
-    send_file Pagy::ROOT.join('stylesheet', params[:file])
+    send_file Pagy::ROOT.join('stylesheets', params[:file])
   end
 
   get '/:style' do
@@ -66,7 +66,7 @@ class PagyDocshots < Sinatra::Base
     def head_for(style)
       case style  # rubocop:disable Style/HashLikeCase
       when 'pagy'
-        %(<link rel="stylesheet" href="/stylesheet/pagy.css">)
+        %(<link rel="stylesheet" href="/stylesheets/pagy.css">)
       when 'bootstrap'
         %(<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">)
       when 'bulma'
@@ -82,7 +82,7 @@ class PagyDocshots < Sinatra::Base
       <html>
       <head>
         <title>Pagy Docshots</title>
-        <script src="javascript/pagy.js"></script>
+        <script src="javascripts/pagy.js"></script>
         <script>
           window.addEventListener("load", Pagy.init);
         </script>

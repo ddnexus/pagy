@@ -13,7 +13,7 @@ class Pagy
     def sync_javascript(destination, *targets)
       names   = %w[pagy.mjs pagy.js pagy.js.map pagy.min.js]
       targets = names if targets.empty?
-      targets.each { |filename| FileUtils.cp(ROOT.join('javascript', filename), destination) }
+      targets.each { |filename| FileUtils.cp(ROOT.join('javascripts', filename), destination) }
       (names - targets).each { |filename| FileUtils.rm_f(File.join(destination, filename)) }
     end
 
@@ -21,13 +21,13 @@ class Pagy
     def dev_tags(wand_scale: 1)
       <<~HTML
         <script id="pagy-ai-widget">
-          document.addEventListener('wand-positioned', #{ROOT.join('javascript/ai_widget.js').read});
+          document.addEventListener('wand-positioned', #{ROOT.join('javascripts/ai_widget.js').read});
         </script>
         <script id="pagy-wand" data-scale="#{wand_scale}">
-          #{ROOT.join('javascript/wand.js').read}
+          #{ROOT.join('javascripts/wand.js').read}
         </script>
         <style id="pagy-wand-default">
-          #{ROOT.join('stylesheet/pagy.css').read}
+          #{ROOT.join('stylesheets/pagy.css').read}
         </style>
       HTML
     end

@@ -34,7 +34,7 @@ _Agnostic pagination in plain ruby_
 - **Method Autoloading**
   - Methods are autoloaded only if used, unused methods consume no memory.
 - **Intelligent automation**
-  - [Configuration](https://ddnexus.github.io/pagy/toolbox/initializer.md) requirements reduced by 99%, simplified [JavaScript](https://ddnexus.github.io/pagy/resources/javascript.md)
+  - [Configuration](https://ddnexus.github.io/pagy/toolbox/initializer.md) requirements reduced by 99%, simplified [JavaScript](https://ddnexus.github.io/pagy/resources/javascripts.md)
     setup and automatic [I18n]((https://ddnexus.github.io/pagy/resources/i18n.md)) loading.
 - **Simplified user interaction**
   - You solely need the [pagy](https://ddnexus.github.io/pagy/toolbox/paginators.md) method and
@@ -163,7 +163,7 @@ Default `:pagy`, `:bootstrap` and `:bulma` styles shown.
 
 ```rb
 # pagy.rb initializer
-javascript_dir = Rails.root.join('app/javascript')
+javascript_dir = Rails.root.join('app/javascripts')
 Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
 ```
 

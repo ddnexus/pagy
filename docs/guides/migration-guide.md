@@ -1,7 +1,7 @@
 ---
 label: Migrate from other gems
 icon: paper-airplane
-order: 80
+order: 70
 ---
 
 #

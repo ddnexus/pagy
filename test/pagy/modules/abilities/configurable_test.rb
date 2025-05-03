@@ -51,7 +51,7 @@ describe "sync_javascript" do
     keep_files   = %w[pagy.js pagy.min.js]
     remove_files = all_files - keep_files
 
-    all_files.each { |file| FileUtils.cp(Pagy::ROOT.join('javascript', file), destination) }
+    all_files.each { |file| FileUtils.cp(Pagy::ROOT.join('javascripts', file), destination) }
     Pagy.sync_javascript(destination, 'pagy.js', 'pagy.min.js')
 
     keep_files.each do |file|
@@ -72,8 +72,8 @@ describe "sync_javascript" do
 end
 
 describe 'Pagy.dev_tags' do
-  let(:js_content) { Pagy::ROOT.join('javascript/wand.js').read }
-  let(:css_content) { Pagy::ROOT.join('stylesheet/pagy.css').read }
+  let(:js_content) { Pagy::ROOT.join('javascripts/wand.js').read }
+  let(:css_content) { Pagy::ROOT.join('stylesheets/pagy.css').read }
 
   it 'generates the wand tag with default scale' do
     generated_html = Pagy.dev_tags # scale: 1 is default
@@ -85,7 +85,7 @@ describe 'Pagy.dev_tags' do
   end
 
   it 'generates the wand tag with custom scale' do
-    generated_html = Pagy.dev_tags(scale: 2.5)
+    generated_html = Pagy.dev_tags(wand_scale: 2.5)
 
     # Check script tag structure and content with custom scale
     _(generated_html).must_match %r{<script id="pagy-wand" data-scale="2\.5">\s*#{Regexp.escape(js_content)}\s*</script>}m

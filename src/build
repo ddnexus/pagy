@@ -5,7 +5,7 @@ set -e
 root="$(git rev-parse --show-toplevel)"
 . "$root/scripts/cd-and-back.sh"
 
-jdir="$root/gem/javascript"
+jdir="$root/gem/javascripts"
 
 echo 'Generating javascript files'
 bun build ./pagy.ts --target=node --no-bundle --outfile=$jdir/pagy.mjs

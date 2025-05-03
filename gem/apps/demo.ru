@@ -56,19 +56,19 @@ class PagyDemo < Sinatra::Base
     redirect '/pagy'
   end
 
-  get('/javascript/:file') do
+  get('/javascripts/:file') do
     format = params[:file].split('.').last
     if format == 'js'
       content_type 'application/javascript'
     elsif format == 'map'
       content_type 'application/json'
     end
-    send_file Pagy::ROOT.join('javascript', params[:file])
+    send_file Pagy::ROOT.join('javascripts', params[:file])
   end
 
-  get('/stylesheet/:file') do
+  get('/stylesheets/:file') do
     content_type 'text/css'
-    send_file Pagy::ROOT.join('stylesheet', params[:file])
+    send_file Pagy::ROOT.join('stylesheets', params[:file])
   end
 
   # One route/action per style
@@ -108,12 +108,12 @@ class PagyDemo < Sinatra::Base
       case section
       when :pagy, :template
         %(#{PAGY_LIKE_HEAD}
-        <link rel="stylesheet" href="/stylesheet/pagy.css">)
+        <link rel="stylesheet" href="/stylesheets/pagy.css">)
       when :tailwind
         %(#{PAGY_LIKE_HEAD}
         <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
         <style type="text/tailwindcss">
-          #{Pagy::ROOT.join('stylesheet/pagy-tailwind.css').read}
+          #{Pagy::ROOT.join('stylesheets/pagy-tailwind.css').read}
         </style>)
       when :bootstrap
         %(<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">)
@@ -145,7 +145,7 @@ class PagyDemo < Sinatra::Base
         <title>Pagy Demo App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <%= head_for(section) %>
-        <script src="/javascript/pagy.js"></script>
+        <script src="/javascripts/pagy.js"></script>
         <script>window.addEventListener("load", Pagy.init);</script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -309,7 +309,7 @@ class PagyDemo < Sinatra::Base
       <h1><%= title = section.to_s; title[0] = title[0].capitalize; title %></h1>
 
       <% if css_anchor %>
-        <p>Check the <u><i><b><a href="http://ddnexus.github.io/pagy/resources/stylesheet/#<%= css_anchor %>" target="blank"><%= css_anchor.gsub('-', '.') %></a></b></u></i>
+        <p>Check the <u><i><b><a href="http://ddnexus.github.io/pagy/resources/stylesheets/#<%= css_anchor %>" target="blank"><%= css_anchor.gsub('-', '.') %></a></b></u></i>
         for details.</p>
       <% end %>
       </p>

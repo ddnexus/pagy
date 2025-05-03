@@ -1148,7 +1148,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     dragging = true;
     offsetX  = e.clientX - panel.offsetLeft;
     offsetY  = e.clientY - panel.offsetTop;
-    topBar.style.cursor    = 'grab';
+    topBar.style.cursor = 'grab';
   });
 
   document.addEventListener('mousemove', (e) => {

@@ -104,7 +104,7 @@ You can use the [:fragment](../toolbox/paginators#common-url-options) option.
 
 ==- Customize CSS styles
 
-Pagy includes a [stylesheet](../resources/stylesheet) (in different formats) for customization, as well as styled `nav` tags for
+Pagy includes different formats of [stylesheets](../resources/stylesheets) for customization, as well as styled `nav` tags for
 `:bootstrap` and `:bulma`.
 
 You can also override the specific helper method.

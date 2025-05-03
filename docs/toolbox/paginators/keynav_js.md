@@ -68,7 +68,7 @@ beginning of set >[· · · · · · · · · X]· · · · · · · · · Y]· 
                                    cutoff-X            cutoff-Y
 ```
 
-Let's suppose that we navigate till page #3 (i.e. the last page), and we click on the link for page #2. We have stored the
+Let's suppose that we navigate till page #3 (i.e., the last page), and we click on the link for page #2. We have stored the
 `cutoff-X`, so we can pull the 10 records after `cutoff-X` again as we did the first time... but are we sure that we would get the
 same results?
 

@@ -1,5 +1,5 @@
 ---
-label: Stylesheet
+label: Stylesheets
 icon: file
 order: 90
 image: ""
@@ -68,23 +68,23 @@ Use the [Pagy Wand](#pagy-wand) right in your app or in the [Demo app](../sandbo
 
 +++ pagy.css
 
-[!file](../gem/stylesheet/pagy.css)
+[!file](../gem/stylesheets/pagy.css)
 
 ```ruby 
-stylesheet_path = Pagy::ROOT.join('stylesheet/pagy.css')
+stylesheet_path = Pagy::ROOT.join('stylesheets/pagy.css')
 ```
 
-:::code source="/gem/stylesheet/pagy.css" title="pagy.css":::
+:::code source="/gem/stylesheets/pagy.css" title="pagy.css":::
 
 +++ pagy-tailwind.css
 
-[!file](../gem/stylesheet/pagy-tailwind.css)
+[!file](../gem/stylesheets/pagy-tailwind.css)
 
 ```ruby 
-stylesheet_path = Pagy::ROOT.join('stylesheet/pagy-tailwind.css')
+stylesheet_path = Pagy::ROOT.join('stylesheets/pagy-tailwind.css')
 ```
 
-:::code source="/gem/stylesheet/pagy-tailwind.css" title="pagy-tailwind.css":::
+:::code source="/gem/stylesheets/pagy-tailwind.css" title="pagy-tailwind.css":::
 
 +++
 

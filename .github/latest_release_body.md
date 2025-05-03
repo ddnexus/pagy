@@ -10,7 +10,7 @@
 - **Method Autoloading**
   - Methods are autoloaded only if used, unused methods consume no memory.
 - **Intelligent automation**
-  - [Configuration](https://ddnexus.github.io/pagy/toolbox/initializer.md) requirements reduced by 99%, simplified [JavaScript](https://ddnexus.github.io/pagy/resources/javascript.md)
+  - [Configuration](https://ddnexus.github.io/pagy/toolbox/initializer.md) requirements reduced by 99%, simplified [JavaScript](https://ddnexus.github.io/pagy/resources/javascripts.md)
     setup and automatic [I18n]((https://ddnexus.github.io/pagy/resources/i18n.md)) loading.
 - **Simplified user interaction**
   - You solely need the [pagy](https://ddnexus.github.io/pagy/toolbox/paginators.md) method and

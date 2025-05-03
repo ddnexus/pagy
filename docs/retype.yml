@@ -2,8 +2,8 @@ serve:
   watch:
     mode: disk  # no more surprises with retype not copying download link files!
 
-input: docs
-output: .retype
+input: .
+output: .public
 url: https://ddnexus.github.io/pagy
 
 branding:
@@ -35,20 +35,18 @@ links:
     link: https://github.com/ddnexus/pagy/discussions
     icon: comment-discussion
     target: blank
-  - text: AI Search
-    link: https://gurubase.io/g/pagy
-    icon: search
-    target: blank
-
-exclude:
-  - README.md
-  - /coverage/**
-  - /e2e/**
 
 include:
-  - /gem/**/*
-  - "!/gem/**/README.md"
-  - /README.md
+  - gem/**
+  - "!gem/apps/**"
+  - "!gem/bin/**"
+  - "!gem/lib/**"
+  - "!gem/locales/**"
+  - gem/locales/en.yml
+  - "!gem/pagy.gemspec"
+  - "!gem/**/tmp/**"
+  - "!gem/**/README.md"
+  - README.md
 
 edit:
   repo: https://github.com/ddnexus/pagy

@@ -14,10 +14,10 @@
 
 
 ############ JavaScript ####################################################################
-# See https://ddnexus.github.io/pagy/resources/javascript/ for further details.
+# See https://ddnexus.github.io/pagy/resources/javascripts/ for further details.
 # Examples for Rails:
 # For apps with an assets pipeline
-# Rails.application.config.assets.paths << Pagy::ROOT.join('javascript')
+# Rails.application.config.assets.paths << Pagy::ROOT.join('javascripts')
 #
 # For apps with a javascript builder (e.g. esbuild, webpack, etc.)
 # javascript_dir = Rails.root.join('app/javascript')

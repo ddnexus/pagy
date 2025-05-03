@@ -161,7 +161,7 @@ document.getElementById('my-pagy-nav-js').render();
 
 !!!danger Overriding `*_js` helpers is not recommended
 
-The `*_js` helpers are tightly coupled with the javascript code, so any partial overriding on one side, would be quite fragile
+The `*_js` helpers are tightly coupled with the javascript code, so any partial overriding on one side would be quite fragile
 and might break in a next release.
 !!!
 

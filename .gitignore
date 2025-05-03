@@ -10,4 +10,5 @@
 /gem/pkg/
 node_modules/
 tmp/
-/retype.manifest
+/docs/.public/
+/docs/retype.manifest

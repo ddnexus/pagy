@@ -88,9 +88,9 @@ system(Scripty::ROOT.join('src/build').to_s)
 
 # Insert the latest ai-widget in the retype head
 replace_section_in_file('docs/_includes/head.html', 'ai_widget', <<~HTML)
-<script>
-  document.addEventListener('DOMContentLoaded', #{File.read('gem/javascript/ai_widget.js')});
-</script>
+  <script>
+    document.addEventListener('DOMContentLoaded', #{File.read('gem/javascripts/ai_widget.js')});
+  </script>
 HTML
 
 # Run the test to check the consistency of versioning across files

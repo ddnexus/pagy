@@ -21,15 +21,13 @@ jobs:
           paths: '[
             ".github/workflows/publish-docs.yml",
             "assets/**",
-            "!assets/images/png/**",
             "docs/**",
             "gem/**",
-            "README.md",
-            "retype.yml"
+            "README.md"
             ]'
           paths_ignore: '[
             "gem/apps/**",
-            "gem/javascript/**",
+            "gem/javascripts/**",
             "gem/locales/**",
             "!gem/locales/en.yml"
             ]'
@@ -44,8 +42,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 7.0.x
+          dotnet-version: 9.0.x
       - uses: retypeapp/action-build@v3
+        with:
+          config_path: docs/
       - uses: retypeapp/action-github-pages@latest
         with:
           branch: docs-site

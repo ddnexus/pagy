@@ -13,31 +13,33 @@ image: ""
 
 !!!warning The helpers and paginators named `*_js` require JavaScript support.
 
-Simply add the appropriate file(s) and statements as outlined below.
+Simply add to your code the appropriate file(s) and statements as outlined below.
 !!!
 
 #### 1. Choose the format that matches your app's configuration
 
-- `pagy.mjs` _ES6 module for buiders like webpacker, esbuild, parcel, etc._
-- `pagy.min.js` _A compact (~2.6k) minified [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) file_
-- `pagy.js` _A plain [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) file, ideal for debugging, accompanied by its map_
-- `pagy.js.map` _A source map file designed for debugging purposes_
-- `pagy.d.ts` _Pagy TypeScript type definitions for advanced integration or customization_
+:::compact-dl
+[!file ES6 module](../gem/javascripts/pagy.mjs)
+[!file Minified IIFE file](../gem/javascripts/pagy.min.js)
+[!file Plain IIFE file](../gem/javascripts/pagy.js)
+[!file Source map](../gem/javascripts/pagy.js.map)
+[!file TypeScript types](../gem/javascripts/pagy.d.ts)
+:::
 
 #### 2. Make the file available to your app
 
-Depending on your app's architecture, you have a couple of options. Just pick one to uncomment in the [pagy.rb initializer](../toolbox/initializer.md):
+Depending on your app's architecture, you have a couple of options. Just pick one to uncomment in the [pagy.rb initializer](../toolbox/initializer/#initializer-file):
 
 - **For apps with an assets pipeline...** 
   - _Compatible with Propshaft, Importmaps, Sprockets, and similar tools._
   ```ruby
-  Rails.application.config.assets.paths << Pagy::ROOT.join('javascript')
+  Rails.application.config.assets.paths << Pagy::ROOT.join('javascripts')
   ```
 - **For apps with a builder...**
   - _This works with builders like esbuild, Webpack, jsbundling-rails, etc._
   ```ruby 
   # Example for Rails
-  javascript_dir = Rails.root.join('app/javascript')
+  javascript_dir = Rails.root.join('app/javascripts')
   Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
   ```
 - **Load it like any other JavaScript file or module you already use in your app**
