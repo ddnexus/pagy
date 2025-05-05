@@ -32,7 +32,7 @@ This guide focuses on getting the job done quickly. If you want to learn more ab
 ### 1. Replace the `pagy.rb` config file
 
 - Rename your `pagy.rb` initializer as `pagy-old.rb`, and add the new, concise
-  [pagy.rb](../toolbox/initializer/#initializer-file) initializer in its place.
+  [pagy.rb](../toolbox/configurators/#initializer-file) initializer in its place.
 - Search the `pagy-old.rb` for code-occurrences of `Pagy::DEFAULT[...]` and move them to the new `pagy.js` (remove them from the `pagy-old.rb`)
 - Replace all the `Pagy::DEFAULT[...]` entries just added to the new `pagy.rb` with `Pagy.options[...]`.
 
@@ -44,8 +44,8 @@ as needed._
 The new version doesn't use the extras anymore. They got integrated in the core code, and a few have been discontinued.
 
 - Search any active `require 'pagy/extras/*` in the `pagy-old.rb` file
-- When you find one, follow the specific section to upgrade your code.
-- Remove each entry from the `pagy-old.rb` as you proceed.
+- When you find one, follow the specific section below to upgrade your code.
+- As you proceed, remove each entry from the `pagy-old.rb`.
 
 <details>
   <summary><h4 style="display: inline-block">Extras...</h4></summary>
@@ -72,22 +72,20 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 {.compact}
 
-| Search (old)                         | Replace with (new)               |
-|--------------------------------------|----------------------------------|
-| `pagy_nav(@pagy, ...)`               | `@pagy.series_nav(...)`          |
-| `pagy_nav_js(@pagy, ...)`            | `@pagy.series_nav_js(...)`       |
-| `pagy_combo_nav_js(@pagy, ...)`      | `@pagy.input_nav_js(...)`        |
-| `pagy_limit_selector_js(@pagy, ...)` | `@pagy.limit_tag_js(...)`        |
-| `pagy_prev_url(@pagy, ...)`          | `@pagy.page_url(:previous, ...)` |
-| `pagy_next_url(@pagy, ...)`          | `@pagy.page_url(:next, ...)`     |
-| `pagy_prev_a(@pagy, ...)`            | `@pagy.previous_tag(...)`        |
-| `pagy_next_a(@pagy, ...)`            | `@pagy.next_tag(...)`            |
-| `pagy_prev_link(@pagy, ...)`         | discontinued: implement manually |
-| `pagy_next_link(@pagy, ...)`         | discontinued: implement manually |
-| [*] `size: ...`                      | `slots: ...`                     |
-| [*] `ends: false`                    | `compact: true`                  |
-
-- [*] Replace also any existent related `Pagy.options[...]` in the `pagy.rb` file.
+| Search (old)                                   | Replace with (new)                                  |
+|------------------------------------------------|-----------------------------------------------------|
+| `pagy_nav(@pagy, ...)`                         | `@pagy.series_nav(...)`                             |
+| `pagy_nav_js(@pagy, ...)`                      | `@pagy.series_nav_js(...)`                          |
+| `pagy_combo_nav_js(@pagy, ...)`                | `@pagy.input_nav_js(...)`                           |
+| `pagy_limit_selector_js(@pagy, ...)`           | `@pagy.limit_tag_js(...)`                           |
+| `pagy_prev_url(@pagy, ...)`                    | `@pagy.page_url(:previous, ...)`                    |
+| `pagy_next_url(@pagy, ...)`                    | `@pagy.page_url(:next, ...)`                        |
+| `pagy_prev_a(@pagy, ...)`                      | `@pagy.previous_tag(...)`                           |
+| `pagy_next_a(@pagy, ...)`                      | `@pagy.next_tag(...)`                               |
+| `pagy_prev_link(@pagy, ...)`                   | discontinued: implement manually                    |
+| `pagy_next_link(@pagy, ...)`                   | discontinued: implement manually                    |
+| `size: ...`<br/>`Pagy.options[:size] = ...`    | `slots: ...`<br/>`Pagy.options[:slots] = ...`       |
+| `ends: false`<br/>`Pagy.options[:end] = false` | `compact: true`<br/>`Pagy.options[:compact] = true` |
 
 ==- `boostrap`
 
@@ -95,15 +93,14 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 {.compact}
 
-| Search (old)                             | Replace with (new)                    |
-|------------------------------------------|---------------------------------------|
-| `pagy_boostrap_nav(@pagy, ...)`          | `@pagy.series_nav(:boostrap, ...)`    |
-| `pagy_boostrap_nav_js(@pagy, ...)`       | `@pagy.series_nav_js(:boostrap, ...)` |
-| `pagy_boostrap_combo_nav_js(@pagy, ...)` | `@pagy.input_nav_js(:boostrap, ...)`  |
-| [*] `size: ...`                          | `slots: ...`                          |
-| [*] `ends: false`                        | `compact: true`                       |
+| Search (old)                                   | Replace with (new)                                  |
+|------------------------------------------------|-----------------------------------------------------|
+| `pagy_boostrap_nav(@pagy, ...)`                | `@pagy.series_nav(:boostrap, ...)`                  |
+| `pagy_boostrap_nav_js(@pagy, ...)`             | `@pagy.series_nav_js(:boostrap, ...)`               |
+| `pagy_boostrap_combo_nav_js(@pagy, ...)`       | `@pagy.input_nav_js(:boostrap, ...)`                |
+| `size: ...`<br/>`Pagy.options[:size] = ...`    | `slots: ...`<br/>`Pagy.options[:slots] = ...`       |
+| `ends: false`<br/>`Pagy.options[:end] = false` | `compact: true`<br/>`Pagy.options[:compact] = true` |
 
-- [*] Replace also any existent related `Pagy.options[...]` in the `pagy.rb` file.
 - **FYI**: The redundant `pagy-bootstrap` class has been removed from the `input_nav_js` body.
 
 ==- `bulma`
@@ -112,15 +109,14 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 {.compact}
 
-| Search (old)                          | Replace with (new)                 |
-|---------------------------------------|------------------------------------|
-| `pagy_bulma_nav(@pagy, ...)`          | `@pagy.series_nav(:bulma, ...)`    |
-| `pagy_bulma_nav_js(@pagy, ...)`       | `@pagy.series_nav_js(:bulma, ...)` |
-| `pagy_bulma_combo_nav_js(@pagy, ...)` | `@pagy.input_nav_js(:bulma, ...)`  |
-| [*] `size: ...`                       | `slots: ...`                       |
-| [*] `ends: false`                     | `compact: true`                    |
+| Search (old)                                   | Replace with (new)                                  |
+|------------------------------------------------|-----------------------------------------------------|
+| `pagy_bulma_nav(@pagy, ...)`                   | `@pagy.series_nav(:bulma, ...)`                     |
+| `pagy_bulma_nav_js(@pagy, ...)`                | `@pagy.series_nav_js(:bulma, ...)`                  |
+| `pagy_bulma_combo_nav_js(@pagy, ...)`          | `@pagy.input_nav_js(:bulma, ...)`                   |
+| `size: ...`<br/>`Pagy.options[:size] = ...`    | `slots: ...`<br/>`Pagy.options[:slots] = ...`       |
+| `ends: false`<br/>`Pagy.options[:end] = false` | `compact: true`<br/>`Pagy.options[:compact] = true` |
 
-- [*] Replace also any existent related `Pagy.options[...]` in the `pagy.rb` file.
 - **FYI**: The `is-centered` CSS class has been removed.
 - **FYI**: The previous/next links have been moved at the beginning and end of the pagination.
 
@@ -128,12 +124,10 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 {.compact}
 
-| Search (old)                  | Replace with (new)      |
-|-------------------------------|-------------------------|
-| `pagy_countless(...)`         | `pagy(:countless, ...)` |
-| [*] `countless_minimal: true` | `headless: true`        |
-
-- [*] Replace also any existent related `Pagy.options[...]` in the `pagy.rb` file.
+| Search (old)                                                            | Replace with (new)                                    |
+|-------------------------------------------------------------------------|-------------------------------------------------------|
+| `pagy_countless(...)`                                                   | `pagy(:countless, ...)`                               |
+| `countless_minimal: true`<br/>`Pagy.options[:countless_minimal] = true` | `headless: true`<br/>`Pagy.options[:headless] = true` |
 
 ==- `calendar`
 
@@ -157,16 +151,15 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 {.compact}
 
-| Search (old)                             | Replace with (new)                |
-|------------------------------------------|-----------------------------------|
-| `pagy_elasticsearch_rails(...)`          | `pagy(:elasticsearch_rails, ...)` |
-| `Pagy.new_from_elasticsearch_rails(...)` | `pagy(:elasticsearch_rails, ...)` |
-| [*] `elasticsearch_rails_search: ...`    | `search_method: ...`              |
+| Search (old)                                                                            | Replace with (new)                                            |
+|-----------------------------------------------------------------------------------------|---------------------------------------------------------------|
+| `pagy_elasticsearch_rails(...)`                                                         | `pagy(:elasticsearch_rails, ...)`                             |
+| `Pagy.new_from_elasticsearch_rails(...)`                                                | `pagy(:elasticsearch_rails, ...)`                             |
+| `elasticsearch_rails_search: ...`<br/>`Pagy.options[:elasticsearch_rails_search] = ...` | `search_method: ...`<br/>`Pagy.options[:search_method] = ...` |
 
-- [*] Replace also any existent related `Pagy.options[...]` in the `pagy.rb` file.
 - **Customization of the `pagy_search` method name has been discontinued:**
   - Remove any existing `:elasticsearch_rails_pagy_search` variable from your code.
-  - Replace custom method names with the standard `pagy_search` method.
+  - Replace your custom method name with the standard `pagy_search` method.
 
 ==-  `meilisearch`
 
@@ -174,16 +167,15 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 {.compact}
 
-| Search (old)                     | Replace with (new)        |
-|----------------------------------|---------------------------|
-| `pagy_meilisearch(...)`          | `pagy(:meilisearch, ...)` |
-| `Pagy.new_from_meilisearch(...)` | `pagy(:meilisearch, ...)` |
-| [*] `meilisearch_search: ...`    | `search_method: ...`      |
+| Search (old)                                                            | Replace with (new)                                            |
+|-------------------------------------------------------------------------|---------------------------------------------------------------|
+| `pagy_meilisearch(...)`                                                 | `pagy(:meilisearch, ...)`                                     |
+| `Pagy.new_from_meilisearch(...)`                                        | `pagy(:meilisearch, ...)`                                     |
+| `meilisearch_search: ...`<br/>`Pagy.options[:meilisearch_search] = ...` | `search_method: ...`<br/>`Pagy.options[:search_method] = ...` |
 
-- [*] Replace also any existent related `Pagy.options[...]` in the `pagy.rb` file.
 - **Customization of the `pagy_search` method name has been discontinued:**
   - Remove any existing `:meilisearch_pagy_search` variable from your code.
-  - Replace custom method names with the standard `pagy_search` method.
+  - Replace your custom method name with the standard `pagy_search` method.
 
 ==- `searchkick`
 
@@ -191,28 +183,25 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 {.compact}
 
-| Search (old)                    | Replace with (new)       |
-|---------------------------------|--------------------------|
-| `pagy_searchkick(...)`          | `pagy(:searchkick, ...)` |
-| `Pagy.new_from_searchkick(...)` | `pagy(:searchkick, ...)` |
-| [*] `searchkick_search: ...`    | `search_method: ...`     |
+| Search (old)                                                          | Replace with (new)                                            |
+|-----------------------------------------------------------------------|---------------------------------------------------------------|
+| `pagy_searchkick(...)`                                                | `pagy(:searchkick, ...)`                                      |
+| `Pagy.new_from_searchkick(...)`                                       | `pagy(:searchkick, ...)`                                      |
+| `searchkick_search: ...`<br/>`Pagy.options[:searchkick_search] = ...` | `search_method: ...`<br/>`Pagy.options[:search_method] = ...` |
 
-- [*] Replace also any existent related `Pagy.options[...]` in the `pagy.rb` file.
 - **Customization of the `pagy_search` method name has been discontinued:**
   - Remove any existing `:searchkick_pagy_search` variable from your code.
-  - Replace custom method names with the standard `pagy_search` method.
+  - Replace your custom method name with the standard `pagy_search` method.
 
 ==- `headers`
 
 {.compact}
 
-| Search (old)         | Replace with (new)                            |
-|----------------------|-----------------------------------------------|
-| `pagy_headers(...)`  | `@pagy.headers_hash(...)`                     |
-| `pagy_headers_merge` | `response.headers.merge!(@pagy.headers_hash)` |
-| [*] `headers: ...`   | `headers_map: ...`                            |
-
-- [*] Replace also any existent related `Pagy.options[...]` in the `pagy.rb` file.
+| Search (old)                                      | Replace with (new)                                        |
+|---------------------------------------------------|-----------------------------------------------------------|
+| `pagy_headers(...)`                               | `@pagy.headers_hash(...)`                                 |
+| `pagy_headers_merge`                              | `response.headers.merge!(@pagy.headers_hash)`             |
+| `headers: ...`<br/>`Pagy.options[:headers] = ...` | `headers_map: ...`<br/>`Pagy.options[:headers_map] = ...` |
 
 ==- `jsonapi`
 
@@ -223,7 +212,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 | `pagy_jsonapi_links(@pagy, ...)` | `@pagy.urls_hash(...)` |
 
 - _Notice that the `nil` links are now removed as the `JSON:API` specifications require._
-- IMPORTANT: Enable the feature by explicitly setting the `jsonapi: true` option (initializer or `pagy` method).
+- IMPORTANT: Enable the feature by explicitly setting the `jsonapi: true` option _(in the initializer or `pagy` method)_.
 
 ==- `keyset`
 
@@ -250,19 +239,17 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 | `limit_extra: ...`  | delete             |
 | `max_limit: ...`    | delete             |
 
-- Enable the feature by setting `client_max_limit: your_client_max_limit` option (initializer or `pagy` method).
+- Enable the feature by setting `client_max_limit: your_client_max_limit` option _(in the initializer or `pagy` method)_.
 
 ==- `metadata`
 
 {.compact}
 
-| Search (old)                | Replace with (new)     |
-|-----------------------------|------------------------|
-| `pagy_metadata(@pagy, ...)` | `@pagy.data_hash(...)` |
-| [*] `metadata: ...`         | `data_keys: ...`       |
-| data_key -> `:scaffold_url` | `:url_template`        |
-
-- [*] Replace also any existent related `Pagy.options[...]` in the `pagy.rb` file.
+| Search (old)                                        | Replace with (new)                                    |
+|-----------------------------------------------------|-------------------------------------------------------|
+| `pagy_metadata(@pagy, ...)`                         | `@pagy.data_hash(...)`                                |
+| `metadata: ...`<br/>`Pagy.options[:metadata] = ...` | `data_keys: ...`<br/>`Pagy.options[:data_keys] = ...` |
+| data_key -> `:scaffold_url`                         | `:url_template`                                       |
 
 ==- `overflow`
 
@@ -271,7 +258,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
   - Now, Pagy behaves the same as it did before when requiring the overflow extra and using its default settings.
 - The legacy `pagy.overflow?` is now the `pagy.in_range?` method, which checks/returns the opposite state/boolean.
 - The `overflow: :last_page` behavior has been discontinued because it provides nearly no benefit:
-  - **Why there is little benefit in serving the last page**
+  - **Why there is little benefit in serving the last page?**
     - The navigation bar for an out-of-range request is rendered identically to that of the last page.
     - The only difference is that there are no records/results to display.
     - The "previous page" button points to the last page, so if users truly want to see the last page results (which they have
@@ -287,7 +274,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 ==- `standalone`
 
-- Replace the `:url` variable with the `:request` option hash. For example:
+- Replace the `:url` variable with the `:request` [Common option](../toolbox/paginators/#common-options) hash. For example:
 
   ```ruby
   request: { base_url: 'http://www.example.com',
@@ -303,7 +290,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 ==- `gearbox` _(discontinued)_
 
 - Due to extensive overwriting for minimal benefit, you can safely remove this feature from your app without noticeable impact.
-  Remove all `/gearbox/` related.
+  Remove all `/gearbox/` related code.
 
 ==- `size` _(discontinued)_
 
@@ -360,7 +347,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 ==- Replace the `*prev*` abbreviated naming
 
-- Use `*previous*` in all the option, accessor, methods, etc.
+- Use `*previous*` in all the options, accessors, methods, etc.
 
 _Because we don't use abbreviated words anymore_
 
@@ -370,7 +357,7 @@ _Because we don't use abbreviated words anymore_
 
 ==- Javascript
 
-- If your `pagy-old.rb` contains any JavaScript setup, it sould still work, so you can move it to the `pagy.rb` file, however, consider using the new [simpler recommented way](../resources/javascript/#2-make-the-file-available-to-your-app).
+- If your `pagy-old.rb` contains any JavaScript setup, it should still work, so you can move it to the `pagy.rb` file, however, for apps with builders, consider using the new [Pagy.sync_javascript](../resources/javascript/#2-make-the-file-available-to-your-app).
 
 ==- Pagy::I18n and Locale Files
 
@@ -383,10 +370,10 @@ then uncomment and set up the relevant `Pagy::I18n` lookup section in the `pagy.
 ==- Overriding
 
 - Overriding methods in controllers/helpers is not possible or discouraged.
-- The cleanest approach for local overriding is via Ruby refinements and the initializer for global override. 
+- The cleanest approach for local overriding is via Ruby refinements or the initializer for global override. 
 - Check the [How To Override Pagy Method](../guides/how-to/#override-pagy-methods).
 - If your `pagy-old.rb` contains overridden methods, copy the methods over to the `pagy.rb` initializer, however, consider that:
-  - Internal Pagy protected methods have been extensively refactored, frequently renamed, and occasionally removed.
+  - Internal Pagy protected methods have been extensively refactored, likely renamed, and occasionally removed.
   - You should reconcile internal overrides by reviewing the updated Pagy codebase.
 
 You may want also to check these internal renaming:

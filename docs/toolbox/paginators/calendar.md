@@ -22,7 +22,7 @@ It enables cascade-filtering of the collection by time units _(year, quarter, mo
 
 ![calendar_app](/assets/images/calendar-app.png){with=721}
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#4-calendar-app)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#calendar-app)
 
 !!!success Use this paginator when most pages contain results.
 !!!
@@ -134,6 +134,16 @@ This is the optional configuration for the core `:offset` paginator. If omitted 
 regardless of the `:disabled` flag value.
 
 It is not subject to the restrictions mentioned in the [Calendar configuration](#calendar-configuration).
+
+==- Localization
+
+Pagy provides the calendar localization obly for `en` locales. For non-en locales pagy requires the `rails-i18n` to be installed.
+
+Pass the locales that your app uses to the method `localize_with_rails_i18n_gem` in the [pagy.rb initializer](../configurators/#initializer-file):
+
+```ruby
+Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)
+```
 
 ==- Caveats
 

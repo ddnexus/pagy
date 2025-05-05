@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 require_relative '../../../mock_helpers/app'
-require_relative '../../../../gem/lib/pagy/toolbox/methods/support/series' # just to check the series
+require_relative '../../../../gem/lib/pagy/toolbox/helpers/support/series' # just to check the series
 
 describe 'Pagy Countless' do
   let(:app) { MockApp.new }

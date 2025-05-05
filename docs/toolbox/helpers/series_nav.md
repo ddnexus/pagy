@@ -28,7 +28,7 @@ categories:
 :::
 <br/>
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#demo-app)
 
 `series_nav` returns an HTML string containing pagination links, wrapped in a `nav` tag, ready to be used in your view.
 
@@ -61,7 +61,7 @@ categories:
 
 ==- Styles
 
-See [Common Nav Styles](../methods#common-nav-styles)
+See [Common Nav Styles](../helpers#common-nav-styles)
 
 ==- Options
 
@@ -73,6 +73,6 @@ See [Common Nav Styles](../methods#common-nav-styles)
 - `compact: true`
   - Fill all the slots with contiguos pages, regardles the number of slots.
 
-See also other appicable options: [Common Nav Options](../methods#common-nav-options) and [Common URL Options](../paginators#common-url-options)
+See also other appicable options: [Common Nav Options](../helpers#common-nav-options) and [Common URL Options](../paginators#common-url-options)
 
 ===

@@ -4,7 +4,7 @@
 #    Showcase all the helpers and styles
 #
 # DOC
-#    https://ddnexus.github.io/pagy/playground/#3-demo-app
+#    https://ddnexus.github.io/pagy/playground/#demo-app
 #
 # BIN HELP
 #    pagy -h

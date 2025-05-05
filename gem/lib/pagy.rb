@@ -4,7 +4,7 @@ require 'pathname'
 require_relative 'pagy/classes/exceptions'
 require_relative 'pagy/modules/abilities/linkable'
 require_relative 'pagy/modules/abilities/configurable'
-require_relative 'pagy/toolbox/methods/loader'
+require_relative 'pagy/toolbox/helpers/loader'
 
 # Top superclass: it defines only what's common to all the subclasses
 class Pagy

@@ -1,5 +1,5 @@
 ---
-label: pagy 💚 Paginators
+label: "pagy(:✳) Paginators" 
 icon: database
 order: 90
 categories:
@@ -8,33 +8,34 @@ categories:
 
 #
 
-##  <span style="font-size: .65em; vertical-align: middle">💚</span> Paginators
+##  pagy(<span style="font-size: .65em; vertical-align: middle">:✳</span>) Paginators
 
 ---
 
 ### `pagy` method
 
-The `pagy` method starts every pagination. 
+The `pagy` method handles every pagination, and provides a common interface to all types of paginations.
 
 Include the `Pagy::Method` where you are going to use it _(usually in ApplicationContoller)_:
 
 ```ruby
 include Pagy::Method
 ```
-You can use it to paginate ANY collection, with ANY technique:
+You can use it to paginate ANY collection, with ANY technique. For example:
 
 ```ruby
 @pagy, @records = pagy(:offset, collection, **options)
 @pagy, @records = pagy(:keyset, set, **options)
 @pagy, @records = pagy(...)
 ```
-- `:offset`, `:keyset`, etc. are symbols identifying the [paginator](#paginators) to use, i.e. the internal method handling that type of pagination.
-- `@pagy` is the pagination istance. It provides methods for every UI components and helpers to use in your code.
+
+- `:offset`, `:keyset`, etc. are symbols identifying the [paginator](#paginators) to use, i.e., the internal constructor method handling that type of pagination.
+- `@pagy` is the pagination istance. It provides all the instance helper methods to use in your code.
 - `@records` are the records belonging to the requested page.
 
 ### Paginators
 
-The `paginators` are internal methods that provide different type of pagination for different types of collections, with a common API. They are passed to the `pagy` method by their symbolic name. (e.g, `:offset`, `:keyset`, `countless`, etc.)
+The `paginators` are internal constructor methods that provide different types of pagination for different types of collections, with a common API. They are passed to the `pagy` method by their symbolic name. (e.g., `:offset`, `:keyset`, `countless`, etc.)
 
 !!! warning Avoid instantiating Pagy classes directly
 
@@ -56,6 +57,11 @@ Unused code consumes no memory.
 [:icon-search: :searchkick](paginators/searchkick.md)<br/>
 
 ==- Common Options
+
+!!!success Paginators inherit and override options
+
+See [Inheritable Options](configurators/#inheritable-options)
+!!!
 
 !!! Common Options for Paginators
 
@@ -81,7 +87,7 @@ Individual paginators may offer additional options, which are documented with th
 
 ==- Common URL Options
 
-!!! Common URL options for all [paginators](#paginators) and `@pagy` [methods](methods#methods)
+!!! Common URL options for all [paginators](#paginators) and `@pagy` [methods](helpers#methods)
 
 These options control give you full control over the URL composition.
 !!!

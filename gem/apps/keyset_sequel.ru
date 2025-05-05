@@ -4,7 +4,7 @@
 #    Showcase the Keyset pagination (Sequel example)
 #
 # DOC
-#    https://ddnexus.github.io/pagy/playground/#5-keyset-apps
+#    https://ddnexus.github.io/pagy/playground/#keyset-apps
 #
 # BIN HELP
 #    pagy -h

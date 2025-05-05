@@ -20,7 +20,7 @@ _Agnostic pagination in plain ruby_
 
 <!-- whats_new_start -->
 
-<a href="https://ddnexus.github.io/pagy/sandbox/playground/#3-demo-app">
+<a href="https://ddnexus.github.io/pagy/sandbox/playground/#demo-app">
   <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">
 </a><br><br>
 
@@ -206,7 +206,7 @@ Integrate pagy with your app's themes interactively. You need only a single line
 
 <img src="assets/images/pagy-wand.png" width="606"><br/>
 
-<a href="https://ddnexus.github.io/pagy/sandbox/playground/#3-demo-app">
+<a href="https://ddnexus.github.io/pagy/sandbox/playground/#demo-app">
   <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">
 </a><br><br>
 

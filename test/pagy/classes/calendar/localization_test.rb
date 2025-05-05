@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 require_relative '../../../mock_helpers/app'
-require_relative '../../../../gem/lib/pagy/toolbox/methods/support/a_lambda' # just to check the page_label
+require_relative '../../../../gem/lib/pagy/toolbox/helpers/support/a_lambda' # just to check the page_label
 
 Time.zone = 'EST'
 Date.beginning_of_week = :sunday

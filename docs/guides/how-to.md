@@ -25,7 +25,7 @@ You can also [ask the Pagy AI](https://gurubase.io/g/pagy) for instant answers t
 - **Client Side**
   - Use the `limit` option combined with the `:client_max_limit` option, which allows the client to request a `:limit` up to the
     specified `:client_max_limit`.
-  - Additionally, you can use the [limit_tag_js](../toolbox/methods/limit_tag_js) helper to provide a UI
+  - Additionally, you can use the [limit_tag_js](../toolbox/helpers/limit_tag_js) helper to provide a UI
     selector to the user.
 
 ```ruby
@@ -42,12 +42,12 @@ See [Common Options](../toolbox/paginators#common-options).
 
 ==- Control the pagination bar
 
-Pagy provides [series_nav](../toolbox/methods/series_nav.md) and [series_nav_js](../toolbox/methods/series_nav_js.md) helpers for displaying a
+Pagy provides [series_nav](../toolbox/helpers/series_nav.md) and [series_nav_js](../toolbox/helpers/series_nav_js.md) helpers for displaying a
 pagination bar.
 
 You can customize the number and position of page links in the navigation bar using:
 
-- The [:slots and :compact options](../toolbox/methods/series_nav#options).
+- The [:slots and :compact options](../toolbox/helpers/series_nav#options).
 - Overriding the `series` method for full control over the pagination bar
 
 ==- Force the `:page`
@@ -69,7 +69,7 @@ See [I18n](../resources/i18n.md).
 
 You can customize the `aria-label` attributes of any `*nav*` helper by providing a `:aria_label` string.
 
-See the [:aria_label](../toolbox/methods#common-nav-options) option.
+See the [:aria_label](../toolbox/helpers#common-nav-options) option.
 
 You can also replace the `pagy.aria_label.nav` strings in the dictionary, as well as the `pagy.aria_label.previous` and the
 `pagy.aria_label.next`.
@@ -128,7 +128,7 @@ attribute selector and `!important`. Below is an example of overriding the `widt
 
 If you need assistance, ask in the [Q&A discussions](https://github.com/ddnexus/pagy/discussions/categories/q-a).
 
-Copy and paste the original method in the [Pagy Initializer](../toolbox/initializer.md)
+Copy and paste the original method in the [Pagy Initializer](../toolbox/configurators.md)
 
 ```ruby pagy.rb (initializer)
 require 'pagy/...' # path to the overridden method file
@@ -182,13 +182,13 @@ Pagy works seamlessly with `ActiveRecord` collections, but certain collections m
 Explore the following options:
 
 - [:keyset paginator](../toolbox/paginators/keyset.md)
-- [headers_hash helper](../toolbox/methods/headers_hash.md)
+- [headers_hash helper](../toolbox/helpers/headers_hash.md)
 - [:client_max_limit option](../toolbox/paginators#common-options)
 - [:jsonapi option](../toolbox/paginators#common-options)
 
 ==- Paginate for Javascript Frameworks
 
-You can send selected `@pagy` instance data to the client as JSON using the [data_hash](../toolbox/methods/data_hash.md) helper,
+You can send selected `@pagy` instance data to the client as JSON using the [data_hash](../toolbox/helpers/data_hash.md) helper,
 including pagination metadata in your JSON response.
 
 ==- Paginate search platform results

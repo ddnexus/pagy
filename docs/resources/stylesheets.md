@@ -1,7 +1,7 @@
 ---
 label: Stylesheets
 icon: file
-order: 90
+order: 100
 image: ""
 ---
 
@@ -38,7 +38,7 @@ Should you need finer control, the `pagy.css` and `pagy-tailwind.css` calculate 
 
 The `Pagy.dev_tags` add also the "Pagy AI" button to your page to make it easy to get pagy-specialized help from AI. 
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../sandbox/playground#3-demo-app)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../sandbox/playground#demo-app)
 
 ==-  HTML Structure of Nav Bars
 
@@ -63,7 +63,7 @@ and attributes required to identify all the parts of the nav bars:
 
 Color variables are calculated automatically, however you can customize any color by just overriding its variable.
 
-Use the [Pagy Wand](#pagy-wand) right in your app or in the [Demo app](../sandbox/playground#3-demo-app).
+Use the [Pagy Wand](#pagy-wand) right in your app or in the [Demo app](../sandbox/playground#demo-app).
 !!!
 
 +++ pagy.css

@@ -1,7 +1,7 @@
 ---
 label: JavaScript
 icon: file-code
-order: 100
+order: 90
 image: ""
 ---
 
@@ -28,7 +28,7 @@ Simply add to your code the appropriate file(s) and statements as outlined below
 
 #### 2. Make the file available to your app
 
-Depending on your app's architecture, you have a couple of options. Just pick one to uncomment in the [pagy.rb initializer](../toolbox/initializer/#initializer-file):
+Depending on your app's architecture, you have a couple of options. Just pick one to uncomment in the [pagy.rb initializer](../toolbox/configurators/#initializer-file):
 
 - **For apps with an assets pipeline...** 
   - _Compatible with Propshaft, Importmaps, Sprockets, and similar tools._
@@ -58,6 +58,6 @@ window.addEventListener("turbo:load", Pagy.init)
 // Turbolinks
 window.addEventListener("turbolinks:load", Pagy.init)
 
-// Custom listener
-window.addEventListener("yourEventListener", Pagy.init)
+// Custom event
+window.addEventListener("yourEvent", Pagy.init)
 ```

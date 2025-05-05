@@ -21,7 +21,7 @@ $ pagy --help
 We have a few single-file apps ready to run in your browser for various purposes. These are all tested and used to run
 the [E2e Test](https://github.com/ddnexus/pagy/blob/master/.github/workflows/e2e-test.yml) workflow.
 
-#### 1. Repro App
+==- Repro App
 
 You can use this app as a starting point to try Pagy or reproduce issues to get support or file bug reports.
 
@@ -54,16 +54,16 @@ Bundler installs the required gems during the first run.
 
 |||
 
-#### 2. Rails App
+==- Rails App
 
-You can use this app as a starting point to reproduce **Rails-related** Pagy issues. It has the same usage as the [Repro App](#1-repro-app), i.e.:
+You can use this app as a starting point to reproduce **Rails-related** Pagy issues. It has the same usage as the [Repro App](#repro-app), i.e.:
 
 ```sh
 pagy clone rails
 pagy ./rails.ru
 ```
 
-#### 3. Demo App
+==- Demo App
 
 This is the interactive showcase for all the pagy helpers and CSS styles.
 
@@ -80,10 +80,10 @@ pagy demo
 
 _Run `pagy clone demo` to inspect the app file_
 
-If you want to see how your CSS changes look, you can follow the same usage as the [Repro App](#1-repro-app) to iterate through
+If you want to see how your CSS changes look, you can follow the same usage as the [Repro App](#repro-app) to iterate through
 them.
 
-#### 4. Calendar App
+==- Calendar App
 
 This is the interactive showcase and reproduction tool for the `:calendar` paginator:
 
@@ -100,9 +100,9 @@ pagy calendar
 
 _Run `pagy clone calendar` to inspect the app file._
 
-If you need to reproduce any calendar related issue, you can follow the same usage as the [Repro App](#1-repro-app).
+If you need to reproduce any calendar-related issue, you can follow the same usage as the [Repro App](#repro-app).
 
-#### 5. Keyset Apps
+==- Keyset Apps
 
 These are the interactive showcase/repro for the `:keyset` paginator with `ActiveRecord` or `Sequel` sets:
 
@@ -126,13 +126,15 @@ pagy keyset_sequel
 
 _Run for example `pagy clone keyset` to inspect the cloned keyset app file._
 
+===
+
 ### Troubleshooting
 
 ==- Bundler inline
 
 All the pagy apps use [bundler/inline](https://bundler.io/guides/bundler_in_a_single_file_ruby_script.html).
 
-Depending on your environment you might get this message for some gem:
+Depending on your environment, you might get this message for some gem:
 
 ```txt
 You have already activated GEMNAME v1, but your Gemfile requires GEMNAME v2. 

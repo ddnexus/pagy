@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../../test_helper'
-require_relative '../../../../gem/lib/pagy/toolbox/methods/support/series' # just to check the series
+require_relative '../../../../gem/lib/pagy/toolbox/helpers/support/series' # just to check the series
 
 OPTIONS = { count: 103, limit: 10 }.freeze
 OPTS_WITH_LENGTH = [3, 6, 9].map { |l| OPTIONS.merge(slots: l) }.freeze

@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 require_relative '../../../../gem/lib/pagy/classes/calendar/calendar'
-require_relative '../../../../gem/lib/pagy/toolbox/methods/support/a_lambda' # just to check the page_label
+require_relative '../../../../gem/lib/pagy/toolbox/helpers/support/a_lambda' # just to check the page_label
 
 Time.zone = 'EST'
 Date.beginning_of_week = :sunday
@@ -13,7 +13,7 @@ def pagy(cclass = Pagy::Calendar::Month, **)
 end
 
 describe 'Pagy Calendar' do
-  describe 'instance methods and variables' do
+  describe 'instance helpers and variables' do
     it 'defines calendar specific accessors' do
       _(pagy(Pagy::Calendar::Month)).must_respond_to :order
     end

@@ -50,11 +50,11 @@ gem 'pagy', '~> 10.0' # omit the patch version
   <%== @pagy.input_nav_js(:bulma) %>
   <%== @pagy.info_tag %>
   ``` 
-  _See all the available [@pagy methods](../toolbox/methods)_
+  _See all the available [@pagy methods](../toolbox/helpers)_
 
 ### 3. Configure global options and special features
 
-- See [pagy.rb initializer](../toolbox/initializer.md)
+- See [pagy.rb initializer](../toolbox/configurators.md)
 
 #### Pick a stylesheet or a CSS framework
 

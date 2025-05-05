@@ -27,7 +27,7 @@ categories:
 ![input_nav_js(:bulma)](../../assets/images/bulma-input_nav_js.png){width=201}
 :::
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#demo-app)
 
 `input_nav_js` combines navigation and pagination info in a single compact element.
 
@@ -71,9 +71,9 @@ and might break in a next release.
 
 ==- Styles
 
-See [Common Nav Styles](../methods#common-nav-styles)
+See [Common Nav Styles](../helpers#common-nav-styles)
 
 ==- Options
 
-See [Common Nav Options](../methods#common-nav-options) and [Common URL Options](../paginators#common-url-options)
+See [Common Nav Options](../helpers#common-nav-options) and [Common URL Options](../paginators#common-url-options)
 ===

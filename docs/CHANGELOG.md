@@ -54,11 +54,11 @@ None
 - **Method Autoloading**
   - Methods are autoloaded only if used, unused methods consume no memory.
 - **Intelligent automation**
-  - [Configuration](toolbox/initializer.md) requirements reduced by 99%, simplified [JavaScript](resources/javascript.md)
+  - [Configuration](toolbox/configurators.md) requirements reduced by 99%, simplified [JavaScript](resources/javascript.md)
     setup and automatic [I18n](resources/i18n.md)) loading.
 - **Simplified user interaction**
   - You solely need the [pagy](toolbox/paginators.md) method and
-    the [@pagy](toolbox/methods.md) instance, to paginate any collection, and use any navigation
+    the [@pagy](toolbox/helpers.md) instance, to paginate any collection, and use any navigation
     tag and helper.
 - **[Self-explaining API](https://github.com/ddnexus/pagy#examples)**
   - Explicit and unambiguous renaming reduces the need to consult the documentation.

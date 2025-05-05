@@ -1,37 +1,43 @@
 ---
-label: pagy 💚 Methods
+label: "@pagy.✳ Helpers"
 icon: mention
 order: 80
 categories:
-  - Methods
+  - Helpers
 ---
 
 #
 
-## <span style="font-size: .65em; vertical-align: middle">💚</span> Methods
+## @pagy.<span style="font-size: .65em; vertical-align: middle">✳</span> Helpers
 
 ---
 
-The `@pagy` instance provides methods for every navigation tag and helper to use in your code.
+The `@pagy` instance provides all the helpers to use in your code.
 
 Its class is determined by the paginator used, but you can safely ignore it. Simply utilize its methods.
 
-!!!success The `@pagy` methods are autoloaded only if used!
+!!!success The `@pagy` helpers are autoloaded only if used!
 
 Unused code consumes no memory.
 !!!
 
-[:icon-list-unordered: data_hash](methods/data_hash.md)<br/>
-[:icon-list-unordered: headers_hash](methods/headers_hash.md)<br/>
-[:icon-list-unordered: urls_hash](methods/urls_hash.md)<br/>
-[:icon-arrow-right: page_url](methods/page_url.md)<br/>
-[:icon-code: series_nav](methods/series_nav.md)<br/>
-[:icon-code: series_nav_js](methods/series_nav_js.md)<br/>
-[:icon-code: input_nav_js](methods/input_nav_js.md)<br/>
-[:icon-code-square: anchor_tags](methods/anchor_tags.md)<br/>
-[:icon-code-square: info_tag](methods/info_tag.md)<br/>
-[:icon-code-square: limit_tag_js](methods/limit_tag_js.md)<br/>
+[:icon-list-unordered: data_hash](helpers/data_hash.md)<br/>
+[:icon-list-unordered: headers_hash](helpers/headers_hash.md)<br/>
+[:icon-list-unordered: urls_hash](helpers/urls_hash.md)<br/>
+[:icon-arrow-right: page_url](helpers/page_url.md)<br/>
+[:icon-code: series_nav](helpers/series_nav.md)<br/>
+[:icon-code: series_nav_js](helpers/series_nav_js.md)<br/>
+[:icon-code: input_nav_js](helpers/input_nav_js.md)<br/>
+[:icon-code-square: anchor_tags](helpers/anchor_tags.md)<br/>
+[:icon-code-square: info_tag](helpers/info_tag.md)<br/>
+[:icon-code-square: limit_tag_js](helpers/limit_tag_js.md)<br/>
 
+==- Common Options
+
+!!!success Helpers inherit and override options
+
+See [Inheritable Options](configurators/#inheritable-options)
+!!!
 
 ==- Common Nav Styles
 

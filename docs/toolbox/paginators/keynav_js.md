@@ -22,10 +22,10 @@ categories:
 @pagy, @records = pagy(:keynav_js, collection, **options)
 ```
 
-- `@pagy` is the pagination instance. It provides the [readers](#readers) and the [instance methods](../methods#methods) to use in your code.
+- `@pagy` is the pagination instance. It provides the [readers](#readers) and the [helpers](../helpers) to use in your code.
 - `@records` is the eager-loaded `Array` of the page records.
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#5-keyset-apps)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#keyset-apps)
 
 !!!warning This documentation integrates the [:keyset](keyset.md) documentation.
 

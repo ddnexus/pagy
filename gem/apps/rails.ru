@@ -4,7 +4,7 @@
 #    Reproduce rails related issues
 #
 # DOC
-#    https://ddnexus.github.io/pagy/playground/#2-rails-app
+#    https://ddnexus.github.io/pagy/playground/#rails-app
 #
 # BIN HELP
 #    pagy -h

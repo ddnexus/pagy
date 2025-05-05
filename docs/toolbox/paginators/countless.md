@@ -23,7 +23,7 @@ The [:keynav_js](keynav_js.md) offers identical UI features but utilizes the fas
 @pagy, @records = pagy(:countless, collection, **options)
 ```
 
-- `@pagy` is the pagination instance. It provides the [readers](#readers) and the [instance methods](../methods#methods) to use in your code.
+- `@pagy` is the pagination instance. It provides the [readers](#readers) and the [helpers](../helpers) to use in your code.
 - `@records` represents the eager-loaded `Array` of records for the page.
 
 ==- Options

@@ -4,8 +4,8 @@ require_relative '../../../test_helper'
 require_relative '../../../files/models'
 require_relative '../../../mock_helpers/app'
 require_relative '../../../mock_helpers/collection'
-require_relative '../../../../gem/lib/pagy/toolbox/methods/support/series' # just to check the series
-require_relative '../../../../gem/lib/pagy/toolbox/methods/support/a_lambda' # just to check the a_lambda
+require_relative '../../../../gem/lib/pagy/toolbox/helpers/support/series' # just to check the series
+require_relative '../../../../gem/lib/pagy/toolbox/helpers/support/a_lambda' # just to check the a_lambda
 
 Time.zone              = 'GMT'
 Date.beginning_of_week = :sunday
@@ -15,7 +15,7 @@ def app(**)
 end
 
 describe 'calendar' do
-  describe 'instance methods' do
+  describe 'instance helpers' do
     it 'returns a Pagy::Calendar::Month instance' do
       calendar, pagy, _records = app(params: { page: 1 }).send(:pagy, :calendar,
                                                                Event.all,
