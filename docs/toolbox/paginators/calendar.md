@@ -139,7 +139,7 @@ It is not subject to the restrictions mentioned in the [Calendar configuration](
 
 Pagy provides the calendar localization obly for `en` locales. For non-en locales pagy requires the `rails-i18n` to be installed.
 
-Pass the locales that your app uses to the method `localize_with_rails_i18n_gem` in the [pagy.rb initializer](../configurators/#initializer-file):
+Pass the locales that your app uses to the method `localize_with_rails_i18n_gem` in the [pagy.rb initializer](../../resources/initializer/):
 
 ```ruby
 Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)

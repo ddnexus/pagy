@@ -1,7 +1,7 @@
 ---
 label: JavaScript
 icon: file-code
-order: 90
+order: 80
 image: ""
 ---
 
@@ -28,7 +28,7 @@ Simply add to your code the appropriate file(s) and statements as outlined below
 
 #### 2. Make the file available to your app
 
-Depending on your app's architecture, you have a couple of options. Just pick one to uncomment in the [pagy.rb initializer](../toolbox/configurators/#initializer-file):
+Depending on your app's architecture, you have a couple of options. Just pick one to uncomment in the [pagy.rb initializer](initializer.md):
 
 - **For apps with an assets pipeline...** 
   - _Compatible with Propshaft, Importmaps, Sprockets, and similar tools._

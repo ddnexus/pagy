@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Pagy initializer file (10.0.0)
-# See https://ddnexus.github.io/pagy/toolbox/initializer/
+# See https://ddnexus.github.io/pagy/resources/initializer/
 
 ############ Global Options ################################################################
 # Add your global options below. They will be applied globally.
@@ -32,15 +32,15 @@
 # Pagy::I18n.pathnames << Rails.root.join('config/locales')
 
 
-############# Calendar Localization for non-en locales ###########################
+############# I18n Gem Translation #########################################################
+# See https://ddnexus.github.io/pagy/resources/i18n/
+#
+# Pagy.translate_with_the_slower_i18n_gem!
+
+
+############# Calendar Localization for non-en locales ####################################
 # Add your desired locales to the list and uncomment the following line to enable them,
 # regardless of whether you use the I18n gem for translations or not, whether with
 # Rails or not.
 #
 # Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)
-
-
-############# I18n Gem Translation #########################################################
-# See https://ddnexus.github.io/pagy/resources/i18n/
-#
-# Pagy.translate_with_the_slower_i18n_gem!

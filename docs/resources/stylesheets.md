@@ -1,7 +1,7 @@
 ---
 label: Stylesheets
 icon: file
-order: 100
+order: 90
 image: ""
 ---
 
@@ -14,7 +14,7 @@ Pagy includes a couple of CSS files that you can download, link, or copy, and in
 
 !!!warning
 
-You don't need any stylesheets if you use nav tag with `:bootstrap` or `:bulma` styles.
+You don't need any stylesheets if you use the pagy `:bootstrap` or `:bulma` helpers and styles.
 !!!
 
 ### Pagy Wand

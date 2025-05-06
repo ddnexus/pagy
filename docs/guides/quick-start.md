@@ -54,7 +54,7 @@ gem 'pagy', '~> 10.0' # omit the patch version
 
 ### 3. Configure global options and special features
 
-- See [pagy.rb initializer](../toolbox/configurators.md)
+- See [pagy.rb initializer](../resources/initializer/)
 
 #### Pick a stylesheet or a CSS framework
 

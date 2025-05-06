@@ -16,17 +16,16 @@ You can also [ask the Pagy AI](https://gurubase.io/g/pagy) for instant answers t
 
 ==- Choose the right pagination technique
 
-[Pagy AI answer](https://gurubase.io/g/pagy/choose-between-pagy-offset-countless-keyset)
+[Pagy AI answer](https://gurubase.io/g/pagy/choose-between-pagy-offset-countless-keyset-keynav)
 
 ==- Control the items per page
 
-- **Server side**
-  - Use the `:limit` option.
-- **Client Side**
-  - Use the `limit` option combined with the `:client_max_limit` option, which allows the client to request a `:limit` up to the
-    specified `:client_max_limit`.
-  - Additionally, you can use the [limit_tag_js](../toolbox/helpers/limit_tag_js) helper to provide a UI
-    selector to the user.
+- **Fixed**        
+  - Use the `:limit` option to set the number of items to serve with each page.
+- **Requestable**
+  - Use the `limit` option combined with the `:client_max_limit` option, allowing the client to request a variable `:limit` up to
+    the specified `:client_max_limit`.
+  - Additionally, you can use the [limit_tag_js](../toolbox/helpers/limit_tag_js) helper to provide a UI selector to the user.
 
 ```ruby
 @pagy, @products = pagy(:offset, collection, limit: 10)
@@ -42,8 +41,8 @@ See [Common Options](../toolbox/paginators#common-options).
 
 ==- Control the pagination bar
 
-Pagy provides [series_nav](../toolbox/helpers/series_nav.md) and [series_nav_js](../toolbox/helpers/series_nav_js.md) helpers for displaying a
-pagination bar.
+Pagy provides [series_nav](../toolbox/helpers/series_nav) and [series_nav_js](../toolbox/helpers/series_nav_js) helpers for
+displaying a pagination bar.
 
 You can customize the number and position of page links in the navigation bar using:
 
@@ -63,7 +62,7 @@ method. For example:
 
 Pagy uses standard i18n dictionaries for string translations and supports overriding them.
 
-See [I18n](../resources/i18n.md).
+See [I18n](../resources/i18n).
 
 ==- Customize the ARIA labels
 
@@ -74,7 +73,7 @@ See the [:aria_label](../toolbox/helpers#common-nav-options) option.
 You can also replace the `pagy.aria_label.nav` strings in the dictionary, as well as the `pagy.aria_label.previous` and the
 `pagy.aria_label.next`.
 
-See [ARIA](../resources/ARIA.md).
+See [ARIA](../resources/ARIA).
 
 ==- Customize the page and limit URL keys
 
@@ -111,8 +110,8 @@ You can also override the specific helper method.
 
 ==- Override CSS rules in element "style" attribute
 
-The `input_nav_js` and `limit_tag_js` use inline style attributes. You can override these rules in your stylesheet
-files using the `[style]`
+The `input_nav_js` and `limit_tag_js` use inline style attributes. You can override these rules in your stylesheet files using the
+`[style]`
 attribute selector and `!important`. Below is an example of overriding the `width` of an `input` element:
 
 ```css
@@ -123,12 +122,12 @@ attribute selector and `!important`. Below is an example of overriding the `widt
 
 ==- Override pagy methods
 
-- Identify its path in the repository (e.g., 'pagy/...').
+- Identify its path in the gem `lib` dir (e.g., 'pagy/...').
 - Note the name of the module where it is defined (e.g., `Pagy::...`).
 
 If you need assistance, ask in the [Q&A discussions](https://github.com/ddnexus/pagy/discussions/categories/q-a).
 
-Copy and paste the original method in the [Pagy Initializer](../toolbox/configurators.md)
+Copy and paste the original method in the [Pagy Initializer](../resources/initializer/)
 
 ```ruby pagy.rb (initializer)
 require 'pagy/...' # path to the overridden method file
@@ -163,7 +162,7 @@ Pagy works seamlessly with `ActiveRecord` collections, but certain collections m
   @decorated_records = records.decorate # or YourDecorator.method(records) whatever works
   ```
 - **Custom scope/count**
-  - The default pagy `collection.count(:all)` may not get the actual count:
+  - If the default pagy doesn't get the right count:
   ```ruby controller
   # pass the right count to pagy (that will directly use it skipping its own `collection.count(:all)`)
   @pagy, @records = pagy(:offset, custom_scope, count: custom_count) # Example implementation
@@ -181,27 +180,27 @@ Pagy works seamlessly with `ActiveRecord` collections, but certain collections m
 
 Explore the following options:
 
-- [:keyset paginator](../toolbox/paginators/keyset.md)
-- [headers_hash helper](../toolbox/helpers/headers_hash.md)
+- [:keyset paginator](../toolbox/paginators/keyset)
+- [headers_hash helper](../toolbox/helpers/headers_hash)
 - [:client_max_limit option](../toolbox/paginators#common-options)
 - [:jsonapi option](../toolbox/paginators#common-options)
 
 ==- Paginate for Javascript Frameworks
 
-You can send selected `@pagy` instance data to the client as JSON using the [data_hash](../toolbox/helpers/data_hash.md) helper,
+You can send selected `@pagy` instance data to the client as JSON using the [data_hash](../toolbox/helpers/data_hash) helper,
 including pagination metadata in your JSON response.
 
 ==- Paginate search platform results
 
 See these paginators:
 
-- [elasticsearch_rails](../toolbox/paginators/elasticsearch_rails.md)
-- [searchkick](../toolbox/paginators/searchkick.md)
-- [meilisearch](../toolbox/paginators/meilisearch.md)
+- [elasticsearch_rails](../toolbox/paginators/elasticsearch_rails)
+- [searchkick](../toolbox/paginators/searchkick)
+- [meilisearch](../toolbox/paginators/meilisearch)
 
 ==- Paginate by date
 
-Use the [:calendar](../toolbox/paginators/calendar.md) paginator for pagination filtering by calendar time units (e.g., year,
+Use the [:calendar](../toolbox/paginators/calendar) paginator for pagination filtering by calendar time units (e.g., year,
 quarter, month, week, day).
 
 ==- Paginate multiple independent collections
@@ -279,12 +278,12 @@ You can also paginate multiple model in the same request by simply using differe
 ```rb
 
 def index # controller action
-  @pagy_stars, @stars     = pagy(:offset, Star.all, page_key: :page_stars)
-  @pagy_nebulae, @nebulae = pagy(:offset, Nebula.all, page_key: :page_nebulae)
+  @pagy_stars, @stars     = pagy(:offset, Star.all, page_key: 'page_stars')
+  @pagy_nebulae, @nebulae = pagy(:offset, Nebula.all, page_key: 'page_nebulae')
 end
 ```
 
-==- Paginate only max_pages, regardless the count
+==- Paginate only max_pages, regardless of the count
 
 See [:max_pages](../toolbox/paginators#common-options) option.
 
@@ -324,22 +323,22 @@ rendered... or maybe you don't. If you don't:
 
 Check out these paginators:
 
-- [:countless](../toolbox/paginators/countless.md)
-- [:keyset](../toolbox/paginators/keyset.md)
-- [:keynav_js](../toolbox/paginators/keynav_js.md)
+- [:countless](../toolbox/paginators/countless)
+- [:keyset](../toolbox/paginators/keyset)
+- [:keynav_js](../toolbox/paginators/keynav_js)
 
 ==- Maximize Performance
 
 - Consider the paginators:
-  - [:countless](../toolbox/paginators/countless.md)
-  - [:keyset](../toolbox/paginators/keyset.md)
-  - [:keynav_js](../toolbox/paginators/keynav_js.md)
-- Consider the `*_nav_js` tags: they are a few orders of magnitute faster.
+  - [:countless](../toolbox/paginators/countless)
+  - [:keyset](../toolbox/paginators/keyset)
+  - [:keynav_js](../toolbox/paginators/keynav_js)
+- Consider the `series_nav_js` and `input_nav_js` helpers: they are a few orders of magnitute faster.
   - Add the `oj` gem to your gemfile
 
 ==- Ignore Brakeman UnescapedOutputs false positives warnings
 
-Pagy output html safe HTML, however, being an agnostic pagination gem it does not use the specific `html_safe` rails helper on its
+Pagy output safe HTML, however being an agnostic pagination gem it does not use the specific `html_safe` rails helper for its
 output. That is noted by the [Brakeman](https://github.com/presidentbeef/brakeman) gem, that will raise a warning.
 
 You can avoid the warning adding it to the `brakeman.ignore` file. More details [here](https://github.com/ddnexus/pagy/issues/243)
@@ -347,13 +346,13 @@ and [here](https://github.com/presidentbeef/brakeman/issues/1519).
 
 ==- Raise Pagy::RangeError exceptions
 
-With the OFFSET pagination technique, it may happen that the users/clients paginate over the end of the record set or records go
-deleted and a user went to a stale page.
+With the OFFSET pagination technique, it may happen that the users/clients paginate after the end of the collection (when one or a
+few records got deleted) and a user went to a stale page.
 
 By default, Pagy doesn't raise any exceptions for requesting an out-of-range page. Instead, it does not retrieve any records and
-serves the UI navigators as usual, so the user can visit a different page.
+serves the navs as usual, so the user can visit a different page.
 
-Sometimes you may want to take a diffrent action, so you can set the `raise_range_error: true` option, `rescue` it and do whatever
+Sometimes you may want to take a diffrent action, so you can set the option `raise_range_error: true`, `rescue` it and do whatever
 fits your app better. For example:
 
 ```ruby controller
@@ -450,7 +449,7 @@ Here is a conceptual example using the `session`:
 require 'digest'
 
 def filtered_action
-  options         = {}
+  options = {}
   if params[:filter_key] # already cached
     filters = session[params[:filter_key]]
   else

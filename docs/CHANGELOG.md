@@ -48,21 +48,21 @@ None
 
 #### A complete redesign of the legacy code.
 
-- **New [Keynav](toolbox/paginators/keynav_js.md) Pagination**
-  - The pagy-exclusive technique using [keyset](toolbox/paginators/keyset.md) pagination alongside
+- **New [Keynav](toolbox/paginators/keynav_js) Pagination**
+  - The pagy-exclusive technique using [keyset](toolbox/paginators/keyset) pagination alongside
     all frontend helpers.
 - **Method Autoloading**
   - Methods are autoloaded only if used, unused methods consume no memory.
 - **Intelligent automation**
-  - [Configuration](toolbox/configurators.md) requirements reduced by 99%, simplified [JavaScript](resources/javascript.md)
-    setup and automatic [I18n](resources/i18n.md)) loading.
+  - [Configuration](resources/initializer/) requirements reduced by 99%, simplified [JavaScript](resources/javascript)
+    setup and automatic [I18n](resources/i18n) loading.
 - **Simplified user interaction**
-  - You solely need the [pagy](toolbox/paginators.md) method and
-    the [@pagy](toolbox/helpers.md) instance, to paginate any collection, and use any navigation
+  - You solely need the [pagy](toolbox/paginators) method and
+    the [@pagy](toolbox/helpers) instance, to paginate any collection, and use any navigation
     tag and helper.
 - **[Self-explaining API](https://github.com/ddnexus/pagy#examples)**
   - Explicit and unambiguous renaming reduces the need to consult the documentation.
-- **New and simpler [documentation](guides/quick-start.md)**
+- **New and simpler [documentation](guides/quick-start)**
   - Very concise, straightforward, easy to navigate and understand.
 - **Effortless [overriding](guides/how-to#override-pagy-methods)**
   - The new methods have narrower scopes and can be overridden without deep knowledge.

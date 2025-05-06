@@ -12,11 +12,11 @@ categories:
 
 ---
 
-### `pagy` method
+:::raised-text
 
-The `pagy` method handles every pagination, and provides a common interface to all types of paginations.
+### The `pagy` Method
 
-Include the `Pagy::Method` where you are going to use it _(usually in ApplicationContoller)_:
+The `pagy` method provides a common interface to all paginators. Include it where you are going to paginate a collection _(usually in ApplicationContoller)_:
 
 ```ruby
 include Pagy::Method
@@ -29,13 +29,14 @@ You can use it to paginate ANY collection, with ANY technique. For example:
 @pagy, @records = pagy(...)
 ```
 
-- `:offset`, `:keyset`, etc. are symbols identifying the [paginator](#paginators) to use, i.e., the internal constructor method handling that type of pagination.
+- `:offset`, `:keyset`, etc. are symbols identifying the [paginator](#paginators). They implement the specific pagination. 
 - `@pagy` is the pagination istance. It provides all the instance helper methods to use in your code.
 - `@records` are the records belonging to the requested page.
+:::
 
 ### Paginators
 
-The `paginators` are internal constructor methods that provide different types of pagination for different types of collections, with a common API. They are passed to the `pagy` method by their symbolic name. (e.g., `:offset`, `:keyset`, `countless`, etc.)
+The `paginators` are internal constructor methods that provide different types of pagination for different types of collections, using a common API. They are passed to the `pagy` method by their symbolic name. (e.g., `:offset`, `:keyset`, `countless`, etc.)
 
 !!! warning Avoid instantiating Pagy classes directly
 
@@ -58,9 +59,9 @@ Unused code consumes no memory.
 
 ==- Common Options
 
-!!!success Paginators inherit and override options
+!!!success Paginators can inherit and override options
 
-See [Inheritable Options](configurators/#inheritable-options)
+See [Options](options)
 !!!
 
 !!! Common Options for Paginators
@@ -87,7 +88,7 @@ Individual paginators may offer additional options, which are documented with th
 
 ==- Common URL Options
 
-!!! Common URL options for all [paginators](#paginators) and `@pagy` [methods](helpers#methods)
+!!! Common URL options for all [paginators](#paginators) and `@pagy` [helpers](helpers)
 
 These options control give you full control over the URL composition.
 !!!

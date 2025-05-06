@@ -23,8 +23,8 @@ Cherry-pick only what applies to your app: you can safely skip all the rest.
 
 This guide focuses on getting the job done quickly. If you want to learn more about the changes:
 
-- Consult the docs
-- Ask Pagy AI specific questions
+- Consult the docs and [How To Guide](how-to)
+- Ask Pagy AI specific questions (Bottom-right button in this page)
 - Ask in the [Q&A discussion](https://github.com/ddnexus/pagy/discussions/categories/q-a).
 
 !!!
@@ -32,7 +32,7 @@ This guide focuses on getting the job done quickly. If you want to learn more ab
 ### 1. Replace the `pagy.rb` config file
 
 - Rename your `pagy.rb` initializer as `pagy-old.rb`, and add the new, concise
-  [pagy.rb](../toolbox/configurators/#initializer-file) initializer in its place.
+  [pagy.rb](../resources/initializer) initializer in its place.
 - Search the `pagy-old.rb` for code-occurrences of `Pagy::DEFAULT[...]` and move them to the new `pagy.js` (remove them from the `pagy-old.rb`)
 - Replace all the `Pagy::DEFAULT[...]` entries just added to the new `pagy.rb` with `Pagy.options[...]`.
 

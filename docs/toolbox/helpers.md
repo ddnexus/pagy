@@ -34,9 +34,9 @@ Unused code consumes no memory.
 
 ==- Common Options
 
-!!!success Helpers inherit and override options
+!!!success Helpers can inherit and override options
 
-See [Inheritable Options](configurators/#inheritable-options)
+See [Options](options)
 !!!
 
 ==- Common Nav Styles
