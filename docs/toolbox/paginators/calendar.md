@@ -26,7 +26,7 @@ It enables cascade-filtering of the collection by time units _(year, quarter, mo
 
 !!!success Use this paginator when most pages contain results.
 !!!
-!!!danger Avoid using it for sparse datasets with numerous empty pages.
+!!!warning Avoid using it for sparse datasets with numerous empty pages.
 !!!
 
 ```ruby
@@ -147,7 +147,7 @@ Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)
 
 ==- Caveats
 
-!!!warning Empty calendar pages are visible but will contain no results.
+!!!warning Calendar pages with no records are visible and accessible.
 
 You may want to display a message when `@records.empty?`.
 !!!

@@ -1,7 +1,7 @@
 PATH
   remote: gem
   specs:
-    pagy (10.0.0)
+    pagy (43.0.0)
       json
       yaml
 
@@ -89,21 +89,21 @@ GEM
     bigdecimal (3.1.9)
     builder (3.3.0)
     concurrent-ruby (1.3.5)
-    connection_pool (2.5.0)
+    connection_pool (2.5.3)
     crass (1.0.6)
     date (3.4.1)
     docile (1.4.1)
     domain_name (0.6.20240107)
     drb (2.2.1)
     erubi (1.13.1)
-    ffi (1.17.1-x86_64-linux-gnu)
+    ffi (1.17.2-x86_64-linux-gnu)
     ffi-compiler (1.3.2)
       ffi (>= 1.15.5)
       rake
     globalid (1.2.1)
       activesupport (>= 6.1)
-    groupdate (6.5.1)
-      activesupport (>= 7)
+    groupdate (6.6.0)
+      activesupport (>= 7.1)
     http (5.2.0)
       addressable (~> 2.8)
       base64 (~> 0.1)
@@ -120,7 +120,7 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json (2.10.2)
+    json (2.11.3)
     kalibera (0.1.2)
       memoist (~> 0.16)
       rbzip2 (~> 0.3)
@@ -153,7 +153,7 @@ GEM
     mustermann (3.0.3)
       ruby2_keywords (~> 0.0.1)
     mutex_m (0.3.0)
-    net-imap (0.5.6)
+    net-imap (0.5.8)
       date
       net-protocol
     net-pop (0.1.2)
@@ -163,14 +163,14 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.18.7-x86_64-linux-gnu)
+    nokogiri (1.18.8-x86_64-linux-gnu)
       racc (~> 1.4)
     oj (3.16.10)
       bigdecimal (>= 3.0)
       ostruct (>= 0.2)
     ostruct (0.6.1)
-    parallel (1.26.3)
-    parser (3.3.7.4)
+    parallel (1.27.0)
+    parser (3.3.8.0)
       ast (~> 2.4.1)
       racc
     pp (0.6.2)
@@ -178,19 +178,19 @@ GEM
     prettyprint (0.2.0)
     prism (1.4.0)
     pstore (0.2.0)
-    psych (5.2.3)
+    psych (5.2.4)
       date
       stringio
-    public_suffix (6.0.1)
+    public_suffix (6.0.2)
     puma (6.6.0)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.1.12)
+    rack (3.1.14)
     rack-protection (4.1.1)
       base64 (>= 0.1.0)
       logger (>= 1.6.0)
       rack (>= 3.0.0, < 4)
-    rack-session (2.1.0)
+    rack-session (2.1.1)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
     rack-test (2.2.0)
@@ -245,8 +245,8 @@ GEM
       pstore
     rerun (0.14.0)
       listen (~> 3.0)
-    rouge (4.5.1)
-    rubocop (1.75.2)
+    rouge (4.5.2)
+    rubocop (1.75.5)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -277,7 +277,7 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     securerandom (0.4.1)
-    sequel (5.91.0)
+    sequel (5.92.0)
       bigdecimal
     simplecov (0.22.0)
       docile (~> 1.1)
@@ -293,7 +293,7 @@ GEM
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
     sqlite3 (2.6.0-x86_64-linux-gnu)
-    stringio (3.1.6)
+    stringio (3.1.7)
     thor (1.3.2)
     tilt (2.6.0)
     timeout (0.4.3)
@@ -349,4 +349,4 @@ DEPENDENCIES
   uri
 
 BUNDLED WITH
-   2.6.2
+   2.6.7
