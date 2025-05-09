@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Bump Version" type="RubyRunConfigurationType" factoryName="Ruby">
+  <configuration default="false" name="Finalize Version" type="RubyRunConfigurationType" factoryName="Ruby">
     <module name="pagy" />
     <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="" />
     <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="" />
@@ -13,7 +13,7 @@
       </COVERAGE_PATTERN>
     </EXTENSION>
     <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
-    <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/scripts/bump.rb" />
+    <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/scripts/finalize.rb" />
     <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
     <method v="2" />
   </configuration>

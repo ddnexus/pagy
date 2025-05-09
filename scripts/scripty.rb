@@ -22,10 +22,10 @@ module Scripty
   end
 
   # Replace a string in filepth
-  def replace_string_in_file(filepath, search, replace)
+  def replace_string_in_file(filepath, search, replace, all: false)
     filepath = ROOT.join(filepath)
     content  = filepath.read
-    content.sub!(search, replace)
+    all ? content.gsub!(search, replace) : content.sub!(search, replace)
     filepath.write(content)
   end
 

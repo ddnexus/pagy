@@ -1,16 +1,16 @@
 ---
-label: Upgrade to 43+
+label: Upgrade to 43
 icon: paper-airplane
 order: 80
 ---
 
 #
 
-## Upgrade to 43+
+## Upgrade to 43
 
 ---
 
-Pagy version 43+ is a complete redesign of the legacy code. Its improvements make pagination a lot simpler and powerful, but
+Pagy version 43 is a complete redesign of the legacy code. Its improvements make pagination a lot simpler and powerful, but
 require a quite different way to use it.
 
 !!! success Follow this guide to upgrade your app in just a few minutes.
@@ -33,7 +33,8 @@ This guide focuses on getting the job done quickly. If you want to learn more ab
 
 - Rename your `pagy.rb` initializer as `pagy-old.rb`, and add the new, concise
   [pagy.rb](../resources/initializer) initializer in its place.
-- Search the `pagy-old.rb` for code-occurrences of `Pagy::DEFAULT[...]` and move them to the new `pagy.js` (remove them from the `pagy-old.rb`)
+- Search the `pagy-old.rb` for code-occurrences of `Pagy::DEFAULT[...]` and move them to the new `pagy.js` (remove them from the
+  `pagy-old.rb`)
 - Replace all the `Pagy::DEFAULT[...]` entries just added to the new `pagy.rb` with `Pagy.options[...]`.
 
 _In the next steps we will use the `pagy-old.rb` as the blueprint to guide most of the changes, and we will edit the new `pagy.rb`
@@ -233,11 +234,11 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 {.compact}
 
-| Search (old)        | Replace with (new) |
-|---------------------|--------------------|
-| `limit_param: :...` | `limit_key: '...'` |
-| `limit_extra: ...`  | delete             |
-| `max_limit: ...`    | delete             |
+| Search (old)                       | Replace with (new)                |
+|------------------------------------|-----------------------------------|
+| `limit_param: :...` (symbol value) | `limit_key: '...'` (string value) |
+| `limit_extra: ...`                 | delete                            |
+| `max_limit: ...`                   | delete                            |
 
 - Enable the feature by setting `client_max_limit: your_client_max_limit` option _(in the initializer or `pagy` method)_.
 
@@ -262,7 +263,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
     - The navigation bar for an out-of-range request is rendered identically to that of the last page.
     - The only difference is that there are no records/results to display.
     - The "previous page" button points to the last page, so if users truly want to see the last page results (which they have
-      already seen), they can simply click the link.
+      likely already seen), they can simply click the link.
 - **Summary for keeping the same behavior**:
   - The `:overflow` variable is not used anymore.
   - If you did not use the extra (i.e., Pagy raised errors), set `raise_range_error: true`.
@@ -312,22 +313,22 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 {.compact}
 
-| Search (old)             | Replace with (new)     |
-|--------------------------|------------------------|
-| `include Pagy::Backend`  | `include Pagy::Method` |
-| `include Pagy::Frontend` | delete / integrated    |
-| `Pagy.root.`             | `Pagy::ROOT.`          |
-| `page_param: :...`       | `page_key: '...'`      |
-| `pagy_info(@pagy, ...)`  | `@pagy.info_tag(...)`  |
-| `@pagy_locale = ...`     | `Pagy::I18n = ...`     |
-| `@pagy.pages`            | `@pagy.last`           |
-| `@pagy.vars`             | `@pagy.options`        |
-| `VariableError`          | `OptionError`          |
-| `<error>.variable`       | `<error>.option`       |
-| `count_args: ...`        | delete / integrated    |
-| `anchor_string: ...`     | delete / discontinued  |
-| `outset: ...`            | delete / discontinued  |
-| `cycle: ...`             | delete / discontinued  |
+| Search (old)                      | Replace with (new)               |
+|-----------------------------------|----------------------------------|
+| `include Pagy::Backend`           | `include Pagy::Method`           |
+| `include Pagy::Frontend`          | remove (integrated)              |
+| `Pagy.root.`                      | `Pagy::ROOT.`                    |
+| `page_param: :...` (symbol value) | `page_key: '...'` (string value) |
+| `pagy_info(@pagy, ...)`           | `@pagy.info_tag(...)`            |
+| `@pagy_locale = ...`              | `Pagy::I18n = ...`               |
+| `@pagy.pages`                     | `@pagy.last`                     |
+| `@pagy.vars`                      | `@pagy.options`                  |
+| `VariableError`                   | `OptionError`                    |
+| `<error>.variable`                | `<error>.option`                 |
+| `count_args: ...`                 | remove (integrated)              |
+| `anchor_string: ...`              | remove (discontinued)            |
+| `outset: ...`                     | remove (discontinued)            |
+| `cycle: ...`                      | remove (discontinued)            |
 
 ==- Replace the `:params` variable...
 
@@ -349,28 +350,28 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 - Use `*previous*` in all the options, accessors, methods, etc.
 
-_Because we don't use abbreviated words anymore_
-
 ===
 
 ### 4. Finalize the upgrade
 
 ==- Javascript
 
-- If your `pagy-old.rb` contains any JavaScript setup, it should still work, so you can move it to the `pagy.rb` file, however, for apps with builders, consider using the new [Pagy.sync_javascript](../resources/javascript/#2-make-the-file-available-to-your-app).
+- If your `pagy-old.rb` contains any JavaScript setup, it should still work, so you can move it to the `pagy.rb` file, however,
+  for apps with builders, consider using the
+  new [Pagy.sync_javascript](../resources/javascript/#2-make-the-file-available-to-your-app).
 
 ==- Pagy::I18n and Locale Files
 
-- If your `pagy-old.rb` contains the `Pagy::I18n` setup, and the setup includes some custom dictionary file,
-then uncomment and set up the relevant `Pagy::I18n` lookup section in the `pagy.rb` file. _(See the [I18n docs](../resources/i18n) for details)_
-- Update your custom dictionary files to the new dictionary structure, or they won't work correctly.
+- If your `pagy-old.rb` contains the `Pagy::I18n` setup, and the setup includes some custom dictionary file, then uncomment and
+  set up the relevant `Pagy::I18n` lookup section in the `pagy.rb` file. _(See the [I18n docs](../resources/i18n) for details)_
+- Update your custom dictionary files (if any) to the new [dictionary structure](../resources/i18n/#dictionary-file-example), or they won't work correctly.
 - Besides that, you don't need any line of the old setup, because all the locales are autoloaded when your app uses them.
 - Remove all the I18n code from the `pagy-old.rb`.
 
 ==- Overriding
 
 - Overriding methods in controllers/helpers is not possible or discouraged.
-- The cleanest approach for local overriding is via Ruby refinements or the initializer for global override. 
+- The cleanest approach for local overriding is via Ruby refinements or the initializer for global override.
 - Check the [How To Override Pagy Method](../guides/how-to/#override-pagy-methods).
 - If your `pagy-old.rb` contains overridden methods, copy the methods over to the `pagy.rb` initializer, however, consider that:
   - Internal Pagy protected methods have been extensively refactored, likely renamed, and occasionally removed.
@@ -396,6 +397,7 @@ You may want also to check these internal renaming:
 
 !!! warning
 
-Please report any issue with this guide opening a [new docs issue](https://github.com/ddnexus/pagy/issues/new?template=Documentation.yml).
+Please report any issue with this guide opening
+a [new docs issue](https://github.com/ddnexus/pagy/issues/new?template=Documentation.yml).
 
 !!!

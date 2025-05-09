@@ -12,20 +12,21 @@ icon: rocket
 
 ### 1. Install
 
-:icon-light-bulb: To prevent unexpected breaking changes, see [RubyGem Specifiers](http://guides.rubygems.org/patterns/#pessimistic-version-constraint):
+To prevent unexpected breaking changes [omit the patch version](http://guides.rubygems.org/patterns/#pessimistic-version-constraint):
 
 ```ruby Gemfile
-gem 'pagy', '~> 43.0' # omit the patch version
+gem 'pagy', '~> 43.0' # Stable version (Pessimistic version constraint)
 ```
 
-#### • Play with it directly...
+!!! Try pagy directly
 
-- **...in the Browser**
+- **In the Browser**
   - Run `pagy demo` in your terminal, and visit http://127.0.0.1:8000
-- **...in IRB**
+- **In IRB**
   - Include the [Pagy::Console](../sandbox/console)
+!!!
 
-### 2. Use
+### 2. Use it in your app
 
 - Include the `pagy` method where you are going to use it _(usually ApplicationController)_:
   ```ruby

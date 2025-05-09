@@ -48,10 +48,6 @@ jobs:
         with:
           dotnet-version: 9.0.x
 
-      - name: Update links in docs/README.md for pre-release
-        run: |
-          sed -i 's|https://ddnexus.github.io/pagy|https://ddnexus.github.io/pagy-pre|g' docs/README.md
-
       - uses: retypeapp/action-build@v3
         with:
           config_path: docs/

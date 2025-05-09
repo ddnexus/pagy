@@ -407,12 +407,12 @@ pagy demo
 ...and point your browser to  http://127.0.0.1:8000/template
 !!!
 
-==- Use Pagy with a non-rack app
+==- Use Pagy with non-rack apps
 
 For non-rack environments that don't respond to the request method, you should pass
 the [:request](../toolbox/paginators#common-options) option to the paginator.
 
-==- Use `pagy` outside of a controller or view
+==- Use `pagy` outside controllers or views
 
 The `pagy` method needs to set a few options that depend on the availability of the `self.request` method in the class/module
 where you included it.
@@ -499,5 +499,18 @@ If you use the `session` for caching, configure it to use `ActiveRecord`, `Redis
   `Other`, you should only provide a single value. Check other dictionary files for examples, and ask if you have any doubts.
 
 Feel free to ask for help in your Pull Request.
+ 
+==- Install Pagy preview version
+
+For major versions in the make, we may push a preview version to rubygems. You can check its existence with: 
+
+```bash
+$ gem search pagy --pre
+```
+And install it with:
+
+```ruby Gemfile (example)
+gem 'pagy', '43.0.0-pre.1' # Specific preview version
+```
 
 ===

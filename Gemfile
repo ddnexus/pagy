@@ -8,6 +8,7 @@ gem 'http'         # used by the scripts/contributor-list.rb
 gem 'irb'
 gem 'rake'
 gem 'reline'
+gem 'sem_version'
 gem 'uri'
 
 group :test do
@@ -41,7 +42,7 @@ group :playground do
 end
 
 group :performance do
-  gem 'benchmark-ips'
-  gem 'kalibera'
+  # gem 'benchmark-ips'
+  # gem 'kalibera'
   # gem 'memory_profiler'
 end

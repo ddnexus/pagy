@@ -14,9 +14,8 @@ categories:
 
 `:keynav_js` is a fast KEYSET paginator that supports the UI. It's a pagy exclusive technique.
 
-- It requires [JavaScript Support](../../resources/javascript.md) and a browser that implements `sessionStorage` _(largely supported by all browsers nowaday)_.
+- It requires [JavaScript Support](../../resources/javascript.md) and a browser that implements `sessionStorage` _(largely supported by all browsers)_.
   - If those conditions are not met, it falls back to the [:countless](countless.md) paginator seamlessly.
-    :::
 
 ```ruby Controller 
 @pagy, @records = pagy(:keynav_js, collection, **options)

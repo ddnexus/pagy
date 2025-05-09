@@ -47,6 +47,10 @@ After selecting a new limit, pagy reloads the page that roughly contains the sam
 => nil
 ```
 
+==- Options
+
+See [Common URL Options](../paginators#common-url-options)
+
 ==- Caveats
 
 !!!danger Overriding `*_js` helpers is not recommended
@@ -54,9 +58,4 @@ After selecting a new limit, pagy reloads the page that roughly contains the sam
 The `*_js` helpers are tightly coupled with the javascript code, so any partial overriding on one side, would be quite fragile
 and might break in a next release.
 !!!
-
-==- Options
-
-See [Common URL Options](../paginators#common-url-options)
-
 ===

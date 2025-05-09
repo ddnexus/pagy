@@ -61,14 +61,6 @@ see [Maximizing Performance](../../guides/how-to#maximize-performance)) still ne
 => nil
 ```
 
-==- Caveats
-
-!!!danger Overriding `*_js` helpers is not recommended
-
-The `*_js` helpers are tightly coupled with the javascript code, so any partial overriding on one side would be quite fragile
-and might break in a next release.
-!!!
-
 ==- Styles
 
 See [Common Nav Styles](../helpers#common-nav-styles)
@@ -76,4 +68,12 @@ See [Common Nav Styles](../helpers#common-nav-styles)
 ==- Options
 
 See [Common Nav Options](../helpers#common-nav-options) and [Common URL Options](../paginators#common-url-options)
+
+==- Caveats
+
+!!!danger Overriding `*_js` helpers is not recommended
+
+The `*_js` helpers are tightly coupled with the javascript code, so any partial overriding on one side would be quite fragile
+and might break in a next release.
+!!!
 ===

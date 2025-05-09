@@ -41,7 +41,7 @@ See [Options](options)
 
 ==- Common Nav Styles
 
-- No arguments: default `:pagy` style
+- `:pagy/nil` style (default style)
 - `:bootstrap`
   - Set `classes: 'pagination pagination-sm any-class'` style option to override the default `'pagination'` class.
 - `:bulma`

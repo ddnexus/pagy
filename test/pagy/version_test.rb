@@ -2,6 +2,9 @@
 
 require_relative '../test_helper'
 require_relative '../../gem/apps/index'
+require 'sem_version'
+
+SEM_VERSION = SemVersion.new(Pagy::VERSION)
 
 describe 'Version match' do
   it 'has version' do
@@ -39,10 +42,10 @@ describe 'Version match' do
   it 'defines the same version in CHANGELOG.md' do
     changelog = Pagy::ROOT.parent.join('docs/CHANGELOG.md').read
     _(changelog).must_match "(e.g. `#{Pagy::VERSION}"
-    _(changelog).must_match "gem 'pagy', '~> #{Pagy::VERSION.sub(/\.\d+$/, '')}"
+    _(changelog).must_match "gem 'pagy', '~> #{SEM_VERSION.major}.#{SEM_VERSION.minor}"
     _(changelog).must_match "## Version #{Pagy::VERSION}"
   end
   it 'defines the same minor version in ./quick-start.md' do
-    _(File.read('./docs/guides/quick-start.md')).must_match "gem 'pagy', '~> #{Pagy::VERSION.sub(/\.\d+$/, '')}"
+    _(File.read('./docs/guides/quick-start.md')).must_match "gem 'pagy', '~> #{SEM_VERSION.major}.#{SEM_VERSION.minor}"
   end
 end
