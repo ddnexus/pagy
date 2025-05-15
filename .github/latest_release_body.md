@@ -12,6 +12,8 @@ code at all levels, usage and API included.
 
 #### Improvements
 
+This version introduces several enhancements, such as new pagination techniques like Keynav and improved automation and configuration processes, reducing setup requirements by 99%. The update also includes a simpler API and new interactive development tools, making it a comprehensive upgrade from previous versions.
+
 - **New [Keynav](https://ddnexus.github.io/pagy-pre/toolbox/paginators/keynav_js) Pagination**
   - The pagy-exclusive technique using the fastest [keyset](https://ddnexus.github.io/pagy-pre/toolbox/paginators/keyset) pagination alongside all frontend helpers.
 - **New interactive dev-tools**

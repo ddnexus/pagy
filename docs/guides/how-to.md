@@ -16,11 +16,11 @@ You can also [ask the Pagy AI](https://gurubase.io/g/pagy) for instant answers t
 
 ==- Choose the right pagination technique
 
-[Pagy AI answer](https://gurubase.io/g/pagy/choose-between-pagy-offset-countless-keyset-keynav)
+Check the [list of paginators](../toolbox/paginators/#paginators) or click the Pagy AI button below and ask something like: "What are the available paginators for DBs and search platforms?"
 
 ==- Control the items per page
 
-- **Fixed**        
+- **Fixed**
   - Use the `:limit` option to set the number of items to serve with each page.
 - **Requestable**
   - Use the `limit` option combined with the `:client_max_limit` option, allowing the client to request a variable `:limit` up to
