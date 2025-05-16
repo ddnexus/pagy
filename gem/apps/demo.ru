@@ -86,7 +86,7 @@ class PagyDemo < Sinatra::Base
   end
 
   PAGY_LIKE_HEAD =
-    %(#{Pagy.dev_tags if ENV['CY_TEST'] != 'true'}
+    %(#{Pagy.dev_tools if ENV['CY_TEST'] != 'true'}
       <style>
         /* black/white backdrop color based on --B */
         .pagy { background-color: hsl(0 0 calc(100 * var(--B))) !important; }

@@ -707,7 +707,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             <dl>
               <dt>Add this line in your HTML head</dt>
               <dd>
-                <p><code><%== Pagy.dev_tags %></code></p>
+                <p><code><%== Pagy.dev_tools %></code></p>
                 <p>You can pass the optional <code>wand_scale</code> argument to change the size of the Wand.
                   <br>Default: <code>wand_scale: 1</code></p>
               </dd>

@@ -14,7 +14,7 @@ categories:
 ## :icon-code: input_nav_js
 
 ---
- 
+
 :::raised
 ![input_nav_js](../../assets/images/pagy-input_nav_js.png){width=204}
 

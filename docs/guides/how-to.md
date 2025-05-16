@@ -16,7 +16,7 @@ You can also [ask the Pagy AI](https://gurubase.io/g/pagy) for instant answers t
 
 ==- Choose the right pagination technique
 
-Check the [list of paginators](../toolbox/paginators/#paginators) or click the Pagy AI button below and ask something like: "What are the available paginators for DBs and search platforms?"
+Check the [list of paginators](../toolbox/paginators/#paginators) or click the Pagy AI button below and ask something like: _"What are the available paginators for DBs and search platforms?"_
 
 ==- Control the items per page
 

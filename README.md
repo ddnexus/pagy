@@ -10,7 +10,7 @@
 [![Stars](https://shields.io/github/stars/ddnexus/pagy?style=social)](https://github.com/ddnexus/pagy/stargazers)</span> <span>
 [![Gurubase](https://img.shields.io/badge/Gurubase-Ask%20Pagy%20AI-006BFF)](https://gurubase.io/g/pagy)</span>
 
-# 
+#   
 
 <h2><img src="assets/images/pagy-the-frog.png" alt="💚" width="75" style="vertical-align:bottom;"><br/>Pagy the leaping gem!</h2>
 
@@ -33,22 +33,28 @@ code at all levels, usage and API included.
 
 #### Improvements
 
-This version introduces several enhancements, such as new pagination techniques like Keynav and improved automation and configuration processes, reducing setup requirements by 99%. The update also includes a simpler API and new interactive development tools, making it a comprehensive upgrade from previous versions.
+This version introduces several enhancements, such as new pagination techniques like Keynav and improved automation and
+configuration processes, reducing setup requirements by 99%. The update also includes a simpler API and new interactive
+development tools, making it a comprehensive upgrade from previous versions.
 
 - **New [Keynav](https://ddnexus.github.io/pagy-pre/toolbox/paginators/keynav_js) Pagination**
-  - The pagy-exclusive technique using the fastest [keyset](https://ddnexus.github.io/pagy-pre/toolbox/paginators/keyset) pagination alongside all frontend helpers.
+  - The pagy-exclusive technique using the fastest [keyset](https://ddnexus.github.io/pagy-pre/toolbox/paginators/keyset)
+    pagination alongside all frontend helpers.
 - **New interactive dev-tools**
-  - New [PagyWand](https://ddnexus.github.io/pagy-pre/resources/stylesheets/#pagy-wand) to integrate the pagy CSS with your app's themes.
+  - New [PagyWand](https://ddnexus.github.io/pagy-pre/resources/stylesheets/#pagy-wand) to integrate the pagy CSS with your app's
+    themes.
   - New **Pagy AI** available inside docs and your own app.
 - **Intelligent automation**
   - [Configuration](https://ddnexus.github.io/pagy-pre/resources/initializer/) requirements reduced by 99%.
   - Simplified [JavaScript](https://ddnexus.github.io/pagy-pre/resources/javascript) setup.
   - Automatic [I18n](https://ddnexus.github.io/pagy-pre/resources/i18n) loading.
 - **[Simpler API](https://github.com/ddnexus/pagy#examples)**
-  - You solely need the [pagy](https://ddnexus.github.io/pagy-pre/toolbox/paginators) method and the [@pagy](https://ddnexus.github.io/pagy-pre/toolbox/helpers) instance to paginate any collection and
-    use any navigation tag and helper.
-  - Methods are autoloaded only if used and consume no memory otherwise.
-  - Methods have narrower scopes and can be [overridden](https://ddnexus.github.io/pagy-pre/guides/how-to#override-pagy-methods) without deep knowledge.
+  - You solely need the [pagy](https://ddnexus.github.io/pagy-pre/toolbox/paginators) method and
+    the [@pagy](https://ddnexus.github.io/pagy-pre/toolbox/helpers) instance to paginate any collection and use any navigation tag
+    and helper.
+  - Methods are autoloaded only if used, and consume no memory otherwise.
+  - Methods have narrower scopes and can be [overridden](https://ddnexus.github.io/pagy-pre/guides/how-to#override-pagy-methods)
+    without deep knowledge.
 - **New [documentation](https://ddnexus.github.io/pagy-pre/guides/quick-start)**
   - Very concise, straightforward, and easy to navigate and understand.
 
@@ -150,7 +156,7 @@ _(Available time units: year, quarter, month, week, and day)_
 
 ##### Server side rendering
 
-##### `series_nav` 
+##### `series_nav`
 
 Default `:pagy`, `:bootstrap` and `:bulma` styles shown.
 
@@ -173,7 +179,7 @@ javascript_dir = Rails.root.join('app/javascripts')
 Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
 ```
 
-##### `series_nav_js` 
+##### `series_nav_js`
 
 **Faster and responsive**
 
@@ -189,7 +195,7 @@ Dynamically fills the container width.
 <%== @pagy.series_nav_js(:bulma) %>
 ```
 
-##### `input_nav_js` 
+##### `input_nav_js`
 
 **Fastest!** Combines navigation and info in minimum space.
 
@@ -202,15 +208,16 @@ Dynamically fills the container width.
 <%== @pagy.input_nav_js(:bulma) %>
 ```
 
-### Pagy Wand
+### Dev Tools
 
-Integrate pagy with your app's themes interactively. You need only a single line in your page/layout `head` to get the Pagy Wand and the Pagy AI:
+Integrate pagy with your app's themes interactively, and ask specific questions right in your app!
+You need only a single line in your page/layout `head` to get the Pagy Wand and the Pagy AI:
 
 ```erb
-<%== Pagy.dev_tags %>
+<%== Pagy.dev_tools %>
 ```
 
-<img src="assets/images/pagy-wand.png" width="606"><br/>
+<img src="assets/images/dev-tools.png" width="606"><br/>
 
 <a href="https://ddnexus.github.io/pagy-pre/sandbox/playground/#demo-app">
   <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">

@@ -1,6 +1,6 @@
 ---
 label: Upgrade to 43
-icon: paper-airplane
+icon: sun
 order: 80
 ---
 

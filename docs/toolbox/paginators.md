@@ -78,7 +78,7 @@ Individual paginators may offer additional options, which are documented with th
 - `page: 3`
   - Set it only to force the current `:page`. _(It is set automatically from the request query hash)_.
 - `client_max_limit: 1_000`
-  - Set the maximum `:limit` that the client is allowed to `request`. Higher requested `:limit`s are silently capped.
+  - Set the maximum `:limit` that the client is allowed to `request`. Higher requested `:limit`s are silently capped. (If falsey, the client cannot request the `:limit`)
 - `request: custom_request`
   - **Set this hash only in non-rack environments** or when instructed by the docs. _(It is set automatically from the request)_. For example:
     ```ruby
@@ -135,6 +135,7 @@ Individual paginators may offer additional readers, which are documented with th
 
 Individual paginators may raise specific exceptions, which are documented with the paginator itself.
 !!!
+
 - `Pagy::OptionError`
   - A subclass of `ArgumentError` that offers information to rescue invalid options passed to the constructor.
   - For example: `rescue Pagy::OptionError => e`
@@ -144,7 +145,7 @@ Individual paginators may raise specific exceptions, which are documented with t
 
 ==- Troubleshooting
 
-##### Records may repeat in different pages (or sometimes be missing)
+##### Records may repeat in different pages be missing
 
 <br/>
 

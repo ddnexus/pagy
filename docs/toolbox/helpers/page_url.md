@@ -7,6 +7,12 @@ categories:
   - Helpers
 ---
 
+#
+
+## :icon-arrow-right: page_url
+
+---
+
 `page_url` returns the URL of any page of any instance. If the page is not available it returns `nil`. It is useful to build minimalistic UIs that don't use nav bar links (e.g. [:keyset](../paginators/keyset.md) paginator).
 
 !!!success It works with all paginators

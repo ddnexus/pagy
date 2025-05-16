@@ -19,26 +19,15 @@ You don't need any stylesheets if you use the pagy `:bootstrap` or `:bulma` help
 
 ### Pagy Wand
 
-Integrate pagy with your app's themes interactively. You need only a single line in your page/layout `head` to get the Pagy Wand and the Pagy AI:
-
-```erb
-<%== Pagy.dev_tags %>
-```
+The [Pagy Wand](../sandbox/dev_tools/#pagy-wand) integrates pagy with your app's themes interactively. 
 
 :::raised
-![PagyWand](../assets/images/pagy-wand.png){width=606}
+![PagyWand](../assets/images/dev-tools.png){width=606}
 :::
+
 <br>
 
-You can control most of the visual aspects of pagy with a few presets and sliders. Then copy/paste the generated "CSS Override" block in your stylesheet to persist it in your app.
-
 Should you need finer control, the `pagy.css` and `pagy-tailwind.css` calculate more specific variables, that you can manually override.
-
-#### Pagy AI
-
-The `Pagy.dev_tags` add also the "Pagy AI" button to your page to make it easy to get pagy-specialized help from AI. 
-
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../sandbox/playground#demo-app)
 
 ==-  HTML Structure of Nav Bars
 
