@@ -24,6 +24,12 @@ class Pagy
         # Get the keyset attributes from a record
         def keyset_attributes_from(record) = record.to_hash.slice(*@keyset.keys)
 
+        # Get the hash of quoted keyset identifiers
+        def quoted_identifiers(table)
+          db = @set.db
+          @keyset.to_h { |column| [column, "#{db.quote_identifier(table)}.#{db.quote_identifier(column)}"] }
+        end
+
         # Typecast the attributes
         def typecast(attributes)
           model = @set.opts[:model]

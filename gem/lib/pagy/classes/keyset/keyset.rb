@@ -91,8 +91,7 @@ class Pagy
     def compose_predicate(prefix = nil)
       operator    = { asc: '>', desc: '<' }
       directions  = @keyset.values
-      table       = @set.model.table_name
-      identifier  = @keyset.to_h { |column| [column, %("#{table}"."#{column}")] }
+      identifier  = quoted_identifiers(@set.model.table_name)
       placeholder = @keyset.to_h { |column| [column, ":#{prefix}#{column}"] }
       if @options[:tuple_comparison] && (directions.all?(:asc) || directions.all?(:desc))
         "(#{identifier.values.join(', ')}) #{operator[directions.first]} (#{placeholder.values.join(', ')})"
