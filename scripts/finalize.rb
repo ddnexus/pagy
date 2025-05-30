@@ -58,11 +58,7 @@ edit_file?(release_body_path, 'Release Body')
 replace_string_in_file('docs/CHANGELOG.md', /<hr>\n/, "<hr>\n\n## Version #{new_version}\n\n#{changes}")
 
 # Insert the latest ai-widget in the retype head
-replace_section_in_file('docs/_includes/head.html', 'ai_widget', <<~HTML)
-  <script>
-    document.addEventListener('DOMContentLoaded', #{Pagy::ROOT.join('javascripts/ai_widget.js').read});
-  </script>
-HTML
+require_relative 'update_retype_head'
 
 # Optional update of top 100
 confirm_to('update the "Top 100 contributors"') do
