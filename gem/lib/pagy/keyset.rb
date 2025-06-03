@@ -90,10 +90,10 @@ class Pagy
     # with a set like Pet.order(:animal, :name, :id) it returns the following string:
     # ( "pets"."animal", "pets"."name", "pets"."id" ) > ( :animal, :name, :id )
     def filter_newest_query
-      operator   = { asc: '>', desc: '<' }
+      operator = { asc: '>', desc: '<' }
       directions = @keyset.values
-      table      = @set.model.table_name
-      name       = @keyset.to_h { |column| [column, %("#{table}"."#{column}")] }
+      name = quoted_identifiers(@set.model.table_name)
+
       if @vars[:tuple_comparison] && (directions.all?(:asc) || directions.all?(:desc))
         placeholders = @keyset.keys.map { |column| ":#{column}" }.join(', ')
         "( #{name.values.join(', ')} ) #{operator[directions.first]} ( #{placeholders} )"
