@@ -92,7 +92,7 @@ const Pagy = (() => {
                                ?.split("=")[1] ?? randKey();
     document.cookie = pagy + "=" + browserKey;  // Smaller .min size: set the cookie without checking
     if (storageKey && !(storageKey in storage)) {
-      // Sync the sessiongStorage from other tabs/windows (e.g. open page in new tab/window)
+      // Sync the sessiongStorage from other tabs/windows (e.g., open page in the new tab/window)
       sync.postMessage(<SyncData>{ from: tabId, key: storageKey });
       // Wait for the listener to copy the cutoffs in the current sessionStorage
       await new Promise<string|null>((resolve) => setTimeout(() => resolve(""), 100));
@@ -123,10 +123,10 @@ const Pagy = (() => {
     // Augment the page param of each href
     for (const a of <NodeListOf<HTMLAnchorElement>><unknown>nav.querySelectorAll('a[href]')) {
       const url = a.href,
-            re  = new RegExp(`(?<=\\?.*)\\b${pageKey}=(\\d+)`);   // find the numeric page from pageKey
+            re  = new RegExp(`(?<=\\?.*)\\b${pageKey}=(\\d+)`);         // find the numeric page from pageKey
       a.href    = url.replace(re, pageKey + "=" + augment(url.match(re)![1]));  // eslint-disable-line @typescript-eslint/no-non-null-assertion
     }
-    // Return the augment function for furter augmentation (i.e. url token in input_nav_js)
+    // Return the augment function for further augmentation (i.e., url token in input_nav_js)
     return augment;
   };
 
@@ -141,9 +141,9 @@ const Pagy = (() => {
 
       let html = before;
       series[index].forEach((item, i) => {
-        // Avoid if blocks and chain results for shorter .min and easier reading
+        // Avoid the if blocks and chain the results (shorter pagy.min.js and easier reading)
         html += item == "gap" ? gap :
-                // @ts-expect-error the item may be a number, but 'replace' type converts it to string (shorter .min)
+                // @ts-expect-error the item may be a number, but the 'replace' converts it to string (shorter pagy.min.js)
                 (typeof item == "number" ? anchor.replace(pageRe, item) : current)
                     .replace("L<", labels?.[index][i] ?? item + "<");
       });
@@ -167,7 +167,7 @@ const Pagy = (() => {
   // Init the limit_tag_js helper
   const initLimitTagJs = (span:HTMLSpanElement, [from, url_token]:LimitTagJsArgs) => {
     initInput(span, inputValue => {
-      // @ts-expect-error the page is a number, but 'replace' type converts it to string (shorter .min)
+      // @ts-expect-error the page is a number, but the 'replace' converts it to string (shorter pagy.min.js)
       return url_token.replace(pageRe, Math.max(Math.ceil(from / parseInt(inputValue)), 1))
                       .replace('L ', inputValue);
     });

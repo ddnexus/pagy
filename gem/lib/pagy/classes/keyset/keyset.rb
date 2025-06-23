@@ -49,7 +49,7 @@ class Pagy
                    end
     end
 
-    # Return the next page (i.e. the cutoff of the current page)
+    # Return the next page (i.e., the cutoff of the current page)
     def next
       records
       return unless @more
@@ -76,7 +76,7 @@ class Pagy
 
     # Compose the parameterized predicate used to extract the page records.
     #
-    # For example: with a set like Pet.order(animal: :asc, name: :desc, id: :asc)
+    # For example, with a set like Pet.order(animal: :asc, name: :desc, id: :asc)
     # it returns a union of intersections:
     #
     #    ("pets"."animal" = :animal AND "pets"."name" = :name AND "pets"."id" > :id) OR

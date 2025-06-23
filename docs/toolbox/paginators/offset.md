@@ -12,7 +12,7 @@ categories:
 
 ---
 
-`:offset` is a generic OFFSET paginator usable with ORM collections and regular `Array` objects.
+`:offset` is a generic OFFSET paginator usable with ORM collections or regular `Array` objects.
 
 It uses the complete OFFSET pagination technique, which triggers two SQL queries per request:
 

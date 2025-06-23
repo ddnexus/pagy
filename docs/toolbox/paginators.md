@@ -33,16 +33,16 @@ You can use it to paginate ANY collection, with ANY technique. For example:
 
 !!! success
 
-The `pagy` method expects to find the rack request at `self.request`, however you can also use pagy [outside controllers or views](../guides/how-to/#use-pagy-outside-controllers-or-views), or even [with a non-rack app](../guides/how-to/#use-pagy-with-non-rack-apps).
+The `pagy` method expects to find the rack request at `self.request`, however, you can also use pagy [outside controllers or views](../guides/how-to/#use-pagy-outside-controllers-or-views), or even [with a non-rack app](../guides/how-to/#use-pagy-with-non-rack-apps).
 !!!
 
 ### Paginators
 
-The `paginators` are internal constructor methods that provide different types of pagination for different types of collections, using a common API. They are passed to the `pagy` method by their symbolic name. (e.g., `:offset`, `:keyset`, `countless`, etc.)
+The `paginators` are symbolic names of different pagination types/contexts (e.g., `:offset`, `:keyset`, `countless`, etc.). You pass the name to the `pagy` method and pagy will internally instantiate and handle the appropriate paginator class.
 
 !!! warning Avoid instantiating Pagy classes directly
 
-Instantiate implementing classes only if the documentation explicitly suggests it.
+Instantiate paginator classes only if the documentation explicitly suggests it.
 !!!
 
 !!!success Paginators and classes are autoloaded only if used!
@@ -137,7 +137,7 @@ Individual paginators may raise specific exceptions, which are documented with t
 !!!
 
 - `Pagy::OptionError`
-  - A subclass of `ArgumentError` that offers information to rescue invalid options passed to the constructor.
+  - A subclass of `ArgumentError` that offers information to rescue invalid options.
   - For example: `rescue Pagy::OptionError => e`
     - `e.pagy` the pagy object
     - `e.option` the offending option symbol (e.g. `:page`)
