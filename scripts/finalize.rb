@@ -7,17 +7,16 @@
 require 'tempfile'
 require_relative 'scripty'
 include Scripty  # rubocop:disable Style/MixinUsage
-require 'sem_version'
 
 # Abort if the working tree is dirty
 abort('Working tree dirty!') unless `git status --porcelain`.empty?
 
 # Prompt for the old version tag
 require_relative '../gem/lib/pagy'
-new_version = SemVersion.new(Pagy::VERSION)
+new_version = Gem::Version.new(Pagy::VERSION)
 puts "Current Pagy::VERSION: #{new_version}"
 print 'Enter the old version tag: '
-old_version = SemVersion.new(gets.chomp)
+old_version = Gem::Version.new(gets.chomp)
 
 # Create a tempfile with the formatted changes from the gem-filtered gitlog
 gitlog  = Tempfile.new

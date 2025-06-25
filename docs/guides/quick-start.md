@@ -12,13 +12,19 @@ icon: rocket
 
 ### 1. Install
 
-To prevent unexpected breaking changes [omit the patch version](http://guides.rubygems.org/patterns/#pessimistic-version-constraint):
+Prevent unexpected breaking changes in stable releases (see [omit the patch version](http://guides.rubygems.org/patterns/#pessimistic-version-constraint)):
 
-```ruby Gemfile
-gem 'pagy', '~> 43.0' # Stable version (Pessimistic version constraint)
+```ruby Gemfile (stable)
+gem 'pagy', '~> 43.0' # Pessimistic version constraint
 ```
 
-!!! Try pagy directly
+Enable the specific pre-release version. For example: 
+
+```ruby Gemfile (pre-release)
+gem 'pagy', '43.0.0.pre.123'  # Fixed version constraint
+```
+
+!!! You can try pagy directly
 
 - **In the Browser**
   - Run `pagy demo` in your terminal, and visit http://127.0.0.1:8000

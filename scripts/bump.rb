@@ -7,27 +7,26 @@ require 'tempfile'
 require_relative 'scripty'
 require_relative '../gem/apps/index'
 include Scripty  # rubocop:disable Style/MixinUsage
-require 'sem_version'
 
 # Abort if the working tree is dirty
 abort('Working tree dirty!') unless `git status --porcelain`.empty?
 
 # Prompt for the new version
 require_relative '../gem/lib/pagy'
-old_version = SemVersion.new(Pagy::VERSION)
+old_version = Gem::Version.new(Pagy::VERSION)
 puts "Current Pagy::VERSION: #{old_version}"
 print 'Enter the new version: '
-new_version = SemVersion.new(gets.chomp)
+new_version = Gem::Version.new(gets.chomp)
 
 abort('Invalid version!') unless new_version > old_version
 
-# Check pre
+# Check -pre urls
 case
-when old_version.pre && !new_version.pre
+when old_version.prerelease? && !new_version.prerelease?
   replace_string_in_file('README.md',
                          'https://ddnexus.github.io/pagy-prev/',
                          'https://ddnexus.github.io/pagy/', all: true)
-when new_version.pre && !old_version.pre
+when new_version.prerelease? && !old_version.prerelease?
   replace_string_in_file('README.md',
                          'https://ddnexus.github.io/pagy/',
                          'https://ddnexus.github.io/pagy-pre/', all: true)
@@ -61,8 +60,10 @@ replace_string_in_file('docs/CHANGELOG.md', "(e.g. `#{old_version}", "(e.g. `#{n
 end
 
 # Base version changes
-old_base_version = "#{old_version.major}.#{old_version.minor}"
-new_base_version = "#{new_version.major}.#{new_version.minor}"
+old_major, old_minor, = old_version.to_s.split('.')
+new_major, new_minor, = new_version.to_s.split('.')
+old_base_version      = "#{old_major}.#{old_minor}"
+new_base_version      = "#{new_major}.#{new_minor}"
 replace_string_in_file('docs/CHANGELOG.md', old_base_version, new_base_version)
 replace_string_in_file('docs/guides/quick-start.md', old_base_version, new_base_version)
 

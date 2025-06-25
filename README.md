@@ -24,9 +24,9 @@ _Agnostic pagination in plain ruby_
   <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">
 </a><br><br>
 
-## Version 43.0.0-pre.1
+## Version 43.0.0.pre.1
 
-We needed a leap version to unequivocally segnaling that it's not just a major version: it's a complete redesign of the legacy
+We needed a leap version to unequivocally signaling that it's not just a major version: it's a complete redesign of the legacy
 code at all levels, usage and API included.
 
 **Why 43?** Because it's exactly one step beyond _"The answer to the ultimate question of life, the Universe, and everything."_ 😉
@@ -268,10 +268,10 @@ See [Contributing](https://github.com/ddnexus/pagy/blob/master/.github/CONTRIBUT
 
 <summary>Versioning</summary>
 
-- Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/). Please, check
+- Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/) logic. Please check
   the [Changelog](https://ddnexus.github.io/pagy-pre/changelog) for breaking changes introduced by mayor versions.
   Using [pessimistic version constraint](https://guides.rubygems.org/patterns/#pessimistic-version-constraint) in your Gemfile
-  will ensure smooth upgrades.
+  will ensure smooth updates WITHOUT BREAKING CHANGES.
 
 </details>
 

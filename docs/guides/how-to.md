@@ -500,9 +500,9 @@ If you use the `session` for caching, configure it to use `ActiveRecord`, `Redis
 
 Feel free to ask for help in your Pull Request.
  
-==- Install Pagy preview version
+==- Install Pagy pre-release version
 
-For major versions in the make, we may push a preview version to rubygems. You can check its existence with: 
+For major versions in the make, we may push pre-release versions to rubygems. You can check their existence with: 
 
 ```bash
 $ gem search pagy --pre
@@ -510,7 +510,7 @@ $ gem search pagy --pre
 And install it with:
 
 ```ruby Gemfile (example)
-gem 'pagy', '43.0.0-pre.1' # Specific preview version
+gem 'pagy', '43.0.0.pre.1' # Specific pre-release version
 ```
 
 ===

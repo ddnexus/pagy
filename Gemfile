@@ -8,7 +8,6 @@ gem 'http'         # used by the scripts/contributor-list.rb
 gem 'irb'
 gem 'rake'
 gem 'reline'
-gem 'sem_version'
 gem 'uri'
 
 group :test do
