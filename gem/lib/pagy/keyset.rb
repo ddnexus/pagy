@@ -93,7 +93,9 @@ class Pagy
       operator   = { asc: '>', desc: '<' }
       directions = @keyset.values
       table      = @set.model.table_name
-      name       = @keyset.to_h { |column| [column, %("#{table}"."#{column}")] }
+      name = @keyset.to_h { |column| 
+        [column, "#{@set.model.connection.quote_table_name(table)}.#{@set.model.connection.quote_column_name(column)}"] 
+      }
       if @vars[:tuple_comparison] && (directions.all?(:asc) || directions.all?(:desc))
         placeholders = @keyset.keys.map { |column| ":#{column}" }.join(', ')
         "( #{name.values.join(', ')} ) #{operator[directions.first]} ( #{placeholders} )"
