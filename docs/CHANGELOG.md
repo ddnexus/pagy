@@ -16,7 +16,7 @@ expect the old/deprecated functionality to be supported ONLY during the current 
 
 ## Recommended Version Constraint
 
-Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.0.0.pre.1`):
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.0.0.rc1`):
 
 The `gem 'pagy', '~> 43.0'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.
@@ -43,7 +43,7 @@ None
 
 <hr>
 
-## Version 43.0.0.pre.1
+## Version 43.0.0.rc1
 
 We needed a leap version to unequivocally signaling that it's not just a major version: it's a complete redesign of the legacy
 code at all levels, usage and API included.

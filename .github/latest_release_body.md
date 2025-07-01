@@ -3,7 +3,7 @@
   <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">
 </a><br><br>
 
-## Version 43.0.0.pre.1
+## Version 43.0.0.rc1
 
 We needed a leap version to unequivocally signaling that it's not just a major version: it's a complete redesign of the legacy
 code at all levels, usage and API included.
@@ -39,7 +39,7 @@ development tools, making it a comprehensive upgrade from previous versions.
 
 <!-- whats_new_end -->
 
-### Changes in 43.0.0.pre.1
+### Changes in 43.0.0.rc1
 
 <!-- changes_start -->
 
