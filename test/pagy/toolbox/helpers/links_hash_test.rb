@@ -16,6 +16,7 @@ describe 'urls_hash' do
       app = MockApp.new(params: { page: { number: 3, size: 10 } })
       pagy, _records = app.send(:pagy, :offset, @collection, **@pagy_default, page_key: 'number', limit_key: 'size')
       result = pagy.urls_hash
+
       _(result.keys).must_equal %i[first previous next last]
       _(result).must_rematch :result
     end
@@ -23,12 +24,14 @@ describe 'urls_hash' do
       app = MockApp.new(params: { page: { page: 1 } })
       pagy, _records = app.send(:pagy, :offset, @collection, **@pagy_default)
       result = pagy.urls_hash
+
       _(result[:previous]).must_be_nil
     end
     it 'sets the next value to null when the link is unavailable' do
       app = MockApp.new(params: { page: { page: 50 } })
       pagy, _records = app.send(:pagy, :offset, @collection, **@pagy_default)
       result = pagy.urls_hash
+
       _(result[:next]).must_be_nil
     end
   end
@@ -41,6 +44,7 @@ describe 'urls_hash' do
                                 page_key:  'latest',
                                 limit_key: 'size')
       result = pagy.urls_hash
+
       _(result.keys).must_equal %i[first next]
       _(result).must_rematch :keyset_result
     end
@@ -54,6 +58,7 @@ describe 'urls_hash' do
                                 limit_key: 'size')
       result = pagy.urls_hash
       _(result).must_rematch :keyset_result
+
       _(result[:next]).must_be_nil
     end
   end

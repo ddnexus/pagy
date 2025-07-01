@@ -30,6 +30,7 @@ describe "Pagy Keyset" do
                                      limit:            10,
                                      tuple_comparison: true)
           records = pagy.records
+
           _(records.size).must_equal 10
           _(records.first.id).must_equal 13
         end
@@ -39,6 +40,7 @@ describe "Pagy Keyset" do
                                      limit:         10,
                                      pre_serialize: ->(attr) { attr[:name] = attr[:name].to_s })
           records = pagy.records
+
           _(pagy.next).must_equal "WyJkb2ciLCJEZW5pcyIsNDRd"
           _(records.size).must_equal 10
           _(records.first.id).must_equal 13
@@ -47,9 +49,11 @@ describe "Pagy Keyset" do
       describe 'extract_keyset' do
         it 'extracts the keyset from the set order (single column)' do
           pagy = Pagy::Keyset.new(model.order(:id))
+
           _(pagy.instance_variable_get(:@keyset)).must_equal({ :id => :asc })
           set  = model == Pet ? model.order(id: :desc) : model.order(Sequel.desc(:id))
           pagy = Pagy::Keyset.new(set)
+
           _(pagy.instance_variable_get(:@keyset)).must_equal({ :id => :desc })
         end
         it 'extracts the keyset from the set order (multiple columns)' do
@@ -59,6 +63,7 @@ describe "Pagy Keyset" do
                    model.order(Sequel.desc(:animal), Sequel.asc(:id))
                  end
           pagy = Pagy::Keyset.new(set)
+
           _(pagy.instance_variable_get(:@keyset)).must_equal({ animal: :desc, :id => :asc })
         end
         if model == PetSequel
@@ -70,12 +75,14 @@ describe "Pagy Keyset" do
             p = Pagy::Keyset.new(model.order(:id),
                                  page:  "WzEwXQ",
                                  limit: 10)
+
             _(p.next).must_equal "WzIwXQ" # trigger typecast
             _(model.restrict_primary_key?).must_equal false
             model.restrict_primary_key
             p = Pagy::Keyset.new(model.order(:id),
                                  page:  "WzEwXQ",
                                  limit: 10)
+
             _(p.next).must_equal "WzIwXQ" # trigger typecast
             _(model.restrict_primary_key?).must_equal true
           end
@@ -84,16 +91,19 @@ describe "Pagy Keyset" do
       describe 'handles the page/cut' do
         it 'handles the page/cut for the first page' do
           pagy = Pagy::Keyset.new(model.order(:id), limit: 10)
+
           _(pagy.instance_variable_get(:@cut)).must_be_nil
           _(pagy.next).must_equal "WzEwXQ"
         end
         it 'handles the page/cut for the second page' do
           pagy = Pagy::Keyset.new(model.order(:id), limit: 10, page: "WzEwXQ")
+
           _(pagy.records.first.id).must_equal 11
           _(pagy.next).must_equal "WzIwXQ"
         end
         it 'handles the page/cut for the last page' do
           pagy = Pagy::Keyset.new(model.order(:id), limit: 10, page: "WzQwXQ")
+
           _(pagy.records.first.id).must_equal 41
           _(pagy.next).must_be_nil
         end
@@ -104,6 +114,7 @@ describe "Pagy Keyset" do
           pagy = Pagy::Keyset.new(set, limit: 10)
           pagy.records
           set = pagy.instance_variable_get(:@set)
+
           _((model == Pet ? set.select_values : set.opts[:select]).sort).must_equal %i[animal id name]
         end
       end
@@ -128,6 +139,7 @@ describe "Pagy Keyset" do
               { records: pagy.records, page: pagy.next }
             end
             collection = set.to_a
+
             _(collection.size).must_equal 50
             _(pages.flatten).must_equal collection
             _(collection.each_slice(9).to_a).must_equal pages

@@ -17,6 +17,7 @@ describe 'countless' do
     it 'shows current and next for first page' do
       pagy, = MockApp.new(params: { page: nil })
                      .send(:pagy, :countless, @collection)
+
       _(pagy.send(:series)).must_equal ['1', 2]
       _(pagy.count).must_be_nil
       _(pagy.previous).must_be_nil
@@ -25,6 +26,7 @@ describe 'countless' do
     it 'shows start-pages, :gap, before-pages, current and next for intermediate page' do
       pagy, = MockApp.new(params: { page: '25 26' })
                      .send(:pagy, :countless, @collection)
+
       _(pagy.send(:series)).must_equal [1, :gap, 22, 23, 24, '25', 26]
       _(pagy.count).must_be_nil
       _(pagy.previous).must_equal 24
@@ -33,6 +35,7 @@ describe 'countless' do
     it 'shows start-pages, :gap, before-pages, current and next for last page' do
       pagy, = MockApp.new(params: { page: '50 50' })
                      .send(:pagy, :countless, @collection)
+
       _(pagy.send(:series)).must_equal [1, :gap, 46, 47, 48, 49, '50']
       _(pagy.count).must_be_nil
       _(pagy.previous).must_equal 49
@@ -41,6 +44,7 @@ describe 'countless' do
     it 'returns empty series for empty :slots option for first page' do
       pagy, = MockApp.new(params: { page: nil })
                      .send(:pagy, :countless, @collection, slots: 0)
+
       _(pagy.send(:series)).must_equal []
       _(pagy.count).must_be_nil
       _(pagy.previous).must_be_nil
@@ -50,6 +54,7 @@ describe 'countless' do
     it 'returns empty series for empty :slots option for intermediate page' do
       pagy, = MockApp.new(params: { page: '25 26' })
                      .send(:pagy, :countless, @collection, slots: 0)
+
       _(pagy.send(:series)).must_equal []
       _(pagy.count).must_be_nil
       _(pagy.previous).must_equal 24
@@ -59,6 +64,7 @@ describe 'countless' do
     it 'returns empty series for empty :slots option for last page' do
       pagy, = MockApp.new(params: { page: '50 50' })
                      .send(:pagy, :countless, @collection, slots: 0)
+
       _(pagy.send(:series)).must_equal []
       _(pagy.count).must_be_nil
       _(pagy.previous).must_equal 49
@@ -72,12 +78,14 @@ describe 'countless' do
     it 'sets :page_key from options' do
       pagy, paged = MockApp.new(params: { page_number: '4 4'})
                            .send(:pagy, :countless, @collection, page_key: 'page_number')
+
       _(pagy.count).must_be_nil
       _(pagy.page).must_equal 4
       _(paged).must_equal Array(61..80)
     end
     it 'bypasses :page_key with :page option' do
       pagy, paged = app.send(:pagy, :countless, @collection, page_key: :page_number, page: 1)
+
       _(pagy.count).must_be_nil
       _(pagy.page).must_equal 1
       _(paged).must_equal Array(1..20)
@@ -85,6 +93,7 @@ describe 'countless' do
     it 'can use :headless with page param without last' do
       app   = MockApp.new(params: { page: 25 })
       pagy, = app.send(:pagy, :countless, @collection, headless: true)
+
       _(pagy.count).must_be_nil
       _(pagy.previous).must_be_nil
       _(pagy.next).must_be_nil
@@ -95,6 +104,7 @@ describe 'countless' do
     it 'shows series including last page' do
       pagy, = MockApp.new(params: {page: '25 50'})
                      .send(:pagy, :countless, @collection)
+
       _(pagy.send(:series)).must_equal [1, :gap, 24, "25", 26, :gap, 50]
       _(pagy.count).must_be_nil
       _(pagy.previous).must_equal 24
@@ -104,6 +114,7 @@ describe 'countless' do
     it 'shows series including last page' do
       pagy, = MockApp.new(params: { a: 'a', page: ' 3'})
                      .send(:pagy, :countless, @collection)
+
       _(pagy.send(:series)).must_equal ["1", 2, 3]
       _(pagy.count).must_be_nil
       _(pagy.previous).must_be_nil

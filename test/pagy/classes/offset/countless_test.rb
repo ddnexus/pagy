@@ -10,6 +10,7 @@ describe 'Pagy Countless' do
     it 'initializes empty collection' do
       pagy, = Pagy::Offset::Countless.new(page: 1)
       pagy.send(:finalize, 0)
+
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 1
@@ -23,6 +24,7 @@ describe 'Pagy Countless' do
     it 'initializes first page' do
       pagy, = Pagy::Offset::Countless.new(page: 1)
       pagy.send(:finalize, 21) # one more page
+
       _(pagy.count).must_be_nil
       _(pagy).must_be_instance_of Pagy::Offset::Countless
       _(pagy.limit).must_equal 20
@@ -36,6 +38,7 @@ describe 'Pagy Countless' do
     it 'initializes single full page' do
       pagy, = Pagy::Offset::Countless.new
       pagy.send(:finalize, 20) # no more page - last full
+
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 1
@@ -48,6 +51,7 @@ describe 'Pagy Countless' do
     it 'initialize single partial page' do
       pagy, = Pagy::Offset::Countless.new
       pagy.send(:finalize, 4) # partial page of 4 - also last
+
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 1
@@ -60,6 +64,7 @@ describe 'Pagy Countless' do
     it 'initializes last partial page' do
       pagy, = Pagy::Offset::Countless.new(page: 3, last: 3)
       pagy.send(:finalize, 19) # partial page of 3 - also last
+
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 3
@@ -77,6 +82,7 @@ describe 'Pagy Countless' do
     it 'gets the visited page' do
       pagy, = Pagy::Offset::Countless.new(page: 3, last: 5)
       pagy.send(:finalize, 21)
+
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 5
       _(pagy.in).must_equal 20
@@ -88,6 +94,7 @@ describe 'Pagy Countless' do
     it 'updates the @last if visited page is the last page' do
       pagy, = Pagy::Offset::Countless.new(page: 3, last: 5)
       pagy.send(:finalize, 15)
+
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 3
       _(pagy.in).must_equal 15
@@ -101,6 +108,7 @@ describe 'Pagy Countless' do
     it 'gets the visited page' do
       pagy, = Pagy::Offset::Countless.new(page: 20, max_pages: 15)
       pagy.send(:finalize, 21)
+
       _(pagy.page).must_equal 15
       _(pagy.last).must_equal 15
       _(pagy.in).must_equal 20

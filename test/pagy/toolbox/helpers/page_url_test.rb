@@ -14,6 +14,7 @@ describe 'Pagy URLs' do
   describe 'page_url' do
     it 'renders basic url' do
       pagy, = app.send(:pagy, :offset, @collection, count: 1000, page: 3)
+
       _(pagy.page_url('5')).must_equal '/foo?page=5'
       _(pagy.page_url('5', absolute: true)).must_equal 'http://example.com:3000/foo?page=5'
       _(pagy.page_url(:first)).must_equal '/foo'

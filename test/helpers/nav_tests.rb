@@ -16,6 +16,7 @@ module NavTests
       _(pagy.series_nav(style)).must_rematch :"plain_#{page}"
       _(pagyx.series_nav(style, id: 'test-nav-id')).must_rematch :"extras_#{page}"
     end
+
     _ { PagyBuggy.new(count: 100, request:).series_nav(style) }.must_raise Pagy::InternalError
     pagyk = Pagy::Keyset::Keynav.new(Pet.order(:animal, :name, :id),
                                      page: ['key', 2, 2, ["cat", "Ella", 18], nil], request:)
@@ -32,6 +33,7 @@ module NavTests
     end
     # raise Pagy::OptionError for missing 0 step
     pagy = Pagy::Offset.new(count: 1000, page: 20, steps: { 0 => 5, 600 => 7 }, request:)
+
     _ { pagy.series_nav_js(style, steps: { 600 => 7 }) }.must_raise Pagy::OptionError
     pagyk = Pagy::Keyset::Keynav.new(Pet.order(:animal, :name, :id),
                                      page: ['key', 2, 2, ["cat", "Ella", 18], nil], request:)

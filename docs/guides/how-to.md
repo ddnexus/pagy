@@ -510,7 +510,7 @@ $ gem search pagy --pre
 And install it with:
 
 ```ruby Gemfile (example)
-gem 'pagy', '43.0.0.pre.1' # Specific pre-release version
+gem 'pagy', '43.0.0.rc1' # Specific pre-release version
 ```
 
 ===

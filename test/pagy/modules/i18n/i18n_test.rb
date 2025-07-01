@@ -30,12 +30,16 @@ describe 'Pagy I18n' do
   describe "locales" do
     it 'switches :locale according to @pagy_locale' do
       Pagy::I18n.locale = 'nl'
+
       _(Pagy::I18n.translate('pagy.item_name', count: 1)).must_equal "stuk"
       Pagy::I18n.locale = 'en'
+
       _(Pagy::I18n.translate('pagy.item_name', count: 1)).must_equal "item"
       Pagy::I18n.locale = 'de'
+
       _(Pagy::I18n.translate('pagy.item_name', count: 1)).must_equal "Eintrag"
       Pagy::I18n.locale = 'unknown'
+
       _ { Pagy::I18n.translate('pagy.item_name', count: 1) }.must_raise Errno::ENOENT
       Pagy::I18n.locale = 'en' # reset for other tests
     end

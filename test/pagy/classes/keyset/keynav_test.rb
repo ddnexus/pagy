@@ -14,6 +14,7 @@ describe "Pagy Keynav" do
                                              limit:            10,
                                              tuple_comparison: true)
           records = pagy.records
+
           _(records.size).must_equal 10
           _(records.first.id).must_equal 13
           _(pagy.update).must_equal ['key', 'page', 3, [2, 1, ["dog", "Denis", 44]]]
@@ -23,6 +24,7 @@ describe "Pagy Keynav" do
                                           page:                    ['key', 2, 2, [10], nil],
                                           limit:                   10,
                                           pre_serialize: ->(attr) { attr[:id] = attr[:id].to_s })
+
           _(pagy.next).must_equal(3)
           _(pagy.update).must_equal ['key', 'page', 3, [2, 1, ["20"]]]
         end
@@ -31,6 +33,7 @@ describe "Pagy Keynav" do
         it 'handles the page/cut for the first page' do
           pagy = Pagy::Keyset::Keynav.new(model.order(:id),
                                           limit: 10)
+
           _(pagy.instance_variable_get(:@cut)).must_be_nil
           _(pagy.next).must_equal 2
           _(pagy.update).must_equal [nil, 'page', 2, [1, 1, [10]]]
@@ -39,6 +42,7 @@ describe "Pagy Keynav" do
           pagy = Pagy::Keyset::Keynav.new(model.order(:id),
                                           page:  ['key', 2, 2, [10]],
                                           limit: 10)
+
           _(pagy.records.first.id).must_equal 11
           _(pagy.next).must_equal 3
           _(pagy.update).must_equal ['key', 'page', 3, [2, 1, [20]]]
@@ -47,6 +51,7 @@ describe "Pagy Keynav" do
           pagy = Pagy::Keyset::Keynav.new(model.order(:id),
                                           page:  ['key', 5, 5, [40]],
                                           limit: 10)
+
           _(pagy.records.first.id).must_equal 41
           _(pagy.next).must_be_nil
           _(pagy.update).must_equal %w[key page]
@@ -57,6 +62,7 @@ describe "Pagy Keynav" do
           pagy = Pagy::Keyset::Keynav.new(model.order(:id),
                                           page: ['key', 1, 3, nil, [10]], # last visited 2
                                           limit: 10)
+
           _(pagy.instance_variable_get(:@prior_cutoff)).must_be_nil
           _(pagy.next).must_equal 2
           _(pagy.update).must_equal %w[key page]
@@ -78,6 +84,7 @@ describe "Pagy Keynav" do
           pagy = Pagy::Keyset::Keynav.new(set, limit: 10)
           pagy.records
           set = pagy.instance_variable_get(:@set)
+
           _((model == Pet ? set.select_values : set.opts[:select]).sort).must_equal %i[animal id name]
         end
       end
@@ -111,6 +118,7 @@ describe "Pagy Keynav" do
               { records: pagy.records, page: pagy.next }
             end
             collection  = set.to_a
+
             _(collection.size).must_equal 50
             _(pages.flatten).must_equal collection
             _(collection.each_slice(9).to_a).must_equal pages

@@ -14,6 +14,7 @@ describe 'Keynav' do
                                  model.order(:id),
                                  tuple_comparison: true,
                                  limit:            10)
+
         _(pagy).must_be_kind_of Pagy::Keyset::Keynav
         _(records.size).must_equal 10
         _(pagy.next).must_equal 2
@@ -26,6 +27,7 @@ describe 'Keynav' do
                                  model.order(:id),
                                  tuple_comparison: true,
                                  limit:            10)
+
         _(pagy).must_be_kind_of Pagy::Keyset::Keynav
         _(records.size).must_equal 10
         _(records.first.id).must_equal 11
@@ -39,6 +41,7 @@ describe 'Keynav' do
                                  model.order(:id),
                                  tuple_comparison: true,
                                  limit:            10)
+
         _(pagy).must_be_kind_of Pagy::Keyset::Keynav
         _(records.size).must_equal 10
         _(pagy.next).must_equal 2
@@ -50,6 +53,7 @@ describe 'Keynav' do
                                  model.order(:id),
                                  tuple_comparison: true,
                                  limit:            10)
+
         _(pagy).must_be_kind_of Pagy::Offset::Countless
         _(records.size).must_equal 10
         _(records.first.id).must_equal 11
@@ -62,6 +66,7 @@ describe 'Keynav' do
                                  model.order(:id),
                                  tuple_comparison: true,
                                  limit:            10)
+
         _(pagy).must_be_kind_of Pagy::Keyset::Keynav
         _(records.size).must_equal 10
         _(records.first.id).must_equal 41

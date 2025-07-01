@@ -14,18 +14,21 @@ describe 'searchkick' do
       _(MockSearchkick::Model.pagy_search('a', b: 2)).must_equal [MockSearchkick::Model, 'a', { b: 2 }, nil]
       args  = MockSearchkick::Model.pagy_search('a', b: 2) { |a| a * 2 }
       block = args[-1]
+
       _(args).must_equal [MockSearchkick::Model, 'a', { b: 2 }, block]
     end
     it 'allows the term argument to be optional' do
       _(MockSearchkick::Model.pagy_search(b: 2)).must_equal [MockSearchkick::Model, nil, { b: 2 }, nil]
       args  = MockSearchkick::Model.pagy_search(b: 2) { |a| a * 2 }
       block = args[-1]
+
       _(args).must_equal [MockSearchkick::Model, nil, { b: 2 }, block]
     end
     it 'adds an empty option hash' do
       _(MockSearchkick::Model.pagy_search('a')).must_equal [MockSearchkick::Model, 'a', {}, nil]
       args  = MockSearchkick::Model.pagy_search('a') { |a| a * 2 }
       block = args[-1]
+
       _(args).must_equal [MockSearchkick::Model, 'a', {}, block]
     end
     it 'adds the caller and arguments' do
@@ -44,6 +47,7 @@ describe 'searchkick' do
       it 'paginates response with defaults' do
         pagy, response = app.send(:pagy, :searchkick, MockSearchkick::Model.pagy_search('a') { 'B-' })
         results = response.results
+
         _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
@@ -53,6 +57,7 @@ describe 'searchkick' do
       end
       it 'paginates results with defaults' do
         pagy, results = app.send(:pagy, :searchkick, MockSearchkick::Model.pagy_search.results)
+
         _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
@@ -62,6 +67,7 @@ describe 'searchkick' do
       end
       it 'paginates with options' do
         pagy, results = app.send(:pagy, :searchkick, MockSearchkick::Model.pagy_search('b').results, page: 2, limit: 10)
+
         _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -74,6 +80,7 @@ describe 'searchkick' do
       it 'paginates results with defaults' do
         results = MockSearchkick::Model.search('a')
         pagy    = app.send(:pagy, :searchkick, results)
+
         _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -82,6 +89,7 @@ describe 'searchkick' do
       it 'paginates results with options and no term' do
         results = MockSearchkick::Model.search('b', page: 2, per_page: 15)
         pagy    = app.send(:pagy, :searchkick, results)
+
         _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 15

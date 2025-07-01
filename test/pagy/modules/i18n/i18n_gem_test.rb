@@ -14,6 +14,7 @@ describe 'pagy/i18n' do
     it 'does not conflict with the I18n gem namespace' do
       app.test_i18n_call
     end
+
     it 'is the actual gem module' do
       _(Pagy::I18n::VERSION).must_equal I18n::VERSION
     end

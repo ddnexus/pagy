@@ -14,6 +14,7 @@ describe "sync_javascript" do
 
   it "copies all default javascript targets" do
     Pagy.sync_javascript(destination)
+
     all_files.each do |file|
       _(File.exist?(File.join(destination, file))).must_equal true, "Expected #{file} to be copied"
     end
@@ -43,6 +44,7 @@ describe "sync_javascript" do
     sleep 0.1
 
     Pagy.sync_javascript(destination, 'pagy.js')
+
     _(File.exist?(File.join(destination, file))).must_equal true, "Expected #{file} to be copied"
     _(original_mtime < File.mtime(File.join(destination, file))).must_equal true, "File should have been overwritten"
   end
@@ -65,6 +67,7 @@ describe "sync_javascript" do
   it "handles paths with Pathname objects" do
     destination_path = Pathname.new(destination)
     Pagy.sync_javascript(destination_path)
+
     all_files.each do |file|
       _(File.exist?(destination_path.join(file))).must_equal true, "Expected #{file} to be copied"
     end

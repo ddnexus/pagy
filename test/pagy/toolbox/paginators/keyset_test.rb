@@ -13,6 +13,7 @@ describe 'Keyset' do
                                  model.order(:animal, :name, :id),
                                  tuple_comparison: true,
                                  limit: 10)
+
         _(pagy).must_be_kind_of Pagy::Keyset
         _(records.size).must_equal 10
         _(pagy.next).must_equal "WyJjYXQiLCJFbGxhIiwxOF0"
@@ -23,6 +24,7 @@ describe 'Keyset' do
                                  model.order(:id),
                                  tuple_comparison: true,
                                  client_max_limit: 100)
+
         _(records.first.id).must_equal 11
         _(pagy.next).must_equal "WzIwXQ"
       end
@@ -33,6 +35,7 @@ describe 'Keyset' do
         pagy, _records = app.send(:pagy, :keyset,
                                   model.order(:id),
                                   client_max_limit: 100)
+
         _(pagy.page_url(:first)).must_equal "/foo?limit=10"
         _(pagy.page_url(:next)).must_equal "/foo?limit=10&page=WzEwXQ"
       end
@@ -41,6 +44,7 @@ describe 'Keyset' do
         pagy, _records = app.send(:pagy, :keyset,
                                   model.order(:id),
                                   client_max_limit: 100)
+
         _(pagy.page_url(:first)).must_equal "/foo?limit=10"
         _(pagy.page_url(:next)).must_equal "/foo?limit=10&page=WzIwXQ"
       end
@@ -49,6 +53,7 @@ describe 'Keyset' do
         pagy, _records = app.send(:pagy, :keyset,
                                   model.order(:id),
                                   client_max_limit: 100)
+
         _(pagy.page_url(:first)).must_equal "/foo?limit=10"
         _(pagy.page_url(:next)).must_be_nil
       end

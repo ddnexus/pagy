@@ -27,6 +27,7 @@ describe 'data_hash for Pagy' do
   end
   it 'checks for unknown keys' do
     pagy, _records = app.send(:pagy, :offset, @collection, data_keys: %i[page unknown_key])
+
     _ { pagy.data_hash }.must_raise Pagy::OptionError
   end
   it 'returns only specific keys' do
@@ -40,6 +41,7 @@ describe 'data_hash for Pagy' do
   it 'checks for unknown keys for Pagy::Calendar::Unit' do
     calendar, _pagy, _records = calendar_app.send(:pagy, :calendar, Event.all,
                                                   year: { data_keys: %i[page unknown_key] })
+
     _ { calendar[:year].data_hash }.must_raise Pagy::OptionError
   end
   it 'returns only specific keys for Pagy::Calendar::Unit' do

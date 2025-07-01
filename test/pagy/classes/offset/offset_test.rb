@@ -31,6 +31,7 @@ describe 'pagy offset' do
     end
     it 'initializes count 0' do
       pagy = Pagy::Offset.new(**OPTIONS, count: 0)
+
       _(pagy.last).must_equal 1
       _(pagy.offset).must_equal 0
       _(pagy.in).must_equal 0
@@ -41,6 +42,7 @@ describe 'pagy offset' do
     end
     it 'initializes single page' do
       pagy = Pagy::Offset.new(**OPTIONS, count: 8)
+
       _(pagy.last).must_equal 1
       _(pagy.offset).must_equal 0
       _(pagy.in).must_equal 8
@@ -51,6 +53,7 @@ describe 'pagy offset' do
     end
     it 'initializes page 1 of 2' do
       pagy = Pagy::Offset.new(**OPTIONS, count: 15)
+
       _(pagy.last).must_equal 2
       _(pagy.offset).must_equal 0
       _(pagy.in).must_equal 10
@@ -61,6 +64,7 @@ describe 'pagy offset' do
     end
     it 'initializes page 2 of 2' do
       pagy = Pagy::Offset.new(**OPTIONS, count: 15, page: 2)
+
       _(pagy.last).must_equal 2
       _(pagy.offset).must_equal 10
       _(pagy.in).must_equal 5
@@ -72,6 +76,7 @@ describe 'pagy offset' do
     end
     it 'initializes page 1' do
       pagy = Pagy::Offset.new(**OPTIONS, page: 1)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.limit).must_equal 10
@@ -85,6 +90,7 @@ describe 'pagy offset' do
     end
     it 'initializes page 2' do
       pagy = Pagy::Offset.new(**OPTIONS, page: 2)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.limit).must_equal 10
@@ -98,6 +104,7 @@ describe 'pagy offset' do
     end
     it 'initializes page 3' do
       pagy = Pagy::Offset.new(**OPTIONS, page: 3)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.limit).must_equal 10
@@ -111,6 +118,7 @@ describe 'pagy offset' do
     end
     it 'initializes page 4' do
       pagy = Pagy::Offset.new(**OPTIONS, page: 4)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.limit).must_equal 10
@@ -124,6 +132,7 @@ describe 'pagy offset' do
     end
     it 'initializes page 5' do
       pagy = Pagy::Offset.new(**OPTIONS, page: 5)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.limit).must_equal 10
@@ -137,6 +146,7 @@ describe 'pagy offset' do
     end
     it 'initializes page 6' do
       pagy = Pagy::Offset.new(**OPTIONS, page: 6)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.limit).must_equal 10
@@ -150,6 +160,7 @@ describe 'pagy offset' do
     end
     it 'initializes page 7' do
       pagy = Pagy::Offset.new(**OPTIONS, page: 7)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.limit).must_equal 10
@@ -163,6 +174,7 @@ describe 'pagy offset' do
     end
     it 'initializes page 8' do
       pagy = Pagy::Offset.new(**OPTIONS, page: 8)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.limit).must_equal 10
@@ -176,6 +188,7 @@ describe 'pagy offset' do
     end
     it 'initializes page 9' do
       pagy = Pagy::Offset.new(**OPTIONS, page: 9)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.limit).must_equal 10
@@ -189,6 +202,7 @@ describe 'pagy offset' do
     end
     it 'initializes page 10' do
       pagy = Pagy::Offset.new(**OPTIONS, page: 10)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.limit).must_equal 10
@@ -202,6 +216,7 @@ describe 'pagy offset' do
     end
     it 'initializes page 11' do
       pagy = Pagy::Offset.new(**OPTIONS, page: 11)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.limit).must_equal 10
@@ -215,12 +230,14 @@ describe 'pagy offset' do
     end
     it 'handles the :max_pages option' do
       pagy = Pagy::Offset.new(count: 100, page: 3, limit: 10, max_pages: 8)
+
       _(pagy.count).must_equal 100
       _(pagy.last).must_equal 8
       _ { Pagy::Offset.new(count: 100, page: 9, limit: 10, max_pages: 8, raise_range_error: true) }.must_raise Pagy::RangeError
     end
     it 'initializes the path' do
       pagy = Pagy::Offset.new(count: 100, path: '/foo')
+
       _(pagy.options[:path]).must_equal('/foo')
     end
   end

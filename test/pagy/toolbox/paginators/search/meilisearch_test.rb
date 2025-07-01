@@ -27,6 +27,7 @@ describe 'meilisearch' do
       end
       it 'paginates response with defaults' do
         pagy, results = app.send(:pagy, :meilisearch, MockMeilisearch::Model.pagy_search('a'))
+
         _(pagy).must_be_instance_of Pagy::Meilisearch
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
@@ -37,6 +38,7 @@ describe 'meilisearch' do
       it 'paginates with options' do
         pagy, results = app.send(:pagy, :meilisearch, MockMeilisearch::Model.pagy_search('b'),
                                  page: 2, limit: 10)
+
         _(pagy).must_be_instance_of Pagy::Meilisearch
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -49,6 +51,7 @@ describe 'meilisearch' do
       it 'paginates results with defaults' do
         results = MockMeilisearch::Model.ms_search('a')
         pagy    = app.send(:pagy, :meilisearch, results)
+
         _(pagy).must_be_instance_of Pagy::Meilisearch
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -57,6 +60,7 @@ describe 'meilisearch' do
       it 'paginates results with options' do
         results = MockMeilisearch::Model.ms_search('b', hits_per_page: 15, page: 3)
         pagy    = app.send(:pagy, :meilisearch, results)
+
         _(pagy).must_be_instance_of Pagy::Meilisearch
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 15

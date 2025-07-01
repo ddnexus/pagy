@@ -12,6 +12,7 @@ describe 'array' do
     end
     it 'paginates with defaults' do
       pagy, records = app.send(:pagy, :offset, @collection)
+
       _(pagy).must_be_instance_of Pagy::Offset
       _(pagy.count).must_equal 1000
       _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
@@ -21,6 +22,7 @@ describe 'array' do
     end
     it 'paginates with options' do
       pagy, records = app.send(:pagy, :offset, @collection, page: 2, limit: 10)
+
       _(pagy).must_be_instance_of Pagy::Offset
       _(pagy.count).must_equal 1000
       _(pagy.limit).must_equal 10

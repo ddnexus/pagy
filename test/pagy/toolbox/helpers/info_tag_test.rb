@@ -21,6 +21,7 @@ describe 'info_tag' do
   it 'renders with no_count' do
     pagy, = MockApp.new(params: { page: '23 50' })
                    .send(:pagy, :countless, MockCollection.new)
+
     _(pagy.count).must_be_nil
     _(pagy.info_tag).must_rematch :info_no_count
   end

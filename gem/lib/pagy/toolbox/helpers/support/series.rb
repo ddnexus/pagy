@@ -23,7 +23,7 @@ class Pagy
                 else                                  # @page in the middle
                   @page - half
                 end
-        series.push(*start...start + slots)
+        series.push(*(start...(start + slots)))
         unless compact || slots < SERIES_SLOTS        # Set first, last and :gap when needed
           series[0]  = 1
           series[1]  = :gap unless series[1]  == 2

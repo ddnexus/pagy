@@ -13,6 +13,7 @@ describe 'Offset' do
     end
     it 'paginates with defaults' do
       pagy, records = app.send(:pagy, :offset, @collection)
+
       _(pagy).must_be_instance_of Pagy::Offset
       _(pagy.count).must_equal 1000
       _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
@@ -23,6 +24,7 @@ describe 'Offset' do
     it 'paginates with page param empty' do
       app = MockApp.new(params: { page: '' })
       pagy, records = app.send(:pagy, :offset, @collection, limit: 10)
+
       _(pagy).must_be_instance_of Pagy::Offset
       _(pagy.count).must_equal 1000
       _(pagy.limit).must_equal pagy.limit
@@ -32,6 +34,7 @@ describe 'Offset' do
     end
     it 'paginates with options' do
       pagy, records = app.send(:pagy, :offset, @collection, page: 2, limit: 10)
+
       _(pagy).must_be_instance_of Pagy::Offset
       _(pagy.count).must_equal 1000
       _(pagy.limit).must_equal pagy.limit
@@ -44,6 +47,7 @@ describe 'Offset' do
       options    = { page: 2, limit: 10, count_over: true }
       pagy,      = app.send :pagy, :offset, collection, **options
       merged     = pagy.options
+
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
       _(merged.keys).must_include :limit
@@ -61,6 +65,7 @@ describe 'Offset' do
       options = {}
       pagy,   = app.send(:pagy, :offset, @collection, **options)
       merged  = pagy.options
+
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
       _(merged[:count]).must_equal 1000
@@ -70,6 +75,7 @@ describe 'Offset' do
       options = { page: 2, limit: 10 }
       pagy,   = app.send(:pagy, :offset, @collection, **options)
       merged  = pagy.options
+
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
       _(merged.keys).must_include :limit
@@ -82,6 +88,7 @@ describe 'Offset' do
       options    = { page: 2, limit: 10 }
       pagy,      = app.send(:pagy, :offset, collection, **options)
       merged     = pagy.options
+
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
       _(merged.keys).must_include :limit
@@ -93,6 +100,7 @@ describe 'Offset' do
       options = { count: 100, page: 3 }
       pagy,   = app.send(:pagy, :offset, @collection, **options)
       merged  = pagy.options
+
       _(merged.keys).must_include :count
       _(merged[:count]).must_equal 100
       _(merged.keys).must_include :page

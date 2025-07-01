@@ -45,6 +45,7 @@ describe 'range' do
     end
     it 'works with empty_page in Pagy' do
       pagy = Pagy::Offset.new(**pagy_vars)
+
       _(pagy.page).must_equal 100
       _(pagy.options[:limit]).must_equal 10
       _(pagy.in).must_equal 0
@@ -54,11 +55,13 @@ describe 'range' do
     end
     it 'works with empty_page in in Pagy::Calendar' do
       pagy = Pagy::Calendar::Day.new(**calendar_vars)
+
       _(pagy.page).must_equal 100
       _(pagy.from).must_equal pagy.instance_variable_get(:@final)
       _(pagy.to).must_equal pagy.instance_variable_get(:@final)
       _(pagy.previous).must_equal pagy.last
       pagy = Pagy::Calendar::Day.new(**calendar_vars, range_rescue: :empty_page, order: :desc)
+
       _(pagy.page).must_equal 100
       _(pagy.from).must_equal pagy.instance_variable_get(:@initial)
       _(pagy.to).must_equal pagy.instance_variable_get(:@initial)
@@ -66,6 +69,7 @@ describe 'range' do
     end
     it 'works with empty_page in Pagy::Offset::Countless' do
       pagy = @pagy_countless
+
       _(pagy.page).must_equal 100
       _(pagy.in).must_equal 0
       _(pagy.from).must_equal 0
@@ -78,17 +82,20 @@ describe 'range' do
     it 'computes series for empty page for Pagy' do
       pagy = Pagy::Offset.new(**pagy_vars)
       series = pagy.send(:series)
+
       _(series).must_equal [1, :gap, 7, 8, 9, 10, 11]
       _(pagy.page).must_equal 100
     end
     it 'computes series for empty page for Pagy::Calendar' do
       pagy = Pagy::Calendar::Day.new(**calendar_vars)
       series = pagy.send(:series)
+
       _(series).must_equal([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
       _(pagy.page).must_equal 100
     end
     it 'computes series for Pagy::Offset::Countless' do
       series = @pagy_countless.send(:series)
+
       _(series).must_equal [1, :gap, 46, 47, 48, 49, 50]
       _(@pagy_countless.page).must_equal 100   # reduce error by 1
     end

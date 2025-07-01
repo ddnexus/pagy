@@ -32,8 +32,10 @@ describe 'pagy/locales' do
       item_name = pagy['item_name']
       case item_name
       when String
+
         _(p11n).must_equal 'Other'
       when Hash
+
         _(item_name.keys - counts[p11n]).must_be_empty
       else
         raise StandardError, "the item_name must be a Hash or String"

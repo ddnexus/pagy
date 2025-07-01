@@ -9,6 +9,7 @@ db_path = File.expand_path('db/test.sqlite3', __dir__)
 # No logs in test
 # ActiveRecord::Base.logger = Logger.new($stdout)
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: db_path)
+Time.zone = 'UTC'
 
 ## Sequel initializer
 Sequel.default_timezone = :utc
@@ -557,7 +558,7 @@ if ENV['REBUILD_TEST_DB']
   event40s = []
   TIMES.each_line(chomp: true).with_index do |time, i|
     count = i + 1
-    events   << { title: "Event ##{count}", time:}
+    events   << { title: "Event ##{count}", time: Time.zone.parse(time)}
     event40s << { title: "Event ##{count}", time:} if count <= 40
   end
   Event.insert_all(events)
