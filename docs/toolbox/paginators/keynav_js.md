@@ -44,7 +44,7 @@ Integrates the [Keyset Glossary](keyset#glossary)
 
 | Term                | Description                                                                                                                                                                 |
 |---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `keynav pagination` | The pagy exclusive technique to use `keyset` pagination, providing **nearly complete** support for **most** navigation helpers. The fasted technique with UI capabilities.  |
+| `keynav pagination` | The pagy exclusive technique to use `keyset` pagination, providing **nearly complete** support for **most** navigation helpers. The fastest technique with UI capabilities. |
 | `page`              | The array of options from the client prepared by the `keynav_js`, to paginate the requested page.                                                                           |
 | `cutoffs`           | The array of `cutoff`s of the known pagination state, used to keep track of the visited pages during the navigation. They are cached in the `sessionStorage` of the client. |
 

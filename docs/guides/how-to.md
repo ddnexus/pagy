@@ -122,10 +122,8 @@ attribute selector and `!important`. Below is an example of overriding the `widt
 
 ==- Override pagy methods
 
-- Identify its path in the gem `lib` dir (e.g., 'pagy/...').
+- Identify the method file's path in the gem `lib` dir (e.g., 'pagy/...').
 - Note the name of the module where it is defined (e.g., `Pagy::...`).
-
-If you need assistance, ask in the [Q&A discussions](https://github.com/ddnexus/pagy/discussions/categories/q-a).
 
 Copy and paste the original method in the [Pagy Initializer](../resources/initializer/)
 
@@ -141,6 +139,8 @@ end
 # prepend your module to the overridden module 
 Pagy::AnyModule.prepend MyOverridingModule
 ```
+
+If you need assistance, ask in the [Q&A discussions](https://github.com/ddnexus/pagy/discussions/categories/q-a).
 
 ==- Paginate an Array
 
@@ -507,6 +507,7 @@ For major versions in the make, we may push pre-release versions to rubygems. Yo
 ```bash
 $ gem search pagy --pre
 ```
+
 And install it with:
 
 ```ruby Gemfile (example)

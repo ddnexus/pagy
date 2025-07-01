@@ -4,7 +4,7 @@ icon: accessibility
 order: 60
 ---
 
-# 
+#  
 
 ## ARIA Attributes
 
@@ -14,8 +14,8 @@ Since version `7.0.0`, Pagy introduced a consistent set of ARIA-compliant attrib
 
 +++ Nav helpers
 
-Pagy provides a customizable `aria-label` for the root element of its helpers. It is usually a `nav` element. For
-the few helper styles that use a different root element, Pagy adds a `role="navigation"` attribute.
+Pagy provides a customizable `aria-label` for the root element of its helpers. It is usually a `nav` element. For the few helper
+styles that use a different root element, Pagy adds a `role="navigation"` attribute.
 
 The default string for the `aria-label` of the root element is "Page" / "Pages" (translated and pluralized according to the total
 number of pages). This is arguably a better description of the navigation content than just "Pagination" (which is also difficult
@@ -23,8 +23,8 @@ to translate in certain languages).
 
 !!!success Help us with your languages!
 Please, check the `pagy.aria_label.nav` in the [locale files](https://github.com/ddnexus/pagy/tree/master/gem/locales)
-used by your app to ensure correctness in translation and pluralization. If it isn't, please post your translation in the issue linked
-within the file. Thank you!
+used by your app to ensure correctness in translation and pluralization. If it isn't, please post your translation in the issue
+linked within the file. Thank you!
 !!!
 
 !!!danger Don't rely on ARIA default with multiple nav elements!
@@ -39,7 +39,6 @@ The `nav` elements are `landmark  roles`, and should be distinctly labeled.
 ```
 
 !!!
-
 
 +++ Links
 

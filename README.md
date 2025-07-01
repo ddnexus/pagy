@@ -268,10 +268,10 @@ See [Contributing](https://github.com/ddnexus/pagy/blob/master/.github/CONTRIBUT
 
 <summary>Versioning</summary>
 
-- Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/) logic. Please check
+- Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/). Please check
   the [Changelog](https://ddnexus.github.io/pagy-pre/changelog) for breaking changes introduced by mayor versions.
   Using [pessimistic version constraint](https://guides.rubygems.org/patterns/#pessimistic-version-constraint) in your Gemfile
-  will ensure smooth updates WITHOUT BREAKING CHANGES.
+  will ensure smooth upgrades.
 
 </details>
 

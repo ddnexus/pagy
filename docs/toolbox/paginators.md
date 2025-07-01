@@ -14,7 +14,7 @@ categories:
 
 ### The `pagy` Method
 
-The `pagy` method provides a common interface to all paginators. Include it where you are going to paginate a collection _(usually in ApplicationContoller)_:
+The `pagy` method provides a common interface to all paginators. Include it where you are going to paginate a collection _(usually in ApplicationController)_:
 
 ```ruby
 include Pagy::Method
@@ -31,7 +31,7 @@ You can use it to paginate ANY collection, with ANY technique. For example:
 - `@pagy` is the pagination istance. It provides all the instance helper methods to use in your code.
 - `@records` are the records belonging to the requested page.
 
-!!! success
+!!!success
 
 The `pagy` method expects to find the rack request at `self.request`, however, you can also use pagy [outside controllers or views](../guides/how-to/#use-pagy-outside-controllers-or-views), or even [with a non-rack app](../guides/how-to/#use-pagy-with-non-rack-apps).
 !!!
@@ -40,7 +40,7 @@ The `pagy` method expects to find the rack request at `self.request`, however, y
 
 The `paginators` are symbolic names of different pagination types/contexts (e.g., `:offset`, `:keyset`, `countless`, etc.). You pass the name to the `pagy` method and pagy will internally instantiate and handle the appropriate paginator class.
 
-!!! warning Avoid instantiating Pagy classes directly
+!!!warning Avoid instantiating Pagy classes directly
 
 Instantiate paginator classes only if the documentation explicitly suggests it.
 !!!

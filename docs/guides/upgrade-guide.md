@@ -13,7 +13,7 @@ order: 80
 Pagy version 43 is a complete redesign of the legacy code. Its improvements make pagination a lot simpler and powerful, but
 require a quite different way to use it.
 
-!!! success Follow this guide to upgrade your app in just a few minutes.
+!!!success Follow this guide to upgrade your app in just a few minutes.
 
 Cherry-pick only what applies to your app: you can safely skip all the rest.
 
@@ -24,7 +24,7 @@ Cherry-pick only what applies to your app: you can safely skip all the rest.
 This guide focuses on getting the job done quickly. If you want to learn more about the changes:
 
 - Consult the docs and [How To Guide](how-to)
-- Ask Pagy AI specific questions (Bottom-right button in this page)
+- Ask Pagy AI specific questions (with the bottom-right button in this page)
 - Ask in the [Q&A discussion](https://github.com/ddnexus/pagy/discussions/categories/q-a).
 
 !!!
@@ -305,7 +305,6 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 - Use an appropriate approach to address your requirement, such as utilizing URL rewriting at the HTTP server level.
 
 ===
-</details>
 
 ### 3. Final steps
 
@@ -364,7 +363,8 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 - If your `pagy-old.rb` contains the `Pagy::I18n` setup, and the setup includes some custom dictionary file, then uncomment and
   set up the relevant `Pagy::I18n` lookup section in the `pagy.rb` file. _(See the [I18n docs](../resources/i18n) for details)_
-- Update your custom dictionary files (if any) to the new [dictionary structure](../resources/i18n/#dictionary-file-example), or they won't work correctly.
+- Update your custom dictionary files (if any) to the new [dictionary structure](../resources/i18n/#dictionary-file-example), or
+  they won't work correctly.
 - Besides that, you don't need any line of the old setup, because all the locales are autoloaded when your app uses them.
 - Remove all the I18n code from the `pagy-old.rb`.
 

@@ -17,14 +17,6 @@ The actual options are documented alongside the [paginators](paginators) and [he
 
 Pagy has a top-down hierarchical options system that allows you to set and override options at different levels.
 
-!!!success
-
-- **Keep options local**
-  - For clarity, set options as close as possible to where they're consumed.
-- **Widen the scope when needed**
-  - Use higher-level options when they conveniently affect broader scopes.
-!!!
-
 #### Global level
 
 - For example `Pagy.options[:limit] = 10`.
@@ -42,3 +34,11 @@ Pagy has a top-down hierarchical options system that allows you to set and overr
 - For example `@pagy.series_nav(**options)`.
 - The options passed to a helper override the options set upstream at any level for the helper output.
 - Otions already consumed upstream are not affected.
+
+!!!success
+
+- **Keep options local**
+  - For clarity, set options as close as possible to where they're consumed.
+- **Widen the scope when needed**
+  - Use higher-level options when they conveniently affect broader scopes.
+    !!!

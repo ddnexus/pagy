@@ -13,7 +13,7 @@ categories:
 
 ---
 
-`data_hash` extracts a hash of key-value pairs that you pluck from the pagy object. It is useful for exporting pagination
+`data_hash` plucks a hash of key-value pairs from the pagy object. It is useful for exporting pagination
 data to JavaScript frameworks like Vue.js, React.js, etc.
 
 !!!success It works with all paginators
