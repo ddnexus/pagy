@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.805042805220">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.805042926125">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>CHANGELOG | Pagy</title>
     <meta name="title" content="CHANGELOG | Pagy">
-    <meta name="description" content="Pagy follows the Semantic Versioning 2.0.0, and introduces BREAKING CHANGES only for MAYOR versions.">
+    <meta name="description" content="Pagy follows the Semantic Versioning 2.0.0, and introduces BREAKING CHANGES only for MAJOR versions.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/changelog/">
@@ -21,21 +21,21 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/changelog/">
     <meta property="og:title" content="CHANGELOG | Pagy">
-    <meta property="og:description" content="Pagy follows the Semantic Versioning 2.0.0, and introduces BREAKING CHANGES only for MAYOR versions.">
+    <meta property="og:description" content="Pagy follows the Semantic Versioning 2.0.0, and introduces BREAKING CHANGES only for MAJOR versions.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ddnexus.github.io/pagy/changelog/">
     <meta property="twitter:title" content="CHANGELOG | Pagy">
-    <meta property="twitter:description" content="Pagy follows the Semantic Versioning 2.0.0, and introduces BREAKING CHANGES only for MAYOR versions.">
+    <meta property="twitter:description" content="Pagy follows the Semantic Versioning 2.0.0, and introduces BREAKING CHANGES only for MAJOR versions.">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../resources/css/retype.css?v=3.11.0.805042805220" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.11.0.805042926125" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.11.0.805042805220" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.11.0.805042926125" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.11.0.805042805220" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.11.0.805042926125" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -270,7 +270,7 @@
         <span>Release Policy</span>
     </h2>
 </doc-anchor-target>
-<p>Pagy follows the <a href="https://semver.org/">Semantic Versioning 2.0.0</a>, and introduces BREAKING CHANGES only for MAYOR versions.</p>
+<p>Pagy follows the <a href="https://semver.org/">Semantic Versioning 2.0.0</a>, and introduces BREAKING CHANGES only for MAJOR versions.</p>
 <p>We release any new version (MAJOR, MINOR, PATCH) as soon as it is ready for release, regardless of any time constraint,
 frequency or duration.</p>
 <p>We rarely deprecate elements (releasing a new MAYOR version is just simpler and more efficient). However, when we do, you
@@ -553,7 +553,7 @@ the most recent version WITHOUT BREAKING CHANGES.</p>
 </li>
 <li>The Array type for the <code v-pre>:size</code> (e.g. <code v-pre>size: [1, 4, 4, 1]</code>) that generates the classic bar is not supported anymore: use the
 <code v-pre>:size</code> set to an integer with the <code v-pre>ends: true</code> variable (which are the default since 8.4.6). If a legacy bar remains REALLY
-a requirement, add <code v-pre>require 'pagy/extras/size</code> to your <code v-pre>pagy.rb</code> initalizer. (See the
+a requirement, add <code v-pre>require 'pagy/extras/size</code> to your <code v-pre>pagy.rb</code> initializer. (See the
 <a href="https://ddnexus.github.io/pagy/docs/extras/size">size extra</a>)</li>
 </ul>
 <doc-anchor-target id="simple-renaming">
