@@ -58,6 +58,10 @@ development tools, making it a comprehensive upgrade from previous versions.
 - **New [documentation](https://ddnexus.github.io/pagy-pre/guides/quick-start)**
   - Very concise, straightforward, and easy to navigate and understand.
 
+### Upgrade to 43
+
+https://ddnexus.github.io/pagy-pre/guides/upgrade-guide/
+
 <!-- whats_new_end -->
 
 Take a look at the [Examples](#examples) for a quick overview of the new API.
