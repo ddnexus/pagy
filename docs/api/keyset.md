@@ -191,7 +191,7 @@ encoding/decoding cycle, causing the ordering to fail and thus creating all sort
 repeating the same page, missing or duplicated records, etc.). Here is what you can do:
 
 ```ruby
-# Match the microsecods with the strings stored into the time columns of SQLite
+# Match the microseconds with the strings stored into the time columns of SQLite
 jsonify_keyset_attributes = lambda do |attributes|
   # Convert it to a string matching the stored value/format in SQLite DB
   attributes[:created_at] = attributes[:created_at].strftime('%F %T.%6N')
@@ -242,7 +242,7 @@ The generic `to_json` method used to encode the `page` may lose some information
 
 !!!success
 - Check the actual executed DB query and the actual stored value
-- Identify the column that have a format that doesn't match with the keyset
+- Identify the column that has a format that doesn't match with the keyset
 - Override the encoding with the [:jsonify_keyset_attributes](#jsonify-keyset-attributes) variable
 !!!
 
