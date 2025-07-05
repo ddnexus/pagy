@@ -6,7 +6,7 @@ icon: versions-24
 
 ## Release Policy
 
-Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/), and introduces BREAKING CHANGES only for MAYOR versions.
+Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/), and introduces BREAKING CHANGES only for MAJOR versions.
 
 We release any new version (MAJOR, MINOR, PATCH) as soon as it is ready for release, regardless of any time constraint, 
 frequency or duration.
@@ -159,7 +159,7 @@ If you upgrade from version `< 9.0.0` see the following:
   - `pagy-module.d.ts`: use `pagy.d.ts`
 - The Array type for the `:size` (e.g. `size: [1, 4, 4, 1]`) that generates the classic bar is not supported anymore: use the 
   `:size` set to an integer with the `ends: true` variable (which are the default since 8.4.6). If a legacy bar remains REALLY 
-  a requirement, add `require 'pagy/extras/size` to your `pagy.rb` initalizer. (See the 
+  a requirement, add `require 'pagy/extras/size` to your `pagy.rb` initializer. (See the 
   [size extra](https://ddnexus.github.io/pagy/docs/extras/size))
   
 #### Simple renaming
