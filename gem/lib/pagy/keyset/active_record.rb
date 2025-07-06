@@ -10,6 +10,12 @@ class Pagy
       # Get the keyset attributes from the record
       def keyset_attributes_from(record) = record.slice(*@keyset.keys)
 
+      # Get the hash of quoted keyset identifiers
+      def quoted_identifiers(table)
+        connection = @set.connection
+        @keyset.to_h { |column| [column, "#{connection.quote_table_name(table)}.#{connection.quote_column_name(column)}"] }
+      end
+
       # Extract the keyset from the set
       def extract_keyset
         @set.order_values.each_with_object({}) do |node, keyset|

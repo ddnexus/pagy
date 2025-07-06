@@ -73,7 +73,7 @@ const Pagy = (() => {
   };
   const trim = (a, param) => a.replace(new RegExp(`[?&]${param}=1\\b(?!&)|\\b${param}=1&`), "");
   return {
-    version: "9.3.4",
+    version: "9.3.5",
     init(arg) {
       const target = arg instanceof Element ? arg : document;
       const elements = target.querySelectorAll("[data-pagy]");

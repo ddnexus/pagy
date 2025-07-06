@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-VERSION = '9.3.4'
+VERSION = '9.3.5'
 LINUX   = RbConfig::CONFIG['host_os'].include?('linux')
 HOST    = '0.0.0.0'
 PORT    = '8000'
@@ -58,14 +58,14 @@ end
 arg = ARGV.shift
 if arg.eql?('clone')
   name = ARGV.shift
-  Optimist.die("Expected APP to be in [#{apps.keys.join(', ')}]; got #{arg.inspect}") unless apps.key?(arg)
+  Optimist.die("Expected APP to be in [#{apps.keys.join(', ')}]; got #{name.inspect}") unless apps.key?(name)
   if File.exist?(name)
     print "Do you want to overwrite the #{name.inspect} file? (y/n)> "
     answer = gets.chomp
     Optimist.die("#{name.inspect} file already present") unless answer.start_with?(/y/i)
   end
   require 'fileutils'
-  FileUtils.cp(apps[arg], '.', verbose: true)
+  FileUtils.cp(apps[name], '.', verbose: true)
 else
   if apps.key?(arg)  # showcase env
     opts[:env]   = 'showcase'
