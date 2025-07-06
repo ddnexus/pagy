@@ -6,10 +6,11 @@
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 <!-- whats_new_end -->
 
-### Changes in 9.3.4
+### Changes in 9.3.5
 
 <!-- changes_start -->
-- Fix method visibility in JsonApiExtra (#765)
+- fix quoted identifiers in keyset (#780)
+- Fix clone command (#770)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

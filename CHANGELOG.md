@@ -16,7 +16,7 @@ can expect the old functionality to be supported ONLY during the next releases b
 
 ## Recommended Version Constraint
 
-Given a version number `MAJOR.MINOR.PATCH` (e.g. `9.3.4`):
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `9.3.5`):
 
 The `gem 'pagy', '~> 9.3'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to 
 the most recent version WITHOUT BREAKING CHANGES.
@@ -41,6 +41,11 @@ If you upgrade from version `< 9.0.0` see the following:
 
 - `:after_latest` keyset variable: use `:filter_newest`
 <hr>
+
+## Version 9.3.5
+
+- fix quoted identifiers in keyset (#780)
+- Fix clone command (#770)
 
 ## Version 9.3.4
 
