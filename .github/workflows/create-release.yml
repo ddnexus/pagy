@@ -24,6 +24,6 @@ jobs:
           release_name: Version ${{ github.ref_name }}
           body_path: .github/latest_release_body.md
           draft: false
-          prerelease: ${{ github.ref_name =~ '^[0-9]+\\.[0-9]+\\.[0-9]+\\.[a-zA-Z]+[0-9]*$' }}
+          prerelease: ${{ contains(github.ref_name, '.pre') || contains(github.ref_name, '.rc') }}
           owner: ddnexus
           repo: pagy
