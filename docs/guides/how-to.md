@@ -338,10 +338,10 @@ Check out these paginators:
 
 ==- Ignore Brakeman UnescapedOutputs false positives warnings
 
-Pagy output safe HTML, however being an agnostic pagination gem it does not use the specific `html_safe` rails helper for its
+Pagy outputs safe HTML, however being an agnostic pagination gem it does not use the specific `html_safe` rails helper for its
 output. That is noted by the [Brakeman](https://github.com/presidentbeef/brakeman) gem, that will raise a warning.
 
-You can avoid the warning adding it to the `brakeman.ignore` file. More details [here](https://github.com/ddnexus/pagy/issues/243)
+Avoid the warning by adding it to the `brakeman.ignore` file. More details [here](https://github.com/ddnexus/pagy/issues/243)
 and [here](https://github.com/presidentbeef/brakeman/issues/1519).
 
 ==- Raise Pagy::RangeError exceptions
@@ -449,19 +449,18 @@ Here is a conceptual example using the `session`:
 require 'digest'
 
 def filtered_action
-  options = {}
-  if params[:filter_key] # already cached
+  pagy_options = {}
+  if params[:filter_key]  # retrieve already cached filters
     filters = session[params[:filter_key]]
-  else
-    # first request
-    filters      = params[:filters]
+  else  # store new filters
+    filters      = params[:filters] # your filter hash
     key          = Digest::SHA1.hexdigest(filters.sort.to_json)
     session[key] = filters
-
-    options[:querify] = ->(qh) { qh.merge!(filter_key: key) }
+    
+    pagy_options[:querify] = ->(query_hash) { query_hash.merge!(filter_key: key) }
   end
   collection      = Product.where(**filters)
-  @pagy, @records = pagy(:offset, collection, **options)
+  @pagy, @records = pagy(:offset, collection, **pagy_options)
 end
 ```
 

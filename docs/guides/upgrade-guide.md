@@ -48,8 +48,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 - When you find one, follow the specific section below to upgrade your code.
 - As you proceed, remove each entry from the `pagy-old.rb`.
 
-<details>
-  <summary><h4 style="display: inline-block">Extras...</h4></summary>
+#### Extras
 
 ==- `array`
 
