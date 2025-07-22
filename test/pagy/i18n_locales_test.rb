@@ -46,7 +46,7 @@ describe 'pagy/locales' do
       end
     end
     it "ensures #{locale}.yml has the correct aria_label,nav and item_name keys per the declared (#{rule}) rule" do
-      skip if %w[ta sw].include?(locale) # ta.yml and sw.yml do not have the requisite keys yet
+      skip if %w[sw].include?(locale) # sw.yml does not have the requisite keys yet
 
       pluralizations = counts[rule]
 
