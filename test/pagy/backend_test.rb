@@ -14,6 +14,7 @@ describe 'pagy/backend' do
     end
     it 'paginates with defaults' do
       pagy, records = app.send(:pagy, @collection)
+
       _(pagy).must_be_instance_of Pagy
       _(pagy.count).must_equal 1000
       _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
@@ -23,6 +24,7 @@ describe 'pagy/backend' do
     end
     it 'paginates with vars' do
       pagy, records = app.send(:pagy, @collection, page: 2, limit: 10, anchor_string: 'X')
+
       _(pagy).must_be_instance_of Pagy
       _(pagy.count).must_equal 1000
       _(pagy.limit).must_equal pagy.limit
@@ -41,6 +43,7 @@ describe 'pagy/backend' do
       vars   = {}
       pagy,  = app.send :pagy, @collection, **vars
       merged = pagy.vars
+
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
       _(merged[:count]).must_equal 1000
@@ -50,6 +53,7 @@ describe 'pagy/backend' do
       vars   = { page: 2, limit: 10, anchor_string: 'X' }
       pagy,  = app.send :pagy, @collection, **vars
       merged = pagy.vars
+
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
       _(merged.keys).must_include :limit
@@ -64,6 +68,7 @@ describe 'pagy/backend' do
       vars   = { page: 2, limit: 10, anchor_string: 'X' }
       pagy,  = app.send :pagy, collection, **vars
       merged = pagy.vars
+
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
       _(merged.keys).must_include :limit
@@ -77,6 +82,7 @@ describe 'pagy/backend' do
       vars   = { count: 100, page: 3 }
       pagy,  = app.send :pagy, @collection, **vars
       merged = pagy.vars
+
       _(merged.keys).must_include :count
       _(merged[:count]).must_equal 100
       _(merged.keys).must_include :page
@@ -89,6 +95,7 @@ describe 'pagy/backend' do
       collection = MockCollection.new
       pagy       = Pagy.new count: 1000
       records    = app.send :pagy_get_items, collection, pagy
+
       _(records).must_equal [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
     end
   end

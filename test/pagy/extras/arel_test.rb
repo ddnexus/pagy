@@ -16,6 +16,7 @@ describe 'pagy/extras/arel' do
     end
     it 'paginates with defaults' do
       pagy, records = app.send(:pagy_arel, @collection)
+
       _(pagy).must_be_instance_of Pagy
       _(pagy.count).must_equal 1000
       _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
@@ -25,6 +26,7 @@ describe 'pagy/extras/arel' do
     end
     it 'paginates with vars' do
       pagy, records = app.send(:pagy_arel, @collection, page: 2, limit: 10, anchor_string: 'X')
+
       _(pagy).must_be_instance_of Pagy
       _(pagy.count).must_equal 1000
       _(pagy.limit).must_equal 10
@@ -43,6 +45,7 @@ describe 'pagy/extras/arel' do
       vars   = {}
       pagy,  = app.send :pagy_arel, @collection, **vars
       merged = pagy.vars
+
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
       _(merged[:count]).must_equal 1000
@@ -52,6 +55,7 @@ describe 'pagy/extras/arel' do
       vars   = { page: 2, limit: 10, anchor_string: 'X' }
       pagy,  = app.send :pagy_arel, @collection, **vars
       merged = pagy.vars
+
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
       _(merged.keys).must_include :limit
@@ -66,6 +70,7 @@ describe 'pagy/extras/arel' do
       vars   = { page: 2, limit: 10, anchor_string: 'X' }
       pagy,  = app.send :pagy_arel, collection, **vars
       merged = pagy.vars
+
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
       _(merged.keys).must_include :limit
@@ -79,6 +84,7 @@ describe 'pagy/extras/arel' do
       vars   = { count: 100, page: 3 }
       pagy,  = app.send :pagy_arel, @collection, **vars
       merged = pagy.vars
+
       _(merged.keys).must_include :count
       _(merged[:count]).must_equal 100
       _(merged.keys).must_include :page

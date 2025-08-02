@@ -30,10 +30,12 @@ describe 'pagy/extras/trim' do
 
         pagy = Pagy.new(count: 1000, page: page)
         a    = app.pagy_anchor(pagy)
+
         _(a.(page)).must_include(%(<a href="/foo#{trimmed}"))
 
         pagy = Pagy.new(count: 1000, page: page, trim_extra: false)
         a    = app.pagy_anchor(pagy)
+
         _(a.(page)).must_include(%(<a href="/foo#{not_trimmed}"))
       end
     end

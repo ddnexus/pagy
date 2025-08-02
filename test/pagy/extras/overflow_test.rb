@@ -43,6 +43,7 @@ describe 'pagy/extras/overflow' do
   describe '#initialize' do
     it 'works in :last_page mode in Pagy' do
       pagy = Pagy.new(**pagy_vars, overflow: :last_page)
+
       _(pagy).must_be_instance_of Pagy
       _(pagy.pages).must_equal 11
       _(pagy.page).must_equal pagy.last
@@ -55,6 +56,7 @@ describe 'pagy/extras/overflow' do
     end
     it 'works in :last_page mode in Pagy::Calendar' do
       pagy = Pagy::Calendar::Day.new(**calendar_vars, overflow: :last_page)
+
       _(pagy).must_be_instance_of Pagy::Calendar::Day
       _(pagy.pages).must_equal 11
       _(pagy.page).must_equal pagy.last
@@ -70,6 +72,7 @@ describe 'pagy/extras/overflow' do
     end
     it 'works in :empty_page mode in Pagy' do
       pagy = Pagy.new(**pagy_vars, overflow: :empty_page)
+
       _(pagy.page).must_equal 100
       _(pagy.offset).must_equal 990
       _(pagy.limit).must_equal 10
@@ -80,11 +83,13 @@ describe 'pagy/extras/overflow' do
     end
     it 'works in :empty_page mode in Pagy::Calendar' do
       pagy = Pagy::Calendar::Day.new(**calendar_vars, overflow: :empty_page)
+
       _(pagy.page).must_equal 100
       _(pagy.from).must_equal pagy.instance_variable_get(:@final)
       _(pagy.to).must_equal pagy.instance_variable_get(:@final)
       _(pagy.prev).must_equal pagy.last
       pagy = Pagy::Calendar::Day.new(**calendar_vars, overflow: :empty_page, order: :desc)
+
       _(pagy.page).must_equal 100
       _(pagy.from).must_equal pagy.instance_variable_get(:@initial)
       _(pagy.to).must_equal pagy.instance_variable_get(:@initial)
@@ -92,6 +97,7 @@ describe 'pagy/extras/overflow' do
     end
     it 'works in :empty_page mode in Pagy::Countless' do
       pagy = @pagy_countless
+
       _(pagy.page).must_equal 100
       _(pagy.offset).must_equal 0
       _(pagy.limit).must_equal 0
@@ -111,17 +117,20 @@ describe 'pagy/extras/overflow' do
     it 'computes series for empty page for Pagy' do
       pagy = Pagy.new(**pagy_vars, overflow: :empty_page)
       series = pagy.series
+
       _(series).must_equal [1, :gap, 7, 8, 9, 10, 11]
       _(pagy.page).must_equal 100
     end
     it 'computes series for empty page for Pagy::Calendar' do
       pagy = Pagy::Calendar::Day.new(**calendar_vars, overflow: :empty_page)
       series = pagy.series
+
       _(series).must_equal([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
       _(pagy.page).must_equal 100
     end
     it 'computes empty series for Pagy::Countless' do
       series = @pagy_countless.series
+
       _(series).must_equal []
       _(@pagy_countless.page).must_equal 100
     end

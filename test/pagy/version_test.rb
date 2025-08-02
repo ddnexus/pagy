@@ -24,6 +24,7 @@ describe 'Version match' do
       _(File.read(path)).must_match "VERSION = '#{Pagy::VERSION}'"
     end
   end
+
   it 'defines the same version in javascripts/pagy.min.js' do
     _(Pagy.root.join('javascripts', 'pagy.min.js').read).must_match "version:\"#{Pagy::VERSION}\","
   end
@@ -35,6 +36,7 @@ describe 'Version match' do
   end
   it 'defines the same version in CHANGELOG.md' do
     changelog = Pagy.root.parent.join('CHANGELOG.md').read
+
     _(changelog).must_match "(e.g. `#{Pagy::VERSION}"
     _(changelog).must_match "gem 'pagy', '~> #{Pagy::VERSION.sub(/\.\d+$/, '')}"
     _(changelog).must_match "## Version #{Pagy::VERSION}"

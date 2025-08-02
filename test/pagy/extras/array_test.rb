@@ -14,6 +14,7 @@ describe 'pagy/extras/array' do
     end
     it 'paginates with defaults' do
       pagy, records = app.send(:pagy_array, @collection)
+
       _(pagy).must_be_instance_of Pagy
       _(pagy.count).must_equal 1000
       _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
@@ -23,6 +24,7 @@ describe 'pagy/extras/array' do
     end
     it 'paginates with vars' do
       pagy, records = app.send(:pagy_array, @collection, page: 2, limit: 10, anchor_string: 'X')
+
       _(pagy).must_be_instance_of Pagy
       _(pagy.count).must_equal 1000
       _(pagy.limit).must_equal 10

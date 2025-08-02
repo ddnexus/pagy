@@ -29,6 +29,7 @@ describe 'pagy/extras/meilisearch' do
       end
       it 'paginates response with defaults' do
         pagy, results = app.send(:pagy_meilisearch, MockMeilisearch::Model.pagy_search('a'))
+
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
@@ -39,6 +40,7 @@ describe 'pagy/extras/meilisearch' do
       it 'paginates with vars' do
         pagy, results = app.send(:pagy_meilisearch, MockMeilisearch::Model.pagy_search('b'),
                                  page: 2, limit: 10, anchor_string: 'X')
+
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -50,6 +52,7 @@ describe 'pagy/extras/meilisearch' do
       it 'paginates with overflow' do
         pagy, results = app.send(:pagy_meilisearch, MockMeilisearch::Model.pagy_search('b'),
                                  page: 200, limit: 10, anchor_string: 'X', overflow: :last_page)
+
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -63,6 +66,7 @@ describe 'pagy/extras/meilisearch' do
       it 'paginates results with defaults' do
         results = MockMeilisearch::Model.ms_search('a')
         pagy    = Pagy.new_from_meilisearch(results)
+
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -71,6 +75,7 @@ describe 'pagy/extras/meilisearch' do
       it 'paginates results with vars' do
         results = MockMeilisearch::Model.ms_search('b', hits_per_page: 15, page: 3)
         pagy    = Pagy.new_from_meilisearch(results, anchor_string: 'X')
+
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 15

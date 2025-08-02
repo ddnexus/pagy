@@ -25,6 +25,7 @@ describe 'pagy/extras/metadata' do
     end
     it 'checks for unknown metadata' do
       pagy, _records = app.send(:pagy, @collection, metadata: %i[page unknown_key])
+
       _ { app.send(:pagy_metadata, pagy) }.must_raise Pagy::VariableError
     end
     it 'returns only specific metadata' do
@@ -41,6 +42,7 @@ describe 'pagy/extras/metadata' do
     it 'checks for unknown metadata for Pagy::Calendar' do
       calendar, _pagy, _records = calendar_app.send(:pagy_calendar, Event.all,
                                                     year: { metadata: %i[page unknown_key] })
+
       _ { calendar_app.send(:pagy_metadata, calendar[:year]) }.must_raise Pagy::VariableError
     end
     it 'returns only specific metadata for Pagy::Calendar' do

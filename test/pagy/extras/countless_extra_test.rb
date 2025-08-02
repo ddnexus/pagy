@@ -20,6 +20,7 @@ describe 'pagy/extras/countless' do
   describe '#pagy_countless' do
     it 'shows current and next for first page' do
       pagy, = app.send(:pagy_countless, @collection, page: 1)
+
       _(pagy.series).must_equal ['1', 2]
       _(pagy.count).must_be_nil
       _(pagy.prev).must_be_nil
@@ -27,6 +28,7 @@ describe 'pagy/extras/countless' do
     end
     it 'shows start-pages, :gap, before-pages, current and next for intermediate page' do
       pagy, = app.send(:pagy_countless, @collection, page: 25)
+
       _(pagy.series).must_equal [1, :gap, 22, 23, 24, '25', 26]
       _(pagy.count).must_be_nil
       _(pagy.prev).must_equal 24
@@ -34,6 +36,7 @@ describe 'pagy/extras/countless' do
     end
     it 'shows start-pages, :gap, before-pages, current and next for last page' do
       pagy, = app.send(:pagy_countless, @collection, page: last_page)
+
       _(pagy.series).must_equal [1, :gap, 46, 47, 48, 49, '50']
       _(pagy.count).must_be_nil
       _(pagy.prev).must_equal 49
@@ -41,6 +44,7 @@ describe 'pagy/extras/countless' do
     end
     it 'returns empty series for empty :size variable for first page' do
       pagy, = app.send(:pagy_countless, @collection, size: 0, page: 1)
+
       _(pagy.series).must_equal []
       _(pagy.count).must_be_nil
       _(pagy.prev).must_be_nil
@@ -48,6 +52,7 @@ describe 'pagy/extras/countless' do
     end
     it 'returns empty series for empty :size variable for intermediate page' do
       pagy, = app.send(:pagy_countless, @collection, size: 0, page: 25)
+
       _(pagy.series).must_equal []
       _(pagy.count).must_be_nil
       _(pagy.prev).must_equal 24
@@ -55,6 +60,7 @@ describe 'pagy/extras/countless' do
     end
     it 'returns empty series for empty :size variable for last page' do
       pagy, = app.send(:pagy_countless, @collection, size: 0, page: last_page)
+
       _(pagy.series).must_equal []
       _(pagy.count).must_be_nil
       _(pagy.prev).must_equal 49
@@ -67,6 +73,7 @@ describe 'pagy/extras/countless' do
     it 'sets :page_param from defaults' do
       Pagy::DEFAULT[:page_param] = :page_number
       pagy, paged = app.send(:pagy_countless, @collection)
+
       _(pagy.count).must_be_nil
       _(pagy.page).must_equal 4
       _(paged).must_equal Array(61..80)
@@ -74,6 +81,7 @@ describe 'pagy/extras/countless' do
     it 'sets :page_param from vars' do
       Pagy::DEFAULT[:page_param] = :page
       pagy, paged = app.send(:pagy_countless, @collection, page_param: :page_number)
+
       _(pagy.count).must_be_nil
       _(pagy.page).must_equal 4
       _(paged).must_equal Array(61..80)
@@ -81,12 +89,14 @@ describe 'pagy/extras/countless' do
     it 'bypasses :page_param with :page variable' do
       Pagy::DEFAULT[:page_param] = :another_page_number
       pagy, paged = app.send(:pagy_countless, @collection, page_param: :page_number, page: 1)
+
       _(pagy.count).must_be_nil
       _(pagy.page).must_equal 1
       _(paged).must_equal Array(1..20)
     end
     it 'can use :countless_minimal' do
       pagy, = app.send(:pagy_countless, @collection, page: 25, countless_minimal: true)
+
       _(pagy.series).must_be_nil
       _(pagy.count).must_be_nil
       _(pagy.prev).must_be_nil

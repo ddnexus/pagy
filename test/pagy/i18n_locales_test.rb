@@ -38,8 +38,10 @@ describe 'pagy/locales' do
       item_name = language_yml[locale]['pagy']['item_name']
       case item_name
       when String
+
         _(rule).must_equal :other
       when Hash
+
         _(item_name.keys - counts[rule]).must_be_empty
       else
         raise StandardError, "item_name must be Hash or String"

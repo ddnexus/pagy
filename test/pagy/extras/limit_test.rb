@@ -16,20 +16,24 @@ require_relative '../../mock_helpers/app'
 
 def test_limit_vars_params(limit, vars, params)
   app = MockApp.new params: params
+
   _(app.params.to_options).must_equal params
   [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model],
    [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
     pagy, records = app.send(meth, mod.pagy_search('a').records, **vars)
+
     _(pagy.limit).must_equal limit
     _(records.size).must_equal limit
   end
   [[:pagy_meilisearch, MockMeilisearch::Model]].each do |meth, mod|
     pagy, records = app.send(meth, mod.pagy_search('a'), **vars)
+
     _(pagy.limit).must_equal limit
     _(records.size).must_equal limit
   end
   %i[pagy pagy_countless pagy_array pagy_arel].each do |meth|
     pagy, records = app.send(meth, @collection, **vars)
+
     _(pagy.limit).must_equal limit
     _(records.size).must_equal limit
   end
@@ -116,22 +120,27 @@ describe 'pagy/extras/limit' do
     describe '#pagy_url_for' do
       it 'renders basic url' do
         pagy = Pagy.new count: 1000, page: 3
+
         _(app.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&limit=20'
       end
       it 'renders basic url and limit var' do
         pagy = Pagy.new count: 1000, page: 3, limit: 50
+
         _(app.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&limit=50'
       end
       it 'renders url with limit_param' do
         pagy = Pagy.new count: 1000, page: 3, limit_param: :custom
+
         _(app.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&custom=20'
       end
       it 'renders url with fragment' do
         pagy = Pagy.new count: 1000, page: 3
+
         _(app.pagy_url_for(pagy, 6, fragment: '#fragment')).must_equal '/foo?page=6&limit=20#fragment'
       end
       it 'renders url with params and fragment' do
         pagy = Pagy.new count: 1000, page: 3, params: { a: 3, b: 4 }, limit: 40
+
         _(app.pagy_url_for(pagy, 5, fragment: '#fragment')).must_equal "/foo?page=5&a=3&b=4&limit=40#fragment"
       end
     end
@@ -140,6 +149,7 @@ describe 'pagy/extras/limit' do
       _(app.pagy_limit_selector_js(pagy)).must_rematch :selector_1
       _(app.pagy_limit_selector_js(pagy, id: 'test-id', item_name: 'products')).must_rematch :selector_2
       pagy = Pagy.new count: 1000, page: 3, limit_extra: false
+
       _(app.pagy_limit_selector_js(pagy, id: 'test-id')).must_equal ''
     end
   end

@@ -31,6 +31,7 @@ describe 'pagy' do
     end
     it 'initializes count 0' do
       pagy = Pagy.new(**@vars, count: 0)
+
       _(pagy.last).must_equal 1
       _(pagy.last).must_equal 1
       _(pagy.offset).must_equal 0
@@ -42,6 +43,7 @@ describe 'pagy' do
     end
     it 'initializes single page' do
       pagy = Pagy.new(**@vars, count: 8)
+
       _(pagy.last).must_equal 1
       _(pagy.last).must_equal 1
       _(pagy.offset).must_equal 0
@@ -53,6 +55,7 @@ describe 'pagy' do
     end
     it 'initializes page 1 of 2' do
       pagy = Pagy.new(**@vars, count: 15)
+
       _(pagy.last).must_equal 2
       _(pagy.last).must_equal 2
       _(pagy.offset).must_equal 0
@@ -64,6 +67,7 @@ describe 'pagy' do
     end
     it 'initializes page 2 of 2' do
       pagy = Pagy.new(**@vars, count: 15, page: 2)
+
       _(pagy.last).must_equal 2
       _(pagy.last).must_equal 2
       _(pagy.offset).must_equal 10
@@ -76,6 +80,7 @@ describe 'pagy' do
     end
     it 'initializes page 1' do
       pagy = Pagy.new(**@vars, page: 1)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -90,6 +95,7 @@ describe 'pagy' do
     end
     it 'initializes page 2' do
       pagy = Pagy.new(**@vars, page: 2)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -104,6 +110,7 @@ describe 'pagy' do
     end
     it 'initializes page 3' do
       pagy = Pagy.new(**@vars, page: 3)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -118,6 +125,7 @@ describe 'pagy' do
     end
     it 'initializes page 4' do
       pagy = Pagy.new(**@vars, page: 4)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -132,6 +140,7 @@ describe 'pagy' do
     end
     it 'initializes page 5' do
       pagy = Pagy.new(**@vars, page: 5)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -146,6 +155,7 @@ describe 'pagy' do
     end
     it 'initializes page 6' do
       pagy = Pagy.new(**@vars, page: 6)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -160,6 +170,7 @@ describe 'pagy' do
     end
     it 'initializes page 7' do
       pagy = Pagy.new(**@vars, page: 7)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -174,6 +185,7 @@ describe 'pagy' do
     end
     it 'initializes page 8' do
       pagy = Pagy.new(**@vars, page: 8)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -188,6 +200,7 @@ describe 'pagy' do
     end
     it 'initializes page 9' do
       pagy = Pagy.new(**@vars, page: 9)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -202,6 +215,7 @@ describe 'pagy' do
     end
     it 'initializes page 10' do
       pagy = Pagy.new(**@vars, page: 10)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -216,6 +230,7 @@ describe 'pagy' do
     end
     it 'initializes page 11' do
       pagy = Pagy.new(**@vars, page: 11)
+
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -230,6 +245,7 @@ describe 'pagy' do
     end
     it 'initializes outset page 1' do
       pagy = Pagy.new(count: 87, page: 1, outset: 10, limit: 10)
+
       _(pagy.offset).must_equal 10
       _(pagy.limit).must_equal 10
       _(pagy.in).must_equal 10
@@ -239,6 +255,7 @@ describe 'pagy' do
     end
     it 'initializes outset page 9' do
       pagy = Pagy.new(count: 87, page: 9, outset: 10, limit: 10)
+
       _(pagy.offset).must_equal 90
       _(pagy.limit).must_equal 10
       _(pagy.in).must_equal 7
@@ -248,17 +265,20 @@ describe 'pagy' do
     end
     it 'handles the :cycle variable' do
       pagy = Pagy.new(count: 100, page: 10, limit: 10, cycle: true)
+
       _(pagy.prev).must_equal 9
       _(pagy.next).must_equal 1
     end
     it 'handles the :ma_pages variable' do
       pagy = Pagy.new(count: 100, page: 3, limit: 10, max_pages: 8)
+
       _(pagy.count).must_equal 100
       _(pagy.last).must_equal 8
       _ { Pagy.new(count: 100, page: 9, limit: 10, max_pages: 8) }.must_raise Pagy::OverflowError
     end
     it 'initializes the request_path' do
       pagy = Pagy.new(count: 100, request_path: '/foo')
+
       _(pagy.vars[:request_path]).must_equal('/foo')
     end
   end
@@ -302,6 +322,7 @@ describe 'pagy' do
     def series_for(page, *expected)
       expected.each_with_index do |value, index|
         vars = instance_variable_get(:"@vars#{index}").merge(page: page)
+
         _(Pagy.new(**vars).series).must_equal value
       end
     end
@@ -372,6 +393,7 @@ describe 'pagy' do
                  [6, 7, 8, 9, 10, "11"],
                  [1, :gap, 5, 6, 7, 8, 9, 10, "11"]
     end
+
     it 'computes series for count 0' do
       _(Pagy.new(**@vars2, count: 0).series).must_equal ["1"]
     end
@@ -399,6 +421,7 @@ describe 'pagy' do
     end
     it 'returns any page label' do
       p = Pagy.new(count: 1000, page: 11)
+
       _(p.label_for(3)).must_equal '3'
       _(p.label_for(11)).must_equal '11'
     end

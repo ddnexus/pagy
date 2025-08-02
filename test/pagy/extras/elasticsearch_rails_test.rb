@@ -15,6 +15,7 @@ describe 'pagy/extras/elasticsearch_rails' do
     it 'returns class and arguments' do
       _(MockElasticsearchRails::Model.pagy_search('a', b: 2)).must_equal [MockElasticsearchRails::Model, 'a', { b: 2 }]
       args = MockElasticsearchRails::Model.pagy_search('a', b: 2)
+
       _(args).must_equal [MockElasticsearchRails::Model, 'a', { b: 2 }]
     end
     it 'adds the caller and arguments' do
@@ -33,6 +34,7 @@ describe 'pagy/extras/elasticsearch_rails' do
       it 'paginates response with defaults' do
         pagy, response = app.send(:pagy_elasticsearch_rails, MockElasticsearchRails::Model.pagy_search('a'))
         records = response.records
+
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
@@ -43,6 +45,7 @@ describe 'pagy/extras/elasticsearch_rails' do
       it 'paginates records with defaults' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
                                  MockElasticsearchRails::Model.pagy_search('a').records)
+
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
@@ -54,6 +57,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
                                  MockElasticsearchRails::Model.pagy_search('b').records,
                                  page: 2, limit: 10, anchor_string: 'X')
+
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -66,6 +70,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
                                  MockElasticsearchRails::Model.pagy_search('b').records,
                                  page: 200, limit: 10, anchor_string: 'X', overflow: :last_page)
+
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -83,6 +88,7 @@ describe 'pagy/extras/elasticsearch_rails' do
       it 'paginates response with defaults' do
         pagy, response = app.send(:pagy_elasticsearch_rails, MockElasticsearchRails::ModelES7.pagy_search('a'))
         records = response.records
+
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
@@ -93,6 +99,7 @@ describe 'pagy/extras/elasticsearch_rails' do
       it 'paginates records with defaults' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
                                  MockElasticsearchRails::ModelES7.pagy_search('a').records)
+
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
@@ -104,6 +111,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
                                  MockElasticsearchRails::ModelES7.pagy_search('b').records,
                                  page: 2, limit: 10, anchor_string: 'X')
+
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -116,6 +124,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
                                  MockElasticsearchRails::Model.pagy_search('b').records,
                                  page: 200, limit: 10, anchor_string: 'X', overflow: :last_page)
+
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -129,6 +138,7 @@ describe 'pagy/extras/elasticsearch_rails' do
       it 'paginates response with defaults' do
         response = MockElasticsearchRails::Model.search('a')
         pagy     = Pagy.new_from_elasticsearch_rails(response)
+
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -137,6 +147,7 @@ describe 'pagy/extras/elasticsearch_rails' do
       it 'paginates response with vars' do
         response = MockElasticsearchRails::Model.search('b', from: 15, size: 15)
         pagy     = Pagy.new_from_elasticsearch_rails(response, anchor_string: 'X')
+
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 15
@@ -146,6 +157,7 @@ describe 'pagy/extras/elasticsearch_rails' do
       it 'paginates response with defaults on Elasticsearch 5' do
         response = MockElasticsearchRails::ModelES5.search('a')
         pagy     = Pagy.new_from_elasticsearch_rails(response)
+
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -154,6 +166,7 @@ describe 'pagy/extras/elasticsearch_rails' do
       it 'paginates response with vars on Elasticsearch 5' do
         response = MockElasticsearchRails::ModelES5.search('b', from: 15, size: 15)
         pagy     = Pagy.new_from_elasticsearch_rails(response, anchor_string: 'X')
+
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 15

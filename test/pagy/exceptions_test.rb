@@ -49,6 +49,7 @@ describe 'pagy/exceptions' do
     end
     it 'does not raise for :count and :offset set to arbitrary strings (converted to 0)' do
       pagy = Pagy.new(count: 'string', outset: 'string')
+
       _(pagy).must_be_instance_of Pagy
       _(pagy.count).must_equal 0
       _(pagy.instance_variable_get(:@outset)).must_equal 0
