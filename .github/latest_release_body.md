@@ -1,9 +1,10 @@
 <!-- whats_new_start -->
+
 <a href="https://ddnexus.github.io/pagy-pre/sandbox/playground/#demo-app">
   <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">
 </a><br><br>
 
-## Version 43.0.0.rc1
+## Version 43.0.0.rc*
 
 We needed a leap version to unequivocally signaling that it's not just a major version: it's a complete redesign of the legacy
 code at all levels, usage and API included.
@@ -37,29 +38,18 @@ development tools, making it a comprehensive upgrade from previous versions.
 - **New [documentation](https://ddnexus.github.io/pagy-pre/guides/quick-start)**
   - Very concise, straightforward, and easy to navigate and understand.
 
+### Upgrade to 43
+
+https://ddnexus.github.io/pagy-pre/guides/upgrade-guide/
+
 <!-- whats_new_end -->
 
-### Changes in 43.0.0.rc1
+### Changes in 43.0.0.rc2
 
 <!-- changes_start -->
-
-- **The Countless pagination remembers the last page**
-  - Pagination navs now allow jumping forward after navigating back a few pages.
-- **Javascript refactoring**
-  - The new `Pagy.sync_javascript` function used in the `pagy.js` initializer, avoids complicated configurations.
-  - Added the plain `pagy.js` and relative source map files.
-- **I18n refactoring**
-  - No setup required: the locales and their pluralization are autoloaded when your app uses them.
-  - The locale files are easier to override with `Pagy::I18n.pathnames << my_dictionaries`.
-- **HTML and CSS refactoring**
-  - Stylesheets are now based on CSS properties and calculations, for easer customizstion.
-  - The new PagyWand interactive tool generates the CSS Override for your custom styles and provides live feedback right in your
-    app.
-- **Playground apps**
-  - Better usability and styles
-- **Boostrap and Bulma**
-  - Fixed a few style glitches.
-
+- Version 43.0.0.rc2
+- Update aria translation for Tamil (ta) locale (#788)
+- Add Slovak localization (from 6aa3774d)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
