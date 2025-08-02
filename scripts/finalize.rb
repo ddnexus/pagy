@@ -46,8 +46,12 @@ edit_file?(gitlog.path, 'Gitlog')
 # Prepare the .github/latest_release_body.md file
 # Used by .github/workflows/create_release.yml which is triggered by the :rubygem_release task (push tag)
 release_body_path = '.github/latest_release_body.md'
+# Copy the whats_new from the README to the latest_release_body file
+whats_new_content = extract_section_from_file('README.md', 'whats_new')
+replace_section_in_file(release_body_path, 'whats_new', whats_new_content)
 # Insert the changes into the latest_release_body file
 changes = File.read(gitlog.path)
+replace_string_in_file(release_body_path, "### Changes in #{old_version}", "### Changes in #{new_version}")
 replace_section_in_file(release_body_path, 'changes', changes)
 
 # Edit the Release Body?
@@ -55,6 +59,7 @@ edit_file?(release_body_path, 'Release Body')
 
 # Add the changes to the CHANGELOG
 replace_string_in_file('docs/CHANGELOG.md', /<hr>\n/, "<hr>\n\n## Version #{new_version}\n\n#{changes}")
+replace_string_in_file('docs/CHANGELOG.md', "(e.g. `#{old_version}", "(e.g. `#{new_version}")
 
 # Insert the latest ai-widget in the retype head
 require_relative 'update_retype_head'

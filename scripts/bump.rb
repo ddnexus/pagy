@@ -32,24 +32,9 @@ when new_version.prerelease? && !old_version.prerelease?
                          'https://ddnexus.github.io/pagy-pre/', all: true)
 end
 
-# Prepare the .github/latest_release_body.md file
-# Used by .github/workflows/create_release.yml which is triggered by the :rubygem_release task (push tag)
-release_body_path = '.github/latest_release_body.md'
-# Copy the whats_new from the README to the latest_release_body file
-whats_new_content = extract_section_from_file('README.md', 'whats_new')
-replace_section_in_file(release_body_path, 'whats_new', whats_new_content)
-
-# Edit the Release Body?
-edit_file?(release_body_path, 'Release Body')
-
-# Update the CHANGELOG
-replace_string_in_file('docs/CHANGELOG.md', /<hr>\n/, "<hr>\n\n## Version #{new_version}\n\n#{changes}")
-replace_string_in_file('docs/CHANGELOG.md', "(e.g. `#{old_version}", "(e.g. `#{new_version}")
-
 # Bump the version in files
 (%w[docs/retype.yml
     .github/ISSUE_TEMPLATE/Code.yml
-    .github/latest_release_body.md
     gem/bin/pagy
     gem/config/pagy.rb
     gem/lib/pagy.rb
@@ -67,7 +52,7 @@ new_base_version      = "#{new_major}.#{new_minor}"
 replace_string_in_file('docs/CHANGELOG.md', old_base_version, new_base_version)
 replace_string_in_file('docs/guides/quick-start.md', old_base_version, new_base_version)
 
-# Build javascript files (to update the version)
+# Build JavaScript files (to update the version)
 system(Scripty::ROOT.join('src/build').to_s)
 
 # Run the test to check the consistency of versioning across files

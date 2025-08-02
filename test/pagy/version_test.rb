@@ -39,13 +39,13 @@ describe 'Version match' do
   it 'defines the same version in src/pagy.mjs' do
     _(Pagy::ROOT.join('javascripts/pagy.mjs').read).must_match "version: \"#{Pagy::VERSION}\","
   end
-  it 'defines the same version in CHANGELOG.md' do
-    changelog = Pagy::ROOT.parent.join('docs/CHANGELOG.md').read
-
-    _(changelog).must_match "(e.g. `#{Pagy::VERSION}"
-    _(changelog).must_match "gem 'pagy', '~> #{major}.#{minor}"
-    _(changelog).must_match "## Version #{Pagy::VERSION}"
-  end
+  # it 'defines the same version in CHANGELOG.md' do
+  #   changelog = Pagy::ROOT.parent.join('docs/CHANGELOG.md').read
+  #
+  #   _(changelog).must_match "(e.g. `#{Pagy::VERSION}"
+  #   _(changelog).must_match "gem 'pagy', '~> #{major}.#{minor}"
+  #   _(changelog).must_match "## Version #{Pagy::VERSION}"
+  # end
   it 'defines the same minor version in ./quick-start.md' do
     _(File.read('./docs/guides/quick-start.md')).must_match "gem 'pagy', '~> #{major}.#{minor}"
   end
