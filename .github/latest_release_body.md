@@ -47,7 +47,6 @@ https://ddnexus.github.io/pagy-pre/guides/upgrade-guide/
 ### Changes in 43.0.0.rc2
 
 <!-- changes_start -->
-- Version 43.0.0.rc2
 - Update aria translation for Tamil (ta) locale (#788)
 - Add Slovak localization (from 6aa3774d)
 <!-- changes_end -->
