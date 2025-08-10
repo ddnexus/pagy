@@ -4,13 +4,9 @@ ta:
   pagy:
     p11n: 'OneOther'
     aria_label:
-      # please add a comment in the https://github.com/ddnexus/pagy/issues/604
-      # posting the translation of the following  "Page"/"Pages" with the plurals for this locale
-      # Please change the final test in 18n_loacles_test.rb to remove the ta.yml exclusion
-      # after you make these changes.
       nav:
-        one: "Page"
-        other: "Pages"
+        one: "பக்கம்"
+        other: "பக்கங்கள்"
       previous: "முந்தையது"
       next: "அடுத்தது"
     previous: "&lt;"
