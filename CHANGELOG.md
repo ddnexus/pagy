@@ -16,9 +16,9 @@ can expect the old functionality to be supported ONLY during the next releases b
 
 ## Recommended Version Constraint
 
-Given a version number `MAJOR.MINOR.PATCH` (e.g. `9.3.5`):
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `9.4.0`):
 
-The `gem 'pagy', '~> 9.3'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to 
+The `gem 'pagy', '~> 9.4'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to 
 the most recent version WITHOUT BREAKING CHANGES.
 
 Increment the MAYOR version indicated in the Gemfile ONLY when you are ready to handle the BREAKING CHANGES
@@ -41,6 +41,11 @@ If you upgrade from version `< 9.0.0` see the following:
 
 - `:after_latest` keyset variable: use `:filter_newest`
 <hr>
+
+## Version 9.4.0
+
+- Update aria translation for Tamil (#788)
+- Add Slovak localization with west_slavic pluralization rules (#787)
 
 ## Version 9.3.5
 

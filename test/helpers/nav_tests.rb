@@ -17,6 +17,7 @@ module NavTests
       _(app.send(method, pagy)).must_rematch :"plain_#{page}"
       _(app.send(method, pagyx, id: 'test-nav-id', anchor_string: 'anchor_string')).must_rematch :"extras_#{page}"
     end
+
     _ { app.send(method, PagyBuggy.new(count: 100)) }.must_raise Pagy::InternalError
   end
 
@@ -31,6 +32,7 @@ module NavTests
     end
     # raise Pagy::VariableError for missing 0 step
     pagy = Pagy.new(count: 1000, page: 20, steps: { 0 => 5, 600 => 7 })
+
     _ { app.send(method, pagy, steps: { 600 => 7 }) }.must_raise Pagy::VariableError
   end
 

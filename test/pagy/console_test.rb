@@ -5,6 +5,7 @@ require 'pagy/console'
 
 module PagyConsole
   include Pagy::Console
+
   # we are not in the console so we need module_function
   module_function :pagy_extras
 end

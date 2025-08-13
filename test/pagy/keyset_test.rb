@@ -38,6 +38,7 @@ require 'pagy/keyset'
                                 limit: 10,
                                 tuple_comparison: true)
         records = pagy.records
+
         _(records.size).must_equal 10
         _(records.first.id).must_equal 13
       end
@@ -46,6 +47,7 @@ require 'pagy/keyset'
                                 page: "eyJpZCI6MTB9",
                                 limit: 10,
                                 jsonify_keyset_attributes: lambda(&:to_json))
+
         _(pagy.next).must_equal("eyJpZCI6MjB9")
         _(pagy.latest).must_equal({id: 10})
       end
@@ -60,15 +62,18 @@ require 'pagy/keyset'
                                 limit: 10,
                                 filter_newest:)
         records = pagy.records
+
         _(records.first.id).must_equal(11)
       end
     end
     describe '#extract_keyset' do
       it 'extracts the keyset from the set order (single column)' do
         pagy = Pagy::Keyset.new(model.order(:id))
+
         _(pagy.instance_variable_get(:@keyset)).must_equal({:id => :asc})
         set  = model == Pet ? model.order(id: :desc) : model.order(Sequel.desc(:id))
         pagy = Pagy::Keyset.new(set)
+
         _(pagy.instance_variable_get(:@keyset)).must_equal({:id => :desc})
       end
       it 'extracts the keyset from the set order (multiple columns)' do
@@ -78,6 +83,7 @@ require 'pagy/keyset'
                 model.order(Sequel.desc(:animal), Sequel.asc(:id))
               end
         pagy = Pagy::Keyset.new(set)
+
         _(pagy.instance_variable_get(:@keyset)).must_equal({animal: :desc, :id => :asc})
       end
       if model == PetSequel
@@ -89,11 +95,13 @@ require 'pagy/keyset'
           Pagy::Keyset.new(model.order(:id),
                            page: "eyJpZCI6MTB9",
                            limit: 10)
+
           _(model.restrict_primary_key?).must_equal false
           model.restrict_primary_key
           Pagy::Keyset.new(model.order(:id),
                            page: "eyJpZCI6MTB9",
                            limit: 10)
+
           _(model.restrict_primary_key?).must_equal true
         end
       end
@@ -101,17 +109,20 @@ require 'pagy/keyset'
     describe 'handles the page/latest' do
       it 'handles the page/latest for the first page' do
         pagy = Pagy::Keyset.new(model.order(:id), limit: 10)
+
         _(pagy.instance_variable_get(:@latest)).must_be_nil
         _(pagy.next).must_equal "eyJpZCI6MTB9"
       end
       it 'handles the page/latest for the second page' do
         pagy = Pagy::Keyset.new(model.order(:id), limit: 10, page: "eyJpZCI6MTB9")
+
         _(pagy.instance_variable_get(:@latest)).must_equal(id: 10)
         _(pagy.records.first.id).must_equal 11
         _(pagy.next).must_equal "eyJpZCI6MjB9"
       end
       it 'handles the page/latest for the last page' do
         pagy = Pagy::Keyset.new(model.order(:id), limit: 10, page: "eyJpZCI6NDB9")
+
         _(pagy.instance_variable_get(:@latest)).must_equal(id: 40)
         _(pagy.records.first.id).must_equal 41
         _(pagy.next).must_be_nil
@@ -123,6 +134,7 @@ require 'pagy/keyset'
         pagy  = Pagy::Keyset.new(set, limit: 10)
         pagy.records
         set = pagy.instance_variable_get(:@set)
+
         _((model == Pet ? set.select_values : set.opts[:select]).sort).must_equal %i[animal id name]
       end
     end
@@ -146,6 +158,7 @@ require 'pagy/keyset'
             {records: pagy.records, page: pagy.next}
           end
           collection = set.to_a
+
           _(collection.size).must_equal 50
           _(pages.flatten).must_equal collection
           _(collection.each_slice(9).to_a).must_equal pages

@@ -16,11 +16,11 @@ Leave your comments in the [Version 43 discussion](https://github.com/ddnexus/pa
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 <!-- whats_new_end -->
 
-### Changes in 9.3.5
+### Changes in 9.4.0
 
 <!-- changes_start -->
-- fix quoted identifiers in keyset (#780)
-- Fix clone command (#770)
+- Update aria translation for Tamil (#788)
+- Add Slovak localization with west_slavic pluralization rules (#787)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

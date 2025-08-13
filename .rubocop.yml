@@ -1,4 +1,4 @@
-require:
+plugins:
   - rubocop-minitest
   - rubocop-packaging
   - rubocop-performance
@@ -6,6 +6,7 @@ require:
 
 # trying to be good  O:)
 AllCops:
+  SuggestExtensions: false
   TargetRubyVersion: 3.1
   NewCops: enable
   Exclude:

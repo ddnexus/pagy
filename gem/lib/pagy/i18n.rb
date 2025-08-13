@@ -106,6 +106,7 @@ class Pagy
                  hash['ko']    = RULE[:other]
                  hash['pl']    = RULE[:polish]
                  hash['ru']    = RULE[:east_slavic]
+                 hash['sk']    = RULE[:west_slavic]
                  hash['sr']    = RULE[:east_slavic]
                  hash['tr']    = RULE[:other]
                  hash['uk']    = RULE[:east_slavic]

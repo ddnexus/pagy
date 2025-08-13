@@ -38,15 +38,17 @@ describe 'pagy/locales' do
       item_name = language_yml[locale]['pagy']['item_name']
       case item_name
       when String
+
         _(rule).must_equal :other
       when Hash
+
         _(item_name.keys - counts[rule]).must_be_empty
       else
         raise StandardError, "item_name must be Hash or String"
       end
     end
     it "ensures #{locale}.yml has the correct aria_label,nav and item_name keys per the declared (#{rule}) rule" do
-      skip if %w[ta sw].include?(locale) # ta.yml and sw.yml do not have the requisite keys yet
+      skip if %w[sw].include?(locale) # sw.yml does not have the requisite keys yet
 
       pluralizations = counts[rule]
 

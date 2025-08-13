@@ -8,6 +8,7 @@ describe 'pagy/countless' do
     it 'initializes empty collection' do
       pagy, = Pagy::Countless.new(page: 1)
       pagy.finalize(0)
+
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 1
@@ -21,6 +22,7 @@ describe 'pagy/countless' do
     it 'initializes first page' do
       pagy, = Pagy::Countless.new(page: 1)
       pagy.finalize(21) # one more page
+
       _(pagy.count).must_be_nil
       _(pagy).must_be_instance_of Pagy::Countless
       _(pagy.limit).must_equal 20
@@ -34,6 +36,7 @@ describe 'pagy/countless' do
     it 'initializes single full page' do
       pagy, = Pagy::Countless.new(page: 1)
       pagy.finalize(20) # no more page - last full
+
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 1
@@ -46,6 +49,7 @@ describe 'pagy/countless' do
     it 'initialize single partial page' do
       pagy, = Pagy::Countless.new(page: 1)
       pagy.finalize(4) # partial page of 4 - also last
+
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 1
@@ -58,6 +62,7 @@ describe 'pagy/countless' do
     it 'initializes last partial page' do
       pagy, = Pagy::Countless.new(page: 3)
       pagy.finalize(19) # partial page of 4 - also last
+
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 3
@@ -70,6 +75,7 @@ describe 'pagy/countless' do
     it 'handles the :cycle variable' do
       pagy, = Pagy::Countless.new(page: 3, cycle: true)
       pagy.finalize(19) # partial page of 4 - also last
+
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 3

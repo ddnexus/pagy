@@ -16,6 +16,7 @@ describe 'pagy/extras/keyset' do
                                  model.order(:animal, :name, :id),
                                  tuple_comparison: true,
                                  limit: 10)
+
         _(pagy).must_be_kind_of Pagy::Keyset
         _(records.size).must_equal 10
         _(pagy.next).must_equal "eyJhbmltYWwiOiJjYXQiLCJuYW1lIjoiRWxsYSIsImlkIjoxOH0"
@@ -25,6 +26,7 @@ describe 'pagy/extras/keyset' do
         pagy, records = app.send(:pagy_keyset,
                                  model.order(:id),
                                  tuple_comparison: true)
+
         _(records.first.id).must_equal 11
         _(pagy.next).must_equal "eyJpZCI6MjB9"
       end
@@ -33,18 +35,21 @@ describe 'pagy/extras/keyset' do
       it 'returns the URLs for first page' do
         app = MockApp.new(params: { page: "eyJpZCI6MTB9", limit: 10 })
         pagy, _records = app.send(:pagy_keyset, model.order(:id))
+
         _(app.send(:pagy_keyset_first_url, pagy)).must_equal "/foo?page&limit=10"
         _(app.send(:pagy_keyset_next_url, pagy)).must_equal "/foo?page=eyJpZCI6MjB9&limit=10"
       end
       it 'returns the URLs for second page' do
         app = MockApp.new(params: { page: "eyJpZCI6MjB9", limit: 10 })
         pagy, _records = app.send(:pagy_keyset, model.order(:id))
+
         _(app.send(:pagy_keyset_first_url, pagy)).must_equal "/foo?page&limit=10"
         _(app.send(:pagy_keyset_next_url, pagy)).must_equal "/foo?page=eyJpZCI6MzB9&limit=10"
       end
       it 'returns the URLs for last page' do
         app = MockApp.new(params: { page: "eyJpZCI6NDB9", limit: 10 })
         pagy, _records = app.send(:pagy_keyset, model.order(:id))
+
         _(app.send(:pagy_keyset_first_url, pagy)).must_equal "/foo?page&limit=10"
         _(app.send(:pagy_keyset_next_url, pagy)).must_be_nil
       end

@@ -34,6 +34,7 @@ describe 'pagy/calendar' do
   describe 'it computes date variables for page 1 (default)' do
     it 'computes variables for :year' do
       p = pagy(unit: :year)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2024)
       _(p.from).must_equal Time.zone.local(2021)
@@ -43,6 +44,7 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :year desc' do
       p = pagy(unit: :year, order: :desc)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2024)
       _(p.from).must_equal Time.zone.local(2023)
@@ -52,6 +54,7 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :quarter' do
       p = pagy(unit: :quarter)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 1)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2024, 1, 1)
       _(p.from).must_equal Time.zone.local(2021, 10, 1)
@@ -61,6 +64,7 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :quarter desc' do
       p = pagy(unit: :quarter, order: :desc)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 1)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2024, 1, 1)
       _(p.from).must_equal Time.zone.local(2023, 10, 1)
@@ -70,6 +74,7 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :month' do
       p = pagy
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 1)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 12, 1)
       _(p.from).must_equal Time.zone.local(2021, 10, 1)
@@ -79,6 +84,7 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :month desc' do
       p = pagy(unit: :month, order: :desc)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 1)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 12, 1)
       _(p.from).must_equal Time.zone.local(2023, 11, 1)
@@ -88,6 +94,7 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :week' do
       p = pagy(unit: :week)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 17)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 11, 19)
       _(p.from).must_equal Time.zone.local(2021, 10, 17)
@@ -97,6 +104,7 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :day' do
       p = pagy(unit: :day)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 21)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 11, 14)
       _(p.from).must_equal Time.zone.local(2021, 10, 21)
@@ -109,6 +117,7 @@ describe 'pagy/calendar' do
   describe 'it computes date variables for page 2' do
     it 'computes variables for :year' do
       p = pagy(unit: :year, page: 2)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2024)
       _(p.from).must_equal Time.zone.local(2022)
@@ -118,6 +127,7 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :year desc' do
       p = pagy(unit: :year, page: 2, order: :desc)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2024)
       _(p.from).must_equal Time.zone.local(2022)
@@ -127,6 +137,7 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :quarter' do
       p = pagy(unit: :quarter, page: 2)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 1)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2024, 1, 1)
       _(p.from).must_equal Time.zone.local(2022, 1, 1)
@@ -136,6 +147,7 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :quarter desc' do
       p = pagy(unit: :quarter, page: 2, order: :desc)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 1)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2024, 1, 1)
       _(p.from).must_equal Time.zone.local(2023, 7, 1)
@@ -145,6 +157,7 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :month' do
       p = pagy(page: 2)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 1)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 12, 1)
       _(p.from).must_equal Time.zone.local(2021, 11, 1)
@@ -154,6 +167,7 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :month desc' do
       p = pagy(page: 2, order: :desc)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 1)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 12, 1)
       _(p.from).must_equal Time.zone.local(2023, 10, 1)
@@ -163,6 +177,7 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :week' do
       p = pagy(unit: :week, page: 2)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 17)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 11, 19)
       _(p.from).must_equal Time.zone.local(2021, 10, 24)
@@ -172,6 +187,7 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :day' do
       p = pagy(unit: :day, page: 2)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 21)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 11, 14)
       _(p.from).must_equal Time.zone.local(2021, 10, 22)
@@ -184,6 +200,7 @@ describe 'pagy/calendar' do
   describe 'it computes date variables for last page and overflow' do
     it 'computes variables for :year' do
       p = pagy(unit: :year, page: 3)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 1, 1)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2024)
       _(p.from).must_equal Time.zone.local(2023)
@@ -195,6 +212,7 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :quarter' do
       p = pagy(unit: :quarter, page: 9)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 1)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2024, 1, 1)
       _(p.from).must_equal Time.zone.local(2023, 10, 1)
@@ -204,6 +222,7 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :month' do
       p = pagy(page: 26)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 1)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 12, 1)
       _(p.from).must_equal Time.zone.local(2023, 11, 1)
@@ -215,6 +234,7 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :week' do
       p = pagy(unit: :week, page: 109)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 17)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 11, 19)
       _(p.from).must_equal Time.zone.local(2023, 11, 12)
@@ -226,6 +246,7 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :day' do
       p = pagy(unit: :day, page: 754)
+
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 21)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 11, 14)
       _(p.from).must_equal Time.zone.local(2023, 11, 13)
@@ -240,6 +261,7 @@ describe 'pagy/calendar' do
   describe '#time_offset_for' do
     it 'inverts the order' do
       p = pagy(unit: :month, order: :desc)
+
       _(p.send(:time_offset_for, 1)).must_equal 25
       _(p.send(:time_offset_for, 2)).must_equal 24
       _(p.send(:time_offset_for, 3)).must_equal 23
@@ -252,6 +274,7 @@ describe 'pagy/calendar' do
   describe '#label' do
     it 'uses the default and custom format' do
       p = pagy(unit: :month, order: :desc, page: 2)
+
       _(p.label).must_equal 'Oct'
       _(p.label(format: '%B %Y')).must_equal 'October 2023'
     end
@@ -265,6 +288,7 @@ describe 'pagy/calendar' do
         _(p.label_for(2)).must_rematch  :p2
       end
     end
+
     it 'raises direct instantiation' do
       _ { Pagy::Calendar::Unit.new }.must_raise Pagy::InternalError
     end
@@ -274,6 +298,7 @@ describe 'pagy/calendar' do
   describe '#page_at' do
     it 'returns the page number for :year' do
       p = pagy(unit: :year)
+
       _(p.send(:page_at, Time.zone.local(2021, 10, 21, 13, 18, 23, 0))).must_equal 1
       _(p.send(:page_at, Time.zone.local(2022, 1, 1, 13, 18, 23, 0))).must_equal 2
       _(p.send(:page_at, Time.zone.local(2023, 11, 13, 15, 43, 40, 0))).must_equal 3
@@ -284,6 +309,7 @@ describe 'pagy/calendar' do
     end
     it 'returns the page number for :year desc' do
       p = pagy(unit: :year, order: :desc)
+
       _(p.send(:page_at, Time.zone.local(2021, 10, 21, 13, 18, 23, 0))).must_equal 3
       _(p.send(:page_at, Time.zone.local(2022, 1, 1, 13, 18, 23, 0))).must_equal 2
       _(p.send(:page_at, Time.zone.local(2023, 11, 13, 15, 43, 40, 0))).must_equal 1
@@ -295,6 +321,7 @@ describe 'pagy/calendar' do
 
     it 'returns the page number for :quarter' do
       p = pagy(unit: :quarter)
+
       _(p.send(:page_at, Time.zone.local(2021, 10, 21, 13, 18, 23, 0))).must_equal 1
       _(p.send(:page_at, Time.zone.local(2022, 1, 1, 13, 18, 23, 0))).must_equal 2
       _(p.send(:page_at, Time.zone.local(2023, 11, 13, 15, 43, 40, 0))).must_equal 9
@@ -305,6 +332,7 @@ describe 'pagy/calendar' do
     end
     it 'returns the page number for :quarter desc' do
       p = pagy(unit: :quarter, order: :desc)
+
       _(p.send(:page_at, Time.zone.local(2021, 10, 21, 13, 18, 23, 0))).must_equal 9
       _(p.send(:page_at, Time.zone.local(2022, 1, 1, 13, 18, 23, 0))).must_equal 8
       _(p.send(:page_at, Time.zone.local(2023, 11, 13, 15, 43, 40, 0))).must_equal 1
@@ -315,6 +343,7 @@ describe 'pagy/calendar' do
     end
     it 'returns the page number for :month' do
       p = pagy(unit: :month)
+
       _(p.send(:page_at, Time.zone.local(2021, 10, 21, 13, 18, 23, 0))).must_equal 1
       _(p.send(:page_at, Time.zone.local(2022, 1, 1, 13, 18, 23, 0))).must_equal 4
       _(p.send(:page_at, Time.zone.local(2023, 11, 13, 15, 43, 40, 0))).must_equal 26
@@ -325,6 +354,7 @@ describe 'pagy/calendar' do
     end
     it 'returns the page number for :month desc' do
       p = pagy(unit: :month, order: :desc)
+
       _(p.send(:page_at, Time.zone.local(2021, 10, 21, 13, 18, 23, 0))).must_equal 26
       _(p.send(:page_at, Time.zone.local(2022, 1, 1, 13, 18, 23, 0))).must_equal 23
       _(p.send(:page_at, Time.zone.local(2023, 11, 13, 15, 43, 40, 0))).must_equal 1
@@ -336,6 +366,7 @@ describe 'pagy/calendar' do
 
     it 'returns the page number for :week' do
       p = pagy(unit: :week)
+
       _(p.send(:page_at, Time.zone.local(2021, 10, 21))).must_equal 1
       _(p.send(:page_at, Time.zone.local(2021, 10, 26))).must_equal 2
       _(p.send(:page_at, Time.zone.local(2023, 11, 13))).must_equal 109
@@ -346,6 +377,7 @@ describe 'pagy/calendar' do
     end
     it 'returns the page number for :week desc' do
       p = pagy(unit: :week, order: :desc)
+
       _(p.send(:page_at, Time.zone.local(2021, 10, 21))).must_equal 109
       _(p.send(:page_at, Time.zone.local(2021, 10, 26))).must_equal 108
       _(p.send(:page_at, Time.zone.local(2023, 11, 13))).must_equal 1
@@ -356,6 +388,7 @@ describe 'pagy/calendar' do
     end
     it 'returns the page number for :day' do
       p = pagy(unit: :day)
+
       _(p.send(:page_at, Time.zone.local(2021, 10, 21))).must_equal 1
       _(p.send(:page_at, Time.zone.local(2021, 10, 26))).must_equal 6
       _(p.send(:page_at, Time.zone.local(2023, 11, 13))).must_equal 754
@@ -366,6 +399,7 @@ describe 'pagy/calendar' do
     end
     it 'returns the page number for :day desc' do
       p = pagy(unit: :day, order: :desc)
+
       _(p.send(:page_at, Time.zone.local(2021, 10, 21))).must_equal 754
       _(p.send(:page_at, Time.zone.local(2021, 10, 26))).must_equal 749
       _(p.send(:page_at, Time.zone.local(2023, 11, 13))).must_equal 1
@@ -379,6 +413,7 @@ describe 'pagy/calendar' do
   describe 'Deprecated support' do
     it 'sets the beginning_of_week from :offset' do
       pagy(unit: :week, offset: 0)
+
       _(Date.beginning_of_week).must_equal :sunday
     end
   end

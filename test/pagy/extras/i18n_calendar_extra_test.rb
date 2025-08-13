@@ -44,6 +44,7 @@ describe 'pagy/extras/i18n' do
                                  period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0),
                                           Time.zone.local(2023, 11, 13, 15, 43, 40, 0)],
                                  page: 3, format: '%B, %A')
+
       _(pagy.label).must_equal "December, Wednesday"
       _(pagy.label(locale: :de)).must_equal "Dezember, Mittwoch"
       _(pagy.label(format: '%b')).must_equal "Dec"
@@ -51,6 +52,7 @@ describe 'pagy/extras/i18n' do
       _(pagy.label_for(5)).must_equal "February, Tuesday"
       _(pagy.label_for(5, locale: :de)).must_equal "Februar, Dienstag"
       I18n.locale = :de
+
       _(pagy.label).must_equal "Dezember, Mittwoch"
       _(pagy.label(format: '%b')).must_equal "Dez"
       _(pagy.label_for(5)).must_equal "Februar, Dienstag"

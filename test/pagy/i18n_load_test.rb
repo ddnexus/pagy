@@ -6,6 +6,7 @@ require_relative '../test_helper'
 describe 'pagy/i18n-load' do
   it 'loads with public API' do
     Pagy::I18n.load({ locale: 'de' }, { locale: 'en' })
+
     _(Pagy::I18n::DATA.size).must_equal 2
     _(Pagy::I18n::DATA.keys).must_include 'de'
     _(Pagy::I18n::DATA.keys).must_include 'en'

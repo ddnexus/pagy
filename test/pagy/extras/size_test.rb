@@ -23,6 +23,7 @@ describe 'pagy/extras/size' do
     def series_for(page, *expected)
       expected.each_with_index do |value, index|
         vars = instance_variable_get(:"@vars#{index}").merge(page: page)
+
         _(Pagy.new(**vars).series).must_equal value
       end
     end
@@ -104,6 +105,7 @@ describe 'pagy/extras/size' do
                  [1, 2, 3, :gap, 9, 10, "11"],
                  [1, 2, 3, :gap, 9, 10, "11"]
     end
+
     it 'computes series for count 0' do
       _(Pagy.new(**@vars3, count: 0).series).must_equal ["1"]
     end
