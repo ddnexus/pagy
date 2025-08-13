@@ -1,0 +1,23 @@
+# :west_slavic pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
+sk:
+  pagy:
+    aria_label:
+      nav:
+        one: "Stránka"
+        few: "Stránky"
+        other: "Stránky"
+      prev: "Predchádzajúca"
+      next: "Ďalšia"
+    prev: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name:
+      one: "položka"
+      few: "položky"
+      other: "položiek"
+    info:
+      no_items: "Nič nebolo nájdené"
+      single_page: "Zobrazené %{count} %{item_name}"
+      multiple_pages: "Zobrazené položky %{from}-%{to} z %{count} celkom"
+    combo_nav_js: "Strana %{page_input} z %{pages}"
+    limit_selector_js: "Zobraziť %{limit_input} %{item_name} na stránke"

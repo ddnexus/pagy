@@ -16,7 +16,7 @@
 # URL
 #    http://0.0.0.0:8000
 
-VERSION = '9.3.5'
+VERSION = '9.4.0'
 
 # Bundle
 require 'bundler/inline'
@@ -43,6 +43,7 @@ require 'logger'
 # Sinatra application
 class PagyKeyset < Sinatra::Base
   include Pagy::Backend
+
   # Root route/action
   get '/' do
     @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }

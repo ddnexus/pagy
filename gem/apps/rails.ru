@@ -16,7 +16,7 @@
 # URL
 #    http://0.0.0.0:8000
 
-VERSION = '9.3.5'
+VERSION = '9.4.0'
 
 # Gemfile
 require 'bundler/inline'
