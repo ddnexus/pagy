@@ -41,7 +41,7 @@ jobs:
     name: Publish to docs-site branch
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: retypeapp/action-build@v3
       - uses: retypeapp/action-github-pages@v3
         with:
