@@ -41,4 +41,4 @@ Pagy has a top-down hierarchical options system that allows you to set and overr
   - For clarity, set options as close as possible to where they're consumed.
 - **Widen the scope when needed**
   - Use higher-level options when they conveniently affect broader scopes.
-    !!!
+!!!

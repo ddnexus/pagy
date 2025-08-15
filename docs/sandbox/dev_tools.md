@@ -32,6 +32,14 @@ Integrate pagy with your app's themes interactively.
 - Copy/paste the generated "CSS Override" block in your stylesheet to persist it in your app.
 - Click on the :icon-question: icon on the Wand for help. 
 
+Watch the Pagy wand [demo video](https://youtu.be/GhhNRrVG9jg):
+
+:::raised
+[![](../assets/images/pagy-wand-demo-screenshot.png)](https://youtu.be/GhhNRrVG9jg)
+:::
+
+<br>
+
 #### Pagy AI
 
 Answer to your specific questions, right in your app. Just type questions like: _"What are the available paginators for DBs and search platforms?"_
