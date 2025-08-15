@@ -10,7 +10,7 @@
 [![Stars](https://shields.io/github/stars/ddnexus/pagy?style=social)](https://github.com/ddnexus/pagy/stargazers)</span> <span>
 [![Gurubase](https://img.shields.io/badge/Gurubase-Ask%20Pagy%20AI-006BFF)](https://gurubase.io/g/pagy)</span>
 
-#   
+# 
 
 <h2><img src="assets/images/pagy-the-frog.png" alt="💚" width="75" style="vertical-align:bottom;"><br/>Pagy the leaping gem!</h2>
 
@@ -64,7 +64,7 @@ https://ddnexus.github.io/pagy-pre/guides/upgrade-guide/
 
 <!-- whats_new_end -->
 
-Take a look at the [Examples](#examples) for a quick overview of the new API.
+Take a look at the [Examples](#-examples) for a quick overview of the new API.
 
 <br/>
 
@@ -214,7 +214,7 @@ Dynamically fills the container width.
 
 ### Dev Tools
 
-Integrate pagy with your app's themes interactively, and ask specific questions right in your app!
+Integrate pagy with your app's themes interactively ([watch demo](https://youtu.be/GhhNRrVG9jg)), and ask specific questions to the Pagy AI __right in your app__!
 You need only a single line in your page/layout `head` to get the Pagy Wand and the Pagy AI:
 
 ```erb

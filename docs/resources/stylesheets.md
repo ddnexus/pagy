@@ -25,6 +25,12 @@ The [Pagy Wand](../sandbox/dev_tools/#pagy-wand) integrates pagy with your app's
 ![PagyWand](../assets/images/dev-tools.png){width=606}
 :::
 
+Watch the Pagy wand [demo video](https://youtu.be/GhhNRrVG9jg):
+
+:::raised
+[![](../assets/images/pagy-wand-demo-screenshot.png)](https://youtu.be/GhhNRrVG9jg)
+:::
+
 <br>
 
 Should you need finer control, the `pagy.css` and `pagy-tailwind.css` calculate more specific variables, that you can manually override.
