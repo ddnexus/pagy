@@ -53,6 +53,7 @@ class Pagy
       querify&.(query) # Must modify the query: the returned value is ignored
       query_string = QueryUtils.build_nested_query(query, nil, [page_key, limit_key])
       query_string = "?#{query_string}" unless query_string.empty?
+      fragment   &&= %(##{fragment}) unless fragment&.start_with?('#')
       "#{@request.base_url if absolute}#{path || @request.path}#{query_string}#{fragment}"
     end
   end

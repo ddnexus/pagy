@@ -323,8 +323,8 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 | `@pagy.vars`                      | `@pagy.options`                  |
 | `VariableError`                   | `OptionError`                    |
 | `<error>.variable`                | `<error>.option`                 |
+| `fragment: '#...'`                | `fragment: '...'` (optional '#') |
 | `count_args: ...`                 | remove (integrated)              |
-| `anchor_string: ...`              | remove (discontinued)            |
 | `outset: ...`                     | remove (discontinued)            |
 | `cycle: ...`                      | remove (discontinued)            |
 

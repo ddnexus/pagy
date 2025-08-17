@@ -14,7 +14,7 @@ categories:
 
 The `@pagy` instance provides all the helpers to use in your code.
 
-Its class is determined by the paginator used, but you can safely ignore it. Simply utilize its methods.
+Its class is determined by the paginator used, but you can safely ignore it.
 
 !!!success The `@pagy` helpers are autoloaded only if used!
 
@@ -36,8 +36,11 @@ Unused code consumes no memory.
 
 !!!success Helpers can inherit and override options
 
-See [Options](options)
+See also [Options](options)
 !!!
+
+- `anchor_string: ' data-turbo-frame="paginate"`
+  - Concatenate a verbatim raw string to the internal HTML of the anchor tags. It must contain properly formatted HTML attributes. It's not suitable for `*_hash` helpers.
 
 ==- Common Nav Styles
 
@@ -46,7 +49,7 @@ See [Options](options)
   - Set `classes: 'pagination pagination-sm any-class'` style option to override the default `'pagination'` class.
 - `:bulma`
   - Set `classes: 'pagination is-small any-class'` style option to override the default `'pagination'` classes.
-  
+
 ==- Common Nav Options
 
 - `id: 'my-nav'`:
@@ -55,9 +58,9 @@ See [Options](options)
   - Override the default `pagy.aria_label.nav` string of the `aria-label` attribute. (Use an already pluralized string).
 
   !!!danger Don't rely on ARIA default with multiple nav elements!
-  
+
   The `nav` elements are `landmark  roles`, and should be distinctly labeled.
-  
+
   !!!success Override the default `:aria_label`s for multiple navs with distinct values!
 
   ```erb

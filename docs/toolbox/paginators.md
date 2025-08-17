@@ -97,8 +97,8 @@ These options control give you full control over the URL composition.
 
 - `absolute: true`
   - Makes the URL absolute.
-- `fragment: '#...'`
-  - URL fragment string. _(It must include the leding `"#"`!_)
+- `fragment: '...'`
+  - URL fragment string.
 - `jsonapi: true`
   - Enables JSON:API-compliant URLs, with nested query string (e.g., `?page[number]=2&page[size]=100`)
 - `limit_key: 'custom_limit'`
