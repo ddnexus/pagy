@@ -90,7 +90,7 @@ Enable `jsonapi: true`, optionally providing `:page_key` and `:limit_key`:
 
 ```ruby
 # JSON:API nested query string: E.g.: ?page[number]=2&page[size]=100
-@pagy, @records = pagy(:offset, collection, jsonapi: true, page_key: 'number', limit_key: 'size' R)
+@pagy, @records = pagy(:offset, collection, jsonapi: true, page_key: 'number', limit_key: 'size')
 ```
 
 ==- Customize the URL query
@@ -99,7 +99,11 @@ See the [:querify Option](../toolbox/paginators#common-options)
 
 ==- Add a URL fragment
 
-You can use the [:fragment](../toolbox/paginators#common-url-options) option.
+Use the [:fragment](../toolbox/paginators#common-url-options) option.
+
+==- Add HTML attributes to the anchor tags (links)
+
+Use the [:anchor_string](../toolbox/helpers#common-options). It's especially useful for adding `data-turbo-*` or `data-*` Stimulus attributes.
 
 ==- Customize CSS styles
 

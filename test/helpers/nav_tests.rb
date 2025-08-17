@@ -14,7 +14,7 @@ module NavTests
       pagy  = Pagy::Offset.new(count: 1000, page: page, request:)
       pagyx = Pagy::Offset.new(count: 1000, page: page, request:)
       _(pagy.series_nav(style)).must_rematch :"plain_#{page}"
-      _(pagyx.series_nav(style, id: 'test-nav-id')).must_rematch :"extras_#{page}"
+      _(pagyx.series_nav(style, id: 'test-nav-id', anchor_string: 'raw="attribute"')).must_rematch :"extras_#{page}"
     end
 
     _ { PagyBuggy.new(count: 100, request:).series_nav(style) }.must_raise Pagy::InternalError
@@ -29,7 +29,7 @@ module NavTests
       pagy  = Pagy::Offset.new(count: 1000, page: page, request:)
       pagyx = Pagy::Offset.new(count: 1000, page: page, request:)
       _(pagy.series_nav_js(style)).must_rematch :"plain_#{page}"
-      _(pagyx.series_nav_js(style, id: 'test-nav-id', steps: { 0 => 5, 600 => 7 })).must_rematch :"extras_#{page}"
+      _(pagyx.series_nav_js(style, id: 'test-nav-id', anchor_string: 'raw="attribute"', steps: { 0 => 5, 600 => 7 })).must_rematch :"extras_#{page}"
     end
     # raise Pagy::OptionError for missing 0 step
     pagy = Pagy::Offset.new(count: 1000, page: 20, steps: { 0 => 5, 600 => 7 }, request:)
@@ -46,7 +46,7 @@ module NavTests
       pagy  = Pagy::Offset::Countless.new(page: page, last: page, request:).send(:finalize, rest)
       pagyx = Pagy::Offset::Countless.new(page: page, last: page, request:).send(:finalize, rest)
       _(pagy.series_nav_js(style)).must_rematch :"plain_#{page}_#{rest}"
-      _(pagyx.series_nav_js(style, id: 'test-nav-id', steps: { 0 => 5, 600 => 7 })).must_rematch :"extras_#{page}_#{rest}"
+      _(pagyx.series_nav_js(style, id: 'test-nav-id', anchor_string: 'raw="attribute"', steps: { 0 => 5, 600 => 7 })).must_rematch :"extras_#{page}_#{rest}"
     end
   end
 
@@ -57,7 +57,7 @@ module NavTests
       pagyk = Pagy::Keyset::Keynav.new(Pet.order(:animal, :name, :id),
                                        page: ['key', 2, 2, ["cat", "Ella", 18], nil], request:)
       _(pagy.input_nav_js(style)).must_rematch :"plain_#{page}"
-      _(pagyx.input_nav_js(style, id: 'test-nav-id')).must_rematch :"extras_#{page}"
+      _(pagyx.input_nav_js(style, id: 'test-nav-id', anchor_string: 'raw="attribute"')).must_rematch :"extras_#{page}"
       _(pagyk.input_nav_js(style)).must_rematch :keyset
     end
   end
