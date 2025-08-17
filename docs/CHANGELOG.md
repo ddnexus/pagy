@@ -16,7 +16,7 @@ expect the old/deprecated functionality to be supported ONLY during the current 
 
 ## Recommended Version Constraint
 
-Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.0.0.rc2`):
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.0.0.rc3`):
 
 The `gem 'pagy', '~> 43.0'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.
@@ -42,6 +42,11 @@ If you upgrade from version `< 43.0.0` see the following:
 None
 
 <hr>
+
+## Version 43.0.0.rc3
+
+- Version 43.0.0.rc3
+- Reimplement the anchor_string option for the helpers (#792)
 
 ## Version 43.0.0.r2
 

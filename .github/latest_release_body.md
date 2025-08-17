@@ -44,11 +44,11 @@ https://ddnexus.github.io/pagy-pre/guides/upgrade-guide/
 
 <!-- whats_new_end -->
 
-### Changes in 43.0.0.rc2
+### Changes in 43.0.0.rc3
 
 <!-- changes_start -->
-- Update aria translation for Tamil (ta) locale (#788)
-- Add Slovak localization (from 6aa3774d)
+- Version 43.0.0.rc3
+- Reimplement the anchor_string option for the helpers (#792)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
