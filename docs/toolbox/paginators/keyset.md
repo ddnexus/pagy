@@ -231,7 +231,7 @@ which naturally ends with the end of the `set`, so it doesn't have any `cutoff` 
 Product.order(:name, :production_date)
 ```
 
-!!! success Append the primary key to the order
+!!!success Append the primary key to the order
 
 ```rb
 # Add the :id as the last column
@@ -260,7 +260,7 @@ The generic `to_json` method used to encode the `page` may lose some information
 
 !!!danger Most likely the index is not right, or your case needs a custom query
 
-!!! Success
+!!!success
 
 - Ensure that the composite index reflects exactly the columns sequence and order of your keyset
 - Research your specific DB features, type of index, and performance for different ordering. Use SQL `EXPLAIN ANALYZE` or similar

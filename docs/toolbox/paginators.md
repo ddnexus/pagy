@@ -158,7 +158,7 @@ Individual paginators may raise specific exceptions, which are documented with t
 unordered.offset(pagy.offset).limit(pagy.limit)
 ```
 
-!!! warning
+!!!warning
 
 Citation: [PostgreSQL Documentation](https://www.postgresql.org/docs/16/queries-limit.html#:~:text=When%20using%20LIMIT,ORDER%20BY)
 
@@ -166,7 +166,7 @@ When using LIMIT, always include an ORDER BY clause to constrain the result rows
 
 !!!
 
-!!! success Ensure the PostgreSQL collection is ordered!
+!!!success Ensure the PostgreSQL collection is ordered!
 
 ```rb
 # Results will be consistent and predictable with #order

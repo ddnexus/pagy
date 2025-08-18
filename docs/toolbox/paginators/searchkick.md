@@ -21,7 +21,7 @@ Searchkick.extend Pagy::Search
 
 +++ Active mode
 
-!!! success Pagy searches and paginates
+!!!success Pagy searches and paginates
 
 Use the `pagy_search` method instead of the `search` method.
 !!!
@@ -41,7 +41,7 @@ search = Searchkick.pagy_search(params[:q], models: [Article, Categories])
 
 +++ Passive mode
 
-!!! success You search and paginate
+!!!success You search and paginate
 
 Pagy creates its object out of your result.
 !!!

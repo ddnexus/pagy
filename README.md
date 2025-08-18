@@ -60,7 +60,7 @@ development tools, making it a comprehensive upgrade from previous versions.
 
 ### Upgrade to 43
 
-https://ddnexus.github.io/pagy-pre/guides/upgrade-guide/
+See the [Upgrade Guide](https://ddnexus.github.io/pagy-pre/guides/upgrade-guide/)
 
 <!-- whats_new_end -->
 
@@ -140,7 +140,7 @@ search           = Product.pagy_search(params[:q])
 
 ##### Calendar pagination
 
-Combines `time-range` and `offset` pagination.
+Combine `time-range` and `offset` pagination.
 
 _(Available time units: year, quarter, month, week, and day)_
 

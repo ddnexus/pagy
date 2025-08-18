@@ -394,7 +394,7 @@ You may want also to check these internal renaming:
 
 ===
 
-!!! warning
+!!!warning
 
 Please report any issue with this guide opening
 a [new docs issue](https://github.com/ddnexus/pagy/issues/new?template=Documentation.yml).

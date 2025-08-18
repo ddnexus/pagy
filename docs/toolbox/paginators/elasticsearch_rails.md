@@ -17,7 +17,7 @@ categories:
 
 +++ Active mode
 
-!!! success Pagy searches and paginate
+!!!success Pagy searches and paginate
 
 You use the `pagy_search` method in place of the `search` method.
 !!!
@@ -37,7 +37,7 @@ search = Article.pagy_search(params[:q]).results
 
 +++ Passive mode
 
-!!! success You search and paginate
+!!!success You search and paginate
 
 Pagy creates its object out of your result.
 !!!

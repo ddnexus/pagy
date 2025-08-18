@@ -19,7 +19,7 @@ Paginator method for `Meilisearch` results.
 
 +++ Active mode
 
-!!! success Pagy searches and paginates
+!!!success Pagy searches and paginates
 You use the `pagy_search` method in place of the `ms_search` method.
 !!!
 
@@ -38,7 +38,7 @@ search = Article.pagy_search(params[:q]).results
 
 +++ Passive Mode
 
-!!! success You search and paginate
+!!!success You search and paginate
 Pagy creates its object out of your result.
 !!!
 

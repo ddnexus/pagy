@@ -67,7 +67,7 @@ pagy ./rails.ru
 
 This is the interactive showcase for all the pagy helpers and CSS styles.
 
-!!! success Try it now!
+!!!success Try it now!
 
 Run the interactive demo from your terminal:
 
@@ -157,7 +157,7 @@ platforms).
 
 That's very convenient, but it may still have some rough edges:
 
-!!! warning ** ERROR: Directory is already being watched! **
+!!!warning ** ERROR: Directory is already being watched! **
 
 Your app is in a directory with looping symlinks, and the `listen` gem cannot handle it.
 

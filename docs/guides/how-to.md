@@ -32,7 +32,7 @@ Check the [list of paginators](../toolbox/paginators/#paginators) or click the P
 @pagy, @products = pagy(:offset, collection, limit: 10, client_max_limit: 1_000)
 ```
 
-!!! warning ActiveRecord `limit`
+!!!warning ActiveRecord `limit`
 
 The `:limit` option defined here will override any existing `limit` set in `ActiveRecord` collections.
 !!!
