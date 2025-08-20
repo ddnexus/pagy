@@ -8,7 +8,7 @@ class Pagy
                   'pagy.info_tag.no_count'
                 elsif @count.zero?
                   'pagy.info_tag.no_items'
-                elsif @last == 1
+                elsif @in == @count
                   'pagy.info_tag.single_page'
                 else
                   'pagy.info_tag.multiple_pages'
