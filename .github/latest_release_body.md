@@ -40,15 +40,15 @@ development tools, making it a comprehensive upgrade from previous versions.
 
 ### Upgrade to 43
 
-https://ddnexus.github.io/pagy-pre/guides/upgrade-guide/
+See the [Upgrade Guide](https://ddnexus.github.io/pagy-pre/guides/upgrade-guide/)
 
 <!-- whats_new_end -->
 
-### Changes in 43.0.0.rc3
+### Changes in 43.0.0.rc4
 
 <!-- changes_start -->
-- Version 43.0.0.rc3
-- Reimplement the anchor_string option for the helpers (#792)
+- Version 43.0.0.rc4
+- Fix single_page info_tag condition
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
