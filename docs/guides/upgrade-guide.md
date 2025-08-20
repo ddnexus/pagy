@@ -33,7 +33,7 @@ This guide focuses on getting the job done quickly. If you want to learn more ab
 
 - Rename your `pagy.rb` initializer as `pagy-old.rb`, and add the new, concise
   [pagy.rb](../resources/initializer) initializer in its place.
-- Search the `pagy-old.rb` for code-occurrences of `Pagy::DEFAULT[...]` and move them to the new `pagy.js` (remove them from the
+- Search the `pagy-old.rb` for code-occurrences of `Pagy::DEFAULT[...]` and move them to the new `pagy.rb` (remove them from the
   `pagy-old.rb`)
 - Replace all the `Pagy::DEFAULT[...]` entries just added to the new `pagy.rb` with `Pagy.options[...]`.
 
