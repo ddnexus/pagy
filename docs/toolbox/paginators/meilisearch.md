@@ -15,8 +15,6 @@ categories:
 
 `:meilisearch` is a paginator designed for `Meilisearch` results.
 
-Paginator method for `Meilisearch` results.
-
 +++ Active mode
 
 !!!success Pagy searches and paginates
@@ -25,7 +23,7 @@ You use the `pagy_search` method in place of the `ms_search` method.
 
 ```ruby Model
 extend Pagy::Search
-ActiveRecord_Relation.include Pagy::Meilisearch  
+ActiveRecord_Relation.include Pagy::Search # Statically enable pagy_search on the model relations
 ```
 
 ```ruby Controller

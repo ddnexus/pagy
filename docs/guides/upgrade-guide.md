@@ -371,7 +371,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 - Overriding methods in controllers/helpers is not possible or discouraged.
 - The cleanest approach for local overriding is via Ruby refinements or the initializer for global override.
-- Check the [How To Override Pagy Method](../guides/how-to/#override-pagy-methods).
+- Check the [How To Override Pagy Methods](../guides/how-to/#override-pagy-methods).
 - If your `pagy-old.rb` contains overridden methods, copy the methods over to the `pagy.rb` initializer, however, consider that:
   - Internal Pagy protected methods have been extensively refactored, likely renamed, and occasionally removed.
   - You should reconcile internal overrides by reviewing the updated Pagy codebase.
@@ -380,13 +380,13 @@ You may want also to check these internal renaming:
 
 {.compact}
 
-| Search (old)         | Replace with (new) |
-|----------------------|--------------------|
-| `pagy_url_for(@pagy` | `@pagy.page_url(`  |
-| `pagy_anchor(pagy`   | `pagy.a_lambda(`   |
-| `pagy_t`             | `I18n.translate`   |
-| `label_for`          | `page_label`       |
-| `label`              | `page_label`       |
+| Search (old)         | Replace with (new)     |
+|----------------------|------------------------|
+| `pagy_url_for(@pagy` | `@pagy.page_url(`      |
+| `pagy_anchor(pagy`   | `pagy.a_lambda(`       |
+| `pagy_t`             | `Pagy::I18n.translate` |
+| `label_for`          | `page_label`           |
+| `label`              | `page_label`           |
 
 ==- Delete the `pagy-old.rb` file
 
