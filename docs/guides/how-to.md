@@ -369,6 +369,18 @@ def redirect_to_last_page(exception)
 end
 ```
 
+#### Manage `Pagy::OptionError` Exceptions
+
+Similar to managing `Pagy::RangeError` exceptions, bots may attempt to sniff your app by posting questionable page params e.g. `https://some_url&page=password`. This may prove a nuisance if you receive automated emails every time this happens. An alternative solution may be to handle the exception and redirect users to a valid page:
+
+```rb controller
+rescue_from Pagy::OptionError do
+    redirect_to action: :index, params: request.query_parameters.merge(page: 1) # force the first page
+end
+```
+
+Or if you do not wish to redirect, you could simply "Force the `:page`" (please search for this answer above).
+
 !!!warning Rescue from `Pagy::RangeError` first
 
 All Pagy exceptions are subclasses of `ArgumentError`, so if you need to `rescue_from ArgumentError, ...` along with
