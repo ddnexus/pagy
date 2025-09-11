@@ -369,17 +369,38 @@ def redirect_to_last_page(exception)
 end
 ```
 
-#### Manage `Pagy::OptionError` Exceptions
+==- Manage `Pagy::OptionError` Exceptions
 
-Similar to managing `Pagy::RangeError` exceptions, bots may attempt to sniff your app by posting questionable page params e.g. `https://some_url&page=password`. This may prove a nuisance if you receive automated emails every time this happens. An alternative solution may be to handle the exception and redirect users to a valid page:
+Similar to [managing `Pagy::RangeError` exceptions](#manage-pagy-optionerror-exceptions), bots may attempt to sniff your app by posting questionable page params e.g. `https://some_url&page=password`. This may prove a nuisance if you receive automated emails every time this happens. You can manage this happens by handling the relevant exception(s):
+
 
 ```rb controller
+# e.g. by redirecting to a valid url
 rescue_from Pagy::OptionError do
     redirect_to action: :index, params: request.query_parameters.merge(page: 1) # force the first page
 end
 ```
 
-Or if you do not wish to redirect, you could simply "Force the `:page`" (please search for this answer above).
+Or if you want to be more specific, you can interrogate the exception itself:
+
+```rb controller
+rescue_from Pagy::OptionError do |exception|
+    if exception.option == :page 
+      # apply your own logic to handle / not handle the exception
+      redirect_to action: :index, params: request.query_parameters.merge(page: 1) # force the first page      
+    else
+      raise
+    end    
+end
+```
+
+Or if you do not wish to redirect, you could simply ["Force the `:page`"](#force-the-page)
+
+For more details on exceptions view the [source code](../../gem/lib/pagy/classes/exceptions.rb) and the [test file](../../test/pagy/classes/exceptions_test.rb):
+
+:::code source="../../gem/lib/pagy/classes/exceptions.rb" range="5-15" :::
+
+:::code source="../../test/pagy/classes/exceptions_test.rb" :::
 
 !!!warning Rescue from `Pagy::RangeError` first
 
