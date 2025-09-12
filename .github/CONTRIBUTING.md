@@ -1,5 +1,11 @@
 # Pagy Contributions
 
+> [!IMPORTANT]
+> Pagy is imminently moving towards [v43](https://rubygems.org/gems/pagy/versions/43.0.0.rc4). As a result:
+> - Please make PRs to the `master-pre` branch unless you are fixing a bug on the `master` branch.
+> - If the fixes are portable between the `master` and `master-pre` - it would be ideal if two PRs were submitted.
+> - Please raise a discussion re: the above, before starting a PR - because nobody wants to see your work going to waste.
+
 Pull Requests are welcome!
 
 Here are a few useful information for contributing:
