@@ -369,46 +369,26 @@ def redirect_to_last_page(exception)
 end
 ```
 
-==- Manage `Pagy::OptionError` Exceptions
+==- Manage bad bot requests
 
-Similar to [managing `Pagy::RangeError` exceptions](#manage-pagy-optionerror-exceptions), bots may attempt to sniff your app by posting questionable page params e.g. `https://some_url&page=password`. This may prove a nuisance if you receive automated emails every time this happens. You can manage this happens by handling the relevant exception(s):
+Bots may attempt to sniff your app by posting questionable page params e.g. `https://some_url&page=password` and generate tons of annoying bad request errors.
 
-
-```rb controller
-# e.g. by redirecting to a valid url
-rescue_from Pagy::OptionError do
-    redirect_to action: :index, params: request.query_parameters.merge(page: 1) # force the first page
-end
-```
-
-Or if you want to be more specific, you can interrogate the exception itself:
+Here is a snippet to handle that:
 
 ```rb controller
 rescue_from Pagy::OptionError do |exception|
-    if exception.option == :page 
-      # apply your own logic to handle / not handle the exception
-      redirect_to action: :index, params: request.query_parameters.merge(page: 1) # force the first page      
-    else
-      raise
-    end    
+  if exception.option == :page 
+    # apply your own logic to handle / not handle the exception
+    redirect_to action: :index, params: request.query_parameters.merge(page: 1) # redirect to the first page
+    # or just force the page without redirecting
+    # @pagy, @records = pagy(:offset, collection, page: 1)
+  else
+    raise
+  end
 end
 ```
 
-Or if you do not wish to redirect, you could simply ["Force the `:page`"](#force-the-page)
-
-For more details on exceptions view the [source code](../../gem/lib/pagy/classes/exceptions.rb) and the [test file](../../test/pagy/classes/exceptions_test.rb):
-
-:::code source="../../gem/lib/pagy/classes/exceptions.rb" range="5-15" :::
-
-:::code source="../../test/pagy/classes/exceptions_test.rb" :::
-
-!!!warning Rescue from `Pagy::RangeError` first
-
-All Pagy exceptions are subclasses of `ArgumentError`, so if you need to `rescue_from ArgumentError, ...` along with
-`rescue_from Pagy::RangeError, ...` then the `Pagy::RangeError` line should go BEFORE the `ArgumentError` line, or it will never
-get rescued.
-
-!!!
+See [common exceptions](../toolbox/paginators/#common-exceptions) for details.
 
 ==- Test with Pagy
 
