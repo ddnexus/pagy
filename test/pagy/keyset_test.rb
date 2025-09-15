@@ -86,6 +86,21 @@ require 'pagy/keyset'
 
         _(pagy.instance_variable_get(:@keyset)).must_equal({animal: :desc, :id => :asc})
       end
+      if model == Pet
+        it 'extracts the keyset from the set order (SQL Literal)' do
+          set = model.order(Arel.sql("animals DESC, id ASC"))
+          pagy = Pagy::Keyset.new(set)
+
+          _(pagy.instance_variable_get(:@keyset)).must_equal(Arel.sql("animals DESC, id ASC"))
+        end
+
+        it 'extracts the keyset from the set order (String)' do
+          set = model.order("animals DESC, id ASC")
+          pagy = Pagy::Keyset.new(set)
+
+          _(pagy.instance_variable_get(:@keyset)).must_equal("animals DESC, id ASC")
+        end
+      end
       if model == PetSequel
         it 'raises TypeError for unknown order type' do
           _ { Pagy::Keyset.new(model.order(id: :desc)) }.must_raise TypeError
