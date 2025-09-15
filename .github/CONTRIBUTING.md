@@ -1,16 +1,16 @@
 # Pagy Contributions
 
 > [!IMPORTANT]
-> Pagy is imminently moving towards [v43](https://rubygems.org/gems/pagy/versions/43.0.0.rc4). As a result:
-> - Please make PRs to the `master-pre` branch unless you are fixing a bug on the `master` branch.
-> - If the fixes are portable between the `master` and `master-pre` - it would be ideal if two PRs were submitted.
-> - Please raise a discussion re: the above, before starting a PR - because nobody wants to see your work going to waste.
+> Pagy is imminently moving towards [v43](https://ddnexus.github.io/pagy-pre).
+> - Please make PRs to the `master-pre` branch (v43) unless you are fixing a bug on the `master` branch.
+> - If the changes are portable between `master-pre` and `master` it would be ideal if two PRs were submitted.
+> - Please create a [version 43 discussion](https://github.com/ddnexus/pagy/discussions/new?category=version-43) before starting a PR in order to ensure your work will be included.
 
 Pull Requests are welcome!
 
-Here are a few useful information for contributing:
+Here is a little useful information for contributing:
 
-1. If you are planning for a complex PR, we suggest that you check before hand whether your
+1. If you are planning for a complex PR, we suggest that you check beforehand whether your
    proposed changes are going to be accepted by posting your ideas in
    the [Feature Requests](https://github.com/ddnexus/pagy/discussions/categories/feature-requests) discussion area
 2. For adding translations of locale dictionary files please follow
@@ -19,7 +19,7 @@ Here are a few useful information for contributing:
     - Clone pagy: `git clone https://github.com/ddnexus/pagy && cd pagy`
     - [Configure the git-hooks](https://github.com/ddnexus/pagy/tree/master/scripts/hooks)
 4. **Development**
-    - Please create your own branch out of `master` and use it for you development and PR
+    - Please create your own branch out of `master` and use it for your development and PR
     - Ensure you are basing your PR on the `master` branch and keep rebasing it on `master` when it changes
     - **Code**
        - You can have a decent development environment already setup by just using one of the apps in
