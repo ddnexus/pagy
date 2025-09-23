@@ -124,7 +124,7 @@ class PagyDemo < Sinatra::Base
 
     def highlight(html, format: :html)
       if format == :html
-        html = html.gsub(/>[\s]*</, '><').strip # template single line no spaces around/between tags
+        html = html.gsub(/>\s*</, '><').strip # template single line no spaces around/between tags
         html = Formatter.new.format(html)
       end
       lexer     = Rouge::Lexers::ERB.new
