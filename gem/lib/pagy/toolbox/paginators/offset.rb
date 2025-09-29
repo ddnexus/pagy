@@ -24,7 +24,7 @@ class Pagy
                 # COUNT(*) OVER ()
                 sql = Arel.star.count.over(Arel::Nodes::Grouping.new([]))
                 collection.unscope(:order).then do |unordered|
-                  options[:async_count] ? unordered.async_pick(sql) : unordered.pick(sql)
+                  options[:async_count] ? unordered.async_pick(sql).value : unordered.pick(sql)
                 end.to_i
               else
                 options[:async_count] ? collection.async_count(:all).value : collection.count(:all)
