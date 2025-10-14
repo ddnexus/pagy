@@ -3,7 +3,7 @@
 require_relative 'support/wrap_input_nav_js'
 
 class Pagy
-  # Javascript combo pagination: it returns a nav with a data-pagy attribute used by the pagy.js file
+  # JavaScript input pagination: it returns a nav with a data-pagy attribute used by the pagy.js file
   def input_nav_js(style = nil, **)
     return send(:"#{style}_input_nav_js", **) if style
 
@@ -15,5 +15,4 @@ class Pagy
                  next_tag(a_lambda)})
     wrap_input_nav_js(html, 'pagy input-nav-js', **)
   end
-  alias pagy_input_nav_js input_nav_js
 end

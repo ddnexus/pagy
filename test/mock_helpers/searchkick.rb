@@ -8,7 +8,7 @@ module MockSearchkick
     attr_reader :options
 
     def initialize(query, options = {}, &block)
-      query    = 'a' if query == '*' # testing default query with the actual Model.search
+      query    = 'a' if query == '*' # testing the default query with the actual Model.search
       @entries = RESULTS[query]
       @options = { page: 1, per_page: 10 }.merge(options)
       from     = @options[:per_page] * ((@options[:page] || 1) - 1)

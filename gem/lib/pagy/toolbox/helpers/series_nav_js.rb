@@ -15,5 +15,4 @@ class Pagy
                  after:   next_tag(a_lambda) }
     wrap_series_nav_js(tokens, 'pagy series-nav-js', **)
   end
-  alias pagy_series_nav_js series_nav_js
 end
