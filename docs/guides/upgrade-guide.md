@@ -319,7 +319,6 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 | `page_param: :...` (symbol value) | `page_key: '...'` (string value) |
 | `pagy_info(@pagy, ...)`           | `@pagy.info_tag(...)`            |
 | `@pagy_locale = ...`              | `Pagy::I18n = ...`               |
-| `@pagy.pages`                     | `@pagy.last`                     |
 | `@pagy.vars`                      | `@pagy.options`                  |
 | `VariableError`                   | `OptionError`                    |
 | `<error>.variable`                | `<error>.option`                 |

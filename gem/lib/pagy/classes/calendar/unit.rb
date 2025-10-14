@@ -27,6 +27,7 @@ class Pagy
       end
 
       attr_reader :order, :from, :to, :previous, :last
+      alias pages last
 
       protected
 

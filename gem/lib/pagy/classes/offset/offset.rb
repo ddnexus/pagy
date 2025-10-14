@@ -27,6 +27,7 @@ class Pagy
     end
 
     attr_reader :offset, :count, :from, :to, :in, :previous, :last
+    alias pages last
 
     def records(collection)
       collection.offset(@offset).limit(@limit)

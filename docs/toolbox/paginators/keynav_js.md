@@ -33,8 +33,12 @@ It's easier to understand if you familiarize with the [:keyset](keyset.md) docs.
 
 ==- Readers
 
-See also [Keyset Readers](keyset#readers)
+- `last`
+  - The last page.
+- `pages`
+  - The number of pages.
 
+See also [Keyset Readers](keyset#readers)
 
 ==- Glossary
 

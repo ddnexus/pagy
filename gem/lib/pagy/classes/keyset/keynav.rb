@@ -22,6 +22,7 @@ class Pagy
       end
 
       attr_reader :update, :previous, :last
+      alias pages last
 
       # Prepare the @update for the client when it's a new page, and return the next page number
       def next

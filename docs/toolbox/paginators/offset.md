@@ -52,7 +52,9 @@ See also [Common Options](../paginators#common-options)
 - `previous`
   - The previous page
 - `last`
-  - The last page
+  - The last page.
+- `pages`
+  - The number of pages.
 - `records`
   - The fetched records for the current page.  
 
