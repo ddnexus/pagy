@@ -198,7 +198,6 @@ abort "ERROR: Cannot create DB files: the directory #{dir.inspect} is not writab
       unless File.writable?(dir)
 # Connection
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: "#{dir}/tmp/pagy-calendar.sqlite3")
-ActiveSupport.to_time_preserves_timezone = :zone  # Fix ActiveSupport deprecation
 Date.beginning_of_week = :monday   # just for rails default compatibiity
 # Groupdate initializer  (https://github.com/ankane/groupdate)
 # Groupdate week_start default is :sunday, while rails and pagy default to :monday

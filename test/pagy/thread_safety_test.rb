@@ -14,28 +14,28 @@ describe 'Autoload thread safety' do
 
   times.times do
     threads << Thread.new do
-                 sleep(rand(500 / 1000))
-                 Time.zone = "GMT"
-                 Date.beginning_of_week = :sunday
+      sleep(rand(500 / 1000))
+      Time.zone = "GMT"
+      Date.beginning_of_week = :sunday
 
-                 period = [Time.zone.local(2022, 3, 1, 3), Time.zone.local(2023, 3, 10, 3)]
-                 calendar, pagy_c, _records = MockApp::Calendar.new(params: { page: 1 })
-                                                               .send(:pagy, :calendar,
-                                                                     Event.all,
-                                                                     month: { period: period },
-                                                                     offset: {})
+      period = [Time.zone.local(2022, 3, 1, 3), Time.zone.local(2023, 3, 10, 3)]
+      calendar, pagy_c, _records = MockApp::Calendar.new(params: { page: 1 })
+                                                    .send(:pagy, :calendar,
+                                                          Event.all,
+                                                          month: { period: period },
+                                                          offset: {})
 
-                 results = MockMeilisearch::Model.ms_search('a')
-                 pagy_m  = MockApp.new.send(:pagy, :meilisearch, results)
+      results = MockMeilisearch::Model.ms_search('a')
+      pagy_m  = MockApp.new.send(:pagy, :meilisearch, results)
 
-                 if calendar[:month].instance_of?(Pagy::Calendar::Month) &&
-                    pagy_c.instance_of?(Pagy::Offset) &&
-                    pagy_m.instance_of?(Pagy::Meilisearch)
-                   shared_result << :success
-                 end
-               rescue Exception => e   # rubocop:disable Lint/ RescueException
-                 shared_result << e.class
-               end
+      if calendar[:month].instance_of?(Pagy::Calendar::Month) &&
+         pagy_c.instance_of?(Pagy::Offset) &&
+         pagy_m.instance_of?(Pagy::Meilisearch)
+        shared_result << :success
+      end
+    rescue Exception => e   # rubocop:disable Lint/ RescueException
+      shared_result << e.class
+    end
   end
   threads.each(&:join)
 
