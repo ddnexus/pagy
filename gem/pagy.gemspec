@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
                     'homepage_uri'          => 'https://github.com/ddnexus/pagy',
                     'documentation_uri'     => 'https://ddnexus.github.io/pagy',
                     'bug_tracker_uri'       => 'https://github.com/ddnexus/pagy/issues',
-                    'changelog_uri'         => 'https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md',
+                    'changelog_uri'         => 'https://ddnexus.github.io/pagy/changelog/',
                     'support'               => 'https://github.com/ddnexus/pagy/discussions/categories/q-a' }
   s.executables << 'pagy'
   s.add_dependency 'json'
