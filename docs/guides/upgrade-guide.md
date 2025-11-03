@@ -74,7 +74,6 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 | Search (old)                                   | Replace with (new)                                  |
 |------------------------------------------------|-----------------------------------------------------|
-| `pagy_nav(@pagy, ...)`                         | `@pagy.series_nav(...)`                             |
 | `pagy_nav_js(@pagy, ...)`                      | `@pagy.series_nav_js(...)`                          |
 | `pagy_combo_nav_js(@pagy, ...)`                | `@pagy.input_nav_js(...)`                           |
 | `pagy_limit_selector_js(@pagy, ...)`           | `@pagy.limit_tag_js(...)`                           |
@@ -87,7 +86,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 | `size: ...`<br/>`Pagy.options[:size] = ...`    | `slots: ...`<br/>`Pagy.options[:slots] = ...`       |
 | `ends: false`<br/>`Pagy.options[:end] = false` | `compact: true`<br/>`Pagy.options[:compact] = true` |
 
-==- `boostrap`
+==- `bootstrap`
 
 - All the old helpers are now `@pagy` instance methods with more explicit names.
 
@@ -95,9 +94,9 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 | Search (old)                                   | Replace with (new)                                  |
 |------------------------------------------------|-----------------------------------------------------|
-| `pagy_boostrap_nav(@pagy, ...)`                | `@pagy.series_nav(:boostrap, ...)`                  |
-| `pagy_boostrap_nav_js(@pagy, ...)`             | `@pagy.series_nav_js(:boostrap, ...)`               |
-| `pagy_boostrap_combo_nav_js(@pagy, ...)`       | `@pagy.input_nav_js(:boostrap, ...)`                |
+| `pagy_bootstrap_nav(@pagy, ...)`               | `@pagy.series_nav(:bootstrap, ...)`                 |
+| `pagy_bootstrap_nav_js(@pagy, ...)`            | `@pagy.series_nav_js(:bootstrap, ...)`              |
+| `pagy_bootstrap_combo_nav_js(@pagy, ...)`      | `@pagy.input_nav_js(:bootstrap, ...)`               |
 | `size: ...`<br/>`Pagy.options[:size] = ...`    | `slots: ...`<br/>`Pagy.options[:slots] = ...`       |
 | `ends: false`<br/>`Pagy.options[:end] = false` | `compact: true`<br/>`Pagy.options[:compact] = true` |
 
@@ -311,21 +310,22 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 {.compact}
 
-| Search (old)                      | Replace with (new)               |
-|-----------------------------------|----------------------------------|
-| `include Pagy::Backend`           | `include Pagy::Method`           |
-| `include Pagy::Frontend`          | remove (integrated)              |
-| `Pagy.root.`                      | `Pagy::ROOT.`                    |
-| `page_param: :...` (symbol value) | `page_key: '...'` (string value) |
-| `pagy_info(@pagy, ...)`           | `@pagy.info_tag(...)`            |
-| `@pagy_locale = ...`              | `Pagy::I18n = ...`               |
-| `@pagy.vars`                      | `@pagy.options`                  |
-| `VariableError`                   | `OptionError`                    |
-| `<error>.variable`                | `<error>.option`                 |
-| `fragment: '#...'`                | `fragment: '...'` (optional '#') |
-| `count_args: ...`                 | remove (integrated)              |
-| `outset: ...`                     | remove (discontinued)            |
-| `cycle: ...`                      | remove (discontinued)            |
+| Search (old)                         | Replace with (new)                 |
+|--------------------------------------|------------------------------------|
+| `include Pagy::Backend`              | `include Pagy::Method`             |
+| `include Pagy::Frontend`             | _(remove: integrated)_             |
+| `pagy_nav(@pagy, ...)`               | `@pagy.series_nav(...)`            | 
+| `Pagy.root.`                         | `Pagy::ROOT.`                      |
+| `page_param: :...` _(symbol value)_  | `page_key: '...'` _(string value)_ |
+| `pagy_info(@pagy, ...)`              | `@pagy.info_tag(...)`              |
+| `@pagy_locale = ...`                 | `Pagy::I18n = ...`                 |
+| `@pagy.vars`                         | `@pagy.options`                    |
+| `VariableError`                      | `OptionError`                      |
+| `<error>.variable`                   | `<error>.option`                   |
+| `fragment: '#...'` _(mandatory '#')_ | `fragment: '...'` _(optional '#')_ |
+| `count_args: ...`                    | _(remove: integrated)_             |
+| `outset: ...`                        | _(remove: discontinued)_           |
+| `cycle: ...`                         | _(remove: discontinued)_           |
 
 ==- Replace the `:params` variable...
 
