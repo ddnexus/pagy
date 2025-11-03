@@ -16,7 +16,7 @@ expect the old/deprecated functionality to be supported ONLY during the current 
 
 ## Recommended Version Constraint
 
-Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.0.0.rc4`):
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.0.0`):
 
 The `gem 'pagy', '~> 43.0'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.
@@ -43,22 +43,7 @@ None
 
 <hr>
 
-## Version 43.0.0.rc4
-
-- Version 43.0.0.rc4
-- Fix single_page info_tag condition
-
-## Version 43.0.0.rc3
-
-- Version 43.0.0.rc3
-- Reimplement the anchor_string option for the helpers (#792)
-
-## Version 43.0.0.r2
-
-- Update aria translation for Tamil (ta) locale (#788)
-- Add Slovak localization (from 6aa3774d)
-
-## Version 43.0.0.rc1
+## Version 43.0.0
 
 We needed a leap version to unequivocally signaling that it's not just a major version: it's a complete redesign of the legacy
 code at all levels, usage and API included.

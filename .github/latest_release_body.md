@@ -4,7 +4,7 @@
   <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">
 </a><br><br>
 
-## Version 43.0.0.rc*
+## Version 43.0.0
 
 We needed a leap version to unequivocally signaling that it's not just a major version: it's a complete redesign of the legacy
 code at all levels, usage and API included.
@@ -44,11 +44,9 @@ See the [Upgrade Guide](https://ddnexus.github.io/pagy-pre/guides/upgrade-guide/
 
 <!-- whats_new_end -->
 
-### Changes in 43.0.0.rc4
+### Changes in 43.0.0
 
 <!-- changes_start -->
-- Version 43.0.0.rc4
-- Fix single_page info_tag condition
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
