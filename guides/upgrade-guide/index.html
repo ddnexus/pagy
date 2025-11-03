@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.815478863928">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.815528227397">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.815478863928" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.815528227397" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.815478863928" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.815528227397" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.815478863928" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.815478863928" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.815528227397" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.815528227397" defer></script>
 
     <!-- ai_widget_start -->
     <script>
@@ -505,10 +505,6 @@ as needed.</em></p>
 </thead>
 <tbody>
 <tr>
-<td><code v-pre>pagy_nav(@pagy, ...)</code></td>
-<td><code v-pre>@pagy.series_nav(...)</code></td>
-</tr>
-<tr>
 <td><code v-pre>pagy_nav_js(@pagy, ...)</code></td>
 <td><code v-pre>@pagy.series_nav_js(...)</code></td>
 </tr>
@@ -556,8 +552,8 @@ as needed.</em></p>
 </table>
 </div>
    </doc-panel>
-   <doc-panel id="boostrap" collapsed>
-       <template #title><code v-pre>boostrap</code></template>
+   <doc-panel id="bootstrap" collapsed>
+       <template #title><code v-pre>bootstrap</code></template>
 <ul>
 <li>All the old helpers are now <code v-pre>@pagy</code> instance methods with more explicit names.</li>
 </ul>
@@ -571,16 +567,16 @@ as needed.</em></p>
 </thead>
 <tbody>
 <tr>
-<td><code v-pre>pagy_boostrap_nav(@pagy, ...)</code></td>
-<td><code v-pre>@pagy.series_nav(:boostrap, ...)</code></td>
+<td><code v-pre>pagy_bootstrap_nav(@pagy, ...)</code></td>
+<td><code v-pre>@pagy.series_nav(:bootstrap, ...)</code></td>
 </tr>
 <tr>
-<td><code v-pre>pagy_boostrap_nav_js(@pagy, ...)</code></td>
-<td><code v-pre>@pagy.series_nav_js(:boostrap, ...)</code></td>
+<td><code v-pre>pagy_bootstrap_nav_js(@pagy, ...)</code></td>
+<td><code v-pre>@pagy.series_nav_js(:bootstrap, ...)</code></td>
 </tr>
 <tr>
-<td><code v-pre>pagy_boostrap_combo_nav_js(@pagy, ...)</code></td>
-<td><code v-pre>@pagy.input_nav_js(:boostrap, ...)</code></td>
+<td><code v-pre>pagy_bootstrap_combo_nav_js(@pagy, ...)</code></td>
+<td><code v-pre>@pagy.input_nav_js(:bootstrap, ...)</code></td>
 </tr>
 <tr>
 <td><code v-pre>size: ...</code><br/><code v-pre>Pagy.options[:size] = ...</code></td>
@@ -1063,15 +1059,19 @@ benefit.</p>
 </tr>
 <tr>
 <td><code v-pre>include Pagy::Frontend</code></td>
-<td>remove (integrated)</td>
+<td><em>(remove: integrated)</em></td>
+</tr>
+<tr>
+<td><code v-pre>pagy_nav(@pagy, ...)</code></td>
+<td><code v-pre>@pagy.series_nav(...)</code></td>
 </tr>
 <tr>
 <td><code v-pre>Pagy.root.</code></td>
 <td><code v-pre>Pagy::ROOT.</code></td>
 </tr>
 <tr>
-<td><code v-pre>page_param: :...</code> (symbol value)</td>
-<td><code v-pre>page_key: '...'</code> (string value)</td>
+<td><code v-pre>page_param: :...</code> <em>(symbol value)</em></td>
+<td><code v-pre>page_key: '...'</code> <em>(string value)</em></td>
 </tr>
 <tr>
 <td><code v-pre>pagy_info(@pagy, ...)</code></td>
@@ -1094,20 +1094,20 @@ benefit.</p>
 <td><code v-pre>&lt;error&gt;.option</code></td>
 </tr>
 <tr>
-<td><code v-pre>fragment: '#...'</code></td>
-<td><code v-pre>fragment: '...'</code> (optional &#x27;#&#x27;)</td>
+<td><code v-pre>fragment: '#...'</code> <em>(mandatory &#x27;#&#x27;)</em></td>
+<td><code v-pre>fragment: '...'</code> <em>(optional &#x27;#&#x27;)</em></td>
 </tr>
 <tr>
 <td><code v-pre>count_args: ...</code></td>
-<td>remove (integrated)</td>
+<td><em>(remove: integrated)</em></td>
 </tr>
 <tr>
 <td><code v-pre>outset: ...</code></td>
-<td>remove (discontinued)</td>
+<td><em>(remove: discontinued)</em></td>
 </tr>
 <tr>
 <td><code v-pre>cycle: ...</code></td>
-<td>remove (discontinued)</td>
+<td><em>(remove: discontinued)</em></td>
 </tr>
 </tbody>
 </table>
