@@ -27,10 +27,10 @@
 
 ############# Overriding Pagy::I18n Lookup #################################################
 # Refer to https://ddnexus.github.io/pagy/resources/i18n/ for details.
-# Override the dictionary lookup for customization by dropping your customized
+# Override the I18n lookup by dropping your custom dictionary in some pagy dir.
 # Example for Rails:
 #
-# Pagy::I18n.pathnames << Rails.root.join('config/locales')
+# Pagy::I18n.pathnames << Rails.root.join('config/locales/pagy')
 
 
 ############# I18n Gem Translation #########################################################
