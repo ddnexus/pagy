@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.815659592679">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.815715675619">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.11.0.815659592679" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.11.0.815715675619" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.11.0.815659592679" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.11.0.815715675619" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.11.0.815659592679" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.11.0.815659592679" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.11.0.815715675619" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.11.0.815715675619" defer></script>
 
     <!-- ai_widget_start -->
     <script>
@@ -423,8 +423,7 @@ render json: { data: @records, pagy: pagy_hash }</code></pre>
 <ul>
 <li><code v-pre>data_keys</code>
 <ul>
-<li>For efficiency, always set the <code v-pre>:data_keys</code> option to restrict the output to ONLY the keys you need.
-Note that you can also add other pagy method names not included in the default list below:
+<li>For efficiency, always set the <code v-pre>:data_keys</code> option to restrict the output to ONLY the keys you need among the default list:
 <ul>
 <li><code v-pre>:count</code></li>
 <li><code v-pre>:first_url</code></li>
@@ -445,6 +444,7 @@ Note that you can also add other pagy method names not included in the default l
 <li><code v-pre>:url_template</code></li>
 </ul>
 </li>
+<li>Notice that you can also add other pagy method names not included in the default list (see <a href="https://github.com/ddnexus/pagy/discussions/812">this discussion</a> for an example)</li>
 </ul>
 </li>
 </ul>
