@@ -70,7 +70,7 @@ See the [Upgrade Guide](guides/upgrade-guide)
     app.
 - **Playground apps**
   - Better usability and styles
-- **Boostrap and Bulma**
+- **Bootstrap and Bulma**
   - Fixed a few style glitches.
 
 [LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md)
