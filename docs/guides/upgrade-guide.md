@@ -357,6 +357,16 @@ The new version doesn't use the extras anymore. They got integrated in the core 
   for apps with builders, consider using the
   new [Pagy.sync_javascript](../resources/javascript/#2-make-the-file-available-to-your-app).
 
+==- Stylesheets
+
+- The CSS for the default pagy helpers have new selectors and variables. See the new [Stylesheets](../resources/stylesheets) to interactively update your custom CSS. 
+
+!!!success CSS Frameworks
+
+Supported CSS frameworks (like Bootstrap and Bulma) don't require any change.
+
+!!!
+
 ==- Pagy::I18n and Locale Files
 
 - If your `pagy-old.rb` contains the `Pagy::I18n` setup, and the setup includes some custom dictionary file, then uncomment and

@@ -42,8 +42,7 @@ render json: { data: @records, pagy: pagy_hash }
 ==- Options
 
 - `data_keys`
-  - For efficiency, always set the `:data_keys` option to restrict the output to ONLY the keys you need.
-    Note that you can also add other pagy method names not included in the default list below:
+  - For efficiency, always set the `:data_keys` option to restrict the output to ONLY the keys you need among the default list:
     - `:count`
     - `:first_url`
     - `:from`
@@ -61,6 +60,7 @@ render json: { data: @records, pagy: pagy_hash }
     - `:previous_url`
     - `:to`
     - `:url_template`
+  - Notice that you can also add other pagy method names not included in the default list (see [this discussion](https://github.com/ddnexus/pagy/discussions/812) for an example)  
 
 See also [Common URL Options](../paginators#common-url-options)
 
