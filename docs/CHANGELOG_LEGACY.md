@@ -2586,7 +2586,7 @@ The pagy initializer has changed: please replace/update it: [pagy.rb](https://gi
 
 ### Breaking Changes
 
-- The `pagy_nav_bootstrap_compact` and `pagy_nav_boostrap_responsive` helpers have been renamed as `pagy_nav_compact_bootstrap` and `pagy_nav_responsive_bootstrap` to keep the consistency with the extras structure (and support the consistency of future framework additions). Please, rename them accordingly.
+- The `pagy_nav_bootstrap_compact` and `pagy_nav_bootstrap_responsive` helpers have been renamed as `pagy_nav_compact_bootstrap` and `pagy_nav_responsive_bootstrap` to keep the consistency with the extras structure (and support the consistency of future framework additions). Please, rename them accordingly.
 - The `Pagy::Frontend::I18N.load_file` has been renamed as `Pagy::Frontend::I18N.load` and expects a hash as the argument. See the [I18n doc](https://ddnexus.github.io/pagy/api/frontend#i18n).
 - The seldom used `Pagy::Frontend::I18N[plurals]` has been renamed as `Pagy::Frontend::I18N[plural]`. See the [I18n doc](https://ddnexus.github.io/pagy/api/frontend#i18n).
 - Please, update your initializer file to the new [initializer_example.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/initializer_example.rb)
