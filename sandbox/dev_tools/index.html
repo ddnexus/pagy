@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.815785337658">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.815828773407">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -33,94 +33,100 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.815785337658" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.815828773407" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.815785337658" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.815828773407" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.815785337658" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.815785337658" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.815828773407" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.815828773407" defer></script>
 
     <!-- ai_widget_start -->
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-      function loadWidget() {
-        const script   = document.createElement('script');
-        const hostname = window.location.hostname;
-        //const iconURL  = 'https://github.com/ddnexus/pagy/blob/master/assets/images/pagy-the-frog.png?raw=true'
-        const iconURL  = 'https://github.com/ddnexus/pagy/blob/master-pre/assets/images/pagy-the-frog.png?raw=true'
-        switch (hostname) {
-          case 'ddnexus.github.io':  // remote docs
-            //script.dataset.widgetId = 'HKtFSPZLGiAXOdBWS4rSAxEkqv8czIbJoQdMEwCqgEc';
-            script.dataset.widgetId = 'mH2nvQJ1iOq_Ei6ZE9ep4g-YNTHjrwZS7Cif-8uYjx4'; // pre
-            script.dataset.margins  = '{"bottom": "1.48rem", "right": "6rem"}';
-            break;
-          case 'localhost':  // local docs
-            // script.dataset.widgetId = 'djgBhRlpdH8b07oj0Gsaerz69Xfs0FXMuUluyOo2iR4';
-            script.dataset.widgetId = 's6flQNakiWudQCus-Z2q_8iiUSIbRm60lm2d4pc93jM'; // pre
-            script.dataset.margins  = '{"bottom": "1.48rem", "right": "6rem"}';
-            break;
-          case '127.0.0.1': // apps
-            // script.dataset.widgetId = '_rXLissYyqe-dJ9vGGGXzmJwavoW0GvuzQPEq5BZjP8';
-            script.dataset.widgetId = 'PRTyyLAaXm1rsVnGNA964gO-iI3bRaNx7-rrcvb2ECk'; // pre
-            break;
-          default:
-            console.error('Pagy AI - Unknown hostname: ', hostname);
+      (() => {
+        function editChatWidget() {
+          const hostId              = 'gurubase-chat-widget-container',
+                imgSelector         = '#chatWindow > div.anteon-header > div > img',
+                nameSelector        = '#chatWindow > div.anteon-header > div > span',
+                descriptionSelector = '#chatWindow > div.chat-messages > div > p',
+                newImgSize          = '40px',
+                newName             = 'Ask Pagy AI',
+                newDescription      = 'Pagy AI uses the latest data in the documentation to answer your questions.';
+
+          const checkAndEdit   = () => {
+            const hostElement = document.getElementById(hostId);
+            if (hostElement && hostElement.shadowRoot) {
+              const shadowRoot  = hostElement.shadowRoot,
+                    img         = shadowRoot.querySelector(imgSelector),
+                    name        = shadowRoot.querySelector(nameSelector),
+                    description = shadowRoot.querySelector(descriptionSelector);
+              if (img) {
+                img.style.maxWidth  = newImgSize;
+                img.style.maxHeight = newImgSize;
+              }
+              if (name) {
+                name.textContent = newName;
+              }
+              if (description) {
+                description.textContent = newDescription;
+              }
+              return true;
+            }
+            return false;
+          };
+          const attemptEditing = () => {
+            if (checkAndEdit()) {
+              return;
+            }
+            setTimeout(attemptEditing, 200);
+          };
+          attemptEditing();
         }
-        script.async               = true;
-        script.src                 = 'https://widget.gurubase.io/widget.latest.min.js';
-        script.id                  = 'guru-widget-id';
-        script.dataset.iconUrl     = iconURL; // pre
-        script.dataset.text        = 'Pagy AI';
-        script.dataset.bgColor     = '#1f7a1f';
-        script.dataset.lightMode   = 'false';
-        script.dataset.tooltipSide = 'bottom';
-        document.head.appendChild(script);
-      }
-      loadWidget();
 
-      function editChatWidget() {
-        const hostId              = 'gurubase-chat-widget-container',
-              imgSelector         = '#chatWindow > div.anteon-header > div > img',
-              nameSelector        = '#chatWindow > div.anteon-header > div > span',
-              descriptionSelector = '#chatWindow > div.chat-messages > div > p',
-              newImgSize          = '40px',
-              newName             = 'Ask Pagy AI',
-              newDescription      = 'Pagy AI uses the latest data in the documentation to answer your questions.';
+        function appendWidgetScript() {
+          const script   = document.createElement('script');
+          const hostname = window.location.hostname;
+          const iconURL  = 'https://github.com/ddnexus/pagy/blob/master/assets/images/pagy-the-frog.png?raw=true'
+          // const iconURL  = 'https://github.com/ddnexus/pagy/blob/master-pre/assets/images/pagy-the-frog.png?raw=true'
+          switch (hostname) {
+            case 'ddnexus.github.io':  // remote docs
+              script.dataset.widgetId = 'HKtFSPZLGiAXOdBWS4rSAxEkqv8czIbJoQdMEwCqgEc';
+              // script.dataset.widgetId = 'mH2nvQJ1iOq_Ei6ZE9ep4g-YNTHjrwZS7Cif-8uYjx4'; // pre
+              script.dataset.margins  = '{"bottom": "1.48rem", "right": "6rem"}';
+              break;
+            case 'localhost':  // local docs
+              script.dataset.widgetId = 'djgBhRlpdH8b07oj0Gsaerz69Xfs0FXMuUluyOo2iR4';
+              // script.dataset.widgetId = 's6flQNakiWudQCus-Z2q_8iiUSIbRm60lm2d4pc93jM'; // pre
+              script.dataset.margins  = '{"bottom": "1.48rem", "right": "6rem"}';
+              break;
+            case '127.0.0.1': // apps
+              script.dataset.widgetId = '_rXLissYyqe-dJ9vGGGXzmJwavoW0GvuzQPEq5BZjP8';
+              // script.dataset.widgetId = 'PRTyyLAaXm1rsVnGNA964gO-iI3bRaNx7-rrcvb2ECk'; // pre
+              break;
+            default:
+              console.error('Pagy AI - Unknown hostname: ', hostname);
+          }
+          script.async               = true;
+          script.src                 = 'https://widget.gurubase.io/widget.latest.min.js';
+          script.id                  = 'guru-widget-id';
+          script.dataset.iconUrl     = iconURL;
+          script.dataset.text        = 'Pagy AI';
+          script.dataset.bgColor     = '#1f7a1f';
+          script.dataset.lightMode   = 'false';
+          script.dataset.tooltipSide = 'bottom';
+          document.head.appendChild(script);
+          editChatWidget();
+        }
 
-        const checkAndEdit   = () => {
-          const hostElement = document.getElementById(hostId);
-          if (hostElement && hostElement.shadowRoot) {
-            const shadowRoot  = hostElement.shadowRoot,
-                  img         = shadowRoot.querySelector(imgSelector),
-                  name        = shadowRoot.querySelector(nameSelector),
-                  description = shadowRoot.querySelector(descriptionSelector);
-            if (img) {
-              img.style.maxWidth  = newImgSize;
-              img.style.maxHeight = newImgSize;
-            }
-            if (name) {
-              name.textContent = newName;
-            }
-            if (description) {
-              description.textContent = newDescription;
-            }
-            return true;
-          }
-          return false;
-        };
-        const attemptEditing = () => {
-          if (checkAndEdit()) {
-            return;
-          }
-          setTimeout(attemptEditing, 200);
-        };
-        attemptEditing();
-      }
-      editChatWidget();
-    }
-    );
+        document.addEventListener('DOMContentLoaded', appendWidgetScript);
+
+        document.addEventListener("turbo:load", () => {
+          window.chatWidget = new ChatWidget();
+          editChatWidget();
+        });
+      })();
     </script>
     <!-- ai_widget_end -->
+
     <style>
       .compact-dl div {
         border: none !important;
