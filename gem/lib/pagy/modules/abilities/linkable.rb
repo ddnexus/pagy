@@ -46,7 +46,7 @@ class Pagy
       query = @request.query.clone(freeze: false)
       query.delete(jsonapi ? 'page' : page_key)
       factors = {}.tap do |h|
-                  h[page_key]  = countless? ? "#{page || 1}+#{@last}" : page
+                  h[page_key]  = countless? && !options[:headless] ? "#{page || 1}+#{@last}" : page
                   h[limit_key] = limit_token || limit if client_max_limit
                 end.compact # No empty params
       query.merge!(jsonapi ? { 'page' => factors } : factors) if factors.size.positive?
