@@ -27,7 +27,13 @@ class Pagy
                   options[:async_count] ? unordered.async_pick(sql).value : unordered.pick(sql)
                 end.to_i
               else
-                options[:async_count] ? collection.async_count(:all).value : collection.count(:all)
+                start_time = Time.now.to_f
+                Rails.logger.info "[Pagy::OffsetPaginator] Starting count query at #{start_time} (async: #{options[:async_count]})"
+                count_result = options[:async_count] ? collection.async_count(:all).value : collection.count(:all)
+                end_time = Time.now.to_f
+                duration = ((end_time - start_time) * 1000).round(2)
+                Rails.logger.info "[Pagy::OffsetPaginator] Completed count query at #{end_time} (duration: #{duration}ms)"
+                count_result
               end
       count.is_a?(Hash) ? count.size : count
     end
