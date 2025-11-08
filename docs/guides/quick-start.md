@@ -18,14 +18,6 @@ Prevent unexpected breaking changes in stable releases (see [omit the patch vers
 gem 'pagy', '~> 43.0' # Omit the patch segment to avoid breaking changes
 ```
 
-Enable pre-release versions. For example: 
-
-```ruby Gemfile (pre-release)
-gem 'pagy', '43.0.0.pre123'  # Only the specific pre-release (change to upgrade)
-gem 'pagy', '~> 43.0.0.pre'  # From the last pre-release up-to the SAME FIRST stable version (x.0.0)
-gem 'pagy', '~> 43.0.pre'    # Same as '~> 43.0' above, but including the pre-releases
-```
-
 !!! You can try pagy directly
 
 - **In the Browser**

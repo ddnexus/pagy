@@ -20,18 +20,6 @@ new_version = Gem::Version.new(gets.chomp)
 
 abort('Invalid version!') unless new_version > old_version
 
-# Check -pre urls
-case
-when old_version.prerelease? && !new_version.prerelease?
-  replace_string_in_file('README.md',
-                         'https://ddnexus.github.io/pagy-prev/',
-                         'https://ddnexus.github.io/pagy/', all: true)
-when new_version.prerelease? && !old_version.prerelease?
-  replace_string_in_file('README.md',
-                         'https://ddnexus.github.io/pagy/',
-                         'https://ddnexus.github.io/pagy-pre/', all: true)
-end
-
 # Bump the version in files
 (%w[docs/retype.yml
     .github/ISSUE_TEMPLATE/Code.yml
@@ -62,4 +50,8 @@ system('bundle exec rake test_version')
 confirm_to('commit the changes') do
   system('git add -A')
   system("git commit -m 'Version #{new_version}'")
+end
+
+confirm_to('finalize the version') do
+  exec("ruby ./finalize.rb '#{old_version}'")
 end

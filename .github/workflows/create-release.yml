@@ -5,8 +5,6 @@ on:
   push:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+"
-      - "[0-9]+.[0-9]+.[0-9]+.*"
-
 jobs:
   build:
     name: Create Release
@@ -24,6 +22,6 @@ jobs:
           release_name: Version ${{ github.ref_name }}
           body_path: .github/latest_release_body.md
           draft: false
-          prerelease: ${{ contains(github.ref_name, '.pre') || contains(github.ref_name, '.rc') }}
+          prerelease: false
           owner: ddnexus
           repo: pagy

@@ -20,11 +20,11 @@ _Agnostic pagination in plain ruby_
 
 <!-- whats_new_start -->
 
-<a href="https://ddnexus.github.io/pagy-pre/sandbox/playground/#demo-app">
+<a href="https://ddnexus.github.io/pagy/sandbox/playground/#demo-app">
   <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">
 </a><br><br>
 
-## Version 43.0.0.rc*
+## Version 43.0.0
 
 We needed a leap version to unequivocally signaling that it's not just a major version: it's a complete redesign of the legacy
 code at all levels, usage and API included.
@@ -37,30 +37,30 @@ This version introduces several enhancements, such as new pagination techniques 
 configuration processes, reducing setup requirements by 99%. The update also includes a simpler API and new interactive
 development tools, making it a comprehensive upgrade from previous versions.
 
-- **New [Keynav](https://ddnexus.github.io/pagy-pre/toolbox/paginators/keynav_js) Pagination**
-  - The pagy-exclusive technique using the fastest [keyset](https://ddnexus.github.io/pagy-pre/toolbox/paginators/keyset)
+- **New [Keynav](https://ddnexus.github.io/pagy/toolbox/paginators/keynav_js) Pagination**
+  - The pagy-exclusive technique using the fastest [keyset](https://ddnexus.github.io/pagy/toolbox/paginators/keyset)
     pagination alongside all frontend helpers.
 - **New interactive dev-tools**
-  - New [PagyWand](https://ddnexus.github.io/pagy-pre/resources/stylesheets/#pagy-wand) to integrate the pagy CSS with your app's
+  - New [PagyWand](https://ddnexus.github.io/pagy/resources/stylesheets/#pagy-wand) to integrate the pagy CSS with your app's
     themes.
   - New **Pagy AI** available inside docs and your own app.
 - **Intelligent automation**
-  - [Configuration](https://ddnexus.github.io/pagy-pre/resources/initializer/) requirements reduced by 99%.
-  - Simplified [JavaScript](https://ddnexus.github.io/pagy-pre/resources/javascript) setup.
-  - Automatic [I18n](https://ddnexus.github.io/pagy-pre/resources/i18n) loading.
+  - [Configuration](https://ddnexus.github.io/pagy/resources/initializer/) requirements reduced by 99%.
+  - Simplified [JavaScript](https://ddnexus.github.io/pagy/resources/javascript) setup.
+  - Automatic [I18n](https://ddnexus.github.io/pagy/resources/i18n) loading.
 - **[Simpler API](https://github.com/ddnexus/pagy#examples)**
-  - You solely need the [pagy](https://ddnexus.github.io/pagy-pre/toolbox/paginators) method and
-    the [@pagy](https://ddnexus.github.io/pagy-pre/toolbox/helpers) instance to paginate any collection and use any navigation tag
+  - You solely need the [pagy](https://ddnexus.github.io/pagy/toolbox/paginators) method and
+    the [@pagy](https://ddnexus.github.io/pagy/toolbox/helpers) instance to paginate any collection and use any navigation tag
     and helper.
   - Methods are autoloaded only if used, and consume no memory otherwise.
-  - Methods have narrower scopes and can be [overridden](https://ddnexus.github.io/pagy-pre/guides/how-to#override-pagy-methods)
+  - Methods have narrower scopes and can be [overridden](https://ddnexus.github.io/pagy/guides/how-to#override-pagy-methods)
     without deep knowledge.
-- **New [documentation](https://ddnexus.github.io/pagy-pre/guides/quick-start)**
+- **New [documentation](https://ddnexus.github.io/pagy/guides/quick-start)**
   - Very concise, straightforward, and easy to navigate and understand.
 
 ### Upgrade to 43
 
-See the [Upgrade Guide](https://ddnexus.github.io/pagy-pre/guides/upgrade-guide/)
+See the [Upgrade Guide](https://ddnexus.github.io/pagy/guides/upgrade-guide/)
 
 <!-- whats_new_end -->
 
@@ -102,7 +102,7 @@ include Pagy::Method
 @pagy, @records = pagy(...)
 ``` 
 
-_See all the available [paginators](https://ddnexus.github.io/pagy-pre/toolbox/paginators/#paginators)_
+_See all the available [paginators](https://ddnexus.github.io/pagy/toolbox/paginators/#paginators)_
 
 ##### JSON:API pagination
 
@@ -223,18 +223,18 @@ You need only a single line in your page/layout `head` to get the Pagy Wand and 
 
 <img src="assets/images/dev-tools.png" width="606"><br/>
 
-<a href="https://ddnexus.github.io/pagy-pre/sandbox/playground/#demo-app">
+<a href="https://ddnexus.github.io/pagy/sandbox/playground/#demo-app">
   <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">
 </a><br><br>
 
 ### <span style="font-size: .65em; vertical-align: middle">💚</span> Support and Docs
 
-- [Quick Start](https://ddnexus.github.io/pagy-pre/guides/quick-start)
-- [How To (quick recipes)](https://ddnexus.github.io/pagy-pre/guides/how-to/)
-- [Migrate from WillPaginate and Kaminari](https://ddnexus.github.io/pagy-pre/guides/migration-guide) (practical guide)
+- [Quick Start](https://ddnexus.github.io/pagy/guides/quick-start)
+- [How To (quick recipes)](https://ddnexus.github.io/pagy/guides/how-to/)
+- [Migrate from WillPaginate and Kaminari](https://ddnexus.github.io/pagy/guides/migration-guide) (practical guide)
 - [Discussions](https://github.com/ddnexus/pagy/discussions/categories/q-a)
 - [Issues](https://github.com/ddnexus/pagy/issues)
-- [Changelog](https://ddnexus.github.io/pagy-pre/changelog)
+- [Changelog](https://ddnexus.github.io/pagy/changelog)
 
 <br/>
 
@@ -273,7 +273,7 @@ See [Contributing](https://github.com/ddnexus/pagy/blob/master/.github/CONTRIBUT
 <summary>Versioning</summary>
 
 - Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/). Please check
-  the [Changelog](https://ddnexus.github.io/pagy-pre/changelog) for breaking changes introduced by mayor versions.
+  the [Changelog](https://ddnexus.github.io/pagy/changelog) for breaking changes introduced by mayor versions.
   Using [pessimistic version constraint](https://guides.rubygems.org/patterns/#pessimistic-version-constraint) in your Gemfile
   will ensure smooth upgrades.
 

@@ -515,19 +515,5 @@ If you use the `session` for caching, configure it to use `ActiveRecord`, `Redis
   `Other`, you should only provide a single value. Check other dictionary files for examples, and ask if you have any doubts.
 
 Feel free to ask for help in your Pull Request.
- 
-==- Install Pagy pre-release version
-
-For major versions in the make, we may push pre-release versions to rubygems. You can check their existence with: 
-
-```bash
-$ gem search pagy --pre
-```
-
-And install it with:
-
-```ruby Gemfile (example)
-gem 'pagy', '43.0.0.rc1' # Specific pre-release version
-```
 
 ===
