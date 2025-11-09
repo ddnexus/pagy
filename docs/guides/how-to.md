@@ -10,7 +10,7 @@ icon: tools
 
 ---
 
-This page provides practical tips and examples to help you effectively use Pagy.
+This page provides practical tips and examples to help you to use Pagy efficiently.
 
 You can also [ask the Pagy AI](https://gurubase.io/g/pagy) for instant answers to questions not covered on this page.
 

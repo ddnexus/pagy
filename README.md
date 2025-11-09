@@ -1,5 +1,5 @@
-<span>[![Gem Version](https://img.shields.io/gem/v/pagy.svg?label=Pagy&labelColor=1f7a1f&color=2aa22a)](https://rubygems.org/gems/pagy)</span> <span>
-[![Ruby](https://img.shields.io/badge/Ruby-EOL-ruby.svg?colorA=99004d&colorB=cc0066)](https://endoflife.date/ruby)</span> <span>
+<span>[![Gem Version](https://badge.fury.io/rb/pagy.svg?icon=si%3Arubygems)](https://badge.fury.io/rb/pagy)</span> <span>
+[![Supported Rubies](https://img.shields.io/badge/Supported%20Rubies-EOL-ruby.svg?colorA=99004d&colorB=cc0066)](https://endoflife.date/ruby)</span> <span>
 [![Ruby Test](https://github.com/ddnexus/pagy/actions/workflows/ruby-test.yml/badge.svg?branch=master)](https://github.com/ddnexus/pagy/actions/workflows/ruby-test.yml)</span> <span>
 [![E2E Test](https://github.com/ddnexus/pagy/actions/workflows/e2e-test.yml/badge.svg?branch=master)](https://github.com/ddnexus/pagy/actions/workflows/e2e-test.yml)</span> <span>
 ![Coverage](https://img.shields.io/badge/Coverage-100%25-coverage.svg?colorA=1f7a1f&colorB=2aa22a)</span> <span>
@@ -212,7 +212,7 @@ Dynamically fills the container width.
 <%== @pagy.input_nav_js(:bulma) %>
 ```
 
-### Dev Tools
+### <span style="font-size: .65em; vertical-align: middle">💚</span> Dev Tools
 
 Integrate pagy with your app's themes interactively ([watch demo](https://youtu.be/GhhNRrVG9jg)), and ask specific questions to the Pagy AI __right in your app__!
 You need only a single line in your page/layout `head` to get the Pagy Wand and the Pagy AI:
