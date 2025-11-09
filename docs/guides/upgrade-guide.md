@@ -278,7 +278,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
   ```ruby
   request: { base_url: 'http://www.example.com',
              path:     '/path',
-             query:    { 'param1' => 1234 }, # The string-keyed hash query from the request 
+             params:   { 'param1' => 1234 }, # The string-keyed hash params from the request 
              cookie:   'xyz' }               # The 'pagy' cookie, only for keynav  
   ```
 
@@ -329,7 +329,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 ==- Replace the `:params` variable...
 
-- Use the `:querify` option, which is a `lambda` that can modify the string-keyed query hash at will. It is a bit more verbose,
+- Use the `:querify` option, which is a `lambda` that can modify the string-keyed params hash at will. It is a bit more verbose,
   but it's more powerful and low-level. It solves an incompatibility with the old high-level
   `:params` hash/lambda and improves performance. It is part of the [Common URL Options](../toolbox/paginators#common-url-options)
   group that gives you full and efficient control over the URL composition.
@@ -337,10 +337,10 @@ The new version doesn't use the extras anymore. They got integrated in the core 
   ```ruby
   # Old symbol-keyed, high-level hash variable
   params: { a: 1, b: 2 } 
-  # New string-keyed, low-level, direct modification of the query hash
-  querify: ->(q) { q.merge!('a' => 1, 'b' => 2) } 
+  # New string-keyed, low-level, direct modification of the params hash
+  querify: ->(p) { p.merge!('a' => 1, 'b' => 2) } 
   # It also allows to do things like:
-  querify = ->(q) { q.except!('not_useful').merge!('custom' => 'useful') }
+  querify = ->(p) { p.except!('not_useful').merge!('custom' => 'useful') }
   ```
 
 ==- Replace the `*prev*` abbreviated naming

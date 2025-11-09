@@ -76,7 +76,7 @@ Individual paginators may offer additional options, which are documented with th
 - `max_pages: 500`
   - Restricts pagination to only `:max_pages`. _(Ignored by `Pagy::Calendar::*` unit instances)_
 - `page: 3`
-  - Set it only to force the current `:page`. _(It is set automatically from the request query hash)_.
+  - Set it only to force the current `:page`. _(It is set automatically from the request param)_.
 - `client_max_limit: 1_000`
   - Set the maximum `:limit` that the client is allowed to `request`. Higher requested `:limit`s are silently capped. (If falsey, the client cannot request the `:limit`)
 - `request: custom_request`
@@ -84,7 +84,7 @@ Individual paginators may offer additional options, which are documented with th
     ```ruby
     custom_request = { base_url: 'http://www.example.com',
                        path:     '/path',
-                       query:    { 'param1' => 1234 }, # The string-keyed hash query from the request
+                       params:   { 'param1' => 1234 }, # The string-keyed params hash from the request
                        cookie:   'xyz' }               # The 'pagy' cookie, only for keynav  
     ```
 
@@ -108,7 +108,7 @@ These options control give you full control over the URL composition.
 - `path: '/custom_path'`
   - Overrides the request path in pagination URLs. Use the path only (not the absolute URL). _(see [Override the request path](../guides/how-to#paginate-multiple-independent-collections))_
 - `querify: tweak`
-  - Set it to a `Lambda` to directly edit the passed string-keyed query hash itself. Its result is ignored.
+  - Set it to a `Lambda` to directly edit the passed string-keyed params hash itself. Its result is ignored.
     ```ruby
     tweak = ->(q) { q.except!('not_useful').merge!('custom' => 'useful') }
     ```
