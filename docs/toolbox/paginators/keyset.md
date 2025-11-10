@@ -150,7 +150,7 @@ See also [Common Readers](../paginators#common-readers)
 <br/>
 
 - You pass an `uniquely ordered` `set` and pagy pulls the `:limit` of records of the first page.
-- You request the `next` URL, which has the `page` query string param set to the `cutoff` of the current page.
+- You request the `next` URL, which has the `page` param set to the `cutoff` of the current page.
 - At each request, the new `page` is decoded into arguments that are coupled with a `where` filter query, and a `:limit` of new
   records is retrieved.
 - The collection ends when `pagy.next.nil?`.

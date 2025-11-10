@@ -47,7 +47,7 @@ describe 'pagy/helpers/url' do
                        page:    3,
                        request: { base_url: 'http://example.com',
                                   path:     '/path',
-                                  query:    { 'a' => '1', 'b' => '2' } })
+                                  params:   { 'a' => '1', 'b' => '2' } })
 
       _(pagy.send(:compose_page_url, 5, absolute: true)).must_equal 'http://example.com/path?a=1&b=2&page=5'
     end
@@ -56,10 +56,9 @@ describe 'pagy/helpers/url' do
   describe 'process pagy_params' do
     it 'overrides params' do
       app   = MockApp.new(params: { delete_me: 'delete_me', a: 5 })
-      pagy, = app.send(:pagy, :offset,
-                       @collection,
-                       count:       1000,
-                       page:        3,
+      pagy, = app.send(:pagy, :offset, @collection,
+                       count:  1000,
+                       page:    3,
                        querify: lambda do |params|
                          params.delete('delete_me')
                          params.merge!('b' => 4, 'add_me' => 'add_me')

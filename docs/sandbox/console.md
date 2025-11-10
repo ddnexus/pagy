@@ -31,10 +31,10 @@ You can use a few method to create a simple collection paginated with the `:offs
 => Pagy::Console::Collection
 
 >> pagy, records = pagy(:offset, collection.new, limit: 10) # Example pagination of sample data
-=> [#<Pagy::Offset:0x00007fb92fb35840 @count=1000, @from=1, @in=10, @in_range=true, @last=100, @limit=10, @next=2, @offset=0, @options={limit: 10, limit_key: :limit, page_key: :page, page: 1, request: {base_url: "http://www.example.com", path: "/path", query: {example: "123"}}, count: 1000}, @page=1, @to=10>, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]
+=> [#<Pagy::Offset:0x00007fb92fb35840 @count=1000, @from=1, @in=10, @in_range=true, @last=100, @limit=10, @next=2, @offset=0, @options={limit: 10, limit_key: :limit, page_key: :page, page: 1, request: {base_url: "http://www.example.com", path: "/path", params: {example: "123"}}, count: 1000}, @page=1, @to=10>, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]
 
 >> pagy.data_hash
-=> {url_template: "/path?example=123&page=P ", first_url: "/path?example=123", previous_url: "/path?example=123&page=", page_url: "/path?example=123&page=1", next_url: "/path?example=123&page=2", last_url: "/path?example=123&page=100", count: 1000, page: 1, limit: 10, last: 100, in: 10, from: 1, to: 10, previous: nil, next: 2, options: {limit: 10, limit_key: :limit, page_key: :page, page: 1, request: {base_url: "http://www.example.com", path: "/path", query: {example: "123"}}, count: 1000}}
+=> {url_template: "/path?example=123&page=P ", first_url: "/path?example=123", previous_url: "/path?example=123&page=", page_url: "/path?example=123&page=1", next_url: "/path?example=123&page=2", last_url: "/path?example=123&page=100", count: 1000, page: 1, limit: 10, last: 100, in: 10, from: 1, to: 10, previous: nil, next: 2, options: {limit: 10, limit_key: :limit, page_key: :page, page: 1, request: {base_url: "http://www.example.com", path: "/path", params: {example: "123"}}, count: 1000}}
 
 >> pagy.urls_hash
 => {first: "/path?example=123", next: "/path?example=123&page=2", last: "/path?example=123&page=100"}

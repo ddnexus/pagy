@@ -16,7 +16,7 @@ expect the old/deprecated functionality to be supported ONLY during the current 
 
 ## Recommended Version Constraint
 
-Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.0.0`):
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.0.1`):
 
 The `gem 'pagy', '~> 43.0'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.
@@ -42,6 +42,13 @@ If you upgrade from version `< 43.0.0` see the following:
 None
 
 <hr>
+
+## Version 43.0.1
+
+- Reimplement reading params from POST requests; rename internal variables. Close #821
+- Fix AI widget problem for apps. Close #817.
+- Improve I18n documentation. Close #811
+- Link to documentation website's CHANGELOG page (#804)
 
 ## Version 43.0.0
 

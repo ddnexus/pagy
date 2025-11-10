@@ -9,7 +9,13 @@ require_relative '../gem/lib/pagy'
 
 # Insert the latest ai-widget in the retype head
 replace_section_in_file('docs/_includes/head.html', 'ai_widget', <<~HTML)
+  <!-- GENERATED FILE! DO NOT EDIT -->
   <script>
-    document.addEventListener('DOMContentLoaded', #{Pagy::ROOT.join('javascripts/ai_widget.js').read});
+    #{Pagy::ROOT.join('javascripts/ai_widget.js').read}
+    document.addEventListener('DOMContentLoaded', PagyAIWidget.appendWidgetScript);
+    document.addEventListener("turbo:load", () => {
+      window.chatWidget = new ChatWidget();
+      PagyAIWidget.editChatWidget();
+    });
   </script>
 HTML

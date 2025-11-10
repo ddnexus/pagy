@@ -51,7 +51,7 @@ You can customize the number and position of page links in the navigation bar us
 
 ==- Force the `:page`
 
-Pagy retrieves the page from the `'page'` request query hash. To force a specific page number, pass it directly to the `pagy`
+Pagy retrieves the page from the `'page'` request params hash. To force a specific page number, pass it directly to the `pagy`
 method. For example:
 
 ```ruby controller
@@ -77,7 +77,7 @@ See [ARIA](../resources/ARIA).
 
 ==- Customize the page and limit URL keys
 
-By default, Pagy retrieves the page from the request query hash and generates URLs using the `"page"` key, e.g., `?page=3`.
+By default, Pagy retrieves the page from the request params hash and generates URLs using the `"page"` key, e.g., `?page=3`.
 
 - Set `page_key: 'custom_page'` to customize URL generation, e.g., `?custom_page=3`.
 - Set the `:limit_key` to customize the `limit` param the same way.

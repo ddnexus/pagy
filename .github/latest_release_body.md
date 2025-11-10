@@ -44,9 +44,13 @@ See the [Upgrade Guide](https://ddnexus.github.io/pagy/guides/upgrade-guide/)
 
 <!-- whats_new_end -->
 
-### Changes in 43.0.0
+### Changes in 43.0.1
 
 <!-- changes_start -->
+- Reimplement reading params from POST requests; rename internal variables. Close #821
+- Fix AI widget problem for apps. Close #817.
+- Improve I18n documentation. Close #811
+- Link to documentation website's CHANGELOG page (#804)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
