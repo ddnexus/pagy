@@ -123,7 +123,7 @@ const Pagy = (() => {
     });
   };
   return {
-    version: "43.0.1",
+    version: "43.0.2",
     init(arg) {
       const target = arg instanceof HTMLElement ? arg : document, elements = target.querySelectorAll("[data-pagy]");
       for (const element of elements) {

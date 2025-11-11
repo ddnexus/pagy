@@ -10,7 +10,7 @@ class Pagy
         if request.is_a?(Hash)
           request.values_at(:base_url, :path, :params, :cookie)
         else
-          [request.base_url, request.path, request.params, request.cookies['pagy']]
+          [request.base_url, request.path, request.GET.merge(request.POST), request.cookies['pagy']]
         end
       @jsonapi = @params['page'] && options[:jsonapi]
       raise JsonapiReservedParamError, @params['page'] if @jsonapi && !@params['page'].respond_to?(:fetch)

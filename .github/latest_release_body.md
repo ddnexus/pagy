@@ -1,10 +1,7 @@
-### Changes in 43.0.1
+### Changes in 43.0.2
 
 <!-- changes_start -->
-- Reimplement reading params from POST requests; rename internal variables. Close #821
-- Fix AI widget problem for apps. Close #817.
-- Improve I18n documentation. Close #811
-- Link to documentation website's CHANGELOG page (#804)
+- Ensure the Pagy::Request#params are the original params sent with the request. Close #821
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
@@ -49,7 +46,7 @@ development tools, making it a comprehensive upgrade from previous versions.
 - **New [documentation](https://ddnexus.github.io/pagy/guides/quick-start)**
   - Very concise, straightforward, and easy to navigate and understand.
 
-### Upgrade to 43+
+### Upgrade to 43
 
 See the [Upgrade Guide](https://ddnexus.github.io/pagy/guides/upgrade-guide/)
 
