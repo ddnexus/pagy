@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.815969815813">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.816134454512">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,92 +31,96 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../resources/css/retype.css?v=3.11.0.815969815813" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.11.0.816134454512" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.11.0.815969815813" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.11.0.816134454512" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.11.0.815969815813" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.11.0.816134454512" data-turbo-eval="false" defer></script>
 
     <!-- ai_widget_start -->
+    <!-- GENERATED FILE! DO NOT EDIT -->
     <script>
-      (() => {
-        function editChatWidget() {
-          const hostId              = 'gurubase-chat-widget-container',
-                imgSelector         = '#chatWindow > div.anteon-header > div > img',
-                nameSelector        = '#chatWindow > div.anteon-header > div > span',
-                descriptionSelector = '#chatWindow > div.chat-messages > div > p',
-                newImgSize          = '40px',
-                newName             = 'Ask Pagy AI',
-                newDescription      = 'Pagy AI uses the latest data in the documentation to answer your questions.';
+      const PagyAIWidget = {
+      HOST_ID:              'gurubase-chat-widget-container',
+      IMG_SELECTOR:         '#chatWindow > div.anteon-header > div > img',
+      NAME_SELECTOR:        '#chatWindow > div.anteon-header > div > span',
+      DESCRIPTION_SELECTOR: '#chatWindow > div.chat-messages > div > p',
+      NEW_IMG_SIZE:         '40px',
+      NEW_NAME:             'Ask Pagy AI',
+      NEW_DESCRIPTION:      'Pagy AI uses the latest data in the documentation to answer your questions.',
+      ICON_URL:             'https://github.com/ddnexus/pagy/blob/master/assets/images/pagy-the-frog.png?raw=true',
 
-          const checkAndEdit   = () => {
-            const hostElement = document.getElementById(hostId);
-            if (hostElement && hostElement.shadowRoot) {
-              const shadowRoot  = hostElement.shadowRoot,
-                    img         = shadowRoot.querySelector(imgSelector),
-                    name        = shadowRoot.querySelector(nameSelector),
-                    description = shadowRoot.querySelector(descriptionSelector);
-              if (img) {
-                img.style.maxWidth  = newImgSize;
-                img.style.maxHeight = newImgSize;
-              }
-              if (name) {
-                name.textContent = newName;
-              }
-              if (description) {
-                description.textContent = newDescription;
-              }
-              return true;
-            }
-            return false;
-          };
-          const attemptEditing = () => {
-            if (checkAndEdit()) {
-              return;
-            }
-            setTimeout(attemptEditing, 200);
-          };
-          attemptEditing();
-        }
+      checkAndEdit: function() {
+        const hostElement = document.getElementById(this.HOST_ID);
+        if (hostElement && hostElement.shadowRoot) {
+          const shadowRoot  = hostElement.shadowRoot;
+          const img         = shadowRoot.querySelector(this.IMG_SELECTOR);
+          const name        = shadowRoot.querySelector(this.NAME_SELECTOR);
+          const description = shadowRoot.querySelector(this.DESCRIPTION_SELECTOR);
 
-        function appendWidgetScript() {
-          const script   = document.createElement('script');
-          const hostname = window.location.hostname;
-          const iconURL  = 'https://github.com/ddnexus/pagy/blob/master/assets/images/pagy-the-frog.png?raw=true'
-          switch (hostname) {
-            case 'ddnexus.github.io':  // remote docs
-              script.dataset.widgetId = 'HKtFSPZLGiAXOdBWS4rSAxEkqv8czIbJoQdMEwCqgEc';
-              script.dataset.margins  = '{"bottom": "1.48rem", "right": "6rem"}';
-              break;
-            case 'localhost':  // local docs
-              script.dataset.widgetId = 'djgBhRlpdH8b07oj0Gsaerz69Xfs0FXMuUluyOo2iR4';
-              script.dataset.margins  = '{"bottom": "1.48rem", "right": "6rem"}';
-              break;
-            case '127.0.0.1': // apps
-              script.dataset.widgetId = '_rXLissYyqe-dJ9vGGGXzmJwavoW0GvuzQPEq5BZjP8';
-              break;
-            default:
-              console.error('Pagy AI - Unknown hostname: ', hostname);
+          if (img) {
+            img.style.maxWidth  = this.NEW_IMG_SIZE;
+            img.style.maxHeight = this.NEW_IMG_SIZE;
           }
-          script.async               = true;
-          script.src                 = 'https://widget.gurubase.io/widget.latest.min.js';
-          script.id                  = 'guru-widget-id';
-          script.dataset.iconUrl     = iconURL;
-          script.dataset.text        = 'Pagy AI';
-          script.dataset.bgColor     = '#1f7a1f';
-          script.dataset.lightMode   = 'false';
-          script.dataset.tooltipSide = 'bottom';
-          document.head.appendChild(script);
-          editChatWidget();
+          if (name) {
+            name.textContent = this.NEW_NAME;
+          }
+          if (description) {
+            description.textContent = this.NEW_DESCRIPTION;
+          }
+          return true;
         }
+        return false;
+      },
 
-        document.addEventListener('DOMContentLoaded', appendWidgetScript);
+      attemptEditing: function() {
+        if (this.checkAndEdit()) {
+          return;
+        }
+        setTimeout(() => this.attemptEditing(), 200);
+      },
 
-        document.addEventListener("turbo:load", () => {
-          window.chatWidget = new ChatWidget();
-          editChatWidget();
-        });
-      })();
+      editChatWidget: function() {
+        this.attemptEditing();
+      },
+
+      appendWidgetScript: function() {
+        const script   = document.createElement('script');
+        const hostname = window.location.hostname;
+
+        switch (hostname) {
+          case 'ddnexus.github.io':  // remote docs
+            script.dataset.widgetId = 'HKtFSPZLGiAXOdBWS4rSAxEkqv8czIbJoQdMEwCqgEc';
+            script.dataset.margins  = '{"bottom": "1.48rem", "right": "6rem"}';
+            break;
+          case 'localhost':  // local docs
+            script.dataset.widgetId = 'djgBhRlpdH8b07oj0Gsaerz69Xfs0FXMuUluyOo2iR4';
+            script.dataset.margins  = '{"bottom": "1.48rem", "right": "6rem"}';
+            break;
+          case '127.0.0.1': // apps
+            script.dataset.widgetId = '_rXLissYyqe-dJ9vGGGXzmJwavoW0GvuzQPEq5BZjP8';
+            break;
+          default:
+            console.error('Pagy AI - Unknown hostname: ', hostname);
+        }
+        script.async               = true;
+        script.src                 = 'https://widget.gurubase.io/widget.latest.min.js';
+        script.id                  = 'guru-widget-id';
+        script.dataset.iconUrl     = this.ICON_URL;
+        script.dataset.text        = 'Pagy AI';
+        script.dataset.bgColor     = '#1f7a1f';
+        script.dataset.lightMode   = 'false';
+        script.dataset.tooltipSide = 'bottom';
+        document.head.appendChild(script);
+        this.editChatWidget();
+      }
+    };
+
+      document.addEventListener('DOMContentLoaded', PagyAIWidget.appendWidgetScript);
+      document.addEventListener("turbo:load", () => {
+        window.chatWidget = new ChatWidget();
+        PagyAIWidget.editChatWidget();
+      });
     </script>
     <!-- ai_widget_end -->
 
@@ -175,7 +179,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../assets/images/pagy-the-frog.png">
                             </span>
                             <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.0.0</span>
+                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.0.1</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -384,7 +388,7 @@ expect the old/deprecated functionality to be supported ONLY during the current 
         <span>Recommended Version Constraint</span>
     </h2>
 </doc-anchor-target>
-<p>Given a version number <code v-pre>MAJOR.MINOR.PATCH</code> (e.g. <code v-pre>43.0.0</code>):</p>
+<p>Given a version number <code v-pre>MAJOR.MINOR.PATCH</code> (e.g. <code v-pre>43.0.1</code>):</p>
 <p>The <code v-pre>gem 'pagy', '~&gt; 43.0'</code> Gemfile entry (without the PATCH number) ensures that the <code v-pre>bundle update</code> command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.</p>
 <p>Increment the MAJOR version in your Gemfile ONLY when you are ready to handle the BREAKING CHANGES.</p>
@@ -414,6 +418,18 @@ the most recent version WITHOUT BREAKING CHANGES.</p>
 </doc-anchor-target>
 <p>None</p>
 <hr>
+<doc-anchor-target id="version-4301">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4301">#</doc-anchor-trigger>
+        <span>Version 43.0.1</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Reimplement reading params from POST requests; rename internal variables. Close #821</li>
+<li>Fix AI widget problem for apps. Close #817.</li>
+<li>Improve I18n documentation. Close #811</li>
+<li>Link to documentation website&#x27;s CHANGELOG page (#804)</li>
+</ul>
 <doc-anchor-target id="version-4300">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4300">#</doc-anchor-trigger>
