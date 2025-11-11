@@ -1,10 +1,21 @@
+### Changes in 43.0.1
+
+<!-- changes_start -->
+- Reimplement reading params from POST requests; rename internal variables. Close #821
+- Fix AI widget problem for apps. Close #817.
+- Improve I18n documentation. Close #811
+- Link to documentation website's CHANGELOG page (#804)
+<!-- changes_end -->
+
+[CHANGELOG](https://ddnexus.github.io/pagy/changelog)
+
 <!-- whats_new_start -->
 
 <a href="https://ddnexus.github.io/pagy/sandbox/playground/#demo-app">
   <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">
 </a><br><br>
 
-## Version 43.0.0
+## Version 43
 
 We needed a leap version to unequivocally signaling that it's not just a major version: it's a complete redesign of the legacy
 code at all levels, usage and API included.
@@ -38,19 +49,8 @@ development tools, making it a comprehensive upgrade from previous versions.
 - **New [documentation](https://ddnexus.github.io/pagy/guides/quick-start)**
   - Very concise, straightforward, and easy to navigate and understand.
 
-### Upgrade to 43
+### Upgrade to 43+
 
 See the [Upgrade Guide](https://ddnexus.github.io/pagy/guides/upgrade-guide/)
 
 <!-- whats_new_end -->
-
-### Changes in 43.0.1
-
-<!-- changes_start -->
-- Reimplement reading params from POST requests; rename internal variables. Close #821
-- Fix AI widget problem for apps. Close #817.
-- Improve I18n documentation. Close #811
-- Link to documentation website's CHANGELOG page (#804)
-<!-- changes_end -->
-
-[CHANGELOG](https://ddnexus.github.io/pagy/changelog)

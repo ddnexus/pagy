@@ -24,7 +24,7 @@ _Agnostic pagination in plain ruby_
   <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">
 </a><br><br>
 
-## Version 43.0.0
+## Version 43
 
 We needed a leap version to unequivocally signaling that it's not just a major version: it's a complete redesign of the legacy
 code at all levels, usage and API included.
@@ -78,8 +78,8 @@ Take a look at the [Examples](#-examples) for a quick overview of the new API.
 
 - Compatible with all environments and collection types
 - It can use OFFSET, COUNTLESS, KEYSET, KEYNAV, CALENDAR pagination techniques
-- It supports server-side rendering or faster client-side rendering for popular CSS frameworks and APIs.
-- It autoloads ONLY the methods that you actually use, with almost zero config
+- It supports server-side rendering or faster client-side rendering for popular CSS frameworks and APIs
+- It autoloads ONLY the methods that you actually use, with almost zero configuration
 - It boasts 100% test coverage for Ruby, HTML, and JavaScript end-to-end (E2E)
 
 <br/>
