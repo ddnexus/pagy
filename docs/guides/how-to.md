@@ -402,8 +402,15 @@ The pagy nav helpers are not only a lot faster than templates, but accept dynami
 standards. Using your own templates is possible, but it's likely just reinventing a slower wheel.
 !!!
 
-If you really need to use your own templates, you absolutely can. Here is a static example that doesn't use any other helper nor
-dictionary file for the sake of simplicity, however feel free to add your dynamic options and use any helper and dictionary
+If you really need to use your own templates, you absolutely can. Notice, that since you are not using any helper, you should require the following files that provide internal method to use in the template:
+
+```rb
+require "pagy/toolbox/helpers/support/series"
+require "pagy/toolbox/helpers/support/a_lambda"
+```
+
+Here is a static example that doesn't use any other helper nor
+dictionary file for the sake of simplicity, however, feel free to add your dynamic options and use any helper and dictionary
 entries as you need:
 
 :::code source="../assets/nav.html.erb" :::
