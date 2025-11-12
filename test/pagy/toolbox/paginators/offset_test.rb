@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../../test_helper'
+require_relative '../../../files/models'
 require_relative '../../../mock_helpers/collection'
 require_relative '../../../mock_helpers/app'
 
@@ -104,6 +105,17 @@ describe 'Offset' do
       _(merged.keys).must_include :count
       _(merged[:count]).must_equal 100
       _(merged.keys).must_include :page
+      _(merged[:page]).must_equal 3
+    end
+    it 'accepts async_count' do
+      collection = Pet.all
+      options = { async_count: true }
+      pagy,   = app.send(:pagy, :offset, collection, **options)
+      merged  = pagy.options
+
+      _(merged.keys).must_include :count
+      _(merged.keys).must_include :page
+      _(merged[:count]).must_equal 50
       _(merged[:page]).must_equal 3
     end
   end
