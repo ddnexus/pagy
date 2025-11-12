@@ -1,7 +1,7 @@
-### Changes in 43.0.2
+### Changes in 43.0.3
 
 <!-- changes_start -->
-- Ensure the Pagy::Request#params are the original params sent with the request. Close #821
+- Update tr.yml (#824)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
