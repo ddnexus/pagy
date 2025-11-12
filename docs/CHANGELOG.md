@@ -25,7 +25,9 @@ Increment the MAJOR version in your Gemfile ONLY when you are ready to handle th
 
 ## Breaking Changes
 
-If you upgrade from version `< 43.0.0` see the following:
+Follow the [Upgrade to 43 Guide](guides/upgrade-guide).
+
+If you upgrade from version `< 9.0.0` see the following:
 
 - [Breaking changes in version 9.0.0](CHANGELOG_LEGACY#version-900)
 - [Breaking changes in version 8.0.0](CHANGELOG_LEGACY#version-800)
@@ -37,9 +39,9 @@ If you upgrade from version `< 43.0.0` see the following:
 - [Breaking changes in version 2.0.0](CHANGELOG_LEGACY#version-200)
 - [Breaking changes in version 1.0.0](CHANGELOG_LEGACY#version-100)
 
-## Deprecations
-
-None
+> [!TIP]
+> If you need to update through multiple versions, reimplementing the updated pagination
+> from scratch might be faster.
 
 <hr>
 
@@ -60,10 +62,6 @@ We needed a leap version to unequivocally signaling that it's not just a major v
 code at all levels, usage and API included.
 
 **Why 43?** Because it's exactly one step beyond _"The answer to the ultimate question of life, the Universe, and everything."_ 😉
-
-## Breaking changes
-
-See the [Upgrade Guide](guides/upgrade-guide)
 
 ## Changes
 
