@@ -2,21 +2,23 @@
 
 tr:
   pagy:
-    p11n: 'Other'
+    p11n: 'OneOther'
     aria_label:
-      # please add a comment in the https://github.com/ddnexus/pagy/issues/605
-      # posting the translation of the following  "Page"/"Pages" with the plurals for this locale
-      nav: "Pages"
+      nav:
+        one: "Sayfa"
+        other: "Sayfalar"
       previous: "Önceki"
       next: "Sonraki"
     previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
-    item_name: "kayıt"
+    item_name:
+      one: "kayıt"
+      other: "kayıtlar"
     info_tag:
       no_count: "Sayfa %{page} / %{pages}"
       no_items: "Hiç %{item_name} bulunamadı"
-      single_page: "Toplam %{count} %{item_name} gösteriliyor"
-      multiple_pages: "%{count} %{item_name} içerisinden %{from}-%{to} kadarı gösteriliyor"
+      single_page: "%{count} %{item_name} gösteriliyor"
+      multiple_pages: "Toplam %{count} %{item_name} arasından %{from}-%{to} arası gösteriliyor"
     input_nav_js: "Sayfa %{page_input} / %{pages}"
-    limit_tag_js: "Sayfada %{limit_input} %{item_name} göster"
+    limit_tag_js: "Sayfa başına %{limit_input} %{item_name} göster"
