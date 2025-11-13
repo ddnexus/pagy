@@ -1,7 +1,7 @@
-### Changes in 43.0.3
+### Changes in 43.0.4
 
 <!-- changes_start -->
-- Update tr.yml (#824)
+- Remove the Pagy.options from the Calendar configuration. Close #825
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

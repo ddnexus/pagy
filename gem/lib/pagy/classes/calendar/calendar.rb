@@ -66,7 +66,7 @@ class Pagy
       @conf     = Marshal.load(Marshal.dump(conf))  # store a copy
       @units    = Calendar::UNITS & @conf.keys # get the units in time length desc order
       @period   = period
-      @params = params
+      @params   = params
       @page_key = conf[:offset][:page_key] || DEFAULT[:page_key]
       # set all the :page_key options for later deletion
       @units.each { |unit| conf[unit][:page_key] = "#{unit}_#{@page_key}" }

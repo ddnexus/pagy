@@ -20,7 +20,8 @@ class Pagy
              protected
 
              define_method :pagy do |paginator = :offset, collection, **options|
-               Pagy.const_get(paginators[paginator]).paginate(self, collection, **Pagy.options, **options)
+               merged_options = paginator == :calendar ? options : Pagy.options.merge(options)
+               Pagy.const_get(paginators[paginator]).paginate(self, collection, **merged_options)
              end
            end
 end

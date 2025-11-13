@@ -94,11 +94,13 @@ end
 
 The calendar configuration defines the calendar objects to be generated. These objects filter the collection by the selected time units.
 
-You can include one or more levels using keys like `:year`, `:quarter`, `:month`, `:week`, or `:day`. Assign each key a hash of unit options. Use an empty hash for default values, e.g., `year: {}, month: {}, ...`.
+You can include one or more Unit levels using keys like `:year`, `:quarter`, `:month`, `:week`, or `:day`. Assign each key a hash of unit options. Use an empty hash for default values, e.g., `year: {}, month: {}, ...`.
 
-!!!warning Do not set `:page`, `:page_key`, `:querify`, or `:period` options manually.
+!!!warning Option restrictions
 
-These options are handled automatically, so setting them explicitly has no effect.
+Do not try to set `:page`, `:page_key`, `:querify`, or `:period` options manually. These options are handled automatically, so setting them explicitly has no effect.
+
+The `Pagy.options` are not applied to the Unit objects.
 !!!
  
 #### The `disabled` flag
