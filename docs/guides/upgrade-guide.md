@@ -266,10 +266,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
   - The `:overflow` variable is not used anymore.
   - If you did not use the extra (i.e., Pagy raised errors), set `raise_range_error: true`.
   - If you used `overflow: :empty_page` or just required the overflow extra, simply remove it (this is now the default behavior).
-  - If you used `overflow: :last_page` and still want this behavior despite the reasons above:
-    - Set `raise_range_error: true`.
-    - Use `rescue Pagy::RangeError => e` in your method.
-    - Redirect to `@pagy.page_url(:last)`.
+  - If you used `overflow: :last_page` and still want this behavior despite the reasons above, see this [How To Example](https://ddnexus.github.io/pagy/guides/how-to/#raise-pagyrangeerror-exceptions).
 
 ==- `standalone`
 

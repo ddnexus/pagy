@@ -19,7 +19,7 @@ You don't need any stylesheets if you use the pagy `:bootstrap` or `:bulma` help
 
 ### Pagy Wand
 
-The [Pagy Wand](../sandbox/dev_tools/#pagy-wand) integrates pagy with your app's themes interactively. 
+The [Pagy Wand](../sandbox/dev_tools/#pagy-wand) customizes the CSS and integrates it with your app's themes _interactively_. 
 
 :::raised
 ![PagyWand](../assets/images/dev-tools.png){width=606}

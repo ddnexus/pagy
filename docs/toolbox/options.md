@@ -32,8 +32,8 @@ Pagy has a top-down hierarchical options system that allows you to set and overr
 #### Helper level
 
 - For example `@pagy.series_nav(**options)`.
-- The options passed to a helper override the options set upstream at any level for the helper output.
-- Otions already consumed upstream are not affected.
+- The options passed to a helper override all the upstream options for its output.
+- The otions consumed upstream are not affected.
 
 !!!success
 

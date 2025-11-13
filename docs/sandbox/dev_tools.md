@@ -26,7 +26,7 @@ You can activate them by adding this line in the `head` of your layout/page:
 
 #### Pagy Wand
 
-Integrate pagy with your app's themes interactively.
+Customizes the CSS and integrates it with your app's themes _interactively_. 
 
 - Control most of the visual aspects of pagy with a few presets and sliders. 
 - Copy/paste the generated "CSS Override" block in your stylesheet to persist it in your app.
