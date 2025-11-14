@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.816310453249">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.816427978778">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.816310453249" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.816427978778" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.816310453249" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.816427978778" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.816310453249" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.816310453249" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.816427978778" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.816427978778" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -988,13 +988,7 @@ as needed.</em></p>
 <li>The <code v-pre>:overflow</code> variable is not used anymore.</li>
 <li>If you did not use the extra (i.e., Pagy raised errors), set <code v-pre>raise_range_error: true</code>.</li>
 <li>If you used <code v-pre>overflow: :empty_page</code> or just required the overflow extra, simply remove it (this is now the default behavior).</li>
-<li>If you used <code v-pre>overflow: :last_page</code> and still want this behavior despite the reasons above:
-<ul>
-<li>Set <code v-pre>raise_range_error: true</code>.</li>
-<li>Use <code v-pre>rescue Pagy::RangeError =&gt; e</code> in your method.</li>
-<li>Redirect to <code v-pre>@pagy.page_url(:last)</code>.</li>
-</ul>
-</li>
+<li>If you used <code v-pre>overflow: :last_page</code> and still want this behavior despite the reasons above, see this <a href="https://ddnexus.github.io/pagy/guides/how-to/#raise-pagyrangeerror-exceptions">How To Example</a>.</li>
 </ul>
 </li>
 </ul>
