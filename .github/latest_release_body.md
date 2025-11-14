@@ -1,7 +1,8 @@
-### Changes in 43.0.4
+### Changes in 43.0.5
 
 <!-- changes_start -->
-- Remove the Pagy.options from the Calendar configuration. Close #825
+- Add console loader for easier usage
+- Add comment for the calendar usage. Close #827.
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
