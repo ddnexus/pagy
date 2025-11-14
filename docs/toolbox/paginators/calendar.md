@@ -39,9 +39,9 @@ It enables cascade-filtering of the collection by time units _(year, quarter, mo
 - The `:year` and `:month` parameters create time unit objects (default options are used in this example).
 - `:offset` is the offset instance that paginates the time-filtered collection.
 
-==- Example Usage
+==- Usage
 
-You must define a few simple methods in your app to configure and coordinate the objects created by the `pagy` method.
+You must define a few simple methods in your app to configure and coordinate the objects created by the `pagy` method. Se the following examples and comments (adapted from the [Calendar app code](../../sandbox/playground.md/#calendar-app))
 
 ```ruby Controller
 # Note: All time values must be instances of ActiveSupport::TimeWithZone.
@@ -61,6 +61,7 @@ end
 # If this method is defined, pagy  will add an extra 'empty-page' CSS class 
 # to the links leading to empty pages, along with a title attribute containing information about each page link.
 def pagy_calendar_counts(collection, unit, from, to)
+  # If collection is in order: :desc, add the reverse: true option to the next line
   collection.group_by_period(unit, :created_at, range: from...to).count.values
 end
 

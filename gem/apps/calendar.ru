@@ -68,8 +68,9 @@ class PagyCalendar < Sinatra::Base
   def pagy_calendar_counts(collection, unit, from, to)
     # The group_by_period method is provided by the groupdate gem
     # We use the :skip_counts param for testing the output in cypress
+    # If collection is in order: :desc, add the reverse: true option to the next line
     collection.group_by_period(unit, :time, range: from...to).count.values \
-        unless params[:skip_counts] == 'true'
+      unless params[:skip_counts] == 'true'
   end
 
   # Root route/action
