@@ -37,7 +37,10 @@ After selecting a new limit, pagy reloads the page that roughly contains the sam
 
 ==- Examples
 
-```ruby
+```ruby Console
+require 'pagy/console'
+=> true
+
 >> puts @pagy.limit_tag_js(client_max_limit: 100)
 <span class="pagy limit-tag-js" data-pagy="WyJzaiIsNDEsIi9wYXRoP2V4YW1wbGU9MTIzJnBhZ2U9UCAiXQ=="><label>Show <input name="limit" type="number" min="1" max="" value="20" style="padding: 0; text-align: center; width: 3rem;"><a style="display: none;">#</a> items per page</label></span>
 => nil

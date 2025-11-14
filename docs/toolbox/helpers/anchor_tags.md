@@ -38,7 +38,10 @@ Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `:co
 
 ==- Examples
 
-```ruby
+```ruby Console
+require 'pagy/console'
+=> true
+
 >> puts @pagy.previous_tag
 <a href="/path?example=123&page=2" aria-label="Previous">&lt;</a>
 => nil

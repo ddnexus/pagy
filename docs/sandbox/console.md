@@ -14,12 +14,9 @@ Allows you to interact with Pagy in an [irb](https://github.com/ruby/irb)/[pry](
 
 You can use a few method to create a simple collection paginated with the `:offset` paginator or to set the parameters as needed.
 
-```ruby
-=> require 'pagy'
+```ruby Console
+require 'pagy/console'
 => true
-
->> include Pagy::Console
-=> Object
 
 >> request
 => #<Pagy::Console::Request:0x00007fb92fb37aa0 @base_url="http://www.example.com", @params={example: "123"}, @path="/path">
@@ -60,4 +57,4 @@ You can use a few method to create a simple collection paginated with the `:offs
 >> puts pagy.info_tag
 <span class="pagy info">Displaying items 1-10 of 1000 in total</span>
 => nil
- ```
+```

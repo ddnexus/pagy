@@ -24,9 +24,9 @@ urls_hash = @pagy.urls_hash(**options)
 
 ==- Examples
 
-```ruby
->> include Pagy::Console
-=> Object
+```ruby Console
+require 'pagy/console'
+=> true
 
 >> @pagy, @records = pagy(:offset, collection.new)
 => [#<Pagy::Offset:0x00007ff137d44290 @count=1000, @from=1, @in=20, @in_range=true, @last=50, @limit=20, @next=2, @offset=0, @options={limit: 20, limit_key: "limit", page_key: "page", page: 1, count: 1000}, @page=1, @request=#<Pagy::Request:0x00007ff1383bc2d0 @base_url="http://www.example.com", @cookie=nil, @jsonapi=nil, @path="/path", @params={example: "123"}>, @to=20>, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]]
