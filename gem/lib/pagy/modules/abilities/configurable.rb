@@ -16,11 +16,6 @@ class Pagy
       <<~HTML
         <script id="pagy-ai-widget">
           #{ROOT.join('javascripts/ai_widget.js').read}
-          document.addEventListener('wand-positioned', PagyAIWidget.appendWidgetScript );
-          document.addEventListener('turbo:load', () => {
-            window.chatWidget = new ChatWidget();
-            PagyAIWidget.editChatWidget();
-          };
         </script>
         <script id="pagy-wand" data-scale="#{wand_scale}">
           #{ROOT.join('javascripts/wand.js').read}

@@ -12,10 +12,5 @@ replace_section_in_file('docs/_includes/head.html', 'ai_widget', <<~HTML)
   <!-- GENERATED FILE! DO NOT EDIT -->
   <script>
     #{Pagy::ROOT.join('javascripts/ai_widget.js').read}
-    document.addEventListener('DOMContentLoaded', PagyAIWidget.appendWidgetScript);
-    document.addEventListener("turbo:load", () => {
-      window.chatWidget = new ChatWidget();
-      PagyAIWidget.editChatWidget();
-    });
   </script>
 HTML
