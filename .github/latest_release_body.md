@@ -1,8 +1,7 @@
-### Changes in 43.0.5
+### Changes in 43.0.6
 
 <!-- changes_start -->
-- Add console loader for easier usage
-- Add comment for the calendar usage. Close #827.
+- Improve Pagy AI Widget scripts
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

@@ -7,6 +7,7 @@ const PagyAIWidget = {
   NEW_NAME:             'Ask Pagy AI',
   NEW_DESCRIPTION:      'Pagy AI uses the latest data in the documentation to answer your questions.',
   ICON_URL:             'https://github.com/ddnexus/pagy/blob/master/assets/images/pagy-the-frog.png?raw=true',
+  skipTurbo:            true,
 
   checkAndEdit: function() {
     const hostElement = document.getElementById(this.HOST_ID);
@@ -70,6 +71,20 @@ const PagyAIWidget = {
     script.dataset.lightMode   = 'false';
     script.dataset.tooltipSide = 'bottom';
     document.head.appendChild(script);
-    this.editChatWidget();
   }
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+  PagyAIWidget.appendWidgetScript();
+  PagyAIWidget.editChatWidget();
+});
+
+document.addEventListener("turbo:load", () => {
+  // skip only the first time (already done by DOMContentLoaded)
+  if (PagyAIWidget.skipTurbo) {
+    PagyAIWidget.skipTurbo = false;
+  } else {
+    window.chatWidget = new ChatWidget();
+    PagyAIWidget.editChatWidget();
+  }
+});
