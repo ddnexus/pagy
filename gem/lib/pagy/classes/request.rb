@@ -20,7 +20,7 @@ class Pagy
 
     def resolve_page(options, force_integer: true)
       page_key = options[:page_key] || DEFAULT[:page_key]
-      page     = @jsonapi ? @params['page'][page_key] : @params[page_key]
+      page     = @jsonapi ? @params['page'][page_key] : @params.dig(*page_key)
       page     = nil if page == ''   # fix for app-generated queries like ?page=
       force_integer ? (page || 1).to_i : page
     end
