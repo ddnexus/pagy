@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Decouple the reuest from the env, allowing non-rack apps to use pagy by passing a hash.
+  # Decouple the request from the env, allowing non-rack apps to use pagy by passing a hash.
   # Resolve :page and :limit, supporting the :jsonapi option. Support for URL composition.
   #
   class Request
