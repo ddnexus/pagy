@@ -22,9 +22,9 @@ class Pagy
         else
           # The search is a searchkick results object
           options[:request] = Request.new(options[:request] || request, options)
-          options[:limit] = search.options[:per_page]
-          options[:page]  = search.options[:page]
-          options[:count] = search.total_count
+          options[:limit]   = search.respond_to?(:options) ? search.options[:per_page] : search.per_page
+          options[:page]    = search.respond_to?(:options) ? search.options[:page] : search.page
+          options[:count]   = search.total_count
           Searchkick.new(**options)
         end
       end
