@@ -96,5 +96,25 @@ describe 'searchkick' do
         _(pagy.page).must_equal 2
       end
     end
+    describe 'Use search object V6' do
+      it 'paginates results with defaults' do
+        results = MockSearchkick::ModelV6.search('a')
+        pagy    = app.send(:pagy, :searchkick, results)
+
+        _(pagy).must_be_instance_of Pagy::Searchkick
+        _(pagy.count).must_equal 1000
+        _(pagy.limit).must_equal 10
+        _(pagy.page).must_equal 1
+      end
+      it 'paginates results with options and no term' do
+        results = MockSearchkick::ModelV6.search('b', page: 2, per_page: 15)
+        pagy    = app.send(:pagy, :searchkick, results)
+
+        _(pagy).must_be_instance_of Pagy::Searchkick
+        _(pagy.count).must_equal 1000
+        _(pagy.limit).must_equal 15
+        _(pagy.page).must_equal 2
+      end
+    end
   end
 end

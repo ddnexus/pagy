@@ -9,6 +9,7 @@ class Pagy
     # Paginate from the search object
     def paginate(context, search, **options)
       context.instance_eval do
+        options[:request] = Request.new(options[:request] || request, options)
         if search.is_a?(Search::Arguments)
           # The search is the array of pagy_search arguments
           Searcher.wrap(self, search, options) do
@@ -21,8 +22,8 @@ class Pagy
           end
         else
           # The search is a searchkick results object
-          options[:limit] = search.options[:per_page]
-          options[:page]  = search.options[:page]
+          options[:limit] = search.respond_to?(:options) ? search.options[:per_page] : search.per_page
+          options[:page]  = search.respond_to?(:options) ? search.options[:page]     : search.current_page
           options[:count] = search.total_count
           Searchkick.new(**options)
         end

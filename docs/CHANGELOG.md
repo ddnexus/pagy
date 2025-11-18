@@ -16,7 +16,7 @@ expect the old/deprecated functionality to be supported ONLY during the current 
 
 ## Recommended Version Constraint
 
-Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.0.6`):
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.0.7`):
 
 The `gem 'pagy', '~> 43.0'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.
@@ -44,6 +44,11 @@ If you upgrade from version `< 9.0.0` see the following:
 > from scratch might be faster.
 
 <hr>
+
+## Version 43.0.7
+
+- Add compatibility for searchkick 6. Close #831
+- Fix the search paginators request in passive mode. Close #830.
 
 ## Version 43.0.6
 
