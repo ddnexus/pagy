@@ -27,9 +27,29 @@ module MockSearchkick
     end
   end
 
+  class ResultsV6 < Results
+    undef_method :options
+
+    def per_page
+      @options[:per_page]
+    end
+
+    def current_page
+      @options[:page]
+    end
+  end
+
   class Model
     def self.search(...)
       Results.new(...)
+    end
+
+    extend Pagy::Search
+  end
+
+  class ModelV6
+    def self.search(...)
+      ResultsV6.new(...)
     end
 
     extend Pagy::Search
