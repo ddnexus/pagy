@@ -8,7 +8,6 @@ class Pagy
     # Common search logic
     def wrap(context, pagy_search_args, options)
       context.instance_exec do
-        options[:request] = Request.new(options[:request] || request, options)
         options[:page]  ||= options[:request].resolve_page(options)
         options[:limit] ||= options[:request].resolve_limit(options)
       end

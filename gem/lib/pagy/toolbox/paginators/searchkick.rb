@@ -9,6 +9,7 @@ class Pagy
     # Paginate from the search object
     def paginate(context, search, **options)
       context.instance_eval do
+        options[:request] = Request.new(options[:request] || request, options)
         if search.is_a?(Search::Arguments)
           # The search is the array of pagy_search arguments
           Searcher.wrap(self, search, options) do
