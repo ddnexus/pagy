@@ -22,12 +22,4 @@ class Pagy
 
   # Generic internal error
   class InternalError < StandardError; end
-
-  # JsonApi :page param error
-  class JsonapiReservedParamError < StandardError
-    # Inform about the actual value
-    def initialize(value)
-      super("expected reserved :page param to be nil or Hash-like; got #{value.inspect}")
-    end
-  end
 end

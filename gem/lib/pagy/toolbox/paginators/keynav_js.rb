@@ -10,7 +10,7 @@ class Pagy
     # Fall back to :countless if the :page has no client data.
     def paginate(context, set, **options)
       context.instance_eval do
-        request = Request.new(options[:request] || self.request, options)
+        request = Request.new(options[:request] || self.request)
         page    = request.resolve_page(options, force_integer: false) # allow nil
         if page&.match(' ')       # countless page -> no augmentation -> fallback
           return pagy(:countless, set, page:, **options)

@@ -20,8 +20,9 @@ class Pagy
              protected
 
              define_method :pagy do |paginator = :offset, collection, **options|
-               merged_options = paginator == :calendar ? options : Pagy.options.merge(options)
-               Pagy.const_get(paginators[paginator]).paginate(self, collection, **merged_options)
+               options[:root_key] = 'page' if options[:jsonapi] # enforce 'page' root_key for JSON:API
+               options            = Pagy.options.merge(options) unless paginator == :calendar
+               Pagy.const_get(paginators[paginator]).paginate(self, collection, **options)
              end
            end
 end

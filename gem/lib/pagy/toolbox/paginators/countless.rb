@@ -7,7 +7,7 @@ class Pagy
     # Return Pagy object and records
     def paginate(context, collection, **options)
       context.instance_eval do
-        request = Request.new(options[:request] || self.request, options)
+        request = Request.new(options[:request] || self.request)
         if options[:page].nil?
           page = request.resolve_page(options, force_integer: false) # accept nil and strings
           if page.is_a?(String)

@@ -7,7 +7,7 @@ class Pagy
     # Return instance and page of results
     def paginate(context, collection, **options)
       context.instance_eval do
-        request = Request.new(options[:request] || self.request, options)
+        request = Request.new(options[:request] || self.request)
         options[:page]  ||= request.resolve_page(options)
         options[:limit]   = request.resolve_limit(options)
         options[:count] ||= collection.instance_of?(Array) ? collection.size : OffsetPaginator.get_count(collection, options)
