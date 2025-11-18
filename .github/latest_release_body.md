@@ -1,7 +1,8 @@
-### Changes in 43.0.6
+### Changes in 43.0.7
 
 <!-- changes_start -->
-- Improve Pagy AI Widget scripts
+- Add compatibility for searchkick 6. Close #831
+- Fix the search paginators request in passive mode. Close #830.
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
