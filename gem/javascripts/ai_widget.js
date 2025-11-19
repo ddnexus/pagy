@@ -68,7 +68,7 @@ const PagyAIWidget = {
     script.dataset.iconUrl     = this.ICON_URL;
     script.dataset.text        = 'Pagy AI';
     script.dataset.bgColor     = '#1f7a1f';
-    script.dataset.lightMode   = 'false';
+    script.dataset.lightMode   = 'auto';
     script.dataset.tooltipSide = 'bottom';
     document.head.appendChild(script);
   }
