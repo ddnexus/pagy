@@ -11,7 +11,6 @@ class Pagy
         raise ArgumentError, "keys must be in #{allowed_options.inspect}" \
               unless config.is_a?(Hash) && (config.keys - allowed_options).empty?
 
-        config[:request]  = Request.new(config[:request] || request)
         config[:offset] ||= {}
         unless config[:disabled]
           calendar, from, to =
