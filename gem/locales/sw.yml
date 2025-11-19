@@ -9,8 +9,8 @@ sw:
     # after you make these changes.
     aria_label:
       nav:
-        one: "Page"
-        other: "Pages"
+        one: "Ukurasa"
+        other: "Kurasa"
       previous: "Awali"
       next: "Ifuatayo"
     previous: "&lt;"

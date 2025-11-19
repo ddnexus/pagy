@@ -4,9 +4,7 @@ id:
   pagy:
     p11n: 'Other'
     aria_label:
-      # please add a comment in the https://github.com/ddnexus/pagy/issues/588
-      # posting the translation of the following  "Page"/"Pages" with the plurals for this locale
-      nav: "Pages"
+      nav: "Halaman"
       previous: "Sebelumnya"
       next: "Selanjutnya"
     previous: "&lt;"
