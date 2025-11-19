@@ -31,17 +31,17 @@ describe 'Pagy::Console' do
     it 'returns an instance of the Request class' do
       result = @mock_context.request
 
-      _(result).must_be_instance_of Pagy::Console::Request
+      _(result).must_be_instance_of Hash
     end
 
     it 'has a default base_url' do
-      result = @mock_context.request.base_url
+      result = @mock_context.request[:base_url]
 
       _(result).must_equal 'http://www.example.com'
     end
 
     it 'has a default path' do
-      result = @mock_context.request.path
+      result = @mock_context.request[:path]
 
       _(result).must_equal '/path'
     end
