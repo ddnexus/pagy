@@ -9,25 +9,22 @@ class Pagy
       module_function
 
       # Extracted from Rack::Utils and reformatted for rubocop
-      # Add the 'unescaped' param, and use it for simple and safe url-templating.
-      # All string keyed hashes
-      def build_nested_query(value, prefix = nil, unescaped = [])
+      # Skip escaping for Pagy::RawQueryValue
+      def build_nested_query(value, prefix = nil)
         case value
         when Array
-          value.map { |v| build_nested_query(v, "#{prefix}[]", unescaped) }.join('&')
+          value.map { |v| build_nested_query(v, "#{prefix}[]") }.join('&')
         when Hash
           value.map do |k, v|
-            new_k = prefix ? "#{prefix}[#{escape(k)}]" : escape(k)
-            unescaped[unescaped.find_index(k)] = new_k if unescaped.size.positive? && new_k != k && unescaped.include?(k)
-            build_nested_query(v, new_k, unescaped)
+            build_nested_query(v, prefix ? "#{prefix}[#{k}]" : k)
           end.delete_if(&:empty?).join('&')
         when nil
           escape(prefix)
         else
           raise ArgumentError, 'value must be a Hash' if prefix.nil?
-          return "#{escape(prefix)}=#{value}" if unescaped.include?(prefix)
 
-          "#{escape(prefix)}=#{escape(value)}"
+          final_value = value.is_a?(RawQueryValue) ? value.to_s : escape(value)
+          "#{escape(prefix)}=#{final_value}"
         end
       end
 
@@ -46,12 +43,12 @@ class Pagy
       params = @request.params.clone(freeze: false)
       params.delete(root_key || page_key)
       factors = {}.tap do |h|
-                  h[page_key]  = countless? ? "#{page || 1}+#{@last}" : page
+                  h[page_key]  = countless? ? RawQueryValue.new("#{page || 1}+#{@last}") : page
                   h[limit_key] = limit_token || limit if client_max_limit
                 end.compact # No empty params
       params.merge!(root_key ? { root_key => factors } : factors) if factors.size.positive?
       querify&.(params) # Must modify the params: the returned value is ignored
-      query_string = QueryUtils.build_nested_query(params, nil, [page_key, limit_key])
+      query_string = QueryUtils.build_nested_query(params)
       query_string = "?#{query_string}" unless query_string.empty?
       fragment   &&= %(##{fragment}) unless fragment&.start_with?('#')
       "#{@request.base_url if absolute}#{path || @request.path}#{query_string}#{fragment}"
