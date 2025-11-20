@@ -3,20 +3,6 @@
 class Pagy
   # Provide a ready to use pagy environment when included in irb/rails console
   module Console
-    class Request
-      attr_accessor :base_url, :path, :params
-
-      def initialize
-        @base_url = 'http://www.example.com'
-        @path     = '/path'
-        @params   = { example: '123' }
-      end
-
-      def GET = @params  # rubocop:disable Naming/MethodName
-
-      def cookies = {}
-    end
-
     class Collection < Array
       def initialize(arr = Array(1..1000))
         super
@@ -31,8 +17,8 @@ class Pagy
     include Method
 
     # Direct reference to request.params via a method
-    def params     = request.params
-    def request    = @request ||= Request.new
+    def request    = @request ||= { base_url: 'http://www.example.com', path: '/path', params: { example: '123' } }
+    def params     = request[:params]
     def collection = Collection
   end
 end

@@ -58,11 +58,35 @@ method. For example:
 @pagy, @records = pagy(:offset, collection, page: 3) # force page #3
 ```
 
-==- Customize the dictionary
+==- Create a new I18n Dictionary
 
-Pagy uses standard i18n dictionaries for string translations and supports overriding them.
+#### 1. Find the pluralization rules for your language
 
-See [I18n](../resources/i18n).
+- Locate the locale file you need in
+  the [list of pluralizations](https://github.com/svenfuchs/rails-i18n/tree/master/rails/pluralization)
+- Check the pluralization rules required in it. For example, the name of the file required is `one_other`
+  for [`en.rb`](https://github.com/svenfuchs/rails-i18n/blob/master/rails/pluralization/en.rb). In Pagy, that translates to
+  `'OneOther'`.
+  - If you cannot find the pluralization in the link above, check
+    the [Unicode pluralization rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
+- Confirm that pagy already defines the pluralization rules of your dictionary file by checking the file in
+  the [P18n directory](https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/modules/i18n/p18n).
+  - If the rules are not defined, you can either:
+    - Add a new module for the pluralization (by adapting the same pluralization from the corresponding rails-i18n file) and
+      include tests for it;
+    - Or, create an issue requesting the addition of the pluralization entry and its tests.
+
+#### 2. Duplicate an existing Pagy locale dictionary file and translate it into your language.
+
+- See the [lib/locales](https://github.com/ddnexus/pagy/tree/master/gem/locales) for existing dictionaries.
+- Check that the `p11n` entry points to a module in
+  the [P18n directory](https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/modules/i18n/p18n).
+- The mandatory pluralized entries in the dictionary file are `aria_label.nav` and `item_name`. Please provide all the necessary
+  plurals for your language. For example, if your language uses the `EastSlavic` rule, you should provide the plurals for `one`,
+  `few`, `many`, and `other`. If it uses
+  `Other`, you should only provide a single value. Check other dictionary files for examples, and ask if you have any doubts.
+
+Feel free to ask for help in your Pull Request.
 
 ==- Customize the ARIA labels
 
@@ -82,7 +106,7 @@ By default, Pagy retrieves the page from the request params hash and generates U
 - Set `page_key: 'custom_page'` to customize URL generation, e.g., `?custom_page=3`.
 - Set the `:limit_key` to customize the `limit` param the same way.
 
-See [Common Options](../toolbox/paginators#common-options)
+See [Common URL Options](../toolbox/paginators#common-url-options)
 
 ==- Paginate with JSON:API nested URLs
 
@@ -95,7 +119,7 @@ Enable `jsonapi: true`, optionally providing `:page_key` and `:limit_key`:
 
 ==- Customize the URL query
 
-See the [:querify Option](../toolbox/paginators#common-options)
+See the [:querify Option](../toolbox/paginators#common-url-options)
 
 ==- Add a URL fragment
 
@@ -273,7 +297,20 @@ Consider [Benito Serna's implementation of turbo-frames (on Rails) using search 
 along with a corresponding [demo app](https://github.com/bhserna/dynamic_data_grid_hotwire_ransack) for a similar implementation
 of the above logic.
 
-##### Use different page symbols
+##### Use the root_key option
+
+<br/>
+
+By default, pagy creates flat URLs for its links. If you need to handle multiple pagy instance in the same request, you can nest the `:page` and -if you use it- the `:limit` params by passing the `:root_key` option to the paginator:
+
+```rb Controller Action
+def index # controller action
+  @pagy_stars, @stars     = pagy(:offset, Star.all, root_key: 'stars')
+  @pagy_nebulae, @nebulae = pagy(:offset, Nebula.all, root_key: 'nebulae')
+end
+```
+
+##### Use different page keys
 
 <br/>
 
@@ -282,8 +319,8 @@ You can also paginate multiple model in the same request by simply using differe
 ```rb
 
 def index # controller action
-  @pagy_stars, @stars     = pagy(:offset, Star.all, page_key: 'page_stars')
-  @pagy_nebulae, @nebulae = pagy(:offset, Nebula.all, page_key: 'page_nebulae')
+  @pagy_stars, @stars     = pagy(:offset, Star.all, page_key: 'pagy_stars')
+  @pagy_nebulae, @nebulae = pagy(:offset, Nebula.all, page_key: 'pagy_nebulae')
 end
 ```
 
@@ -492,35 +529,5 @@ end
 
 If you use the `session` for caching, configure it to use `ActiveRecord`, `Redis`, or any server-side storage
 !!!
-
-==- Create a new I18n Dictionary
-
-#### 1. Find the pluralization rules for your language
-
-- Locate the locale file you need in
-  the [list of pluralizations](https://github.com/svenfuchs/rails-i18n/tree/master/rails/pluralization)
-- Check the pluralization rules required in it. For example, the name of the file required is `one_other`
-  for [`en.rb`](https://github.com/svenfuchs/rails-i18n/blob/master/rails/pluralization/en.rb). In Pagy, that translates to
-  `'OneOther'`.
-  - If you cannot find the pluralization in the link above, check
-    the [Unicode pluralization rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
-- Confirm that pagy already defines the pluralization rules of your dictionary file by checking the file in
-  the [P18n directory](https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/modules/i18n/p18n).
-  - If the rules are not defined, you can either:
-    - Add a new module for the pluralization (by adapting the same pluralization from the corresponding rails-i18n file) and
-      include tests for it;
-    - Or, create an issue requesting the addition of the pluralization entry and its tests.
-
-#### 2. Duplicate an existing Pagy locale dictionary file and translate it into your language.
-
-- See the [lib/locales](https://github.com/ddnexus/pagy/tree/master/gem/locales) for existing dictionaries.
-- Check that the `p11n` entry points to a module in
-  the [P18n directory](https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/modules/i18n/p18n).
-- The mandatory pluralized entries in the dictionary file are `aria_label.nav` and `item_name`. Please provide all the necessary
-  plurals for your language. For example, if your language uses the `EastSlavic` rule, you should provide the plurals for `one`,
-  `few`, `many`, and `other`. If it uses
-  `Other`, you should only provide a single value. Check other dictionary files for examples, and ask if you have any doubts.
-
-Feel free to ask for help in your Pull Request.
 
 ===

@@ -100,11 +100,13 @@ These options control give you full control over the URL composition.
 - `fragment: '...'`
   - URL fragment string.
 - `jsonapi: true`
-  - Enables JSON:API-compliant URLs, with nested query string (e.g., `?page[number]=2&page[size]=100`)
+  - Enables JSON:API-compliant URLs with nested query string (e.g., `?page[number]=2&page[size]=100`).
 - `limit_key: 'custom_limit'`
   - Set it to change the key string used for the `:limit` in URLs (default `'limit'`).
 - `page_key: 'custom_page'`
   - Set it to change the key string used for the `:page` in URLs (default `'page'`).
+- `root_key: 'custom_root`
+  - Set it to enable nested URLs with nested query string `?custom_root[page]=2&custom_root[limit]=100`)). Use it to handle multiple pagination objects in the same request.
 - `path: '/custom_path'`
   - Overrides the request path in pagination URLs. Use the path only (not the absolute URL). _(see [Override the request path](../guides/how-to#paginate-multiple-independent-collections))_
 - `querify: tweak`

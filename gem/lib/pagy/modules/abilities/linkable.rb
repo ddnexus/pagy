@@ -40,16 +40,16 @@ class Pagy
 
     # Return the URL for the page, relying on the Pagy::Request
     def compose_page_url(page, limit_token: nil, **options)
-      jsonapi, page_key, limit_key, limit, client_max_limit, querify, absolute, path, fragment =
+      root_key, page_key, limit_key, limit, client_max_limit, querify, absolute, path, fragment =
         @options.merge(options)
-                .values_at(:jsonapi, :page_key, :limit_key, :limit, :client_max_limit, :querify, :absolute, :path, :fragment)
+                .values_at(:root_key, :page_key, :limit_key, :limit, :client_max_limit, :querify, :absolute, :path, :fragment)
       params = @request.params.clone(freeze: false)
-      params.delete(jsonapi ? 'page' : page_key)
+      params.delete(root_key || page_key)
       factors = {}.tap do |h|
                   h[page_key]  = countless? ? "#{page || 1}+#{@last}" : page
                   h[limit_key] = limit_token || limit if client_max_limit
                 end.compact # No empty params
-      params.merge!(jsonapi ? { 'page' => factors } : factors) if factors.size.positive?
+      params.merge!(root_key ? { root_key => factors } : factors) if factors.size.positive?
       querify&.(params) # Must modify the params: the returned value is ignored
       query_string = QueryUtils.build_nested_query(params, nil, [page_key, limit_key])
       query_string = "?#{query_string}" unless query_string.empty?

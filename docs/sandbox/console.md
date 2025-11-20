@@ -19,7 +19,7 @@ require 'pagy/console'
 => true
 
 >> request
-=> #<Pagy::Console::Request:0x00007fb92fb37aa0 @base_url="http://www.example.com", @params={example: "123"}, @path="/path">
+=>  {base_url: "http://www.example.com", path: "/path", params: {example: "123"}}
 
 >> params
 => {example: "123"}

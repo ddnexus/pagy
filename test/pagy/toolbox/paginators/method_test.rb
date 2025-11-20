@@ -11,13 +11,7 @@ describe 'paginators jsonapi' do
     @pagy_default = { client_max_limit: 100, jsonapi: true }
   end
 
-  it 'raises PageParamError with page number' do
-    app = MockApp.new(params: { page: 2 })
-
-    _ { _pagy, _records = app.send(:pagy, :offset, @collection, **@pagy_default) }.must_raise Pagy::JsonapiReservedParamError
-  end
-
-  describe 'JsonApi' do
+  describe 'JSON:API' do
     it 'uses the :jsonapi with page:nil' do
       app = MockApp.new(params: { page: nil })
       pagy, _records = app.send(:pagy, :offset, @collection, jsonapi: true)
@@ -33,7 +27,7 @@ describe 'paginators jsonapi' do
       _(pagy.send(:compose_page_url, 2)).must_rematch :url_2
     end
   end
-  describe 'Skip JsonApi' do
+  describe 'Skip :jsonapi' do
     it 'skips the :jsonapi with page:nil' do
       app = MockApp.new(params: { page: nil })
       pagy, _records = app.send(:pagy, :offset, @collection)
@@ -53,7 +47,7 @@ describe 'paginators jsonapi' do
       _(pagy.send(:compose_page_url, 2)).must_equal '/foo?page=2&limit=20'
     end
   end
-  describe 'JsonApi with custom named params' do
+  describe ':jsonapi with custom named params' do
     it 'gets custom named params' do
       app = MockApp.new(params: { page: { number: 3, size: 10 } })
       pagy, _records = app.send(:pagy, :offset, @collection, **@pagy_default, page_key: 'number', limit_key: 'size')

@@ -16,7 +16,7 @@ expect the old/deprecated functionality to be supported ONLY during the current 
 
 ## Recommended Version Constraint
 
-Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.0.7`):
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.1.7`):
 
 The `gem 'pagy', '~> 43.0'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.
@@ -44,6 +44,16 @@ If you upgrade from version `< 9.0.0` see the following:
 > from scratch might be faster.
 
 <hr>
+
+## Version 43.1.0
+
+- Translate the aria_label.nav entry in the id, ja, kn, sw locales. Close #588, close #590, close #591, close #603.
+- Improve the Pagy AI panel
+- Simplify the paginators code
+- Allow nested :page and :limit request params and URLs:
+  - Add the :root_key option:
+  - Simplify the :jsonapi handling as a special case of nested params
+- Fix and simplify the pagy console code
 
 ## Version 43.0.7
 

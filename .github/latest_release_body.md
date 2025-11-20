@@ -1,8 +1,13 @@
-### Changes in 43.0.7
+### Changes in 43.1.0
 
 <!-- changes_start -->
-- Add compatibility for searchkick 6. Close #831
-- Fix the search paginators request in passive mode. Close #830.
+- Translate the aria_label.nav entry in the id, ja, kn, sw locales. Close #588, close #590, close #591, close #603.
+- Improve the Pagy AI panel
+- Simplify the paginators code
+- Allow nested :page and :limit request params and URLs:
+  - Add the :root_key option:
+  - Simplify the :jsonapi handling as a special case of nested params
+- Fix and simplify the pagy console code
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
