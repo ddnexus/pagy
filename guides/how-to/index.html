@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.816822572896">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.816914889045">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.816822572896" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.816914889045" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.816822572896" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.816914889045" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.816822572896" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.816822572896" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.816914889045" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.816914889045" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -111,7 +111,7 @@
         script.dataset.iconUrl     = this.ICON_URL;
         script.dataset.text        = 'Pagy AI';
         script.dataset.bgColor     = '#1f7a1f';
-        script.dataset.lightMode   = 'false';
+        script.dataset.lightMode   = 'auto';
         script.dataset.tooltipSide = 'bottom';
         document.head.appendChild(script);
       }
@@ -190,7 +190,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../../assets/images/pagy-the-frog.png">
                             </span>
                             <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.0.7</span>
+                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.1.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -456,10 +456,56 @@ method. For example:</p>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">@pagy, @records = pagy(:offset, collection, page: 3) # force page #3</code></pre>
 </doc-codeblock></div>
    </doc-panel>
-   <doc-panel id="customize-the-dictionary" collapsed>
-       <template #title>Customize the dictionary</template>
-<p>Pagy uses standard i18n dictionaries for string translations and supports overriding them.</p>
-<p>See <a href="../../resources/i18n/">I18n</a>.</p>
+   <doc-panel id="create-a-new-i18n-dictionary" collapsed>
+       <template #title>Create a new I18n Dictionary</template>
+<doc-anchor-target id="1-find-the-pluralization-rules-for-your-language">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#1-find-the-pluralization-rules-for-your-language">#</doc-anchor-trigger>
+        <span>1. Find the pluralization rules for your language</span>
+    </h4>
+</doc-anchor-target>
+<ul>
+<li><p>Locate the locale file you need in
+the <a href="https://github.com/svenfuchs/rails-i18n/tree/master/rails/pluralization">list of pluralizations</a></p>
+</li>
+<li><p>Check the pluralization rules required in it. For example, the name of the file required is <code v-pre>one_other</code>
+for <a href="https://github.com/svenfuchs/rails-i18n/blob/master/rails/pluralization/en.rb"><code v-pre>en.rb</code></a>. In Pagy, that translates to
+<code v-pre>'OneOther'</code>.</p>
+<ul>
+<li>If you cannot find the pluralization in the link above, checkthe <a href="https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html">Unicode pluralization rules</a>.</li>
+</ul>
+</li>
+<li><p>Confirm that pagy already defines the pluralization rules of your dictionary file by checking the file in
+the <a href="https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/modules/i18n/p18n">P18n directory</a>.</p>
+<ul>
+<li>If the rules are not defined, you can either:
+<ul>
+<li><p>Add a new module for the pluralization (by adapting the same pluralization from the corresponding rails-i18n file) and
+include tests for it;</p>
+</li>
+<li><p>Or, create an issue requesting the addition of the pluralization entry and its tests.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="2-duplicate-an-existing-pagy-locale-dictionary-file-and-translate-it-into-your-language">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#2-duplicate-an-existing-pagy-locale-dictionary-file-and-translate-it-into-your-language">#</doc-anchor-trigger>
+        <span>2. Duplicate an existing Pagy locale dictionary file and translate it into your language.</span>
+    </h4>
+</doc-anchor-target>
+<ul>
+<li>See the <a href="https://github.com/ddnexus/pagy/tree/master/gem/locales">lib/locales</a> for existing dictionaries.</li>
+<li>Check that the <code v-pre>p11n</code> entry points to a module in
+the <a href="https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/modules/i18n/p18n">P18n directory</a>.</li>
+<li>The mandatory pluralized entries in the dictionary file are <code v-pre>aria_label.nav</code> and <code v-pre>item_name</code>. Please provide all the necessary
+plurals for your language. For example, if your language uses the <code v-pre>EastSlavic</code> rule, you should provide the plurals for <code v-pre>one</code>,
+<code v-pre>few</code>, <code v-pre>many</code>, and <code v-pre>other</code>. If it uses
+<code v-pre>Other</code>, you should only provide a single value. Check other dictionary files for examples, and ask if you have any doubts.</li>
+</ul>
+<p>Feel free to ask for help in your Pull Request.</p>
    </doc-panel>
    <doc-panel id="customize-the-aria-labels" collapsed>
        <template #title>Customize the ARIA labels</template>
@@ -476,7 +522,7 @@ method. For example:</p>
 <li>Set <code v-pre>page_key: 'custom_page'</code> to customize URL generation, e.g., <code v-pre>?custom_page=3</code>.</li>
 <li>Set the <code v-pre>:limit_key</code> to customize the <code v-pre>limit</code> param the same way.</li>
 </ul>
-<p>See <a href="../../toolbox/paginators/#common-options">Common Options</a></p>
+<p>See <a href="../../toolbox/paginators/#common-url-options">Common URL Options</a></p>
    </doc-panel>
    <doc-panel id="paginate-with-jsonapi-nested-urls" collapsed>
        <template #title>Paginate with JSON:API nested URLs</template>
@@ -488,7 +534,7 @@ method. For example:</p>
    </doc-panel>
    <doc-panel id="customize-the-url-query" collapsed>
        <template #title>Customize the URL query</template>
-<p>See the <a href="../../toolbox/paginators/#common-options">:querify Option</a></p>
+<p>See the <a href="../../toolbox/paginators/#common-url-options">:querify Option</a></p>
    </doc-panel>
    <doc-panel id="add-a-url-fragment" collapsed>
        <template #title>Add a URL fragment</template>
@@ -685,10 +731,25 @@ end </code></pre>
 <p>Consider <a href="https://bhserna.com/building-data-grid-with-search-rails-hotwire-ransack.html">Benito Serna&#x27;s implementation of turbo-frames (on Rails) using search forms with the Ransack gem</a>
 along with a corresponding <a href="https://github.com/bhserna/dynamic_data_grid_hotwire_ransack">demo app</a> for a similar implementation
 of the above logic.</p>
-<doc-anchor-target id="use-different-page-symbols">
+<doc-anchor-target id="use-the-root_key-option">
     <h5>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#use-different-page-symbols">#</doc-anchor-trigger>
-        <span>Use different page symbols</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#use-the-root_key-option">#</doc-anchor-trigger>
+        <span>Use the root_key option</span>
+    </h5>
+</doc-anchor-target>
+<br/>
+<p>By default, pagy creates flat URLs for its links. If you need to handle multiple pagy instance in the same request, you can nest the <code v-pre>:page</code> and -if you use it- the <code v-pre>:limit</code> params by passing the <code v-pre>:root_key</code> option to the paginator:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Controller Action</div>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">def index # controller action
+  @pagy_stars, @stars     = pagy(:offset, Star.all, root_key: 'stars')
+  @pagy_nebulae, @nebulae = pagy(:offset, Nebula.all, root_key: 'nebulae')
+end</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="use-different-page-keys">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#use-different-page-keys">#</doc-anchor-trigger>
+        <span>Use different page keys</span>
     </h5>
 </doc-anchor-target>
 <br/>
@@ -696,8 +757,8 @@ of the above logic.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">
 def index # controller action
-  @pagy_stars, @stars     = pagy(:offset, Star.all, page_key: 'page_stars')
-  @pagy_nebulae, @nebulae = pagy(:offset, Nebula.all, page_key: 'page_nebulae')
+  @pagy_stars, @stars     = pagy(:offset, Star.all, page_key: 'pagy_stars')
+  @pagy_nebulae, @nebulae = pagy(:offset, Nebula.all, page_key: 'pagy_nebulae')
 end</code></pre>
 </doc-codeblock></div>
    </doc-panel>
@@ -964,57 +1025,6 @@ end</code></pre>
         </div>
     </div>
 </div>
-   </doc-panel>
-   <doc-panel id="create-a-new-i18n-dictionary" collapsed>
-       <template #title>Create a new I18n Dictionary</template>
-<doc-anchor-target id="1-find-the-pluralization-rules-for-your-language">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#1-find-the-pluralization-rules-for-your-language">#</doc-anchor-trigger>
-        <span>1. Find the pluralization rules for your language</span>
-    </h4>
-</doc-anchor-target>
-<ul>
-<li><p>Locate the locale file you need in
-the <a href="https://github.com/svenfuchs/rails-i18n/tree/master/rails/pluralization">list of pluralizations</a></p>
-</li>
-<li><p>Check the pluralization rules required in it. For example, the name of the file required is <code v-pre>one_other</code>
-for <a href="https://github.com/svenfuchs/rails-i18n/blob/master/rails/pluralization/en.rb"><code v-pre>en.rb</code></a>. In Pagy, that translates to
-<code v-pre>'OneOther'</code>.</p>
-<ul>
-<li>If you cannot find the pluralization in the link above, checkthe <a href="https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html">Unicode pluralization rules</a>.</li>
-</ul>
-</li>
-<li><p>Confirm that pagy already defines the pluralization rules of your dictionary file by checking the file in
-the <a href="https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/modules/i18n/p18n">P18n directory</a>.</p>
-<ul>
-<li>If the rules are not defined, you can either:
-<ul>
-<li><p>Add a new module for the pluralization (by adapting the same pluralization from the corresponding rails-i18n file) and
-include tests for it;</p>
-</li>
-<li><p>Or, create an issue requesting the addition of the pluralization entry and its tests.</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<doc-anchor-target id="2-duplicate-an-existing-pagy-locale-dictionary-file-and-translate-it-into-your-language">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#2-duplicate-an-existing-pagy-locale-dictionary-file-and-translate-it-into-your-language">#</doc-anchor-trigger>
-        <span>2. Duplicate an existing Pagy locale dictionary file and translate it into your language.</span>
-    </h4>
-</doc-anchor-target>
-<ul>
-<li>See the <a href="https://github.com/ddnexus/pagy/tree/master/gem/locales">lib/locales</a> for existing dictionaries.</li>
-<li>Check that the <code v-pre>p11n</code> entry points to a module in
-the <a href="https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/modules/i18n/p18n">P18n directory</a>.</li>
-<li>The mandatory pluralized entries in the dictionary file are <code v-pre>aria_label.nav</code> and <code v-pre>item_name</code>. Please provide all the necessary
-plurals for your language. For example, if your language uses the <code v-pre>EastSlavic</code> rule, you should provide the plurals for <code v-pre>one</code>,
-<code v-pre>few</code>, <code v-pre>many</code>, and <code v-pre>other</code>. If it uses
-<code v-pre>Other</code>, you should only provide a single value. Check other dictionary files for examples, and ask if you have any doubts.</li>
-</ul>
-<p>Feel free to ask for help in your Pull Request.</p>
    </doc-panel>
 </doc-panels>
 

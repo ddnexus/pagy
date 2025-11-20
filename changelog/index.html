@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.816822572896">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.816914889045">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,11 +31,11 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../resources/css/retype.css?v=3.11.0.816822572896" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.11.0.816914889045" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.11.0.816822572896" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.11.0.816914889045" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.11.0.816822572896" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.11.0.816914889045" data-turbo-eval="false" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -110,7 +110,7 @@
         script.dataset.iconUrl     = this.ICON_URL;
         script.dataset.text        = 'Pagy AI';
         script.dataset.bgColor     = '#1f7a1f';
-        script.dataset.lightMode   = 'false';
+        script.dataset.lightMode   = 'auto';
         script.dataset.tooltipSide = 'bottom';
         document.head.appendChild(script);
       }
@@ -189,7 +189,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../assets/images/pagy-the-frog.png">
                             </span>
                             <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.0.7</span>
+                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.1.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -398,7 +398,7 @@ expect the old/deprecated functionality to be supported ONLY during the current 
         <span>Recommended Version Constraint</span>
     </h2>
 </doc-anchor-target>
-<p>Given a version number <code v-pre>MAJOR.MINOR.PATCH</code> (e.g. <code v-pre>43.0.7</code>):</p>
+<p>Given a version number <code v-pre>MAJOR.MINOR.PATCH</code> (e.g. <code v-pre>43.1.7</code>):</p>
 <p>The <code v-pre>gem 'pagy', '~&gt; 43.0'</code> Gemfile entry (without the PATCH number) ensures that the <code v-pre>bundle update</code> command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.</p>
 <p>Increment the MAJOR version in your Gemfile ONLY when you are ready to handle the BREAKING CHANGES.</p>
@@ -439,6 +439,24 @@ from scratch might be faster.</p>
     </div>
 </div>
 <hr>
+<doc-anchor-target id="version-4310">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4310">#</doc-anchor-trigger>
+        <span>Version 43.1.0</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Translate the aria_label.nav entry in the id, ja, kn, sw locales. Close #588, close #590, close #591, close #603.</li>
+<li>Improve the Pagy AI panel</li>
+<li>Simplify the paginators code</li>
+<li>Allow nested :page and :limit request params and URLs:
+<ul>
+<li>Add the :root_key option:</li>
+<li>Simplify the :jsonapi handling as a special case of nested params</li>
+</ul>
+</li>
+<li>Fix and simplify the pagy console code</li>
+</ul>
 <doc-anchor-target id="version-4307">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4307">#</doc-anchor-trigger>
