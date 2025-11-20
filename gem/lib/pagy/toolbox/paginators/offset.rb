@@ -6,8 +6,8 @@ class Pagy
 
     # Return the Pagy::Offset instance and results
     def paginate(collection, options)
-      options[:page]  ||= options[:request].resolve_page(options)
-      options[:limit]   = options[:request].resolve_limit(options)
+      options[:page]  ||= options[:request].resolve_page
+      options[:limit]   = options[:request].resolve_limit
       options[:count] ||= collection.instance_of?(Array) ? collection.size : OffsetPaginator.get_count(collection, options)
       pagy = Offset.new(**options)
       [pagy, collection.instance_of?(Array) ? collection[pagy.offset, pagy.limit] : pagy.records(collection)]
