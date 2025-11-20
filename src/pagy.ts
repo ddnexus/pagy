@@ -10,6 +10,7 @@ type InitArgs = ["k",  KeynavArgs] |          // series_nav[_js] with keynav ins
                 ["ltj", LimitTagJsArgs]       // limit_tag_js
 type AugmentKeynav = (nav:HTMLElement, keynavArgs:KeynavArgs) => Promise<((page: string) => string)>
 type KeynavArgs = readonly [storageKey:  string | null,
+                            rootKey:     string | null,
                             pageKey:     string,
                             last:        number,
                             spliceArgs?: SpliceArgs]
@@ -85,8 +86,8 @@ const Pagy = (() => {
   const randKey = () => Math.floor(Math.random() * 36 ** 3).toString(36);
 
   // Manage the page augmentation for Keynav, called only if storageSupport
-  const augmentKeynav: AugmentKeynav = async (nav, [storageKey, pageKey, last, spliceArgs]) => {
-    let augment;
+  const augmentKeynav: AugmentKeynav = async (nav, [storageKey, rootKey, pageKey, last, spliceArgs]) => {
+    let augmentPage:(page: string) => string;
     const browserKey = document.cookie.split(/;\s+/)  // it works even if malformed
                                .find((row) => row.startsWith(pagy + "="))
                                ?.split("=")[1] ?? randKey();
@@ -97,10 +98,11 @@ const Pagy = (() => {
       // Wait for the listener to copy the cutoffs in the current sessionStorage
       await new Promise<string|null>((resolve) => setTimeout(() => resolve(""), 100));
       if (!(storageKey in storage)) { // the storageKey didn't get copied: fallback to countless pagination
-        augment = (page: string) => page + '+' + last;
+        augmentPage = (page: string) => page + '+' + last;
       }
     }
-    if (!augment) { // regular keynav pagination
+    // @ts-expect-error If it is not assigned it means it supports keynav
+    if (!augmentPage) { // regular keynav pagination
       if (!storageKey) { do { storageKey = randKey() } while (storageKey in storage) } // no dup keys
       const data = storage.getItem(storageKey),
           cutoffs = <Cutoff[]>(data ? JSON.parse(data) : [undefined]);
@@ -109,7 +111,7 @@ const Pagy = (() => {
         storage.setItem(storageKey, JSON.stringify(cutoffs));
       }
       // Augment function
-      augment = (page:string) => {
+      augmentPage = (page:string) => {
         const pageNum = parseInt(page);
         return B64SafeEncode(JSON.stringify(
             <AugmentedPage>[browserKey,
@@ -120,14 +122,14 @@ const Pagy = (() => {
                             cutoffs[pageNum]]));  // pageCutoff
       };
     }
+    const search = (rootKey) ? `${rootKey}%5B${pageKey}%5D` : pageKey;
+    const re     = new RegExp(`(?<=\\?.*)(\\b${search}=)(\\d+)`);
     // Augment the page param of each href
     for (const a of <NodeListOf<HTMLAnchorElement>><unknown>nav.querySelectorAll('a[href]')) {
-      const url = a.href,
-            re  = new RegExp(`(?<=\\?.*)\\b${pageKey}=(\\d+)`);         // find the numeric page from pageKey
-      a.href    = url.replace(re, pageKey + "=" + augment(url.match(re)![1]));  // eslint-disable-line @typescript-eslint/no-non-null-assertion
+      a.href = a.href.replace(re, (_match, prefix, digit): string => `${prefix}${augmentPage(<string>digit)}`);
     }
     // Return the augment function for further augmentation (i.e., url token in input_nav_js)
-    return augment;
+    return augmentPage;
   };
 
   // Build the series_nav_js helper

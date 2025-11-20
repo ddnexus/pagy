@@ -18,7 +18,7 @@ class Pagy
                     %( #{anchor_string}) if anchor_string}).split(PAGE_TOKEN, 2)
 
     lambda do |page, text = page_label(page), classes: nil, aria_label: nil|
-      title = if (counts = @options[:counts]) # only for calendar + counts
+      title = if (counts = @options[:counts]) # only for calendar with counts
                 count    = counts[page - 1]
                 classes  = classes ? "#{classes} empty-page" : 'empty-page' if count.zero?
                 info_key = count.zero? ? 'pagy.info_tag.no_items' : 'pagy.info_tag.single_page'

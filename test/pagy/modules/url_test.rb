@@ -76,8 +76,8 @@ describe 'pagy/helpers/url' do
     end
     # We pass symbol key just for easy testing but the build_nested_query expects string keys
     it 'handles unescaped params' do
-      _(Pagy::Linkable::QueryUtils.build_nested_query({ b: { 'c' => ' A ' } }, nil, ['c'])).must_equal "b%5Bc%5D= A " # "a[b][c]=3"
-      _(Pagy::Linkable::QueryUtils.build_nested_query({ a: { b: { 'c' => ' A ' } } }, nil, ['c'])).must_equal "a%5Bb%5D%5Bc%5D= A " # "a[b][c]=3"
+      _(Pagy::Linkable::QueryUtils.build_nested_query({ b: { 'c' => Pagy::RawQueryValue.new(' A ') } })).must_equal "b%5Bc%5D= A " # "a[b][c]=3"
+      _(Pagy::Linkable::QueryUtils.build_nested_query({ a: { b: { 'c' => Pagy::RawQueryValue.new(' A ') } } })).must_equal "a%5Bb%5D%5Bc%5D= A " # "a[b][c]=3"
     end
     it "handles nil and '' values" do
       _("res: #{Pagy::Linkable::QueryUtils.build_nested_query({ b: nil })}").must_equal "res: b"
