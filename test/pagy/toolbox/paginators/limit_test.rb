@@ -86,7 +86,7 @@ describe 'client_max_limit' do
 
   describe 'view_methods' do
     describe 'compose_page_url' do
-      let(:request) { Pagy::Request.new(MockApp.new.request) }
+      let(:request) { MockApp.new.request }
 
       it 'renders basic url' do
         pagy = Pagy::Offset.new(count: 1000, page: 3, client_max_limit: 100)

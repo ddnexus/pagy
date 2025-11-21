@@ -50,7 +50,7 @@ class Pagy
         else
           @page = @last = 1
         end
-        @update = [storage_key, @options[:page_key]]
+        @update = [storage_key, @options[:root_key], @options[:page_key]]
       end
 
       # Use a compound predicate to fetch the records

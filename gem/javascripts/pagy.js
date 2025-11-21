@@ -24,18 +24,18 @@ window.Pagy = (() => {
   }));
   const B64SafeEncode = (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode))).replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : ""), B64Decode = (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)));
   const randKey = () => Math.floor(Math.random() * 36 ** 3).toString(36);
-  const augmentKeynav = async (nav, [storageKey, pageKey, last, spliceArgs]) => {
-    let augment;
+  const augmentKeynav = async (nav, [storageKey, rootKey, pageKey, last, spliceArgs]) => {
+    let augmentPage;
     const browserKey = document.cookie.split(/;\s+/).find((row) => row.startsWith(pagy + "="))?.split("=")[1] ?? randKey();
     document.cookie = pagy + "=" + browserKey;
     if (storageKey && !(storageKey in storage)) {
       sync.postMessage({ from: tabId, key: storageKey });
       await new Promise((resolve) => setTimeout(() => resolve(""), 100));
       if (!(storageKey in storage)) {
-        augment = (page) => page + "+" + last;
+        augmentPage = (page) => page + "+" + last;
       }
     }
-    if (!augment) {
+    if (!augmentPage) {
       if (!storageKey) {
         do {
           storageKey = randKey();
@@ -46,7 +46,7 @@ window.Pagy = (() => {
         cutoffs.splice(...spliceArgs);
         storage.setItem(storageKey, JSON.stringify(cutoffs));
       }
-      augment = (page) => {
+      augmentPage = (page) => {
         const pageNum = parseInt(page);
         return B64SafeEncode(JSON.stringify([
           browserKey,
@@ -58,11 +58,12 @@ window.Pagy = (() => {
         ]));
       };
     }
+    const search = rootKey ? `${rootKey}%5B${pageKey}%5D` : pageKey;
+    const re = new RegExp(`(?<=\\?.*)(\\b${search}=)(\\d+)`);
     for (const a of nav.querySelectorAll("a[href]")) {
-      const url = a.href, re = new RegExp(`(?<=\\?.*)\\b${pageKey}=(\\d+)`);
-      a.href = url.replace(re, pageKey + "=" + augment(url.match(re)[1]));
+      a.href = a.href.replace(re, (_match, prefix, digit) => `${prefix}${augmentPage(digit)}`);
     }
-    return augment;
+    return augmentPage;
   };
   const buildNavJs = (nav, [
     [before, anchor, current, gap, after],
@@ -124,7 +125,7 @@ window.Pagy = (() => {
     });
   };
   return {
-    version: "43.1.0",
+    version: "43.1.1",
     init(arg) {
       const target = arg instanceof HTMLElement ? arg : document, elements = target.querySelectorAll("[data-pagy]");
       for (const element of elements) {
@@ -147,5 +148,5 @@ window.Pagy = (() => {
   };
 })();
 
-//# debugId=7F9EF7EF7A33670664756E2164756E21
+//# debugId=7800AFC87F2D38E864756E2164756E21
 //# sourceMappingURL=pagy.js.map

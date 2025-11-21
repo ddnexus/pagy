@@ -1,13 +1,10 @@
-### Changes in 43.1.0
+### Changes in 43.1.1
 
 <!-- changes_start -->
-- Translate the aria_label.nav entry in the id, ja, kn, sw locales. Close #588, close #590, close #591, close #603.
-- Improve the Pagy AI panel
-- Simplify the paginators code
-- Allow nested :page and :limit request params and URLs:
-  - Add the :root_key option:
-  - Simplify the :jsonapi handling as a special case of nested params
-- Fix and simplify the pagy console code
+- Makes keynav pagination compatible with nested params:
+  - Improve the URL composing and unescaping
+  - Adds the keynav+root_key.ru showcase app
+- Simplify the request code and arguments
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

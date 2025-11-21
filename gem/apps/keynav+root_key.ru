@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # DESCRIPTION
-#    Showcase the Keynav pagination (ActiveRecord example)
+#    Showcase the Keynav pagination with independent instances
 #
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#keyset-apps
@@ -52,11 +52,11 @@ class PagyKeynav < Sinatra::Base
   get '/' do
     Time.zone = 'UTC'
 
-    @order       = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
-    @pagy, @pets = pagy(:keynav_js, Pet.order(@order), limit: 4, client_max_limit: 100)
-    # Support also root_key for replacing url in javascript
-    # @pagy, @pets = pagy(:keynav_js, Pet.order(@order), limit: 4, client_max_limit: 100, root_key: 'animal')
-    @ids         = @pets.pluck(:id)
+    @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
+    @pagy1, @pets1 = pagy(:keynav_js, Pet.order(@order), limit: 4, root_key: 'animal1')
+    @ids1          = @pets1.pluck(:id)
+    @pagy2, @pets2 = pagy(:keynav_js, Pet.order(@order), limit: 4, root_key: 'animal2')
+    @ids2          = @pets2.pluck(:id)
     erb :main
   end
 
@@ -73,12 +73,12 @@ class PagyKeynav < Sinatra::Base
       <html lang="en">
       <html>
       <head>
-         <title>Pagy Keynav App</title>
+        <title>Pagy Keynav (root_key) App</title>
         <script src="javascripts/pagy.js"></script>
-         <script>
+        <script>
           window.addEventListener("load", Pagy.init);
         </script>
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
           @media screen { html, body {
             font-size: 1rem;
@@ -94,14 +94,32 @@ class PagyKeynav < Sinatra::Base
           .main-content {
             padding: 1rem 1.5rem 2rem !important;
           }
+          #content {
+            display: flex;       /* Enables Flexbox */
+            flex-wrap: wrap;     /* Allows stacking */
+            gap: 20px;           /* Gap between items */
+            /* Just for visual clarity of the container boundaries */
+            /*padding: 10px;
+            background-color: #e0e7ff;
+            border-radius: 8px;
+            border: 2px dashed #6366f1; */
+          }
+          .box {
+            flex: 1;             /* Grow to fill space */
+            min-width: 300px;    /* Stack if space < 300px */
+            /* Visual Styling */
+            background-color: white;
+            padding: 25px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+         }
          .pagy {
             padding: .5em;
             margin: .3em 0;
             width: fit-content;
             box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.2);
           }
-
-
           <%= Pagy::ROOT.join('stylesheets/pagy.css').read %>
         </style>
       </head>
@@ -118,8 +136,9 @@ class PagyKeynav < Sinatra::Base
         <h1>Pagy Keynav App</h1>
         <p>Self-contained, standalone app usable to easily reproduce any Keynav related pagy issue
         with ActiveRecord sets.</p>
+        <p>The panels below show how to use the <code>:root_key</code> option for independent instances in the same request.</p>
 
-         <p>Notice that Keynav works also with Sequel sets.</p>
+        <p>Notice that Keynav works also with Sequel sets.</p>
 
         <h2>Versions</h2>
         <ul>
@@ -129,41 +148,83 @@ class PagyKeynav < Sinatra::Base
           <li>Pagy:    <%= Pagy::VERSION %></li>
         </ul>
 
-        <h3>Collection</h3>
-        <p id="records">@ids: <%= @ids.join(',') %></p>
-        <div class="collection">
-        <table border="1" style="border-collapse: collapse; border-spacing: 0; padding: 0.2rem;">
-          <tr>
-            <th scope="col">animal <%= order_symbol(@order[:animal]) %></th>
-            <th scope="col">name <%= order_symbol(@order[:name]) %></th>
-            <th scope="col">birthdate <%= order_symbol(@order[:birthdate]) %></th>
-            <th scope="col">id <%= order_symbol(@order[:id]) %></th>
-          </tr>
-          <% @pets.each do |pet| %>
-          <tr>
-            <td><%= pet.animal %></td>
-            <td><%= pet.name %></td>
-            <td><%= pet.birthdate %></td>
-            <td><%= pet.id %></td>
-          </tr>
-          <% end %>
-        </table>
+        <div id="content">
+        <div class="box">
+          <h3>Collection 1</h3>
+          <p id="records">@ids: <%= @ids1.join(',') %></p>
+          <div class="collection">
+          <table border="1" style="border-collapse: collapse; border-spacing: 0; padding: 0.2rem;">
+            <tr>
+              <th scope="col">animal <%= order_symbol(@order[:animal]) %></th>
+              <th scope="col">name <%= order_symbol(@order[:name]) %></th>
+              <th scope="col">birthdate <%= order_symbol(@order[:birthdate]) %></th>
+              <th scope="col">id <%= order_symbol(@order[:id]) %></th>
+            </tr>
+            <% @pets1.each do |pet| %>
+            <tr>
+              <td><%= pet.animal %></td>
+              <td><%= pet.name %></td>
+              <td><%= pet.birthdate %></td>
+              <td><%= pet.id %></td>
+            </tr>
+            <% end %>
+          </table>
+          </div>
+
+          <h4>@pagy.series_nav</h4>
+          <%= @pagy1.series_nav(id: 'series-nav',
+                               aria_label: 'Pages (nav)') %>
+
+          <h4>@pagy.series_nav_js (responsive)</h4>
+          <%= @pagy1.series_nav_js(id: 'series-nav-js-responsive',
+                                  aria_label: 'Pages (nav_js_responsive)',
+                                  steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
+          <h4>@pagy.input_nav_js</h4>
+          <%= @pagy1.input_nav_js(id: 'input-nav-js',
+                                 aria_label: 'Pages (input_nav_js)') %>
+
+          <h4>@pagy.info_tag</h4>
+          <%= @pagy1.info_tag(id: 'pagy-info') %>
         </div>
 
-        <h4>@pagy.series_nav</h4>
-        <%= @pagy.series_nav(id: 'series-nav',
-                             aria_label: 'Pages (nav)') %>
+        <div class="box">
+          <h3>Collection 2</h3>
+          <p id="records">@ids: <%= @ids2.join(',') %></p>
+          <div class="collection">
+          <table border="1" style="border-collapse: collapse; border-spacing: 0; padding: 0.2rem;">
+            <tr>
+              <th scope="col">animal <%= order_symbol(@order[:animal]) %></th>
+              <th scope="col">name <%= order_symbol(@order[:name]) %></th>
+              <th scope="col">birthdate <%= order_symbol(@order[:birthdate]) %></th>
+              <th scope="col">id <%= order_symbol(@order[:id]) %></th>
+            </tr>
+            <% @pets2.each do |pet| %>
+            <tr>
+              <td><%= pet.animal %></td>
+              <td><%= pet.name %></td>
+              <td><%= pet.birthdate %></td>
+              <td><%= pet.id %></td>
+            </tr>
+            <% end %>
+          </table>
+          </div>
 
-        <h4>@pagy.series_nav_js (responsive)</h4>
-        <%= @pagy.series_nav_js(id: 'series-nav-js-responsive',
-                                aria_label: 'Pages (nav_js_responsive)',
-                                steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
-        <h4>@pagy.input_nav_js</h4>
-        <%= @pagy.input_nav_js(id: 'input-nav-js',
-                               aria_label: 'Pages (input_nav_js)') %>
+          <h4>@pagy.series_nav</h4>
+          <%= @pagy2.series_nav(id: 'series-nav',
+                               aria_label: 'Pages (nav)') %>
 
-        <h4>@pagy.info_tag</h4>
-        <%= @pagy.info_tag(id: 'pagy-info') %>
+          <h4>@pagy.series_nav_js (responsive)</h4>
+          <%= @pagy2.series_nav_js(id: 'series-nav-js-responsive',
+                                  aria_label: 'Pages (nav_js_responsive)',
+                                  steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
+          <h4>@pagy.input_nav_js</h4>
+          <%= @pagy2.input_nav_js(id: 'input-nav-js',
+                                 aria_label: 'Pages (input_nav_js)') %>
+
+          <h4>@pagy.info_tag</h4>
+          <%= @pagy2.info_tag(id: 'pagy-info') %>
+        </div>
+        </div>
       </div>
     ERB
   end
@@ -181,7 +242,7 @@ ActiveRecord::Base.logger = Logger.new(output)
 # SQLite DB files
 dir = ENV['APP_ENV'].equal?('development') ? '.' : Dir.pwd # app dir in dev or pwd otherwise
 abort "ERROR: Cannot create DB files: the directory #{dir.inspect} is not writable." \
-      unless File.writable?(dir)
+unless File.writable?(dir)
 # Connection
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: "#{dir}/tmp/pagy-keyset-ar.sqlite3")
 # Schema
