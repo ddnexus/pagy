@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.816914889045">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.817034662951">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.816914889045" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.817034662951" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.816914889045" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.817034662951" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.816914889045" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.816914889045" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.817034662951" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.817034662951" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -190,7 +190,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../../assets/images/pagy-the-frog.png">
                             </span>
                             <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.1.0</span>
+                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.1.1</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -539,14 +539,14 @@
 <li>Set the maximum <code v-pre>:limit</code> that the client is allowed to <code v-pre>request</code>. Higher requested <code v-pre>:limit</code>s are silently capped. (If falsey, the client cannot request the <code v-pre>:limit</code>)</li>
 </ul>
 </li>
-<li><code v-pre>request: custom_request</code>
+<li><code v-pre>request: rake_request || hash</code>
 <ul>
-<li><p><strong>Set this hash only in non-rack environments</strong> or when instructed by the docs. <em>(It is set automatically from the request)</em>. For example:</p>
+<li><p>Pagy tries to find the <code v-pre>Rake::Request</code> at <code v-pre>self.request</code>. Set it only when it&#x27;s not directly available in your code (e.g., Hanami, standalone app, test,...). For example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">custom_request = { base_url: 'http://www.example.com',
-                   path:     '/path',
-                   params:   { 'param1' =&gt; 1234 }, # The string-keyed params hash from the request
-                   cookie:   'xyz' }               # The 'pagy' cookie, only for keynav  </code></pre>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">hash_request = { base_url: 'http://www.example.com',
+                 path:     '/path',
+                 params:   { 'param1' =&gt; 1234 }, # The string-keyed params hash from the request
+                 cookie:   'xyz' }               # The 'pagy' cookie, only for keynav  </code></pre>
 </doc-codeblock></div>
 </li>
 </ul>
