@@ -45,6 +45,13 @@ If you upgrade from version `< 9.0.0` see the following:
 
 <hr>
 
+## Version 43.1.1
+
+- Makes keynav pagination compatible with nested params:
+  - Improve the URL composing and unescaping
+  - Adds the keynav+root_key.ru showcase app
+- Simplify the request code and arguments
+
 ## Version 43.1.0
 
 - Translate the aria_label.nav entry in the id, ja, kn, sw locales. Close #588, close #590, close #591, close #603.
