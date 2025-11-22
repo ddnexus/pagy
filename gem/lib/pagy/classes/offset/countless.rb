@@ -49,6 +49,9 @@ class Pagy
         assign_previous_and_next
         self
       end
+
+      # Support easy countless page param overriding (for legacy param and behavior)
+      def compose_page_param(page) = "#{page || 1}+#{@last}"
     end
   end
 end

@@ -43,7 +43,7 @@ class Pagy
       params = @request.params.clone(freeze: false)
       params.delete(root_key || page_key)
       factors = {}.tap do |h|
-                  h[page_key]  = countless? ? RawQueryValue.new("#{page || 1}+#{@last}") : page
+                  h[page_key]  = countless? ? RawQueryValue.new(compose_page_param(page)) : page
                   h[limit_key] = limit_token || limit if client_max_limit
                 end.compact # No empty params
       params.merge!(root_key ? { root_key => factors } : factors) if factors.size.positive?
