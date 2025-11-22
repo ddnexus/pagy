@@ -1,10 +1,10 @@
-### Changes in 43.1.1
+### Changes in 43.1.2
 
 <!-- changes_start -->
-- Makes keynav pagination compatible with nested params:
-  - Improve the URL composing and unescaping
-  - Adds the keynav+root_key.ru showcase app
-- Simplify the request code and arguments
+- Support easy countless page param overriding (for legacy param and behavior). See #816
+- Handle legacy page param for :countless paginator. Close #832
+- Improve mock collections
+- Improve code comments
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

@@ -45,6 +45,13 @@ If you upgrade from version `< 9.0.0` see the following:
 
 <hr>
 
+## Version 43.1.2
+
+- Support easy countless page param overriding (for legacy param and behavior). See #816
+- Handle legacy page param for :countless paginator. Close #832
+- Improve mock collections
+- Improve code comments
+
 ## Version 43.1.1
 
 - Makes keynav pagination compatible with nested params:
