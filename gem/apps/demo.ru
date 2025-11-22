@@ -476,12 +476,12 @@ class MockCollection < Array
   end
 
   def offset(value)
-    @collection = self[value..]
+    @collection = self[value..] || []
     self
   end
 
   def limit(value)
-    @collection[0, value]
+    @collection.empty? ? [] : @collection[0, value]
   end
 
   def count(*)

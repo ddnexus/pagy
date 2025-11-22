@@ -160,7 +160,7 @@ class PagyRepro < Sinatra::Base
 end
 
 # Simple array-based collection that acts as a standard DB collection.
-# Use it as a simple way to get a collection that acts as a AR scope, but without any DB
+# Use it as a simple way to get a collection that acts as an AR scope, but without any DB
 # or create an ActiveRecord class or anything else that you need instead
 class MockCollection < Array
   def initialize(arr = Array(1..1000))
@@ -169,12 +169,12 @@ class MockCollection < Array
   end
 
   def offset(value)
-    @collection = self[value..]
+    @collection = self[value..] || []
     self
   end
 
   def limit(value)
-    @collection[0, value]
+    @collection.empty? ? [] : @collection[0, value]
   end
 
   def count(*)
