@@ -8,8 +8,8 @@ class Pagy
         assign_options(**)
         assign_and_check(limit: 1, page: 1)
         @page = upto_max_pages(@page)
-        assign_last
         assign_offset
+        assign_last unless @options[:headless]
       end
 
       def records(collection)
@@ -31,9 +31,7 @@ class Pagy
       end
 
       def assign_last
-        return unless @options[:last]
-
-        @last = upto_max_pages(@options[:last].to_i)
+        @last = @options[:last] ? upto_max_pages(@options[:last].to_i) : @page
       end
 
       # Finalize the instance variables based on the fetched size
@@ -51,6 +49,9 @@ class Pagy
         assign_previous_and_next
         self
       end
+
+      # Support easy countless page param overriding (for legacy param and behavior)
+      def compose_page_param(page) = "#{page || 1}+#{@last}"
     end
   end
 end

@@ -10,7 +10,7 @@ require_relative 'pagy/toolbox/helpers/loader'
 class Pagy
   class RawQueryValue < String; end
 
-  VERSION     = '43.1.1'
+  VERSION     = '43.1.2'
   ROOT        = Pathname.new(__dir__).parent.freeze
   DEFAULT     = { limit: 20, limit_key: 'limit', page_key: 'page' }.freeze
   PAGE_TOKEN  = RawQueryValue.new('P ')
@@ -48,7 +48,7 @@ class Pagy
   def keyset?    = false
   def keynav?    = false
 
-  # Validates and assign the passed options: var must be present and value.to_i must be >= to min
+  # Validates and assign the passed options: they must be present and value.to_i must be >= min
   def assign_and_check(name_min)
     name_min.each do |name, min|
       raise OptionError.new(self, name, ">= #{min}", @options[name]) \

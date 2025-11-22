@@ -15,14 +15,17 @@ class MockCollection < Array
     @collection = clone
   end
 
+  # Skip cov for empty collections (not used in test)
+  # :nocov:
   def offset(value)
-    @collection = self[value..]
+    @collection = self[value..] || []
     self
   end
 
   def limit(value)
-    @collection[0, value]
+    @collection.empty? ? [] : @collection[0, value]
   end
+  # :nocov:
 
   def count(*)
     size

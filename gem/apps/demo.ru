@@ -19,7 +19,7 @@
 # URL
 #    http://127.0.0.1:8000
 
-VERSION = '43.1.1'
+VERSION = '43.1.2'
 
 if VERSION != Pagy::VERSION
   Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")
@@ -476,12 +476,12 @@ class MockCollection < Array
   end
 
   def offset(value)
-    @collection = self[value..]
+    @collection = self[value..] || []
     self
   end
 
   def limit(value)
-    @collection[0, value]
+    @collection.empty? ? [] : @collection[0, value]
   end
 
   def count(*)
