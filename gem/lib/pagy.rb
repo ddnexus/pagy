@@ -48,7 +48,7 @@ class Pagy
   def keyset?    = false
   def keynav?    = false
 
-  # Validates and assign the passed options: var must be present and value.to_i must be >= to min
+  # Validates and assign the passed options: they must be present and value.to_i must be >= min
   def assign_and_check(name_min)
     name_min.each do |name, min|
       raise OptionError.new(self, name, ">= #{min}", @options[name]) \

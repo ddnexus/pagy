@@ -15,7 +15,7 @@ class Pagy
   path = Pathname.new(__dir__)
   paginators.each { |symbol, name| autoload name, path.join(symbol.to_s) }
 
-  # Pagy::Method defines the pagy method to be included in the app controller/view.
+  # Pagy::Method defines the #pagy method to be included in the app controller/view.
   Method = Module.new do
              protected
 

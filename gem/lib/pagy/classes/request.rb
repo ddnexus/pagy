@@ -4,7 +4,7 @@ class Pagy
   # Decouple the request from the env, allowing non-rack apps to use pagy by passing a hash.
   # Resolve the :page and :limit options from params.
   class Request
-    def initialize(options) # default empty options for test only
+    def initialize(options)
       @options = options
       request  = @options[:request]
       @base_url, @path, @params, @cookie =

@@ -9,7 +9,7 @@ class Pagy
       module_function
 
       # Extracted from Rack::Utils and reformatted for rubocop
-      # Skip escaping for Pagy::RawQueryValue
+      # Allow unescaped Pagy::RawQueryValue
       def build_nested_query(value, prefix = nil)
         case value
         when Array
