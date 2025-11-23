@@ -27,6 +27,7 @@ class Pagy
       # Prepare the @update for the client when it's a new page, and return the next page number
       def next
         records
+        @count = 0 if !@more && @page == 1  # empty records (trigger the right info message for known 0 count)
         return if !@more || (@options[:max_pages] && @page >= @options[:max_pages])
 
         @next ||= begin

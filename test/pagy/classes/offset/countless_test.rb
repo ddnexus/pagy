@@ -11,7 +11,7 @@ describe 'Pagy Countless' do
       pagy, = Pagy::Offset::Countless.new(page: 1)
       pagy.send(:finalize, 0)
 
-      _(pagy.count).must_be_nil
+      _(pagy.count).must_equal 0
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 1
       _(pagy.last).must_equal 1

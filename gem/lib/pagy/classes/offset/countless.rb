@@ -36,6 +36,7 @@ class Pagy
 
       # Finalize the instance variables based on the fetched size
       def finalize(fetched_size)
+        @count = 0 if fetched_size.zero? && @page == 1  # empty records (trigger the right info message for known 0 count)
         return self unless in_range? { fetched_size.positive? || @page == 1 }
 
         if @last && @page < @last # visited page
