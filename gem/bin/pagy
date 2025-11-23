@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-VERSION = '43.1.2'
+VERSION = '43.1.3'
 LINUX   = RbConfig::CONFIG['host_os'].include?('linux')
 HOST    = 'localhost'
 PORT    = '8000'

@@ -1,10 +1,14 @@
-### Changes in 43.1.2
+### Changes in 43.1.3
 
 <!-- changes_start -->
-- Support easy countless page param overriding (for legacy param and behavior). See #816
-- Handle legacy page param for :countless paginator. Close #832
-- Improve mock collections
-- Improve code comments
+- Improve the page options handling for countless:
+  - Replace the crippled handling of legacy last-less links params
+  introduced in 43.1.2 by gracefully starting the pagination from
+  the beginning
+  - Remove the compose_page_param method (it would need a deep refactoring
+   for compatibility with the legacy handling)
+  - Improve testing
+- Improve the info message for empty collection in countless paginations
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
