@@ -103,6 +103,45 @@ describe 'Pagy Countless' do
       _(pagy.previous).must_equal 2
       _(pagy.next).must_be_nil
     end
+    it 'updates the empty page variables for out-of-range' do
+      pagy, = Pagy::Offset::Countless.new(page: 58, last: 56)
+      pagy.send(:finalize, 0)
+
+      _(pagy.send(:series)).must_equal [1, :gap, 52, 53, 54, 55, 56]
+      _(pagy.page).must_equal 58
+      _(pagy.last).must_equal 56
+      _(pagy.in).must_equal 0
+      _(pagy.from).must_equal 0
+      _(pagy.to).must_equal 0
+      _(pagy.previous).must_equal 56
+      _(pagy.next).must_be_nil
+    end
+    it 'updates the empty page variables for out-of-range' do
+      pagy, = Pagy::Offset::Countless.new(page: 56, last: 56)
+      pagy.send(:finalize, 0)
+
+      _(pagy.send(:series)).must_equal [1, :gap, 52, 53, 54, 55, "56"]
+      _(pagy.page).must_equal 56
+      _(pagy.last).must_equal 56
+      _(pagy.in).must_equal 0
+      _(pagy.from).must_equal 0
+      _(pagy.to).must_equal 0
+      _(pagy.previous).must_equal 55
+      _(pagy.next).must_be_nil
+    end
+    it 'updates the empty page variables for out-of-range' do
+      pagy, = Pagy::Offset::Countless.new(page: 55, last: 56)
+      pagy.send(:finalize, 0)
+
+      _(pagy.send(:series)).must_equal [1, :gap, 51, 52, 53, 54, "55"]
+      _(pagy.page).must_equal 55
+      _(pagy.last).must_equal 55
+      _(pagy.in).must_equal 0
+      _(pagy.from).must_equal 0
+      _(pagy.to).must_equal 0
+      _(pagy.previous).must_equal 54
+      _(pagy.next).must_be_nil
+    end
   end
   describe 'Handling the :max_pages option' do
     it 'gets the visited page' do

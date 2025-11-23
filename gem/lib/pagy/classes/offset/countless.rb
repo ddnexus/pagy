@@ -8,8 +8,8 @@ class Pagy
         assign_options(**)
         assign_and_check(limit: 1, page: 1)
         @page = upto_max_pages(@page)
+        @last = upto_max_pages(@options[:last]) unless @options[:headless]
         assign_offset
-        assign_last unless @options[:headless]
       end
 
       def records(collection)
@@ -25,13 +25,9 @@ class Pagy
       def countless? = true
 
       def upto_max_pages(value)
-        return value unless @options[:max_pages]
+        return value unless value && @options[:max_pages]
 
         [value, @options[:max_pages]].min
-      end
-
-      def assign_last
-        @last = @options[:last] ? upto_max_pages(@options[:last].to_i) : @page
       end
 
       # Finalize the instance variables based on the fetched size
@@ -39,10 +35,10 @@ class Pagy
         @count = 0 if fetched_size.zero? && @page == 1  # empty records (trigger the right info message for known 0 count)
         return self unless in_range? { fetched_size.positive? || @page == 1 }
 
-        if @last && @page < @last # visited page
-          @last = @page unless fetched_size > @limit # set last if last page
-        else
-          @last = upto_max_pages(fetched_size > @limit ? @page + 1 : @page)
+        past = @last && @page < @last     # this page has been past
+        more = fetched_size > @limit      # more pages after this one
+        unless past && more
+          @last = upto_max_pages(more ? @page + 1 : @page)
         end
         @in   = [fetched_size, @limit].min
         @from = @in.zero? ? 0 : @offset + 1
@@ -51,8 +47,17 @@ class Pagy
         self
       end
 
-      # Support easy countless page param overriding (for legacy param and behavior)
-      def compose_page_param(page) = "#{page || 1}+#{@last}"
+      # Called by false in_range?
+      def assign_empty_page_variables
+        @in = @from = @to = 0     # options relative to the actual page
+        if @page > @last
+          # @page     = @last
+          @previous = @last
+        else
+          @last = @page
+          assign_previous_and_next
+        end
+      end
     end
   end
 end
