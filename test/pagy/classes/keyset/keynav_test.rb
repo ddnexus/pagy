@@ -7,8 +7,23 @@ require_relative '../../../../gem/lib/pagy/modules/b64'
 describe "Pagy Keynav" do
   [Pet, PetSequel].each do |model|
     describe "Pagy Keynav with #{model}" do
-      describe 'uses optional options' do
-        it 'use the :tuple_comparison' do
+      describe 'uses empty collection' do
+        it 'sets the count to 0' do
+          collection = model == Pet ? model.order(:animal, :name, :id).none :  model.order(:animal, :name, :id).where(false)
+          pagy    = Pagy::Keyset::Keynav.new(collection,
+                                             page:             ['key', 1, 1, ["cat", "Ella", 18], nil],
+                                             limit:            10,
+                                             tuple_comparison: true)
+          records = pagy.records
+
+          _(records.size).must_equal 0
+          _(pagy.instance_variable_get(:@count)).must_equal 0
+          _(pagy.update).must_equal ['key', nil, 'page']
+          _(pagy.info_tag).must_match 'No items found'
+        end
+      end
+      describe 'use optional options' do
+        it 'uses the :tuple_comparison' do
           pagy    = Pagy::Keyset::Keynav.new(model.order(:animal, :name, :id),
                                              page:             ['key', 2, 2, ["cat", "Ella", 18], nil],
                                              limit:            10,

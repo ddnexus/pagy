@@ -9,7 +9,7 @@ class Pagy
       raise RangeError.new(self, :page, "in 1..#{@last}", @page) if @options[:raise_range_error]
 
       assign_empty_page_variables
-      false
+      @in_range = false
     end
   end
 end

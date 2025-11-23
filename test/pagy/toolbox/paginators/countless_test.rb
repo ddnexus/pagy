@@ -71,6 +71,12 @@ describe 'countless' do
       _(pagy.next).must_be_nil
       _(pagy.last).must_equal 50
     end
+    it 'returns empty series for empty :slots option for last page' do
+      pagy, = MockApp.new.send(:pagy, :countless, MockCollection.new([]))
+
+      _(pagy.instance_variable_get(:@count)).must_equal 0
+      _(pagy.info_tag).must_match 'No items found'
+    end
   end
 
   describe 'countless get_vars' do
@@ -112,7 +118,7 @@ describe 'countless' do
       _(pagy.last).must_equal 50
     end
     it 'shows series including last page' do
-      pagy, = MockApp.new(params: { a: 'a', page: ' 3'})
+      pagy, = MockApp.new(params: { a: 'a', page: '1 3'})
                      .send(:pagy, :countless, @collection)
 
       _(pagy.send(:series)).must_equal ["1", 2, 3]

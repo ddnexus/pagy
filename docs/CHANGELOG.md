@@ -45,6 +45,17 @@ If you upgrade from version `< 9.0.0` see the following:
 
 <hr>
 
+## Version 43.1.3
+
+- Improve the page options handling for countless:
+  - Replace the crippled handling of legacy last-less links params
+  introduced in 43.1.2 by gracefully starting the pagination from
+  the beginning
+  - Remove the compose_page_param method (it would need a deep refactoring
+   for compatibility with the legacy handling)
+  - Improve testing
+- Improve the info message for empty collection in countless paginations
+
 ## Version 43.1.2
 
 - Support easy countless page param overriding (for legacy param and behavior). See #816
