@@ -1,14 +1,7 @@
-### Changes in 43.1.3
+### Changes in 43.1.4
 
 <!-- changes_start -->
-- Improve the page options handling for countless:
-  - Replace the crippled handling of legacy last-less links params
-  introduced in 43.1.2 by gracefully starting the pagination from
-  the beginning
-  - Remove the compose_page_param method (it would need a deep refactoring
-   for compatibility with the legacy handling)
-  - Improve testing
-- Improve the info message for empty collection in countless paginations
+- Add full support for legacy countless params, url composition and (limited) behavior
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

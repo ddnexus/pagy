@@ -32,14 +32,13 @@ class Pagy
 
       # Finalize the instance variables based on the fetched size
       def finalize(fetched_size)
-        @count = 0 if fetched_size.zero? && @page == 1  # empty records (trigger the right info message for known 0 count)
+        # empty records (trigger the right info message for known 0 count)
+        @count = 0 if fetched_size.zero? && @page == 1
         return self unless in_range? { fetched_size.positive? || @page == 1 }
 
-        past = @last && @page < @last     # this page has been past
-        more = fetched_size > @limit      # more pages after this one
-        unless past && more
-          @last = upto_max_pages(more ? @page + 1 : @page)
-        end
+        past  = @last && @page < @last # this page has been past
+        more  = fetched_size > @limit  # more pages after this one
+        @last = upto_max_pages(more ? @page + 1 : @page) unless past && more
         @in   = [fetched_size, @limit].min
         @from = @in.zero? ? 0 : @offset + 1
         @to   = @offset + @in
@@ -49,15 +48,14 @@ class Pagy
 
       # Called by false in_range?
       def assign_empty_page_variables
-        @in = @from = @to = 0     # options relative to the actual page
-        if @page > @last
-          # @page     = @last
-          @previous = @last
-        else
-          @last = @page
-          assign_previous_and_next
-        end
+        @in = @from = @to = 0
+        target_last = [@page - 1, 1].max
+        @last       = [@last || target_last, target_last].min
+        @previous   = @last
       end
+
+      # Support easy countless page param overriding (for legacy param and behavior)
+      def compose_page_param(page) = "#{page || 1}+#{@last}"
     end
   end
 end

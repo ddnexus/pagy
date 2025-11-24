@@ -120,9 +120,9 @@ describe 'Pagy Countless' do
       pagy, = Pagy::Offset::Countless.new(page: 56, last: 56)
       pagy.send(:finalize, 0)
 
-      _(pagy.send(:series)).must_equal [1, :gap, 52, 53, 54, 55, "56"]
+      _(pagy.send(:series)).must_equal [1, :gap, 51, 52, 53, 54, 55]
       _(pagy.page).must_equal 56
-      _(pagy.last).must_equal 56
+      _(pagy.last).must_equal 55
       _(pagy.in).must_equal 0
       _(pagy.from).must_equal 0
       _(pagy.to).must_equal 0
@@ -133,9 +133,9 @@ describe 'Pagy Countless' do
       pagy, = Pagy::Offset::Countless.new(page: 55, last: 56)
       pagy.send(:finalize, 0)
 
-      _(pagy.send(:series)).must_equal [1, :gap, 51, 52, 53, 54, "55"]
+      _(pagy.send(:series)).must_equal [1, :gap, 50, 51, 52, 53, 54]
       _(pagy.page).must_equal 55
-      _(pagy.last).must_equal 55
+      _(pagy.last).must_equal 54
       _(pagy.in).must_equal 0
       _(pagy.from).must_equal 0
       _(pagy.to).must_equal 0

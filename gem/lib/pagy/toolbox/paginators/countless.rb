@@ -10,12 +10,7 @@ class Pagy
       if options[:page].is_a?(String)
         page, last     = options[:page].split(/ /, 2).map(&:to_i) # decoded '+' added by the compose_page_url
         options[:page] = page
-        if last&.positive?
-          options[:last] = last
-        else
-          # Legacy, last-less page links are handled by starting from the first page
-          options[:page] = nil
-        end
+        options[:last] = last if last&.positive?
       end
       options[:limit] = options[:request].resolve_limit
       pagy            = Offset::Countless.new(**options)
