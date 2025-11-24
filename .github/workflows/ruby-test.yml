@@ -48,7 +48,7 @@ jobs:
         ruby-version: ['3.2', '3.3', '3.4']
       fail-fast: false
     steps:
-      - uses: actions/checkout@v5.0.1
+      - uses: actions/checkout@v6.0.0
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
         with:
