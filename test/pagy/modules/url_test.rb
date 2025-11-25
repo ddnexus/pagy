@@ -51,6 +51,19 @@ describe 'pagy/helpers/url' do
 
       _(pagy.send(:compose_page_url, 5, absolute: true)).must_equal 'http://example.com/path?a=1&b=2&page=5'
     end
+    it 'renders url with root_key preserving other nested params' do
+      pagy, = app.send(:pagy, :offset, @collection,
+                       count:    1000,
+                       page:     3,
+                       root_key: 'users',
+                       request:  { path:   '/path',
+                                   params: { 'users' => { 'page' => '3', 'q' => 'search_term' } } })
+
+      url = pagy.send(:compose_page_url, 5)
+      _(url).must_match %r{/path\?}
+      _(url).must_include 'users%5Bpage%5D=5'
+      _(url).must_include 'users%5Bq%5D=search_term'
+    end
   end
 
   describe 'process pagy_params' do
