@@ -41,12 +41,23 @@ class Pagy
         @options.merge(options)
                 .values_at(:root_key, :page_key, :limit_key, :limit, :client_max_limit, :querify, :absolute, :path, :fragment)
       params = @request.params.clone(freeze: false)
-      params.delete(root_key || page_key)
+      if root_key
+        params[root_key] = params[root_key]&.dup || {} # clone is shallow, need to dup nested hash
+        params[root_key].delete(page_key)
+      else
+        params.delete(page_key)
+      end
       factors = {}.tap do |h|
                   h[page_key]  = countless? ? RawQueryValue.new(compose_page_param(page)) : page
                   h[limit_key] = limit_token || limit if client_max_limit
                 end.compact # No empty params
-      params.merge!(root_key ? { root_key => factors } : factors) if factors.size.positive?
+      if factors.size.positive?
+        if root_key
+          params[root_key] = factors.merge(params[root_key])
+        else
+          params.merge!(factors)
+        end
+      end
       querify&.(params) # Must modify the params: the returned value is ignored
       query_string = QueryUtils.build_nested_query(params)
       query_string = "?#{query_string}" unless query_string.empty?
