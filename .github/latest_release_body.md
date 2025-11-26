@@ -1,7 +1,8 @@
-### Changes in 43.1.5
+### Changes in 43.1.6
 
 <!-- changes_start -->
-- Fix and improve the composition of the page url. Close #835
+- Ensure the request GET and POST merge into a proper params Hash
+- Simplify code efficiency and readability
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
