@@ -46,9 +46,8 @@ class Pagy
           limit_key => (limit_token || limit if client_max_limit) }.each { |k, v| v ? h[k] = v : h.delete(k) }
       end
       querify&.(params) # Must modify the params: the returned value is ignored
-      query_string = QueryUtils.build_nested_query(params)
-      query_string = "?#{query_string}" unless query_string.empty?
-      fragment   &&= %(##{fragment}) unless fragment&.start_with?('#')
+      query_string = QueryUtils.build_nested_query(params).sub(/\A(?=.)/, '?')
+      fragment   &&= "##{fragment.delete_prefix('#')}"
       "#{@request.base_url if absolute}#{path || @request.path}#{query_string}#{fragment}"
     end
   end

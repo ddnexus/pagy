@@ -6,22 +6,22 @@ class Pagy
 
   # Generate a hash of the wanted internal data
   def data_hash(data_keys: @options[:data_keys] || DEFAULT_DATA_KEYS, **)
-    data_keys   -= %i[count limit] if calendar?
-    url_template = compose_page_url(PAGE_TOKEN, **)
-    {}.tap do |data|
-      data_keys.each do |key|
-        data[key] = case key
-                    when :url_template then url_template
-                    when :first_url    then compose_page_url(nil, **)
-                    when :previous_url then url_template.sub(PAGE_TOKEN, @previous.to_s)
-                    when :page_url     then url_template.sub(PAGE_TOKEN, @page.to_s)
-                    when :next_url     then url_template.sub(PAGE_TOKEN, @next.to_s)
-                    when :last_url     then url_template.sub(PAGE_TOKEN, @last.to_s)
-                    else send(key)
-                    end
-      rescue NoMethodError
-        raise OptionError.new(self, :data, 'to contain known keys', key)
-      end
+    data_keys -= %i[count limit] if calendar?
+    template   = compose_page_url(PAGE_TOKEN, **)
+    to_url     = ->(page) { template.sub(PAGE_TOKEN, page.to_s) }
+
+    data_keys.each_with_object({}) do |key, data|
+      data[key] = case key
+                  when :url_template then template
+                  when :first_url    then compose_page_url(nil, **)
+                  when :previous_url then to_url.(@previous)
+                  when :page_url     then to_url.(@page)
+                  when :next_url     then to_url.(@next)
+                  when :last_url     then to_url.(@last)
+                  else send(key)
+                  end
+    rescue NoMethodError
+      raise OptionError.new(self, :data, 'to contain known keys', key)
     end
   end
 end

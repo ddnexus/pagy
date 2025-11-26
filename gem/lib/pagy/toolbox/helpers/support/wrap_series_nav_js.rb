@@ -26,7 +26,8 @@ class Pagy
   # Build the nav_js tag, with the specific tokens for the style
   def wrap_series_nav_js(tokens, nav_classes, id: nil, aria_label: nil, **)
     sequels = sequels(**)
-    %(<nav#{id && %( id="#{id}")} class="#{'pagy-rjs ' if sequels[0].size > 1}#{nav_classes}" #{
+    nav_classes = "pagy-rjs #{nav_classes}" if sequels[0].size > 1
+    %(<nav#{%( id="#{id}") if id} class="#{nav_classes}" #{
       nav_aria_label_attribute(aria_label:)} #{
       data = [:snj, tokens.values, sequels]
       data.push(@update) if keynav?
