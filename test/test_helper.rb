@@ -4,7 +4,7 @@ require 'simplecov'
 require_relative '../gem/lib/pagy'
 
 require 'minitest/autorun'
-unless ENV['RM_INFO']   # RubyMine safe
+unless ENV['RM_INFO'] # RubyMine safe
   require "minitest/reporters"
   Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 end
@@ -47,14 +47,39 @@ module Minitest
       def with_message_and_backtrace(result)
         exception = result.failure
         msg       = "#{exception.class.name}: #{exception.message}" if exception
-        unless result.error?  # Avoid double backtrace for errors (included in msg)
+        unless result.error? # Avoid double backtrace for errors (included in msg)
           backtrace = "    " + Minitest.filter_backtrace(exception.backtrace)
-                                       .map { |p| p.sub(%r{^#{Dir.pwd}/}, '') }  # Relative paths as minitest does
+                                       .map { |p| p.sub(%r{^#{Dir.pwd}/}, '') } # Relative paths as minitest does
                                        .join("\n    ")
         end
         yield(msg, backtrace)
       end
     end
     prepend AvoidDoubleBacktrace
+  end
+end
+
+require 'uri'
+module Minitest
+  module Assertions
+    def assert_url_equal(expected, actual, msg = nil)
+      normalize = lambda do |url_str|
+        u = URI(url_str) # handles both 'http://example.com/foo' and '/foo' automatically
+        if u.query
+          sorted  = URI.decode_www_form(u.query).sort
+          u.query = URI.encode_www_form(sorted)
+        end
+        u.to_s
+      end
+
+      assert_equal normalize[expected], normalize[actual], msg
+    end
+  end
+
+  module Expectations
+    def must_equal_url(expected, msg = nil)
+      # Minitest 6 compatible: use 'ctx' for assertion, 'target' for value
+      ctx.assert_url_equal(expected, target, msg)
+    end
   end
 end

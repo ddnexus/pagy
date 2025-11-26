@@ -1,7 +1,7 @@
-### Changes in 43.1.4
+### Changes in 43.1.5
 
 <!-- changes_start -->
-- Add full support for legacy countless params, url composition and (limited) behavior
+- Fix and improve the composition of the page url. Close #835
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

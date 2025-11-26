@@ -10,7 +10,7 @@ require_relative 'pagy/toolbox/helpers/loader'
 class Pagy
   class RawQueryValue < String; end
 
-  VERSION     = '43.1.4'
+  VERSION     = '43.1.5'
   ROOT        = Pathname.new(__dir__).parent.freeze
   DEFAULT     = { limit: 20, limit_key: 'limit', page_key: 'page' }.freeze
   PAGE_TOKEN  = RawQueryValue.new('P ')
