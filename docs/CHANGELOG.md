@@ -45,6 +45,10 @@ If you upgrade from version `< 9.0.0` see the following:
 
 <hr>
 
+## Version 43.1.5
+
+- Fix and improve the composition of the page url. Close #835
+
 ## Version 43.1.4
 
 - Add full support for legacy countless params, url composition and (limited) behavior
