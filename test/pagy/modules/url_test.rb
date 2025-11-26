@@ -51,6 +51,39 @@ describe 'pagy/helpers/url' do
 
       _(pagy.send(:compose_page_url, 5, absolute: true)).must_equal_url 'http://example.com/path?a=1&b=2&page=5'
     end
+    it 'preserves other nested params' do
+      pagy, = app.send(:pagy, :offset, @collection,
+                       count:    1000,
+                       page:     3,
+                       root_key: 'users',
+                       request:  { path:   '/path',
+                                   params: { 'users' => { 'page' => '3', 'q' => 'search_term' } } })
+
+      url = pagy.send(:compose_page_url, 5)
+      _(url).must_equal_url "/path?users%5Bpage%5D=5&users%5Bq%5D=search_term"
+    end
+    it 'clear limit without client_max_limit nested params' do
+      pagy, = app.send(:pagy, :offset, @collection,
+                       count:    1000,
+                       page:     3,
+                       root_key: 'users',
+                       request:  { path:   '/path',
+                                   params: { 'users' => { 'page' => '3', 'limit' => 100, 'q' => 'search_term' } } })
+
+      url = pagy.send(:compose_page_url, 5)
+      _(url).must_equal_url "/path?users%5Bpage%5D=5&users%5Bq%5D=search_term"
+    end
+    it 'works with no params' do
+      app   = MockApp.new(params: { page: nil }) # override default page: 3
+      pagy, = app.send(:pagy, :offset, @collection,
+                       count:    1000,
+                       root_key: 'users',
+                       request:  { path:   '/path',
+                                   params: { 'users' => { 'page' => '3', 'limit' => 100, 'q' => 'search_term' } } })
+
+      url = pagy.send(:compose_page_url, 1)
+      _(url).must_equal_url "/path?users%5Bpage%5D=1&users%5Bq%5D=search_term"
+    end
   end
 
   describe 'process pagy_params' do
