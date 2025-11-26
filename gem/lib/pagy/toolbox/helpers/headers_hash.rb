@@ -11,14 +11,19 @@ class Pagy
 
   # Generate a hash of RFC-8288-compliant http headers
   def headers_hash(headers_map: @options[:headers_map] || DEFAULT_HEADERS_MAP, **)
-    links = urls_hash(**, absolute: true).map { |key, url| %(<#{url}>; rel="#{key}") }.join(', ')
-    { 'link' => links }.tap do |hash|
-      hash[headers_map[:page]]  = @page.to_s if @page && headers_map[:page]
-      hash[headers_map[:limit]] = @limit.to_s if headers_map[:limit] && !calendar?
-      if @count
-        hash[headers_map[:pages]] = @last.to_s if headers_map[:pages]
-        hash[headers_map[:count]] = @count.to_s if headers_map[:count]
-      end
+    links = urls_hash(**, absolute: true).map { %(<#{_2}>; rel="#{_1}") }.join(', ')
+    headers_map.each_with_object('link' => links) do |(key, name), hash|
+      next unless name
+
+      # :nocov:
+      value = case key
+              when :page  then @page
+              when :limit then @limit unless calendar?
+              when :pages then @last  if @count
+              when :count then @count
+              end
+      # :nocov:
+      hash[name] = value.to_s if value
     end
   end
 end

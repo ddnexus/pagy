@@ -11,7 +11,7 @@ class Pagy
         if request.is_a?(Hash)
           request.values_at(:base_url, :path, :params, :cookie)
         else
-          [request.base_url, request.path, request.GET.merge(request.POST), request.cookies['pagy']]
+          [request.base_url, request.path, request.GET.merge(request.POST).to_h, request.cookies['pagy']]
         end
     end
 

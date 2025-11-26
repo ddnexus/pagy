@@ -8,7 +8,7 @@ class Pagy
     %(<li>#{
       if send(which)
         a_lambda.(send(which), I18n.translate("pagy.#{which}"),
-                  classes: "pagination-#{which}",
+                  classes:    "pagination-#{which}",
                   aria_label: I18n.translate("pagy.aria_label.#{which}"))
       else
         %(<a role="link" class="pagination-#{which}" disabled aria-disabled="true" aria-label="#{

@@ -68,7 +68,8 @@ Style/EmptyCaseCondition:
   Enabled: false
 Style/LambdaCall:
   Enabled: false
-
+Style/NumberedParametersLimit:
+  Enabled: false
 
 # Cannot inline the disabling in the file because rubocop complains anyway
 Style/RedundantInitialize:

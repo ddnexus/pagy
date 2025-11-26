@@ -45,6 +45,11 @@ If you upgrade from version `< 9.0.0` see the following:
 
 <hr>
 
+## Version 43.1.6
+
+- Ensure the request GET and POST merge into a proper params Hash
+- Simplify code efficiency and readability
+
 ## Version 43.1.5
 
 - Fix and improve the composition of the page url. Close #835

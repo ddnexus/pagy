@@ -63,7 +63,7 @@ class Pagy
 
     # Create the calendar
     def init(conf, period, params)
-      @conf     = Marshal.load(Marshal.dump(conf))  # store a copy
+      @conf     = Marshal.load(Marshal.dump(conf)) # store a copy
       @units    = Calendar::UNITS & @conf.keys # get the units in time length desc order
       @period   = period
       @params   = params
@@ -90,9 +90,7 @@ class Pagy
     def create(unit, **)
       raise InternalError, "unit must be in #{UNITS.inspect}; got #{unit}" unless UNITS.include?(unit)
 
-      name    = +unit.to_s
-      name[0] = name[0].capitalize
-      Pagy::Calendar.const_get(name).new(**, request: @conf[:request])
+      Pagy::Calendar.const_get(unit.to_s.capitalize).new(**, request: @conf[:request])
     end
   end
 end
