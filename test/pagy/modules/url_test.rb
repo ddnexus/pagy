@@ -15,31 +15,31 @@ describe 'pagy/helpers/url' do
     it 'renders basic url' do
       pagy, = app.send(:pagy, :offset, @collection, count: 1000, page: 3)
 
-      _(pagy.send(:compose_page_url, 5)).must_equal '/foo?page=5'
-      _(pagy.send(:compose_page_url, 5, absolute: true)).must_equal 'http://example.com:3000/foo?page=5'
+      _(pagy.send(:compose_page_url, 5)).must_equal_url '/foo?page=5'
+      _(pagy.send(:compose_page_url, 5, absolute: true)).must_equal_url 'http://example.com:3000/foo?page=5'
     end
     it 'renders url with params' do
       pagy, = app.send(:pagy, :offset, @collection, count: 1000, page: 3, querify: ->(qh) { qh.merge!(a: 3, b: 4) })
 
-      _(pagy.send(:compose_page_url, 5)).must_equal "/foo?page=5&a=3&b=4"
-      _(pagy.send(:compose_page_url, 5, absolute: true)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4"
+      _(pagy.send(:compose_page_url, 5)).must_equal_url "/foo?page=5&a=3&b=4"
+      _(pagy.send(:compose_page_url, 5, absolute: true)).must_equal_url "http://example.com:3000/foo?page=5&a=3&b=4"
     end
     it 'renders url with fragment' do
       pagy, = app.send(:pagy, :offset, @collection, count: 1000, page: 3)
 
-      _(pagy.send(:compose_page_url, 6, fragment: '#fragment')).must_equal '/foo?page=6#fragment'
-      _(pagy.send(:compose_page_url, 6, absolute: true, fragment: '#fragment')).must_equal 'http://example.com:3000/foo?page=6#fragment'
+      _(pagy.send(:compose_page_url, 6, fragment: '#fragment')).must_equal_url '/foo?page=6#fragment'
+      _(pagy.send(:compose_page_url, 6, absolute: true, fragment: '#fragment')).must_equal_url 'http://example.com:3000/foo?page=6#fragment'
     end
     it 'renders url with params and fragment' do
       pagy, = app.send(:pagy, :offset, @collection, count: 1000, page: 3, querify: ->(qh) { qh.merge!(a: 3, b: 4) })
 
-      _(pagy.send(:compose_page_url, 5, fragment: '#fragment')).must_equal "/foo?page=5&a=3&b=4#fragment"
-      _(pagy.send(:compose_page_url, 5, absolute: true, fragment: '#fragment')).must_equal "http://example.com:3000/foo?page=5&a=3&b=4#fragment"
+      _(pagy.send(:compose_page_url, 5, fragment: '#fragment')).must_equal_url "/foo?page=5&a=3&b=4#fragment"
+      _(pagy.send(:compose_page_url, 5, absolute: true, fragment: '#fragment')).must_equal_url "http://example.com:3000/foo?page=5&a=3&b=4#fragment"
     end
     it 'renders url with overridden path' do
       pagy, = app.send(:pagy, :offset, @collection, count: 1000, page: 3, path: '/bar')
 
-      _(pagy.send(:compose_page_url, 5)).must_equal '/bar?page=5'
+      _(pagy.send(:compose_page_url, 5)).must_equal_url '/bar?page=5'
     end
     it 'renders url with overridden request' do
       pagy, = app.send(:pagy, :offset, @collection,
@@ -49,7 +49,7 @@ describe 'pagy/helpers/url' do
                                   path:     '/path',
                                   params:   { 'a' => '1', 'b' => '2' } })
 
-      _(pagy.send(:compose_page_url, 5, absolute: true)).must_equal 'http://example.com/path?a=1&b=2&page=5'
+      _(pagy.send(:compose_page_url, 5, absolute: true)).must_equal_url 'http://example.com/path?a=1&b=2&page=5'
     end
   end
 
@@ -64,7 +64,7 @@ describe 'pagy/helpers/url' do
                          params.merge!('b' => 4, 'add_me' => 'add_me')
                        end)
 
-      _(pagy.send(:compose_page_url, 5, fragment: '#fragment')).must_equal "/foo?a=5&page=5&b=4&add_me=add_me#fragment"
+      _(pagy.send(:compose_page_url, 5, fragment: '#fragment')).must_equal_url "/foo?a=5&page=5&b=4&add_me=add_me#fragment"
     end
   end
 
@@ -74,6 +74,7 @@ describe 'pagy/helpers/url' do
       _(Pagy::Linkable::QueryUtils.build_nested_query({ a: { b: { c: 3 } } })).must_equal "a%5Bb%5D%5Bc%5D=3" # "a[b][c]=3"
       _(Pagy::Linkable::QueryUtils.build_nested_query({ a: [1, 2, 3] })).must_equal "a%5B%5D=1&a%5B%5D=2&a%5B%5D=3" # "a[]=1&a[]=2&a[]=3
     end
+
     # We pass symbol key just for easy testing but the build_nested_query expects string keys
     it 'handles unescaped params' do
       _(Pagy::Linkable::QueryUtils.build_nested_query({ b: { 'c' => Pagy::RawQueryValue.new(' A ') } })).must_equal "b%5Bc%5D= A " # "a[b][c]=3"
