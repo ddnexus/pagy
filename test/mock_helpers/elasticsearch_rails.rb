@@ -1,15 +1,42 @@
 # frozen_string_literal: true
 
+# :nocov:
+# No need to use all the UI in the tests, but goot to have the extra possibility
 module MockElasticsearchRails
   RESULTS = { 'a' => ('a-1'..'a-1000').to_a,
               'b' => ('b-1'..'b-1000').to_a }.freeze
 
+  class DslSearch
+    def initialize(hash)
+      @hash = hash
+    end
+
+    def to_hash
+      @hash
+    end
+  end
+
   class Search
-    attr_reader :options, :results
+    attr_reader :options, :results, :definition
 
     def initialize(query, options = {})
-      @options = options
-      @results = RESULTS[query][@options[:from] || 0, @options[:size] || 10]
+      @definition = query
+      @options    = options
+
+      def_hash = if query.respond_to?(:to_hash)
+                   query.to_hash
+                 elsif query.is_a?(Hash)
+                   query
+                 else
+                   {}
+                 end
+
+      container = def_hash[:body] || def_hash
+      from      = container[:from] || options[:from] || 0
+      size      = container[:size] || options[:size] || 10
+
+      data_key = query.is_a?(String) && RESULTS.key?(query) ? query : 'a'
+      @results = RESULTS[data_key][from.to_i, size.to_i]
     end
   end
 
@@ -18,22 +45,18 @@ module MockElasticsearchRails
 
     def initialize(query, options = {})
       @search = Search.new(query, options)
-      @raw_response = { 'hits' => { 'hits' => @search.results, 'total' => RESULTS[query].size } }
+      key = query.is_a?(String) && RESULTS.key?(query) ? query : 'a'
+      @raw_response = { 'hits' => { 'hits' => @search.results, 'total' => RESULTS[key].size } }
     end
 
     def records
       @raw_response['hits']['hits'].map { |r| "R-#{r}" }
     end
-
-    # unused by current testing
-    # def count
-    #   @raw_response['hits']['hits'].size
-    # end
   end
 
   class Model
-    def self.search(*)
-      Response.new(*)
+    def self.search(query, options = {})
+      Response.new(query, options)
     end
 
     extend Pagy::Search
@@ -42,13 +65,14 @@ module MockElasticsearchRails
   class ResponseES7 < Response
     def initialize(query, options = {})
       super
-      @raw_response = { 'hits' => { 'hits' => @search.results, 'total' => { 'value' => RESULTS[query].size } } }
+      key = query.is_a?(String) && RESULTS.key?(query) ? query : 'a'
+      @raw_response = { 'hits' => { 'hits' => @search.results, 'total' => { 'value' => RESULTS[key].size } } }
     end
   end
 
   class ModelES7 < Model
-    def self.search(*)
-      ResponseES7.new(*)
+    def self.search(query, options = {})
+      ResponseES7.new(query, options)
     end
   end
 
@@ -57,22 +81,19 @@ module MockElasticsearchRails
 
     def initialize(query, options = {})
       @search = Search.new(query, options)
-      @response = { 'hits' => { 'hits' => @search.results, 'total' => RESULTS[query].size } }
+      key = query.is_a?(String) && RESULTS.key?(query) ? query : 'a'
+      @response = { 'hits' => { 'hits' => @search.results, 'total' => RESULTS[key].size } }
     end
 
-    # unused by current testing
-    # def records
-    #   @response['hits']['hits'].map { |r| "R-#{r}" }
-    # end
-    #
-    # def count
-    #   @response['hits']['hits'].size
-    # end
+    def [](key)
+      @response[key]
+    end
   end
 
   class ModelES5 < Model
-    def self.search(*)
-      ResponseES5.new(*)
+    def self.search(query, options = {})
+      ResponseES5.new(query, options)
     end
   end
 end
+# :nocov:

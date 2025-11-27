@@ -111,3 +111,81 @@ elasticsearch_rails__controller_methods___pagy_elasticsearch_rails_test_0001_pag
   - R-a-58
   - R-a-59
   - R-a-60
+elasticsearch_rails__controller_methods___pagy_elasticsearch7_rails_test_0002_paginates_response_with_defaults:
+  :records:
+  - R-a-41
+  - R-a-42
+  - R-a-43
+  - R-a-44
+  - R-a-45
+  - R-a-46
+  - R-a-47
+  - R-a-48
+  - R-a-49
+  - R-a-50
+  - R-a-51
+  - R-a-52
+  - R-a-53
+  - R-a-54
+  - R-a-55
+  - R-a-56
+  - R-a-57
+  - R-a-58
+  - R-a-59
+  - R-a-60
+elasticsearch_rails__controller_methods___pagy_elasticsearch7_rails_test_0004_paginates_with_options:
+  :records:
+  - R-b-11
+  - R-b-12
+  - R-b-13
+  - R-b-14
+  - R-b-15
+  - R-b-16
+  - R-b-17
+  - R-b-18
+  - R-b-19
+  - R-b-20
+elasticsearch_rails__controller_methods___pagy_elasticsearch7_rails_test_0003_paginates_records_with_defaults:
+  :records:
+  - R-a-41
+  - R-a-42
+  - R-a-43
+  - R-a-44
+  - R-a-45
+  - R-a-46
+  - R-a-47
+  - R-a-48
+  - R-a-49
+  - R-a-50
+  - R-a-51
+  - R-a-52
+  - R-a-53
+  - R-a-54
+  - R-a-55
+  - R-a-56
+  - R-a-57
+  - R-a-58
+  - R-a-59
+  - R-a-60
+elasticsearch_rails__controller_methods___pagy_elasticsearch7_rails_test_0002_paginates_response_with_Model:
+  :records:
+  - R-a-41
+  - R-a-42
+  - R-a-43
+  - R-a-44
+  - R-a-45
+  - R-a-46
+  - R-a-47
+  - R-a-48
+  - R-a-49
+  - R-a-50
+  - R-a-51
+  - R-a-52
+  - R-a-53
+  - R-a-54
+  - R-a-55
+  - R-a-56
+  - R-a-57
+  - R-a-58
+  - R-a-59
+  - R-a-60
