@@ -45,6 +45,15 @@ If you upgrade from version `< 9.0.0` see the following:
 
 <hr>
 
+## Version 43.1.7
+
+- Fix and improve search paginators:
+  - Add support for elasticsearch_rails v8
+  - Prioritize elasticsearch_rails response over raw_response in
+  total_count (causing multiple query executions)
+  - Fix the ignored :search_method paginator option
+  - Close #837, close #838, close #839.
+
 ## Version 43.1.6
 
 - Ensure the request GET and POST merge into a proper params Hash
