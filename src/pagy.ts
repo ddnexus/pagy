@@ -198,7 +198,7 @@ const Pagy = (() => {
 
   // Public interface
   return {
-    version: "43.1.7",
+    version: "43.1.8",
 
     // Scan for elements with a "data-pagy" attribute and call their init functions with the decoded args
     init(arg?:HTMLElement) {
