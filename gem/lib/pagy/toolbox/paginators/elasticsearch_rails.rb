@@ -14,34 +14,34 @@ class Pagy
           model, query_or_payload, search_options = search
           search_options[:size] = options[:limit]
           search_options[:from] = options[:limit] * ((options[:page] || 1) - 1)
-          results               = model.send(options[:search_method] || ElasticsearchRails::DEFAULT[:search_method],
+          response_object       = model.send(options[:search_method] || ElasticsearchRails::DEFAULT[:search_method],
                                              query_or_payload, **search_options)
-          options[:count]       = get_total_count(results)
-          [ElasticsearchRails.new(**options), results]
+          options[:count]       = total_count_from(response_object)
+          [ElasticsearchRails.new(**options), response_object]
         end
       else
-        size, from      = get_es_params(search)
+        from, size      = pagination_params_from(search)
         options[:limit] = size
         options[:page]  = ((from || 0) / options[:limit]) + 1
-        options[:count] = get_total_count(search)
+        options[:count] = total_count_from(search)
         ElasticsearchRails.new(**options)
       end
     end
 
-    # Get the :size and :from params from different versions of ElasticsearchRails
-    def get_es_params(response)
-      raw_def    = response.search.definition
-      definition = raw_def.respond_to?(:to_hash) ? raw_def.to_hash : raw_def
-      container  = (definition.is_a?(Hash) && (definition[:body] || definition)) || response.search.options
-      size       = (container[:size] || container['size']).to_i
+    # Get from and size params from the response object, supporting different versions of ElasticsearchRails
+    def pagination_params_from(response_object)
+      definition = response_object.search.definition
+      definition = definition.to_hash if definition.respond_to?(:to_hash)
+      container  = (definition.is_a?(Hash) && (definition[:body] || definition)) || response_object.search.options
       from       = (container[:from] || container['from']).to_i
+      size       = (container[:size] || container['size']).to_i
       size       = 10 if size.zero?
-      [size, from]
+      [from, size]
     end
 
-    # Get the count from different versions of ElasticsearchRails
-    def get_total_count(response)
-      total = response.instance_eval do
+    # Get the count from the response object, supporting different versions of ElasticsearchRails
+    def total_count_from(response_object)
+      total = response_object.instance_eval do
                 respond_to?(:response) ? response['hits']['total'] : raw_response['hits']['total']
               end
       total.is_a?(Hash) ? total['value'] : total
