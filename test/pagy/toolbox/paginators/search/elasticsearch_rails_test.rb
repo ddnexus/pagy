@@ -105,8 +105,8 @@ describe 'elasticsearch_rails' do
       end
     end
     describe 'Use search object' do
-      it 'paginates response with defaults' do
-        response = MockElasticsearchRails::Model.search('a')
+      it 'paginates response with defaults (hash search)' do
+        response = MockElasticsearchRails::Model.search({query: 'a'})
         pagy     = app.send(:pagy, :elasticsearch_rails, response)
 
         _(pagy).must_be_instance_of Pagy::ElasticsearchRails

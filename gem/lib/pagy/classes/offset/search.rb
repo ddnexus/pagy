@@ -22,13 +22,7 @@ class Pagy
     def search? = true
   end
 
-  class ElasticsearchRails < SearchBase
-    # Get the count from different versions of ElasticsearchRails
-    def self.total_count(results)
-      total = results.instance_eval { respond_to?(:raw_response) ? raw_response['hits']['total'] : response['hits']['total'] }
-      total.is_a?(Hash) ? total['value'] : total
-    end
-  end
+  class ElasticsearchRails < SearchBase; end
 
   class Meilisearch < SearchBase
     DEFAULT = { search_method: :ms_search }.freeze

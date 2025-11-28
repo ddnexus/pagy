@@ -14,7 +14,8 @@ class Pagy
           model, term, search_options, block = search
           search_options[:per_page] = options[:limit]
           search_options[:page]     = options[:page]
-          results                   = model.send(Searchkick::DEFAULT[:search_method], term || '*', **search_options, &block)
+          results                   = model.send(options[:search_method] || Searchkick::DEFAULT[:search_method],
+                                                 term || '*', **search_options, &block)
           options[:count]           = results.total_count
           [Searchkick.new(**options), results]
         end

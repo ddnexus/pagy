@@ -14,7 +14,8 @@ class Pagy
           model, term, search_options    = search
           search_options[:hits_per_page] = options[:limit]
           search_options[:page]          = options[:page]
-          results                        = model.send(Meilisearch::DEFAULT[:search_method], term, search_options)
+          results                        = model.send(options[:search_method] || Meilisearch::DEFAULT[:search_method],
+                                                      term, search_options)
           options[:count]                = results.raw_answer['totalHits']
           [Meilisearch.new(**options), results]
         end

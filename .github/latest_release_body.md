@@ -1,8 +1,12 @@
-### Changes in 43.1.6
+### Changes in 43.1.7
 
 <!-- changes_start -->
-- Ensure the request GET and POST merge into a proper params Hash
-- Simplify code efficiency and readability
+- Fix and improve search paginators:
+  - Add support for elasticsearch_rails v8
+  - Prioritize elasticsearch_rails response over raw_response in
+  total_count (causing multiple query executions)
+  - Fix the ignored :search_method paginator option
+  - Close #837, close #838, close #839.
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
