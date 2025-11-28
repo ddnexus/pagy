@@ -1,12 +1,11 @@
-### Changes in 43.1.7
+### Changes in 43.1.8
 
 <!-- changes_start -->
-- Fix and improve search paginators:
-  - Add support for elasticsearch_rails v8
-  - Prioritize elasticsearch_rails response over raw_response in
-  total_count (causing multiple query executions)
-  - Fix the ignored :search_method paginator option
-  - Close #837, close #838, close #839.
+- Refactoring of elasticsearch_rails paginator:
+  - Fix "response" shadowing. Close #842.
+  - Simplify code
+  - Improve readability: rename variables and methods in more natural
+  and unambiguous language
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
