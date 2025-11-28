@@ -8,13 +8,11 @@ require_relative 'pagy/toolbox/helpers/loader'
 
 # Top superclass: it defines only what's common to all the subclasses
 class Pagy
-  class RawQueryValue < String; end
-
   VERSION     = '43.1.8'
   ROOT        = Pathname.new(__dir__).parent.freeze
   DEFAULT     = { limit: 20, limit_key: 'limit', page_key: 'page' }.freeze
-  PAGE_TOKEN  = RawQueryValue.new('P ')
-  LIMIT_TOKEN = RawQueryValue.new('L ')
+  PAGE_TOKEN  = EscapedValue.new('P ')
+  LIMIT_TOKEN = EscapedValue.new('L ')
   LABEL_TOKEN = 'L'
   A_TAG       = '<a style="display: none;">#</a>'
 

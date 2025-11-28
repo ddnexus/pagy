@@ -3,6 +3,9 @@
 require 'uri'
 
 class Pagy
+  # Support spaces in placeholder params
+  class EscapedValue < String; end
+
   # Provide the helpers to handle the url and anchor
   module Linkable
     module QueryUtils
@@ -23,8 +26,8 @@ class Pagy
         else
           raise ArgumentError, 'value must be a Hash' if prefix.nil?
 
-          final_value = value.is_a?(RawQueryValue) ? value.to_s : escape(value)
-          "#{escape(prefix)}=#{final_value}"
+          escaped_value = value.is_a?(EscapedValue) ? value : escape(value)
+          "#{escape(prefix)}=#{escaped_value}"
         end
       end
 
@@ -35,15 +38,18 @@ class Pagy
 
     protected
 
+    # Overriddable by classes with composite page param
+    def compose_page_param(page) = page
+
     # Return the URL for the page, relying on the Pagy::Request
-    def compose_page_url(page, limit_token: nil, **options)
-      root_key, page_key, limit_key, limit, client_max_limit, querify, absolute, path, fragment =
+    def compose_page_url(page, **options)
+      root_key, page_key, limit_key, client_max_limit, limit, querify, absolute, path, fragment =
         @options.merge(options)
-                .values_at(:root_key, :page_key, :limit_key, :limit, :client_max_limit, :querify, :absolute, :path, :fragment)
+                .values_at(:root_key, :page_key, :limit_key, :client_max_limit, :limit, :querify, :absolute, :path, :fragment)
       params = @request.params.clone(freeze: false)
       (root_key ? params[root_key] ||= {} : params).tap do |h|
-        { page_key  => countless? ? RawQueryValue.new(compose_page_param(page)) : page,
-          limit_key => (limit_token || limit if client_max_limit) }.each { |k, v| v ? h[k] = v : h.delete(k) }
+        { page_key  => compose_page_param(page),
+          limit_key => client_max_limit && limit }.each { |k, v| v ? h[k] = v : h.delete(k) }
       end
       querify&.(params) # Must modify the params: the returned value is ignored
       query_string = QueryUtils.build_nested_query(params).sub(/\A(?=.)/, '?')
