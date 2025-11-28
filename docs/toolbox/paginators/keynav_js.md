@@ -1,14 +1,14 @@
 ---
 label: :keynav_js
-icon: list-ordered
-order: 80
+icon: key
+order: 70
 categories:
   - Paginators
 ---
 
 #
 
-## :icon-list-ordered: :keynav_js
+## :icon-key: :keynav_js
 
 ---
 

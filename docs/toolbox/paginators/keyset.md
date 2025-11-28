@@ -1,20 +1,20 @@
 ---
 label: :keyset
-icon: infinity
-order: 70
+icon: key
+order: 80
 categories:
   - Paginators
 ---
 
 #
 
-## :icon-infinity: :keyset
+## :icon-key: :keyset
 
 ---
 
 `:keyset` is the **fastest** paginator for SQL collections.
 
-!!!success :keyset
+!!!success
 
 - **It works with:**
   - `ActiveRecord::Relation` or `Sequel::Dataset` sets

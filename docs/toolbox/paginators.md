@@ -51,9 +51,10 @@ Unused code consumes no memory.
 !!!
 
 [:icon-list-ordered: :offset](paginators/offset.md)<br/>
+[:icon-list-ordered: :countish](paginators/countish.md)<br/>
 [:icon-list-ordered: :countless](paginators/countless.md)<br/>
-[:icon-list-ordered: :keynav_js](paginators/keynav_js)<br/>
-[:icon-infinity: :keyset](paginators/keyset.md)<br/>
+[:icon-key: :keyset](paginators/keyset.md)<br/>
+[:icon-key: :keynav_js](paginators/keynav_js)<br/>
 [:icon-calendar: :calendar](paginators/calendar.md)<br/>
 [:icon-search: :elasticsearch_rails](paginators/elasticsearch_rails.md)<br/>
 [:icon-search: :meilisearch](paginators/meilisearch.md)<br/>
