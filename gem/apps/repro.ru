@@ -55,8 +55,9 @@ class PagyRepro < Sinatra::Base
   # Edit this action as needed
   get '/' do
     collection = MockCollection.new
-    @pagy, @records = pagy(collection)
+    @pagy, @records = pagy(collection) # simplest form
     # @pagy, @records = pagy(:offset, collection, limit: 7, client_max_limit: 30)
+    # @pagy, @records = pagy(:countish, collection, ttl: 20)
     # @pagy, @records = pagy(:countless, collection)
     # @pagy, @records = pagy(Array(1..1000))
     # response.headers.merge!(@pagy.headers_hash)

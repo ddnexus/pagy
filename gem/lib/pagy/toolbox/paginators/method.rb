@@ -5,6 +5,7 @@ require_relative '../../classes/request'
 class Pagy
   paginators = { offset:              :OffsetPaginator,
                  countless:           :CountlessPaginator,
+                 countish:            :CountishPaginator,
                  keyset:              :KeysetPaginator,
                  keynav_js:           :KeynavJsPaginator,
                  calendar:            :CalendarPaginator,
