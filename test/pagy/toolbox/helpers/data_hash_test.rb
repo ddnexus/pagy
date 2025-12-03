@@ -10,7 +10,7 @@ describe 'data_hash for Pagy' do
   before do
     @collection = MockCollection.new
   end
-  Time.zone = 'EST'
+  Time.zone = 'Etc/GMT+5'
   def calendar_app(**options)
     MockApp::Calendar.new(**options)
   end

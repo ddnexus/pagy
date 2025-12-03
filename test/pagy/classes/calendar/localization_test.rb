@@ -4,7 +4,7 @@ require_relative '../../../test_helper'
 require_relative '../../../mock_helpers/app'
 require_relative '../../../../gem/lib/pagy/toolbox/helpers/support/a_lambda' # just to check the page_label
 
-Time.zone = 'EST'
+Time.zone = 'Etc/GMT+5'
 Date.beginning_of_week = :sunday
 
 ## Test not needed: Now it's a manual patch in the pagy.rb initializer

@@ -4,7 +4,7 @@ require_relative '../../../test_helper'
 require_relative '../../../mock_helpers/app'  # just for time zone
 require_relative '../../../../gem/lib/pagy/toolbox/helpers/support/wrap_series_nav_js' # just to check the sequels
 
-Time.zone = 'EST'
+Time.zone = 'Etc/GMT+5'
 Date.beginning_of_week = :sunday
 
 describe 'Calendar sequels and page_labels' do

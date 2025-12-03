@@ -4,7 +4,7 @@ require_relative '../../../test_helper'
 require_relative '../../../../gem/lib/pagy/classes/calendar/calendar'
 require_relative '../../../../gem/lib/pagy/toolbox/helpers/support/a_lambda' # just to check the page_label
 
-Time.zone = 'EST'
+Time.zone = 'Etc/GMT+5'
 Date.beginning_of_week = :sunday
 
 def pagy(cclass = Pagy::Calendar::Month, **)
