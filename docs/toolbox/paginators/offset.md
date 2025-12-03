@@ -14,6 +14,12 @@ categories:
 
 `:offset` is a generic OFFSET paginator usable with ORM collections or regular `Array` objects.
 
+!!!warning Consider using the `:countish` paginator when possible!
+
+The [:countish](countish.md) offers identical UI features but it's faster.
+
+!!!
+
 It uses the complete OFFSET pagination technique, which triggers two SQL queries per request:
 
 - a `COUNT` query to get the count

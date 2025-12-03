@@ -12,7 +12,7 @@ categories:
 
 ---
 
-`:countless` is an OFFSET paginator that avoids the `COUNT` query, reducing the number of queries per request by one.
+`:countless` is an OFFSET paginator that avoids the `COUNT` query, reducing the number of queries per page in half. UI helpers are working with some limitations (see [Caveat](#caveat)).
 
 !!!warning Consider using the `:keynav_js` paginator when possible!
 

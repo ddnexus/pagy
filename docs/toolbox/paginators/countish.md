@@ -12,7 +12,10 @@ categories:
 
 ---
 
-`:countish` is an OFFSET paginator that memoizes the result of the `COUNT` query, running it only once per collection (instead of once per page), and optionally recounting it when stale. It supports the full UI without limitations.
+`:countish` is an OFFSET paginator that memoizes the result of the `COUNT` query, running it only once per collection (instead of once per page), and optionally recounting it when it's stale.
+
+It **fully** supports all the helpers and navigators.
+
 
 ```ruby Controller 
 # count only once and memoize for all pages

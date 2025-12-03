@@ -25,17 +25,18 @@ code at all levels, usage and API included.
 
 #### Improvements
 
-This version introduces several enhancements, such as new pagination techniques like Keynav and improved automation and
+This version introduces several enhancements, such as new `:countish` and `:keynav_js` paginators and improved automation and
 configuration processes, reducing setup requirements by 99%. The update also includes a simpler API and new interactive
 development tools, making it a comprehensive upgrade from previous versions.
 
+- **New [:countish](https://ddnexus.github.io/pagy/toolbox/paginators/countish) Paginator**
+  - Faster than OFFSET and supporting the full UI
 - **New [Keynav](https://ddnexus.github.io/pagy/toolbox/paginators/keynav_js) Pagination**
   - The pagy-exclusive technique using the fastest [keyset](https://ddnexus.github.io/pagy/toolbox/paginators/keyset)
     pagination alongside all frontend helpers.
 - **New interactive dev-tools**
-  - New [PagyWand](https://ddnexus.github.io/pagy/resources/stylesheets/#pagy-wand) to integrate the pagy CSS with your app's
-    themes.
-  - New **Pagy AI** available inside docs and your own app.
+  - New [PagyWand](https://ddnexus.github.io/pagy/resources/stylesheets/#pagy-wand) to integrate the pagy CSS with your app themes.
+  - New **Pagy AI** available right inside your own app.
 - **Intelligent automation**
   - [Configuration](https://ddnexus.github.io/pagy/resources/initializer/) requirements reduced by 99%.
   - Simplified [JavaScript](https://ddnexus.github.io/pagy/resources/javascript) setup.
