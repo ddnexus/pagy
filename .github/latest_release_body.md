@@ -1,11 +1,8 @@
-### Changes in 43.1.8
+### Changes in 43.2.0
 
 <!-- changes_start -->
-- Refactoring of elasticsearch_rails paginator:
-  - Fix "response" shadowing. Close #842.
-  - Simplify code
-  - Improve readability: rename variables and methods in more natural
-  and unambiguous language
+- Implement :countish paginator
+- Simplify Pagy::Linkable
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
