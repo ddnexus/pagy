@@ -8,7 +8,7 @@ class Pagy
     def paginate(collection, options)
       options[:page] ||= options[:request].resolve_page(force_integer: false) # accept nil and strings
       if options[:page].is_a?(String)
-        page, last     = options[:page].split(/ /, 2).map(&:to_i) # decoded '+' added by the compose_page_url
+        page, last     = options[:page].split.map(&:to_i) # decoded '+' added by the compose_page_url
         options[:page] = page
         options[:last] = last if last&.positive?
       end

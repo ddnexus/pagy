@@ -38,6 +38,9 @@ The `pagy` method expects to find the rack request at `self.request`, however, y
 
 ### Paginators
 
+!!!tip Read also the [Choose Wisely Guide](../guides/chose_wisely.md) to ensure good performance and smooth workflow.
+!!!
+
 The `paginators` are symbolic names of different pagination types/contexts (e.g., `:offset`, `:keyset`, `countless`, etc.). You pass the name to the `pagy` method and pagy will internally instantiate and handle the appropriate paginator class.
 
 !!!warning Avoid instantiating Pagy classes directly
@@ -49,15 +52,6 @@ Instantiate paginator classes only if the documentation explicitly suggests it.
 
 Unused code consumes no memory.
 !!!
-
-[:icon-list-ordered: :offset](paginators/offset.md)<br/>
-[:icon-list-ordered: :countless](paginators/countless.md)<br/>
-[:icon-list-ordered: :keynav_js](paginators/keynav_js)<br/>
-[:icon-infinity: :keyset](paginators/keyset.md)<br/>
-[:icon-calendar: :calendar](paginators/calendar.md)<br/>
-[:icon-search: :elasticsearch_rails](paginators/elasticsearch_rails.md)<br/>
-[:icon-search: :meilisearch](paginators/meilisearch.md)<br/>
-[:icon-search: :searchkick](paginators/searchkick.md)<br/>
 
 ==- Common Options
 

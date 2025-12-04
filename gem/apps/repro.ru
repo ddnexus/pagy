@@ -16,7 +16,7 @@
 # URL
 #    http://127.0.0.1:8000
 
-VERSION = '43.1.8'
+VERSION = '43.2.0'
 
 if VERSION != Pagy::VERSION
   Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")
@@ -55,8 +55,9 @@ class PagyRepro < Sinatra::Base
   # Edit this action as needed
   get '/' do
     collection = MockCollection.new
-    @pagy, @records = pagy(collection)
+    @pagy, @records = pagy(collection) # simplest form
     # @pagy, @records = pagy(:offset, collection, limit: 7, client_max_limit: 30)
+    # @pagy, @records = pagy(:countish, collection, ttl: 20)
     # @pagy, @records = pagy(:countless, collection)
     # @pagy, @records = pagy(Array(1..1000))
     # response.headers.merge!(@pagy.headers_hash)

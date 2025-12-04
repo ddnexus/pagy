@@ -1,7 +1,7 @@
 PATH
   remote: gem
   specs:
-    pagy (43.1.8)
+    pagy (43.2.0)
       json
       yaml
 
@@ -121,7 +121,7 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json (2.16.0)
+    json (2.17.0)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     listen (3.9.0)
@@ -233,7 +233,7 @@ GEM
     rb-fsevent (0.11.2)
     rb-inotify (0.11.1)
       ffi (~> 1.0)
-    rdoc (6.16.0)
+    rdoc (6.16.1)
       erb
       psych (>= 4.0.0)
       tsort
@@ -277,7 +277,7 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     securerandom (0.4.1)
-    sequel (5.98.0)
+    sequel (5.99.0)
       bigdecimal
     simplecov (0.22.0)
       docile (~> 1.1)
@@ -292,8 +292,8 @@ GEM
       rack-protection (= 4.2.1)
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
-    sqlite3 (2.8.0-x86_64-linux-gnu)
-    stringio (3.1.8)
+    sqlite3 (2.8.1-x86_64-linux-gnu)
+    stringio (3.1.9)
     thor (1.4.0)
     tilt (2.6.1)
     timeout (0.4.4)
@@ -348,4 +348,4 @@ DEPENDENCIES
   uri
 
 BUNDLED WITH
-   2.6.7
+   2.7.1

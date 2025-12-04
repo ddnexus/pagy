@@ -7,7 +7,7 @@ require_relative '../../../../gem/lib/pagy/toolbox/helpers/support/series' # jus
 calendar = Pagy::Calendar
 calendar.is_a?(Pagy)
 
-Time.zone = 'EST'
+Time.zone = 'Etc/GMT+5'
 Date.beginning_of_week = :sunday
 
 DAY    = 60 * 60 * 24

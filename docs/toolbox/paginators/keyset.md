@@ -1,20 +1,20 @@
 ---
 label: :keyset
-icon: infinity
-order: 70
+icon: key
+order: 80
 categories:
   - Paginators
 ---
 
 #
 
-## :icon-infinity: :keyset
+## :icon-key: :keyset
 
 ---
 
 `:keyset` is the **fastest** paginator for SQL collections.
 
-!!!success :keyset
+!!!success
 
 - **It works with:**
   - `ActiveRecord::Relation` or `Sequel::Dataset` sets
@@ -61,7 +61,7 @@ There are a few peculiar aspects of the keyset pagination technique that you mig
 | `set`               | The `uniquely ordered` `ActiveRecord::Relation` or `Sequel::Dataset` collection to paginate.                                                                                                                                                                                                                                               |
 | `keyset`            | The hash of column/order pairs. Pagy extracts it from the order of the `set`.                                                                                                                                                                                                                                                              |
 | `keyset attributes` | The hash of attributes of the `keyset` columns of a record.                                                                                                                                                                                                                                                                                |
-| `cutoff`            | The value that identifies where the `page` ends, and the `next` one begins. It is encoded as a `Base64` URL-safe string.                                                                                                                                                                                                                   |
+| `cutoff`            | The value that identifies where the `page` ends, and the `next` one begins. It is the `Base64` URL-safe encoded string of the serialized array of the `keyet attribute` values.                                                                                                                                                            |
 | `page`              | The current `page`, i.e. the page of records beginning after the `cutoff` of the previous page. Also the `:page` option, which is set to the `cutoff` of the previous page                                                                                                                                                                 |
 | `next`              | The next `page`, i.e. the page of records beginning after the `cutoff`. Also the `cutoff` value retured by the `next` method.                                                                                                                                                                                                              |
 

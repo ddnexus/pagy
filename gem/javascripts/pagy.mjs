@@ -124,7 +124,7 @@ const Pagy = (() => {
     });
   };
   return {
-    version: "43.1.8",
+    version: "43.2.0",
     init(arg) {
       const target = arg instanceof HTMLElement ? arg : document, elements = target.querySelectorAll("[data-pagy]");
       for (const element of elements) {
@@ -140,7 +140,8 @@ const Pagy = (() => {
             initLimitTagJs(element, args);
           }
         } catch (err) {
-          console.warn("Pagy.init: %o\n%s", element, err);
+          console.warn(`Pagy.init: %o
+%s`, element, err);
         }
       }
     }

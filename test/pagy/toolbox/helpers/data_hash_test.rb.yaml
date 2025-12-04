@@ -40,7 +40,7 @@ data_hash_for_Pagy_test_0006_returns_only_specific_keys_for_Pagy__Calendar__Unit
     :from: !ruby/object:ActiveSupport::TimeWithZone
       utc: 2021-12-01 05:00:00.000000000 Z
       zone: &1 !ruby/object:ActiveSupport::TimeZone
-        name: EST
+        name: Etc/GMT+5
       time: 2021-12-01 00:00:00.000000000 Z
     :to: !ruby/object:ActiveSupport::TimeWithZone
       utc: 2022-01-01 05:00:00.000000000 Z
