@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.817651698656">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.818131554448">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>:countless &#128154; Pagy</title>
     <meta name="title" content=":countless 💚 Pagy">
-    <meta name="description" content=":countless is an OFFSET paginator that avoids the COUNT query, reducing the number of queries per request by one.">
+    <meta name="description" content=":countless is an OFFSET paginator that avoids the COUNT query, reducing the number of queries per page in half.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/toolbox/paginators/countless/">
@@ -21,22 +21,22 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/toolbox/paginators/countless/">
     <meta property="og:title" content=":countless 💚 Pagy">
-    <meta property="og:description" content=":countless is an OFFSET paginator that avoids the COUNT query, reducing the number of queries per request by one.">
+    <meta property="og:description" content=":countless is an OFFSET paginator that avoids the COUNT query, reducing the number of queries per page in half.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ddnexus.github.io/pagy/toolbox/paginators/countless/">
     <meta property="twitter:title" content=":countless 💚 Pagy">
-    <meta property="twitter:description" content=":countless is an OFFSET paginator that avoids the COUNT query, reducing the number of queries per request by one.">
+    <meta property="twitter:description" content=":countless is an OFFSET paginator that avoids the COUNT query, reducing the number of queries per page in half.">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.11.0.817651698656" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.11.0.818131554448" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.11.0.817651698656" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.11.0.818131554448" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.11.0.817651698656" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.11.0.817651698656" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.11.0.818131554448" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.11.0.818131554448" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -190,7 +190,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../../../assets/images/pagy-the-frog.png">
                             </span>
                             <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.1.8</span>
+                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.2.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -394,7 +394,7 @@
     </h2>
 </doc-anchor-target>
 <hr>
-<p><code v-pre>:countless</code> is an OFFSET paginator that avoids the <code v-pre>COUNT</code> query, reducing the number of queries per request by one.</p>
+<p><code v-pre>:countless</code> is an OFFSET paginator that avoids the <code v-pre>COUNT</code> query, reducing the number of queries per page in half. UI helpers are working with some limitations (see <doc-anchor-trigger to="#caveat">Caveat</doc-anchor-trigger>).</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
@@ -462,20 +462,20 @@
                             
                                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../toolbox/paginators/offset/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../toolbox/paginators/countish/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                                <span class="block mt-1">:offset</span>
+                                                <span class="block mt-1">:countish</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../toolbox/paginators/keynav_js/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../toolbox/paginators/keyset/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                                <span class="block mt-1">:keynav_​js</span>
+                                                <span class="block mt-1">:keyset</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>

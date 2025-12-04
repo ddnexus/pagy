@@ -62,7 +62,7 @@ const fontIsolation = (async () => {
       let cssText = await response.text();
       fontMappings.forEach((mapping) => {
         const regex = new RegExp(`(font-family:\\s*['"]?)${mapping.original}(['"]?;?)`, "g");
-        cssText = cssText.replace(regex, `\$1${mapping.custom}\$2`);
+        cssText = cssText.replace(regex, `$1${mapping.custom}$2`);
       });
       classMappings.forEach((mapping) => {
         const regex = new RegExp(`\\.(${mapping.original})(?=[\\s\\.{,:])`, "g");
@@ -70,7 +70,9 @@ const fontIsolation = (async () => {
       });
       const fontFaceRegex = /(?:\/\*[\s\S]*?\*\/[\s\n]*)?@font-face\s*\{[^}]*}/g;
       const fontFaceMatches = cssText.match(fontFaceRegex);
-      result.fontFaceRules = fontFaceMatches ? fontFaceMatches.join("\n\n") : "";
+      result.fontFaceRules = fontFaceMatches ? fontFaceMatches.join(`
+
+`) : "";
       result.componentCss = cssText.replace(fontFaceRegex, "").trim();
     } catch (error) {
       console.error("Failed to process Google Font CSS:", fontCssUrl, error);
@@ -79,8 +81,10 @@ const fontIsolation = (async () => {
     return result;
   }
   const processedResults = await Promise.all(fontDefinitions.map((def) => processGoogleFontCSS(def.url, def.fontMappings, def.classMappings)));
-  const allFontFaceRules = processedResults.map((r) => r.fontFaceRules).join("\n");
-  const allComponentCss = processedResults.map((r) => r.componentCss).join("\n");
+  const allFontFaceRules = processedResults.map((r) => r.fontFaceRules).join(`
+`);
+  const allComponentCss = processedResults.map((r) => r.componentCss).join(`
+`);
   if (allFontFaceRules) {
     const styleEl = document.createElement("style");
     styleEl.id = "pagy-wand-font-css";
@@ -696,11 +700,11 @@ document.addEventListener("DOMContentLoaded", async () => {
               </dd>
           </dl>
           <h4>Customizing</h4>
-          <p>\u2022 You can change Pagy's styling quite radically, by just setting a few CSS Custom Properties:
+          <p>• You can change Pagy's styling quite radically, by just setting a few CSS Custom Properties:
             the <code><i>pagy.css</i></code> or <code><i>pagy-tailwind.css</i></code> calculates all the other metrics.</p>
-          <p>\u2022 Pick a Presets as a starting point, customize it with the controls,
+          <p>• Pick a Presets as a starting point, customize it with the controls,
             and copy/paste the CSS Override in your Stylesheet.</p>
-          <p>\u2022 Add further customization to the <code>.pagy</code> CSS Override, or override the calculated properties
+          <p>• Add further customization to the <code>.pagy</code> CSS Override, or override the calculated properties
             for full control over the final style.</p>
           <p><b>Important</b>: Do not link the Pagy CSS file. Copy its customized content in your CSS,
             to avoid unwanted cosmetic changes that could happen on update.</p>
@@ -973,10 +977,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     applyCSS(presetCSS);
   }
   function updateOverride() {
-    let override = `.pagy {\n`;
+    let override = `.pagy {
+`;
     Object.values(controls).forEach((c) => {
       if (c.name !== "") {
-        override += `  ${c.name}: ${c.input.value}${c.unit};\n`;
+        override += `  ${c.name}: ${c.input.value}${c.unit};
+`;
       }
     });
     override += "}";

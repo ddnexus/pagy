@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.817651698656">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.818131554448">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -28,11 +28,11 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.817651698656" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.818131554448" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.817651698656" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.818131554448" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.817651698656" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.818131554448" data-turbo-eval="false" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -186,7 +186,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../../assets/images/pagy-the-frog.png">
                             </span>
                             <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.1.8</span>
+                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.2.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -393,18 +393,18 @@
         <div class="line-clamp-3"><p class="hidden mt-2 md:block"><code v-pre>:offset</code> is a generic OFFSET paginator usable with ORM collections or regular <code v-pre>Array</code> objects.</p></div>
     </div>
 </a>
+<a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../toolbox/paginators/countish/">
+    <div class="p-6">
+        <div class="text-xs font-semibold text-body-link uppercase">Paginators</div>
+        <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">:countish</div>
+        <div class="line-clamp-3"><p class="hidden mt-2 md:block"><code v-pre>:countish</code> is an OFFSET paginator that memoizes the result of the <code v-pre>COUNT</code> query, running it only once per collection (instead of once per page), and...</p></div>
+    </div>
+</a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../toolbox/paginators/countless/">
     <div class="p-6">
         <div class="text-xs font-semibold text-body-link uppercase">Paginators</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">:countless</div>
-        <div class="line-clamp-3"><p class="hidden mt-2 md:block"><code v-pre>:countless</code> is an OFFSET paginator that avoids the <code v-pre>COUNT</code> query, reducing the number of queries per request by one.</p></div>
-    </div>
-</a>
-<a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../toolbox/paginators/keynav_js/">
-    <div class="p-6">
-        <div class="text-xs font-semibold text-body-link uppercase">Paginators</div>
-        <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">:keynav_js</div>
-        <div class="line-clamp-3"><p class="hidden mt-2 md:block"><code v-pre>:keynav_js</code> is a fast KEYSET paginator that supports the UI. It's a pagy exclusive technique.</p></div>
+        <div class="line-clamp-3"><p class="hidden mt-2 md:block"><code v-pre>:countless</code> is an OFFSET paginator that avoids the <code v-pre>COUNT</code> query, reducing the number of queries per page in half.</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../toolbox/paginators/keyset/">
@@ -414,11 +414,18 @@
         <div class="line-clamp-3"><p class="hidden mt-2 md:block"><code v-pre>:keyset</code> is the <strong>fastest</strong> paginator for SQL collections.</p></div>
     </div>
 </a>
+<a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../toolbox/paginators/keynav_js/">
+    <div class="p-6">
+        <div class="text-xs font-semibold text-body-link uppercase">Paginators</div>
+        <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">:keynav_js</div>
+        <div class="line-clamp-3"><p class="hidden mt-2 md:block"><code v-pre>:keynav_js</code> is a fast KEYSET paginator that supports the UI. It's a pagy exclusive technique.</p></div>
+    </div>
+</a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../toolbox/paginators/calendar/">
     <div class="p-6">
         <div class="text-xs font-semibold text-body-link uppercase">Paginators</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">:calendar</div>
-        <div class="line-clamp-3"><p class="hidden mt-2 md:block">The <code v-pre>:calendar</code> paginator combines the functionality of <code v-pre>time-range</code> and <code v-pre>OFFSET</code> paginators.</p></div>
+        <div class="line-clamp-3"><p class="hidden mt-2 md:block">The <code v-pre>:calendar</code> paginator combines the functionality of <code v-pre>time-range</code> with the <code v-pre>OFFSET</code> pagination.</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../toolbox/paginators/elasticsearch_rails/">
