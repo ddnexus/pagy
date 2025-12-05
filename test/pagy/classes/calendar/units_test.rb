@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../../../test_helper'
-require_relative '../../../../gem/lib/pagy/classes/calendar/calendar'
-require_relative '../../../../gem/lib/pagy/toolbox/helpers/support/a_lambda' # just to check the page_label
+require 'test_helper'
+require 'pagy/classes/calendar/calendar'
+require 'pagy/toolbox/helpers/support/a_lambda' # just to check the page_label
 
 Time.zone = 'Etc/GMT+5'
 Date.beginning_of_week = :sunday

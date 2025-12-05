@@ -2,25 +2,17 @@
 
 require 'rake/testtask'
 
-# Almost each test recreates a different environment
-# and must run in a separate process in order to avoid
-# to override other tests, so we create one task per test.
-# That's a bit slow but consistent and easier when developing.
+desc 'Run all tests'
+Rake::TestTask.new(:test) do |t|
+  # Ease the require
+  t.libs << 'lib' << 'test'
 
-# Use the :test task to run them all
+  # Glob pattern to find all test files
+  t.pattern = 'test/**/*_test.rb'
 
-# Get the full list of all the test tasks (and test files that each task run) with:
-# rake -D test_*
+  # Optional: Print the command being run
+  t.verbose = true
 
-names = []
-FileList.new.include('test/**/*_test.rb').each do |path|
-  name = "test_#{path[0..-9].split('/').last}"
-  names << name
-  Rake::TestTask.new(name) do |t|
-    t.test_files  = [path]
-    t.description = "Run tests in #{path}"
-  end
+  # Optional: Enable warnings (good for strict development)
+  # t.warning = true
 end
-
-desc "Run all the test tasks: #{names.join(', ')}"
-task test: [*names]

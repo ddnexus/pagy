@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../../../test_helper'
-require_relative '../../../mock_helpers/collection'
-require_relative '../../../mock_helpers/app'
+require 'test_helper'
+require 'mock_helpers/collection'
+require 'mock_helpers/app'
 
 describe 'info_tag' do
   it 'renders without i18n key' do
@@ -20,7 +20,7 @@ describe 'info_tag' do
 
   it 'renders with no_count' do
     pagy, = MockApp.new(params: { page: '23 50' })
-                   .send(:pagy, :countless, MockCollection.new)
+                   .pagy(:countless, MockCollection.new)
 
     _(pagy.count).must_be_nil
     _(pagy.info_tag).must_rematch :info_no_count

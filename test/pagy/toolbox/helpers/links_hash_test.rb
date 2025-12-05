@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative '../../../test_helper'
-require_relative '../../../mock_helpers/app'
-require_relative '../../../mock_helpers/collection'
-require_relative '../../../files/models'
+require 'test_helper'
+require 'mock_helpers/app'
+require 'mock_helpers/collection'
+require 'files/models'
 
 describe 'urls_hash' do
   before do
@@ -14,7 +14,7 @@ describe 'urls_hash' do
   describe 'urls_hash' do
     it 'returns the ordered links' do
       app = MockApp.new(params: { page: { number: 3, size: 10 } })
-      pagy, _records = app.send(:pagy, :offset, @collection, **@pagy_default, page_key: 'number', limit_key: 'size')
+      pagy, _records = app.pagy(:offset, @collection, **@pagy_default, page_key: 'number', limit_key: 'size')
       result = pagy.urls_hash
 
       _(result.keys).must_equal %i[first previous next last]
@@ -22,14 +22,14 @@ describe 'urls_hash' do
     end
     it 'sets the previous value to null when the link is unavailable' do
       app = MockApp.new(params: { page: { page: 1 } })
-      pagy, _records = app.send(:pagy, :offset, @collection, **@pagy_default)
+      pagy, _records = app.pagy(:offset, @collection, **@pagy_default)
       result = pagy.urls_hash
 
       _(result[:previous]).must_be_nil
     end
     it 'sets the next value to null when the link is unavailable' do
       app = MockApp.new(params: { page: { page: 50 } })
-      pagy, _records = app.send(:pagy, :offset, @collection, **@pagy_default)
+      pagy, _records = app.pagy(:offset, @collection, **@pagy_default)
       result = pagy.urls_hash
 
       _(result[:next]).must_be_nil
@@ -38,7 +38,7 @@ describe 'urls_hash' do
   describe 'urls_hash (keyset)' do
     it 'returns the ordered links' do
       app = MockApp.new(params: { page: { latest: 'WzIwXQ', size: 10 } })
-      pagy, _records = app.send(:pagy, :keyset,
+      pagy, _records = app.pagy(:keyset,
                                 Pet.order(:id),
                                 **@pagy_default,
                                 page_key:  'latest',
@@ -51,7 +51,7 @@ describe 'urls_hash' do
 
     it 'sets the next value to null when the link is unavailable' do
       app = MockApp.new(params: { page: { size: 50 } })
-      pagy, _records = app.send(:pagy, :keyset,
+      pagy, _records = app.pagy(:keyset,
                                 Pet.order(:id),
                                 **@pagy_default,
                                 page_key:  'latest',

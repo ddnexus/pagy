@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../../test_helper'
-require_relative '../../mock_helpers/app'
-require_relative '../../mock_helpers/collection'
+require 'test_helper'
+require 'mock_helpers/app'
+require 'mock_helpers/collection'
 
 describe 'pagy/helpers/url' do
   let(:app) { MockApp.new }
@@ -13,36 +13,36 @@ describe 'pagy/helpers/url' do
 
   describe 'compose_page_url' do
     it 'renders basic url' do
-      pagy, = app.send(:pagy, :offset, @collection, count: 1000, page: 3)
+      pagy, = app.pagy(:offset, @collection, count: 1000, page: 3)
 
       _(pagy.send(:compose_page_url, 5)).must_equal_url '/foo?page=5'
       _(pagy.send(:compose_page_url, 5, absolute: true)).must_equal_url 'http://example.com:3000/foo?page=5'
     end
     it 'renders url with params' do
-      pagy, = app.send(:pagy, :offset, @collection, count: 1000, page: 3, querify: ->(qh) { qh.merge!(a: 3, b: 4) })
+      pagy, = app.pagy(:offset, @collection, count: 1000, page: 3, querify: ->(qh) { qh.merge!(a: 3, b: 4) })
 
       _(pagy.send(:compose_page_url, 5)).must_equal_url "/foo?page=5&a=3&b=4"
       _(pagy.send(:compose_page_url, 5, absolute: true)).must_equal_url "http://example.com:3000/foo?page=5&a=3&b=4"
     end
     it 'renders url with fragment' do
-      pagy, = app.send(:pagy, :offset, @collection, count: 1000, page: 3)
+      pagy, = app.pagy(:offset, @collection, count: 1000, page: 3)
 
       _(pagy.send(:compose_page_url, 6, fragment: '#fragment')).must_equal_url '/foo?page=6#fragment'
       _(pagy.send(:compose_page_url, 6, absolute: true, fragment: '#fragment')).must_equal_url 'http://example.com:3000/foo?page=6#fragment'
     end
     it 'renders url with params and fragment' do
-      pagy, = app.send(:pagy, :offset, @collection, count: 1000, page: 3, querify: ->(qh) { qh.merge!(a: 3, b: 4) })
+      pagy, = app.pagy(:offset, @collection, count: 1000, page: 3, querify: ->(qh) { qh.merge!(a: 3, b: 4) })
 
       _(pagy.send(:compose_page_url, 5, fragment: '#fragment')).must_equal_url "/foo?page=5&a=3&b=4#fragment"
       _(pagy.send(:compose_page_url, 5, absolute: true, fragment: '#fragment')).must_equal_url "http://example.com:3000/foo?page=5&a=3&b=4#fragment"
     end
     it 'renders url with overridden path' do
-      pagy, = app.send(:pagy, :offset, @collection, count: 1000, page: 3, path: '/bar')
+      pagy, = app.pagy(:offset, @collection, count: 1000, page: 3, path: '/bar')
 
       _(pagy.send(:compose_page_url, 5)).must_equal_url '/bar?page=5'
     end
     it 'renders url with overridden request' do
-      pagy, = app.send(:pagy, :offset, @collection,
+      pagy, = app.pagy(:offset, @collection,
                        count:   1000,
                        page:    3,
                        request: { base_url: 'http://example.com',
@@ -52,7 +52,7 @@ describe 'pagy/helpers/url' do
       _(pagy.send(:compose_page_url, 5, absolute: true)).must_equal_url 'http://example.com/path?a=1&b=2&page=5'
     end
     it 'preserves other nested params' do
-      pagy, = app.send(:pagy, :offset, @collection,
+      pagy, = app.pagy(:offset, @collection,
                        count:    1000,
                        page:     3,
                        root_key: 'users',
@@ -63,7 +63,7 @@ describe 'pagy/helpers/url' do
       _(url).must_equal_url "/path?users%5Bpage%5D=5&users%5Bq%5D=search_term"
     end
     it 'clear limit without client_max_limit nested params' do
-      pagy, = app.send(:pagy, :offset, @collection,
+      pagy, = app.pagy(:offset, @collection,
                        count:    1000,
                        page:     3,
                        root_key: 'users',
@@ -75,7 +75,7 @@ describe 'pagy/helpers/url' do
     end
     it 'works with no params' do
       app   = MockApp.new(params: { page: nil }) # override default page: 3
-      pagy, = app.send(:pagy, :offset, @collection,
+      pagy, = app.pagy(:offset, @collection,
                        count:    1000,
                        root_key: 'users',
                        request:  { path:   '/path',
@@ -89,7 +89,7 @@ describe 'pagy/helpers/url' do
   describe 'process pagy_params' do
     it 'overrides params' do
       app   = MockApp.new(params: { delete_me: 'delete_me', a: 5 })
-      pagy, = app.send(:pagy, :offset, @collection,
+      pagy, = app.pagy(:offset, @collection,
                        count:  1000,
                        page:    3,
                        querify: lambda do |params|

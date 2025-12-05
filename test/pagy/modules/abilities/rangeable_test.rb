@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative '../../../test_helper'
-require_relative '../../../../gem/lib/pagy/toolbox/helpers/support/series' # just to check the series
+require 'test_helper'
+require 'pagy/toolbox/helpers/support/series' # just to check the series
 
 # Lazy trick to load ActiveSupport and crap while silencing the warnings
 calendar = Pagy::Calendar
 calendar.is_a?(Pagy)
 
-Time.zone = 'Etc/GMT+5'
+Time.zone = 'Etc/UTC'
 Date.beginning_of_week = :sunday
 
 DAY    = 60 * 60 * 24

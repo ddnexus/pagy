@@ -3,29 +3,38 @@
 require 'active_support/core_ext/hash/indifferent_access'
 require 'groupdate'
 require 'rack'
+require 'uri'
 
-# ActiveSupport.to_time_preserves_timezone = :zone  # Fix ActiveSupport deprecation
-
-# Backend and Frontend poor man mock app
 class MockApp
-  attr_reader :request, :response
+  include Pagy::Method
 
-  def initialize(url: 'http://example.com:3000/foo', params: { page: 3 }, cookie: nil)
-    env                = Rack::MockRequest.env_for(url, params: params)
-    env["HTTP_COOKIE"] = cookie if cookie
-    @request           = Rack::Request.new(env)
-    @response          = Rack::Response.new
-  end
+  public :pagy # just for calling it without send
 
-  def params
-    ActiveSupport::HashWithIndifferentAccess.new(@request.params)
+  attr_reader :request, :params
+
+  # Initializer for a Rack::Request with defaults for test
+  def initialize(url:     'http://example.com:3000/foo',
+                 method:  :get,
+                 params:  { page: 3 },
+                 cookies: {},
+                 headers: {},
+                 indifferent_access: true)
+    @indifferent_access     = indifferent_access
+    env_opts                = { method: method.to_s.upcase, params: params }
+    env_opts['HTTP_COOKIE'] = cookies.map { |k, v| "#{k}=#{v}" }.join('; ') unless cookies.empty?
+    env_opts.merge!(headers)
+
+    env         = Rack::MockRequest.env_for(url, env_opts)
+    @request    = Rack::Request.new(env)
+    rack_params = @request.params
+    @params     = @indifferent_access ? ActiveSupport::HashWithIndifferentAccess.new(rack_params) : rack_params
   end
 
   def test_i18n_call
     I18n.t('test')
   end
 
-  include Pagy::Method
+  # -- Subclasses for specific Pagy calendar testing --
 
   class Calendar < MockApp
     def pagy_calendar_period(collection)

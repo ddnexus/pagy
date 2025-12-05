@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative '../../../../test_helper'
-require_relative '../../../../mock_helpers/searchkick'
-require_relative '../../../../mock_helpers/collection'
-require_relative '../../../../mock_helpers/app'
+require 'test_helper'
+require 'mock_helpers/searchkick'
+require 'mock_helpers/collection'
+require 'mock_helpers/app'
 
 describe 'searchkick' do
   describe 'model#pagy_search' do
@@ -45,7 +45,7 @@ describe 'searchkick' do
         @collection = MockCollection.new
       end
       it 'paginates response with defaults' do
-        pagy, response = app.send(:pagy, :searchkick, MockSearchkick::Model.pagy_search('a') { 'B-' })
+        pagy, response = app.pagy(:searchkick, MockSearchkick::Model.pagy_search('a') { 'B-' })
         results = response.results
 
         _(pagy).must_be_instance_of Pagy::Searchkick
@@ -56,7 +56,7 @@ describe 'searchkick' do
         _(results).must_rematch :results
       end
       it 'paginates results with defaults' do
-        pagy, results = app.send(:pagy, :searchkick, MockSearchkick::Model.pagy_search.results)
+        pagy, results = app.pagy(:searchkick, MockSearchkick::Model.pagy_search.results)
 
         _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
@@ -66,7 +66,7 @@ describe 'searchkick' do
         _(results).must_rematch :results
       end
       it 'paginates with options' do
-        pagy, results = app.send(:pagy, :searchkick, MockSearchkick::Model.pagy_search('b').results, page: 2, limit: 10)
+        pagy, results = app.pagy(:searchkick, MockSearchkick::Model.pagy_search('b').results, page: 2, limit: 10)
 
         _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
@@ -79,7 +79,7 @@ describe 'searchkick' do
     describe 'Use search object' do
       it 'paginates results with defaults' do
         results = MockSearchkick::Model.search('a')
-        pagy    = app.send(:pagy, :searchkick, results)
+        pagy    = app.pagy(:searchkick, results)
 
         _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
@@ -88,7 +88,7 @@ describe 'searchkick' do
       end
       it 'paginates results with options and no term' do
         results = MockSearchkick::Model.search('b', page: 2, per_page: 15)
-        pagy    = app.send(:pagy, :searchkick, results)
+        pagy    = app.pagy(:searchkick, results)
 
         _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
@@ -99,7 +99,7 @@ describe 'searchkick' do
     describe 'Use search object V6' do
       it 'paginates results with defaults' do
         results = MockSearchkick::ModelV6.search('a')
-        pagy    = app.send(:pagy, :searchkick, results)
+        pagy    = app.pagy(:searchkick, results)
 
         _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
@@ -108,7 +108,7 @@ describe 'searchkick' do
       end
       it 'paginates results with options and no term' do
         results = MockSearchkick::ModelV6.search('b', page: 2, per_page: 15)
-        pagy    = app.send(:pagy, :searchkick, results)
+        pagy    = app.pagy(:searchkick, results)
 
         _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000

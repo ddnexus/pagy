@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative '../../../test_helper'
-require_relative '../../../mock_helpers/pagy_buggy'
-require_relative '../../../mock_helpers/app'
-require_relative '../../../mock_helpers/collection'
-require_relative '../../../../gem/lib/pagy/toolbox/helpers/support/data_pagy_attribute'
+require 'test_helper'
+require 'mock_helpers/pagy_buggy'
+require 'mock_helpers/app'
+require 'mock_helpers/collection'
+require 'pagy/toolbox/helpers/support/data_pagy_attribute'
 
 describe 'Pagy I18n' do
   describe 'translate' do
@@ -30,16 +30,15 @@ describe 'Pagy I18n' do
   describe "locales" do
     it 'switches :locale according to @pagy_locale' do
       Pagy::I18n.locale = 'nl'
-
       _(Pagy::I18n.translate('pagy.item_name', count: 1)).must_equal "stuk"
+
       Pagy::I18n.locale = 'en'
-
       _(Pagy::I18n.translate('pagy.item_name', count: 1)).must_equal "item"
+
       Pagy::I18n.locale = 'de'
-
       _(Pagy::I18n.translate('pagy.item_name', count: 1)).must_equal "Eintrag"
-      Pagy::I18n.locale = 'unknown'
 
+      Pagy::I18n.locale = 'unknown'
       _ { Pagy::I18n.translate('pagy.item_name', count: 1) }.must_raise Errno::ENOENT
       Pagy::I18n.locale = 'en' # reset for other tests
     end

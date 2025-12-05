@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../../../test_helper'
-require_relative '../../../mock_helpers/collection'
-require_relative '../../../mock_helpers/app'
+require 'test_helper'
+require 'mock_helpers/collection'
+require 'mock_helpers/app'
 
 describe 'Offset' do
   let(:app) { MockApp.new }
@@ -12,7 +12,7 @@ describe 'Offset' do
       @collection = MockCollection.new
     end
     it 'paginates with defaults' do
-      pagy, records = app.send(:pagy, :offset, @collection)
+      pagy, records = app.pagy(:offset, @collection)
 
       _(pagy).must_be_instance_of Pagy::Offset
       _(pagy.count).must_equal 1000
@@ -23,7 +23,7 @@ describe 'Offset' do
     end
     it 'paginates with page param empty' do
       app = MockApp.new(params: { page: '' })
-      pagy, records = app.send(:pagy, :offset, @collection, limit: 10)
+      pagy, records = app.pagy(:offset, @collection, limit: 10)
 
       _(pagy).must_be_instance_of Pagy::Offset
       _(pagy.count).must_equal 1000
@@ -33,7 +33,7 @@ describe 'Offset' do
       _(records).must_equal [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     end
     it 'paginates with options' do
-      pagy, records = app.send(:pagy, :offset, @collection, page: 2, limit: 10)
+      pagy, records = app.pagy(:offset, @collection, page: 2, limit: 10)
 
       _(pagy).must_be_instance_of Pagy::Offset
       _(pagy.count).must_equal 1000
@@ -63,7 +63,7 @@ describe 'Offset' do
     end
     it 'gets defaults' do
       options = {}
-      pagy,   = app.send(:pagy, :offset, @collection, **options)
+      pagy,   = app.pagy(:offset, @collection, **options)
       merged  = pagy.options
 
       _(merged.keys).must_include :count
@@ -73,7 +73,7 @@ describe 'Offset' do
     end
     it 'gets options' do
       options = { page: 2, limit: 10 }
-      pagy,   = app.send(:pagy, :offset, @collection, **options)
+      pagy,   = app.pagy(:offset, @collection, **options)
       merged  = pagy.options
 
       _(merged.keys).must_include :count
@@ -86,7 +86,7 @@ describe 'Offset' do
     it 'works with grouped collections' do
       collection = MockCollection::Grouped.new((1..1000).to_a)
       options    = { page: 2, limit: 10 }
-      pagy,      = app.send(:pagy, :offset, collection, **options)
+      pagy,      = app.pagy(:offset, collection, **options)
       merged     = pagy.options
 
       _(merged.keys).must_include :count
@@ -98,7 +98,7 @@ describe 'Offset' do
     end
     it 'overrides count and page' do
       options = { count: 100, page: 3 }
-      pagy,   = app.send(:pagy, :offset, @collection, **options)
+      pagy,   = app.pagy(:offset, @collection, **options)
       merged  = pagy.options
 
       _(merged.keys).must_include :count

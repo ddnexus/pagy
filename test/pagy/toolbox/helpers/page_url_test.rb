@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../../../test_helper'
-require_relative '../../../mock_helpers/app'
-require_relative '../../../mock_helpers/collection'
+require 'test_helper'
+require 'mock_helpers/app'
+require 'mock_helpers/collection'
 
 describe 'Pagy URLs' do
   let(:app) { MockApp.new }
@@ -13,7 +13,7 @@ describe 'Pagy URLs' do
 
   describe 'page_url' do
     it 'renders basic url' do
-      pagy, = app.send(:pagy, :offset, @collection, count: 1000, page: 3)
+      pagy, = app.pagy(:offset, @collection, count: 1000, page: 3)
 
       _(pagy.page_url('5')).must_equal '/foo?page=5'
       _(pagy.page_url('5', absolute: true)).must_equal 'http://example.com:3000/foo?page=5'

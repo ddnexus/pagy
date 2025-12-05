@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative '../../../../test_helper'
-require_relative '../../../../mock_helpers/meilisearch'
-require_relative '../../../../mock_helpers/collection'
-require_relative '../../../../mock_helpers/app'
+require 'test_helper'
+require 'mock_helpers/meilisearch'
+require 'mock_helpers/collection'
+require 'mock_helpers/app'
 
 describe 'meilisearch' do
   describe 'model#pagy_search' do
@@ -26,7 +26,7 @@ describe 'meilisearch' do
         @collection = MockCollection.new
       end
       it 'paginates response with defaults' do
-        pagy, results = app.send(:pagy, :meilisearch, MockMeilisearch::Model.pagy_search('a'))
+        pagy, results = app.pagy(:meilisearch, MockMeilisearch::Model.pagy_search('a'))
 
         _(pagy).must_be_instance_of Pagy::Meilisearch
         _(pagy.count).must_equal 1000
@@ -36,7 +36,7 @@ describe 'meilisearch' do
         _(results.to_a).must_rematch :results
       end
       it 'paginates with options' do
-        pagy, results = app.send(:pagy, :meilisearch, MockMeilisearch::Model.pagy_search('b'),
+        pagy, results = app.pagy(:meilisearch, MockMeilisearch::Model.pagy_search('b'),
                                  page: 2, limit: 10)
 
         _(pagy).must_be_instance_of Pagy::Meilisearch
@@ -50,7 +50,7 @@ describe 'meilisearch' do
     describe 'Use search object' do
       it 'paginates results with defaults' do
         results = MockMeilisearch::Model.ms_search('a')
-        pagy    = app.send(:pagy, :meilisearch, results)
+        pagy    = app.pagy(:meilisearch, results)
 
         _(pagy).must_be_instance_of Pagy::Meilisearch
         _(pagy.count).must_equal 1000
@@ -59,7 +59,7 @@ describe 'meilisearch' do
       end
       it 'paginates results with options' do
         results = MockMeilisearch::Model.ms_search('b', hits_per_page: 15, page: 3)
-        pagy    = app.send(:pagy, :meilisearch, results)
+        pagy    = app.pagy(:meilisearch, results)
 
         _(pagy).must_be_instance_of Pagy::Meilisearch
         _(pagy.count).must_equal 1000

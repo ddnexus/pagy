@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# :nocov:
 # No need to use all the UI in the tests, but goot to have the extra possibility
 module MockElasticsearchRails
   RESULTS = { 'a' => ('a-1'..'a-1000').to_a,
@@ -96,4 +95,3 @@ module MockElasticsearchRails
     end
   end
 end
-# :nocov:

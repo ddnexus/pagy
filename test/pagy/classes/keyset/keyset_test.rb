@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../../../test_helper'
-require_relative '../../../files/models'
-require_relative '../../../../gem/lib/pagy/modules/b64'
+require 'test_helper'
+require 'files/models'
+require 'pagy/modules/b64'
 
 describe "Pagy Keyset" do
   [Pet, PetSequel].each do |model|
