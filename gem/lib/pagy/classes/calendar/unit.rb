@@ -50,14 +50,7 @@ class Pagy
         unless time.between?(@initial, fit_final)
           raise RangeError.new(self, :time, "between #{@initial} and #{fit_final}", time) unless options[:fit_time]
 
-          if time < @final
-            fit_time = @initial
-            ordinal  = 'first'
-          else
-            fit_time = fit_final
-            ordinal  = 'last'
-          end
-          warn "Pagy::Calendar#page_at: Rescued #{time} out of range by returning the #{ordinal} page."
+          fit_time = time < @final ? @initial : fit_final
         end
         offset = page_offset_at(fit_time)   # offset starts from 0
         @order == :asc ? offset + 1 : @last - offset
