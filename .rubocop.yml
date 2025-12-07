@@ -79,7 +79,8 @@ Style/RedundantInitialize:
 # Please!
 Style/StringConcatenation:
   Enabled: false
-
+Style/FormatStringToken:
+  Enabled: false
 Style/Documentation:
   Enabled: false
 # These cops are disabled only in the test files in order to
@@ -103,6 +104,9 @@ Layout/SpaceInsideHashLiteralBraces:
   Enabled: true
   Exclude:
     - test/**/*
+
+Lint/MissingSuper:
+  Enabled: false
 
 Minitest/EmptyLineBeforeAssertionMethods:
   Enabled: false

@@ -4,7 +4,7 @@ class Pagy
   class Offset
     # Offset pagination without a count
     class Countless < Offset
-      def initialize(**) # rubocop:disable Lint/MissingSuper
+      def initialize(**)
         assign_options(**)
         assign_and_check(limit: 1, page: 1)
         @page = upto_max_pages(@page)

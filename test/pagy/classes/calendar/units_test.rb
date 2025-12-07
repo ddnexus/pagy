@@ -376,6 +376,32 @@ describe 'Pagy Calendar' do
     end
   end
 
+  describe 'out of range handling (empty page)' do
+    it 'assigns empty variables for out of range page (asc)' do
+      # Year 2021-2023 has 3 pages (2021, 2022, 2023). Page 4 is out of range.
+      # Default behavior (raise_range_error: false) triggers assign_empty_page_variables.
+      p = pagy(Pagy::Calendar::Year, page: 4)
+
+      # Check logic from assign_empty_page_variables
+      _(p.in).must_equal 0
+      _(p.from).must_equal p.instance_variable_get(:@final) # edge for asc is final
+      _(p.to).must_equal p.instance_variable_get(:@final)
+      _(p.previous).must_equal 3 # @last
+      _(p.next).must_be_nil
+    end
+
+    it 'assigns empty variables for out of range page (desc)' do
+      # Year 2021-2023 has 3 pages. Page 4 is out of range.
+      p = pagy(Pagy::Calendar::Year, page: 4, order: :desc)
+
+      _(p.in).must_equal 0
+      _(p.from).must_equal p.instance_variable_get(:@initial) # edge for desc is initial
+      _(p.to).must_equal p.instance_variable_get(:@initial)
+      _(p.previous).must_equal 3 # @last
+      _(p.next).must_be_nil
+    end
+  end
+
   describe 'Deprecated resources' do
     it 'sets the beginning_of_week from :offset' do
       pagy(Pagy::Calendar::Week, offset: 0)

@@ -16,13 +16,14 @@ Sequel.default_timezone = 'Etc/UTC'
 DB = Sequel.connect(adapter: 'sqlite', user: 'root', password: 'password',
                     host: 'localhost', port: '3306', database: db_path)
 
-# Models
+# Models for calendar tests
 class Event < ActiveRecord::Base
 end
 
 class Event40 < ActiveRecord::Base
 end
 
+# Models for Keyset and generic DB collections tests
 class Pet < ActiveRecord::Base
 end
 
