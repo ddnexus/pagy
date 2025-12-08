@@ -57,6 +57,4 @@ jobs:
       - name: Check Rubocop compliance
         run: bundle exec rubocop --format github
       - name: Check Tests
-        run: bundle exec rake test
-      - name: Check Coverage  # fails unless 100%
-        run: bundle exec rake check_coverage
+        run: bundle exec rake test # fail for coverage < 100%

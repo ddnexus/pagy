@@ -9,8 +9,7 @@ Ruby is tested with [`minitest`](https://github.com/minitest/minitest) through `
 
 ### Rake tasks
 
-If you want to run all code tests use the `:test` or `test_cov` task. For the full suite (including rubocop coverage and other checks), you can
-just run `rake default` (or just `rake`).
+Run `rake default` (or just `rake`).
 
 ---
 
