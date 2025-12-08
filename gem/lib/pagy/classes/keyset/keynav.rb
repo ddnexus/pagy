@@ -8,9 +8,10 @@ class Pagy
       PRIOR_PREFIX = 'prior_'
       PAGE_PREFIX  = 'page_'
 
-      path = Pathname.new(__FILE__).sub_ext('')
-      autoload :ActiveRecord, path.join('active_record')
-      autoload :Sequel,       path.join('sequel')
+      # Define empty subclasses to allow specific typing without triggering autoload.
+      # The .new factory in Keyset will handle mixing in the adapter logic from Pagy::Keyset::Adapters.
+      class ActiveRecord < self; end
+      class Sequel < self; end
 
       # Finalize the instance variables needed for the UI
       def initialize(set, **)

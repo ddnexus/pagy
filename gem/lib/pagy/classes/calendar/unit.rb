@@ -17,7 +17,7 @@ class Pagy
       include Rangeable
       include Shiftable
 
-      def initialize(**)    # rubocop:disable Lint/MissingSuper
+      def initialize(**)
         assign_options(**)
         assign_and_check(page: 1)
         assign_unit_variables
