@@ -7,7 +7,7 @@ class Pagy
   def limit_tag_js(id: nil, item_name: nil, client_max_limit: @options[:client_max_limit], **)
     raise OptionError.new(self, :client_max_limit, 'to be truthy', client_max_limit) unless client_max_limit
 
-    limit_input = %(<input name="limit" type="number" min="1" max="#{@options[:client_max_limit]}" value="#{
+    limit_input = %(<input name="limit" type="number" min="1" max="#{client_max_limit}" value="#{
                     @limit}" style="padding: 0; text-align: center; width: #{@limit.to_s.length + 1}rem;">#{A_TAG})
     url_token   = compose_page_url(PAGE_TOKEN, limit: LIMIT_TOKEN)
 
