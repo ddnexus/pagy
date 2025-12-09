@@ -24,8 +24,11 @@ class Pagy
       send(visibility)
       # Load the method, overriding its own alias. Next requests will call the method directly.
       define_method(:"load_#{visibility}") do |*args, **kwargs|
+        # Tests shadow the usage of these lines
+        # :nocov:
         require_relative methods[__callee__]
         send(__callee__, *args, **kwargs)
+        # :nocov:
       end
       methods.each_key { |method| alias_method method, :"load_#{visibility}" }
     end

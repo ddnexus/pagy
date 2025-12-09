@@ -2,7 +2,6 @@
 
 class Pagy
   # Return the page url for any page
-  # :nocov:
   def page_url(page, **)
     target = case page
              when :first    then nil
@@ -14,5 +13,4 @@ class Pagy
              end
     compose_page_url(target, **) if target || page == :first
   end
-  # :nocov:
 end
