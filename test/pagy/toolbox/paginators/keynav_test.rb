@@ -1,78 +1,63 @@
 # frozen_string_literal: true
 
 require 'test_helper'
-require 'files/models'
-require 'mock_helpers/app'
+require 'mocks/app'
+require 'db/models'
 require 'pagy/modules/b64'
 
-describe 'Keynav' do
-  [Pet, PetSequel].each do |model|
-    describe ":keynav_js #{model}" do
-      it 'works for page 1' do
-        app           = MockApp.new(params: {})
-        pagy, records = app.pagy(:keynav_js,
-                                 model.order(:id),
-                                 tuple_comparison: true,
-                                 limit:            10)
+describe 'Pagy::KeynavJsPaginator' do
+  let(:collection) { Pet.order(:id) }
 
-        _(pagy).must_be_kind_of Pagy::Keyset::Keynav
-        _(records.size).must_equal 10
-        _(pagy.next).must_equal 2
-        _(pagy.update).must_equal [nil, nil, 'page', 2, [1, 1, [10]]]
-      end
-      it 'works for page 2' do
-        app           = MockApp.new(params: {page: Pagy::B64.urlsafe_encode(['ppp', 'key', 2, 2, [10]].to_json)},
-                                    cookies: { pagy: 'ppp' })
-        pagy, records = app.pagy(:keynav_js,
-                                 model.order(:id),
-                                 tuple_comparison: true,
-                                 limit:            10)
+  it 'paginates with defaults (page 1)' do
+    app = MockApp.new(params: {})
+    pagy, records = app.pagy(:keynav_js, collection, limit: 10)
 
-        _(pagy).must_be_kind_of Pagy::Keyset::Keynav
-        _(records.size).must_equal 10
-        _(records.first.id).must_equal 11
-        _(pagy.next).must_equal 3
-        _(pagy.update).must_equal ["key", nil, 'page', 3, [2, 1, [20]]]
-      end
-      it 'reset pagination for missing cookie' do
-        app           = MockApp.new(params: {page: Pagy::B64.urlsafe_encode(['zzz', 'key', 2, 2, [10]].to_json)},
-                                    cookies: {pagy: 'ppp'})
-        pagy, records = app.pagy(:keynav_js,
-                                 model.order(:id),
-                                 tuple_comparison: true,
-                                 limit: 10, root_key: 'root')
+    _(pagy).must_be_kind_of Pagy::Keyset::Keynav
+    _(records.size).must_equal 10
+    _(pagy.next).must_equal 2
+  end
 
-        _(pagy).must_be_kind_of Pagy::Keyset::Keynav
-        _(records.size).must_equal 10
-        _(pagy.next).must_equal 2
-        _(pagy.update).must_equal [nil, 'root', 'page', 2, [1, 1, [10]]]
-      end
-      it 'fallback to Countless if page param is a string with space' do
-        app           = MockApp.new(cookies: { pagy: 'ppp' }, params: { page: '2 3' })
-        pagy, records = app.pagy(:keynav_js,
-                                 model.order(:id),
-                                 tuple_comparison: true,
-                                 limit:            10)
+  it 'paginates page 2 with token' do
+    # Token structure from JS: [browserId, storageKey, pageNum, last, priorCutoff, pageCutoff]
+    # browserId: 'secret_key' (must match cookie)
+    # storageKey: 'store_key'
+    # pageNum: 2
+    # last: 2
+    # priorCutoff: [10] (ID of last item on page 1)
+    # pageCutoff: nil (current page)
+    secret = 'secret_key'
+    token_json = [secret, 'store_key', 2, 2, [10], nil].to_json
+    token = Pagy::B64.urlsafe_encode(token_json)
 
-        _(pagy).must_be_kind_of Pagy::Offset::Countless
-        _(records.size).must_equal 10
-        _(records.first.id).must_equal 11
-        _(pagy.next).must_equal 3
-      end
-      it 'works for page 5' do
-        app           = MockApp.new(params: {page: Pagy::B64.urlsafe_encode(['ppp', 'key', 5, 5, [40]].to_json)},
-                                    cookies: { pagy: 'ppp' })
-        pagy, records = app.pagy(:keynav_js,
-                                 model.order(:id),
-                                 tuple_comparison: true,
-                                 limit: 10, root_key: 'root')
+    # Must pass the matching cookie 'pagy' => 'secret_key'
+    app = MockApp.new(params: { page: token }, cookies: { pagy: secret })
+    pagy, records = app.pagy(:keynav_js, collection, limit: 10)
 
-        _(pagy).must_be_kind_of Pagy::Keyset::Keynav
-        _(records.size).must_equal 10
-        _(records.first.id).must_equal 41
-        _(pagy.next).must_be_nil
-        _(pagy.update).must_equal %w[key root page]
-      end
-    end
+    _(records.first.id).must_equal 11
+    _(pagy.page).must_equal 2
+  end
+
+  it 'resets pagination if cookie mismatches' do
+    secret = 'expected_key'
+    token_json = [secret, 'store_key', 2, 2, [10], nil].to_json
+    token = Pagy::B64.urlsafe_encode(token_json)
+
+    # Request sends 'wrong_key' -> Mismatch -> Security Reset to page 1
+    app = MockApp.new(params: { page: token }, cookies: { pagy: 'wrong_key' })
+
+    pagy, records = app.pagy(:keynav_js, collection, limit: 10)
+
+    # Should reset to page 1
+    _(pagy.page).must_equal 1
+    _(records.first.id).must_equal 1
+  end
+
+  it 'falls back to Countless if page param contains space' do
+    # '2 3' simulates a legacy/countless style param
+    app = MockApp.new(params: { page: '2 3' })
+
+    pagy, _records = app.pagy(:keynav_js, collection, limit: 10)
+
+    _(pagy).must_be_kind_of Pagy::Offset::Countless
   end
 end

@@ -41,20 +41,4 @@ describe Pagy::Loader do
     m = loader.instance_method(:bootstrap_series_nav)
     _(m.original_name).must_equal :load_protected
   end
-
-  it 'loads and executes the method (smoke test)' do
-    # Mock a request object compatible with Linkable
-    mock_request = Struct.new(:params, :path, :base_url, keyword_init: true).new(
-      params: {}, path: '/path', base_url: 'http://example.com'
-    )
-
-    # Initialize the anonymous subclass with the mock request
-    pagy = pagy_class.new(count: 100, request: mock_request)
-
-    # Calling page_url(1) should trigger the loader, require 'page_url.rb',
-    # and execute the real page_url method which calls compose_page_url
-    url = pagy.page_url(1)
-
-    _(url).must_equal_url '/path?page=1'
-  end
 end

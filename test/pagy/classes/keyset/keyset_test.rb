@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'test_helper'
-require 'files/models'
+require 'db/models'
 require 'pagy/modules/b64'
 
 describe "Pagy Keyset" do

@@ -68,7 +68,10 @@ class Pagy
       # Apply the strftime format to the time.
       # Localization other than :en, require the rails-I18n gem.
       def localize(time, **options)
+        # Impossible to "unprepend" the rails-i18n after it runs localize_with_rails_i18n_gem in test
+        # :nocov:
         time.strftime(options[:format])
+        # :nocov:
       end
 
       # The number of time units to offset from the @initial time, in order to get the ordered starting time for the page.

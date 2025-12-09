@@ -2,7 +2,7 @@
 
 require 'test_helper'
 require 'pagy/classes/keyset/adapters/active_record'
-require 'files/models'
+require 'db/models'
 
 describe Pagy::Keyset::Adapters::ActiveRecord do
   # Host class to mix in the adapter

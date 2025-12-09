@@ -1,28 +1,73 @@
 # frozen_string_literal: true
 
 require 'test_helper'
-require 'mock_helpers/collection'
-require 'mock_helpers/app'
+require 'pagy/toolbox/helpers/info_tag'
 
-describe 'info_tag' do
-  it 'renders without i18n key' do
-    _(Pagy::Offset.new(count: 0).info_tag).must_rematch :info_0
-    _(Pagy::Offset.new(count: 1).info_tag).must_rematch :info_1
-    _(Pagy::Offset.new(count: 13).info_tag).must_rematch :info_13
-    _(Pagy::Offset.new(count: 100, page: 3).info_tag).must_rematch :info_100
+describe 'Pagy#info_tag' do
+  let(:pagy_class) do
+    Class.new(Pagy) do
+      attr_accessor :count, :page, :last, :in, :from, :to
+
+      def initialize(vars = {})
+        @count = vars[:count]
+        @page  = vars[:page]
+        @last  = vars[:last]
+        @in    = vars[:in]
+        @from  = vars[:from]
+        @to    = vars[:to]
+      end
+
+      public :info_tag
+    end
   end
-  it 'overrides the item_name and set id' do
-    _(Pagy::Offset.new(count: 0).info_tag(id: 'pagy-info', item_name: 'Widgets')).must_rematch :info_0
-    _(Pagy::Offset.new(count: 1).info_tag(id: 'pagy-info', item_name: 'Widget')).must_rematch :info_1
-    _(Pagy::Offset.new(count: 13).info_tag(id: 'pagy-info', item_name: 'Widgets')).must_rematch :info_13
-    _(Pagy::Offset.new(count: 100, page: 3).info_tag(id: 'pagy-info', item_name: 'Widgets')).must_rematch :info_100
+
+  it 'renders no_count message when count is nil' do
+    # key: pagy.info_tag.no_count -> "Page %{page} of %{pages}"
+    pagy = pagy_class.new(count: nil, page: 3, last: 10)
+
+    html = pagy.info_tag
+    _(html).must_equal '<span class="pagy info">Page 3 of 10</span>'
   end
 
-  it 'renders with no_count' do
-    pagy, = MockApp.new(params: { page: '23 50' })
-                   .pagy(:countless, MockCollection.new)
+  it 'renders no_items message when count is 0' do
+    # key: pagy.info_tag.no_items -> "No %{item_name} found"
+    # item_name (count: 0) -> "items"
+    pagy = pagy_class.new(count: 0)
 
-    _(pagy.count).must_be_nil
-    _(pagy.info_tag).must_rematch :info_no_count
+    html = pagy.info_tag
+    _(html).must_equal '<span class="pagy info">No items found</span>'
+  end
+
+  it 'renders single_page message when showing all items' do
+    # key: pagy.info_tag.single_page -> "Displaying %{count} %{item_name}"
+    # item_name (count: 5) -> "items"
+    pagy = pagy_class.new(count: 5, in: 5)
+
+    html = pagy.info_tag
+    _(html).must_equal '<span class="pagy info">Displaying 5 items</span>'
+  end
+
+  it 'renders multiple_pages message when paginated' do
+    # key: pagy.info_tag.multiple_pages -> "Displaying %{item_name} %{from}-%{to} of %{count} in total"
+    # item_name (count: 100) -> "items"
+    pagy = pagy_class.new(count: 100, in: 20, from: 1, to: 20)
+
+    html = pagy.info_tag
+    _(html).must_equal '<span class="pagy info">Displaying items 1-20 of 100 in total</span>'
+  end
+
+  it 'accepts custom item_name' do
+    # "No products found"
+    pagy = pagy_class.new(count: 0)
+
+    html = pagy.info_tag(item_name: 'products')
+    _(html).must_equal '<span class="pagy info">No products found</span>'
+  end
+
+  it 'accepts optional id' do
+    pagy = pagy_class.new(count: 0)
+
+    html = pagy.info_tag(id: 'my-info')
+    _(html).must_match(/id="my-info"/)
   end
 end

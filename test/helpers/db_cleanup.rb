@@ -4,7 +4,7 @@ require 'sqlite3'
 
 Minitest.after_run do
   # Ensure Pagy::ROOT is available (main lib must be loaded first)
-  db_path = Pagy::ROOT.join('../test/files/db/test.sqlite3')
+  db_path = Pagy::ROOT.join('../test/db/test.sqlite3')
 
   if File.exist?(db_path)
     begin

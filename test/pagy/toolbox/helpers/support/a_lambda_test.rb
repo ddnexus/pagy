@@ -109,13 +109,20 @@ describe 'Pagy#a_lambda' do
         _(output).must_match(/title="Displaying 10 items"/)
       end
 
-      it 'adds empty-page class and specific title for zero counts' do
+      it 'adds empty-page class (appended) and specific title for zero counts' do
         # Page 2 has 0 items (index 1)
         output = pagy_counts.a_lambda.call(2, classes: 'nav-link')
 
         _(output).must_match(/class="nav-link empty-page"/)
         # pagy.info_tag.no_items: "No %{item_name} found"
         _(output).must_match(/title="No items found"/)
+      end
+
+      it 'adds empty-page class (standalone) when no classes provided' do
+        # Page 2 has 0 items. No classes passed.
+        output = pagy_counts.a_lambda.call(2)
+
+        _(output).must_match(/class="empty-page"/)
       end
     end
   end

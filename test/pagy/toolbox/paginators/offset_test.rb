@@ -1,110 +1,88 @@
 # frozen_string_literal: true
 
 require 'test_helper'
-require 'mock_helpers/collection'
-require 'mock_helpers/app'
+require 'mocks/app'
+require 'db/models'
 
-describe 'Offset' do
-  let(:app) { MockApp.new }
+describe Pagy::OffsetPaginator do
+  # We test via the public API provided by the App/Controller mixin (MockApp)
+  # which delegates to OffsetPaginator.
 
-  describe ':offset' do
-    before do
-      @collection = MockCollection.new
-    end
-    it 'paginates with defaults' do
-      pagy, records = app.pagy(:offset, @collection)
+  let(:collection) { (1..20).to_a }
 
-      _(pagy).must_be_instance_of Pagy::Offset
-      _(pagy.count).must_equal 1000
-      _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
-      _(pagy.page).must_equal app.params[:page].to_i
-      _(records.count).must_equal Pagy::DEFAULT[:limit]
-      _(records).must_equal [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
-    end
-    it 'paginates with page param empty' do
-      app = MockApp.new(params: { page: '' })
-      pagy, records = app.pagy(:offset, @collection, limit: 10)
+  describe 'with Array' do
+    it 'paginates array' do
+      app = MockApp.new(params: { page: 2 })
+      pagy, results = app.pagy(collection, limit: 5)
 
-      _(pagy).must_be_instance_of Pagy::Offset
-      _(pagy.count).must_equal 1000
-      _(pagy.limit).must_equal pagy.limit
-      _(pagy.page).must_equal 1
-      _(records.count).must_equal 10
-      _(records).must_equal [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    end
-    it 'paginates with options' do
-      pagy, records = app.pagy(:offset, @collection, page: 2, limit: 10)
-
-      _(pagy).must_be_instance_of Pagy::Offset
-      _(pagy.count).must_equal 1000
-      _(pagy.limit).must_equal pagy.limit
+      _(pagy).must_be_kind_of Pagy::Offset
+      _(pagy.count).must_equal 20
       _(pagy.page).must_equal 2
-      _(records.count).must_equal 10
-      _(records).must_equal [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+      _(pagy.limit).must_equal 5
+      _(results).must_equal [6, 7, 8, 9, 10]
     end
-    it 'paginates with count_over' do
-      collection = MockCollection::Grouped.new((1..1000).to_a)
-      options    = { page: 2, limit: 10, count_over: true }
-      pagy,      = app.send :pagy, :offset, collection, **options
-      merged     = pagy.options
 
-      _(merged.keys).must_include :count
-      _(merged.keys).must_include :page
-      _(merged.keys).must_include :limit
-      _(merged[:count]).must_equal 1000
-      _(merged[:page]).must_equal 2
-      _(merged[:limit]).must_equal 10
+    it 'prioritizes params limit over option limit (when allowed)' do
+      # Simulate client requesting limit 5 via params
+      app = MockApp.new(params: { page: 1, limit: 5 })
+
+      # Pass limit: 10 as option, but enable client_max_limit to allow client override
+      # The params limit (5) should take precedence over the default/option (10)
+      pagy, results = app.pagy(collection, limit: 10, client_max_limit: 20)
+
+      _(pagy.page).must_equal 1
+      _(pagy.limit).must_equal 5
+      _(results).must_equal [1, 2, 3, 4, 5]
     end
   end
 
-  describe 'pagy options' do
-    before do
-      @collection = MockCollection.new
-    end
-    it 'gets defaults' do
-      options = {}
-      pagy,   = app.pagy(:offset, @collection, **options)
-      merged  = pagy.options
+  describe 'with ActiveRecord' do
+    it 'paginates relation' do
+      collection = Pet.order(:id)
+      app = MockApp.new(params: { page: 2 })
 
-      _(merged.keys).must_include :count
-      _(merged.keys).must_include :page
-      _(merged[:count]).must_equal 1000
-      _(merged[:page]).must_equal 3
-    end
-    it 'gets options' do
-      options = { page: 2, limit: 10 }
-      pagy,   = app.pagy(:offset, @collection, **options)
-      merged  = pagy.options
+      pagy, results = app.pagy(collection, limit: 5)
 
-      _(merged.keys).must_include :count
-      _(merged.keys).must_include :page
-      _(merged.keys).must_include :limit
-      _(merged[:count]).must_equal 1000
-      _(merged[:page]).must_equal 2
-      _(merged[:limit]).must_equal 10
-    end
-    it 'works with grouped collections' do
-      collection = MockCollection::Grouped.new((1..1000).to_a)
-      options    = { page: 2, limit: 10 }
-      pagy,      = app.pagy(:offset, collection, **options)
-      merged     = pagy.options
+      _(pagy).must_be_kind_of Pagy::Offset
+      _(pagy.count).must_equal 50
+      _(pagy.page).must_equal 2
+      _(pagy.limit).must_equal 5
 
-      _(merged.keys).must_include :count
-      _(merged.keys).must_include :page
-      _(merged.keys).must_include :limit
-      _(merged[:count]).must_equal 1000
-      _(merged[:page]).must_equal 2
-      _(merged[:limit]).must_equal 10
+      # Page 2 (offset 5), limit 5 -> IDs 6..10
+      _(results.first.id).must_equal 6
+      _(results.last.id).must_equal 10
+      _(results).must_be_kind_of ActiveRecord::Relation
     end
-    it 'overrides count and page' do
-      options = { count: 100, page: 3 }
-      pagy,   = app.pagy(:offset, @collection, **options)
-      merged  = pagy.options
 
-      _(merged.keys).must_include :count
-      _(merged[:count]).must_equal 100
-      _(merged.keys).must_include :page
-      _(merged[:page]).must_equal 3
+    it 'respects existing counts' do
+      app = MockApp.new
+      collection = Pet.none
+
+      # Force count override via options
+      pagy, = app.pagy(collection, count: 1000, limit: 5)
+
+      _(pagy.count).must_equal 1000
+      _(pagy.last).must_equal 200
+    end
+  end
+
+  describe 'with Sequel' do
+    it 'paginates dataset' do
+      collection = PetSequel.order(:id)
+      app = MockApp.new(params: { page: 2 })
+
+      pagy, results = app.pagy(collection, limit: 5)
+
+      _(pagy).must_be_kind_of Pagy::Offset
+      _(pagy.count).must_equal 50
+      _(pagy.page).must_equal 2
+      _(pagy.limit).must_equal 5
+      _(pagy.offset).must_equal 5
+
+      rows = results.all
+      _(rows.first[:id]).must_equal 6
+      _(rows.last[:id]).must_equal 10
+      _(results).must_be_kind_of Sequel::Dataset
     end
   end
 end

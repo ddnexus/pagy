@@ -4,37 +4,65 @@ require 'test_helper'
 require 'pagy/toolbox/helpers/support/data_pagy_attribute'
 require 'json'
 
+# Try to load Oj for the test if available
+begin
+  require 'oj'
+rescue LoadError
+  # Proceed without Oj
+end
+
 describe 'Pagy#data_pagy_attribute' do
   let(:pagy_class) do
     Class.new(Pagy) do
-      # Expose private method for testing
       public :data_pagy_attribute
     end
   end
 
   let(:pagy) { pagy_class.new }
 
-  it 'generates data-pagy attribute with encoded JSON args' do
-    args = [1, 'test', { 'a' => 1 }]
-    result = pagy.data_pagy_attribute(*args)
+  describe 'with Oj' do
+    # Skip this block if Oj is not installed/loaded
+    next unless defined?(Oj)
 
-    # Extract the base64 content
-    match = result.match(/data-pagy="(.+)"/)
-    _(match).wont_be_nil
-    encoded_data = match[1]
+    it 'uses Oj to dump data' do
+      args = [1, 'oj_test', { 'a' => 1 }]
 
-    # Decode and verify
-    json_data = Pagy::B64.decode(encoded_data)
-    decoded_args = JSON.parse(json_data)
+      # This calls the real Oj.dump(..., mode: :compat)
+      result = pagy.data_pagy_attribute(*args)
 
-    _(decoded_args).must_equal [1, 'test', { 'a' => 1 }]
+      encoded = result[/data-pagy="(.+)"/, 1]
+      decoded = Pagy::B64.decode(encoded)
+
+      # Verify integrity
+      _(JSON.parse(decoded)).must_equal [1, 'oj_test', { 'a' => 1 }]
+    end
   end
 
-  it 'handles empty arguments' do
-    result = pagy.data_pagy_attribute
-    match = result.match(/data-pagy="(.+)"/)
+  describe 'without Oj (JSON fallback)' do
+    before do
+      # Hide Oj constant to force the `defined?(Oj) ? ... : JSON.dump` else branch
+      if Object.const_defined?(:Oj)
+        @real_oj = Object.const_get(:Oj)
+        Object.send(:remove_const, :Oj)
+      end
+    end
 
-    decoded = JSON.parse(Pagy::B64.decode(match[1]))
-    _(decoded).must_equal []
+    after do
+      # Restore Oj
+      Object.const_set(:Oj, @real_oj) if defined?(@real_oj)
+    end
+
+    it 'uses JSON to dump data' do
+      args = [1, 'json_test', { 'b' => 2 }]
+
+      # This calls the real JSON.dump
+      result = pagy.data_pagy_attribute(*args)
+
+      encoded = result[/data-pagy="(.+)"/, 1]
+      decoded = Pagy::B64.decode(encoded)
+
+      # Verify integrity
+      _(JSON.parse(decoded)).must_equal [1, 'json_test', { 'b' => 2 }]
+    end
   end
 end

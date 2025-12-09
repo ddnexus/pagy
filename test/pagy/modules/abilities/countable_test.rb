@@ -2,7 +2,7 @@
 
 require 'test_helper'
 require 'pagy/modules/abilities/countable'
-require 'files/models'
+require 'db/models'
 
 describe Pagy::Countable do
   let(:countable) { Pagy::Countable }
@@ -43,11 +43,22 @@ describe Pagy::Countable do
       _(countable.get_count(ar_collection, {})).must_equal expected_count
     end
 
-    it 'handles grouped Activerecord relation' do
+    it 'handles grouped Activerecord relation (Hash method)' do
+      # Standard AR behavior: grouping returns a Hash of counts { key => count }
+      grouped_relation = Pet.group(:animal)
+
+      # No count_over option passed
+      result = countable.get_count(grouped_relation, {})
+
+      # Result should be the size of the returned Hash (number of groups)
+      _(result).must_equal grouped_relation.count.size
+    end
+
+    it 'handles grouped Activerecord relation (count_over method)' do
       # Create a grouped relation by animal type
       grouped_relation = Pet.group(:animal)
 
-      # This should use the generic count method on the dataset
+      # This uses the Window Function strategy returning an Integer
       result = countable.get_count(grouped_relation, { count_over: true })
 
       # Result should be the count of distinct animals
