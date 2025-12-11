@@ -1,6 +1,6 @@
 ---
 label: :countish
-icon: list-ordered
+icon: move-to-end-24
 order: 95
 categories:
   - Paginators
@@ -8,7 +8,7 @@ categories:
 
 #
 
-## :icon-list-ordered: :countish
+## :icon-move-to-end-24: :countish
 
 ---
 

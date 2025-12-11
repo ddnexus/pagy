@@ -10,25 +10,25 @@ order: 95
 
 At the most basic level, pagination just means retrieving a (potentially big) collection of items in small sequential chunks (pages)... but there's more than one way to crack an egg.
 
-Pagy is extremely versatile and offers many different techniques and variations to get the job done. Choosing the right one is crucial to ensure good performance and smooth workflow.
+Choose the right one to ensure the best performance and workflow.
 
 ### OFFSET Pagination
 
-The most common pagination technique is counting the collection items (COUNT DB query), using the count for calculating where the specific page starts (i.e. OFFSET) and retrieving only the LIMIT items for that page (OFFSET+LIMIT DB query).
+The most common pagination technique is counting the collection items (COUNT DB query), using the count to calculate where the specific pages start (i.e., OFFSET) and retrie only the LIMIT items for that page (OFFSET+LIMIT DB query).
 
-It is simple to understand and set up, very versatile for the UI because it is based on numeric pages and pointers that can be calculated/predicted, instead of actual data to search for, however, that simplicity comes with a few shortcomings that you have to be aware of.
+It is straightforward to understand and set up and very versatile for the UI, but you have to be aware of a few shortcomings.
 
 !!!warning Shortcoming
 
 - **DB Performance**
-  - Counting records might be quite expensive in terms of execution time and DB Load. The standard OFFSET pagination causes the DB to count twice per page: one for the total records and another for the records to skip.
+  - Counting records might be quite expensive in terms of execution time and DB load. The standard OFFSET pagination causes the DB to count twice per page: one for the total records and another for the records to skip.
 - **Data Shift**
-  - If records are created or deleted during browsing, the calculated OFFSET will become inaccurate. The user might see previous records again or miss records entirely.
+  - If records are created or deleted during browsing, the calculated OFFSET may become inconsistent. The user may see previous records again or miss records entirely.
   - Notice that querying the precise count for each page DOES NOT fix the data-shift problem.
 
-!!!tip For improved DB performance... 
+!!!tip For better DB performance with OFFSET... 
 
-Use the `:countless` or `:countish` paginators that skip or reduce up-to 50% of the counting.
+Use the `:countless` or `:countish` paginators to improve the DB performance **up-to two times**.
 
 !!!
 
@@ -36,20 +36,23 @@ Use the `:countless` or `:countish` paginators that skip or reduce up-to 50% of 
 
 <br/>
 
-[:icon-list-ordered: :offset](../toolbox/paginators/offset.md)
-- **Recommended for**: Standard App (Small Data)
-- **Pros**: Simple setup, full UI support
-- **Cons**: Slow on big tables (two queries per page), data-shift
+{.list-icon}
+- [:icon-move-to-end-24:&nbsp;:offset](../toolbox/paginators/offset.md)
+  - :icon-check-circle-24: **Best for**: Standard App (Small Data)
+  - :icon-thumbsup-24:     **Pros**: Simple setup, full UI support
+  - :icon-thumbsdown-24:   **Cons**: Slow on big tables (two queries per page), data-shift
 
-[:icon-list-ordered: :countish](../toolbox/paginators/countish.md)
-- **Recommended for**: Standard App (Large Data)
-- **Pros**: Same as `:offset`, but far better performance than `:offset` (memoizes the total count)
-- **Cons**: Same as `:offset`, the `count` may become stale (likely a negligible side effect)
+{.list-icon}
+- [:icon-move-to-end-24:&nbsp;:countish](../toolbox/paginators/countish.md)
+  - :icon-check-circle-24: **Best for**: Standard App (Large Data)
+  - :icon-thumbsup-24:     **Pros**: Same as `:offset`, but far better performance than `:offset` (memoizes the total count)
+  - :icon-thumbsdown-24:   **Cons**: Same as `:offset`, the `count` may become stale (likely a negligible side effect)
 
-[:icon-list-ordered: :countless](../toolbox/paginators/countless.md)
-- **Recommended for**: API, Infinite Scroll
-- **Pros**: Fastest in the offset family (only one query per page)
-- **Cons**: Same as `:offset`, the `count` is always `nil`, UI support with a few limitations
+{.list-icon}
+- [:icon-move-to-end-24:&nbsp;:countless](../toolbox/paginators/countless.md)
+  - :icon-check-circle-24: **Best for**: API, Infinite Scroll
+  - :icon-thumbsup-24:     **Pros**: Fastest in the offset family (only one query per page)
+  - :icon-thumbsdown-24:   **Cons**: Same as `:offset`, the `count` is always `nil`, UI support with a few limitations
 
 !!!
 
@@ -59,10 +62,9 @@ The KEYSET pagination technique allows the fastest and lighter DB performance. I
 
 !!!warning Shortcoming
 
-- **Minimalistic**
-  - It knows only the current page and the pointer to the next page.
-  - Page pointers are encoded strings and the count is not known.
-  - It's extremely fast with APIs and infinite scrolling.
+- It knows only the current page and the pointer to the next page.
+- Page pointers are encoded strings and the count is not known.
+- It's extremely fast with APIs and infinite scrolling.
 
 !!!tip For KEYSET pagination with UI support...
 
@@ -74,30 +76,31 @@ Use the `:keynav_js` paginator.
 
 <br/>
 
-[:icon-key: :keyset](../toolbox/paginators/keyset)
-- **Recommended for**: API, Infinite Scroll
-- **Pros**: Fastest paginator, no data-shift, fastest single query per page
-- **Cons**: Very limited UI support, appropriate DB indices required
+{.list-icon}
+- [:icon-key:&nbsp;:keyset](../toolbox/paginators/keyset)
+  - :icon-check-circle-24: **Best for**: API, Infinite Scroll
+  - :icon-thumbsup-24:     **Pros**: Fastest paginator, no data-shift, fastest single query per page
+  - :icon-thumbsdown-24:   **Cons**: Very limited UI support, appropriate DB indices required
 
-[:icon-key: :keynav_js](../toolbox/paginators/keynav_js)
-- **Recommened for**: Standard App (Large Data)
-- **Pros**: All the pros of `:keyset`+`:countless`, numeric pages
-- **Cons**: Same as `:countless`, requires JavaScript support (or it falls back to the `:countless` paginator)
+{.list-icon}
+- [:icon-key:&nbsp;:keynav_js](../toolbox/paginators/keynav_js)
+  - :icon-check-circle-24: **Best for**: Standard App (Large Data)
+  - :icon-thumbsup-24:     **Pros**: All the pros of `:keyset`+`:countless`, numeric pages
+  - :icon-thumbsdown-24:   **Cons**: Same as `:countless`, requires JavaScript support (or it falls back to the `:countless` paginator)
 
 !!!
 
 ### TIME RANGE Pagination
 
-This hybrid technique filters by a specific time period (Year, Month, Day) and applies the offset paginator within that period.
+This hybrid technique filters by a specific time period (Year, Month, Day, etc.) and applies the offset paginator within that period.
 
 !!! Paginator
 
-<br/>
-
-[:icon-calendar: :calendar](../toolbox/paginators/calendar.md)
-- **Recommended for**: Time-Series, Logs collections
-- **Pros**: Natural navigation for date-based data
-- **Cons**: The setup for the UI is more involved
+{.list-icon}
+- [:icon-calendar: :calendar](../toolbox/paginators/calendar.md)
+  - :icon-check-circle-24: **Best for**: Time-Series, Logs collections
+  - :icon-thumbsup-24:     **Pros**: Natural navigation for date-based data
+  - :icon-thumbsdown-24:   **Cons**: The setup for the UI is more involved
  
 !!!
 
@@ -105,15 +108,16 @@ This hybrid technique filters by a specific time period (Year, Month, Day) and a
 
 Pagy supports Elasticsearch, Meilisearch, and Searchkick.
 
-These paginators get the count, limit and results provided by the search platform. Pagy acts as an interface to these underlying gems, utilizing the `:offset` paginator.
+These paginators get the count, limit and results provided by the search platform. Pagy acts as an interface to these underlying gems, using the `:offset` paginator (whithout the shortcomings).
 
-!!! Paginator
+!!! Paginators
 
-[:icon-search: :elasticsearch_rails](../toolbox/paginators/elasticsearch_rails.md),
-[:icon-search: :meilisearch](../toolbox/paginators/meilisearch.md),
-[:icon-search: :searchkick](../toolbox/paginators/searchkick.md)
-- **Recommended for**: Search Results
-- **Pros** Leverages the engine's native response
-- **Cons** None (simple interface with serch platform gems)
+{.list-icon}
+- [:icon-search:&nbsp;:elasticsearch_rails](../toolbox/paginators/elasticsearch_rails.md)&nbsp;
+[:icon-search:&nbsp;:meilisearch](../toolbox/paginators/meilisearch.md)&nbsp;
+[:icon-search:&nbsp;:searchkick](../toolbox/paginators/searchkick.md)
+  - :icon-check-circle-24: **Best for**: Search Results
+  - :icon-thumbsup-24:     **Pros**: Leverages the engine's native response
+  - :icon-thumbsdown-24:   **Cons**: None (simple interface with search platform gems)
 
 !!!

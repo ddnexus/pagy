@@ -1,6 +1,6 @@
 ---
 label: :countless
-icon: list-ordered
+icon: move-to-end-24
 order: 90
 categories:
   - Paginators
@@ -8,7 +8,7 @@ categories:
 
 #
 
-## :icon-list-ordered: :countless
+## :icon-move-to-end-24: :countless
 
 ---
 
