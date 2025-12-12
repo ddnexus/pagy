@@ -45,7 +45,7 @@ describe 'Pagy#limit_tag_js' do
     # Check data attribute (mocked)
     # args: :ltj, @from (1), url_token
     # url_token: compose_page_url(PAGE_TOKEN, limit: LIMIT_TOKEN) -> URL(P ,L )
-    _(html).must_match(/data-pagy="ltj\|1\|URL\(P ,L \)"/)
+    _(html).must_match(/data-pagy="ltj\|1\|URL\(P ,L \)\|P \|L "/)
 
     # Check input
     _(html).must_match(/<input name="limit" type="number" min="1" max="100" value="20"/)

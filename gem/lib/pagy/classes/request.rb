@@ -11,7 +11,7 @@ class Pagy
         if request.is_a?(Hash)
           request.values_at(:base_url, :path, :params, :cookie)
         else
-          [request.base_url, request.path, request.GET.merge(request.POST).to_h, request.cookies['pagy']]
+          [request.base_url, request.path, get_params(request), request.cookies['pagy']]
         end
     end
 
@@ -32,5 +32,9 @@ class Pagy
 
       [requested_limit.to_i, @options[:client_max_limit]].min
     end
+
+    private
+
+    def get_params(request) = request.GET.merge(request.POST).to_h
   end
 end

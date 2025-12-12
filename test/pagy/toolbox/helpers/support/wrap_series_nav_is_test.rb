@@ -95,7 +95,7 @@ describe 'Pagy#wrap_series_nav_js' do
       # Data structure: [:snj, tokens.values, sequels]
       # sequels: [[0], [[1,2,3]], nil]
       # string match depends on inspecting the array structure from data_pagy_attribute mock
-      _(html).must_match(/\[:snj, \["A", "B"\], \[\[0\], \[\[1, 2, 3\]\], nil\]\]/)
+      _(html).must_match("\"[:snj, [\"A\", \"B\"], \"P \", [[0], [[1, 2, 3]], nil]]\"")
     end
 
     it 'adds pagy-rjs class for multiple steps' do

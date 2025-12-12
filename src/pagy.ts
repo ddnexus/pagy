@@ -24,13 +24,17 @@ type AugmentedPage = [browserId:   string,
                       pages:       number,
                       priorCutoff: Cutoff | null,
                       pageCutoff:  Cutoff | null]
-type SeriesNavJsArgs = readonly [NavJsTokens, NavJsSeries, KeynavArgs?]
+type SeriesNavJsArgs = readonly [NavJsTokens, pageToken: string, NavJsSeries, KeynavArgs?]
 type NavJsSeries = readonly [widths: number[],
                              series: (string | number)[][],
                              labels: string[][] | null]
-type InputNavJsArgs = readonly [urlToken: string, KeynavArgs?]
+type InputNavJsArgs = readonly [urlToken:  string,
+                                pageToken: string,
+                                KeynavArgs?]
 type LimitTagJsArgs = readonly [from:     number,
-                                urlToken: string]
+                                urlToken: string,
+                                pageToken: string,
+                                limitToken: string]
 type NavJsTokens = readonly [before:  string,
                              anchor:  string,
                              current: string,
@@ -42,8 +46,7 @@ interface NavJsElement extends HTMLElement {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Pagy = (() => {
-  const storageSupport = 'sessionStorage' in window && 'BroadcastChannel' in window,
-        pageRe         = "P ";  // shorten the compiled size
+  const storageSupport = 'sessionStorage' in window && 'BroadcastChannel' in window;
   // eslint-disable-next-line prefer-const
   let pagy = "pagy", storage: Storage, sync: BroadcastChannel, tabId: number;
   if (storageSupport) {
@@ -133,7 +136,7 @@ const Pagy = (() => {
   };
 
   // Build the series_nav_js helper
-  const buildNavJs = (nav:NavJsElement, [[before, anchor, current, gap, after],
+  const buildNavJs = (nav:NavJsElement, [[before, anchor, current, gap, after], pageToken,
                                         [widths, series, labels], keynavArgs]:SeriesNavJsArgs) => {
     const  parent = <HTMLElement>nav.parentElement;
     let lastWidth = -1;
@@ -146,7 +149,7 @@ const Pagy = (() => {
         // Avoid the if blocks and chain the results (shorter pagy.min.js and easier reading)
         html += item == "gap" ? gap :
                 // @ts-expect-error the item may be a number, but the 'replace' converts it to string (shorter pagy.min.js)
-                (typeof item == "number" ? anchor.replace(pageRe, item) : current)
+                (typeof item == "number" ? anchor.replace(pageToken, item) : current)
                     .replace("L<", labels?.[index][i] ?? item + "<");
       });
       html         += after;
@@ -159,19 +162,19 @@ const Pagy = (() => {
   };
 
   // Init the input_nav_js helpers
-  const initInputNavJs = async (nav:HTMLElement, [url_token, keynavArgs]:InputNavJsArgs) => {
+  const initInputNavJs = async (nav:HTMLElement, [url_token, pageToken, keynavArgs]:InputNavJsArgs) => {
     const augment = keynavArgs && storageSupport
                     ? await augmentKeynav(nav, keynavArgs)
                     : (page: string) => page;
-    initInput(nav, inputValue => url_token.replace(pageRe, augment(inputValue)));
+    initInput(nav, inputValue => url_token.replace(pageToken, augment(inputValue)));
   };
 
   // Init the limit_tag_js helper
-  const initLimitTagJs = (span:HTMLSpanElement, [from, url_token]:LimitTagJsArgs) => {
+  const initLimitTagJs = (span:HTMLSpanElement, [from, url_token, page_token, limitToken]:LimitTagJsArgs) => {
     initInput(span, inputValue => {
       // @ts-expect-error the page is a number, but the 'replace' converts it to string (shorter pagy.min.js)
-      return url_token.replace(pageRe, Math.max(Math.ceil(from / parseInt(inputValue)), 1))
-                      .replace('L ', inputValue);
+      return url_token.replace(page_token, Math.max(Math.ceil(from / parseInt(inputValue)), 1))
+                      .replace(limitToken, inputValue);
     });
   };
 

@@ -38,7 +38,7 @@ describe 'Pagy#wrap_input_nav_js' do
     pagy = pagy_class.new(keynav: false)
     html = pagy.wrap_input_nav_js('INNER', 'nav-class', id: 'my-id', aria_label: 'My Label')
 
-    _(html).must_equal '<nav id="my-id" class="nav-class" aria-label="My Label" data-pagy="inj-url_for_P ">INNER</nav>'
+    _(html).must_equal '<nav id="my-id" class="nav-class" aria-label="My Label" data-pagy="inj-url_for_P -P ">INNER</nav>'
   end
 
   it 'handles optional id' do
@@ -55,6 +55,6 @@ describe 'Pagy#wrap_input_nav_js' do
 
     # data-pagy should include @update content appended
     # args: [:inj, url, @update] joined by '-'
-    _(html).must_match(/data-pagy="inj-url_for_P -update_info"/)
+    _(html).must_match(/data-pagy="inj-url_for_P -P -update_info"/)
   end
 end

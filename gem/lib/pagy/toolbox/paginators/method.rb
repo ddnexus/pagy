@@ -21,11 +21,11 @@ class Pagy
              protected
 
              define_method :pagy do |paginator = :offset, collection, **options|
-               arguments = if paginator == :calendar
-                             [self, collection, options]
-                           else
-                             [collection, options = Pagy.options.merge(options)]
-                           end
+               arguments           = if paginator == :calendar
+                                       [self, collection, options]
+                                     else
+                                       [collection, options = Pagy.options.merge(options)]
+                                     end
                options[:root_key]  = 'page' if options[:jsonapi] # enforce 'page' root_key for JSON:API
                options[:request] ||= request                     # user set request or self.request
                options[:request]   = Request.new(options)        # Pagy::Request
