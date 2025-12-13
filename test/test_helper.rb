@@ -7,7 +7,7 @@ $LOAD_PATH.unshift __dir__
 $LOAD_PATH.unshift File.expand_path('../gem/lib', __dir__)
 
 # Coverage and Environment
-require 'simplecov'
+require 'simplecov' unless ENV['SKIP_COVERAGE']
 
 # Load the Gem
 require 'pagy'

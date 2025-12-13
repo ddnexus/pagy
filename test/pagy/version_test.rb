@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require_relative '../test_helper'
 
 # Load PagyApps::INDEX
 # Using Pagy::ROOT to locate the file robustly regardless of test file location
