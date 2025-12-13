@@ -48,7 +48,7 @@ class Pagy
                 .values_at(:root_key, :page_key, :limit_key, :client_max_limit, :limit, :querify, :absolute, :path, :fragment)
       params = @request.params.clone(freeze: false)
       # Deep clone nested params to prevent modifying the original request params when using root_key
-      params[root_key] = params[root_key]&.then { |h| h.respond_to?(:deep_dup) ? h.deep_dup : h.dup } if root_key
+      params[root_key] = params[root_key]&.then { |h| deep_dup_value(h) } if root_key
       (root_key ? params[root_key] ||= {} : params).tap do |h|
         { page_key  => compose_page_param(page),
           limit_key => client_max_limit && limit }.each { |k, v| v ? h[k] = v : h.delete(k) }
@@ -57,6 +57,12 @@ class Pagy
       query_string = QueryUtils.build_nested_query(params).sub(/\A(?=.)/, '?')
       fragment   &&= "##{fragment.delete_prefix('#')}"
       "#{@request.base_url if absolute}#{path || @request.path}#{query_string}#{fragment}"
+    end
+
+    private
+
+    def deep_dup_value(obj)
+      obj.is_a?(Hash) ? obj.transform_values { |v| deep_dup_value(v) } : obj
     end
   end
 end
