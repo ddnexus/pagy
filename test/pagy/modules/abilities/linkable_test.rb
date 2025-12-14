@@ -90,18 +90,28 @@ describe Pagy::Linkable do
 
     it 'handles root_key (nested params)' do
       # If root_key is :search, page should go into search[page]
+      # params[:search] is nil, so this hits the `|| {}` branch
       subject = linkable_class.new(options: { root_key: :search })
       url = subject.call_compose_page_url(2)
-      # existing params are empty, so search[page]=2
       _(url).must_equal_url '/foo?search%5Bpage%5D=2'
+    end
 
-      # With existing params inside root_key
-      subject = linkable_class.new(
-        request_params: { 'search' => { 'term' => 'foo' } },
-        options: { root_key: :search }
-      )
+    it 'handles root_key with existing nested params (hits clone)' do
+      # We use string 'search' to match the request_params key
+      # This ensures params['search'] is found and .clone is called
+      subject = linkable_class.new(request_params: { 'search' => { 'term' => 'foo' } },
+                                   options: { root_key: 'search' })
       url = subject.call_compose_page_url(3)
       _(url).must_equal_url '/foo?search%5Bterm%5D=foo&search%5Bpage%5D=3'
+    end
+
+    it 'does not modify original params with root_key' do
+      params = { 'search' => { 'term' => 'foo' } }
+      subject = linkable_class.new(request_params: params,
+                                   options:        { root_key: 'search' })
+      subject.call_compose_page_url(3)
+      # Ensure original param hash is untouched
+      _(params['search']).must_equal({ 'term' => 'foo' })
     end
 
     it 'handles absolute urls' do
@@ -125,10 +135,8 @@ describe Pagy::Linkable do
     it 'supports querify proc to modify params' do
       # querify proc that deletes 'a' param
       querify = ->(params) { params.delete('a') }
-      subject = linkable_class.new(
-        request_params: { 'a' => 'b', 'c' => 'd' },
-        options: { querify: querify }
-      )
+      subject = linkable_class.new(request_params: { 'a' => 'b', 'c' => 'd' },
+                                   options:        { querify: querify })
       url = subject.call_compose_page_url(2)
       # 'a' should be gone
       _(url).must_equal_url '/foo?c=d&page=2'

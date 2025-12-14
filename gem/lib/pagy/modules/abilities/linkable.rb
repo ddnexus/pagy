@@ -47,7 +47,7 @@ class Pagy
         @options.merge(options)
                 .values_at(:root_key, :page_key, :limit_key, :client_max_limit, :limit, :querify, :absolute, :path, :fragment)
       params = @request.params.clone(freeze: false)
-      (root_key ? params[root_key] ||= {} : params).tap do |h|
+      (root_key ? params[root_key] = params[root_key]&.clone(freeze: false) || {} : params).tap do |h|
         { page_key  => compose_page_param(page),
           limit_key => client_max_limit && limit }.each { |k, v| v ? h[k] = v : h.delete(k) }
       end
