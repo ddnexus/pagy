@@ -2,7 +2,6 @@
 label: JavaScript
 icon: file-code
 order: 80
-image: ""
 ---
 
 #

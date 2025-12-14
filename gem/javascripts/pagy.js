@@ -1,6 +1,6 @@
 // pagy.ts
 window.Pagy = (() => {
-  const storageSupport = "sessionStorage" in window && "BroadcastChannel" in window, pageRe = "P ";
+  const storageSupport = "sessionStorage" in window && "BroadcastChannel" in window;
   let pagy = "pagy", storage, sync, tabId;
   if (storageSupport) {
     storage = sessionStorage;
@@ -67,6 +67,7 @@ window.Pagy = (() => {
   };
   const buildNavJs = (nav, [
     [before, anchor, current, gap, after],
+    pageToken,
     [widths, series, labels],
     keynavArgs
   ]) => {
@@ -79,7 +80,7 @@ window.Pagy = (() => {
       }
       let html = before;
       series[index].forEach((item, i) => {
-        html += item == "gap" ? gap : (typeof item == "number" ? anchor.replace(pageRe, item) : current).replace("L<", labels?.[index][i] ?? item + "<");
+        html += item == "gap" ? gap : (typeof item == "number" ? anchor.replace(pageToken, item) : current).replace("L<", labels?.[index][i] ?? item + "<");
       });
       html += after;
       nav.innerHTML = "";
@@ -93,13 +94,13 @@ window.Pagy = (() => {
       rjsObserver.observe(parent);
     }
   };
-  const initInputNavJs = async (nav, [url_token, keynavArgs]) => {
+  const initInputNavJs = async (nav, [url_token, pageToken, keynavArgs]) => {
     const augment = keynavArgs && storageSupport ? await augmentKeynav(nav, keynavArgs) : (page) => page;
-    initInput(nav, (inputValue) => url_token.replace(pageRe, augment(inputValue)));
+    initInput(nav, (inputValue) => url_token.replace(pageToken, augment(inputValue)));
   };
-  const initLimitTagJs = (span, [from, url_token]) => {
+  const initLimitTagJs = (span, [from, url_token, page_token, limitToken]) => {
     initInput(span, (inputValue) => {
-      return url_token.replace(pageRe, Math.max(Math.ceil(from / parseInt(inputValue)), 1)).replace("L ", inputValue);
+      return url_token.replace(page_token, Math.max(Math.ceil(from / parseInt(inputValue)), 1)).replace(limitToken, inputValue);
     });
   };
   const initInput = (element, getUrl) => {
@@ -125,7 +126,7 @@ window.Pagy = (() => {
     });
   };
   return {
-    version: "43.2.0",
+    version: "43.2.1",
     init(arg) {
       const target = arg instanceof HTMLElement ? arg : document, elements = target.querySelectorAll("[data-pagy]");
       for (const element of elements) {
@@ -149,5 +150,5 @@ window.Pagy = (() => {
   };
 })();
 
-//# debugId=E46E32F1566B8C2964756E2164756E21
+//# debugId=F3282E394DA790A164756E2164756E21
 //# sourceMappingURL=pagy.js.map

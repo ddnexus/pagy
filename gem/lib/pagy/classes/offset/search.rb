@@ -3,7 +3,7 @@
 class Pagy
   module Search
     class Arguments < Array
-      def respond_to_missing? = true
+      def respond_to_missing?(*) = true
 
       def method_missing(*) = push(*)
     end

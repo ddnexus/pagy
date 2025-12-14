@@ -29,7 +29,7 @@ class Pagy
     nav_classes = "pagy-rjs #{nav_classes}" if sequels[0].size > 1
     %(<nav#{%( id="#{id}") if id} class="#{nav_classes}" #{
       nav_aria_label_attribute(aria_label:)} #{
-      data = [:snj, tokens.values, sequels]
+      data = [:snj, tokens.values, PAGE_TOKEN, sequels]
       data.push(@update) if keynav?
       data_pagy_attribute(*data)
       }></nav>)

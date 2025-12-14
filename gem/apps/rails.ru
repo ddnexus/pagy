@@ -16,7 +16,7 @@
 # URL
 #    http://127.0.0.1:8000
 
-VERSION = '43.2.0'
+VERSION = '43.2.1'
 
 if VERSION != Pagy::VERSION
   Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")
@@ -35,6 +35,7 @@ end
 # require 'rails/all'     # too much stuff
 require 'action_controller/railtie'
 require 'active_record'
+# require_relative 'rails_page_segment'  # Uncomment to test the rails_page_segment.rb override
 
 OUTPUT = Rails.env.showcase? ? IO::NULL : $stdout
 
@@ -49,6 +50,7 @@ class PagyRails < Rails::Application # :nodoc:
 
   routes.draw do
     root to: 'comments#index'
+    # get '/comments(/:page)', to: 'comments#index'  # Uncomment to test the rails_page_segment.rb override
     get '/javascripts/:file', to: 'pagy#javascripts', file: /.*/
   end
 end

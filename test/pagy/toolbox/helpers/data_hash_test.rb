@@ -1,53 +1,94 @@
 # frozen_string_literal: true
 
-require_relative '../../../test_helper'
-require_relative '../../../mock_helpers/collection'
-require_relative '../../../files/models'
-require_relative '../../../mock_helpers/app'
+require 'test_helper'
+require 'pagy/toolbox/helpers/data_hash'
 
-describe 'data_hash for Pagy' do
-  let(:app) { MockApp.new }
-  before do
-    @collection = MockCollection.new
-  end
-  Time.zone = 'Etc/GMT+5'
-  def calendar_app(**options)
-    MockApp::Calendar.new(**options)
+describe 'Pagy#data_hash' do
+  let(:pagy_class) do
+    Class.new(Pagy) do
+      attr_accessor :count, :page, :limit, :last, :in, :from, :to, :previous, :next, :options
+
+      def initialize(vars = {})
+        @options  = vars[:options]  || {}
+        @count    = vars[:count]    || 100
+        @page     = vars[:page]     || 3
+        @limit    = vars[:limit]    || 20
+        @last     = vars[:last]     || 5
+        @in       = vars[:in]       || 20
+        @from     = vars[:from]     || 41
+        @to       = vars[:to]       || 60
+        @previous = vars[:previous] || 2
+        @next     = vars[:next]     || 4
+      end
+
+      # Mock Linkable#compose_page_url behavior
+      def compose_page_url(page, **_opts)
+        "https://example.com/foo?page=#{page || 1}"
+      end
+
+      # Mock calendar? check
+      def calendar?
+        @options[:calendar]
+      end
+
+      public :data_hash
+    end
   end
 
-  # Required to test the behaviour of the autoloaded DEFAULT constant
-  # that in the real word will not be a problem
-  def self.test_order
-    :alpha
+  let(:pagy) { pagy_class.new }
+
+  it 'returns default data hash' do
+    data = pagy.data_hash
+
+    _(data[:count]).must_equal 100
+    _(data[:page]).must_equal 3
+    _(data[:previous]).must_equal 2
+    _(data[:next]).must_equal 4
+
+    # Check URLs based on the mock compose_page_url
+    base = 'https://example.com/foo?page='
+    _(data[:url_template]).must_equal "#{base}#{Pagy::PAGE_TOKEN}"
+    _(data[:page_url]).must_equal     "#{base}3"
+    _(data[:current_url]).must_equal  "#{base}3"
+    _(data[:first_url]).must_equal    "#{base}1"
+    _(data[:previous_url]).must_equal "#{base}2"
+    _(data[:next_url]).must_equal     "#{base}4"
+    _(data[:last_url]).must_equal     "#{base}5"
   end
 
-  it 'works with unset DEFAULT' do
-    pagy, _records = app.send(:pagy, :offset, @collection)
-    _(pagy.data_hash.keys).must_rematch :unset_default
-  end
-  it 'checks for unknown keys' do
-    pagy, _records = app.send(:pagy, :offset, @collection, data_keys: %i[page unknown_key])
+  it 'filters count and limit for calendar' do
+    pagy.options[:calendar] = true
+    data = pagy.data_hash
 
-    _ { pagy.data_hash }.must_raise Pagy::OptionError
+    _(data.keys).wont_include :count
+    _(data.keys).wont_include :limit
+    _(data[:page]).must_equal 3
   end
-  it 'returns only specific keys' do
-    pagy, _records = app.send(:pagy, :offset, @collection, data_keys: %i[url_template page count previous next last])
-    _(pagy.data_hash).must_rematch :data
-  end
-  it 'returns only specific keys (from helper args)' do
-    pagy, _records = app.send(:pagy, :offset, @collection)
-    _(pagy.data_hash(data_keys: %i[url_template page count previous next last])).must_rematch :data
-  end
-  it 'checks for unknown keys for Pagy::Calendar::Unit' do
-    calendar, _pagy, _records = calendar_app.send(:pagy, :calendar, Event.all,
-                                                  year: { data_keys: %i[page unknown_key] })
 
-    _ { calendar[:year].data_hash }.must_raise Pagy::OptionError
+  it 'respects passed data_keys' do
+    keys = %i[page limit]
+    data = pagy.data_hash(data_keys: keys)
+
+    _(data.keys.sort).must_equal %i[limit page]
   end
-  it 'returns only specific keys for Pagy::Calendar::Unit' do
-    calendar, _pagy, _records = calendar_app(params: { month_page: 3 })
-                                .send(:pagy, :calendar, Event.all,
-                                      month: { data_keys: %i[url_template page from to previous next last] })
-    _(calendar[:month].data_hash).must_rematch :data
+
+  it 'raises OptionError for unknown keys' do
+    _ { pagy.data_hash(data_keys: [:unknown_key]) }.must_raise Pagy::OptionError
+  end
+
+  it 'omits nil values (compacts)' do
+    # Set all nullable attributes to nil to trigger the 'else' branches
+    pagy.previous = nil
+    pagy.next     = nil
+    pagy.last     = nil
+
+    data = pagy.data_hash
+
+    _(data.keys).wont_include :previous
+    _(data.keys).wont_include :previous_url
+    _(data.keys).wont_include :next
+    _(data.keys).wont_include :next_url
+    _(data.keys).wont_include :last
+    _(data.keys).wont_include :last_url
   end
 end

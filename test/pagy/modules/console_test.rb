@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative '../../test_helper'
-require_relative '../../../gem/lib/pagy/modules/console'
+require 'test_helper'
+require 'pagy/modules/console'
 
 # Create a mock class to simulate including the Pagy::Console module
 class MockContext

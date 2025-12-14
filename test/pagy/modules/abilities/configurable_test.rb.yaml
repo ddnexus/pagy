@@ -1,0 +1,6 @@
+---
+Pagy__Configurable__translate_with_the_slower_i18n_gem!_test_0005_integration__renders_info_tag_using_the_gem:
+  :info_0: <span class="pagy info">No items found</span>
+  :info_1: <span class="pagy info">Displaying 1 item</span>
+  :info_13: <span class="pagy info">Displaying 13 items</span>
+  :info_100: <span class="pagy info">Displaying items 41-60 of 100 in total</span>

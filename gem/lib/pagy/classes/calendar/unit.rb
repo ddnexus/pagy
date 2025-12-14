@@ -17,7 +17,7 @@ class Pagy
       include Rangeable
       include Shiftable
 
-      def initialize(**)    # rubocop:disable Lint/MissingSuper
+      def initialize(**)
         assign_options(**)
         assign_and_check(page: 1)
         assign_unit_variables
@@ -50,14 +50,7 @@ class Pagy
         unless time.between?(@initial, fit_final)
           raise RangeError.new(self, :time, "between #{@initial} and #{fit_final}", time) unless options[:fit_time]
 
-          if time < @final
-            fit_time = @initial
-            ordinal  = 'first'
-          else
-            fit_time = fit_final
-            ordinal  = 'last'
-          end
-          warn "Pagy::Calendar#page_at: Rescued #{time} out of range by returning the #{ordinal} page."
+          fit_time = time < @final ? @initial : fit_final
         end
         offset = page_offset_at(fit_time)   # offset starts from 0
         @order == :asc ? offset + 1 : @last - offset
@@ -75,7 +68,10 @@ class Pagy
       # Apply the strftime format to the time.
       # Localization other than :en, require the rails-I18n gem.
       def localize(time, **options)
+        # Impossible to "unprepend" the rails-i18n after it runs localize_with_rails_i18n_gem in test
+        # :nocov:
         time.strftime(options[:format])
+        # :nocov:
       end
 
       # The number of time units to offset from the @initial time, in order to get the ordered starting time for the page.

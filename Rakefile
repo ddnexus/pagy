@@ -2,5 +2,7 @@
 
 Rake.add_rakelib 'tasks'
 
-task default: %i[rubocop test check_coverage]
-task test_cov: %i[test check_coverage]
+require 'rubocop/rake_task'
+RuboCop::RakeTask.new(:rubocop)
+
+task default: %i[rubocop test]

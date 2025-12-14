@@ -44,6 +44,7 @@ require 'pagy/console'
 - `data_keys`
   - For efficiency, always set the `:data_keys` option to restrict the output to ONLY the keys you need among the default list:
     - `:count`
+    - `current_url`
     - `:first_url`
     - `:from`
     - `:in`
@@ -54,7 +55,7 @@ require 'pagy/console'
     - `:next_url`
     - `:options`
     - `:page`
-    - `:page_url`
+    - `:page_url` _(alias of :current)_
     - `:pages`
     - `:previous`
     - `:previous_url`

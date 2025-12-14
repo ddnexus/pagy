@@ -1,6 +1,6 @@
 ---
 label: :offset
-icon: list-ordered
+icon: move-to-end-24
 order: 100
 categories: 
   - Paginators
@@ -8,7 +8,7 @@ categories:
 
 #
 
-## :icon-list-ordered: :offset
+## :icon-move-to-end-24: :offset
 
 ---
 

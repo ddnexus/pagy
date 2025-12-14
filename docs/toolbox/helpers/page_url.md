@@ -33,6 +33,9 @@ require 'pagy/console'
 >> @pagy.page_url(:current)
 => "/path?example=123&page=3"
 
+>> @pagy.page_url(:page) # alias of :current
+=> "/path?example=123&page=3"
+
 >> @pagy.page_url(:previous)
 => "/path?example=123&page=2"
 

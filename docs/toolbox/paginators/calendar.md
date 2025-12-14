@@ -1,6 +1,6 @@
 ---
 label: :calendar
-icon: calendar
+icon: calendar-24
 order: 60
 image: ""
 categories:

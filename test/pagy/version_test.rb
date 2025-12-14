@@ -1,52 +1,81 @@
 # frozen_string_literal: true
 
 require_relative '../test_helper'
-require_relative '../../gem/apps/index'
 
-major, minor, = Pagy::VERSION.split('.')
+# Load PagyApps::INDEX
+# Using Pagy::ROOT to locate the file robustly regardless of test file location
+require Pagy::ROOT.join('apps/index').to_s
 
 describe 'Version match' do
+  let(:version)   { Pagy::VERSION }
+  let(:major)     { version.split('.')[0] }
+  let(:minor)     { version.split('.')[1] }
+
+  # Pagy::ROOT is 'gem/'. We assume the repo root is one level up.
+  let(:repo_root) { Pagy::ROOT.parent }
+
   it 'has version' do
-    _(Pagy::VERSION).wont_be_nil
+    _(version).wont_be_nil
   end
-  it 'defines the same version in retype.yml' do
-    _(File.read('./docs/retype.yml')).must_match "label: #{Pagy::VERSION}"
-  end
-  it 'defines the same version in .github/ISSUE_TEMPLATE/Code.yml' do
-    _(File.read('./.github/ISSUE_TEMPLATE/Code.yml')).must_match "I upgraded to pagy version #{Pagy::VERSION}"
-  end
-  it 'defines the same version in config/pagy.rb' do
-    _(Pagy::ROOT.join('config/pagy.rb').read).must_match "# Pagy initializer file (#{Pagy::VERSION})"
-  end
-  it 'defines the same version in bin/pagy' do
-    _(Pagy::ROOT.join('bin/pagy').read).must_match "VERSION = '#{Pagy::VERSION}'"
-  end
-  it 'defines the same version in apps/*.ru' do
-    PagyApps::INDEX.each_value do |path|
-      _(File.read(path)).must_match "VERSION = '#{Pagy::VERSION}'"
+
+  describe 'Documentation and Config' do
+    it 'matches in retype.yml' do
+      content = repo_root.join('docs/retype.yml').read
+      _(content).must_match "label: #{version}"
+    end
+
+    it 'matches in .github/ISSUE_TEMPLATE/Code.yml' do
+      content = repo_root.join('.github/ISSUE_TEMPLATE/Code.yml').read
+      _(content).must_match "I upgraded to pagy version #{version}"
+    end
+
+    it 'matches in config/pagy.rb' do
+      content = Pagy::ROOT.join('config/pagy.rb').read
+      _(content).must_match "# Pagy initializer file (#{version})"
+    end
+
+    it 'matches in bin/pagy' do
+      content = Pagy::ROOT.join('bin/pagy').read
+      _(content).must_match "VERSION = '#{version}'"
+    end
+
+    it 'matches in quick-start.md (minor version)' do
+      content = repo_root.join('docs/guides/quick-start.md').read
+      _(content).must_match "gem 'pagy', '~> #{major}.#{minor}"
+    end
+
+    it 'has a section in CHANGELOG.md' do
+      content = repo_root.join('docs/CHANGELOG.md').read
+      _(content).must_match "## Version #{version}"
     end
   end
 
-  it 'defines the same version in javascripts/pagy.min.js' do
-    _(Pagy::ROOT.join('javascripts/pagy.min.js').read).must_match "version:\"#{Pagy::VERSION}\","
+  describe 'App Racks' do
+    it 'matches in apps/*.ru' do
+      PagyApps::INDEX.each_value do |path|
+        content = File.read(path)
+        _(content).must_match "VERSION = '#{version}'"
+      end
+    end
   end
-  it 'defines the same version in src/pagy.js' do
-    _(Pagy::ROOT.join('javascripts/pagy.js').read).must_match "version: \"#{Pagy::VERSION}\","
-  end
-  it 'defines the same version in src/pagy.js.map' do
-    _(Pagy::ROOT.join('javascripts/pagy.js.map').read).must_match "version: \\\"#{Pagy::VERSION}\\\","
-  end
-  it 'defines the same version in src/pagy.mjs' do
-    _(Pagy::ROOT.join('javascripts/pagy.mjs').read).must_match "version: \"#{Pagy::VERSION}\","
-  end
-  # it 'defines the same version in CHANGELOG.md' do
-  #   changelog = Pagy::ROOT.parent.join('docs/CHANGELOG.md').read
-  #
-  #   _(changelog).must_match "(e.g. `#{Pagy::VERSION}"
-  #   _(changelog).must_match "gem 'pagy', '~> #{major}.#{minor}"
-  #   _(changelog).must_match "## Version #{Pagy::VERSION}"
-  # end
-  it 'defines the same minor version in ./quick-start.md' do
-    _(File.read('./docs/guides/quick-start.md')).must_match "gem 'pagy', '~> #{major}.#{minor}"
+
+  describe 'Javascript Assets' do
+    let(:js_path) { Pagy::ROOT.join('javascripts') }
+
+    it 'matches in pagy.min.js' do
+      _(js_path.join('pagy.min.js').read).must_match "version:\"#{version}\","
+    end
+
+    it 'matches in pagy.js' do
+      _(js_path.join('pagy.js').read).must_match "version: \"#{version}\","
+    end
+
+    it 'matches in pagy.js.map' do
+      _(js_path.join('pagy.js.map').read).must_match "version: \\\"#{version}\\\","
+    end
+
+    it 'matches in pagy.mjs' do
+      _(js_path.join('pagy.mjs').read).must_match "version: \"#{version}\","
+    end
   end
 end

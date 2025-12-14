@@ -47,13 +47,17 @@ class Pagy
         @options.merge(options)
                 .values_at(:root_key, :page_key, :limit_key, :client_max_limit, :limit, :querify, :absolute, :path, :fragment)
       params = @request.params.clone(freeze: false)
-      (root_key ? params[root_key] ||= {} : params).tap do |h|
+      (root_key ? params[root_key] = params[root_key]&.clone(freeze: false) || {} : params).tap do |h|
         { page_key  => compose_page_param(page),
           limit_key => client_max_limit && limit }.each { |k, v| v ? h[k] = v : h.delete(k) }
       end
       querify&.(params) # Must modify the params: the returned value is ignored
+      fragment &&= "##{fragment.delete_prefix('#')}"
+      compose_url(absolute, path, params, fragment)
+    end
+
+    def compose_url(absolute, path, params, fragment)
       query_string = QueryUtils.build_nested_query(params).sub(/\A(?=.)/, '?')
-      fragment   &&= "##{fragment.delete_prefix('#')}"
       "#{@request.base_url if absolute}#{path || @request.path}#{query_string}#{fragment}"
     end
   end

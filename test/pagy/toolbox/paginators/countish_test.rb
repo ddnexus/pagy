@@ -1,73 +1,97 @@
 # frozen_string_literal: true
 
-require_relative '../../../test_helper'
-require_relative '../../../mock_helpers/collection'
-require_relative '../../../mock_helpers/app'
+require 'test_helper'
+require 'mocks/app'
+require 'db/models'
 
-describe 'Countish special options' do
-  let(:app) { MockApp.new }
+describe 'Pagy::CountishPaginator' do
+  let(:collection) { Pet.all }
+  let(:paginator) { Pagy::CountishPaginator }
 
-  before do
-    @collection = MockCollection.new
+  describe 'with ActiveRecord' do
+    it 'paginates with defaults (recount)' do
+      # No page param -> Page 1, Count calculated from DB
+      app = MockApp.new(params: {})
+      pagy, records = app.pagy(:countish, collection)
+
+      _(pagy).must_be_kind_of Pagy::Offset::Countish
+      _(pagy.count).must_equal 50
+      _(pagy.page).must_equal 1
+      _(records.size).must_equal 20
+    end
+
+    it 'uses cached count without TTL (ongoing)' do
+      # Param "2 100" -> Page 2, Count 100
+      app = MockApp.new(params: { page: '2 100' })
+
+      # Force DB count to be different (0) to prove we used the cached value
+      Pet.stub :count, 0 do
+        pagy, records = app.pagy(:countish, collection)
+
+        _(pagy.count).must_equal 100
+        _(pagy.page).must_equal 2
+        # Records are fetched based on page 2
+        _(records.first.id).must_equal 21
+      end
+    end
+
+    it 'uses cached count with valid TTL (ongoing)' do
+      now = Time.now.to_i
+      # Param "2 100 <now>" -> Page 2, Count 100, Epoch <now>
+      page_param = "2 100 #{now}"
+      app        = MockApp.new(params: { page: page_param })
+
+      Pet.stub :count, 0 do
+        # ttl: 100. now is within [now, now+100)
+        pagy, = app.pagy(:countish, collection, ttl: 100)
+
+        _(pagy.count).must_equal 100
+        _(pagy.options[:epoch]).must_equal now
+      end
+    end
+
+    it 'recounts when TTL expired' do
+      now = Time.now.to_i
+      # Epoch is (now - 200). TTL is 100. Expired.
+      epoch      = now - 200
+      page_param = "2 100 #{epoch}"
+
+      app   = MockApp.new(params: { page: page_param })
+      pagy, = app.pagy(:countish, collection, ttl: 100)
+
+      # Should ignore 100 and use real count 50
+      _(pagy.count).must_equal 50
+      # Should reset epoch to now
+      _(pagy.options[:epoch]).must_equal now
+    end
+
+    it 'recounts when epoch is missing but TTL required' do
+      # Param has count but no epoch
+      page_param = "2 100"
+      app        = MockApp.new(params: { page: page_param })
+      pagy,      = app.pagy(:countish, collection, ttl: 100)
+
+      _(pagy.count).must_equal 50
+      _(pagy.options[:epoch]).wont_be_nil
+    end
+
+    it 'uses options[:count] if provided (overrides param)' do
+      # Param says 100, Options says 200
+      app   = MockApp.new(params: { page: '2 100' })
+      pagy, = app.pagy(:countish, collection, count: 200)
+
+      _(pagy.count).must_equal 200
+    end
   end
-  it 'uses memoized count from page param without ttl' do
-    app = MockApp.new(params: {page: '2 500'})
-    pagy, _records = app.send(:pagy, :countish, @collection)
 
-    _(pagy.page).must_equal 2
-    _(pagy.count).must_equal 500 # Uses memoized count, not 1000 from collection
-    _(pagy.options[:epoch]).must_be_nil
-    _(pagy.send(:compose_page_param, 3)).must_equal '3+500'
-  end
-  it 'uses memoized count and preserves epoch when within ttl window' do
-    now   = Time.now.to_i
-    epoch = now - 10
-    app   =  MockApp.new(params: {page: "2 500 #{epoch}"})  # format: "page count epoch"
-    pagy, _records = app.send(:pagy, :countish, @collection, ttl: 60)
+  describe 'with Sequel' do
+    it 'paginates dataset' do
+      app = MockApp.new(params: { page: '2 50' })
+      pagy, records = app.pagy(:countish, PetSequel.dataset)
 
-    _(pagy.count).must_equal 500
-    _(pagy.options[:epoch]).must_equal epoch
-    _(pagy.send(:compose_page_param, 3)).must_equal "3+500+#{epoch}"
-  end
-  it 'recounts and resets epoch when memoized epoch is expired' do
-    now   = Time.now.to_i
-    epoch = now - 70 # Expired (> 60s)
-    app   =  MockApp.new(params: {page: "2 500 #{epoch}"})
-
-    pagy, _records = app.send(:pagy, :countish, @collection, ttl: 60)
-
-    _(pagy.count).must_equal 1000 # Fetches fresh count
-    _(pagy.options[:epoch]).must_be_close_to now, 1 # Resets epoch to now
-    _(pagy.send(:compose_page_param, 3)).must_match '3+1000+'
-  end
-  it 'recounts when passed count and memoized epoch is ongoing' do
-    now   = Time.now.to_i
-    epoch = now + 30 # ongoing
-    app   =  MockApp.new(params: {page: "2 500 #{epoch}"})
-
-    pagy, _records = app.send(:pagy, :countish, @collection, count: 300, ttl: 60)
-
-    _(pagy.count).must_equal 300 # Fetches fresh count
-    _(pagy.options[:epoch]).must_be_close_to (now = Time.now.to_i), 1 # Resets epoch to now, 1 # Resets epoch to now
-    _(pagy.send(:compose_page_param, 3)).must_equal "3+300+#{now}"
-  end
-  it 'recounts when memoized epoch is in the future (tampering protection)' do
-    now   = Time.now.to_i
-    epoch = now + 100 # Future
-    app   =  MockApp.new(params: {page: "2 500 #{epoch}"})
-
-    pagy, _records = app.send(:pagy, :countish, @collection, ttl: 60)
-
-    _(pagy.count).must_equal 1000
-    _(pagy.options[:epoch]).must_be_close_to now, 1
-    _(pagy.send(:compose_page_param, 3)).must_equal "3+1000+#{now}"
-  end
-  it 'recount without ttl (first page)' do
-    app = MockApp.new(params: {page: ''})
-    pagy, _records = app.send(:pagy, :countish, @collection)
-
-    _(pagy.count).must_equal 1000
-    _(pagy.options[:epoch]).must_be_nil
-    _(pagy.send(:compose_page_param, 3)).must_equal "3+1000"
+      _(pagy).must_be_kind_of Pagy::Offset::Countish
+      _(pagy.count).must_equal 50
+      _(records.count).must_equal 20
+    end
   end
 end

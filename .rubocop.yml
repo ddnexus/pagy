@@ -79,7 +79,8 @@ Style/RedundantInitialize:
 # Please!
 Style/StringConcatenation:
   Enabled: false
-
+Style/FormatStringToken:
+  Enabled: false
 Style/Documentation:
   Enabled: false
 # These cops are disabled only in the test files in order to
@@ -104,6 +105,8 @@ Layout/SpaceInsideHashLiteralBraces:
   Exclude:
     - test/**/*
 
-# rubocop bug already fixed in https://github.com/rubocop/rubocop/pull/11754 but not yet in the gem
-Style/RedundantLineContinuation:
+Lint/MissingSuper:
+  Enabled: false
+
+Minitest/EmptyLineBeforeAssertionMethods:
   Enabled: false

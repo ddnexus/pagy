@@ -6,31 +6,53 @@ require_relative '../../modules/b64'
 class Pagy
   # Implement wicked-fast keyset pagination for big data
   class Keyset < Pagy
-    path = Pathname.new(__dir__)
-    autoload :ActiveRecord, path.join('active_record')
-    autoload :Sequel,       path.join('sequel')
-    autoload :Keynav,       path.join('keynav')
+    # Autoload adapters: files are loaded only when const_get accesses them
+    module Adapters
+      path = Pathname.new(__dir__)
+      autoload :ActiveRecord, path.join('adapters/active_record')
+      autoload :Sequel,       path.join('adapters/sequel')
+    end
+
+    autoload :Keynav,  Pathname.new(__dir__).join('keynav')
+
+    # Define empty subclasses to allow specific typing without triggering autoload
+    class ActiveRecord < self; end
+    class Sequel       < self; end
 
     class TypeError < ::TypeError; end
 
-    # Initialize Keyset* and Keyset::Keynav* classes and subclasses
+    # Factory method: detects the set type, configures the subclass, and instantiates
     def self.new(set, **)
-      # Subclass instances run only the initializer
-      if /::(?:ActiveRecord|Sequel)$/.match?(name)  # check without triggering autoload
+      # 1. Handle direct subclass usage (e.g. Pagy::Keyset::ActiveRecord.new)
+      if /::(?:ActiveRecord|Sequel)$/.match?(name)
+        # Ensure the adapter is mixed in (lazy load)
+        mix_in_adapter(name.split('::').last)
         return allocate.tap { |instance| instance.send(:initialize, set, **) }
       end
 
-      subclass = if defined?(::ActiveRecord) && set.is_a?(::ActiveRecord::Relation)
-                   self::ActiveRecord
+      # 2. Handle Factory usage (Pagy::Keyset.new)
+      orm_name = if defined?(::ActiveRecord) && set.is_a?(::ActiveRecord::Relation)
+                   :ActiveRecord
                  elsif defined?(::Sequel) && set.is_a?(::Sequel::Dataset)
-                   self::Sequel
+                   :Sequel
                  else
                    raise TypeError, "expected an ActiveRecord::Relation or Sequel::Dataset; got #{set.class}"
                  end
+
+      # Get the specific subclass (self::ActiveRecord)
+      subclass = const_get(orm_name)
+      # Ensure the adapter is mixed in (lazy load)
+      subclass.mix_in_adapter(orm_name)
       subclass.new(set, **)
     end
 
-    def initialize(set, **) # rubocop:disable Lint/MissingSuper
+    # Helper to lazy-include the adapter module
+    def self.mix_in_adapter(orm_name)
+      adapter_module = Pagy::Keyset::Adapters.const_get(orm_name)
+      include(adapter_module) unless self < adapter_module
+    end
+
+    def initialize(set, **)
       assign_options(**)
       assign_and_check(limit: 1)
       @set    = set
@@ -102,7 +124,7 @@ class Pagy
           last_column, last_direction = keyset.pop
           intersection = +'('
           intersection << (keyset.map { |column, _d| "#{identifier[column]} = #{placeholder[column]}" } \
-                            << "#{identifier[last_column]} #{operator[last_direction]} #{placeholder[last_column]}").join(' AND ')
+          << "#{identifier[last_column]} #{operator[last_direction]} #{placeholder[last_column]}").join(' AND ')
           intersection << ')'
           union << intersection
         end
