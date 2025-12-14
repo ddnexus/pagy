@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.818586218700">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819021217213">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.818586218700" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.819021217213" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.818586218700" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.819021217213" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.818586218700" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.818586218700" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.819021217213" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.819021217213" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -190,7 +190,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../../assets/images/pagy-the-frog.png">
                             </span>
                             <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.2.0</span>
+                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.2.1</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -562,70 +562,7 @@
    </doc-panel>
    <doc-panel id="common-url-options" collapsed>
        <template #title>Common URL Options</template>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-primary"></div>
-    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-callout-primary" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-            <h5>Common URL options for all <doc-anchor-trigger to="#paginators">paginators</doc-anchor-trigger> and <code v-pre>@pagy</code> <a href="../helpers/">helpers</a></h5>
-<p>These options control give you full control over the URL composition.</p>
-        </div>
-    </div>
-</div>
-<ul>
-<li><code v-pre>absolute: true</code>
-<ul>
-<li>Makes the URL absolute.</li>
-</ul>
-</li>
-<li><code v-pre>fragment: '...'</code>
-<ul>
-<li>URL fragment string.</li>
-</ul>
-</li>
-<li><code v-pre>jsonapi: true</code>
-<ul>
-<li>Enables JSON:API-compliant URLs with nested query string (e.g., <code v-pre>?page[number]=2&amp;page[size]=100</code>).</li>
-</ul>
-</li>
-<li><code v-pre>limit_key: 'custom_limit'</code>
-<ul>
-<li>Set it to change the key string used for the <code v-pre>:limit</code> in URLs (default <code v-pre>'limit'</code>).</li>
-</ul>
-</li>
-<li><code v-pre>page_key: 'custom_page'</code>
-<ul>
-<li>Set it to change the key string used for the <code v-pre>:page</code> in URLs (default <code v-pre>'page'</code>).</li>
-</ul>
-</li>
-<li><code v-pre>root_key: 'custom_root</code>
-<ul>
-<li>Set it to enable nested URLs with nested query string <code v-pre>?custom_root[page]=2&amp;custom_root[limit]=100</code>)). Use it to handle multiple pagination objects in the same request.</li>
-</ul>
-</li>
-<li><code v-pre>path: '/custom_path'</code>
-<ul>
-<li>Overrides the request path in pagination URLs. Use the path only (not the absolute URL). <em>(see <a href="../../guides/how-to/#paginate-multiple-independent-collections">Override the request path</a>)</em></li>
-</ul>
-</li>
-<li><code v-pre>querify: tweak</code>
-<ul>
-<li><p>Set it to a <code v-pre>Lambda</code> to directly edit the passed string-keyed params hash itself. Its result is ignored.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">tweak = -&gt;(q) { q.except!('not_useful').merge!('custom' =&gt; 'useful') }</code></pre>
-</doc-codeblock></div>
-</li>
-</ul>
-</li>
-</ul>
+<p>See <a href="../../resources/urls/#url-options">URL Options</a></p>
    </doc-panel>
    <doc-panel id="common-readers" collapsed>
        <template #title>Common Readers</template>
