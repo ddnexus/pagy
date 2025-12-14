@@ -1,8 +1,13 @@
-### Changes in 43.2.0
+### Changes in 43.2.1
 
 <!-- changes_start -->
-- Implement :countish paginator
-- Simplify Pagy::Linkable
+- Fix the shallow cloning of root_key params. Close #851.
+- Implements support for easy overriding
+- Add :current_url alias to :page_url
+- Fix limit_tag_js not respecting the passed :client_max_limit option
+- Fix data_hash returning keys with nil values, or URLs without page; add :current_url alias to :page_url
+- Remove warning when fit_time
+- Fix respond_to_missing definition arguments in Search::Arguments
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
