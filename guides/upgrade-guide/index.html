@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819021217213">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819080838176">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Upgrade to 43 &#128154; Pagy</title>
     <meta name="title" content="Upgrade to 43 💚 Pagy">
-    <meta name="description" content="Pagy version 43 is a complete redesign of the legacy code. Its improvements make pagination a lot simpler and powerful, but">
+    <meta name="description" content="Pagy version 43 is a complete redesign of the legacy code.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/guides/upgrade-guide/">
@@ -21,22 +21,22 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/guides/upgrade-guide/">
     <meta property="og:title" content="Upgrade to 43 💚 Pagy">
-    <meta property="og:description" content="Pagy version 43 is a complete redesign of the legacy code. Its improvements make pagination a lot simpler and powerful, but">
+    <meta property="og:description" content="Pagy version 43 is a complete redesign of the legacy code.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ddnexus.github.io/pagy/guides/upgrade-guide/">
     <meta property="twitter:title" content="Upgrade to 43 💚 Pagy">
-    <meta property="twitter:description" content="Pagy version 43 is a complete redesign of the legacy code. Its improvements make pagination a lot simpler and powerful, but">
+    <meta property="twitter:description" content="Pagy version 43 is a complete redesign of the legacy code.">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.819021217213" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.819080838176" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.819021217213" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.819021217213" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.819021217213" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.819080838176" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -389,8 +389,7 @@
     </h2>
 </doc-anchor-target>
 <hr>
-<p>Pagy version 43 is a complete redesign of the legacy code. Its improvements make pagination a lot simpler and powerful, but
-require a quite different way to use it.</p>
+<p>Pagy version 43 is a complete redesign of the legacy code. Its improvements make pagination a lot simpler and powerful, but require a quite different way to use it.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-success"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
@@ -910,7 +909,7 @@ as needed.</em></p>
 <ul>
 <li>Replace any existing <code v-pre>:jsonify_keyset_attributes</code> with <code v-pre>:pre_serialize</code>.
 <ul>
-<li>The lambda receives the same <code v-pre>keyset_attributes</code> argument, but it must modify the specific values directly. The lambda&#x27;sreturn value is ignored. For example: <code v-pre>-&gt;(attrs) { attrs[:created_at] = attrs[:created_at].strftime('%F %T.%6N') }</code>.</li>
+<li>The lambda receives the same <code v-pre>keyset_attributes</code> argument, but it must modify the specific values directly. The lambda&#x27;s return value is ignored. For example: <code v-pre>-&gt;(attrs) { attrs[:created_at] = attrs[:created_at].strftime('%F %T.%6N') }</code>.</li>
 </ul>
 </li>
 </ul>
@@ -988,7 +987,7 @@ as needed.</em></p>
 <ul>
 <li>The navigation bar for an out-of-range request is rendered identically to that of the last page.</li>
 <li>The only difference is that there are no records/results to display.</li>
-<li>The &quot;previous page&quot; button points to the last page, so if users truly want to see the last page results (which they havelikely already seen), they can simply click the link.</li>
+<li>The &quot;previous page&quot; button points to the last page, so if users truly want to see the last page results (which they have likely already seen), they can simply click the link.</li>
 </ul>
 </li>
 </ul>
@@ -1025,23 +1024,20 @@ as needed.</em></p>
    <doc-panel id="gearbox-_discontinued_" collapsed>
        <template #title><code v-pre>gearbox</code> <em>(discontinued)</em></template>
 <ul>
-<li>Due to extensive overwriting for minimal benefit, you can safely remove this feature from your app without noticeable impact.Remove all <code v-pre>/gearbox/</code> related code.</li>
+<li>Due to extensive overwriting for minimal benefit, you can safely remove this feature from your app without noticeable impact. Remove all <code v-pre>/gearbox/</code> related code.</li>
 </ul>
    </doc-panel>
    <doc-panel id="size-_discontinued_" collapsed>
        <template #title><code v-pre>size</code> <em>(discontinued)</em></template>
 <ul>
-<li>Pagination bars similar to WillPaginate and Kaminari are not good for a lot of reasons. If still required, adapt the legacy filefrom a previous commit.</li>
+<li>Pagination bars similar to WillPaginate and Kaminari are not good for a lot of reasons. If still required, adapt the legacy file from a previous commit.</li>
 </ul>
    </doc-panel>
    <doc-panel id="trim-_discontinued_" collapsed>
        <template #title><code v-pre>trim</code> <em>(discontinued)</em></template>
 <ul>
-<li><p>It was mostly useless and half-baked, causing many complications in both the Ruby and JavaScript code for no significant
-benefit.</p>
-</li>
-<li><p>Use an appropriate approach to address your requirement, such as utilizing URL rewriting at the HTTP server level.</p>
-</li>
+<li>It was mostly useless and half-baked, causing many complications in both the Ruby and JavaScript code for no significant benefit.</li>
+<li>Use an appropriate approach to address your requirement, such as utilizing URL rewriting at the HTTP server level.</li>
 </ul>
    </doc-panel>
 </doc-panels>
@@ -1126,11 +1122,7 @@ benefit.</p>
    <doc-panel id="replace-the-params-variable" collapsed>
        <template #title>Replace the <code v-pre>:params</code> variable...</template>
 <ul>
-<li><p>Use the <code v-pre>:querify</code> option, which is a <code v-pre>lambda</code> that can modify the string-keyed params hash at will. It is a bit more verbose,
-but it&#x27;s more powerful and low-level. It solves an incompatibility with the old high-level
-<code v-pre>:params</code> hash/lambda and improves performance. It is part of the <a href="../../toolbox/paginators/#common-url-options">Common URL Options</a>
-group that gives you full and efficient control over the URL composition.</p>
-</li>
+<li>Use the <code v-pre>:querify</code> option, which is a <code v-pre>lambda</code> that can modify the string-keyed params hash at will. It is a bit more verbose, but it&#x27;s more powerful and low-level. It solves an incompatibility with the old high-level <code v-pre>:params</code> hash/lambda and improves performance. It is part of the <a href="../../toolbox/paginators/#common-url-options">Common URL Options</a> group that gives you full and efficient control over the URL composition.</li>
 <li><p>Example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby"># Old symbol-keyed, high-level hash variable
@@ -1160,7 +1152,7 @@ querify = -&gt;(p) { p.except!('not_useful').merge!('custom' =&gt; 'useful') }</
    <doc-panel id="javascript" collapsed>
        <template #title>Javascript</template>
 <ul>
-<li>If your <code v-pre>pagy-old.rb</code> contains any JavaScript setup, it should still work, so you can move it to the <code v-pre>pagy.rb</code> file, however,for apps with builders, consider using thenew <a href="../../resources/javascript/#2-make-the-file-available-to-your-app">Pagy.sync_javascript</a> and removing all the old entries fromyour JavaScript config files.</li>
+<li>If your <code v-pre>pagy-old.rb</code> contains any JavaScript setup, it should still work, so you can move it to the <code v-pre>pagy.rb</code> file, however, for apps with builders, consider using the new <a href="../../resources/javascript/#2-make-the-file-available-to-your-app">Pagy.sync_javascript</a> and removing all the old entries from your JavaScript config files.</li>
 </ul>
    </doc-panel>
    <doc-panel id="stylesheets" collapsed>
@@ -1189,8 +1181,8 @@ querify = -&gt;(p) { p.except!('not_useful').merge!('custom' =&gt; 'useful') }</
    <doc-panel id="pagyi18n-and-locale-files" collapsed>
        <template #title>Pagy::I18n and Locale Files</template>
 <ul>
-<li>If your <code v-pre>pagy-old.rb</code> contains the <code v-pre>Pagy::I18n</code> setup, and the setup includes some custom dictionary file, then uncomment andset up the relevant <code v-pre>Pagy::I18n</code> lookup section in the <code v-pre>pagy.rb</code> file. <em>(See the <a href="../../resources/i18n/">I18n docs</a> for details)</em></li>
-<li>Update your custom dictionary files (if any) to the new <a href="../../resources/i18n/#dictionary-file-example">dictionary structure</a>, orthey won&#x27;t work correctly.</li>
+<li>If your <code v-pre>pagy-old.rb</code> contains the <code v-pre>Pagy::I18n</code> setup, and the setup includes some custom dictionary file, then uncomment and set up the relevant <code v-pre>Pagy::I18n</code> lookup section in the <code v-pre>pagy.rb</code> file. <em>(See the <a href="../../resources/i18n/">I18n docs</a> for details)</em></li>
+<li>Update your custom dictionary files (if any) to the new <a href="../../resources/i18n/#dictionary-file-example">dictionary structure</a>, or they won&#x27;t work correctly.</li>
 <li>Besides that, you don&#x27;t need any line of the old setup, because all the locales are autoloaded when your app uses them.</li>
 <li>Remove all the I18n code from the <code v-pre>pagy-old.rb</code>.</li>
 </ul>
@@ -1261,8 +1253,7 @@ querify = -&gt;(p) { p.except!('not_useful').merge!('custom' =&gt; 'useful') }</
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>Please report any issue with this guide opening
-a <a href="https://github.com/ddnexus/pagy/issues/new?template=Documentation.yml">new docs issue</a>.</p>
+<p>Please report any issue with this guide opening a <a href="https://github.com/ddnexus/pagy/issues/new?template=Documentation.yml">new docs issue</a>.</p>
         </div>
     </div>
 </div>

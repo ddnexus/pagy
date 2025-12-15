@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819021217213">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819080838176">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.11.0.819021217213" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.11.0.819080838176" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.11.0.819021217213" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.11.0.819021217213" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.11.0.819021217213" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.11.0.819080838176" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -674,15 +674,12 @@ like:
 </li>
 <li><code v-pre>tuple_comparison: true</code>
 <ul>
-<li>Enable the tuple comparison e.g. <code v-pre>(brand, id) &gt; (:brand, :id)</code>. It works only with the same direction order, hence, it&#x27;s
-ignored for mixed order. Check how your DB supports it (your <code v-pre>keyset</code> should include only <code v-pre>NOT NULL</code>
-columns).</li>
+<li>Enable the tuple comparison e.g. <code v-pre>(brand, id) &gt; (:brand, :id)</code>. It works only with the same direction order, hence, it&#x27;s ignored for mixed order. Check how your DB supports it (your <code v-pre>keyset</code> should include only <code v-pre>NOT NULL</code> columns).</li>
 </ul>
 </li>
 <li><code v-pre>pre_serialize: serialize</code>
 <ul>
-<li><p>Set it to a <code v-pre>lambda</code> that receives the <code v-pre>keyset_attributes</code> hash. Modify this hash directly to customize the serialization of
-specific values (e.g., to preserve <code v-pre>Time</code> object precision). The lambda&#x27;s return value is ignored.</p>
+<li><p>Set it to a <code v-pre>lambda</code> that receives the <code v-pre>keyset_attributes</code> hash. Modify this hash directly to customize the serialization of specific values (e.g., to preserve <code v-pre>Time</code> object precision). The lambda&#x27;s return value is ignored.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">serialize = lambda do |attributes|
   # Convert it to a string matching the stored value/format in SQLite DB
@@ -712,48 +709,37 @@ end</code></pre>
 <ul>
 <li>You pass an <code v-pre>uniquely ordered</code> <code v-pre>set</code> and pagy pulls the <code v-pre>:limit</code> of records of the first page.</li>
 <li>You request the <code v-pre>next</code> URL, which has the <code v-pre>page</code> param set to the <code v-pre>cutoff</code> of the current page.</li>
-<li>At each request, the new <code v-pre>page</code> is decoded into arguments that are coupled with a <code v-pre>where</code> filter query, and a <code v-pre>:limit</code> of newrecords is retrieved.</li>
+<li>At each request, the new <code v-pre>page</code> is decoded into arguments that are coupled with a <code v-pre>where</code> filter query, and a <code v-pre>:limit</code> of new records is retrieved.</li>
 <li>The collection ends when <code v-pre>pagy.next.nil?</code>.</li>
 </ul>
    </doc-panel>
    <doc-panel id="in-depth-cutoffs" collapsed>
        <template #title>In Depth: Cutoffs</template>
 <p>The <code v-pre>cutoff</code> of a <code v-pre>page</code> is the <strong>value</strong> that identifies where the <code v-pre>page</code> <em>has ended</em>, and the <code v-pre>next</code> one begins.</p>
-<p>Let&#x27;s consider an example of a simple <code v-pre>set</code> of 29 records, with an <code v-pre>id</code> column populated by character keys, and its order is:
-<code v-pre>order(:id)</code>.</p>
-<p>Assuming a LIMIT of 10, the <em>&quot;first page&quot;</em> will just include the first 10 records in the <code v-pre>set</code>: no <code v-pre>cutoff</code> value is known so
-far...</p>
+<p>Let&#x27;s consider an example of a simple <code v-pre>set</code> of 29 records, with an <code v-pre>id</code> column populated by character keys, and its order is: <code v-pre>order(:id)</code>.</p>
+<p>Assuming a LIMIT of 10, the <em>&quot;first page&quot;</em> will just include the first 10 records in the <code v-pre>set</code>: no <code v-pre>cutoff</code> value is known so far...</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-none"><code v-pre class="language-none">                  │ first page (10)  &gt;│ rest (19)                          &gt;│
 beginning of set &gt;[· · · · · · · · · ·]· · · · · · · · · · · · · · · · · · ·]&lt; end of set</code></pre>
 </doc-codeblock></div>
-<p>At this point, it&#x27;s the exact same first page pulled with OFFSET pagination, however, we don&#x27;t want to use OFFSET to get the
-records after the first 10: that would be slow in a big table, so we need a way to identify the beginning of the next page without
-COUNTing the records (i.e., the whole point we want to avoid for performance).</p>
-<p>So we read the <code v-pre>id</code> of the last one, which is the value <code v-pre>X</code> in our example... and that is the <code v-pre>cutoff</code> value of the first page. It
-can be described like:
-<em>&quot;the point up to the value <code v-pre>X</code> in the <code v-pre>id</code> column&quot;</em>.</p>
-<p>Notice that this is not like saying <em>&quot;up to the record <code v-pre>X</code>&quot;</em>. It&#x27;s important to understand that a <code v-pre>cutoff</code> refers just to a cutoff
-value of a column (or the values of multiple column, in case of multi-columns keysets).</p>
-<p>Indeed, that very record could be deleted right after we read it, and our <code v-pre>cutoff-X</code> will still be the valid truth that we
-paginated the <code v-pre>set</code> up to the &quot;X&quot; value, cutting any further record off the <code v-pre>page</code>...</p>
+<p>At this point, it&#x27;s the exact same first page pulled with OFFSET pagination, however, we don&#x27;t want to use OFFSET to get the records after the first 10: that would be slow in a big table, so we need a way to identify the beginning of the next page without COUNTing the records (i.e., the whole point we want to avoid for performance).</p>
+<p>So we read the <code v-pre>id</code> of the last one, which is the value <code v-pre>X</code> in our example... and that is the <code v-pre>cutoff</code> value of the first page. It can be described as: <em>&quot;the point up to the value <code v-pre>X</code> in the <code v-pre>id</code> column&quot;</em>.</p>
+<p>Notice that this is not like saying <em>&quot;up to the record <code v-pre>X</code>&quot;</em>. It&#x27;s important to understand that a <code v-pre>cutoff</code> refers just to a cutoff value of a column (or the values of multiple column, in case of multi-columns keysets).</p>
+<p>Indeed, that very record could be deleted right after we read it, and our <code v-pre>cutoff-X</code> will still be the valid truth that we paginated the <code v-pre>set</code> up to the &quot;X&quot; value, cutting any further record off the <code v-pre>page</code>...</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-none"><code v-pre class="language-none">                  │ first page (10)  &gt;│ second page (10) &gt;│ rest (9)       &gt;│
 beginning of set &gt;[· · · · · · · · · X]· · · · · · · · · ·]· · · · · · · · ·]&lt; end of set
                                       ▲
                                    cutoff-X</code></pre>
 </doc-codeblock></div>
-<p>For getting the <code v-pre>next</code> page of records (i.e. the <em>&quot;second page&quot;</em>) we pull the <code v-pre>next</code> 10 records AFTER the <code v-pre>cutoff-X</code>. Again, we
-read the <code v-pre>id</code> of the last one, which is <code v-pre>Y</code>: so we have our new <code v-pre>cutoff-Y</code>, which is the end of the current <code v-pre>page</code>, and the <code v-pre>next</code>
-will go AFTER it...</p>
+<p>For getting the <code v-pre>next</code> page of records (i.e. the <em>&quot;second page&quot;</em>) we pull the <code v-pre>next</code> 10 records AFTER the <code v-pre>cutoff-X</code>. Again, we read the <code v-pre>id</code> of the last one, which is <code v-pre>Y</code>: so we have our new <code v-pre>cutoff-Y</code>, which is the end of the current <code v-pre>page</code>, and the <code v-pre>next</code> will go AFTER it...</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-none"><code v-pre class="language-none">                  │ first page (10)  &gt;│ second page (10) &gt;│ last page (9)  &gt;│
 beginning of set &gt;[· · · · · · · · · X]· · · · · · · · · Y]· · · · · · · · ·]&lt; end of set
                                       ▲                   ▲
                                    cutoff-X            cutoff-Y</code></pre>
 </doc-codeblock></div>
-<p>When we pull the <code v-pre>next</code> page from the <code v-pre>cutoff-Y</code>, we find only the remaining 9 records, which means that it&#x27;s the <em>&quot;last page&quot;</em>,
-which naturally ends with the end of the <code v-pre>set</code>, so it doesn&#x27;t have any <code v-pre>cutoff</code> value to separate it from further records.</p>
+<p>When we pull the <code v-pre>next</code> page from the <code v-pre>cutoff-Y</code>, we find only the remaining 9 records, which means that it&#x27;s the <em>&quot;last page&quot;</em>, which naturally ends with the end of the <code v-pre>set</code>, so it doesn&#x27;t have any <code v-pre>cutoff</code> value to separate it from further records.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-primary"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
@@ -770,7 +756,7 @@ which naturally ends with the end of the <code v-pre>set</code>, so it doesn&#x2
             <h5>Keynotes</h5>
 <ul>
 <li>A <code v-pre>cutoff</code> identifies a &quot;cutoff value&quot;, for a <code v-pre>page</code> in the <code v-pre>set</code>. It is not a record, nor a reference to it.</li>
-<li>Its value is extracted from the <code v-pre>keyset attributes values</code> array of the last record of the <code v-pre>page</code>, converted to JSON, andencoded as a Base64 URL-safe string, for easy use in URLs.
+<li>Its value is extracted from the <code v-pre>keyset attributes values</code> array of the last record of the <code v-pre>page</code>, converted to JSON, and encoded as a Base64 URL-safe string, for easy use in URLs.
 <ul>
 <li>The <code v-pre>:keyset</code> paginator embeds it in the request URL; the <code v-pre>:keynav_js</code> paginator caches it on the client <code v-pre>sessionStorage</code>.</li>
 </ul>
@@ -904,8 +890,8 @@ Product.order(:name, :production_date, :id)</code></pre>
         <div class="pr-5 ml-3 w-full">
 <ul>
 <li>Ensure that the composite index reflects exactly the columns sequence and order of your keyset</li>
-<li>Research your specific DB features, type of index, and performance for different ordering. Use SQL <code v-pre>EXPLAIN ANALYZE</code> or similartool to confirm.</li>
-<li>Consider using the same direction order, enabling the <code v-pre>:tuple_comparison</code>, and changing type of index (different DBs may behavedifferently).</li>
+<li>Research your specific DB features, type of index, and performance for different ordering. Use SQL <code v-pre>EXPLAIN ANALYZE</code> or similar tool to confirm.</li>
+<li>Consider using the same direction order, enabling the <code v-pre>:tuple_comparison</code>, and changing type of index (different DBs may behave differently).</li>
 <li>Consider overriding the <code v-pre>Keyset#compose_predicate</code> method.</li>
 </ul>
         </div>

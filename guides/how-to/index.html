@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819021217213">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819080838176">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.819021217213" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.819080838176" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.819021217213" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.819021217213" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.819021217213" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.819080838176" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -406,11 +406,8 @@
 </li>
 <li><strong>Requestable</strong>
 <ul>
-<li><p>Use the <code v-pre>limit</code> option combined with the <code v-pre>:client_max_limit</code> option, allowing the client to request a variable <code v-pre>:limit</code> up to
-the specified <code v-pre>:client_max_limit</code>.</p>
-</li>
-<li><p>Additionally, you can use the <a href="../../toolbox/helpers/limit_tag_js/">limit_tag_js</a> helper to provide a UI selector to the user.</p>
-</li>
+<li>Use the <code v-pre>limit</code> option combined with the <code v-pre>:client_max_limit</code> option, allowing the client to request a variable <code v-pre>:limit</code> up to the specified <code v-pre>:client_max_limit</code>.</li>
+<li>Additionally, you can use the <a href="../../toolbox/helpers/limit_tag_js/">limit_tag_js</a> helper to provide a UI selector to the user.</li>
 </ul>
 </li>
 </ul>
@@ -439,8 +436,7 @@ the specified <code v-pre>:client_max_limit</code>.</p>
    </doc-panel>
    <doc-panel id="control-the-pagination-bar" collapsed>
        <template #title>Control the pagination bar</template>
-<p>Pagy provides <a href="../../toolbox/helpers/series_nav/">series_nav</a> and <a href="../../toolbox/helpers/series_nav_js/">series_nav_js</a> helpers for
-displaying a pagination bar.</p>
+<p>Pagy provides <a href="../../toolbox/helpers/series_nav/">series_nav</a> and <a href="../../toolbox/helpers/series_nav_js/">series_nav_js</a> helpers for displaying a pagination bar.</p>
 <p>You can customize the number and position of page links in the navigation bar using:</p>
 <ul>
 <li>The <a href="../../toolbox/helpers/series_nav/#options">:slots and :compact options</a>.</li>
@@ -449,8 +445,7 @@ displaying a pagination bar.</p>
    </doc-panel>
    <doc-panel id="force-the-page" collapsed>
        <template #title>Force the <code v-pre>:page</code></template>
-<p>Pagy retrieves the page from the <code v-pre>'page'</code> request params hash. To force a specific page number, pass it directly to the <code v-pre>pagy</code>
-method. For example:</p>
+<p>Pagy retrieves the page from the <code v-pre>'page'</code> request params hash. To force a specific page number, pass it directly to the <code v-pre>pagy</code> method. For example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">controller</div>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">@pagy, @records = pagy(:offset, collection, page: 3) # force page #3</code></pre>
@@ -465,26 +460,18 @@ method. For example:</p>
     </h4>
 </doc-anchor-target>
 <ul>
-<li><p>Locate the locale file you need in
-the <a href="https://github.com/svenfuchs/rails-i18n/tree/master/rails/pluralization">list of pluralizations</a></p>
-</li>
-<li><p>Check the pluralization rules required in it. For example, the name of the file required is <code v-pre>one_other</code>
-for <a href="https://github.com/svenfuchs/rails-i18n/blob/master/rails/pluralization/en.rb"><code v-pre>en.rb</code></a>. In Pagy, that translates to
-<code v-pre>'OneOther'</code>.</p>
+<li>Locate the locale file you need in the <a href="https://github.com/svenfuchs/rails-i18n/tree/master/rails/pluralization">list of pluralizations</a></li>
+<li>Check the pluralization rules required in it. For example, the name of the file required is <code v-pre>one_other</code> for <a href="https://github.com/svenfuchs/rails-i18n/blob/master/rails/pluralization/en.rb"><code v-pre>en.rb</code></a>. In Pagy, that translates to <code v-pre>'OneOther'</code>.
 <ul>
-<li>If you cannot find the pluralization in the link above, checkthe <a href="https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html">Unicode pluralization rules</a>.</li>
+<li>If you cannot find the pluralization in the link above, check the <a href="https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html">Unicode pluralization rules</a>.</li>
 </ul>
 </li>
-<li><p>Confirm that pagy already defines the pluralization rules of your dictionary file by checking the file in
-the <a href="https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/modules/i18n/p18n">P18n directory</a>.</p>
+<li>Confirm that pagy already defines the pluralization rules of your dictionary file by checking the file in the <a href="https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/modules/i18n/p18n">P18n directory</a>.
 <ul>
 <li>If the rules are not defined, you can either:
 <ul>
-<li><p>Add a new module for the pluralization (by adapting the same pluralization from the corresponding rails-i18n file) and
-include tests for it;</p>
-</li>
-<li><p>Or, create an issue requesting the addition of the pluralization entry and its tests.</p>
-</li>
+<li>Add a new module for the pluralization (by adapting the same pluralization from the corresponding rails-i18n file) and include tests for it;</li>
+<li>Or, create an issue requesting the addition of the pluralization entry and its tests.</li>
 </ul>
 </li>
 </ul>
@@ -498,12 +485,8 @@ include tests for it;</p>
 </doc-anchor-target>
 <ul>
 <li>See the <a href="https://github.com/ddnexus/pagy/tree/master/gem/locales">lib/locales</a> for existing dictionaries.</li>
-<li>Check that the <code v-pre>p11n</code> entry points to a module in
-the <a href="https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/modules/i18n/p18n">P18n directory</a>.</li>
-<li>The mandatory pluralized entries in the dictionary file are <code v-pre>aria_label.nav</code> and <code v-pre>item_name</code>. Please provide all the necessary
-plurals for your language. For example, if your language uses the <code v-pre>EastSlavic</code> rule, you should provide the plurals for <code v-pre>one</code>,
-<code v-pre>few</code>, <code v-pre>many</code>, and <code v-pre>other</code>. If it uses
-<code v-pre>Other</code>, you should only provide a single value. Check other dictionary files for examples, and ask if you have any doubts.</li>
+<li>Check that the <code v-pre>p11n</code> entry points to a module in the <a href="https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/modules/i18n/p18n">P18n directory</a>.</li>
+<li>The mandatory pluralized entries in the dictionary file are <code v-pre>aria_label.nav</code> and <code v-pre>item_name</code>. Please provide all the necessary plurals for your language. For example, if your language uses the <code v-pre>EastSlavic</code> rule, you should provide the plurals for <code v-pre>one</code>, <code v-pre>few</code>, <code v-pre>many</code>, and <code v-pre>other</code>. If it uses <code v-pre>Other</code>, you should only provide a single value. Check other dictionary files for examples, and ask if you have any doubts.</li>
 </ul>
 <p>Feel free to ask for help in your Pull Request.</p>
    </doc-panel>
@@ -511,8 +494,7 @@ plurals for your language. For example, if your language uses the <code v-pre>Ea
        <template #title>Customize the ARIA labels</template>
 <p>You can customize the <code v-pre>aria-label</code> attributes of any <code v-pre>*nav*</code> helper by providing a <code v-pre>:aria_label</code> string.</p>
 <p>See the <a href="../../toolbox/helpers/#common-nav-options">:aria_label</a> option.</p>
-<p>You can also replace the <code v-pre>pagy.aria_label.nav</code> strings in the dictionary, as well as the <code v-pre>pagy.aria_label.previous</code> and the
-<code v-pre>pagy.aria_label.next</code>.</p>
+<p>You can also replace the <code v-pre>pagy.aria_label.nav</code> strings in the dictionary, as well as the <code v-pre>pagy.aria_label.previous</code> and the <code v-pre>pagy.aria_label.next</code>.</p>
 <p>See <a href="../../resources/aria/">ARIA</a>.</p>
    </doc-panel>
    <doc-panel id="customize-the-page-and-limit-url-keys" collapsed>
@@ -546,15 +528,12 @@ plurals for your language. For example, if your language uses the <code v-pre>Ea
    </doc-panel>
    <doc-panel id="customize-css-styles" collapsed>
        <template #title>Customize CSS styles</template>
-<p>Pagy includes different formats of <a href="../../resources/stylesheets/">stylesheets</a> for customization, as well as styled <code v-pre>nav</code> tags for
-<code v-pre>:bootstrap</code> and <code v-pre>:bulma</code>.</p>
+<p>Pagy includes different formats of <a href="../../resources/stylesheets/">stylesheets</a> for customization, as well as styled <code v-pre>nav</code> tags for <code v-pre>:bootstrap</code> and <code v-pre>:bulma</code>.</p>
 <p>You can also override the specific helper method.</p>
    </doc-panel>
    <doc-panel id="override-css-rules-in-element-style-attribute" collapsed>
        <template #title>Override CSS rules in element &quot;style&quot; attribute</template>
-<p>The <code v-pre>input_nav_js</code> and <code v-pre>limit_tag_js</code> use inline style attributes. You can override these rules in your stylesheet files using the
-<code v-pre>[style]</code>
-attribute selector and <code v-pre>!important</code>. Below is an example of overriding the <code v-pre>width</code> of an <code v-pre>input</code> element:</p>
+<p>The <code v-pre>input_nav_js</code> and <code v-pre>limit_tag_js</code> use inline style attributes. You can override these rules in your stylesheet files using the <code v-pre>[style]</code> attribute selector and <code v-pre>!important</code>. Below is an example of overriding the <code v-pre>width</code> of an <code v-pre>input</code> element:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-css"><code v-pre class="language-css">.pagy input[style] {
   width: 5rem !important; /* just an useless example */
@@ -591,9 +570,9 @@ Pagy::AnyModule.prepend MyOverridingModule</code></pre>
        <template #title>Paginate ActiveRecord collections</template>
 <p>Pagy works seamlessly with <code v-pre>ActiveRecord</code> collections, but certain collections may require specific handling:</p>
 <ul>
-<li><p><strong>Grouped collections</strong></p>
+<li><strong>Grouped collections</strong>
 <ul>
-<li>For better performance of grouped counts, you may want to use the <a href="../../toolbox/paginators/offset/#options">:count_over</a>option</li>
+<li>For better performance of grouped counts, you may want to use the <a href="../../toolbox/paginators/offset/#options">:count_over</a> option</li>
 </ul>
 </li>
 <li><p><strong>Decorated collections</strong></p>
@@ -631,7 +610,7 @@ Pagy::AnyModule.prepend MyOverridingModule</code></pre>
 @pagy, @people = pagy(:offset, q.result)</code></pre>
 </doc-codeblock></div>
 </li>
-<li><p><strong>PostgreSQL Collections</strong></p>
+<li><strong>PostgreSQL Collections</strong>
 <ul>
 <li><a href="../../toolbox/paginators/#troubleshooting">Always ensure your collections are ordered!</a></li>
 </ul>
@@ -650,8 +629,7 @@ Pagy::AnyModule.prepend MyOverridingModule</code></pre>
    </doc-panel>
    <doc-panel id="paginate-for-javascript-frameworks" collapsed>
        <template #title>Paginate for Javascript Frameworks</template>
-<p>You can send selected <code v-pre>@pagy</code> instance data to the client as JSON using the <a href="../../toolbox/helpers/data_hash/">data_hash</a> helper,
-including pagination metadata in your JSON response.</p>
+<p>You can send selected <code v-pre>@pagy</code> instance data to the client as JSON using the <a href="../../toolbox/helpers/data_hash/">data_hash</a> helper, including pagination metadata in your JSON response.</p>
    </doc-panel>
    <doc-panel id="paginate-search-platform-results" collapsed>
        <template #title>Paginate search platform results</template>
@@ -664,13 +642,11 @@ including pagination metadata in your JSON response.</p>
    </doc-panel>
    <doc-panel id="paginate-by-date" collapsed>
        <template #title>Paginate by date</template>
-<p>Use the <a href="../../toolbox/paginators/calendar/">:calendar</a> paginator for pagination filtering by calendar time units (e.g., year,
-quarter, month, week, day).</p>
+<p>Use the <a href="../../toolbox/paginators/calendar/">:calendar</a> paginator for pagination filtering by calendar time units (e.g., year, quarter, month, week, day).</p>
    </doc-panel>
    <doc-panel id="paginate-multiple-independent-collections" collapsed>
        <template #title>Paginate multiple independent collections</template>
-<p>When you need to paginate multiple collections in a single request, you need to explicitly differentiate the pagination objects.
-Here are some common methods to achieve this:</p>
+<p>When you need to paginate multiple collections in a single request, you need to explicitly differentiate the pagination objects. Here are some common methods to achieve this:</p>
 <doc-anchor-target id="override-the-request-path">
     <h5>
         <doc-anchor-trigger class="header-anchor-trigger" to="#override-the-request-path">#</doc-anchor-trigger>
@@ -678,8 +654,7 @@ Here are some common methods to achieve this:</p>
     </h5>
 </doc-anchor-target>
 <br/>
-<p>By default, Pagy generates links using the same path as the request path. To generate links pointing to a different controller or
-path, explicitly pass the desired <code v-pre>:path</code>. For example:</p>
+<p>By default, Pagy generates links using the same path as the request path. To generate links pointing to a different controller or path, explicitly pass the desired <code v-pre>:path</code>. For example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">
 def index
@@ -700,9 +675,7 @@ end</code></pre>
     </h5>
 </doc-anchor-target>
 <br/>
-<p>If you&#x27;re using <a href="https://hotwired.dev/">hotwire</a> (<a href="https://github.com/hotwired/turbo-rails">turbo-rails</a> being the Rails
-implementation), another way of maintaining independent contexts is using separate turbo frames actions. Just wrap each
-independent context in a <code v-pre>turbo_frame_tag</code> and ensure a matching <code v-pre>turbo_frame_tag</code> is returned:</p>
+<p>If you&#x27;re using <a href="https://hotwired.dev/">hotwire</a> (<a href="https://github.com/hotwired/turbo-rails">turbo-rails</a> being the Rails implementation), another way of maintaining independent contexts is using separate turbo frames actions. Just wrap each independent context in a <code v-pre>turbo_frame_tag</code> and ensure a matching <code v-pre>turbo_frame_tag</code> is returned:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-erb"><code v-pre class="language-erb">  &lt;-- movies/index.html.erb --&gt;
 
@@ -728,9 +701,7 @@ def bad
   @pagy, @movies = pagy(:offset, Movie.bad, limit: 5)
 end </code></pre>
 </doc-codeblock></div>
-<p>Consider <a href="https://bhserna.com/building-data-grid-with-search-rails-hotwire-ransack.html">Benito Serna&#x27;s implementation of turbo-frames (on Rails) using search forms with the Ransack gem</a>
-along with a corresponding <a href="https://github.com/bhserna/dynamic_data_grid_hotwire_ransack">demo app</a> for a similar implementation
-of the above logic.</p>
+<p>Consider <a href="https://bhserna.com/building-data-grid-with-search-rails-hotwire-ransack.html">Benito Serna&#x27;s implementation of turbo-frames (on Rails) using search forms with the Ransack gem</a> along with a corresponding <a href="https://github.com/bhserna/dynamic_data_grid_hotwire_ransack">demo app</a> for a similar implementation of the above logic.</p>
 <doc-anchor-target id="use-the-root_key-option">
     <h5>
         <doc-anchor-trigger class="header-anchor-trigger" to="#use-the-root_key-option">#</doc-anchor-trigger>
@@ -741,7 +712,8 @@ of the above logic.</p>
 <p>By default, pagy creates flat URLs for its links. If you need to handle multiple pagy instance in the same request, you can nest the <code v-pre>:page</code> and -if you use it- the <code v-pre>:limit</code> params by passing the <code v-pre>:root_key</code> option to the paginator:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">Controller Action</div>
-<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">def index # controller action
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">
+def index # controller action
   @pagy_stars, @stars     = pagy(:offset, Star.all, root_key: 'stars')
   @pagy_nebulae, @nebulae = pagy(:offset, Nebula.all, root_key: 'nebulae')
 end</code></pre>
@@ -768,10 +740,8 @@ end</code></pre>
    </doc-panel>
    <doc-panel id="paginate-collections-with-metadata" collapsed>
        <template #title>Paginate collections with metadata</template>
-<p>When your collection is already paginated and contains count and pagination metadata, you don&#x27;t need any <code v-pre>pagy*</code> controller
-method.</p>
-<p>For example this is a Tmdb API search result object, but you can apply the same principle to any other type of collection
-metadata:</p>
+<p>When your collection is already paginated and contains count and pagination metadata, you don&#x27;t need any <code v-pre>pagy*</code> controller method.</p>
+<p>For example this is a Tmdb API search result object, but you can apply the same principle to any other type of collection metadata:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">#&lt;Tmdb::Result page=1, total_pages=23, total_results=446, results=[#&lt;Tmdb::Movie ..&gt;,#&lt;Tmdb::Movie...&gt;,...]...&gt;</code></pre>
 </doc-codeblock></div>
@@ -788,8 +758,7 @@ tobj = Tmdb::Search.movie(&quot;Harry Potter&quot;, page: params[:page])
    </doc-panel>
    <doc-panel id="skip-single-page-navs" collapsed>
        <template #title>Skip single page navs</template>
-<p>Unlike other gems, Pagy does not decide for you that the nav of a single page of results must not be rendered. You may want it
-rendered... or maybe you don&#x27;t. If you don&#x27;t:</p>
+<p>Unlike other gems, Pagy does not decide for you that the nav of a single page of results must not be rendered. You may want it rendered... or maybe you don&#x27;t. If you don&#x27;t:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-erb"><code v-pre class="language-erb">&lt;%== @pagy.series_nav if @pagy.last &gt; 1 %&gt;</code></pre>
 </doc-codeblock></div>
@@ -822,19 +791,14 @@ rendered... or maybe you don&#x27;t. If you don&#x27;t:</p>
    </doc-panel>
    <doc-panel id="ignore-brakeman-unescapedoutputs-false-positives-warnings" collapsed>
        <template #title>Ignore Brakeman UnescapedOutputs false positives warnings</template>
-<p>Pagy outputs safe HTML, however being an agnostic pagination gem it does not use the specific <code v-pre>html_safe</code> rails helper for its
-output. That is noted by the <a href="https://github.com/presidentbeef/brakeman">Brakeman</a> gem, that will raise a warning.</p>
-<p>Avoid the warning by adding it to the <code v-pre>brakeman.ignore</code> file. More details <a href="https://github.com/ddnexus/pagy/issues/243">here</a>
-and <a href="https://github.com/presidentbeef/brakeman/issues/1519">here</a>.</p>
+<p>Pagy outputs safe HTML, however being an agnostic pagination gem it does not use the specific <code v-pre>html_safe</code> rails helper for its output. That is noted by the <a href="https://github.com/presidentbeef/brakeman">Brakeman</a> gem, that will raise a warning.</p>
+<p>Avoid the warning by adding it to the <code v-pre>brakeman.ignore</code> file. More details <a href="https://github.com/ddnexus/pagy/issues/243">here</a> and <a href="https://github.com/presidentbeef/brakeman/issues/1519">here</a>.</p>
    </doc-panel>
    <doc-panel id="raise-pagyrangeerror-exceptions" collapsed>
        <template #title>Raise Pagy::RangeError exceptions</template>
-<p>With the OFFSET pagination technique, it may happen that the users/clients paginate after the end of the collection (when one or a
-few records got deleted) and a user went to a stale page.</p>
-<p>By default, Pagy doesn&#x27;t raise any exceptions for requesting an out-of-range page. Instead, it does not retrieve any records and
-serves the navs as usual, so the user can visit a different page.</p>
-<p>Sometimes you may want to take a diffrent action, so you can set the option <code v-pre>raise_range_error: true</code>, <code v-pre>rescue</code> it and do whatever
-fits your app better. For example:</p>
+<p>With the OFFSET pagination technique, it may happen that the users/clients paginate after the end of the collection (when one or a few records got deleted) and a user went to a stale page.</p>
+<p>By default, Pagy doesn&#x27;t raise any exceptions for requesting an out-of-range page. Instead, it does not retrieve any records and serves the navs as usual, so the user can visit a different page.</p>
+<p>Sometimes you may want to take a diffrent action, so you can set the option <code v-pre>raise_range_error: true</code>, <code v-pre>rescue</code> it and do whatever fits your app better. For example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">controller</div>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">rescue_from Pagy::RangeError, with: :redirect_to_last_page
@@ -853,7 +817,7 @@ end</code></pre>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">controller</div>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">rescue_from Pagy::OptionError do |exception|
-  if exception.option == :page 
+  if exception.option == :page
     # apply your own logic to handle / not handle the exception
     redirect_to action: :index, params: request.query_parameters.merge(page: 1) # redirect to the first page
     # or just force the page without redirecting
@@ -887,8 +851,8 @@ end</code></pre>
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Warning!</h5>
-<p>The pagy nav helpers are not only a lot faster than templates, but accept dynamic arguments and comply with ARIA and I18n
-standards. Using your own templates is possible, but it&#x27;s likely just reinventing a slower wheel.</p>
+<p>The pagy nav helpers are not only a lot faster than templates, but accept dynamic arguments and comply with ARIA and I18n standards.</p>
+<p>Using your own templates is possible, but it&#x27;s likely just reinventing a slower wheel.</p>
         </div>
     </div>
 </div>
@@ -897,9 +861,7 @@ standards. Using your own templates is possible, but it&#x27;s likely just reinv
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">require &quot;pagy/toolbox/helpers/support/series&quot;
 require &quot;pagy/toolbox/helpers/support/a_lambda&quot;</code></pre>
 </doc-codeblock></div>
-<p>Here is a static example that doesn&#x27;t use any other helper nor
-dictionary file for the sake of simplicity, however, feel free to add your dynamic options and use any helper and dictionary
-entries as you need:</p>
+<p>Here is a static example that doesn&#x27;t use any other helper nor dictionary file for the sake of simplicity, however, feel free to add your dynamic options and use any helper and dictionary entries as you need:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-erb"><code v-pre class="language-erb">&lt;%# IMPORTANT: replace '&lt;%=' with '&lt;%==' if you run this in rails %&gt;
 
@@ -959,15 +921,12 @@ entries as you need:</p>
    </doc-panel>
    <doc-panel id="use-pagy-with-non-rack-apps" collapsed>
        <template #title>Use Pagy with non-rack apps</template>
-<p>For non-rack environments that don&#x27;t respond to the request method, you should pass
-the <a href="../../toolbox/paginators/#common-options">:request</a> option to the paginator.</p>
+<p>For non-rack environments that don&#x27;t respond to the request method, you should pass the <a href="../../toolbox/paginators/#common-options">:request</a> option to the paginator.</p>
    </doc-panel>
    <doc-panel id="use-pagy-outside-controllers-or-views" collapsed>
        <template #title>Use <code v-pre>pagy</code> outside controllers or views</template>
-<p>The <code v-pre>pagy</code> method needs to set a few options that depend on the availability of the <code v-pre>self.request</code> method in the class/module
-where you included it.</p>
-<p>For example, if you call the <code v-pre>pagy</code> method for a model (that included the <code v-pre>Pagy::Method</code>), it would almost certainly not have the
-<code v-pre>request</code> method available.</p>
+<p>The <code v-pre>pagy</code> method needs to set a few options that depend on the availability of the <code v-pre>self.request</code> method in the class/module where you included it.</p>
+<p>For example, if you call the <code v-pre>pagy</code> method for a model (that included the <code v-pre>Pagy::Method</code>), it would almost certainly not have the <code v-pre>request</code> method available.</p>
 <p>The simplest way to make it work is as follows:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">YourModel</div>
@@ -985,23 +944,21 @@ end</code></pre>
    </doc-panel>
    <doc-panel id="handle-post-requests-server-side" collapsed>
        <template #title>Handle POST requests (server side)</template>
-<p>You may need to POST a very complex search form and paginate the results. Pagy produces nav tags with GET links, so here is a
-simple way of handling it.</p>
-<p>You can start the process with your regular POST request and cache the filtering data on the server. Then, using the regular GET
-pagination cycle, pass only the cache key as a param (which avoids sending the actual filters back and forth).</p>
+<p>You may need to POST a very complex search form and paginate the results. Pagy produces nav tags with GET links, so here is a simple way of handling it.</p>
+<p>You can start the process with your regular POST request and cache the filtering data on the server. Then, using the regular GET pagination cycle, pass only the cache key as a param (which avoids sending the actual filters back and forth).</p>
 <p>Here is a conceptual example using the <code v-pre>session</code>:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">require 'digest'
 
 def filtered_action
   pagy_options = {}
-  if params[:filter_key]  # retrieve already cached filters
+  if params[:filter_key] # retrieve already cached filters
     filters = session[params[:filter_key]]
-  else  # store new filters
+  else # store new filters
     filters      = params[:filters] # your filter hash
     key          = Digest::SHA1.hexdigest(filters.sort.to_json)
     session[key] = filters
-    
+
     pagy_options[:querify] = -&gt;(query_hash) { query_hash.merge!(filter_key: key) }
   end
   collection      = Product.where(**filters)

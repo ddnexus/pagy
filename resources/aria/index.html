@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819021217213">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819080838176">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.819021217213" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.819080838176" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.819021217213" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.819021217213" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.819021217213" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.819080838176" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -393,11 +393,8 @@
 <doc-tabs>
 <doc-tab v-cloak id="nav-helpers">
 <template #title>Nav helpers</template>
-<p>Pagy provides a customizable <code v-pre>aria-label</code> for the root element of its helpers. It is usually a <code v-pre>nav</code> element. For the few helper
-styles that use a different root element, Pagy adds a <code v-pre>role=&quot;navigation&quot;</code> attribute.</p>
-<p>The default string for the <code v-pre>aria-label</code> of the root element is &quot;Page&quot; / &quot;Pages&quot; (translated and pluralized according to the total
-number of pages). This is arguably a better description of the navigation content than just &quot;Pagination&quot; (which is also difficult
-to translate in certain languages).</p>
+<p>Pagy provides a customizable <code v-pre>aria-label</code> for the root element of its helpers. It is usually a <code v-pre>nav</code> element. For the few helper styles that use a different root element, Pagy adds a <code v-pre>role=&quot;navigation&quot;</code> attribute.</p>
+<p>The default string for the <code v-pre>aria-label</code> of the root element is &quot;Page&quot; / &quot;Pages&quot; (translated and pluralized according to the total number of pages). This is arguably a better description of the navigation content than just &quot;Pagination&quot; (which is also difficult to translate in certain languages).</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-success"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
@@ -411,9 +408,8 @@ to translate in certain languages).</p>
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Help us with your languages!</h5>
-<p>Please, check the <code v-pre>pagy.aria_label.nav</code> in the <a href="https://github.com/ddnexus/pagy/tree/master/gem/locales">locale files</a>
-used by your app to ensure correctness in translation and pluralization. If it isn&#x27;t, please post your translation in the issue
-linked within the file. Thank you!</p>
+<p>Please check the <code v-pre>pagy.aria_label.nav</code> in the <a href="https://github.com/ddnexus/pagy/tree/master/gem/locales">locale files</a>
+used by your app to ensure correctness in translation and pluralization. If it isn&#x27;t, please post your translation in the issue linked within the file. Thank you!</p>
         </div>
     </div>
 </div>
@@ -458,8 +454,8 @@ linked within the file. Thank you!</p>
 <doc-tab v-cloak id="links">
 <template #title>Links</template>
 <ul>
-<li>Links to the previous and next pages are rendered as &quot;&lt;&quot; and &quot;&gt;&quot; and are aria-labelled as translated <code v-pre>&quot;Previous&quot;</code>and <code v-pre>&quot;Next&quot;</code>. You can customize both the link text and the <code v-pre>aria-label</code> by editing the <code v-pre>pagy.prev</code>, <code v-pre>pagy.next</code>,<code v-pre>pagy.aria_label.prev</code>, and <code v-pre>pagy.aria_label.next</code> values in the locale files.</li>
-<li>By design, page links do not include an <code v-pre>aria-label</code> attribute because their text is a simple number (read by screen readers inthe user&#x27;s native language), making an explicit attribute redundant and inefficient.</li>
+<li>Links to the previous and next pages are rendered as &quot;&lt;&quot; and &quot;&gt;&quot; and are aria-labelled as translated <code v-pre>&quot;Previous&quot;</code> and <code v-pre>&quot;Next&quot;</code>. You can customize both the link text and the <code v-pre>aria-label</code> by editing the <code v-pre>pagy.prev</code>, <code v-pre>pagy.next</code>, <code v-pre>pagy.aria_label.prev</code>, and <code v-pre>pagy.aria_label.next</code> values in the locale files.</li>
+<li>By design, page links do not include an <code v-pre>aria-label</code> attribute because their text is a simple number (read by screen readers in the user&#x27;s native language), making an explicit attribute redundant and inefficient.</li>
 <li>Disabled links include the <code v-pre>aria-disabled=&quot;true&quot;</code> attribute.</li>
 <li>The current page is marked with the <code v-pre>aria-current=&quot;page&quot;</code> attribute.</li>
 <li>The <code v-pre>role=&quot;link&quot;</code> attribute is applied to link elements in styles that lack an <code v-pre>a</code> tag or a <code v-pre>href</code> attribute.</li>

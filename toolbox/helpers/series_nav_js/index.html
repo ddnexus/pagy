@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819021217213">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819080838176">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.11.0.819021217213" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.11.0.819080838176" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.11.0.819021217213" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.11.0.819021217213" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.11.0.819021217213" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.11.0.819080838176" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -528,12 +528,9 @@
    <doc-panel id="in-depth-steps-option" collapsed>
        <template #title>In Depth: <code v-pre>:steps</code> Option</template>
 <p>Notice: when <code v-pre>:steps</code> is not set, the <code v-pre>series_nav_js</code> behaves almost as a <code v-pre>series_nav</code>: just faster.</p>
-<p>Set it as a hash, where the keys are integers representing the widths in pixels, and the values are the <code v-pre>:slots</code> options to be
-applied for those widths.</p>
+<p>Set it as a hash, where the keys are integers representing the widths in pixels, and the values are the <code v-pre>:slots</code> options to be applied for those widths.</p>
 <p>For example:</p>
-<p><code v-pre>{ 0 =&gt; 5, 540 =&gt; 7, 720 =&gt; 9 }</code> means that from <code v-pre>0</code> to <code v-pre>540</code> pixels width, Pagy will use <code v-pre>5</code> slots, from <code v-pre>540</code> to <code v-pre>720</code> it will
-use <code v-pre>7</code> slots, and over <code v-pre>720</code> it will use <code v-pre>9</code> slots. (Read more about the <code v-pre>:slots</code>
-option in the <a href="../../../guides/how-to/#control-the-pagination-bar">How to control the pagination bar</a> section.)</p>
+<p><code v-pre>{ 0 =&gt; 5, 540 =&gt; 7, 720 =&gt; 9 }</code> means that from <code v-pre>0</code> to <code v-pre>540</code> pixels width, Pagy will use <code v-pre>5</code> slots, from <code v-pre>540</code> to <code v-pre>720</code> it will use <code v-pre>7</code> slots, and over <code v-pre>720</code> it will use <code v-pre>9</code> slots. (Read more about the <code v-pre>:slots</code> option in the <a href="../../../guides/how-to/#control-the-pagination-bar">How to control the pagination bar</a> section.)</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
@@ -547,8 +544,7 @@ option in the <a href="../../../guides/how-to/#control-the-pagination-bar">How t
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>:steps must contain a <code v-pre>0</code> width</h5>
-<p>You can set any number of steps with any arbitrary width/slots. The only requirement is
-that the <code v-pre>:steps</code> hash must always contain the <code v-pre>0</code> width, or a <code v-pre>Pagy::OptionsError</code> exception will be raised.</p>
+<p>You can set any number of steps with any arbitrary width/slots. The only requirement is that the <code v-pre>:steps</code> hash must always contain the <code v-pre>0</code> width, or a <code v-pre>Pagy::OptionsError</code> exception will be raised.</p>
         </div>
     </div>
 </div>
@@ -576,17 +572,14 @@ that the <code v-pre>:steps</code> hash must always contain the <code v-pre>0</c
         <span>Setting the right steps</span>
     </h4>
 </doc-anchor-target>
+<br/>
 <p>Setting the <code v-pre>:steps</code> can enhance responsiveness and ensure seamless transitions.</p>
 <p>Consider these guidelines to achieve optimal results:</p>
 <ol>
-<li><p>Define discrete <code v-pre>:steps</code> using width/slots pairs to control the pagination behavior.</p>
-</li>
-<li><p>Ensure the container&#x27;s width accommodates all slots for a smooth transition as it resizes.</p>
-</li>
-<li><p>Synchronize the pagy <code v-pre>:steps</code> with your container&#x27;s discrete width changes, for consistent alignment.</p>
-</li>
-<li><p>Test responsiveness to confirm that assigned slots fit within the corresponding width for each step.</p>
-</li>
+<li>Define discrete <code v-pre>:steps</code> using width/slots pairs to control the pagination behavior.</li>
+<li>Ensure the container&#x27;s width accommodates all slots for a smooth transition as it resizes.</li>
+<li>Synchronize the pagy <code v-pre>:steps</code> with your container&#x27;s discrete width changes, for consistent alignment.</li>
+<li>Test responsiveness to confirm that assigned slots fit within the corresponding width for each step.</li>
 </ol>
    </doc-panel>
    <doc-panel id="caveats" collapsed>

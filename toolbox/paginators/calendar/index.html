@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819021217213">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819080838176">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.11.0.819021217213" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.11.0.819080838176" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.11.0.819021217213" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.11.0.819021217213" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.11.0.819021217213" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.11.0.819080838176" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -555,8 +555,7 @@ end</code></pre>
 <li><p>Returns a URL complete with all parameters for the pages in each filter bar that includes the given time. For example:
 <code v-pre>@calendar.url_at(Time.zone.now)</code> generates the filter bar URLs pointing to today.</p>
 </li>
-<li><p>If <code v-pre>time</code> is outside the pagination range it raises a <code v-pre>Pagy::RangeError</code>, however you can pass the
-<code v-pre>fit_time: true</code> option to avoid the error and get the url to the page closest to the passed time argument (first or last page).</p>
+<li><p>If <code v-pre>time</code> is outside the pagination range it raises a <code v-pre>Pagy::RangeError</code>, however you can pass the <code v-pre>fit_time: true</code> option to avoid the error and get the url to the page closest to the passed time argument (first or last page).</p>
 </li>
 </ul>
 </li>
@@ -589,13 +588,12 @@ end</code></pre>
    </doc-panel>
    <doc-panel id="offset-configuration" collapsed>
        <template #title>Offset configuration</template>
-<p>This is the optional configuration for the core <code v-pre>:offset</code> paginator. If omitted a default one will be created. It is always used,
-regardless of the <code v-pre>:disabled</code> flag value.</p>
+<p>This is the optional configuration for the core <code v-pre>:offset</code> paginator. If omitted a default one will be created. It is always used, regardless of the <code v-pre>:disabled</code> flag value.</p>
 <p>It is not subject to the restrictions mentioned in the <doc-anchor-trigger to="#calendar-configuration">Calendar configuration</doc-anchor-trigger>.</p>
    </doc-panel>
    <doc-panel id="localization" collapsed>
        <template #title>Localization</template>
-<p>Pagy provides the calendar localization obly for <code v-pre>en</code> locales. For non-en locales pagy requires the <code v-pre>rails-i18n</code> to be installed.</p>
+<p>Pagy provides the calendar localization only for <code v-pre>en</code> locales. For non-en locales pagy requires the <code v-pre>rails-i18n</code> to be installed.</p>
 <p>Pass the locales that your app uses to the method <code v-pre>localize_with_rails_i18n_gem</code> in the <a href="../../../resources/initializer/">pagy.rb initializer</a>:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)</code></pre>

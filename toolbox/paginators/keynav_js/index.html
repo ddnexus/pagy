@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819021217213">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819080838176">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.11.0.819021217213" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.11.0.819080838176" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.11.0.819021217213" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.11.0.819021217213" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.11.0.819021217213" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.11.0.819080838176" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -477,10 +477,8 @@
    </doc-panel>
    <doc-panel id="how-it-works" collapsed>
        <template #title>How it works</template>
-<p>The Keynav pagination adds the numeric variables (<code v-pre>@page</code>, <code v-pre>@last</code>, <code v-pre>@prev</code>, <code v-pre>@next</code>, <code v-pre>@in</code>) to its instances, supporting their usage
-with the UI. It does so by transparently exchanging data with the client, that stores the state of the pagination.</p>
-<p>You can use the <code v-pre>:keyset_js</code> paginator as you would use the <a href="../countless/">:countless paginator</a>. You just need
-the <a href="../keyset/#setup">Keyset Setup</a> and <a href="../../../resources/javascript/">JavaScript Support</a>, to get a lot more performance.</p>
+<p>The Keynav pagination adds the numeric variables (<code v-pre>@page</code>, <code v-pre>@last</code>, <code v-pre>@prev</code>, <code v-pre>@next</code>, <code v-pre>@in</code>) to its instances, supporting their usage with the UI. It does so by transparently exchanging data with the client, that stores the state of the pagination.</p>
+<p>You can use the <code v-pre>:keyset_js</code> paginator as you would use the <a href="../countless/">:countless paginator</a>. You just need the <a href="../keyset/#setup">Keyset Setup</a> and <a href="../../../resources/javascript/">JavaScript Support</a>, to get a lot more performance.</p>
    </doc-panel>
    <doc-panel id="in-depth-cutoffs-filtering" collapsed>
        <template #title>In-depth: Cutoffs Filtering</template>
@@ -491,24 +489,16 @@ beginning of set &gt;[· · · · · · · · · X]· · · · · · · · · Y]
                                       ▲                   ▲
                                    cutoff-X            cutoff-Y</code></pre>
 </doc-codeblock></div>
-<p>Let&#x27;s suppose that we navigate till page #3 (i.e., the last page), and we click on the link for page #2. We have stored the
-<code v-pre>cutoff-X</code>, so we can pull the 10 records after <code v-pre>cutoff-X</code> again as we did the first time... but are we sure that we would get the
-same results?</p>
-<p>Let&#x27;s suppose that the database just changed: 1 record was inserted before <code v-pre>cutoff-X</code>, and 2 records were deleted after
-<code v-pre>cutoff-X</code>...</p>
+<p>Let&#x27;s suppose that we navigate till page #3 (i.e., the last page), and we click on the link for page #2. We have stored the <code v-pre>cutoff-X</code>, so we can pull the 10 records after <code v-pre>cutoff-X</code> again as we did the first time... but are we sure that we would get the same results?</p>
+<p>Let&#x27;s suppose that the database just changed: 1 record was inserted before <code v-pre>cutoff-X</code>, and 2 records were deleted after <code v-pre>cutoff-X</code>...</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-none"><code v-pre class="language-none">                  │ page #1 (11)       &gt;│ page #2 (8)  &gt;│ page #3 (9)    &gt;│
 beginning of set &gt;[· · · · · · · · · · X]· · · · · · · Y]· · · · · · · · ·]&lt; end of set
                                         ▲               ▲
                                    cutoff-X        cutoff-Y</code></pre>
 </doc-codeblock></div>
-<p>At this point pulling 10 records from the <code v-pre>cutoff-X</code> would get also the first 2 records from page 3, if you navigate on page 3 you
-will pull the same 2 records again also for page #3.</p>
-<p>Indeed, not only the results have changed, but the cutoffs appear to have also shifted their absolute position in the set. In
-reality the cutoffs have the same value as before, so they maintained their relative position in the set, and now there is a
-different number of records falling into the same pages, which is totally consistent with the changes, but possibly unespected if
-you have the mindset of OFFSET pagination, where the pages are split by number of records (absolute position) and not by their
-position relative to the records in the set.</p>
+<p>At this point pulling 10 records from the <code v-pre>cutoff-X</code> would get also the first 2 records from page 3, if you navigate on page 3, you will pull the same 2 records again also for page #3.</p>
+<p>Indeed, not only the results have changed, but the cutoffs appear to have also shifted their absolute position in the set. In reality, the cutoffs have the same value as before, so they maintained their relative position in the set. However, now there is a different number of records falling into the same pages, which is totally consistent with the changes, but possibly unexpected. That is... if you have the mindset of OFFSET pagination, where the pages are split by number of records (absolute position) and not by their position relative to the records in the set.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-primary"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
@@ -522,15 +512,11 @@ position relative to the records in the set.</p>
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>The main goal of pagination is to split the results into manageable chunks and ensure it is as fast and accurate as possible, so
-the variation in the page size seems not relevant to that. However, should it be relevant to you, you can always use the classic
-OFFSET pagination and accept its slowness and inaccuracy.</p>
+<p>The main goal of pagination is to split the results into manageable chunks and ensure it is as fast and accurate as possible, so the variation in the page size seems not relevant to that. However, should it be relevant to you, you can always use the classic OFFSET pagination and accept its slowness and inaccuracy.</p>
         </div>
     </div>
 </div>
-<p>Pagy doesn&#x27;t use the LIMIT to pull the records of already visited pages. Instead, it replaces the LIMIT with the same filter used
-for the
-<code v-pre>beginning</code> of the page, but it just compounds it with the negated filter of the <code v-pre>ending</code> of the page.</p>
+<p>Pagy keynav doesn&#x27;t use the LIMIT to pull the records of already visited pages. Instead, it replaces the LIMIT with the same filter used for the <code v-pre>beginning</code> of the page, but it just compounds it with the negated filter of the <code v-pre>ending</code> of the page.</p>
 <p>For example, the filtering of the page could be logically described like:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-none"><code v-pre class="language-none">- Page #1 `WHERE NOT AFTER CUTOFF-X`                    &lt;- only ending filter
@@ -551,8 +537,7 @@ for the
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Implementing page-rebalancing:</h5>
-<p>When the number of records on a visited page has drastically changed, it would be helpful to mitigate the surprise effect on the
-user by:</p>
+<p>When the number of records on a visited page has drastically changed, it would be helpful to mitigate the surprise effect on the user by:</p>
 <ul>
 <li>Automatically compacting the empty (or almost empty) visited pages.</li>
 <li>Automatically splitting the excessively grown visited pages.</li>

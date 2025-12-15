@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819021217213">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819080838176">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.819021217213" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.819080838176" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.819021217213" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.819021217213" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.819021217213" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.819080838176" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -397,13 +397,11 @@
         <span>Steps</span>
     </h2>
 </doc-anchor-target>
-<p>The Pagy API is quite different from other pagination gems, however, if you split the process in the following general steps it
-should be quite simple.</p>
+<p>The Pagy API is quite different from other pagination gems, however, if you split the process in the following general steps it should be quite simple.</p>
 <ol>
 <li>Remove the legacy code, trying to convert the statements that have a direct relation with Pagy</li>
 <li>Run the app so to raise exceptions in order to find legacy code that may still be in place</li>
-<li>When the app runs without errors, adjust the pagination to look and work as before: just many times faster and using many
-times less memory</li>
+<li>When the app runs without errors, adjust the pagination to look and work as before: just many times faster and using many times less memory</li>
 </ol>
 <doc-anchor-target id="remove-the-old-code">
     <h3>
@@ -428,8 +426,7 @@ times less memory</li>
         <span>Application-wide search and replace</span>
     </h4>
 </doc-anchor-target>
-<p>Search for the class name of the legacy gem, for example <code v-pre>WillPaginate</code> or <code v-pre>Kaminari</code>. You should find most of
-the code relative to global gem configuration, or monkey patching.</p>
+<p>Search for the class name of the legacy gem, for example <code v-pre>WillPaginate</code> or <code v-pre>Kaminari</code>. You should find most of the code relative to global gem configuration, or monkey patching.</p>
 <p>Remove all the legacy settings of the old gem.</p>
 <doc-anchor-target id="cleanup-the-models">
     <h4>
@@ -437,12 +434,8 @@ the code relative to global gem configuration, or monkey patching.</p>
         <span>Cleanup the Models</span>
     </h4>
 </doc-anchor-target>
-<p>Look for terms like <code v-pre>per_page</code>, <code v-pre>per</code>, and similar, as these are configuration settings. Include them in the
-appropriate paginator call in the controller (e.g., <code v-pre>pagy(:offset, collection, limit: 10)</code>) or globally in the Pagy initializer
-(e.g., <code v-pre>Pagy.options[:limit] = 10</code>).</p>
-<p>If the app uses the <code v-pre>page</code> scope in model methods or scopes, remove it, along with the argument used to pass the page number,
-while preserving the rest of the scope. Locate where the app applies this paginated scope in the controllers and replace it with
-the scope in a paginator statement. For example:</p>
+<p>Look for terms like <code v-pre>per_page</code>, <code v-pre>per</code>, and similar, as these are configuration settings. Include them in the appropriate paginator call in the controller (e.g., <code v-pre>pagy(:offset, collection, limit: 10)</code>) or globally in the Pagy initializer (e.g., <code v-pre>Pagy.options[:limit] = 10</code>).</p>
+<p>If the app uses the <code v-pre>page</code> scope in model methods or scopes, remove it, along with the argument used to pass the page number, while preserving the rest of the scope. Locate where the app applies this paginated scope in the controllers and replace it with the scope in a paginator statement. For example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">Controller</div>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">#@records = Product.paginated_scope(params[:page])
@@ -498,8 +491,7 @@ the scope in a paginator statement. For example:</p>
         <span>Fine-tuning</span>
     </h2>
 </doc-anchor-target>
-<p>Once the app displays pagination correctly, customize Pagy as needed. If the previous pagination used
-custom elements (e.g., custom params, URLs, links, HTML elements, etc.), adjustments may be required for compatibility.</p>
+<p>Once the app displays pagination correctly, customize Pagy as needed. If the previous pagination used custom elements (e.g., custom params, URLs, links, HTML elements, etc.), adjustments may be required for compatibility.</p>
 <p>Please take a look at the topics in the <a href="../how-to/">how-to</a> documentation: that should cover most of your custom needs.</p>
 <doc-anchor-target id="css">
     <h3>
@@ -507,8 +499,7 @@ custom elements (e.g., custom params, URLs, links, HTML elements, etc.), adjustm
         <span>CSS</span>
     </h3>
 </doc-anchor-target>
-<p>CSS styling applied to pagination elements may require minor adjustments. However, if the app uses
-pagination from Bootstrap or another framework, the existing CSS should function seamlessly with Pagy navigation helpers.</p>
+<p>CSS styling applied to pagination elements may require minor adjustments. However, if the app uses pagination from Bootstrap or another framework, the existing CSS should function seamlessly with Pagy navigation helpers.</p>
 
                                 
                                 <!-- Required only on API pages -->
