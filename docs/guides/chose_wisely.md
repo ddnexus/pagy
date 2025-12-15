@@ -78,15 +78,15 @@ Use the `:keynav_js` paginator.
 
 {.list-icon}
 - [:icon-key:&nbsp;:keyset](../toolbox/paginators/keyset)
-  - :icon-check-circle-24: **Best for**: API, Infinite Scroll
-  - :icon-thumbsup-24:     **Pros**: Fastest paginator, no data-shift, fastest single query per page
-  - :icon-thumbsdown-24:   **Cons**: Very limited UI support, appropriate DB indices required
+  - :icon-check-circle-24: __Best for__: API, Infinite Scroll
+  - :icon-thumbsup-24:     __Pros__: Fastest paginator, no data-shift, fastest single query per page
+  - :icon-thumbsdown-24:   __Cons__: Very limited UI support, appropriate DB indices required
 
 {.list-icon}
 - [:icon-key:&nbsp;:keynav_js](../toolbox/paginators/keynav_js)
-  - :icon-check-circle-24: **Best for**: Standard App (Large Data)
-  - :icon-thumbsup-24:     **Pros**: All the pros of `:keyset`+`:countless`, numeric pages
-  - :icon-thumbsdown-24:   **Cons**: Same as `:countless`, requires JavaScript support (or it falls back to the `:countless` paginator)
+  - :icon-check-circle-24: __Best for__: Standard App (Large Data)
+  - :icon-thumbsup-24:     __Pros__: All the pros of `:keyset`+`:countless`, numeric pages
+  - :icon-thumbsdown-24:   __Cons__: Same as `:countless`, requires JavaScript support (or it falls back to the `:countless` paginator)
 
 !!!
 

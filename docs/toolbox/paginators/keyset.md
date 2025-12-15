@@ -99,6 +99,7 @@ Ensure that your set is `uniquely ordered`, and that your tables have the approp
 Depending on your order requirements, here is how you set it up:
 
 +++ No order requirements
+
 !!!success If you don't need any specific ordering...
 
 `order(:id)` is the simplest choice because the `id` column is unique and already indexed.
@@ -108,6 +109,7 @@ It is fast out of the box without any setup.
 !!!
 
 +++ Specific order requirements
+
 !!!success If you need a specific ordering...
 
 - **In order to make it work**...
@@ -123,12 +125,9 @@ It is fast out of the box without any setup.
 - `keyset: {...}`
   - Set it only to force the `keyset` hash of column/order pairs. _(It is set automatically from the set order)_
 - `tuple_comparison: true`
-  - Enable the tuple comparison e.g. `(brand, id) > (:brand, :id)`. It works only with the same direction order, hence, it's
-    ignored for mixed order. Check how your DB supports it (your `keyset` should include only `NOT NULL`
-    columns).
+  - Enable the tuple comparison e.g. `(brand, id) > (:brand, :id)`. It works only with the same direction order, hence, it's ignored for mixed order. Check how your DB supports it (your `keyset` should include only `NOT NULL` columns).
 - `pre_serialize: serialize`
-  - Set it to a `lambda` that receives the `keyset_attributes` hash. Modify this hash directly to customize the serialization of
-    specific values (e.g., to preserve `Time` object precision). The lambda's return value is ignored.
+  - Set it to a `lambda` that receives the `keyset_attributes` hash. Modify this hash directly to customize the serialization of specific values (e.g., to preserve `Time` object precision). The lambda's return value is ignored.
     ```ruby 
     serialize = lambda do |attributes|
       # Convert it to a string matching the stored value/format in SQLite DB
@@ -151,38 +150,29 @@ See also [Common Readers](../paginators#common-readers)
 
 - You pass an `uniquely ordered` `set` and pagy pulls the `:limit` of records of the first page.
 - You request the `next` URL, which has the `page` param set to the `cutoff` of the current page.
-- At each request, the new `page` is decoded into arguments that are coupled with a `where` filter query, and a `:limit` of new
-  records is retrieved.
+- At each request, the new `page` is decoded into arguments that are coupled with a `where` filter query, and a `:limit` of new records is retrieved.
 - The collection ends when `pagy.next.nil?`.
 
 ==- In Depth: Cutoffs
 
 The `cutoff` of a `page` is the **value** that identifies where the `page` _has ended_, and the `next` one begins.
 
-Let's consider an example of a simple `set` of 29 records, with an `id` column populated by character keys, and its order is:
-`order(:id)`.
+Let's consider an example of a simple `set` of 29 records, with an `id` column populated by character keys, and its order is: `order(:id)`.
 
-Assuming a LIMIT of 10, the _"first page"_ will just include the first 10 records in the `set`: no `cutoff` value is known so
-far...
+Assuming a LIMIT of 10, the _"first page"_ will just include the first 10 records in the `set`: no `cutoff` value is known so far...
 
 ```
                   │ first page (10)  >│ rest (19)                          >│
 beginning of set >[· · · · · · · · · ·]· · · · · · · · · · · · · · · · · · ·]< end of set
 ```
 
-At this point, it's the exact same first page pulled with OFFSET pagination, however, we don't want to use OFFSET to get the
-records after the first 10: that would be slow in a big table, so we need a way to identify the beginning of the next page without
-COUNTing the records (i.e., the whole point we want to avoid for performance).
+At this point, it's the exact same first page pulled with OFFSET pagination, however, we don't want to use OFFSET to get the records after the first 10: that would be slow in a big table, so we need a way to identify the beginning of the next page without COUNTing the records (i.e., the whole point we want to avoid for performance).
 
-So we read the `id` of the last one, which is the value `X` in our example... and that is the `cutoff` value of the first page. It
-can be described like:
-_"the point up to the value `X` in the `id` column"_.
+So we read the `id` of the last one, which is the value `X` in our example... and that is the `cutoff` value of the first page. It can be described as: _"the point up to the value `X` in the `id` column"_.
 
-Notice that this is not like saying _"up to the record `X`"_. It's important to understand that a `cutoff` refers just to a cutoff
-value of a column (or the values of multiple column, in case of multi-columns keysets).
+Notice that this is not like saying _"up to the record `X`"_. It's important to understand that a `cutoff` refers just to a cutoff value of a column (or the values of multiple column, in case of multi-columns keysets).
 
-Indeed, that very record could be deleted right after we read it, and our `cutoff-X` will still be the valid truth that we
-paginated the `set` up to the "X" value, cutting any further record off the `page`...
+Indeed, that very record could be deleted right after we read it, and our `cutoff-X` will still be the valid truth that we paginated the `set` up to the "X" value, cutting any further record off the `page`...
 
 ```
                   │ first page (10)  >│ second page (10) >│ rest (9)       >│
@@ -191,9 +181,7 @@ beginning of set >[· · · · · · · · · X]· · · · · · · · · ·]·
                                    cutoff-X
 ```
 
-For getting the `next` page of records (i.e. the _"second page"_) we pull the `next` 10 records AFTER the `cutoff-X`. Again, we
-read the `id` of the last one, which is `Y`: so we have our new `cutoff-Y`, which is the end of the current `page`, and the `next`
-will go AFTER it...
+For getting the `next` page of records (i.e. the _"second page"_) we pull the `next` 10 records AFTER the `cutoff-X`. Again, we read the `id` of the last one, which is `Y`: so we have our new `cutoff-Y`, which is the end of the current `page`, and the `next` will go AFTER it...
 
 ```
                   │ first page (10)  >│ second page (10) >│ last page (9)  >│
@@ -202,14 +190,12 @@ beginning of set >[· · · · · · · · · X]· · · · · · · · · Y]· 
                                    cutoff-X            cutoff-Y
 ```
 
-When we pull the `next` page from the `cutoff-Y`, we find only the remaining 9 records, which means that it's the _"last page"_,
-which naturally ends with the end of the `set`, so it doesn't have any `cutoff` value to separate it from further records.
+When we pull the `next` page from the `cutoff-Y`, we find only the remaining 9 records, which means that it's the _"last page"_, which naturally ends with the end of the `set`, so it doesn't have any `cutoff` value to separate it from further records.
 
 !!! Keynotes
 
 - A `cutoff` identifies a "cutoff value", for a `page` in the `set`. It is not a record, nor a reference to it.
-- Its value is extracted from the `keyset attributes values` array of the last record of the `page`, converted to JSON, and
-  encoded as a Base64 URL-safe string, for easy use in URLs.
+- Its value is extracted from the `keyset attributes values` array of the last record of the `page`, converted to JSON, and encoded as a Base64 URL-safe string, for easy use in URLs.
   - The `:keyset` paginator embeds it in the request URL; the `:keynav_js` paginator caches it on the client `sessionStorage`.
 - All the `page`s but the last, end with the `cutoff`.
 - All the `page`s but the first, begin AFTER the `cutoff` of the previous `page`.
@@ -263,10 +249,8 @@ The generic `to_json` method used to encode the `page` may lose some information
 !!!success
 
 - Ensure that the composite index reflects exactly the columns sequence and order of your keyset
-- Research your specific DB features, type of index, and performance for different ordering. Use SQL `EXPLAIN ANALYZE` or similar
-  tool to confirm.
-- Consider using the same direction order, enabling the `:tuple_comparison`, and changing type of index (different DBs may behave
-  differently).
+- Research your specific DB features, type of index, and performance for different ordering. Use SQL `EXPLAIN ANALYZE` or similar tool to confirm.
+- Consider using the same direction order, enabling the `:tuple_comparison`, and changing type of index (different DBs may behave differently).
 - Consider overriding the `Keyset#compose_predicate` method.
 
 !!!

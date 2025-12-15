@@ -26,22 +26,18 @@ _Agnostic pagination in plain ruby_
 
 ## Version 43
 
-We needed a leap version to unequivocally signaling that it's not just a major version: it's a complete redesign of the legacy
-code at all levels, usage and API included.
+We needed a leap version to unequivocally signaling that it's not just a major version: it's a complete redesign of the legacy code at all levels, usage and API included.
 
 **Why 43?** Because it's exactly one step beyond _"The answer to the ultimate question of life, the Universe, and everything."_ 😉
 
 #### Improvements
 
-This version introduces several enhancements, such as new `:countish` and `:keynav_js` paginators and improved automation and
-configuration processes, reducing setup requirements by 99%. The update also includes a simpler API and new interactive
-development tools, making it a comprehensive upgrade from previous versions.
+This version introduces several enhancements, such as new `:countish` and `:keynav_js` paginators and improved automation and configuration processes, reducing setup requirements by 99%. The update also includes a simpler API and new interactive development tools, making it a comprehensive upgrade from previous versions.
 
 - **New [:countish](https://ddnexus.github.io/pagy/toolbox/paginators/countish) Paginator**
   - Faster than OFFSET and supporting the full UI
 - **New [Keynav](https://ddnexus.github.io/pagy/toolbox/paginators/keynav_js) Pagination**
-  - The pagy-exclusive technique using the fastest [keyset](https://ddnexus.github.io/pagy/toolbox/paginators/keyset)
-    pagination alongside all frontend helpers.
+  - The pagy-exclusive technique using the fastest [keyset](https://ddnexus.github.io/pagy/toolbox/paginators/keyset)pagination alongside all frontend helpers.
 - **New interactive dev-tools**
   - New [PagyWand](https://ddnexus.github.io/pagy/resources/stylesheets/#pagy-wand) to integrate the pagy CSS with your app themes.
   - New **Pagy AI** available right inside your own app.
@@ -50,12 +46,9 @@ development tools, making it a comprehensive upgrade from previous versions.
   - Simplified [JavaScript](https://ddnexus.github.io/pagy/resources/javascript) setup.
   - Automatic [I18n](https://ddnexus.github.io/pagy/resources/i18n) loading.
 - **[Simpler API](https://github.com/ddnexus/pagy#examples)**
-  - You solely need the [pagy](https://ddnexus.github.io/pagy/toolbox/paginators) method and
-    the [@pagy](https://ddnexus.github.io/pagy/toolbox/helpers) instance to paginate any collection and use any navigation tag
-    and helper.
+  - You solely need the [pagy](https://ddnexus.github.io/pagy/toolbox/paginators) method and the [@pagy](https://ddnexus.github.io/pagy/toolbox/helpers) instance to paginate any collection and use any navigation tag and helper.
   - Methods are autoloaded only if used, and consume no memory otherwise.
-  - Methods have narrower scopes and can be [overridden](https://ddnexus.github.io/pagy/guides/how-to#override-pagy-methods)
-    without deep knowledge.
+  - Methods have narrower scopes and can be [overridden](https://ddnexus.github.io/pagy/guides/how-to#override-pagy-methods) without deep knowledge.
 - **New [documentation](https://ddnexus.github.io/pagy/guides/quick-start)**
   - Very concise, straightforward, and easy to navigate and understand.
 
@@ -215,8 +208,7 @@ Dynamically fills the container width.
 
 ### <span style="font-size: .65em; vertical-align: middle">💚</span> Dev Tools
 
-Integrate pagy with your app's themes interactively ([watch demo](https://youtu.be/GhhNRrVG9jg)), and ask specific questions to the Pagy AI __right in your app__!
-You need only a single line in your page/layout `head` to get the Pagy Wand and the Pagy AI:
+Integrate pagy with your app's themes interactively ([watch demo](https://youtu.be/GhhNRrVG9jg)), and ask specific questions to the Pagy AI __right in your app__! You need only a single line in your page/layout `head` to get the Pagy Wand and the Pagy AI:
 
 ```erb
 <%== Pagy.dev_tools %>
@@ -252,8 +244,7 @@ You need only a single line in your page/layout `head` to get the Pagy Wand and 
 
 Special thanks to:
 
-- [Ben Koshy](https://github.com/benkoshy) for his contributions to the documentation, user support and interaction with external
-  frameworks
+- [Ben Koshy](https://github.com/benkoshy) for his contributions to the documentation, user support and interaction with external frameworks
 - [JetBrains](http://www.jetbrains.com?from=https%3A%2F%2Fgithub.com%2Fddnexus%2Fpagy) for their free OpenSource license.
 - [The Stargazers](https://github.com/ddnexus/pagy/stargazers) for showing their support
 
@@ -273,10 +264,7 @@ See [Contributing](https://github.com/ddnexus/pagy/blob/master/.github/CONTRIBUT
 
 <summary>Versioning</summary>
 
-- Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/). Please check
-  the [Changelog](https://ddnexus.github.io/pagy/changelog) for breaking changes introduced by mayor versions.
-  Using [pessimistic version constraint](https://guides.rubygems.org/patterns/#pessimistic-version-constraint) in your Gemfile
-  will ensure smooth upgrades.
+- Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/). Please check the [Changelog](https://ddnexus.github.io/pagy/changelog) for breaking changes introduced by mayor versions. Using [pessimistic version constraint](https://guides.rubygems.org/patterns/#pessimistic-version-constraint) in your Gemfile will ensure smooth upgrades.
 
 </details>
 
@@ -284,8 +272,7 @@ See [Contributing](https://github.com/ddnexus/pagy/blob/master/.github/CONTRIBUT
 
 <summary>Branches</summary>
 
-- The `master` branch is the latest rubygem-published release. It also contains docs and comment changes that don't affect the
-  published code. It is never force-pushed.
+- The `master` branch is the latest rubygem-published release. It also contains docs and comment changes that don't affect the published code. It is never force-pushed.
 - The `dev` branch is the development branch with the new code that will be merged in the next release. It could be force-pushed.
 - Expect any other branch to be internal, experimental, force-pushed, rebased and/or deleted even without merging.
 

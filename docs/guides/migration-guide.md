@@ -16,13 +16,11 @@ Feel free to [ask via Pagy Support](https://github.com/ddnexus/pagy/discussions/
 
 ## Steps
 
-The Pagy API is quite different from other pagination gems, however, if you split the process in the following general steps it
-should be quite simple.
+The Pagy API is quite different from other pagination gems, however, if you split the process in the following general steps it should be quite simple.
 
 1. Remove the legacy code, trying to convert the statements that have a direct relation with Pagy
 2. Run the app so to raise exceptions in order to find legacy code that may still be in place
-3. When the app runs without errors, adjust the pagination to look and work as before: just many times faster and using many
-   times less memory
+3. When the app runs without errors, adjust the pagination to look and work as before: just many times faster and using many times less memory
 
 ### Remove the old code
 
@@ -34,20 +32,15 @@ should be quite simple.
 
 #### Application-wide search and replace
 
-Search for the class name of the legacy gem, for example `WillPaginate` or `Kaminari`. You should find most of
-the code relative to global gem configuration, or monkey patching.
+Search for the class name of the legacy gem, for example `WillPaginate` or `Kaminari`. You should find most of the code relative to global gem configuration, or monkey patching.
 
 Remove all the legacy settings of the old gem.
 
 #### Cleanup the Models
 
-Look for terms like `per_page`, `per`, and similar, as these are configuration settings. Include them in the
-appropriate paginator call in the controller (e.g., `pagy(:offset, collection, limit: 10)`) or globally in the Pagy initializer
-(e.g., `Pagy.options[:limit] = 10`).
+Look for terms like `per_page`, `per`, and similar, as these are configuration settings. Include them in the appropriate paginator call in the controller (e.g., `pagy(:offset, collection, limit: 10)`) or globally in the Pagy initializer (e.g., `Pagy.options[:limit] = 10`).
 
-If the app uses the `page` scope in model methods or scopes, remove it, along with the argument used to pass the page number,
-while preserving the rest of the scope. Locate where the app applies this paginated scope in the controllers and replace it with
-the scope in a paginator statement. For example:
+If the app uses the `page` scope in model methods or scopes, remove it, along with the argument used to pass the page number, while preserving the rest of the scope. Locate where the app applies this paginated scope in the controllers and replace it with the scope in a paginator statement. For example:
 
 ```ruby Controller
 #@records = Product.paginated_scope(params[:page])
@@ -94,12 +87,10 @@ If any legacy code remains, it will raise an exception. Remove the old code and 
 
 ## Fine-tuning
 
-Once the app displays pagination correctly, customize Pagy as needed. If the previous pagination used
-custom elements (e.g., custom params, URLs, links, HTML elements, etc.), adjustments may be required for compatibility.
+Once the app displays pagination correctly, customize Pagy as needed. If the previous pagination used custom elements (e.g., custom params, URLs, links, HTML elements, etc.), adjustments may be required for compatibility.
 
 Please take a look at the topics in the [how-to](how-to.md) documentation: that should cover most of your custom needs.
 
 ### CSS
 
-CSS styling applied to pagination elements may require minor adjustments. However, if the app uses
-pagination from Bootstrap or another framework, the existing CSS should function seamlessly with Pagy navigation helpers.
+CSS styling applied to pagination elements may require minor adjustments. However, if the app uses pagination from Bootstrap or another framework, the existing CSS should function seamlessly with Pagy navigation helpers.

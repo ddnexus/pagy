@@ -68,6 +68,7 @@ See also [Options](options)
   <%== @pagy.series_nav(aria_label: 'Search result pages') %>
   ```
   !!!
+
   Refer to [ARIA](../resources/aria.md) for additional information.
 
 ===

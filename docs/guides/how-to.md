@@ -23,8 +23,7 @@ Check the [Choose Wisely Guide](chose_wisely.md)
 - **Fixed**
   - Use the `:limit` option to set the number of items to serve with each page.
 - **Requestable**
-  - Use the `limit` option combined with the `:client_max_limit` option, allowing the client to request a variable `:limit` up to
-    the specified `:client_max_limit`.
+  - Use the `limit` option combined with the `:client_max_limit` option, allowing the client to request a variable `:limit` up to the specified `:client_max_limit`.
   - Additionally, you can use the [limit_tag_js](../toolbox/helpers/limit_tag_js) helper to provide a UI selector to the user.
 
 ```ruby
@@ -41,8 +40,7 @@ See [Common Options](../toolbox/paginators#common-options).
 
 ==- Control the pagination bar
 
-Pagy provides [series_nav](../toolbox/helpers/series_nav) and [series_nav_js](../toolbox/helpers/series_nav_js) helpers for
-displaying a pagination bar.
+Pagy provides [series_nav](../toolbox/helpers/series_nav) and [series_nav_js](../toolbox/helpers/series_nav_js) helpers for displaying a pagination bar.
 
 You can customize the number and position of page links in the navigation bar using:
 
@@ -51,8 +49,7 @@ You can customize the number and position of page links in the navigation bar us
 
 ==- Force the `:page`
 
-Pagy retrieves the page from the `'page'` request params hash. To force a specific page number, pass it directly to the `pagy`
-method. For example:
+Pagy retrieves the page from the `'page'` request params hash. To force a specific page number, pass it directly to the `pagy` method. For example:
 
 ```ruby controller
 @pagy, @records = pagy(:offset, collection, page: 3) # force page #3
@@ -62,29 +59,19 @@ method. For example:
 
 #### 1. Find the pluralization rules for your language
 
-- Locate the locale file you need in
-  the [list of pluralizations](https://github.com/svenfuchs/rails-i18n/tree/master/rails/pluralization)
-- Check the pluralization rules required in it. For example, the name of the file required is `one_other`
-  for [`en.rb`](https://github.com/svenfuchs/rails-i18n/blob/master/rails/pluralization/en.rb). In Pagy, that translates to
-  `'OneOther'`.
-  - If you cannot find the pluralization in the link above, check
-    the [Unicode pluralization rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
-- Confirm that pagy already defines the pluralization rules of your dictionary file by checking the file in
-  the [P18n directory](https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/modules/i18n/p18n).
+- Locate the locale file you need in the [list of pluralizations](https://github.com/svenfuchs/rails-i18n/tree/master/rails/pluralization)
+- Check the pluralization rules required in it. For example, the name of the file required is `one_other` for [`en.rb`](https://github.com/svenfuchs/rails-i18n/blob/master/rails/pluralization/en.rb). In Pagy, that translates to `'OneOther'`.
+  - If you cannot find the pluralization in the link above, check the [Unicode pluralization rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
+- Confirm that pagy already defines the pluralization rules of your dictionary file by checking the file in the [P18n directory](https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/modules/i18n/p18n).
   - If the rules are not defined, you can either:
-    - Add a new module for the pluralization (by adapting the same pluralization from the corresponding rails-i18n file) and
-      include tests for it;
+    - Add a new module for the pluralization (by adapting the same pluralization from the corresponding rails-i18n file) and include tests for it;
     - Or, create an issue requesting the addition of the pluralization entry and its tests.
 
 #### 2. Duplicate an existing Pagy locale dictionary file and translate it into your language.
 
 - See the [lib/locales](https://github.com/ddnexus/pagy/tree/master/gem/locales) for existing dictionaries.
-- Check that the `p11n` entry points to a module in
-  the [P18n directory](https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/modules/i18n/p18n).
-- The mandatory pluralized entries in the dictionary file are `aria_label.nav` and `item_name`. Please provide all the necessary
-  plurals for your language. For example, if your language uses the `EastSlavic` rule, you should provide the plurals for `one`,
-  `few`, `many`, and `other`. If it uses
-  `Other`, you should only provide a single value. Check other dictionary files for examples, and ask if you have any doubts.
+- Check that the `p11n` entry points to a module in the [P18n directory](https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/modules/i18n/p18n).
+- The mandatory pluralized entries in the dictionary file are `aria_label.nav` and `item_name`. Please provide all the necessary plurals for your language. For example, if your language uses the `EastSlavic` rule, you should provide the plurals for `one`, `few`, `many`, and `other`. If it uses `Other`, you should only provide a single value. Check other dictionary files for examples, and ask if you have any doubts.
 
 Feel free to ask for help in your Pull Request.
 
@@ -94,8 +81,7 @@ You can customize the `aria-label` attributes of any `*nav*` helper by providing
 
 See the [:aria_label](../toolbox/helpers#common-nav-options) option.
 
-You can also replace the `pagy.aria_label.nav` strings in the dictionary, as well as the `pagy.aria_label.previous` and the
-`pagy.aria_label.next`.
+You can also replace the `pagy.aria_label.nav` strings in the dictionary, as well as the `pagy.aria_label.previous` and the `pagy.aria_label.next`.
 
 See [ARIA](../resources/ARIA).
 
@@ -131,16 +117,13 @@ Use the [:anchor_string](../toolbox/helpers#common-options). It's especially use
 
 ==- Customize CSS styles
 
-Pagy includes different formats of [stylesheets](../resources/stylesheets) for customization, as well as styled `nav` tags for
-`:bootstrap` and `:bulma`.
+Pagy includes different formats of [stylesheets](../resources/stylesheets) for customization, as well as styled `nav` tags for `:bootstrap` and `:bulma`.
 
 You can also override the specific helper method.
 
 ==- Override CSS rules in element "style" attribute
 
-The `input_nav_js` and `limit_tag_js` use inline style attributes. You can override these rules in your stylesheet files using the
-`[style]`
-attribute selector and `!important`. Below is an example of overriding the `width` of an `input` element:
+The `input_nav_js` and `limit_tag_js` use inline style attributes. You can override these rules in your stylesheet files using the `[style]` attribute selector and `!important`. Below is an example of overriding the `width` of an `input` element:
 
 ```css
 .pagy input[style] {
@@ -179,8 +162,7 @@ Simply pass it as the collection: `pagy(:offset, my_array, **options)`
 Pagy works seamlessly with `ActiveRecord` collections, but certain collections may require specific handling:
 
 - **Grouped collections**
-  - For better performance of grouped counts, you may want to use the [:count_over](../toolbox/paginators/offset#options)
-    option
+  - For better performance of grouped counts, you may want to use the [:count_over](../toolbox/paginators/offset#options) option
 - **Decorated collections**
   - Do it in two steps:
     1. Get the page of records without decoration
@@ -215,8 +197,7 @@ Explore the following options:
 
 ==- Paginate for Javascript Frameworks
 
-You can send selected `@pagy` instance data to the client as JSON using the [data_hash](../toolbox/helpers/data_hash) helper,
-including pagination metadata in your JSON response.
+You can send selected `@pagy` instance data to the client as JSON using the [data_hash](../toolbox/helpers/data_hash) helper, including pagination metadata in your JSON response.
 
 ==- Paginate search platform results
 
@@ -228,20 +209,17 @@ See these paginators:
 
 ==- Paginate by date
 
-Use the [:calendar](../toolbox/paginators/calendar) paginator for pagination filtering by calendar time units (e.g., year,
-quarter, month, week, day).
+Use the [:calendar](../toolbox/paginators/calendar) paginator for pagination filtering by calendar time units (e.g., year, quarter, month, week, day).
 
 ==- Paginate multiple independent collections
 
-When you need to paginate multiple collections in a single request, you need to explicitly differentiate the pagination objects.
-Here are some common methods to achieve this:
+When you need to paginate multiple collections in a single request, you need to explicitly differentiate the pagination objects. Here are some common methods to achieve this:
 
 ##### Override the request path
 
 <br/>
 
-By default, Pagy generates links using the same path as the request path. To generate links pointing to a different controller or
-path, explicitly pass the desired `:path`. For example:
+By default, Pagy generates links using the same path as the request path. To generate links pointing to a different controller or path, explicitly pass the desired `:path`. For example:
 
 ```rb
 
@@ -262,9 +240,7 @@ end
 
 <br/>
 
-If you're using [hotwire](https://hotwired.dev/) ([turbo-rails](https://github.com/hotwired/turbo-rails) being the Rails
-implementation), another way of maintaining independent contexts is using separate turbo frames actions. Just wrap each
-independent context in a `turbo_frame_tag` and ensure a matching `turbo_frame_tag` is returned:
+If you're using [hotwire](https://hotwired.dev/) ([turbo-rails](https://github.com/hotwired/turbo-rails) being the Rails implementation), another way of maintaining independent contexts is using separate turbo frames actions. Just wrap each independent context in a `turbo_frame_tag` and ensure a matching `turbo_frame_tag` is returned:
 
 ```erb
   <-- movies/index.html.erb -->
@@ -293,9 +269,7 @@ def bad
 end 
 ```
 
-Consider [Benito Serna's implementation of turbo-frames (on Rails) using search forms with the Ransack gem](https://bhserna.com/building-data-grid-with-search-rails-hotwire-ransack.html)
-along with a corresponding [demo app](https://github.com/bhserna/dynamic_data_grid_hotwire_ransack) for a similar implementation
-of the above logic.
+Consider [Benito Serna's implementation of turbo-frames (on Rails) using search forms with the Ransack gem](https://bhserna.com/building-data-grid-with-search-rails-hotwire-ransack.html) along with a corresponding [demo app](https://github.com/bhserna/dynamic_data_grid_hotwire_ransack) for a similar implementation of the above logic.
 
 ##### Use the root_key option
 
@@ -304,6 +278,7 @@ of the above logic.
 By default, pagy creates flat URLs for its links. If you need to handle multiple pagy instance in the same request, you can nest the `:page` and -if you use it- the `:limit` params by passing the `:root_key` option to the paginator:
 
 ```rb Controller Action
+
 def index # controller action
   @pagy_stars, @stars     = pagy(:offset, Star.all, root_key: 'stars')
   @pagy_nebulae, @nebulae = pagy(:offset, Nebula.all, root_key: 'nebulae')
@@ -330,11 +305,9 @@ See [:max_pages](../toolbox/paginators#common-options) option.
 
 ==- Paginate collections with metadata
 
-When your collection is already paginated and contains count and pagination metadata, you don't need any `pagy*` controller
-method.
+When your collection is already paginated and contains count and pagination metadata, you don't need any `pagy*` controller method.
 
-For example this is a Tmdb API search result object, but you can apply the same principle to any other type of collection
-metadata:
+For example this is a Tmdb API search result object, but you can apply the same principle to any other type of collection metadata:
 
 ```rb
 #<Tmdb::Result page=1, total_pages=23, total_results=446, results=[#<Tmdb::Movie ..>,#<Tmdb::Movie...>,...]...>
@@ -353,8 +326,7 @@ tobj = Tmdb::Search.movie("Harry Potter", page: params[:page])
 
 ==- Skip single page navs
 
-Unlike other gems, Pagy does not decide for you that the nav of a single page of results must not be rendered. You may want it
-rendered... or maybe you don't. If you don't:
+Unlike other gems, Pagy does not decide for you that the nav of a single page of results must not be rendered. You may want it rendered... or maybe you don't. If you don't:
 
 ```erb
 <%== @pagy.series_nav if @pagy.last > 1 %>
@@ -379,22 +351,17 @@ Check out these paginators:
 
 ==- Ignore Brakeman UnescapedOutputs false positives warnings
 
-Pagy outputs safe HTML, however being an agnostic pagination gem it does not use the specific `html_safe` rails helper for its
-output. That is noted by the [Brakeman](https://github.com/presidentbeef/brakeman) gem, that will raise a warning.
+Pagy outputs safe HTML, however being an agnostic pagination gem it does not use the specific `html_safe` rails helper for its output. That is noted by the [Brakeman](https://github.com/presidentbeef/brakeman) gem, that will raise a warning.
 
-Avoid the warning by adding it to the `brakeman.ignore` file. More details [here](https://github.com/ddnexus/pagy/issues/243)
-and [here](https://github.com/presidentbeef/brakeman/issues/1519).
+Avoid the warning by adding it to the `brakeman.ignore` file. More details [here](https://github.com/ddnexus/pagy/issues/243) and [here](https://github.com/presidentbeef/brakeman/issues/1519).
 
 ==- Raise Pagy::RangeError exceptions
 
-With the OFFSET pagination technique, it may happen that the users/clients paginate after the end of the collection (when one or a
-few records got deleted) and a user went to a stale page.
+With the OFFSET pagination technique, it may happen that the users/clients paginate after the end of the collection (when one or a few records got deleted) and a user went to a stale page.
 
-By default, Pagy doesn't raise any exceptions for requesting an out-of-range page. Instead, it does not retrieve any records and
-serves the navs as usual, so the user can visit a different page.
+By default, Pagy doesn't raise any exceptions for requesting an out-of-range page. Instead, it does not retrieve any records and serves the navs as usual, so the user can visit a different page.
 
-Sometimes you may want to take a diffrent action, so you can set the option `raise_range_error: true`, `rescue` it and do whatever
-fits your app better. For example:
+Sometimes you may want to take a diffrent action, so you can set the option `raise_range_error: true`, `rescue` it and do whatever fits your app better. For example:
 
 ```ruby controller
 rescue_from Pagy::RangeError, with: :redirect_to_last_page
@@ -414,7 +381,7 @@ Here is a snippet to handle that:
 
 ```rb controller
 rescue_from Pagy::OptionError do |exception|
-  if exception.option == :page 
+  if exception.option == :page
     # apply your own logic to handle / not handle the exception
     redirect_to action: :index, params: request.query_parameters.merge(page: 1) # redirect to the first page
     # or just force the page without redirecting
@@ -435,8 +402,10 @@ See [common exceptions](../toolbox/paginators/#common-exceptions) for details.
 ==- Using your pagination templates
 
 !!!warning Warning!
-The pagy nav helpers are not only a lot faster than templates, but accept dynamic arguments and comply with ARIA and I18n
-standards. Using your own templates is possible, but it's likely just reinventing a slower wheel.
+
+The pagy nav helpers are not only a lot faster than templates, but accept dynamic arguments and comply with ARIA and I18n standards. 
+
+Using your own templates is possible, but it's likely just reinventing a slower wheel.
 !!!
 
 If you really need to use your own templates, you absolutely can. Notice, that since you are not using any helper, you should require the following files that provide internal method to use in the template:
@@ -446,9 +415,7 @@ require "pagy/toolbox/helpers/support/series"
 require "pagy/toolbox/helpers/support/a_lambda"
 ```
 
-Here is a static example that doesn't use any other helper nor
-dictionary file for the sake of simplicity, however, feel free to add your dynamic options and use any helper and dictionary
-entries as you need:
+Here is a static example that doesn't use any other helper nor dictionary file for the sake of simplicity, however, feel free to add your dynamic options and use any helper and dictionary entries as you need:
 
 :::code source="../assets/nav.html.erb" :::
 
@@ -459,27 +426,23 @@ You can use it as usual: just remember to pass the `:pagy` local set to the `@pa
 ```
 
 !!!
-You may want to look at the actual output interactively by running:
 
+You may want to look at the actual output interactively by running:
 ```sh
 pagy demo
 ```
-
 ...and point your browser to  http://127.0.0.1:8000/template
 !!!
 
 ==- Use Pagy with non-rack apps
 
-For non-rack environments that don't respond to the request method, you should pass
-the [:request](../toolbox/paginators#common-options) option to the paginator.
+For non-rack environments that don't respond to the request method, you should pass the [:request](../toolbox/paginators#common-options) option to the paginator.
 
 ==- Use `pagy` outside controllers or views
 
-The `pagy` method needs to set a few options that depend on the availability of the `self.request` method in the class/module
-where you included it.
+The `pagy` method needs to set a few options that depend on the availability of the `self.request` method in the class/module where you included it.
 
-For example, if you call the `pagy` method for a model (that included the `Pagy::Method`), it would almost certainly not have the
-`request` method available.
+For example, if you call the `pagy` method for a model (that included the `Pagy::Method`), it would almost certainly not have the `request` method available.
 
 The simplest way to make it work is as follows:
 
@@ -498,11 +461,9 @@ end
 
 ==- Handle POST requests (server side)
 
-You may need to POST a very complex search form and paginate the results. Pagy produces nav tags with GET links, so here is a
-simple way of handling it.
+You may need to POST a very complex search form and paginate the results. Pagy produces nav tags with GET links, so here is a simple way of handling it.
 
-You can start the process with your regular POST request and cache the filtering data on the server. Then, using the regular GET
-pagination cycle, pass only the cache key as a param (which avoids sending the actual filters back and forth).
+You can start the process with your regular POST request and cache the filtering data on the server. Then, using the regular GET pagination cycle, pass only the cache key as a param (which avoids sending the actual filters back and forth).
 
 Here is a conceptual example using the `session`:
 
@@ -511,13 +472,13 @@ require 'digest'
 
 def filtered_action
   pagy_options = {}
-  if params[:filter_key]  # retrieve already cached filters
+  if params[:filter_key] # retrieve already cached filters
     filters = session[params[:filter_key]]
-  else  # store new filters
+  else # store new filters
     filters      = params[:filters] # your filter hash
     key          = Digest::SHA1.hexdigest(filters.sort.to_json)
     session[key] = filters
-    
+
     pagy_options[:querify] = ->(query_hash) { query_hash.merge!(filter_key: key) }
   end
   collection      = Product.where(**filters)
@@ -526,7 +487,6 @@ end
 ```
 
 !!!success Notice: ensure a server-side storage
-
 If you use the `session` for caching, configure it to use `ActiveRecord`, `Redis`, or any server-side storage
 !!!
 

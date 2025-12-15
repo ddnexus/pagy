@@ -26,6 +26,7 @@ It enables cascade-filtering of the collection by time units _(year, quarter, mo
 
 !!!success Use this paginator when most pages contain results.
 !!!
+
 !!!warning Avoid using it for sparse datasets with numerous empty pages.
 !!!
 
@@ -116,9 +117,9 @@ The calendar is enabled by default. However, you can include an optional `:disab
 - `@calendar.url_at(time_with_zone, **options)`
   - Returns a URL complete with all parameters for the pages in each filter bar that includes the given time. For example:
     `@calendar.url_at(Time.zone.now)` generates the filter bar URLs pointing to today.
-  - If `time` is outside the pagination range it raises a `Pagy::RangeError`, however you can pass the
-    `fit_time: true` option to avoid the error and get the url to the page closest to the passed time argument (first or last page).
+  - If `time` is outside the pagination range it raises a `Pagy::RangeError`, however you can pass the `fit_time: true` option to avoid the error and get the url to the page closest to the passed time argument (first or last page).
 :::
+
 :::
 - `@calendar.showtime`
   - Displays the time of the smallest time unit currently visible on the calendar.
@@ -133,14 +134,13 @@ The calendar is enabled by default. However, you can include an optional `:disab
 
 ==- Offset configuration
 
-This is the optional configuration for the core `:offset` paginator. If omitted a default one will be created. It is always used,
-regardless of the `:disabled` flag value.
+This is the optional configuration for the core `:offset` paginator. If omitted a default one will be created. It is always used, regardless of the `:disabled` flag value.
 
 It is not subject to the restrictions mentioned in the [Calendar configuration](#calendar-configuration).
 
 ==- Localization
 
-Pagy provides the calendar localization obly for `en` locales. For non-en locales pagy requires the `rails-i18n` to be installed.
+Pagy provides the calendar localization only for `en` locales. For non-en locales pagy requires the `rails-i18n` to be installed.
 
 Pass the locales that your app uses to the method `localize_with_rails_i18n_gem` in the [pagy.rb initializer](../../resources/initializer/):
 

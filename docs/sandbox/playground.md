@@ -4,7 +4,7 @@ order: 100
 icon: play
 ---
 
-# 
+#   
 
 ## Pagy Playground
 
@@ -18,8 +18,7 @@ $ pagy --help
 
 ### Pagy Apps
 
-We have a few single-file apps ready to run in your browser for various purposes. These are all tested and used to run
-the [E2e Test](https://github.com/ddnexus/pagy/blob/master/.github/workflows/e2e-test.yml) workflow.
+We have a few single-file apps ready to run in your browser for various purposes. These are all tested and used to run the [E2e Test](https://github.com/ddnexus/pagy/blob/master/.github/workflows/e2e-test.yml) workflow.
 
 ==- Repro App
 
@@ -34,6 +33,7 @@ pagy clone repro
 You should find the `./repro.ru` cloned app file in the current directory. Feel free to rename or move it as you wish.
 
 |||
+
 ||| Develop it
 
 This command runs your `rackup` app with a `puma` server. On Linux platforms, it also uses `rerun` to auto-restart it when changes are made:
@@ -80,8 +80,7 @@ pagy demo
 
 _Run `pagy clone demo` to inspect the app file_
 
-If you want to see how your CSS changes look, you can follow the same usage as the [Repro App](#repro-app) to iterate through
-them.
+If you want to see how your CSS changes look, you can follow the same usage as the [Repro App](#repro-app) to iterate through them.
 
 ==- Calendar App
 
@@ -141,9 +140,7 @@ You have already activated GEMNAME v1, but your Gemfile requires GEMNAME v2.
 Prepending `bundle exec` to your command may solve this.
 ```
 
-If `bundle exec` doesn't solve it, then try `bundle update` and `gem cleanup`.
-If you encounter another error after that:
-
+If `bundle exec` doesn't solve it, then try `bundle update` and `gem cleanup`. If you encounter another error after that:
 
 ```txt
 ... `find_spec_for_exe': can't find gem GEMNAME (>= 0.x) with executable EXEC (Gem::GemNotFoundException)
@@ -152,8 +149,7 @@ If you encounter another error after that:
 then `gem pristine GEMNAME` should solve the problem.
 
 ==- Rerun
-[Rerun](https://github.com/alexch/rerun) is used to restart your app automatically during development (only on Linux
-platforms).
+[Rerun](https://github.com/alexch/rerun) is used to restart your app automatically during development (only on Linux platforms).
 
 That's very convenient, but it may still have some rough edges:
 

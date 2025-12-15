@@ -32,14 +32,14 @@ gem 'pagy', '~> 43.2' # Omit the patch segment to avoid breaking changes
   ```ruby
   include Pagy::Method
   ```
-  
+
 - Use it to paginate any collection with any technique:
   ```ruby
   @pagy, @records = pagy(:offset, Product.some_scope, **options) # :offset paginator
   @pagy, @records = pagy(:keyset, Product.some_scope, **options) # :keyset paginator
   @pagy, @records = pagy(...)
   ```
-  
+
   _See all the available [paginators](../toolbox/paginators#paginators)_
 
 - Render navigator tags and other helpers with the `@pagy` instance methods:
@@ -50,7 +50,7 @@ gem 'pagy', '~> 43.2' # Omit the patch segment to avoid breaking changes
   <%== @pagy.series_nav_js(:bootstrap) %>
   <%== @pagy.input_nav_js(:bulma) %>
   <%== @pagy.info_tag %>
-  ``` 
+  ```
   _See all the available [@pagy methods](../toolbox/helpers)_
 
 ### 3. Configure global options and special features

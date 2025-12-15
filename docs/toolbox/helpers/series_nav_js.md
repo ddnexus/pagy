@@ -103,19 +103,15 @@ See also other appicable options: [Common Nav Options](../helpers#common-nav-opt
 
 Notice: when `:steps` is not set, the `series_nav_js` behaves almost as a `series_nav`: just faster.
 
-Set it as a hash, where the keys are integers representing the widths in pixels, and the values are the `:slots` options to be
-applied for those widths.
+Set it as a hash, where the keys are integers representing the widths in pixels, and the values are the `:slots` options to be applied for those widths.
 
 For example:
 
-`{ 0 => 5, 540 => 7, 720 => 9 }` means that from `0` to `540` pixels width, Pagy will use `5` slots, from `540` to `720` it will
-use `7` slots, and over `720` it will use `9` slots. (Read more about the `:slots`
-option in the [How to control the pagination bar](../../guides/how-to#control-the-pagination-bar) section.)
+`{ 0 => 5, 540 => 7, 720 => 9 }` means that from `0` to `540` pixels width, Pagy will use `5` slots, from `540` to `720` it will use `7` slots, and over `720` it will use `9` slots. (Read more about the `:slots` option in the [How to control the pagination bar](../../guides/how-to#control-the-pagination-bar) section.)
 
 !!!warning :steps must contain a `0` width 
 
-You can set any number of steps with any arbitrary width/slots. The only requirement is
-that the `:steps` hash must always contain the `0` width, or a `Pagy::OptionsError` exception will be raised.
+You can set any number of steps with any arbitrary width/slots. The only requirement is that the `:steps` hash must always contain the `0` width, or a `Pagy::OptionsError` exception will be raised.
 !!!
 
 !!! Notice
@@ -125,16 +121,15 @@ The `:slots` and `:compact` options used by the `series_nav` are not directly av
 
 #### Setting the right steps
 
+<br/>
+
 Setting the `:steps` can enhance responsiveness and ensure seamless transitions.
 
 Consider these guidelines to achieve optimal results:
 
 1. Define discrete `:steps` using width/slots pairs to control the pagination behavior.
-
 2. Ensure the container's width accommodates all slots for a smooth transition as it resizes.
-
 3. Synchronize the pagy `:steps` with your container's discrete width changes, for consistent alignment.
-
 4. Test responsiveness to confirm that assigned slots fit within the corresponding width for each step.
 
 ==- Caveats

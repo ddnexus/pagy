@@ -31,8 +31,7 @@ categories:
 
 `input_nav_js` combines navigation and pagination info in a single compact element.
 
-It is the fastest and lightest navigator, recommended when you care about efficiency and server load (
-see [Maximizing Performance](../../guides/how-to#maximize-performance)) still needing UI.
+It is the fastest and lightest navigator, recommended when you care about efficiency and server load (see [Maximizing Performance](../../guides/how-to#maximize-performance)) still needing UI.
 
 !!!warning It works with all paginators but `:keyset`
 !!!

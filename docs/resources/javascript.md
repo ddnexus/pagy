@@ -29,7 +29,7 @@ Simply add to your code the appropriate file(s) and statements as outlined below
 
 Depending on your app's architecture, you have a couple of options. Just pick one to uncomment in the [pagy.rb initializer](initializer.md):
 
-- **For apps with an assets pipeline...** 
+- **For apps with an assets pipeline...**
   - _Compatible with Propshaft, Importmaps, Sprockets, and similar tools._
   ```ruby
   Rails.application.config.assets.paths << Pagy::ROOT.join('javascripts')

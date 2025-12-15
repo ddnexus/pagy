@@ -13,8 +13,7 @@ categories:
 
 ---
 
-`headers_hash` generates the standard `link` header defined in the
-[RFC-8288](https://tools.ietf.org/html/rfc8288), and adds 4 customizable headers useful for pagination, that you can merge into the `response.headers`.
+`headers_hash` generates the standard `link` header defined in the [RFC-8288](https://tools.ietf.org/html/rfc8288), and adds 4 customizable headers useful for pagination, that you can merge into the `response.headers`.
 
 It also adheres to the header casing introduced by `rack` version `3+` _(see the [rack-issue](https://github.com/rack/rack/issues/1592))_.
 

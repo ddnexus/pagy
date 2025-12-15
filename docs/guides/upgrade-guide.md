@@ -10,23 +10,20 @@ order: 80
 
 ---
 
-Pagy version 43 is a complete redesign of the legacy code. Its improvements make pagination a lot simpler and powerful, but
-require a quite different way to use it.
+Pagy version 43 is a complete redesign of the legacy code. Its improvements make pagination a lot simpler and powerful, but require a quite different way to use it.
 
 !!!success Follow this guide to upgrade your app in just a few minutes.
 
 Cherry-pick only what applies to your app: you can safely skip all the rest.
-
 !!!
 
-!!! Just the steps without distractions.
+!!! Just the steps without distractions. 
 
 This guide focuses on getting the job done quickly. If you want to learn more about the changes:
 
 - Consult the docs and [How To Guide](how-to)
 - Ask Pagy AI specific questions (with the bottom-right button in this page)
 - Ask in the [Q&A discussion](https://github.com/ddnexus/pagy/discussions/categories/q-a).
-
 !!!
 
 ### 1. Replace the `pagy.rb` config file
@@ -225,8 +222,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 | `filter_newest: ...`                | override `compose_predicate`  |
 
 - Replace any existing `:jsonify_keyset_attributes` with `:pre_serialize`.
-  - The lambda receives the same `keyset_attributes` argument, but it must modify the specific values directly. The lambda's
-    return value is ignored. For example: `->(attrs) { attrs[:created_at] = attrs[:created_at].strftime('%F %T.%6N') }`.
+  - The lambda receives the same `keyset_attributes` argument, but it must modify the specific values directly. The lambda's return value is ignored. For example: `->(attrs) { attrs[:created_at] = attrs[:created_at].strftime('%F %T.%6N') }`.
 
 ==- `limit`
 
@@ -260,8 +256,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
   - **Why there is little benefit in serving the last page?**
     - The navigation bar for an out-of-range request is rendered identically to that of the last page.
     - The only difference is that there are no records/results to display.
-    - The "previous page" button points to the last page, so if users truly want to see the last page results (which they have
-      likely already seen), they can simply click the link.
+    - The "previous page" button points to the last page, so if users truly want to see the last page results (which they have likely already seen), they can simply click the link.
 - **Summary for keeping the same behavior**:
   - The `:overflow` variable is not used anymore.
   - If you did not use the extra (i.e., Pagy raised errors), set `raise_range_error: true`.
@@ -285,18 +280,15 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 ==- `gearbox` _(discontinued)_
 
-- Due to extensive overwriting for minimal benefit, you can safely remove this feature from your app without noticeable impact.
-  Remove all `/gearbox/` related code.
+- Due to extensive overwriting for minimal benefit, you can safely remove this feature from your app without noticeable impact. Remove all `/gearbox/` related code.
 
 ==- `size` _(discontinued)_
 
-- Pagination bars similar to WillPaginate and Kaminari are not good for a lot of reasons. If still required, adapt the legacy file
-  from a previous commit.
+- Pagination bars similar to WillPaginate and Kaminari are not good for a lot of reasons. If still required, adapt the legacy file from a previous commit.
 
 ==- `trim` _(discontinued)_
 
-- It was mostly useless and half-baked, causing many complications in both the Ruby and JavaScript code for no significant
-  benefit.
+- It was mostly useless and half-baked, causing many complications in both the Ruby and JavaScript code for no significant benefit.
 - Use an appropriate approach to address your requirement, such as utilizing URL rewriting at the HTTP server level.
 
 ===
@@ -326,10 +318,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 ==- Replace the `:params` variable...
 
-- Use the `:querify` option, which is a `lambda` that can modify the string-keyed params hash at will. It is a bit more verbose,
-  but it's more powerful and low-level. It solves an incompatibility with the old high-level
-  `:params` hash/lambda and improves performance. It is part of the [Common URL Options](../toolbox/paginators#common-url-options)
-  group that gives you full and efficient control over the URL composition.
+- Use the `:querify` option, which is a `lambda` that can modify the string-keyed params hash at will. It is a bit more verbose, but it's more powerful and low-level. It solves an incompatibility with the old high-level `:params` hash/lambda and improves performance. It is part of the [Common URL Options](../toolbox/paginators#common-url-options) group that gives you full and efficient control over the URL composition.
 - Example:
   ```ruby
   # Old symbol-keyed, high-level hash variable
@@ -350,14 +339,11 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 ==- Javascript
 
-- If your `pagy-old.rb` contains any JavaScript setup, it should still work, so you can move it to the `pagy.rb` file, however,
-  for apps with builders, consider using the
-  new [Pagy.sync_javascript](../resources/javascript/#2-make-the-file-available-to-your-app) and removing all the old entries from
-  your JavaScript config files.
+- If your `pagy-old.rb` contains any JavaScript setup, it should still work, so you can move it to the `pagy.rb` file, however, for apps with builders, consider using the new [Pagy.sync_javascript](../resources/javascript/#2-make-the-file-available-to-your-app) and removing all the old entries from your JavaScript config files.
 
 ==- Stylesheets
 
-- The CSS for the default pagy helpers have new selectors and variables. See the new [Stylesheets](../resources/stylesheets) to interactively update your custom CSS. 
+- The CSS for the default pagy helpers have new selectors and variables. See the new [Stylesheets](../resources/stylesheets) to interactively update your custom CSS.
 
 !!!success CSS Frameworks
 
@@ -367,10 +353,8 @@ Supported CSS frameworks (like Bootstrap and Bulma) don't require any change.
 
 ==- Pagy::I18n and Locale Files
 
-- If your `pagy-old.rb` contains the `Pagy::I18n` setup, and the setup includes some custom dictionary file, then uncomment and
-  set up the relevant `Pagy::I18n` lookup section in the `pagy.rb` file. _(See the [I18n docs](../resources/i18n) for details)_
-- Update your custom dictionary files (if any) to the new [dictionary structure](../resources/i18n/#dictionary-file-example), or
-  they won't work correctly.
+- If your `pagy-old.rb` contains the `Pagy::I18n` setup, and the setup includes some custom dictionary file, then uncomment and set up the relevant `Pagy::I18n` lookup section in the `pagy.rb` file. _(See the [I18n docs](../resources/i18n) for details)_
+- Update your custom dictionary files (if any) to the new [dictionary structure](../resources/i18n/#dictionary-file-example), or they won't work correctly.
 - Besides that, you don't need any line of the old setup, because all the locales are autoloaded when your app uses them.
 - Remove all the I18n code from the `pagy-old.rb`.
 
@@ -403,7 +387,6 @@ You may want also to check these internal renaming:
 
 !!!warning
 
-Please report any issue with this guide opening
-a [new docs issue](https://github.com/ddnexus/pagy/issues/new?template=Documentation.yml).
+Please report any issue with this guide opening a [new docs issue](https://github.com/ddnexus/pagy/issues/new?template=Documentation.yml).
 
 !!!

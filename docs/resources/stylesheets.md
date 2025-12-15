@@ -5,7 +5,7 @@ order: 90
 image: ""
 ---
 
-# 
+#  
 
 ## Pagy Stylesheet
 
@@ -19,7 +19,7 @@ You don't need any stylesheets if you use the pagy `:bootstrap` or `:bulma` help
 
 ### Pagy Wand
 
-The [Pagy Wand](../sandbox/dev_tools/#pagy-wand) customizes the CSS and integrates it with your app's themes _interactively_. 
+The [Pagy Wand](../sandbox/dev_tools/#pagy-wand) customizes the CSS and integrates it with your app's themes _interactively_.
 
 :::raised
 ![PagyWand](../assets/images/dev-tools.png){width=606}
@@ -39,7 +39,7 @@ Should you need finer control, the `pagy.css` and `pagy-tailwind.css` calculate 
 
 !!!success
 
-Color variables are calculated automatically, however you can customize any color by just overriding its variable.
+Color variables are calculated automatically, however, you can customize any color by just overriding its variable.
 
 Use the [Pagy Wand](#pagy-wand) right in your app or in the [Demo app](../sandbox/playground#demo-app).
 !!!
@@ -66,10 +66,9 @@ stylesheet_path = Pagy::ROOT.join('stylesheets/pagy-tailwind.css')
 
 +++
 
-==-  HTML Structure of Nav Bars
+==- HTML Structure of Nav Bars
 
-To ensure a minimalistic valid output, complete with all the ARIA attributes, pagy outputs a single line with the minimum number of tags
-and attributes required to identify all the parts of the nav bars:
+To ensure a minimalistic valid output, complete with all the ARIA attributes, pagy outputs a single line with the minimum number of tags and attributes required to identify all the parts of the nav bars:
 
 - The output of `series_nav` and `series_nav_js` helpers, is a series of `a` tags inside a `nav` tag wrapper.
 - The disabled links are so because they are missing the `href` attributes.
