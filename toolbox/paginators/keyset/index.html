@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819080838176">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819084706684">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.11.0.819080838176" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.11.0.819084706684" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.11.0.819084706684" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.11.0.819080838176" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.11.0.819084706684" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.11.0.819084706684" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -464,8 +464,12 @@
 <div class="codeblock-title">Controller</div>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">@pagy, @records = pagy(:keyset, set, **options)</code></pre>
 </doc-codeblock></div>
+<ul>
+<li><code v-pre>@pagy</code> is the pagination instance. It provides the <doc-anchor-trigger to="#readers">readers</doc-anchor-trigger> and the <a href="../../helpers/">helpers</a> to use in your code.</li>
+<li><code v-pre>@records</code> is the eager-loaded <code v-pre>Array</code> of the page records.</li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-erb"><code v-pre class="language-erb">&lt;!-- The only supported helper --&gt;
+<pre translate="no" class="language-erb"><code v-pre class="language-erb">&lt;!-- The only supported UI helper --&gt;
 &lt;%== @pagy.next_tag(text: 'Next page &amp;gt;') %&gt;</code></pre>
 </doc-codeblock></div>
 <p><a href="../../../sandbox/playground/#keyset-apps" class="no-link inline-flex align-middle items-center font-medium cursor-pointer transition-colors duration-200 ease-out focus:outline-none bg-button-success hover:bg-button-success-hover text-button-success-text px-4 h-10 text-sm rounded-full">

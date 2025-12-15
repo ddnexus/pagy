@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819080838176">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819084706684">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.819080838176" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.819084706684" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.819084706684" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.819080838176" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.819080838176" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.819084706684" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.819084706684" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -460,8 +460,20 @@
    </doc-panel>
    <doc-panel id="url-params" collapsed>
        <template #title>URL Params</template>
-<p>Since Pagy is zero-dependency and framework-agnostic, it relies on the <code v-pre>Rack::Request#GET</code> and <code v-pre>Rack::Request#POST</code> methods, which remain reliable and consistent across all Rack environments. It does not use the <code v-pre>request.params</code> which are modified differently from different frameworks.</p>
-<p>Pagy strictly maintains query parameters as string-keyed Hashes. This avoids the performance overhead of converting symbols back and forth during URL composition.</p>
+<doc-anchor-target id="no-framework-params">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#no-framework-params">#</doc-anchor-trigger>
+        <span>No framework params</span>
+    </h5>
+</doc-anchor-target>
+<p>Pagy does not use the <code v-pre>request.params</code> because they are modified differently by different frameworks. It can rely only on the <code v-pre>request.GET</code> and <code v-pre>request.POST</code> methods, which are consistent across all Rack environments.</p>
+<doc-anchor-target id="string-keyed-hash">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#string-keyed-hash">#</doc-anchor-trigger>
+        <span>String-keyed Hash</span>
+    </h5>
+</doc-anchor-target>
+<p>The query params are strictly string-keyed Hash. This avoids the performance overhead of converting symbols back and forth during URL composition.</p>
    </doc-panel>
    <doc-panel id="get" collapsed>
        <template #title>GET</template>
@@ -492,9 +504,8 @@
 </doc-anchor-target>
 <ul>
 <li><strong>RFC 3986 Compliance</strong>: The <code v-pre>:page</code> parameter represents non-hierarchical data, which fits the definition of the query string component. It does not fit the definition of the path component, which represents hierarchical resources.</li>
-<li><strong>Data Identification</strong>: A query string parameter is labeled data (<code v-pre>?page=2</code>) identifiable without external context. A path segment (<code v-pre>/2</code>) is unlabeled and relies on external routing logic to be handled so it cannot be identified/used by pagy.</li>
+<li><strong>Data Identification</strong>: A query string parameter is labeled data (<code v-pre>?page=2</code>) identifiable without external context. A path segment (<code v-pre>/2</code>) is unlabeled and relies on external routing logic to be handled, so it cannot be identified/used by pagy.</li>
 <li><strong>Performance</strong>: Generating dynamic segments requires framework-specific code, which is not only non-agnostic but significantly slower than simple string interpolation.</li>
-<li><strong>Usage</strong>: Applications requiring this structure are a tiny minority.</li>
 </ul>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-danger"></div>
@@ -567,7 +578,7 @@ class Pagy
   # 2. REQUEST PARAMETERS
   # Why: Pagy defaults to Rack::Request to be framework agnostic.
   # To support dynamic segments (which are routing concepts, not query params),
-  # we must switch to the Rails `request.params` method which includes path parameters.
+  # we must switch to the Rails `request.params` method which includes the router-added path parameters.
   module RequestOverride
     def get_params(request)
       request.params
