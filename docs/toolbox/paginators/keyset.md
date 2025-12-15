@@ -39,8 +39,11 @@ Use the [:keynav_js](keynav_js.md) paginator.
 @pagy, @records = pagy(:keyset, set, **options)
 ```
 
+- `@pagy` is the pagination instance. It provides the [readers](#readers) and the [helpers](../helpers) to use in your code.
+- `@records` is the eager-loaded `Array` of the page records.
+
 ```ERB
-<!-- The only supported helper -->
+<!-- The only supported UI helper -->
 <%== @pagy.next_tag(text: 'Next page &gt;') %>
 ```
 

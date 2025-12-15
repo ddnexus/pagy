@@ -43,9 +43,13 @@ These options give you full control over the URL composition. You can use them f
 
 ==- URL Params
 
-Since Pagy is zero-dependency and framework-agnostic, it relies on the `Rack::Request#GET` and `Rack::Request#POST` methods, which remain reliable and consistent across all Rack environments. It does not use the `request.params` which are modified differently from different frameworks.
+##### No framework params
 
-Pagy strictly maintains query parameters as string-keyed Hashes. This avoids the performance overhead of converting symbols back and forth during URL composition.
+Pagy does not use the `request.params` because they are modified differently by different frameworks. It can rely only on the `request.GET` and `request.POST` methods, which are consistent across all Rack environments.
+
+##### String-keyed Hash
+
+The query params are strictly string-keyed Hash. This avoids the performance overhead of converting symbols back and forth during URL composition.
 
 ==- GET
 
@@ -67,9 +71,8 @@ While routers (like Rails) allow defining parameters as part of the path (e.g., 
 #### Cons
 
 - **RFC 3986 Compliance**: The `:page` parameter represents non-hierarchical data, which fits the definition of the query string component. It does not fit the definition of the path component, which represents hierarchical resources.
-- **Data Identification**: A query string parameter is labeled data (`?page=2`) identifiable without external context. A path segment (`/2`) is unlabeled and relies on external routing logic to be handled so it cannot be identified/used by pagy.
+- **Data Identification**: A query string parameter is labeled data (`?page=2`) identifiable without external context. A path segment (`/2`) is unlabeled and relies on external routing logic to be handled, so it cannot be identified/used by pagy.
 - **Performance**: Generating dynamic segments requires framework-specific code, which is not only non-agnostic but significantly slower than simple string interpolation.
-- **Usage**: Applications requiring this structure are a tiny minority.
 
 !!!danger
 

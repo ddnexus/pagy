@@ -26,7 +26,7 @@ class Pagy
   # 2. REQUEST PARAMETERS
   # Why: Pagy defaults to Rack::Request to be framework agnostic.
   # To support dynamic segments (which are routing concepts, not query params),
-  # we must switch to the Rails `request.params` method which includes path parameters.
+  # we must switch to the Rails `request.params` method which includes the router-added path parameters.
   module RequestOverride
     def get_params(request)
       request.params
