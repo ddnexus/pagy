@@ -58,7 +58,7 @@ jobs:
       - name: Install Dependencies
         run: bun install --frozen-lockfile
       - name: Setup Cypress Cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: /home/runner/.cache/Cypress
           key: ${{ runner.os }}-cypress-cache-${{ hashFiles('bun.lockb') }}
