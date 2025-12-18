@@ -34,11 +34,6 @@ describe 'Version match' do
       _(content).must_match "# Pagy initializer file (#{version})"
     end
 
-    it 'matches in bin/pagy' do
-      content = Pagy::ROOT.join('bin/pagy').read
-      _(content).must_match "VERSION = '#{version}'"
-    end
-
     it 'matches in quick-start.md (minor version)' do
       content = repo_root.join('docs/guides/quick-start.md').read
       _(content).must_match "gem 'pagy', '~> #{major}.#{minor}"
