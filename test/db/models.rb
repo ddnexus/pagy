@@ -13,8 +13,7 @@ Time.zone = 'Etc/UTC'
 
 ## Sequel initializer
 Sequel.default_timezone = 'Etc/UTC'
-DB = Sequel.connect(adapter: 'sqlite', user: 'root', password: 'password',
-                    host: 'localhost', port: '3306', database: db_path)
+DB = Sequel.connect(adapter: 'sqlite', database: db_path)
 
 # Models for calendar tests
 class Event < ActiveRecord::Base
@@ -27,7 +26,7 @@ end
 class Pet < ActiveRecord::Base
 end
 
-require_relative '../db/b' if ENV['REBUILD_TEST_DB']
+require_relative '../db/seed' if ENV['REBUILD_TEST_DB']
 
 class PetSequel < Sequel::Model(:pets_sequel)
 end

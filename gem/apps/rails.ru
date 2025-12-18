@@ -57,16 +57,9 @@ class PagyRails < Rails::Application # :nodoc:
   end
 end
 
-# AR config
-dir = Rails.env.development? ? '.' : Dir.pwd # app dir in dev or pwd otherwise
-unless File.writable?(dir)
-  warn "ERROR: directory #{dir.inspect} is not writable (the pagy-rails-app needs to create DB files)"
-  exit 1
-end
-
 # Activerecord initializer
 ActiveRecord::Base.logger = Logger.new(OUTPUT)
-ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: "#{dir}/tmp/pagy-rails.sqlite3")
+ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'file:memdb1?mode=memory&cache=shared')
 ActiveRecord::Schema.define do
   create_table :posts, force: true do |t|
     t.string :title

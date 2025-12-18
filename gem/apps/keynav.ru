@@ -178,12 +178,8 @@ require 'active_record'
 # Log
 output                    = ENV['APP_ENV'].equal?('showcase') ? IO::NULL : $stdout
 ActiveRecord::Base.logger = Logger.new(output)
-# SQLite DB files
-dir = ENV['APP_ENV'].equal?('development') ? '.' : Dir.pwd # app dir in dev or pwd otherwise
-abort "ERROR: Cannot create DB files: the directory #{dir.inspect} is not writable." \
-      unless File.writable?(dir)
 # Connection
-ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: "#{dir}/tmp/pagy-keyset-ar.sqlite3")
+ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'file:memdb1?mode=memory&cache=shared')
 # Schema
 ActiveRecord::Schema.define do
   create_table :pets, force: true do |t|
