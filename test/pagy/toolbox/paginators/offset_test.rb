@@ -2,7 +2,6 @@
 
 require 'test_helper'
 require 'mocks/app'
-require 'db/models'
 
 describe Pagy::OffsetPaginator do
   # We test via the public API provided by the App/Controller mixin (MockApp)

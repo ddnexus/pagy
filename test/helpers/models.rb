@@ -3,17 +3,13 @@
 require 'active_record'
 require 'sequel'
 
-db_path = File.expand_path('test.sqlite3', __dir__)
-
 # Activerecord initializer
-# No logs in test
-# ActiveRecord::Base.logger = Logger.new($stdout)
-ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: db_path)
+ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
 Time.zone = 'Etc/UTC'
 
 ## Sequel initializer
 Sequel.default_timezone = 'Etc/UTC'
-DB = Sequel.connect(adapter: 'sqlite', database: db_path)
+DB = Sequel.connect(adapter: 'sqlite', database: ':memory:')
 
 # Models for calendar tests
 class Event < ActiveRecord::Base
@@ -26,7 +22,7 @@ end
 class Pet < ActiveRecord::Base
 end
 
-require_relative '../db/seed' if ENV['REBUILD_TEST_DB']
+require_relative 'db_seed'
 
 class PetSequel < Sequel::Model(:pets_sequel)
 end

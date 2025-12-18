@@ -4,14 +4,6 @@ require 'test_helper'
 
 describe Pagy::Loader do
   let(:loader) { Pagy::Loader }
-  # Use an anonymous class to avoid namespace pollution and linting errors
-  let(:pagy_class) do
-    Class.new(Pagy) do
-      def initialize(**vars)
-        assign_options(**vars)
-      end
-    end
-  end
 
   it 'defines public methods' do
     # From paths[:public] in source
