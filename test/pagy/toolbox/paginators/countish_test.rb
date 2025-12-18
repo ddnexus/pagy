@@ -2,7 +2,6 @@
 
 require 'test_helper'
 require 'mocks/app'
-require 'db/models'
 
 describe 'Pagy::CountishPaginator' do
   let(:collection) { Pet.all }

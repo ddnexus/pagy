@@ -3,7 +3,6 @@
 require 'test_helper'
 require 'pagy/toolbox/paginators/calendar'
 require 'mocks/app'
-require 'db/models'
 
 describe 'Pagy::CalendarPaginator' do
   let(:collection) { Event.all }

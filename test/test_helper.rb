@@ -22,5 +22,5 @@ end
 # Load Helpers (Order matters: Load lib patches before tests run)
 require 'helpers/minitest_backtraces'
 require 'helpers/url_assertions'
-require 'helpers/db_cleanup'
+require 'helpers/models'
 require 'helpers/test_case'

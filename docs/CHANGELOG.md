@@ -45,6 +45,12 @@ If you upgrade from version `< 9.0.0` see the following:
 
 <hr>
 
+## Version 43.2.2
+
+- Refactor bin/pagy to use the Pagy::CLI class
+- Replace optimist with the optparse standard lib
+- Simplify apps by using SQLite :memory:
+
 ## Version 43.2.1
 
 - Fix the shallow cloning of root_key params. Close #851.

@@ -47,6 +47,9 @@ PagyApps::INDEX.values).each do |path|
   replace_string_in_file(path, old_version.to_s, new_version.to_s)
 end
 
+# Update the Gefile.lock
+system('bundle lock --update pagy')
+
 # Base version changes (x.y)
 old_major, old_minor, = old_version.to_s.split('.')
 new_major, new_minor, = new_version.to_s.split('.')

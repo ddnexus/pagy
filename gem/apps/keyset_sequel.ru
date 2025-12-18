@@ -16,7 +16,7 @@
 # URL
 #    http://127.0.0.1:8000
 
-VERSION = '43.2.1'
+VERSION = '43.2.2'
 
 if VERSION != Pagy::VERSION
   Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")
@@ -133,14 +133,14 @@ end
 # Sequel setup
 require 'sequel'
 Sequel.default_timezone = :utc
-# SQLite DB files
-dir = ENV['APP_ENV'].equal?('development') ? '.' : Dir.pwd  # app dir in dev or pwd otherwise
-abort "ERROR: Cannot create DB files: the directory #{dir.inspect} is not writable." \
-unless File.writable?(dir)
 # Connection
 output = ENV['APP_ENV'].equal?('showcase') ? IO::NULL : $stdout
-DB     = Sequel.connect(adapter: 'sqlite', user: 'root', password: 'password', host: 'localhost', port: '3306',
-                        database: "#{dir}/tmp/pagy-keyset-s.sqlite3", max_connections: 10, loggers: [Logger.new(output)])
+# Use 'sqlite' adapter (Sequel uses 'sqlite', AR uses 'sqlite3')
+# Use the same shared memory URI string for the database
+DB = Sequel.connect(adapter: 'sqlite',
+                    database: 'file:memdb1?mode=memory&cache=shared',
+                    max_connections: 10,
+                    loggers: [Logger.new(output)])
 # Schema
 DB.create_table! :pets do
   primary_key :id

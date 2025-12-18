@@ -1,18 +1,20 @@
 # frozen_string_literal: true
 
-ActiveRecord::Schema.define do
-  create_table :events, force: true do |t|
-    t.string :title
-    t.timestamp :time
-  end
-  create_table :event40s, force: true do |t|
-    t.string :title
-    t.timestamp :time
-  end
-  create_table :pets, force: true do |t|
-    t.string :name
-    t.string :animal
-    t.date :birthdate
+ActiveRecord::Migration.suppress_messages do
+  ActiveRecord::Schema.define do
+    create_table :events, force: true do |t|
+      t.string :title
+      t.timestamp :time
+    end
+    create_table :event40s, force: true do |t|
+      t.string :title
+      t.timestamp :time
+    end
+    create_table :pets, force: true do |t|
+      t.string :name
+      t.string :animal
+      t.date :birthdate
+    end
   end
 end
 

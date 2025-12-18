@@ -2,7 +2,6 @@
 
 require 'test_helper'
 require 'pagy/modules/abilities/countable'
-require 'db/models'
 
 describe Pagy::Countable do
   let(:countable) { Pagy::Countable }

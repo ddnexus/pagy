@@ -2,7 +2,6 @@
 
 require 'test_helper'
 require 'mocks/app'
-require 'db/models'
 require 'pagy/modules/b64'
 
 describe 'Pagy::KeynavJsPaginator' do
