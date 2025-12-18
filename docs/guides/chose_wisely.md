@@ -14,7 +14,7 @@ Choose the right one to ensure the best performance and workflow.
 
 ### OFFSET Pagination
 
-The most common pagination technique is counting the collection items (COUNT DB query), using the count to calculate where the specific pages start (i.e., OFFSET) and retrie only the LIMIT items for that page (OFFSET+LIMIT DB query).
+The most common pagination technique is counting the collection items (COUNT DB query), using the count to calculate where the specific pages start (i.e., OFFSET) and retrieving only the LIMIT items for that page (OFFSET+LIMIT DB query).
 
 It is straightforward to understand and set up and very versatile for the UI, but you have to be aware of a few shortcomings.
 
@@ -64,9 +64,9 @@ The KEYSET pagination technique allows the fastest and lighter DB performance. I
 
 - It knows only the current page and the pointer to the next page.
 - Page pointers are encoded strings and the count is not known.
-- It's extremely fast with APIs and infinite scrolling.
+- It supports only APIs and infinite scrolling.
 
-!!!tip For KEYSET pagination with UI support...
+!!!tip For UI support with KEYSET pagination...
 
 Use the `:keynav_js` paginator.
 

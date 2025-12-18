@@ -45,7 +45,7 @@ These options give you full control over the URL composition. You can use them f
 
 ##### No framework params
 
-Pagy does not use the `request.params` because they are modified differently by different frameworks. It can rely only on the `request.GET` and `request.POST` methods, which are consistent across all Rack environments.
+Pagy does not use the `request.params` because they are modified differently by different frameworks. It can only rely on the `request.GET` and `request.POST` methods, which are consistent across all Rack environments.
 
 ##### String-keyed Hash
 
@@ -61,37 +61,48 @@ If you must use POST to retrieve paginated collections, you should build your ow
 
 ==- Dynamic Segments
 
-While routers (like Rails) allow defining parameters as part of the path (e.g., `/items/:page`), we do not recommend using the `:page` parameter as a dynamic path segment.
-
-#### Pros
-
-- Possibility to cache single pages at the edge (rarely strictly necessary)
-- Aesthetically cleaner URLs
-
-#### Cons
-
-- **RFC 3986 Compliance**: The `:page` parameter represents non-hierarchical data, which fits the definition of the query string component. It does not fit the definition of the path component, which represents hierarchical resources.
-- **Data Identification**: A query string parameter is labeled data (`?page=2`) identifiable without external context. A path segment (`/2`) is unlabeled and relies on external routing logic to be handled, so it cannot be identified/used by pagy.
-- **Performance**: Generating dynamic segments requires framework-specific code, which is not only non-agnostic but significantly slower than simple string interpolation.
+Routers (like the Rails' one) allow defining parameters as part of the path (e.g., `/items/:page`)...
 
 !!!danger
 
-For these reasons, Pagy does not support dynamic path segments out of the box.
+Pagy does not support, nor recommends dynamic path segments for the `:page` param.
 
 !!!
 
-#### Overriding
+### Why?
+
+The Cons are overwhelming.
+
+#### Pros
+
+{.list-icon}
+- :icon-thumbsup-24: Aesthetically cleaner URLs
+- :icon-thumbsup-24: Possibility to cache single pages at the edge _(rarely necessary)_
+
+#### Cons
+
+{.list-icon}
+- **RFC 3986 Compliance**
+  - :icon-thumbsdown-24: The `:page` parameter represents non-hierarchical data, which fits the definition of the query string component.
+  - :icon-thumbsdown-24: It does not fit the definition of the path component, which represents hierarchical resources.
+- **Data Identification**
+  - :icon-thumbsdown-24: A query string parameter is labeled data (`?page=2`) identifiable without external context.
+  - :icon-thumbsdown-24: A path segment (`/2`) is unlabeled and relies on external routing logic to be handled, so it cannot be identified/used by agnostic code.
+- **Performance**
+  - :icon-thumbsdown-24: Dynamic segments are framework-specific routing concepts, not query params concepts.
+  - :icon-thumbsdown-24: Using framework code is not only non-agnostic, but significantly slower than pagy's generic query param handling.
+  - :icon-thumbsdown-24: Using it _(or even just checking for it)_ would be an unnecessary burden for all the apps.
+
+### OK, but what if I still want it in my own app?
 
 <br/>
 
-Pagy offers a working example for enabling dynamic segments in Rails applications (e.g., `/items/:page`).
-
 !!!warning This file is provided as a courtesy configuration for advanced users
 
-It is not an officially supported or tested feature, as it bypasses the standard, high-performance Pagy URL generation logic.
+It is not an officially supported or tested feature, as it bypasses the standard, high-performance Pagy URL generation logic, so use it at your own risk.
 
 !!!
 
-:::code source="../gem/apps/rails_page_segment.rb" title="rails_page_segment.rb":::
+:::code source="../gem/apps/enable_rails_page_segment.rb" title="enable_rails_page_segment.rb":::
 
 ===

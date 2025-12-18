@@ -12,6 +12,7 @@ AllCops:
   Exclude:
     - ___*/**/*
     - "**/node_modules/**/*"
+    - "gem/apps/enable_rails_page_segment.rb"
     - coverage/**/*
     - docs/**/*
     - gem/lib/optimist.rb
