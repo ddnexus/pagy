@@ -6,42 +6,81 @@ LINUX   = RbConfig::CONFIG['host_os'].include?('linux')
 HOST    = 'localhost'
 PORT    = '8000'
 
-require_relative '../lib/optimist'
+require 'optparse' # Standard library, no extra gems
 require_relative '../lib/pagy'
 require_relative '../apps/index'
 
-apps = PagyApps::INDEX
-opts = Optimist.options do
-  text <<~HEAD
+# Default configuration
+apps    = PagyApps::INDEX
+options = { env:   'development',
+            host:  HOST,
+            port:  PORT,
+            rerun: false,
+            clear: false,
+            quiet: false }
+
+# Define the parser
+parser = OptionParser.new do |opts|
+  opts.banner = <<~BANNER
     Pagy #{VERSION} (https://ddnexus.github.io/pagy/playground)
-    Playground to showcase, clone and develop pagy APPs
-    APPs
-    #{ apps.map do |name, path|
-         "  #{name}#{' ' * (18 - name.length)}#{File.readlines(path)[3].sub('#    ', '').strip}"
-       end.join("\n") }
-    USAGE
-      pagy APP [opts]   Showcase APP from the installed gem
-      pagy clone APP    Clone APP to the current dir
-      pagy FILE [opts]  Develop app FILE from local path
-    EXAMPLES
-      pagy demo         Showcase demo at http://#{HOST}:#{PORT}
-      pagy clone repro  Clone repro to ./repro.ru (rename it)
-      pagy ~/myapp.ru   Develop ~/myapp.ru at #{HOST}:#{PORT}
-  HEAD
-  text 'Rackup options'
-  opt :env,     'Environment', default: 'development'
-  opt :host,    'Host',        default: HOST, short: :o
-  opt :port,    'Port',        default: PORT
-  if LINUX
-    text 'Rerun options'
-    opt :rerun, 'Enable rerun for development'
-    opt :clear, 'Clear screen before each rerun'
+    Playground to showcase, clone and develop Pagy APPs
+
+    Usage:
+      pagy APP [opts]    Showcase APP from the installed gem
+      pagy clone APP     Clone APP to the current dir
+      pagy FILE [opts]   Develop app FILE from local path
+  BANNER
+
+  opts.summary_indent = '  '
+  opts.summary_width  = 18
+
+  opts.separator "\nAPPs"
+  apps.each do |name, path|
+    desc = File.readlines(path)[3].sub('#    ', '').strip
+    opts.separator "   #{name.ljust(18)}#{desc}"
   end
-  text 'Other options'
-  opt :quiet,   'Quiet mode for development'
-  version VERSION
+
+  opts.separator "\nRackup options"
+  opts.on('-e', '--env ENV', 'Environment') { |v| options[:env] = v }
+  opts.on('-o', '--host HOST', 'Host')      { |v| options[:host] = v }
+  opts.on('-p', '--port PORT', 'Port')      { |v| options[:port] = v }
+
+  if LINUX
+    opts.separator "\nRerun options"
+    opts.on('--rerun', 'Enable rerun for development') { options[:rerun] = true }
+    opts.on('--clear', 'Clear screen before each rerun') { options[:clear] = true }
+  end
+
+  opts.separator "\nOther options"
+  opts.on('-q', '--quiet', 'Quiet mode for development') { options[:quiet] = true }
+  opts.on('-v', '--version', 'Show version') do
+    puts VERSION
+    exit
+  end
+
+  opts.on('-h', '--help', 'Show this help') do
+    puts opts
+    exit
+  end
+
+  opts.separator "\nExamples"
+  opts.separator "  pagy demo          Showcase demo at http://#{HOST}:#{PORT}"
+  opts.separator '  pagy clone repro   Clone repro to ./repro.ru (rename it)'
+  opts.separator "  pagy ~/myapp.ru    Develop ~/myapp.ru at #{HOST}:#{PORT}"
 end
-Optimist.educate if ARGV.empty?
+
+# Parse ARGV (removes flags from ARGV, leaving positional args)
+begin
+  parser.parse!
+rescue OptionParser::InvalidOption => e
+  abort e.message
+end
+
+# Show help if no arguments provided
+if ARGV.empty?
+  puts parser
+  exit
+end
 
 run_from_repo = Pagy::ROOT.join('pagy.gemspec').exist?
 
@@ -57,40 +96,42 @@ end
 arg = ARGV.shift
 if arg.eql?('clone')
   name = ARGV.shift
-  Optimist.die("Expected APP to be in [#{apps.keys.join(', ')}]; got #{name.inspect}") unless apps.key?(name)
+  abort "Expected APP to be in [#{apps.keys.join(', ')}]; got #{name.inspect}" unless apps.key?(name)
   if File.exist?(name)
     print "Do you want to overwrite the #{name.inspect} file? (y/n)> "
     answer = gets.chomp
-    Optimist.die("#{name.inspect} file already present") unless answer.start_with?(/y/i)
+    abort "#{name.inspect} file already present" unless answer.start_with?(/y/i)
   end
   require 'fileutils'
   FileUtils.cp(apps[name], '.', verbose: true)
 else
-  if apps.key?(arg)  # showcase env
-    opts[:env]   = 'showcase'
-    opts[:rerun] = false
-    opts[:quiet] = true
+  if apps.key?(arg) # showcase env
+    options[:env]   = 'showcase'
+    options[:rerun] = false
+    options[:quiet] = true
     # Avoid the creation of './tmp/local_secret.txt' for showcase env
     ENV['SECRET_KEY_BASE'] = 'absolute secret!' if arg.eql?('rails')
     file = apps[arg]
-  else                   # development env
+  else # development env
     file = arg
   end
-  Optimist.die("#{file.inspect} app not found") unless File.exist?(file)
+  abort "#{file.inspect} app not found" unless File.exist?(file)
+
   # Run command
   gem_dir = File.expand_path('..', __dir__)
-  rackup  = "rackup -I #{gem_dir}/lib -r pagy -o #{opts[:host]} -p #{opts[:port]} -E #{opts[:env]} #{file}"
-  rackup << ' -q' if opts[:quiet]
-  if opts[:rerun]
+  # NOTE: mapped options[:key] instead of opts[:key]
+  rackup  = "rackup -I #{gem_dir}/lib -r pagy -o #{options[:host]} -p #{options[:port]} -E #{options[:env]} #{file}"
+  rackup << ' -q' if options[:quiet]
+  if options[:rerun]
     name  = File.basename(file)
     dir   = File.dirname(file)
-    rerun = if run_from_repo   # rerun app also when gem dir files change (for pagy devs)
+    rerun = if run_from_repo # rerun app also when gem dir files change (for pagy devs)
               "rerun --name #{name} -d #{dir},#{gem_dir} -p **/*.{rb,js,css,scss,ru,yml}"
             else
               "rerun --name #{name} -d #{dir} -p #{name}" # rerun only when app.ru changes
             end
-    rerun << ' -q' if opts[:quiet]
-    rerun << ' -c' if opts[:clear]
+    rerun << ' -q' if options[:quiet]
+    rerun << ' -c' if options[:clear]
     rerun << " -- #{rackup}"
   end
   exec(rerun || rackup)

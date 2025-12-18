@@ -15,7 +15,6 @@ AllCops:
     - "gem/apps/enable_rails_page_segment.rb"
     - coverage/**/*
     - docs/**/*
-    - gem/lib/optimist.rb
     - src/**/*
     - vendor/**/*  # fix the problem with github ruby
 
