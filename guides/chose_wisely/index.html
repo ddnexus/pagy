@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819084706684">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.819360374817">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,11 +31,11 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.819084706684" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.819360374817" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.819084706684" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.819360374817" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.819084706684" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.819360374817" data-turbo-eval="false" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -395,7 +395,7 @@
         <span>OFFSET Pagination</span>
     </h3>
 </doc-anchor-target>
-<p>The most common pagination technique is counting the collection items (COUNT DB query), using the count to calculate where the specific pages start (i.e., OFFSET) and retrie only the LIMIT items for that page (OFFSET+LIMIT DB query).</p>
+<p>The most common pagination technique is counting the collection items (COUNT DB query), using the count to calculate where the specific pages start (i.e., OFFSET) and retrieving only the LIMIT items for that page (OFFSET+LIMIT DB query).</p>
 <p>It is straightforward to understand and set up and very versatile for the UI, but you have to be aware of a few shortcomings.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
@@ -510,7 +510,7 @@
 <ul>
 <li>It knows only the current page and the pointer to the next page.</li>
 <li>Page pointers are encoded strings and the count is not known.</li>
-<li>It&#x27;s extremely fast with APIs and infinite scrolling.</li>
+<li>It supports only APIs and infinite scrolling.</li>
 </ul>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-tip"></div>
@@ -523,7 +523,7 @@
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-            <h5>For KEYSET pagination with UI support...</h5>
+            <h5>For UI support with KEYSET pagination...</h5>
 <p>Use the <code v-pre>:keynav_js</code> paginator.</p>
         </div>
     </div>
