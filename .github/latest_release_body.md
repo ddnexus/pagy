@@ -1,13 +1,9 @@
-### Changes in 43.2.1
+### Changes in 43.2.2
 
 <!-- changes_start -->
-- Fix the shallow cloning of root_key params. Close #851.
-- Implements support for easy overriding
-- Add :current_url alias to :page_url
-- Fix limit_tag_js not respecting the passed :client_max_limit option
-- Fix data_hash returning keys with nil values, or URLs without page; add :current_url alias to :page_url
-- Remove warning when fit_time
-- Fix respond_to_missing definition arguments in Search::Arguments
+- Refactor bin/pagy to use the Pagy::CLI class
+- Replace optimist with the optparse standard lib
+- Simplify apps by using SQLite :memory:
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
@@ -20,22 +16,18 @@
 
 ## Version 43
 
-We needed a leap version to unequivocally signaling that it's not just a major version: it's a complete redesign of the legacy
-code at all levels, usage and API included.
+We needed a leap version to unequivocally signaling that it's not just a major version: it's a complete redesign of the legacy code at all levels, usage and API included.
 
 **Why 43?** Because it's exactly one step beyond _"The answer to the ultimate question of life, the Universe, and everything."_ 😉
 
 #### Improvements
 
-This version introduces several enhancements, such as new `:countish` and `:keynav_js` paginators and improved automation and
-configuration processes, reducing setup requirements by 99%. The update also includes a simpler API and new interactive
-development tools, making it a comprehensive upgrade from previous versions.
+This version introduces several enhancements, such as new `:countish` and `:keynav_js` paginators and improved automation and configuration processes, reducing setup requirements by 99%. The update also includes a simpler API and new interactive development tools, making it a comprehensive upgrade from previous versions.
 
 - **New [:countish](https://ddnexus.github.io/pagy/toolbox/paginators/countish) Paginator**
   - Faster than OFFSET and supporting the full UI
 - **New [Keynav](https://ddnexus.github.io/pagy/toolbox/paginators/keynav_js) Pagination**
-  - The pagy-exclusive technique using the fastest [keyset](https://ddnexus.github.io/pagy/toolbox/paginators/keyset)
-    pagination alongside all frontend helpers.
+  - The pagy-exclusive technique using the fastest [keyset](https://ddnexus.github.io/pagy/toolbox/paginators/keyset)pagination alongside all frontend helpers.
 - **New interactive dev-tools**
   - New [PagyWand](https://ddnexus.github.io/pagy/resources/stylesheets/#pagy-wand) to integrate the pagy CSS with your app themes.
   - New **Pagy AI** available right inside your own app.
@@ -44,12 +36,9 @@ development tools, making it a comprehensive upgrade from previous versions.
   - Simplified [JavaScript](https://ddnexus.github.io/pagy/resources/javascript) setup.
   - Automatic [I18n](https://ddnexus.github.io/pagy/resources/i18n) loading.
 - **[Simpler API](https://github.com/ddnexus/pagy#examples)**
-  - You solely need the [pagy](https://ddnexus.github.io/pagy/toolbox/paginators) method and
-    the [@pagy](https://ddnexus.github.io/pagy/toolbox/helpers) instance to paginate any collection and use any navigation tag
-    and helper.
+  - You solely need the [pagy](https://ddnexus.github.io/pagy/toolbox/paginators) method and the [@pagy](https://ddnexus.github.io/pagy/toolbox/helpers) instance to paginate any collection and use any navigation tag and helper.
   - Methods are autoloaded only if used, and consume no memory otherwise.
-  - Methods have narrower scopes and can be [overridden](https://ddnexus.github.io/pagy/guides/how-to#override-pagy-methods)
-    without deep knowledge.
+  - Methods have narrower scopes and can be [overridden](https://ddnexus.github.io/pagy/guides/how-to#override-pagy-methods) without deep knowledge.
 - **New [documentation](https://ddnexus.github.io/pagy/guides/quick-start)**
   - Very concise, straightforward, and easy to navigate and understand.
 
