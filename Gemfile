@@ -14,7 +14,7 @@ group :test do
   gem 'activesupport'
   gem 'i18n'
   gem 'minitest'
-  gem 'minitest-reporters'
+  gem 'minitest-mock'
   gem 'mutex_m'                # for RubyMine
   gem 'oj', require: false     # false is for testing with or without it
   gem 'rack'

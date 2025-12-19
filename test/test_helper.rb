@@ -13,11 +13,11 @@ require 'simplecov' unless ENV['SKIP_COVERAGE']
 require 'pagy'
 
 # Minitest Setup
+require 'minitest'
+require 'minitest/spec'
+Minitest.load :rematch
 require 'minitest/autorun'
-unless ENV['RM_INFO'] # RubyMine safe
-  require "minitest/reporters"
-  Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
-end
+require 'minitest/mock'
 
 # Load Helpers (Order matters: Load lib patches before tests run)
 require 'helpers/minitest_backtraces'
