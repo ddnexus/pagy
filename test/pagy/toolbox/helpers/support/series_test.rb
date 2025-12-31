@@ -39,7 +39,7 @@ describe 'Pagy#series' do
       (1..last).each do |page|
         pagy = pagy_class.new(page: page, last: last)
         # Use a unique key for each page iteration to avoid collisions in Rematch
-        _(pagy.series(**options)).must_rematch("#{label}_page_#{page}")
+        _("#{label}_page_#{page}" => pagy.series(**options)).must_hold
       end
     end
 

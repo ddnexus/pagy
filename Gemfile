@@ -14,12 +14,12 @@ group :test do
   gem 'activesupport'
   gem 'i18n'
   gem 'minitest'
+  gem 'minitest-holdify'
   gem 'minitest-mock'
   gem 'mutex_m'                # for RubyMine
   gem 'oj', require: false     # false is for testing with or without it
   gem 'rack'
   gem 'rails-i18n'
-  gem 'rematch'
   gem 'rubocop'
   gem 'rubocop-minitest'
   gem 'rubocop-packaging'

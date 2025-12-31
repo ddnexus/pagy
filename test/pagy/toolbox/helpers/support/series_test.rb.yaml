@@ -1,139 +1,37 @@
 ---
-Pagy_series__calculations_test_0001_computes_series_for_last_<=_slots:
-  last_le_slots_page_1:
+L48 7f20103aea923abc9b87277fc8b38127c372c401:
+- last_le_slots_page_1:
   - '1'
   - 2
   - 3
   - 4
   - 5
-  last_le_slots_page_2:
+- last_le_slots_page_2:
   - 1
   - '2'
   - 3
   - 4
   - 5
-  last_le_slots_page_3:
+- last_le_slots_page_3:
   - 1
   - 2
   - '3'
   - 4
   - 5
-  last_le_slots_page_4:
+- last_le_slots_page_4:
   - 1
   - 2
   - 3
   - '4'
   - 5
-  last_le_slots_page_5:
+- last_le_slots_page_5:
   - 1
   - 2
   - 3
   - 4
   - '5'
-Pagy_series__calculations_test_0003_computes_series_for_even_slots_(4):
-  even_slots_page_1:
-  - '1'
-  - 2
-  - 3
-  - 4
-  even_slots_page_2:
-  - 1
-  - '2'
-  - 3
-  - 4
-  even_slots_page_3:
-  - 2
-  - '3'
-  - 4
-  - 5
-  even_slots_page_4:
-  - 3
-  - '4'
-  - 5
-  - 6
-  even_slots_page_5:
-  - 4
-  - '5'
-  - 6
-  - 7
-  even_slots_page_6:
-  - 5
-  - '6'
-  - 7
-  - 8
-  even_slots_page_7:
-  - 6
-  - '7'
-  - 8
-  - 9
-  even_slots_page_8:
-  - 7
-  - '8'
-  - 9
-  - 10
-  even_slots_page_9:
-  - 7
-  - 8
-  - '9'
-  - 10
-  even_slots_page_10:
-  - 7
-  - 8
-  - 9
-  - '10'
-Pagy_series__calculations_test_0005_computes_series_for_slots_<_SERIES_SLOTS_(4)_without_compact:
-  small_slots_implicit_compact_page_1:
-  - '1'
-  - 2
-  - 3
-  - 4
-  small_slots_implicit_compact_page_2:
-  - 1
-  - '2'
-  - 3
-  - 4
-  small_slots_implicit_compact_page_3:
-  - 2
-  - '3'
-  - 4
-  - 5
-  small_slots_implicit_compact_page_4:
-  - 3
-  - '4'
-  - 5
-  - 6
-  small_slots_implicit_compact_page_5:
-  - 4
-  - '5'
-  - 6
-  - 7
-  small_slots_implicit_compact_page_6:
-  - 5
-  - '6'
-  - 7
-  - 8
-  small_slots_implicit_compact_page_7:
-  - 6
-  - '7'
-  - 8
-  - 9
-  small_slots_implicit_compact_page_8:
-  - 7
-  - '8'
-  - 9
-  - 10
-  small_slots_implicit_compact_page_9:
-  - 7
-  - 8
-  - '9'
-  - 10
-  small_slots_implicit_compact_page_10:
-  - 7
-  - 8
-  - 9
-  - '10'
-Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7):
-  default_gaps_page_1:
+L53 749db83580e12c7917ea82db77f3ce6086369c60:
+- default_gaps_page_1:
   - '1'
   - 2
   - 3
@@ -141,7 +39,7 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - 5
   - :gap
   - 20
-  default_gaps_page_2:
+- default_gaps_page_2:
   - 1
   - '2'
   - 3
@@ -149,7 +47,7 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - 5
   - :gap
   - 20
-  default_gaps_page_3:
+- default_gaps_page_3:
   - 1
   - 2
   - '3'
@@ -157,7 +55,7 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - 5
   - :gap
   - 20
-  default_gaps_page_4:
+- default_gaps_page_4:
   - 1
   - 2
   - 3
@@ -165,7 +63,7 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - 5
   - :gap
   - 20
-  default_gaps_page_5:
+- default_gaps_page_5:
   - 1
   - :gap
   - 4
@@ -173,7 +71,7 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - 6
   - :gap
   - 20
-  default_gaps_page_6:
+- default_gaps_page_6:
   - 1
   - :gap
   - 5
@@ -181,7 +79,7 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - 7
   - :gap
   - 20
-  default_gaps_page_7:
+- default_gaps_page_7:
   - 1
   - :gap
   - 6
@@ -189,7 +87,7 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - 8
   - :gap
   - 20
-  default_gaps_page_8:
+- default_gaps_page_8:
   - 1
   - :gap
   - 7
@@ -197,7 +95,7 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - 9
   - :gap
   - 20
-  default_gaps_page_9:
+- default_gaps_page_9:
   - 1
   - :gap
   - 8
@@ -205,7 +103,7 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - 10
   - :gap
   - 20
-  default_gaps_page_10:
+- default_gaps_page_10:
   - 1
   - :gap
   - 9
@@ -213,7 +111,7 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - 11
   - :gap
   - 20
-  default_gaps_page_11:
+- default_gaps_page_11:
   - 1
   - :gap
   - 10
@@ -221,7 +119,7 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - 12
   - :gap
   - 20
-  default_gaps_page_12:
+- default_gaps_page_12:
   - 1
   - :gap
   - 11
@@ -229,7 +127,7 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - 13
   - :gap
   - 20
-  default_gaps_page_13:
+- default_gaps_page_13:
   - 1
   - :gap
   - 12
@@ -237,7 +135,7 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - 14
   - :gap
   - 20
-  default_gaps_page_14:
+- default_gaps_page_14:
   - 1
   - :gap
   - 13
@@ -245,7 +143,7 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - 15
   - :gap
   - 20
-  default_gaps_page_15:
+- default_gaps_page_15:
   - 1
   - :gap
   - 14
@@ -253,7 +151,7 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - 16
   - :gap
   - 20
-  default_gaps_page_16:
+- default_gaps_page_16:
   - 1
   - :gap
   - 15
@@ -261,7 +159,7 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - 17
   - :gap
   - 20
-  default_gaps_page_17:
+- default_gaps_page_17:
   - 1
   - :gap
   - 16
@@ -269,7 +167,7 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - 18
   - 19
   - 20
-  default_gaps_page_18:
+- default_gaps_page_18:
   - 1
   - :gap
   - 16
@@ -277,7 +175,7 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - '18'
   - 19
   - 20
-  default_gaps_page_19:
+- default_gaps_page_19:
   - 1
   - :gap
   - 16
@@ -285,7 +183,7 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - 18
   - '19'
   - 20
-  default_gaps_page_20:
+- default_gaps_page_20:
   - 1
   - :gap
   - 16
@@ -293,124 +191,226 @@ Pagy_series__calculations_test_0002_computes_series_for_last_>_slots_(default_7)
   - 18
   - 19
   - '20'
-Pagy_series__calculations_test_0004_computes_series_with_compact__true:
-  compact_page_1:
+L58 623da1db589fce1094773eb3a24b695aa3ff6266:
+- even_slots_page_1:
+  - '1'
+  - 2
+  - 3
+  - 4
+- even_slots_page_2:
+  - 1
+  - '2'
+  - 3
+  - 4
+- even_slots_page_3:
+  - 2
+  - '3'
+  - 4
+  - 5
+- even_slots_page_4:
+  - 3
+  - '4'
+  - 5
+  - 6
+- even_slots_page_5:
+  - 4
+  - '5'
+  - 6
+  - 7
+- even_slots_page_6:
+  - 5
+  - '6'
+  - 7
+  - 8
+- even_slots_page_7:
+  - 6
+  - '7'
+  - 8
+  - 9
+- even_slots_page_8:
+  - 7
+  - '8'
+  - 9
+  - 10
+- even_slots_page_9:
+  - 7
+  - 8
+  - '9'
+  - 10
+- even_slots_page_10:
+  - 7
+  - 8
+  - 9
+  - '10'
+L63 1d85cd9cd99d96f401c00814b10f36b430d1dc19:
+- compact_page_1:
   - '1'
   - 2
   - 3
   - 4
   - 5
-  compact_page_2:
+- compact_page_2:
   - 1
   - '2'
   - 3
   - 4
   - 5
-  compact_page_3:
+- compact_page_3:
   - 1
   - 2
   - '3'
   - 4
   - 5
-  compact_page_4:
+- compact_page_4:
   - 2
   - 3
   - '4'
   - 5
   - 6
-  compact_page_5:
+- compact_page_5:
   - 3
   - 4
   - '5'
   - 6
   - 7
-  compact_page_6:
+- compact_page_6:
   - 4
   - 5
   - '6'
   - 7
   - 8
-  compact_page_7:
+- compact_page_7:
   - 5
   - 6
   - '7'
   - 8
   - 9
-  compact_page_8:
+- compact_page_8:
   - 6
   - 7
   - '8'
   - 9
   - 10
-  compact_page_9:
+- compact_page_9:
   - 7
   - 8
   - '9'
   - 10
   - 11
-  compact_page_10:
+- compact_page_10:
   - 8
   - 9
   - '10'
   - 11
   - 12
-  compact_page_11:
+- compact_page_11:
   - 9
   - 10
   - '11'
   - 12
   - 13
-  compact_page_12:
+- compact_page_12:
   - 10
   - 11
   - '12'
   - 13
   - 14
-  compact_page_13:
+- compact_page_13:
   - 11
   - 12
   - '13'
   - 14
   - 15
-  compact_page_14:
+- compact_page_14:
   - 12
   - 13
   - '14'
   - 15
   - 16
-  compact_page_15:
+- compact_page_15:
   - 13
   - 14
   - '15'
   - 16
   - 17
-  compact_page_16:
+- compact_page_16:
   - 14
   - 15
   - '16'
   - 17
   - 18
-  compact_page_17:
+- compact_page_17:
   - 15
   - 16
   - '17'
   - 18
   - 19
-  compact_page_18:
+- compact_page_18:
   - 16
   - 17
   - '18'
   - 19
   - 20
-  compact_page_19:
+- compact_page_19:
   - 16
   - 17
   - 18
   - '19'
   - 20
-  compact_page_20:
+- compact_page_20:
   - 16
   - 17
   - 18
   - 19
   - '20'
+L68 6c5958f65da0bf86608814cf8fd3eccd037a37d4:
+- small_slots_implicit_compact_page_1:
+  - '1'
+  - 2
+  - 3
+  - 4
+- small_slots_implicit_compact_page_2:
+  - 1
+  - '2'
+  - 3
+  - 4
+- small_slots_implicit_compact_page_3:
+  - 2
+  - '3'
+  - 4
+  - 5
+- small_slots_implicit_compact_page_4:
+  - 3
+  - '4'
+  - 5
+  - 6
+- small_slots_implicit_compact_page_5:
+  - 4
+  - '5'
+  - 6
+  - 7
+- small_slots_implicit_compact_page_6:
+  - 5
+  - '6'
+  - 7
+  - 8
+- small_slots_implicit_compact_page_7:
+  - 6
+  - '7'
+  - 8
+  - 9
+- small_slots_implicit_compact_page_8:
+  - 7
+  - '8'
+  - 9
+  - 10
+- small_slots_implicit_compact_page_9:
+  - 7
+  - 8
+  - '9'
+  - 10
+- small_slots_implicit_compact_page_10:
+  - 7
+  - 8
+  - 9
+  - '10'

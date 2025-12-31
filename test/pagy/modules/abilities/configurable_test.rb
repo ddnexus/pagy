@@ -140,10 +140,10 @@ describe Pagy::Configurable do
 
     it 'integration: renders info_tag using the gem' do
       # This confirms the switch affects downstream helpers
-      _(Pagy::Offset.new(count: 0).info_tag).must_rematch :info_0
-      _(Pagy::Offset.new(count: 1).info_tag).must_rematch :info_1
-      _(Pagy::Offset.new(count: 13).info_tag).must_rematch :info_13
-      _(Pagy::Offset.new(count: 100, page: 3).info_tag).must_rematch :info_100
+      expect(Pagy::Offset.new(count: 0).info_tag).to_hold
+      expect(Pagy::Offset.new(count: 1).info_tag).to_hold
+      expect(Pagy::Offset.new(count: 13).info_tag).to_hold
+      expect(Pagy::Offset.new(count: 100, page: 3).info_tag).to_hold
     end
   end
 end
