@@ -37,9 +37,9 @@ describe 'Pagy#series' do
     # Helper to generate series for a range of pages
     def verify_series(label, last:, **options)
       (1..last).each do |page|
+        # Use a unique label for each page iteration for storage feedback
         pagy = pagy_class.new(page: page, last: last)
-        # Use a unique key for each page iteration to avoid collisions in Rematch
-        _("#{label}_page_#{page}" => pagy.series(**options)).must_hold
+        expect("#{label}_page_#{page}" => pagy.series(**options)).to_hold
       end
     end
 
