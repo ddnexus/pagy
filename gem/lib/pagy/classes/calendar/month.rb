@@ -3,7 +3,7 @@
 class Pagy # :nodoc:
   class Calendar # :nodoc:
     class Month < Unit
-      DEFAULT = { slots:  12,
+      DEFAULT = { slots:   12,
                   compact: true,
                   order:   :asc,
                   format:  '%b' }.freeze

@@ -4,7 +4,7 @@ class Pagy # :nodoc:
   class Calendar # :nodoc:
     # Year unit subclass
     class Year < Unit
-      DEFAULT = { slots:  10,
+      DEFAULT = { slots:   10,
                   compact: true,
                   order:   :asc,
                   format:  '%Y' }.freeze

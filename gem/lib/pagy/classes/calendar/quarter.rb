@@ -3,7 +3,7 @@
 class Pagy # :nodoc:
   class Calendar # :nodoc:
     class Quarter < Unit
-      DEFAULT = { slots:  4,
+      DEFAULT = { slots:   4,
                   compact: true,
                   order:   :asc,
                   format:  'Q%q' }.freeze # '%q' token
