@@ -21,7 +21,7 @@ interface TestNavOpts {
 }
 
 export function testNav(app:string, id:string, {path = "/", pages = ["3", "50"], rjs = false}:TestNavOpts) {
-    it(`[${app}] Test ${id}`, () => {
+    it(`Test ${id}`, () => {
         if (rjs) {
             const widths = [600, 700];
             for (const width of widths) {
@@ -47,7 +47,7 @@ function checkNav(id:string, pages:string[]) {
 
 export function testComboNav(app:string, id:string) {
     const id_input = `${id} input`;
-    it(`[${app}] Test ${id}`, () => {
+    it(`Test ${id}`, () => {
         snapIds([id]);
         goCheckNext(id);
         const page = "3";
@@ -71,7 +71,7 @@ export function testComboNav(app:string, id:string) {
 }
 
 export function testLimitSelector(app:string, id:string, path = "/") {
-    it(`[${app}] Test ${id}`, () => {
+    it(`Test ${id}`, () => {
         const pages    = [1, 36, 50];
         const id_input = `${id} input`;
         for (const page of pages) {
@@ -103,7 +103,7 @@ export function testLimitSelector(app:string, id:string, path = "/") {
 }
 
 export function testInfo(app:string, id:string, path = "/") {
-    it(`[${app}] Test ${id}`, () => {
+    it(`Test ${id}`, () => {
         const pages = [1, 36, 50];
         for (const page of pages) {
             cy.visit(`${path}?page=${page}`);

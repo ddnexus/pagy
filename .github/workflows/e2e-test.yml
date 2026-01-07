@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        app: ['demo', 'repro', 'rails', 'calendar']
+        app: ['demo', 'repro', 'rails', 'calendar', 'keynav']
       fail-fast: false
     steps:
       - uses: actions/checkout@v6.0.1

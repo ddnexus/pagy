@@ -11,12 +11,12 @@ envVals.forEach((val) => {
             cy.visit("/", {qs: { skip_counts: val }});
         });
 
-        it(`[${app}] Test #go-to-day`, () => {
+        it(`Test #go-to-day`, () => {
             cy.get("#go-to-day").click();
             snapIds(calIds);
         });
 
-        it(`[${app}] Test calendar navs`, () => {
+        it(`Test calendar navs`, () => {
             cy.get("#year-nav").contains("2022").click();
             snapIds(calIds);
             cy.get("#month-nav").contains("Apr").click();
@@ -33,7 +33,7 @@ describe(`[${app}] Test app`, () => {
     beforeEach(() => {
         cy.visit("/");
     });
-    it(`[${app}] Test #toggle`, () => {
+    it(`Test #toggle`, () => {
         snapIds(calIds);
         cy.get("#toggle").click();
         snapIds(["#pages-nav"]);
