@@ -25,7 +25,7 @@
     --background-input:   hsl(var(--H) var(--S) calc(var(--L) + (45 * var(--B))));
     --opacity: 1;
 
-    @apply flex space-x-[var(--spacing)] font-[var(--font-weight)]
+    @apply flex gap-x-[var(--spacing)] font-[var(--font-weight)]
     text-[length:var(--font-size)] text-[var(--text)]
     leading-[var(--line-height)];
 
