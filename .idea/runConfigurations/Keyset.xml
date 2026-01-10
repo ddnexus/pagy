@@ -2,7 +2,7 @@
   <configuration default="false" name="Keyset" type="RubyRunConfigurationType" factoryName="Ruby" folderName="Apps">
     <module name="pagy" />
     <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="" />
-    <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$MODULE_DIR$/gem/apps" />
+    <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$MODULE_DIR$" />
     <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
     <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
     <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
@@ -24,8 +24,8 @@
       </ENTRIES>
     </EXTENSION>
     <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
-    <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/gem/bin/pagy" />
-    <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="keyset.ru -p 8005" />
+    <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/scripts/runapp.rb" />
+    <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="keyset -p 8005" />
     <method v="2" />
   </configuration>
 </component>
