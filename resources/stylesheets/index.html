@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.821176650746">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.821334092149">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.11.0.821176650746" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.821334092149" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.821176650746" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.821334092149" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.821176650746" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.821176650746" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.821334092149" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.11.0.821334092149" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -190,7 +190,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../../assets/images/pagy-the-frog.png">
                             </span>
                             <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.2.2</span>
+                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.2.3</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -406,6 +406,13 @@
         </div>
     </div>
 </div>
+<doc-anchor-target id="rtl-support">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rtl-support">#</doc-anchor-trigger>
+        <span>RTL Support</span>
+    </h3>
+</doc-anchor-target>
+<p>The pagy stylesheets automatically support Right-To-Left (RTL) languages. You just need to set the <code v-pre>dir=&quot;rtl&quot;</code> attribute on the <code v-pre>html</code> tag or any parent element of the pagination.</p>
 <doc-anchor-target id="pagy-wand">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#pagy-wand">#</doc-anchor-trigger>
@@ -463,7 +470,7 @@
     </div>
     <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
         <span>pagy.css</span>
-        <span class="inline-block ml-2">2.38KB</span>
+        <span class="inline-block ml-2">2.22KB</span>
     </div>
     <a href="../../gem/stylesheets/pagy.css" class="absolute block inset-0" target="_blank" download="pagy.css"></a>
 </div>
@@ -503,12 +510,7 @@
 }
 
 .pagy &gt; :not([hidden]) ~ :not([hidden]) {
-  margin-left: calc(var(--spacing) * (1 - var(--space-reverse, 0)));
-  margin-right: calc(var(--spacing) * var(--space-reverse, 0));
-}
-
-.rtl .pagy &gt; :not([hidden]) ~ :not([hidden]) {
-  --space-reverse: 1;
+  margin-inline-start: var(--spacing);
 }
 
 .pagy a:not([role=&quot;separator&quot;]) { /* all but gaps */
@@ -606,7 +608,7 @@
     --background-input:   hsl(var(--H) var(--S) calc(var(--L) + (45 * var(--B))));
     --opacity: 1;
 
-    @apply flex space-x-[var(--spacing)] font-[var(--font-weight)]
+    @apply flex gap-x-[var(--spacing)] font-[var(--font-weight)]
     text-[length:var(--font-size)] text-[var(--text)]
     leading-[var(--line-height)];
 
