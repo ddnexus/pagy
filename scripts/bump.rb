@@ -83,7 +83,7 @@ replace_string_in_file('docs/CHANGELOG.md', /<hr>\n/, "<hr>\n\n## Version #{new_
 replace_string_in_file('docs/CHANGELOG.md', "(e.g. `#{old_version}", "(e.g. `#{new_version}")
 
 # Run the test to check the consistency of versioning across files
-unless system(%(SKIP_COVERAGE=true ruby #{Pagy::ROOT.parent.join('test/pagy/version_test.rb')}))
+unless system(%(ruby #{Pagy::ROOT.parent.join('test/pagy/version_test.rb')}))
   system('git reset --hard')
   abort('Abort! Versioning inconsistencies!')
 end
