@@ -25,7 +25,7 @@
     </EXTENSION>
     <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
     <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/gem/bin/pagy" />
-    <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="calendar.ru -p 8004 --rerun" />
+    <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="calendar.ru -p 8004" />
     <method v="2" />
   </configuration>
 </component>

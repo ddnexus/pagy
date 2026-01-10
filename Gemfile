@@ -33,7 +33,6 @@ group :playground do
   gem 'puma'
   gem 'rackup'
   gem 'rails', '~> 8.0'
-  gem 'rerun'
   gem 'rouge'
   gem 'sequel'
   gem 'sinatra'

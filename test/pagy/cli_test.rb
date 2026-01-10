@@ -102,18 +102,5 @@ describe Pagy::CLI do
       end
       _(err).must_include 'app not found'
     end
-
-    if Pagy::CLI::LINUX
-      it 'launches with rerun' do
-        File.stub :exist?, true do
-          cli.stub :exec, ->(cmd) { cmd } do
-            cmd = cli.start(['my.ru', '--rerun', '--clear'])
-            _(cmd).must_include 'rerun'
-            _(cmd).must_include ' -c'
-            _(cmd).must_include 'rackup'
-          end
-        end
-      end
-    end
   end
 end

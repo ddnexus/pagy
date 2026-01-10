@@ -28,12 +28,7 @@
 }
 
 .pagy > :not([hidden]) ~ :not([hidden]) {
-  margin-left: calc(var(--spacing) * (1 - var(--space-reverse, 0)));
-  margin-right: calc(var(--spacing) * var(--space-reverse, 0));
-}
-
-.rtl .pagy > :not([hidden]) ~ :not([hidden]) {
-  --space-reverse: 1;
+  margin-inline-start: var(--spacing);
 }
 
 .pagy a:not([role="separator"]) { /* all but gaps */

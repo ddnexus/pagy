@@ -17,6 +17,10 @@ Pagy includes a couple of CSS files that you can download, link, or copy, and in
 You don't need any stylesheets if you use the pagy `:bootstrap` or `:bulma` helpers and styles.
 !!!
 
+### RTL Support
+
+The pagy stylesheets automatically support Right-To-Left (RTL) languages. You just need to set the `dir="rtl"` attribute on the `html` tag or any parent element of the pagination.
+
 ### Pagy Wand
 
 The [Pagy Wand](../sandbox/dev_tools/#pagy-wand) customizes the CSS and integrates it with your app's themes _interactively_.
