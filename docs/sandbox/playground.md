@@ -36,7 +36,7 @@ You should find the `./repro.ru` cloned app file in the current directory. Feel 
 
 ||| Develop it
 
-This command runs your `rackup` app with a `puma` server. On Linux platforms, it also uses `rerun` to auto-restart it when changes are made:
+This command runs your `rackup` app with a `puma` server.
 
 ```sh
 pagy path/to/your-repro.ru
@@ -147,17 +147,5 @@ If `bundle exec` doesn't solve it, then try `bundle update` and `gem cleanup`. I
 ```
 
 then `gem pristine GEMNAME` should solve the problem.
-
-==- Rerun
-[Rerun](https://github.com/alexch/rerun) is used to restart your app automatically during development (only on Linux platforms).
-
-That's very convenient, but it may still have some rough edges:
-
-!!!warning ** ERROR: Directory is already being watched! **
-
-Your app is in a directory with looping symlinks, and the `listen` gem cannot handle it.
-
-!!!success Move your app in a different dir
-!!!
 
 ===

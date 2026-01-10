@@ -8,7 +8,6 @@ require_relative '../../apps/index'
 
 class Pagy
   class CLI
-    LINUX = RbConfig::CONFIG['host_os'].include?('linux')
     HOST  = 'localhost'
     PORT  = '8000'
 
@@ -20,8 +19,7 @@ class Pagy
     private
 
     def parse_options(args)
-      options = { env: 'development', host: HOST, port: PORT,
-                  rerun: false, clear: false, quiet: false }
+      options = { env: 'development', host: HOST, port: PORT, quiet: false }
 
       parser = OptionParser.new do |opts|
         opts.banner = <<~BANNER
@@ -47,12 +45,6 @@ class Pagy
         opts.on('-e', '--env ENV', 'Environment') { |v| options[:env] = v }
         opts.on('-o', '--host HOST', 'Host')      { |v| options[:host] = v }
         opts.on('-p', '--port PORT', 'Port')      { |v| options[:port] = v }
-
-        if LINUX
-          opts.separator "\nRerun options"
-          opts.on('--rerun', 'Enable rerun for development') { options[:rerun] = true }
-          opts.on('--clear', 'Clear screen before each rerun') { options[:clear] = true }
-        end
 
         opts.separator "\nOther options"
         opts.on('-q', '--quiet', 'Quiet mode for development') { options[:quiet] = true }
@@ -94,7 +86,7 @@ class Pagy
       if arg.eql?('clone')
         clone_app(args.shift)
       else
-        serve_app(arg, options, run_from_repo)
+        serve_app(arg, options)
       end
     end
 
@@ -109,10 +101,9 @@ class Pagy
       FileUtils.cp(PagyApps::INDEX[name], '.', verbose: true)
     end
 
-    def serve_app(arg, options, run_from_repo)
+    def serve_app(arg, options)
       if PagyApps::INDEX.key?(arg)
         options[:env]   = 'showcase'
-        options[:rerun] = false
         options[:quiet] = true
         # Avoid the creation of './tmp/local_secret.txt' for showcase env
         ENV['SECRET_KEY_BASE'] = 'absolute secret!' if arg.eql?('rails')
@@ -126,20 +117,7 @@ class Pagy
       rackup  = "rackup -I #{gem_dir}/lib -r pagy -o #{options[:host]} -p #{options[:port]} -E #{options[:env]} #{file}"
       rackup << ' -q' if options[:quiet]
 
-      if options[:rerun]
-        name  = File.basename(file)
-        dir   = File.dirname(file)
-        rerun = if run_from_repo
-                  "rerun --name #{name} -d #{dir},#{gem_dir} -p **/*.{rb,js,css,scss,ru,yml}"
-                else
-                  "rerun --name #{name} -d #{dir} -p #{name}"
-                end
-        rerun << ' -q' if options[:quiet]
-        rerun << ' -c' if options[:clear]
-        rerun << " -- #{rackup}"
-      end
-
-      exec(rerun || rackup)
+      exec(rackup)
     end
 
     # Kept as a separate method because mocking 'gemfile' (dsl) is complex otherwise
@@ -149,7 +127,6 @@ class Pagy
         source 'https://rubygems.org'
         gem 'logger'
         gem 'rackup'
-        gem 'rerun' if LINUX
       end
     end
   end
