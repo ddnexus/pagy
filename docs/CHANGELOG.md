@@ -45,6 +45,11 @@ If you upgrade from version `< 9.0.0` see the following:
 
 <hr>
 
+## Version 43.2.3
+
+- Remove rerun
+- Improved direction handling in CSSs
+
 ## Version 43.2.2
 
 - Refactor bin/pagy to use the Pagy::CLI class

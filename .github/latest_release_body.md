@@ -1,9 +1,8 @@
-### Changes in 43.2.2
+### Changes in 43.2.3
 
 <!-- changes_start -->
-- Refactor bin/pagy to use the Pagy::CLI class
-- Replace optimist with the optparse standard lib
-- Simplify apps by using SQLite :memory:
+- Remove rerun
+- Improved direction handling in CSSs
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

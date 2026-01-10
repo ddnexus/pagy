@@ -19,7 +19,7 @@ body:
     attributes:
       label: 👀 Before submitting...
       options:
-        - label: I upgraded to pagy version 43.2.2
+        - label: I upgraded to pagy version 43.2.3
           required: true
         - label: I asked [Pagy AI](https://gurubase.io/g/pagy) (Good starting point for further investigation).
           required: true
