@@ -71,18 +71,17 @@ class PagyKeynav < Sinatra::Base
     <<~ERB
       <!DOCTYPE html>
       <html lang="en">
-      <html>
       <head>
-         <title>Pagy Keynav App</title>
+        <title>Pagy Keynav App</title>
         <script src="javascripts/pagy.js"></script>
-         <script>
+        <script>
           window.addEventListener("load", Pagy.init);
         </script>
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
           @media screen { html, body {
             font-size: 1rem;
-            line-height: 1.2s;
+            line-height: 1.2;
             padding: 0;
             margin: 0;
           } }
@@ -94,7 +93,7 @@ class PagyKeynav < Sinatra::Base
           .main-content {
             padding: 1rem 1.5rem 2rem !important;
           }
-         .pagy {
+          .pagy {
             padding: .5em;
             margin: .3em 0;
             width: fit-content;

@@ -126,9 +126,8 @@ run PagyRails
 TEMPLATE = <<~ERB
   <!DOCTYPE html>
   <html lang="en">
-    <html>
     <head>
-    <title>Pagy Rails App</title>
+      <title>Pagy Rails App</title>
       <script src="/javascripts/pagy.js"></script>
       <script>
         window.addEventListener("load", Pagy.init);
@@ -137,7 +136,7 @@ TEMPLATE = <<~ERB
       <style type="text/css">
         @media screen { html, body {
           font-size: 1rem;
-          line-height: 1.2s;
+          line-height: 1.2;
           padding: 0;
           margin: 0;
         } }

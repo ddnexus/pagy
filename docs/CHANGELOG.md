@@ -171,7 +171,7 @@ If you upgrade from version `< 9.0.0` see the following:
 
 ## Version 43.0.0
 
-We needed a leap version to unequivocally signaling that it's not just a major version: it's a complete redesign of the legacy
+We needed a leap version to unequivocally signal that it's not just a major version: it's a complete redesign of the legacy
 code at all levels, usage and API included.
 
 **Why 43?** Because it's exactly one step beyond _"The answer to the ultimate question of life, the Universe, and everything."_ 😉
@@ -187,7 +187,7 @@ code at all levels, usage and API included.
   - No setup required: the locales and their pluralization are autoloaded when your app uses them.
   - The locale files are easier to override with `Pagy::I18n.pathnames << my_dictionaries`.
 - **HTML and CSS refactoring**
-  - Stylesheets are now based on CSS properties and calculations, for easer customizstion.
+  - Stylesheets are now based on CSS properties and calculations, for easier customization.
   - The new PagyWand interactive tool generates the CSS Override for your custom styles and provides live feedback right in your
     app.
 - **Playground apps**

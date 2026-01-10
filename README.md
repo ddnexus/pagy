@@ -26,7 +26,7 @@ _Agnostic pagination in plain ruby_
 
 ## Version 43
 
-We needed a leap version to unequivocally signaling that it's not just a major version: it's a complete redesign of the legacy code at all levels, usage and API included.
+We needed a leap version to unequivocally signal that it's not just a major version: it's a complete redesign of the legacy code at all levels, usage and API included.
 
 **Why 43?** Because it's exactly one step beyond _"The answer to the ultimate question of life, the Universe, and everything."_ 😉
 
@@ -37,7 +37,7 @@ This version introduces several enhancements, such as new `:countish` and `:keyn
 - **New [:countish](https://ddnexus.github.io/pagy/toolbox/paginators/countish) Paginator**
   - Faster than OFFSET and supporting the full UI
 - **New [Keynav](https://ddnexus.github.io/pagy/toolbox/paginators/keynav_js) Pagination**
-  - The pagy-exclusive technique using the fastest [keyset](https://ddnexus.github.io/pagy/toolbox/paginators/keyset)pagination alongside all frontend helpers.
+  - The pagy-exclusive technique using the fastest [keyset](https://ddnexus.github.io/pagy/toolbox/paginators/keyset) pagination alongside all frontend helpers.
 - **New interactive dev-tools**
   - New [PagyWand](https://ddnexus.github.io/pagy/resources/stylesheets/#pagy-wand) to integrate the pagy CSS with your app themes.
   - New **Pagy AI** available right inside your own app.
@@ -264,7 +264,7 @@ See [Contributing](https://github.com/ddnexus/pagy/blob/master/.github/CONTRIBUT
 
 <summary>Versioning</summary>
 
-- Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/). Please check the [Changelog](https://ddnexus.github.io/pagy/changelog) for breaking changes introduced by mayor versions. Using [pessimistic version constraint](https://guides.rubygems.org/patterns/#pessimistic-version-constraint) in your Gemfile will ensure smooth upgrades.
+- Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/). Please check the [Changelog](https://ddnexus.github.io/pagy/changelog) for breaking changes introduced by major versions. Using [pessimistic version constraint](https://guides.rubygems.org/patterns/#pessimistic-version-constraint) in your Gemfile will ensure smooth upgrades.
 
 </details>
 

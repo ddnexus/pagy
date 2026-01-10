@@ -95,9 +95,8 @@ class PagyCalendar < Sinatra::Base
     <<~ERB
       <!DOCTYPE html>
       <html lang="en">
-        <html>
         <head>
-        <title>Pagy Calendar App</title>
+          <title>Pagy Calendar App</title>
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -105,13 +104,13 @@ class PagyCalendar < Sinatra::Base
           <style type="text/css">
             @media screen { html, body {
               font-size: .8rem;
-              line-height: 1.1s;
+              line-height: 1.1;
               padding: 0;
               margin: 0;
             } }
             body {
               background-color: #f7f7f7;
-              color: #51585F;"
+              color: #51585F;
               font-family: sans-serif;
             }
             .content {
@@ -182,7 +181,7 @@ class PagyCalendar < Sinatra::Base
         </div>
 
         <!-- standard pagination of the last unit (month) -->
-        <p><%= @pagy.series_nav(:bootstrap, id: 'pages-nav', aria_label: 'Pages') if @pagy.last > 1 %><p/>
+        <p><%= @pagy.series_nav(:bootstrap, id: 'pages-nav', aria_label: 'Pages') if @pagy.last > 1 %></p>
       </div>
     ERB
   end

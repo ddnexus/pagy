@@ -36,7 +36,7 @@ class Pagy
         @count = 0 if fetched_size.zero? && @page == 1
         return self unless in_range? { fetched_size.positive? || @page == 1 }
 
-        past  = @last && @page < @last # this page has been past
+        past  = @last && @page < @last # current page is before the known last page
         more  = fetched_size > @limit  # more pages after this one
         @last = upto_max_pages(more ? @page + 1 : @page) unless past && more
         @in   = [fetched_size, @limit].min

@@ -10,7 +10,7 @@ class Pagy
     # To define a "bimester" unit you should:
     # - Define a `Pagy::Calendar::Bimester` class
     # - Add the `:bimester` unit symbol in the `Pagy::Calendar::UNITS`
-    # - Ensure the desc durtion order of the UNITS (i.e. insert it between `:quarter` and `:month`)
+    # - Ensure the desc duration order of the UNITS (i.e. insert it between `:quarter` and `:month`)
     class Unit < Pagy
       DEFAULT = { page: 1 }.freeze
 
@@ -60,13 +60,13 @@ class Pagy
       def assign_unit_variables
         @order = @options[:order]
         @starting, @ending = @options[:period]
-        raise OptionError.new(self, :period, 'to be a an Array of min and max TimeWithZone instances', @options[:period]) \
+        raise OptionError.new(self, :period, 'to be an Array of min and max TimeWithZone instances', @options[:period]) \
               unless @starting.is_a?(ActiveSupport::TimeWithZone) \
                   && @ending.is_a?(ActiveSupport::TimeWithZone) && @starting <= @ending
       end
 
       # Apply the strftime format to the time.
-      # Localization other than :en, require the rails-I18n gem.
+      # Localization other than :en, requires the rails-I18n gem.
       def localize(time, **options)
         # Impossible to "unprepend" the rails-i18n after it runs localize_with_rails_i18n_gem in test
         # :nocov:

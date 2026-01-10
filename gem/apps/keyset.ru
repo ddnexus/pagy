@@ -59,14 +59,13 @@ class PagyKeyset < Sinatra::Base
     <<~ERB
       <!DOCTYPE html>
       <html lang="en">
-      <html>
       <head>
-         <title>Pagy Keyset App</title>
+        <title>Pagy Keyset App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
           @media screen { html, body {
             font-size: 1rem;
-            line-height: 1.2s;
+            line-height: 1.2;
             padding: 0;
             margin: 0;
           } }
@@ -122,7 +121,6 @@ class PagyKeyset < Sinatra::Base
           <% end %>
         </table>
         </div>
-        <p>
         <nav class="pagy" id="next" aria-label="Pagy next">
           <%= @pagy.next_tag(text: 'Next page &gt;') %>
         </nav>

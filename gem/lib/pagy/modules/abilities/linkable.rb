@@ -38,7 +38,7 @@ class Pagy
 
     protected
 
-    # Overriddable by classes with composite page param
+    # Overridable by classes with composite page param
     def compose_page_param(page) = page
 
     # Return the URL for the page, relying on the Pagy::Request

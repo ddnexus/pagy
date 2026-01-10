@@ -71,7 +71,6 @@ class PagyKeynav < Sinatra::Base
     <<~ERB
       <!DOCTYPE html>
       <html lang="en">
-      <html>
       <head>
         <title>Pagy Keynav (root_key) App</title>
         <script src="javascripts/pagy.js"></script>
@@ -82,7 +81,7 @@ class PagyKeynav < Sinatra::Base
         <style type="text/css">
           @media screen { html, body {
             font-size: 1rem;
-            line-height: 1.2s;
+            line-height: 1.2;
             padding: 0;
             margin: 0;
           } }
@@ -113,8 +112,8 @@ class PagyKeynav < Sinatra::Base
             border-radius: 6px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             border: 1px solid #ddd;
-         }
-         .pagy {
+          }
+          .pagy {
             padding: .5em;
             margin: .3em 0;
             width: fit-content;

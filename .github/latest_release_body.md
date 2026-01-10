@@ -15,7 +15,7 @@
 
 ## Version 43
 
-We needed a leap version to unequivocally signaling that it's not just a major version: it's a complete redesign of the legacy code at all levels, usage and API included.
+We needed a leap version to unequivocally signal that it's not just a major version: it's a complete redesign of the legacy code at all levels, usage and API included.
 
 **Why 43?** Because it's exactly one step beyond _"The answer to the ultimate question of life, the Universe, and everything."_ 😉
 

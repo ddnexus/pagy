@@ -69,9 +69,8 @@ class PagyRepro < Sinatra::Base
     <<~ERB
       <!DOCTYPE html>
       <html lang="en">
-      <html>
       <head>
-         <title>Pagy Repro App</title>
+        <title>Pagy Repro App</title>
         <script src="javascripts/pagy.js"></script>
         <script>
           window.addEventListener("load", Pagy.init);
@@ -80,7 +79,7 @@ class PagyRepro < Sinatra::Base
         <style type="text/css">
           @media screen { html, body {
             font-size: 1rem;
-            line-height: 1.2s;
+            line-height: 1.2;
             padding: 0;
             margin: 0;
           } }
@@ -124,7 +123,7 @@ class PagyRepro < Sinatra::Base
         <h1>Pagy Repro App</h1>
         <p> Self-contained, standalone app usable to easily reproduce any pagy issue.</p>
 
-        <h2>Versions</h4>
+        <h2>Versions</h2>
         <ul>
           <li>Ruby:    <%= RUBY_VERSION %></li>
           <li>Rack:    <%= Rack::RELEASE %></li>
@@ -143,7 +142,7 @@ class PagyRepro < Sinatra::Base
 
         <h4>@pagy.series_nav_js (responsive)</h4>
         <%= @pagy.series_nav_js(id: 'series-nav-js-responsive',
-                                aria_label: 'Pages nav_js_responsove',
+                                aria_label: 'Pages nav_js_responsive',
                                 steps: { 0 => 5, 500 => 7, 600 => 9, 700 => 11 }) %>
 
         <h4>@pagy.input_nav_js</h4>

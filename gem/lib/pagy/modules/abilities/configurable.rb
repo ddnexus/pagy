@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Add configurstion methods
+  # Add configuration methods
   module Configurable
     # Sync the pagy javascript targets
     def sync_javascript(destination, *targets)
