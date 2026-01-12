@@ -20,8 +20,7 @@ class Pagy
     def resolve_page(force_integer: true)
       page_key = @options[:page_key] || DEFAULT[:page_key]
       page     = @params.dig(@options[:root_key], page_key) || @params[page_key]
-      page     = nil if page == ''   # fix for app-generated queries like ?page=
-      force_integer ? (page || 1).to_i : page
+      force_integer ? [page.to_i, 1].max : page
     end
 
     def resolve_limit

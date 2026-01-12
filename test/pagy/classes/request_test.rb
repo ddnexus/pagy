@@ -51,6 +51,11 @@ describe Pagy::Request do
       _(req.resolve_page).must_equal 1
     end
 
+    it 'returns 1 when page is 0' do
+      req = Pagy::Request.new(default_options.merge(request: { params: { 'page' => '0' } }))
+      _(req.resolve_page).must_equal 1
+    end
+
     it 'extracts page from flat params' do
       req = Pagy::Request.new(default_options.merge(request: { params: { 'page' => '5' } }))
       _(req.resolve_page).must_equal 5
