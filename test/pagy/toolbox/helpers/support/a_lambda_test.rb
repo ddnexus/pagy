@@ -85,6 +85,12 @@ describe 'Pagy#a_lambda' do
       _(output).must_equal '<a href="https://example.com/foo?page=3" data-remote="true">3</a>'
     end
 
+    it 'reads anchor_string from @options when not passed directly' do
+      pagy_with_anchor = pagy_class.new(anchor_string: 'data-turbo="true" data-foo="bar"')
+      output = pagy_with_anchor.a_lambda.call(3)
+      _(output).must_equal '<a href="https://example.com/foo?page=3" data-turbo="true" data-foo="bar">3</a>'
+    end
+
     it 'adds rel="prev" if page is @previous' do
       pagy.previous = 2
       output = pagy.a_lambda.call(2)
