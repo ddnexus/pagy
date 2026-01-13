@@ -45,6 +45,11 @@ If you upgrade from version `< 9.0.0` see the following:
 
 <hr>
 
+## Version 43.2.4
+
+- Fix anchor_string option not being read from @options in a_lambda. Close #857
+- Fix page '0' raising an exception
+
 ## Version 43.2.3
 
 - Remove rerun
