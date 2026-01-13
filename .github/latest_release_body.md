@@ -1,8 +1,8 @@
-### Changes in 43.2.3
+### Changes in 43.2.4
 
 <!-- changes_start -->
-- Remove rerun
-- Improved direction handling in CSSs
+- Fix anchor_string option not being read from @options in a_lambda. Close #857
+- Fix page '0' raising an exception
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
@@ -26,7 +26,7 @@ This version introduces several enhancements, such as new `:countish` and `:keyn
 - **New [:countish](https://ddnexus.github.io/pagy/toolbox/paginators/countish) Paginator**
   - Faster than OFFSET and supporting the full UI
 - **New [Keynav](https://ddnexus.github.io/pagy/toolbox/paginators/keynav_js) Pagination**
-  - The pagy-exclusive technique using the fastest [keyset](https://ddnexus.github.io/pagy/toolbox/paginators/keyset)pagination alongside all frontend helpers.
+  - The pagy-exclusive technique using the fastest [keyset](https://ddnexus.github.io/pagy/toolbox/paginators/keyset) pagination alongside all frontend helpers.
 - **New interactive dev-tools**
   - New [PagyWand](https://ddnexus.github.io/pagy/resources/stylesheets/#pagy-wand) to integrate the pagy CSS with your app themes.
   - New **Pagy AI** available right inside your own app.
