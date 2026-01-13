@@ -45,8 +45,6 @@ If you upgrade from version `< 9.0.0` see the following:
 
 <hr>
 
-- Fix `anchor_string` option passed to `pagy()` not being used by `a_lambda`
-
 ## Version 43.2.3
 
 - Remove rerun
