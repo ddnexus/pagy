@@ -200,7 +200,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 | `headers: ...`<br/>`Pagy.options[:headers] = ...` | `headers_map: ...`<br/>`Pagy.options[:headers_map] = ...` |
 
 - _Notice that the `:limit` header default is now `'page-limit` (it was `'page-items'`)._
-  - Set `Pagy.options[:headers_map][:limit] = 'page-items'` to preserve your current API, if it relays on old default values.
+  - Set `Pagy.options[:headers_map] = { limit: 'page-items', ... }` to preserve your current API, if it relays on old default values.
 
 ==- `jsonapi`
 
