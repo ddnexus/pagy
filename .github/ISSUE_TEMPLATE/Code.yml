@@ -46,7 +46,6 @@ body:
         **Please, understand that we won't guess your issue out of some snippet or description, 
         and we won't install/setup/debug your partial or complete application.**
         
-        
         🚩 Avoid posting USELESS THINGS like:
         
           - Code snippets / Log transcripts
@@ -55,12 +54,11 @@ body:
           - Multiple files / Setup instructions / Your partial or complete applications
           - and EVERYTHING other than the VALID code files listed above
         
-        Instead, start from a [pagy APP](https://ddnexus.github.io/pagy/sandbox/playground),
+        #### Suggestion
+        
+        Start from a [pagy APP](https://ddnexus.github.io/pagy/sandbox/playground),
         add the smallest amount of code that exposes the bug and post it.
         It's a very quick and simple process and, most of the times, it will make your issue just "disappear". 😉
-        
-        _If anything is unclear to you, please ask for [support](https://github.com/ddnexus/pagy/discussions/categories/q-a).
-        We will be happy to help._
 
   - type: checkboxes
     id: support

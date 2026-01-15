@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Rubygem Release" type="RakeRunConfigurationType" factoryName="Rake">
+  <configuration default="false" name="Rubygem Release" type="RakeRunConfigurationType" factoryName="Rake" focusToolWindowBeforeRun="true">
     <module name="pagy" />
     <predefined_log_file enabled="true" id="RUBY_RAKE" />
     <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />

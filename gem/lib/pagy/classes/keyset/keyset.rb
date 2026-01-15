@@ -13,7 +13,7 @@ class Pagy
       autoload :Sequel,       path.join('adapters/sequel')
     end
 
-    autoload :Keynav,  Pathname.new(__dir__).join('keynav')
+    autoload :Keynav, Pathname.new(__dir__).join('keynav')
 
     # Define empty subclasses to allow specific typing without triggering autoload
     class ActiveRecord < self; end
@@ -27,28 +27,28 @@ class Pagy
       if /::(?:ActiveRecord|Sequel)$/.match?(name)
         # Ensure the adapter is mixed in (lazy load)
         mix_in_adapter(name.split('::').last)
-        return allocate.tap { |instance| instance.send(:initialize, set, **) }
+        return allocate.tap { _1.send(:initialize, set, **) }
       end
 
       # 2. Handle Factory usage (Pagy::Keyset.new)
-      orm_name = if defined?(::ActiveRecord) && set.is_a?(::ActiveRecord::Relation)
-                   :ActiveRecord
-                 elsif defined?(::Sequel) && set.is_a?(::Sequel::Dataset)
-                   :Sequel
-                 else
-                   raise TypeError, "expected an ActiveRecord::Relation or Sequel::Dataset; got #{set.class}"
-                 end
+      adapter = if defined?(::ActiveRecord) && set.is_a?(::ActiveRecord::Relation)
+                  :ActiveRecord
+                elsif defined?(::Sequel) && set.is_a?(::Sequel::Dataset)
+                  :Sequel
+                else
+                  raise TypeError, "expected an ActiveRecord::Relation or Sequel::Dataset; got #{set.class}"
+                end
 
-      # Get the specific subclass (self::ActiveRecord)
-      subclass = const_get(orm_name)
+      # Get the specific subclass (e.g., self::ActiveRecord)
+      subclass = const_get(adapter)
       # Ensure the adapter is mixed in (lazy load)
-      subclass.mix_in_adapter(orm_name)
+      subclass.mix_in_adapter(adapter)
       subclass.new(set, **)
     end
 
     # Helper to lazy-include the adapter module
-    def self.mix_in_adapter(orm_name)
-      adapter_module = Pagy::Keyset::Adapters.const_get(orm_name)
+    def self.mix_in_adapter(adapter)
+      adapter_module = Adapters.const_get(adapter)
       include(adapter_module) unless self < adapter_module
     end
 

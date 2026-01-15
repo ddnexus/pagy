@@ -4,7 +4,7 @@ require_relative 'urls_hash'
 
 # Add pagination response headers
 class Pagy
-  DEFAULT_HEADERS_MAP = { page: 'current-page',
+  DEFAULT_HEADERS_MAP = { page:  'current-page',
                           limit: 'page-limit',
                           count: 'total-count',
                           pages: 'total-pages' }.freeze
