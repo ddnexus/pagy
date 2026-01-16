@@ -12,6 +12,7 @@ class Pagy
 
         Searcher.wrap(search, options) do
           model, query_or_payload, search_options = search
+
           search_options[:size] = options[:limit]
           search_options[:from] = options[:limit] * ((options[:page] || 1) - 1)
 

@@ -9,6 +9,7 @@ class Pagy
         def plural_for(n = 0)
           mod10  = n % 10
           mod100 = n % 100
+
           case
           when mod10 == 1 && mod100 != 11
             :one

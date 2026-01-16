@@ -9,7 +9,8 @@ class Pagy
   # Pagination for bootstrap: it returns the html with the series of links to the pages
   def bootstrap_series_nav(classes: 'pagination', **)
     a_lambda = a_lambda(**)
-    html     = %(<ul class="#{classes}">#{bootstrap_html_for(:previous, a_lambda)})
+
+    html = %(<ul class="#{classes}">#{bootstrap_html_for(:previous, a_lambda)})
     series(**).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
       html << case item
               when Integer
@@ -24,6 +25,7 @@ class Pagy
               end
     end
     html << %(#{bootstrap_html_for(:next, a_lambda)}</ul>)
+
     wrap_series_nav(html, 'pagy-bootstrap series-nav', **)
   end
 end
