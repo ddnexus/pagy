@@ -36,6 +36,7 @@ class Pagy
 
       translation.gsub(/%{[^}]+?}/) { options.fetch(_1[2..-2].to_sym, _1) } # replace the interpolation placeholders
     end
+    alias t translate
 
     private
 
