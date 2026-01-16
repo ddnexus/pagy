@@ -188,6 +188,31 @@ describe "Pagy Keyset" do
           end
         end
       end
+
+      describe 'predicate composition' do
+        it 'uses a simple predicate for single-column keysets' do
+          pagy = Pagy::Keyset.new(model.order(:id), page: "WzEwXQ") # [10]
+
+          pagy.send(:fetch_records)
+          set_sql = model == Pet ? pagy.instance_variable_get(:@set).to_sql : pagy.instance_variable_get(:@set).sql
+
+          assert_match(/\..?id.? > 10/, set_sql)
+          refute_match(/\..?id.? >= 10/, set_sql)
+        end
+
+        it 'uses a composite predicate for multi-column keysets' do
+          pagy = Pagy::Keyset.new(model.order(:animal, :name, :id),
+                                  page:             "WyJjYXQiLCJFbGxhIiwxOF0", # ["cat","Ella",18]
+                                  limit:            10,
+                                  tuple_comparison: false)
+
+          pagy.send(:fetch_records)
+          set_sql = model == Pet ? pagy.instance_variable_get(:@set).to_sql : pagy.instance_variable_get(:@set).sql
+
+          assert_match(/\..?animal.? > 'cat'/, set_sql)
+          assert_match(/\..?animal.? >= 'cat'\) AND \(/, set_sql) # >= with AND makes the query SARGable.
+        end
+      end
     end
   end
 end
