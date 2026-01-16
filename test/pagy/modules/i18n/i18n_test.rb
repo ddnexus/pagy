@@ -111,6 +111,20 @@ describe Pagy::I18n do
       _ { i18n.translate('foo') }.must_raise Errno::ENOENT
     end
 
+    it 'raises error for missing pagy key' do
+      File.write(File.join(tmp_dir, 'broken.yml'), "broken:\n  other: key")
+      i18n.locale = 'broken'
+      err = _ { i18n.translate('foo') }.must_raise Pagy::I18n::KeyError
+      _(err.message).must_match "missing 'pagy' key in \"broken\" locale"
+    end
+
+    it 'raises error for missing p11n key' do
+      File.write(File.join(tmp_dir, 'broken_p11n.yml'), "broken_p11n:\n  pagy:\n    key: 'val'")
+      i18n.locale = 'broken_p11n'
+      err = _ { i18n.translate('foo') }.must_raise Pagy::I18n::KeyError
+      _(err.message).must_match "missing 'p11n' key in \"broken_p11n\" locale"
+    end
+
     it 'caches loaded locales' do
       # First access triggers load
       _(i18n.locales['test']).must_be_nil

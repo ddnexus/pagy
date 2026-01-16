@@ -6,6 +6,8 @@ require_relative 'p11n'
 class Pagy
   # Pagy i18n implementation, compatible with the I18n gem, just a lot faster and lighter
   module I18n
+    class KeyError < KeyError; end
+
     extend self
 
     def pathnames
@@ -13,7 +15,7 @@ class Pagy
     end
 
     def locales
-      @locales   ||= {}
+      @locales ||= {}
     end
 
     # Store the variable for the duration of a single request
@@ -27,10 +29,12 @@ class Pagy
 
     # Translate and pluralize the key with the locale entries
     def translate(key, **options)
-      data, p11n  = locales[locale] || self.load
-      translation = data[key] || (options[:count] && data[key += ".#{p11n.plural_for(options[:count])}"]) \
-                      or return %([translation missing: "#{key}"])
-      translation.gsub(/%{[^}]+?}/) { |match| options[:"#{match[2..-2]}"] || match }
+      data, p11n = locales[locale] || self.load
+      key       += ".#{p11n.plural_for(options[:count])}" if !data[key] && options[:count]
+
+      translation = data[key] or return %([translation missing: "#{key}"])
+
+      translation.gsub(/%{[^}]+?}/) { options.fetch(_1[2..-2].to_sym, _1) } # replace the interpolation placeholders
     end
 
     private
@@ -39,16 +43,26 @@ class Pagy
       path = pathnames.reverse.map { |p| p.join("#{locale}.yml") }.find(&:exist?)
       raise Errno::ENOENT, "missing dictionary file for #{locale.inspect} locale" unless path
 
-      dictionary      = YAML.load_file(path)[locale]
-      p11n            = dictionary['pagy'].delete('p11n')
+      dictionary = YAML.load_file(path)[locale]
+      raise KeyError, "missing 'pagy' key in #{locale.inspect} locale" unless dictionary['pagy']
+
+      p11n = dictionary['pagy'].delete('p11n')
+      raise KeyError, "missing 'p11n' key in #{locale.inspect} locale" unless p11n
+
       locales[locale] = [flatten_to_dot_keys(dictionary), Object.const_get("Pagy::I18n::P11n::#{p11n}")]
     end
 
     # Create a flat hash with dotted notation keys
     # e.g. { 'a' => { 'b' => {'c' => 3, 'd' => 4 }}} -> { 'a.b.c' => 3, 'a.b.d' => 4 }
     def flatten_to_dot_keys(initial, prefix = '')
-      initial.reduce({}) do |hash, (key, value)|
-        hash.merge!(value.is_a?(Hash) ? flatten_to_dot_keys(value, "#{prefix}#{key}.") : { "#{prefix}#{key}" => value })
+      initial.each_with_object({}) do |(key, value), hash|
+        key = "#{prefix}#{key}"
+
+        if value.is_a?(Hash)
+          hash.merge!(flatten_to_dot_keys(value, "#{key}."))
+        else
+          hash[key] = value
+        end
       end
     end
   end
