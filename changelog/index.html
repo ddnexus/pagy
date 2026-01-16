@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.821785765280">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.821855801841">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.11.0">
@@ -31,11 +31,11 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../resources/css/retype.css?v=3.11.0.821785765280" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.11.0.821855801841" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.11.0.821785765280" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.11.0.821855801841" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.11.0.821785765280" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.11.0.821855801841" data-turbo-eval="false" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -189,7 +189,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../assets/images/pagy-the-frog.png">
                             </span>
                             <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.2.4</span>
+                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.2.5</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -439,6 +439,37 @@ from scratch might be faster.</p>
     </div>
 </div>
 <hr>
+<doc-anchor-target id="version-4325">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4325">#</doc-anchor-trigger>
+        <span>Version 43.2.5</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Fix Pagy::I18n.locale to ensure to_s. Close #861.</li>
+<li>Reduce endless methods to very short, paramless ones</li>
+<li>Refactor the in_range? method:
+<ul>
+<li>Remove implicit assignation to empty page variable</li>
+</ul>
+</li>
+<li>Enforce freezing the Pagy::Request object and params</li>
+<li>Refactor calendar:
+<ul>
+<li>Remove the marshaling</li>
+<li>Improve use and naming of locals</li>
+<li>Improve readability</li>
+</ul>
+</li>
+<li>Refactor linkable:
+<ul>
+<li>Improve use of locals</li>
+<li>Extend conditional sub to fragment</li>
+<li>Improve readability</li>
+</ul>
+</li>
+<li>Improve simplicity and readability</li>
+</ul>
 <doc-anchor-target id="version-4324">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4324">#</doc-anchor-trigger>
