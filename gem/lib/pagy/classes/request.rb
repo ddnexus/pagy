@@ -13,6 +13,7 @@ class Pagy
         else
           [request.base_url, request.path, get_params(request), request.cookies['pagy']]
         end
+      freeze
     end
 
     attr_reader :base_url, :path, :params, :cookie
@@ -25,15 +26,16 @@ class Pagy
 
     def resolve_limit
       limit_key = @options[:limit_key] || DEFAULT[:limit_key]
-      return @options[:limit] || DEFAULT[:limit] \
-             unless @options[:client_max_limit] &&
-                    (requested_limit = @params.dig(@options[:root_key], limit_key) || @params[limit_key])
+      default   = @options[:limit] || DEFAULT[:limit]
+      max_limit = @options[:client_max_limit]
+      return default unless max_limit
 
-      [requested_limit.to_i, @options[:client_max_limit]].min
+      limit = @params.dig(@options[:root_key], limit_key) || @params[limit_key]
+      limit ? [limit.to_i, max_limit].min : default
     end
 
     private
 
-    def get_params(request) = request.GET.merge(request.POST).to_h
+    def get_params(request) = request.GET.merge(request.POST).to_h.freeze
   end
 end
