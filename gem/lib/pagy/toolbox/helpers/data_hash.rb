@@ -6,8 +6,9 @@ class Pagy
 
   # Generate a hash of the wanted internal data
   def data_hash(data_keys: @options[:data_keys] || DEFAULT_DATA_KEYS, **)
-    template   = compose_page_url(PAGE_TOKEN, **)
-    to_url     = ->(page) { template.sub(PAGE_TOKEN, page.to_s) if page }
+    template = compose_page_url(PAGE_TOKEN, **)
+    to_url   = ->(page) { template.sub(PAGE_TOKEN, page.to_s) if page }
+
     data_keys -= %i[count limit] if calendar?
 
     data_keys.each_with_object({}) do |key, data|

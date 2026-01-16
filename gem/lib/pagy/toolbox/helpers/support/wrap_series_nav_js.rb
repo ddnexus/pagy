@@ -20,13 +20,18 @@ class Pagy
 
   # Support for the Calendar API
   def page_labels(series)
-    series.map { |s| s.map { |item| item == :gap ? :gap : page_label(item) } } if calendar?
+    return unless calendar?
+
+    series.map do |s|
+      s.map { _1 == :gap ? :gap : page_label(_1) }
+    end
   end
 
   # Build the nav_js tag, with the specific tokens for the style
   def wrap_series_nav_js(tokens, nav_classes, id: nil, aria_label: nil, **)
-    sequels = sequels(**)
+    sequels     = sequels(**)
     nav_classes = "pagy-rjs #{nav_classes}" if sequels[0].size > 1
+
     %(<nav#{%( id="#{id}") if id} class="#{nav_classes}" #{
       nav_aria_label_attribute(aria_label:)} #{
       data = [:snj, tokens.values, PAGE_TOKEN, sequels]

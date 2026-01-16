@@ -8,11 +8,13 @@ class Pagy
     return send(:"#{style}_input_nav_js", **) if style
 
     a_lambda = a_lambda(**)
-    input    = %(<input name="page" type="number" min="1" max="#{@last}" value="#{@page}" aria-current="page" ) +
-               %(style="text-align: center; width: #{@page.to_s.length + 1}rem; padding: 0;">#{A_TAG})
-    html     = %(#{previous_tag(a_lambda)}<label>#{
-                 I18n.translate('pagy.input_nav_js', page_input: input, pages: @last)}</label>#{
-                 next_tag(a_lambda)})
+
+    input = %(<input name="page" type="number" min="1" max="#{@last}" value="#{@page}" aria-current="page" ) +
+            %(style="text-align: center; width: #{@page.to_s.length + 1}rem; padding: 0;">#{A_TAG})
+
+    html  = %(#{previous_tag(a_lambda)}<label>#{
+              I18n.translate('pagy.input_nav_js', page_input: input, pages: @last)}</label>#{
+              next_tag(a_lambda)})
 
     wrap_input_nav_js(html, 'pagy input-nav-js', **)
   end

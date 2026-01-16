@@ -8,9 +8,9 @@ class Pagy
     return send(:"#{style}_series_nav", **) if style
 
     a_lambda = a_lambda(**)
-    html     = previous_tag(a_lambda)
-    series(**).each do |item|
-      # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+
+    html = previous_tag(a_lambda)
+    series(**).each do |item|   # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
       html << case item
               when Integer
                 a_lambda.(item)

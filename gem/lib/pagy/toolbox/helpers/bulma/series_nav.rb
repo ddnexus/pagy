@@ -9,7 +9,8 @@ class Pagy
   # Pagination for bulma: it returns the html with the series of links to the pages
   def bulma_series_nav(classes: 'pagination', **)
     a_lambda = a_lambda(**)
-    html     = %(<ul class="pagination-list">#{bulma_html_for(:previous, a_lambda)})
+
+    html = %(<ul class="pagination-list">#{bulma_html_for(:previous, a_lambda)})
     series(**).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
       html << case item
               when Integer
@@ -23,6 +24,7 @@ class Pagy
               end
     end
     html << %(#{bulma_html_for(:next, a_lambda)}</ul>)
+
     wrap_series_nav(html, "pagy-bulma series-nav #{classes}", **)
   end
 end

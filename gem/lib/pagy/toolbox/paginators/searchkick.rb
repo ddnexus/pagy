@@ -12,8 +12,9 @@ class Pagy
 
         Searcher.wrap(search, options) do
           model, term, search_options, block = search
-          search_options[:per_page]          = options[:limit]
-          search_options[:page]              = options[:page]
+
+          search_options[:per_page] = options[:limit]
+          search_options[:page]     = options[:page]
 
           method          = options[:search_method] || Searchkick::DEFAULT[:search_method]
           results         = model.send(method, term || '*', **search_options, &block)

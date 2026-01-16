@@ -8,8 +8,10 @@ class Pagy
     def paginate(context, collection, config)
       context.instance_eval do
         allowed_options = Calendar::UNITS + %i[offset disabled request]
-        raise ArgumentError, "keys must be in #{allowed_options.inspect}" \
-              unless config.is_a?(Hash) && (config.keys - allowed_options).empty?
+
+        unless config.is_a?(Hash) && (config.keys - allowed_options).empty?
+          raise ArgumentError, "keys must be in #{allowed_options.inspect}"
+        end
 
         config[:offset] ||= {}
 

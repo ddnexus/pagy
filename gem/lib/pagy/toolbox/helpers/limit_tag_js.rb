@@ -9,7 +9,8 @@ class Pagy
 
     limit_input = %(<input name="limit" type="number" min="1" max="#{client_max_limit}" value="#{
                     @limit}" style="padding: 0; text-align: center; width: #{@limit.to_s.length + 1}rem;">#{A_TAG})
-    url_token   = compose_page_url(PAGE_TOKEN, limit: LIMIT_TOKEN)
+
+    url_token = compose_page_url(PAGE_TOKEN, limit: LIMIT_TOKEN)
 
     %(<span#{%( id="#{id}") if id} class="pagy limit-tag-js" #{
       data_pagy_attribute(:ltj, @from, url_token, PAGE_TOKEN, LIMIT_TOKEN)
