@@ -126,7 +126,7 @@ window.Pagy = (() => {
     });
   };
   return {
-    version: "43.2.5",
+    version: "43.2.6",
     init(arg) {
       const target = arg instanceof HTMLElement ? arg : document, elements = target.querySelectorAll("[data-pagy]");
       for (const element of elements) {
@@ -150,5 +150,5 @@ window.Pagy = (() => {
   };
 })();
 
-//# debugId=9616AB509F644C8D64756E2164756E21
+//# debugId=A3F308FA5DB8330B64756E2164756E21
 //# sourceMappingURL=pagy.js.map
