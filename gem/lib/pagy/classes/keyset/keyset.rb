@@ -86,10 +86,26 @@ class Pagy
     end
 
     def fetch_records
+      apply_where(sargable_predicate, arguments_from(@prior_cutoff)) if @prior_cutoff && @keyset.size > 1
       apply_where(compose_predicate, arguments_from(@prior_cutoff)) if @prior_cutoff
       @set.limit(@limit + 1).to_a.tap do |records|
         @more = records.size > @limit && !records.pop.nil?
       end
+    end
+
+    # Create a SARGAable predicate from the first keyset column.
+    # For example, with a set like Pet.order(animal: :asc, name: :desc, id: :asc)
+    # it returns:
+    #
+    #     "pets"."animal" >= :animal
+    #
+    # This is redundant with `compose_predicate` but allows the database to use its indexes.
+    # See https://github.com/glebm/order_query/issues/2#issuecomment-51327012
+    def sargable_predicate(prefix = nil)
+      first_identifier  = quoted_identifiers(@set.model.table_name).values.first
+      operator_or_eq    = "#{direction_operators.first}="
+      first_placeholder = ":#{prefix}#{@keyset.keys.first}"
+      "#{first_identifier} #{operator_or_eq} #{first_placeholder}"
     end
 
     # Compose the parameterized predicate used to extract the page records.
@@ -107,25 +123,33 @@ class Pagy
     #     ("pets"."animal", "pets"."name", "pets"."id") > (:animal, :name, :id)
     #
     def compose_predicate(prefix = nil)
-      operator    = { asc: '>', desc: '<' }
-      directions  = @keyset.values
       identifier  = quoted_identifiers(@set.model.table_name)
       placeholder = @keyset.to_h { |column| [column, ":#{prefix}#{column}"] }
-      if @options[:tuple_comparison] && (directions.all?(:asc) || directions.all?(:desc))
-        "(#{identifier.values.join(', ')}) #{operator[directions.first]} (#{placeholder.values.join(', ')})"
+      if @options[:tuple_comparison] && (direction_operators.all?('>') || direction_operators.all?('<'))
+        "(#{identifier.values.join(', ')}) #{direction_operators.first} (#{placeholder.values.join(', ')})"
       else
-        keyset = @keyset.to_a
-        union  = []
+        keyset    = @keyset.to_a
+        operators = direction_operators.dup
+        union     = []
         until keyset.empty?
-          last_column, last_direction = keyset.pop
+          last_column, _raw_direction = keyset.pop
+          operator = operators.pop
           intersection = +'('
           intersection << (keyset.map { |column, _d| "#{identifier[column]} = #{placeholder[column]}" } \
-          << "#{identifier[last_column]} #{operator[last_direction]} #{placeholder[last_column]}").join(' AND ')
+            << "#{identifier[last_column]} #{operator} #{placeholder[last_column]}").join(' AND ')
           intersection << ')'
           union << intersection
         end
         union.join(' OR ')
       end
+    end
+
+    def direction_operators
+      @direction_operators ||= begin
+                                 operator   = { asc: '>', desc: '<' }
+                                 directions = @keyset.values
+                                 directions.map { |dir| operator[dir] }
+                               end
     end
 
     # Return the prefixed arguments from a cutoff
