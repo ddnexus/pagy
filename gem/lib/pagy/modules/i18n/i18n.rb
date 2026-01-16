@@ -18,7 +18,7 @@ class Pagy
 
     # Store the variable for the duration of a single request
     def locale=(value)
-      Thread.current[:pagy_locale] = value
+      Thread.current[:pagy_locale] = value.to_s
     end
 
     def locale
