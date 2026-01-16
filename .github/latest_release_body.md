@@ -1,8 +1,20 @@
-### Changes in 43.2.4
+### Changes in 43.2.5
 
 <!-- changes_start -->
-- Fix anchor_string option not being read from @options in a_lambda. Close #857
-- Fix page '0' raising an exception
+- Fix Pagy::I18n.locale to ensure to_s. Close #861.
+- Reduce endless methods to very short, paramless ones
+- Refactor the in_range? method:
+  - Remove implicit assignation to empty page variable
+- Enforce freezing the Pagy::Request object and params
+- Refactor calendar:
+  - Remove the marshaling
+  - Improve use and naming of locals
+  - Improve readability
+- Refactor linkable:
+  - Improve use of locals
+  - Extend conditional sub to fragment
+  - Improve readability
+- Improve simplicity and readability
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
