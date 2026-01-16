@@ -8,15 +8,22 @@ class Pagy
   module I18n
     extend self
 
-    def pathnames = @pathnames ||= [ROOT.join('locales')]
-    def locales   = @locales   ||= {}
+    def pathnames
+      @pathnames ||= [ROOT.join('locales')]
+    end
+
+    def locales
+      @locales   ||= {}
+    end
 
     # Store the variable for the duration of a single request
     def locale=(value)
-      Thread.current[:pagy_locale] = value
+      Thread.current[:pagy_locale] = value.to_s
     end
 
-    def locale = Thread.current[:pagy_locale] || 'en'
+    def locale
+      Thread.current[:pagy_locale] || 'en'
+    end
 
     # Translate and pluralize the key with the locale entries
     def translate(key, **options)

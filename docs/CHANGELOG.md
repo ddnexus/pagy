@@ -45,6 +45,23 @@ If you upgrade from version `< 9.0.0` see the following:
 
 <hr>
 
+## Version 43.2.5
+
+- Fix Pagy::I18n.locale to ensure to_s. Close #861.
+- Reduce endless methods to very short, paramless ones
+- Refactor the in_range? method:
+  - Remove implicit assignation to empty page variable
+- Enforce freezing the Pagy::Request object and params
+- Refactor calendar:
+  - Remove the marshaling
+  - Improve use and naming of locals
+  - Improve readability
+- Refactor linkable:
+  - Improve use of locals
+  - Extend conditional sub to fragment
+  - Improve readability
+- Improve simplicity and readability
+
 ## Version 43.2.4
 
 - Fix anchor_string option not being read from @options in a_lambda. Close #857

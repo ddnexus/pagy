@@ -6,12 +6,16 @@ class Pagy
     module_function
 
     # Common search logic
-    def wrap(pagy_search_args, options)
+    def wrap(search_arguments, options)
       options[:page] ||= options[:request].resolve_page
       options[:limit]  = options[:request].resolve_limit
-      pagy, results    = yield
-      calling          = pagy_search_args[4..]
-      [pagy, calling.empty? ? results : results.send(*calling)]
+
+      pagy, results = yield
+
+      arguments = search_arguments[4..]
+      results   = results.send(*arguments) unless arguments.empty?
+
+      [pagy, results]
     end
   end
 end

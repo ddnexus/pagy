@@ -13,6 +13,7 @@ class Pagy
     html     = %(#{previous_tag(a_lambda)}<label>#{
                  I18n.translate('pagy.input_nav_js', page_input: input, pages: @last)}</label>#{
                  next_tag(a_lambda)})
+
     wrap_input_nav_js(html, 'pagy input-nav-js', **)
   end
 end

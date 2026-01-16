@@ -38,6 +38,21 @@ describe Pagy::Request do
       _(request.params).must_equal({ 'a' => '1', 'b' => '2' })
       _(request.cookie).must_equal 'stored_cookie'
     end
+
+    it 'freezes the request and params' do
+      mock_rack = Struct.new(:base_url, :path, :GET, :POST, :cookies, keyword_init: true) # rubocop:disable Naming/MethodName
+      rack_req = mock_rack.new(
+        base_url: 'http://rack.com',
+        path: '/bar',
+        GET: { 'a' => '1' },
+        POST: { 'b' => '2' },
+        cookies: { 'pagy' => 'stored_cookie' }
+      )
+      request = Pagy::Request.new(default_options.merge(request: rack_req))
+
+      _(request).must_be :frozen?
+      _(request.params).must_be :frozen?
+    end
   end
 
   describe '#resolve_page' do

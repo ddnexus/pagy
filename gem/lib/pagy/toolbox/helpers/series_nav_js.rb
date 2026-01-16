@@ -13,6 +13,7 @@ class Pagy
                  current: %(<a role="link" aria-current="page" aria-disabled="true">#{LABEL_TOKEN}</a>),
                  gap:     %(<a role="separator" aria-disabled="true">#{I18n.translate('pagy.gap')}</a>),
                  after:   next_tag(a_lambda) }
+
     wrap_series_nav_js(tokens, 'pagy series-nav-js', **)
   end
 end

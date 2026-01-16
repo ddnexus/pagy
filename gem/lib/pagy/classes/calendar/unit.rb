@@ -21,7 +21,10 @@ class Pagy
         assign_options(**)
         assign_and_check(page: 1)
         assign_unit_variables
-        return unless in_range? { @page <= @last }
+        unless in_range? { @page <= @last }
+          assign_empty_page_variables
+          return
+        end
 
         assign_previous_and_next
       end

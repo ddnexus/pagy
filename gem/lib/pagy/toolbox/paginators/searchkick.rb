@@ -8,22 +8,25 @@ class Pagy
 
     # Paginate from the search object
     def paginate(search, options)
-      if search.is_a?(Search::Arguments)
-        # The search is the array of pagy_search arguments
+      if search.is_a?(Search::Arguments) # Active mode
+
         Searcher.wrap(search, options) do
           model, term, search_options, block = search
-          search_options[:per_page] = options[:limit]
-          search_options[:page]     = options[:page]
-          results                   = model.send(options[:search_method] || Searchkick::DEFAULT[:search_method],
-                                                 term || '*', **search_options, &block)
-          options[:count]           = results.total_count
+          search_options[:per_page]          = options[:limit]
+          search_options[:page]              = options[:page]
+
+          method          = options[:search_method] || Searchkick::DEFAULT[:search_method]
+          results         = model.send(method, term || '*', **search_options, &block)
+          options[:count] = results.total_count
+
           [Searchkick.new(**options), results]
         end
-      else
-        # The search is a searchkick results object
+
+      else # Passive mode
         options[:limit] = search.respond_to?(:options) ? search.options[:per_page] : search.per_page
         options[:page]  = search.respond_to?(:options) ? search.options[:page]     : search.current_page
         options[:count] = search.total_count
+
         Searchkick.new(**options)
       end
     end

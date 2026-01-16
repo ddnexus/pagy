@@ -17,6 +17,7 @@ class Pagy
               else
                 collection.count(:all)
               end
+
       count.is_a?(Hash) ? count.size : count
     end
   end

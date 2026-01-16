@@ -9,26 +9,29 @@ class Pagy
     # Return the Offset::Countish instance and records
     def paginate(collection, options)
       options[:page] ||= options[:request].resolve_page(force_integer: false)
+
       if options[:page].is_a?(String)
         page, count, epoch = options[:page].split.map(&:to_i)
         options[:page]     = page
       end
+
       setup_options(count, epoch, collection, options)
       options[:limit] = options[:request].resolve_limit
-      pagy            = Offset::Countish.new(**options)
+
+      pagy = Offset::Countish.new(**options)
       [pagy, pagy.records(collection)]
     end
 
     # Get the count from the page and set epoch when ttl (Time To Live) requires it
     def setup_options(count, epoch, collection, options)
       now = Time.now.to_i
+
       if !options[:count] && count && (!options[:ttl] ||
          (epoch && epoch <= now && now < (epoch + options[:ttl]))) # ongoing
-        # puts 'ongoing'
         options[:count] = count
         options[:epoch] = epoch if options[:ttl]
+
       else # recount
-        # puts 'recount'
         options[:count] ||= Countable.get_count(collection, options)
         options[:epoch]   = now if options[:ttl]
       end

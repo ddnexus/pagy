@@ -28,13 +28,17 @@ require_relative '../lib/pagy/modules/abilities/linkable'
 class Pagy
   # Switch to the `request.params` to get access to rails-added path parameters
   module RequestOverride
-    def get_params(request) = request.params
+    def get_params(request)
+      request.params
+    end
   end
   Request.prepend RequestOverride
 
   # Inject the caller context into the Pagy instance
   module MethodOverride
-    def pagy(...) = super.tap { |result| result[0].instance_variable_set(:@context, self) }
+    def pagy(...)
+      super.tap { _1[0].instance_variable_set(:@context, self) }
+    end
   end
   Method.prepend MethodOverride
 

@@ -13,6 +13,7 @@ class Pagy
                 else
                   'pagy.info_tag.multiple_pages'
                 end
+
     info_data = if @count.nil?
                   { page: @page, pages: @last }
                 else
@@ -21,6 +22,7 @@ class Pagy
                     from:      @from,
                     to:        @to }
                 end
+
     %(<span#{%( id="#{id}") if id} class="pagy info">#{I18n.translate(i18n_key, **info_data)}</span>)
   end
 end

@@ -43,21 +43,28 @@ class Pagy
 
     # Return the URL for the page, relying on the Pagy::Request
     def compose_page_url(page, **options)
-      root_key, page_key, limit_key, client_max_limit, limit, querify, absolute, path, fragment =
-        @options.merge(options)
-                .values_at(:root_key, :page_key, :limit_key, :client_max_limit, :limit, :querify, :absolute, :path, :fragment)
-      params = @request.params.clone(freeze: false)
-      (root_key ? params[root_key] = params[root_key]&.clone(freeze: false) || {} : params).tap do |h|
-        { page_key  => compose_page_param(page),
-          limit_key => client_max_limit && limit }.each { |k, v| v ? h[k] = v : h.delete(k) }
+      opts      = @options.merge(options)
+      params    = @request.params.clone(freeze: false)
+      root_key  = opts[:root_key]
+      container = if root_key
+                    params[root_key] = params[root_key]&.clone(freeze: false) || {}
+                  else
+                    params
+                  end
+
+      { opts[:page_key]  => compose_page_param(page),
+        opts[:limit_key] => opts[:client_max_limit] && opts[:limit] }.each do |k, v|
+        v ? container[k] = v : container.delete(k)
       end
-      querify&.(params) # Must modify the params: the returned value is ignored
-      fragment &&= "##{fragment.delete_prefix('#')}"
-      compose_url(absolute, path, params, fragment)
+
+      opts[:querify]&.(params) # Must modify the params: the returned value is ignored
+      fragment = opts[:fragment].to_s.sub(/\A(?=[^#])/, '#') # conditionally prepend '#'
+
+      compose_url(opts[:absolute], opts[:path], params, fragment)
     end
 
     def compose_url(absolute, path, params, fragment)
-      query_string = QueryUtils.build_nested_query(params).sub(/\A(?=.)/, '?')
+      query_string = QueryUtils.build_nested_query(params).sub(/\A(?=.)/, '?') # conditionally prepend '?'
       "#{@request.base_url if absolute}#{path || @request.path}#{query_string}#{fragment}"
     end
   end
