@@ -13,6 +13,7 @@ class Pagy
       str = encode(bin)
       str.chomp!('==') or str.chomp!('=')
       str.tr!('+/', '-_')
+
       str
     end
 
@@ -23,6 +24,7 @@ class Pagy
       else
         str = str.tr('-_', '+/')
       end
+
       decode(str)
     end
   end

@@ -39,11 +39,7 @@ class Pagy
                   raise TypeError, "expected an ActiveRecord::Relation or Sequel::Dataset; got #{set.class}"
                 end
 
-      # Get the specific subclass (e.g., self::ActiveRecord)
-      subclass = const_get(adapter)
-      # Ensure the adapter is mixed in (lazy load)
-      subclass.mix_in_adapter(adapter)
-      subclass.new(set, **)
+      const_get(adapter).tap { _1.mix_in_adapter(adapter) }.new(set, **)
     end
 
     # Helper to lazy-include the adapter module

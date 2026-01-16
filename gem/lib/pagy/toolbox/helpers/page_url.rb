@@ -11,6 +11,7 @@ class Pagy
              when :last           then @last
              else                      page
              end
+
     compose_page_url(target, **) if target || page == :first
   end
 end

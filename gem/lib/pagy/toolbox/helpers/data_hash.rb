@@ -9,6 +9,7 @@ class Pagy
     template   = compose_page_url(PAGE_TOKEN, **)
     to_url     = ->(page) { template.sub(PAGE_TOKEN, page.to_s) if page }
     data_keys -= %i[count limit] if calendar?
+
     data_keys.each_with_object({}) do |key, data|
       value = case key
               when :url_template           then template

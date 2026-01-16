@@ -10,6 +10,7 @@ class Pagy
       @pagy   = pagy
       @option = option
       @value  = value
+
       super("expected :#{@option} #{description}; got #{@value.inspect}")
     end
   end

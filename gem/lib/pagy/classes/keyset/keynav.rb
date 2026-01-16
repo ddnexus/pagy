@@ -52,6 +52,7 @@ class Pagy
         else
           @page = @last = 1
         end
+
         @update = [storage_key, @options[:root_key], @options[:page_key]]
       end
 
@@ -62,11 +63,13 @@ class Pagy
         # Compound predicate for visited pages
         predicate = +''
         arguments = {}
+
         if @prior_cutoff # not the first page
           # Include the records after @prior_cutoff
           predicate << "(#{compose_predicate(PRIOR_PREFIX)}) AND "
           arguments.merge!(arguments_from(@prior_cutoff, PRIOR_PREFIX))
         end
+
         # Exclude the records after @page_cutoff
         predicate << "NOT (#{compose_predicate(PAGE_PREFIX)})"
         arguments.merge!(arguments_from(@page_cutoff, PAGE_PREFIX))
