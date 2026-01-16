@@ -12,15 +12,18 @@ class Pagy
               unless config.is_a?(Hash) && (config.keys - allowed_options).empty?
 
         config[:offset] ||= {}
+
         unless config[:disabled]
-          calendar, from, to =
-            Calendar.send(:init, config,
-                          pagy_calendar_period(collection),
-                          config[:request].params) do |unit, period|
-              pagy_calendar_counts(collection, unit, *period) if respond_to?(:pagy_calendar_counts)
-            end
+          period = pagy_calendar_period(collection)
+          params = config[:request].params
+
+          calendar, from, to = Calendar.send(:init, config, period, params) do |unit, unit_period|
+                                 pagy_calendar_counts(collection, unit, *unit_period) if respond_to?(:pagy_calendar_counts)
+                               end
+
           collection = pagy_calendar_filter(collection, from, to)
         end
+
         pagy, records = pagy(:offset, collection, **config[:offset])
         [calendar, pagy, records]
       end
