@@ -19,7 +19,11 @@ class Pagy
       assign_and_check(limit: 1, count: 0, page: 1)
       assign_last
       assign_offset
-      return unless in_range? { @page <= @last }
+
+      unless in_range? { @page <= @last }
+        assign_empty_page_variables
+        return
+      end
 
       @from = [@offset + 1, @count].min
       @to   = [@offset + @limit, @count].min

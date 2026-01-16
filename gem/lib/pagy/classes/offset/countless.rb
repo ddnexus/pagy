@@ -34,7 +34,11 @@ class Pagy
       def finalize(fetched_size)
         # empty records (trigger the right info message for known 0 count)
         @count = 0 if fetched_size.zero? && @page == 1
-        return self unless in_range? { fetched_size.positive? || @page == 1 }
+
+        unless in_range? { fetched_size.positive? || @page == 1 }
+          assign_empty_page_variables
+          return self
+        end
 
         past  = @last && @page < @last # current page is before the known last page
         more  = fetched_size > @limit  # more pages after this one
@@ -43,6 +47,7 @@ class Pagy
         @from = @in.zero? ? 0 : @offset + 1
         @to   = @offset + @in
         assign_previous_and_next
+
         self
       end
 
