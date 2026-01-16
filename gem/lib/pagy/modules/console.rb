@@ -9,16 +9,25 @@ class Pagy
         @collection = clone
       end
 
-      def offset(value) = tap { @collection = self[value..] }
-      def limit(value)  = @collection[0, value]
-      def count(*)      = size
+      def offset(value)
+        tap { @collection = self[value..] }
+      end
+
+      def limit(value)
+        @collection[0, value]
+      end
+
+      def count(*) = size
     end
 
     include Method
 
-    # Direct reference to request.params via a method
-    def request    = @request ||= { base_url: 'http://www.example.com', path: '/path', params: { example: '123' } }
-    def params     = request[:params]
+    def request
+      @request ||= { base_url: 'http://www.example.com', path: '/path', params: { example: '123' } }
+    end
+
+    def params = request[:params]
+
     def collection = Collection
   end
 end

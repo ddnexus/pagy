@@ -28,6 +28,7 @@ class Pagy
       @from = [@offset + 1, @count].min
       @to   = [@offset + @limit, @count].min
       @in   = [@to - @from + 1, @count].min
+
       assign_previous_and_next
     end
 

@@ -22,7 +22,9 @@ class Pagy
         end
 
         # Get the keyset attributes from a record
-        def keyset_attributes_from(record) = record.to_hash.slice(*@keyset.keys)
+        def keyset_attributes_from(record)
+          record.to_hash.slice(*@keyset.keys)
+        end
 
         # Get the hash of quoted keyset identifiers
         def quoted_identifiers(table)

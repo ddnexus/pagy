@@ -60,7 +60,9 @@ class Pagy
       end
 
       # Support easy countless page param overriding (for legacy param and behavior)
-      def compose_page_param(page) = EscapedValue.new("#{page || 1}+#{@last}")
+      def compose_page_param(page)
+        EscapedValue.new("#{page || 1}+#{@last}")
+      end
     end
   end
 end

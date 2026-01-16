@@ -36,6 +36,8 @@ class Pagy
 
     private
 
-    def get_params(request) = request.GET.merge(request.POST).to_h.freeze
+    def get_params(request)
+      request.GET.merge(request.POST).to_h.freeze
+    end
   end
 end

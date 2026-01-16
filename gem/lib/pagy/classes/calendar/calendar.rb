@@ -36,15 +36,11 @@ class Pagy
       private
 
       # Return calendar, from, to
-      def init(...)
-        new.send(:init, ...)
-      end
+      def init(...) = new.send(:init, ...)
     end
 
     # Return the current time of the smallest time unit shown
-    def showtime
-      self[@units.last].from
-    end
+    def showtime = self[@units.last].from
 
     # Return the url for the calendar (shortest unit) page at time
     def url_at(time, **)
