@@ -45,6 +45,13 @@ If you upgrade from version `< 9.0.0` see the following:
 
 <hr>
 
+## Version 43.2.6
+
+- Refactor i18n:
+  - Raise exceptions for missing 'pagy' and 'p11n' keys in the dictionary
+  file
+  - Improve efficiency and readability
+
 ## Version 43.2.5
 
 - Fix Pagy::I18n.locale to ensure to_s. Close #861.
