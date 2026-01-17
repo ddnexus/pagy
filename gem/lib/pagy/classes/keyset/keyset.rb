@@ -55,6 +55,8 @@ class Pagy
       @keyset = @options[:keyset] || extract_keyset
       raise InternalError, 'the set must be ordered' if @keyset.empty?
 
+      @identifiers = quoted_identifiers(@set.model.table_name)
+
       assign_page
       self.next
     end
@@ -109,22 +111,28 @@ class Pagy
     def compose_predicate(prefix = nil)
       operator    = { asc: '>', desc: '<' }
       directions  = @keyset.values
-      identifier  = quoted_identifiers(@set.model.table_name)
+      identifier  = @identifiers
       placeholder = @keyset.to_h { |column| [column, ":#{prefix}#{column}"] }
+
       if @options[:tuple_comparison] && (directions.all?(:asc) || directions.all?(:desc))
         "(#{identifier.values.join(', ')}) #{operator[directions.first]} (#{placeholder.values.join(', ')})"
       else
         keyset = @keyset.to_a
-        union  = []
+        ors    = []
+
         until keyset.empty?
-          last_column, last_direction = keyset.pop
-          intersection = +'('
-          intersection << (keyset.map { |column, _d| "#{identifier[column]} = #{placeholder[column]}" } \
-          << "#{identifier[last_column]} #{operator[last_direction]} #{placeholder[last_column]}").join(' AND ')
-          intersection << ')'
-          union << intersection
+          column, direction = keyset.pop
+          ands = keyset.map { |k, _| "#{identifier[k]} = #{placeholder[k]}" }
+          ands << "#{identifier[column]} #{operator[direction]} #{placeholder[column]}"
+          ors << "(#{ands.join(' AND ')})"
         end
-        union.join(' OR ')
+        query = ors.join(' OR ')
+        return query unless @keyset.size > 1
+
+        # Add hint predicate for DB optimizers that struggle with ORs
+        column, direction = @keyset.first
+        hint = "#{identifier[column]} #{operator[direction]}= #{placeholder[column]}"
+        "#{hint} AND (#{query})"
       end
     end
 
