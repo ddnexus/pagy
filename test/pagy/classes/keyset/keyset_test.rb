@@ -61,6 +61,39 @@ describe "Pagy Keyset" do
           _(records.size).must_equal 10
           _(records.first.id).must_equal 13
         end
+
+        describe 'index hint optimization' do
+          it 'adds the hint condition for asc order' do
+            pagy = Pagy::Keyset.new(model.order(:animal, :id))
+            predicate = pagy.send(:compose_predicate)
+            q_animal = model == Pet ? '"pets"."animal"' : '`pets_sequel`.`animal`'
+            _(predicate).must_include "#{q_animal} >= :animal AND"
+          end
+
+          it 'adds the hint condition for desc order' do
+            set = model == Pet ? model.order(animal: :desc, id: :desc) : model.order(Sequel.desc(:animal), Sequel.desc(:id))
+            pagy = Pagy::Keyset.new(set)
+            predicate = pagy.send(:compose_predicate)
+            q_animal = model == Pet ? '"pets"."animal"' : '`pets_sequel`.`animal`'
+            _(predicate).must_include "#{q_animal} <= :animal AND"
+          end
+
+          it 'ignores the hint for single column keyset' do
+            pagy = Pagy::Keyset.new(model.order(:id))
+            predicate = pagy.send(:compose_predicate)
+            q_id = model == Pet ? '"pets"."id"' : '`pets_sequel`.`id`'
+            _(predicate).wont_include "#{q_id} >= :id AND"
+          end
+
+          it 'works with tuple comparison' do
+            pagy = Pagy::Keyset.new(model.order(:animal, :name, :id),
+                                    tuple_comparison: true)
+            predicate = pagy.send(:compose_predicate)
+            q_animal = model == Pet ? '"pets"."animal"' : '`pets_sequel`.`animal`'
+            _(predicate).wont_include "#{q_animal} >= :animal AND"
+            _(predicate).must_include " > " # tuple operator
+          end
+        end
       end
 
       describe 'extract_keyset' do
@@ -87,19 +120,6 @@ describe "Pagy Keyset" do
         end
 
         if model == PetSequel
-          it 'raises TypeError for unknown order type' do
-            # Simulate an unsupported expression in order
-            # This is hard to trigger with standard Sequel API, but we can verify standard behavior matches
-            # or try to inject a weird object if possible.
-            # Given the constraints, we might skip attempting to break Sequel internals unless necessary.
-
-            # Use raw sql literal which might confuse the parser if not careful,
-            # but extract_keyset iterates opts[:order].
-
-            # Let's rely on the previous unit test logic or just ensure standard error handling
-            # _ { Pagy::Keyset.new(model.order(Sequel.lit('foo'))) }.must_raise TypeError
-          end
-
           it 'skips unrestricted primary keys' do
             # Specific Sequel model behavior test
             model.unrestrict_primary_key
