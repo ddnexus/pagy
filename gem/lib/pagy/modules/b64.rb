@@ -15,8 +15,8 @@ class Pagy
 
     def urlsafe_encode(bin)
       str = encode(bin)
-      str.chomp!('==') or str.chomp!('=')
       str.tr!('+/', '-_')
+      str.delete!('=')
 
       str
     end

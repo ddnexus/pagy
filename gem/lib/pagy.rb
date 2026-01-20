@@ -8,7 +8,7 @@ require_relative 'pagy/toolbox/helpers/loader'
 
 # Top superclass: it defines only what's common to all the subclasses
 class Pagy
-  VERSION     = '43.2.6'
+  VERSION     = '43.2.7'
   ROOT        = Pathname.new(__dir__).parent.freeze
   DEFAULT     = { limit: 20, limit_key: 'limit', page_key: 'page' }.freeze
   PAGE_TOKEN  = EscapedValue.new('P ')
@@ -49,8 +49,13 @@ class Pagy
   # Validates and assign the passed options: they must be present and value.to_i must be >= min
   def assign_and_check(name_min)
     name_min.each do |name, min|
-      raise OptionError.new(self, name, ">= #{min}", @options[name]) \
-            unless @options[name].respond_to?(:to_i) && instance_variable_set(:"@#{name}", @options[name].to_i) >= min
+      value = @options[name]
+
+      if value.respond_to?(:to_i) && (integer = value.to_i) >= min
+        instance_variable_set(:"@#{name}", integer)
+      else
+        raise OptionError.new(self, name, ">= #{min}", value)
+      end
     end
   end
 
@@ -59,10 +64,13 @@ class Pagy
     @request = options.delete(:request) # internal object
     default  = {}
     current  = self.class
+
     begin
       default = current::DEFAULT.merge(default)
       current = current.superclass
     end until current == Object  # rubocop:disable Lint/Loop  -- see https://github.com/rubocop/rubocop-performance/issues/362
-    @options = default.merge!(options.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') }).freeze
+
+    clean_options = options.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') }
+    @options      = default.merge!(clean_options).freeze
   end
 end

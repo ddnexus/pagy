@@ -12,6 +12,7 @@ class Pagy
 
         Searcher.wrap(search, options) do
           model, term, search_options    = search
+
           search_options[:hits_per_page] = options[:limit]
           search_options[:page]          = options[:page]
 

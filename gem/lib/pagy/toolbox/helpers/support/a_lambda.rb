@@ -24,10 +24,12 @@ class Pagy
                 info_key = count.zero? ? 'pagy.info_tag.no_items' : 'pagy.info_tag.single_page'
                 %( title="#{I18n.translate(info_key, item_name: I18n.translate('pagy.item_name', count:), count:)}")
               end
-      rel   = case page
-              when @previous then %( rel="prev")
-              when @next     then %( rel="next")
-              end
+
+      rel = case page
+            when @previous then %( rel="prev")
+            when @next     then %( rel="next")
+            end
+
       %(#{left}#{page}#{right}#{title}#{
         %( class="#{classes}") if classes}#{rel}#{%( aria-label="#{aria_label}") if aria_label}>#{text}</a>)
     end

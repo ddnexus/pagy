@@ -8,6 +8,7 @@ class Pagy
 
         def plural_for(n = 0)
           mod100 = n % 100
+
           case
           when n == 0  # rubocop:disable Style/NumericPredicate
             :zero

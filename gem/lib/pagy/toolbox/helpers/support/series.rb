@@ -7,8 +7,7 @@ class Pagy
 
   # Return the array of page numbers and :gap e.g. [1, :gap, 8, "9", 10, :gap, 36]
   def series(slots: @options[:slots] || SERIES_SLOTS, compact: @options[:compact], **)
-    raise OptionError.new(self, :slots, 'to be an Integer >= 0', slots) \
-          unless slots.is_a?(Integer) && slots >= 0
+    raise OptionError.new(self, :slots, 'to be an Integer >= 0', slots) unless slots.is_a?(Integer) && slots >= 0
     return [] if slots.zero?
 
     [].tap do |series|

@@ -45,6 +45,12 @@ If you upgrade from version `< 9.0.0` see the following:
 
 <hr>
 
+## Version 43.2.7
+
+- Add a hint predicate for DB optimizers, to multi-column keysets
+- Improve code readability and style
+- Refactor anchor tag helpers
+
 ## Version 43.2.6
 
 - Refactor i18n:

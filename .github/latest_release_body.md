@@ -1,10 +1,9 @@
-### Changes in 43.2.6
+### Changes in 43.2.7
 
 <!-- changes_start -->
-- Refactor i18n:
-  - Raise exceptions for missing 'pagy' and 'p11n' keys in the dictionary
-  file
-  - Improve efficiency and readability
+- Add a hint predicate for DB optimizers, to multi-column keysets
+- Improve code readability and style
+- Refactor anchor tag helpers
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
