@@ -82,7 +82,7 @@ class Pagy
     def keyset? = true
 
     def assign_page
-      return unless (@page = @options[:page])
+      return unless @options[:page] != '' && (@page = @options[:page])
 
       @prior_cutoff = JSON.parse(B64.urlsafe_decode(@page))
     end

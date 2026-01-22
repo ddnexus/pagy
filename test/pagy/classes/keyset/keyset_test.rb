@@ -34,6 +34,10 @@ describe "Pagy Keyset" do
           # returns a subclass instance, which is_a? Pagy::Keyset
           _(Pagy::Keyset.new(model.order(:id))).must_be_kind_of Pagy::Keyset
         end
+
+        it 'is an instance of Pagy::Keyset if page is empty string' do
+          _(Pagy::Keyset.new(model.order(:id), page: '')).must_be_kind_of Pagy::Keyset
+        end
       end
 
       describe 'uses optional options' do
