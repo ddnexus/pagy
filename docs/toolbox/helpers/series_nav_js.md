@@ -97,7 +97,7 @@ See [Common Nav Styles](../helpers#common-nav-styles)
 - `steps: { 0 => 5, 540 => 7, 720 => 9 }`
   - Enable responsiveness. Assign different number of `:slots` to different tag widths.
 
-See also other appicable options: [Common Nav Options](../helpers#common-nav-options) and [Common URL Options](../paginators#common-url-options)
+See also other applicable options: [Common Nav Options](../helpers#common-nav-options) and [Common URL Options](../paginators#common-url-options)
 
 ==- In Depth: `:steps` Option
 
