@@ -39,9 +39,12 @@ class Pagy
 
     private
 
-    def load
+    def load(locale: self.locale)
       path = pathnames.reverse.map { |p| p.join("#{locale}.yml") }.find(&:exist?)
-      raise Errno::ENOENT, "missing dictionary file for #{locale.inspect} locale" unless path
+      unless path
+        warn %(Pagy::I18n: missing dictionary file for #{locale.inspect} locale; using "en" instead)
+        return locales[locale] = locales['en'] || load(locale: 'en')
+      end
 
       dictionary = YAML.load_file(path)[locale]
       raise KeyError, "missing 'pagy' key in #{locale.inspect} locale" unless dictionary['pagy']
