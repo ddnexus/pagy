@@ -45,6 +45,12 @@ If you upgrade from version `< 9.0.0` see the following:
 
 <hr>
 
+## Version 43.2.8
+
+- Add fallback to 'en' for unknown locale. Implement #868.
+- Fix resolve_page with empty page in classes with non-integer page. Close #863
+- Simplify keyset syntax
+
 ## Version 43.2.7
 
 - Add a hint predicate for DB optimizers, to multi-column keysets

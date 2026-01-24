@@ -1,7 +1,7 @@
 PATH
   remote: gem
   specs:
-    pagy (43.2.7)
+    pagy (43.2.8)
       json
       yaml
 
