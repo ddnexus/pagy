@@ -91,6 +91,10 @@ describe Pagy::Request do
       req = Pagy::Request.new(default_options.merge(request: { params: {} }))
       _(req.resolve_page(force_integer: false)).must_be_nil
     end
+    it 'returns nil if empty and force_integer is false' do
+      req = Pagy::Request.new(default_options.merge(request: { params: { 'page' => '' } }))
+      _(req.resolve_page(force_integer: false)).must_be_nil
+    end
   end
 
   describe '#resolve_limit' do
