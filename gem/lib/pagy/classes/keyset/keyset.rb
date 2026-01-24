@@ -114,26 +114,25 @@ class Pagy
       identifier  = @identifiers
       placeholder = @keyset.to_h { |column| [column, ":#{prefix}#{column}"] }
 
-      if @options[:tuple_comparison] && (directions.all?(:asc) || directions.all?(:desc))
-        "(#{identifier.values.join(', ')}) #{operator[directions.first]} (#{placeholder.values.join(', ')})"
-      else
-        keyset = @keyset.to_a
-        ors    = []
+      return "(#{identifier.values.join(', ')}) #{operator[directions.first]} (#{placeholder.values.join(', ')})" \
+             if @options[:tuple_comparison] && (directions.all?(:asc) || directions.all?(:desc))
 
-        until keyset.empty?
-          column, direction = keyset.pop
-          ands = keyset.map { |k, _| "#{identifier[k]} = #{placeholder[k]}" }
-          ands << "#{identifier[column]} #{operator[direction]} #{placeholder[column]}"
-          ors << "(#{ands.join(' AND ')})"
-        end
-        query = ors.join(' OR ')
-        return query unless @keyset.size > 1
-
-        # Add hint predicate for DB optimizers that struggle with ORs
-        column, direction = @keyset.first
-        hint = "#{identifier[column]} #{operator[direction]}= #{placeholder[column]}"
-        "#{hint} AND (#{query})"
+      keyset = @keyset.to_a
+      ors    = []
+      until keyset.empty?
+        column, direction = keyset.pop
+        ands = keyset.map { |k, _| "#{identifier[k]} = #{placeholder[k]}" }
+        ands << "#{identifier[column]} #{operator[direction]} #{placeholder[column]}"
+        ors << "(#{ands.join(' AND ')})"
       end
+      query = ors.join(' OR ')
+
+      return query unless @keyset.size > 1
+
+      # Add hint predicate for DB optimizers that struggle with ORs
+      column, direction = @keyset.first
+      hint = "#{identifier[column]} #{operator[direction]}= #{placeholder[column]}"
+      "#{hint} AND (#{query})"
     end
 
     # Return the prefixed arguments from a cutoff

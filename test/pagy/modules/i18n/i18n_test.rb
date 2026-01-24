@@ -106,9 +106,19 @@ describe Pagy::I18n do
       _(msg).must_equal '[translation missing: "pagy.missing"]'
     end
 
-    it 'raises error for missing locale file' do
+    it 'falls back to en for missing locale file' do
+      i18n.locales.clear
       i18n.locale = 'unknown'
-      _ { i18n.translate('foo') }.must_raise Errno::ENOENT
+      _out, err = capture_io { _(i18n.translate('pagy.item_name', count: 1)).must_equal 'item' }
+      _(err).must_match 'Pagy::I18n: missing dictionary file for "unknown" locale; using "en" instead'
+    end
+
+    it 'falls back to en using cached locale' do
+      i18n.locale = 'en'
+      i18n.translate('pagy.item_name', count: 1)
+      i18n.locale = 'unknown_cached'
+      _out, err = capture_io { _(i18n.translate('pagy.item_name', count: 1)).must_equal 'item' }
+      _(err).must_match 'Pagy::I18n: missing dictionary file for "unknown_cached" locale; using "en" instead'
     end
 
     it 'raises error for missing pagy key' do

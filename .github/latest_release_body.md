@@ -1,9 +1,9 @@
-### Changes in 43.2.7
+### Changes in 43.2.8
 
 <!-- changes_start -->
-- Add a hint predicate for DB optimizers, to multi-column keysets
-- Improve code readability and style
-- Refactor anchor tag helpers
+- Add fallback to 'en' for unknown locale. Implement #868.
+- Fix resolve_page with empty page in classes with non-integer page. Close #863
+- Simplify keyset syntax
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

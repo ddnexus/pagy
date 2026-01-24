@@ -21,7 +21,9 @@ class Pagy
     def resolve_page(force_integer: true)
       page_key = @options[:page_key] || DEFAULT[:page_key]
       page     = @params.dig(@options[:root_key], page_key) || @params[page_key]
-      force_integer ? [page.to_i, 1].max : page
+      return [page.to_i, 1].max if force_integer
+
+      page unless page == ''
     end
 
     def resolve_limit
