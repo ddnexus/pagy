@@ -63,7 +63,7 @@ jobs:
           path: /home/runner/.cache/Cypress
           key: ${{ runner.os }}-cypress-cache-${{ hashFiles('bun.lockb') }}
       - name: Cypress [${{ matrix.app }}] Test
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         with:
           working-directory: e2e
           install: false
