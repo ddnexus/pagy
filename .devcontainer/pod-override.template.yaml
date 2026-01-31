@@ -1,0 +1,8 @@
+spec:
+  containers:
+    - "*"
+    - name: lightpanda
+      image: docker.io/lightpanda/browser:nightly
+      ports:
+        - containerPort: 9222
+          protocol: TCP
