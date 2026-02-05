@@ -16,7 +16,7 @@ expect the old/deprecated functionality to be supported ONLY during the current 
 
 ## Recommended Version Constraint
 
-Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.2.8`):
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.2.9`):
 
 The `gem 'pagy', '~> 43.0'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.
@@ -44,6 +44,10 @@ If you upgrade from version `< 9.0.0` see the following:
 > from scratch might be faster.
 
 <hr>
+
+## Version 43.2.9
+
+- Fix NoMethodError with tampered params (#872)
 
 ## Version 43.2.8
 
