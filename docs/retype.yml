@@ -9,7 +9,7 @@ url: https://ddnexus.github.io/pagy/
 branding:
   title: Pagy
   logo: assets/images/pagy-the-frog.png
-  label: 43.2.8
+  label: 43.2.9
   colors:
     label:
       text: "#ffffff"

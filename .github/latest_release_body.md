@@ -1,9 +1,7 @@
-### Changes in 43.2.8
+### Changes in 43.2.9
 
 <!-- changes_start -->
-- Add fallback to 'en' for unknown locale. Implement #868.
-- Fix resolve_page with empty page in classes with non-integer page. Close #863
-- Simplify keyset syntax
+- Fix NoMethodError with tampered params (#872)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
