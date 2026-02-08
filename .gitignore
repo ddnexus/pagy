@@ -12,3 +12,4 @@ node_modules/
 tmp/
 /docs/.public/
 /docs/retype.manifest
+___*

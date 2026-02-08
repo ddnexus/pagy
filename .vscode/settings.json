@@ -1,0 +1,23 @@
+{
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#40513B",
+        "titleBar.border": "#40513B",
+        "titleBar.activeForeground": "#EDF1D6",
+        "titleBar.inactiveBackground": "#5d6b58",
+        "titleBar.inactiveForeground": "#f0f3dc",
+        "activityBar.background": "#40513B",
+        "activityBar.foreground": "#EDF1D6",
+        "activityBar.inactiveForeground": "#bec1ab",
+        "statusBar.background": "#40513B",
+        "statusBar.border": "#40513B",
+        "statusBar.foreground": "#EDF1D6"
+    },
+        "command-runner.terminal.name": "runCommand",
+        "command-runner.terminal.autoClear": true,
+        "command-runner.terminal.autoFocus": true,
+        "command-runner.commands": {
+            "Test": "bundle exec rake test",
+            "Test + Rubocop": "bundle exec rake",
+            "Test + Coverage": "COVERAGE='true' bundle exec rake test"
+        }
+}

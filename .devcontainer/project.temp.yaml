@@ -1,0 +1,30 @@
+# Project specific template (pagy)
+
+spec:
+  containers:
+  - env:
+    # Append the env variable to the ruby container
+    - (( append ))
+    - name: CDP_WS_URL
+      value: ws://127.0.0.1:9222
+    - name: PATH
+      value: /opt/tools/bun/bin:/usr/local/bundle/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    volumeMounts:
+    - (( append ))
+    - name: tools-storage
+      mountPath: /opt/tools
+
+  # Append the lightpanda container to the containers
+  - (( append ))
+  - name: lightpanda
+    image: docker.io/lightpanda/browser:nightly
+    ports:
+    - containerPort: 9222
+      protocol: TCP
+
+  volumes:
+  - (( append ))
+  - name: tools-storage
+    persistentVolumeClaim:
+      claimName: shared_tools
+
