@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-describe Pagy::I18n::P11n::OneOther do
+describe 'Pagy::I18n::P11n::OneOther Specs' do
   let(:rule) { Pagy::I18n::P11n::OneOther }
 
   it 'returns :one for 1' do

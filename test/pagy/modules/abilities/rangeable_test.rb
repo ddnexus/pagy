@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-describe Pagy::Offset::Rangeable do
+describe 'Pagy::Offset::Rangeable Specs' do
   # Use an anonymous class to test the mixin without namespace pollution
   let(:rangeable_class) do
     Class.new do

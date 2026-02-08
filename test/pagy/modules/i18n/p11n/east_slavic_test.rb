@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-describe Pagy::I18n::P11n::EastSlavic do
+describe 'Pagy::I18n::P11n::EastSlavic Specs' do
   let(:rule) { Pagy::I18n::P11n::EastSlavic }
 
   it 'returns :one for numbers ending in 1 (except 11)' do

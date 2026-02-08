@@ -2,7 +2,7 @@
 
 require_relative 'test_helper'
 
-describe Pagy do
+describe 'Pagy Specs' do
   it 'has version' do
     _(Pagy::VERSION).wont_be_nil
   end

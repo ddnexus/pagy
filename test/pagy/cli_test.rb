@@ -3,7 +3,7 @@
 require_relative '../test_helper'
 require 'pagy/cli'
 
-describe Pagy::CLI do
+describe 'Pagy::CLI Specs' do
   let(:cli) { Pagy::CLI.new }
 
   # Stub side-effects: setup_gems

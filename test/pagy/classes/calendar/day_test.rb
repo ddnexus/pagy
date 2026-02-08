@@ -3,7 +3,7 @@
 require 'test_helper'
 require 'pagy/classes/calendar/calendar'
 
-describe Pagy::Calendar::Day do
+describe 'Pagy::Calendar::Day Specs' do
   let(:period) { [Time.zone.local(2021, 10, 21, 13, 18, 23, 0), Time.zone.local(2023, 11, 13, 15, 43, 40, 0)] }
   let(:default_opts) { { period: period } }
 

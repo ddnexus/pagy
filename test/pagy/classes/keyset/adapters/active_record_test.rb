@@ -3,7 +3,7 @@
 require 'test_helper'
 require 'pagy/classes/keyset/adapters/active_record'
 
-describe Pagy::Keyset::Adapters::ActiveRecord do
+describe 'Pagy::Keyset::Adapters::ActiveRecord Specs' do
   # Host class to mix in the adapter
   let(:adapter_host) do
     Class.new do

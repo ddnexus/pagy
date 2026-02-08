@@ -3,7 +3,7 @@
 require 'test_helper'
 require 'pagy/modules/searcher'
 
-describe Pagy::Searcher do
+describe 'Pagy::Searcher Specs' do
   let(:searcher) { Pagy::Searcher }
 
   # Mock Request object

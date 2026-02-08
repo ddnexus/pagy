@@ -3,7 +3,7 @@
 require 'test_helper'
 require 'pagy/classes/calendar/calendar'
 
-describe Pagy::Calendar::Unit do
+describe 'Pagy::Calendar::Unit Specs' do
   # Use a concrete subclass (Year) to test inherited behavior
   let(:unit_class) { Pagy::Calendar::Year }
   let(:period) { [Time.zone.local(2021, 10, 21), Time.zone.local(2023, 11, 13)] }

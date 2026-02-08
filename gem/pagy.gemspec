@@ -21,5 +21,6 @@ Gem::Specification.new do |s|
   s.executables << 'pagy'
   s.add_dependency 'json'
   s.add_dependency 'yaml'
+  s.add_dependency 'uri'
   s.required_ruby_version = '>= 3.2'
 end

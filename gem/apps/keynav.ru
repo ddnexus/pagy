@@ -52,7 +52,7 @@ class PagyKeynav < Sinatra::Base
   get '/' do
     Time.zone = 'UTC'
 
-    @order       = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
+    @order       = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }.freeze
     @pagy, @pets = pagy(:keynav_js, Pet.order(@order), limit: 4, client_max_limit: 100)
     # Support also root_key for replacing url in javascript
     # @pagy, @pets = pagy(:keynav_js, Pet.order(@order), limit: 4, client_max_limit: 100, root_key: 'animal')

@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-describe Pagy::Offset do
+describe 'Pagy::Offset Specs' do
   let(:pagy_class) { Pagy::Offset }
 
   describe 'initialization' do

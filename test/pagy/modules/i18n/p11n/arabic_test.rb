@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-describe Pagy::I18n::P11n::Arabic do
+describe 'Pagy::I18n::P11n::Arabic Specs' do
   let(:rule) { Pagy::I18n::P11n::Arabic }
 
   it 'returns :zero for 0' do

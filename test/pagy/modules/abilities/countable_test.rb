@@ -3,7 +3,7 @@
 require 'test_helper'
 require 'pagy/modules/abilities/countable'
 
-describe Pagy::Countable do
+describe 'Pagy::Countable Specs' do
   let(:countable) { Pagy::Countable }
 
   it 'counts arrays using size' do

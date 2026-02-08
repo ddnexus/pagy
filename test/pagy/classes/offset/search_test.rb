@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-describe Pagy::Search do
+describe 'Pagy::Search Specs' do
   describe 'Arguments' do
     it 'collects method calls via method_missing' do
       args = Pagy::Search::Arguments.new
@@ -47,7 +47,7 @@ describe Pagy::Search do
   end
 end
 
-describe Pagy::SearchBase do
+describe 'Pagy::SearchBase Specs' do
   it 'inherits from Offset' do
     _(Pagy::SearchBase.superclass).must_equal Pagy::Offset
   end
@@ -64,13 +64,13 @@ describe Pagy::SearchBase do
   end
 end
 
-describe Pagy::ElasticsearchRails do
+describe 'Pagy::ElasticsearchRails Specs' do
   it 'inherits from SearchBase' do
     _(Pagy::ElasticsearchRails.superclass).must_equal Pagy::SearchBase
   end
 end
 
-describe Pagy::Meilisearch do
+describe 'Pagy::Meilisearch Specs' do
   it 'inherits from SearchBase' do
     _(Pagy::Meilisearch.superclass).must_equal Pagy::SearchBase
   end
@@ -80,7 +80,7 @@ describe Pagy::Meilisearch do
   end
 end
 
-describe Pagy::Searchkick do
+describe 'Pagy::Searchkick Specs' do
   it 'inherits from SearchBase' do
     _(Pagy::Searchkick.superclass).must_equal Pagy::SearchBase
   end

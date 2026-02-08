@@ -16,7 +16,7 @@ module Pagy::I18n::P11n # rubocop:disable Style/ClassAndModuleChildren
   end
 end
 
-describe Pagy::I18n do
+describe 'Pagy::I18n Specs' do
   let(:i18n) { Pagy::I18n }
 
   describe 'configuration' do

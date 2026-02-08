@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-describe Pagy::Offset::Shiftable do
+describe 'Pagy::Offset::Shiftable Specs' do
   let(:shiftable_class) do
     Class.new do
       include Pagy::Offset::Shiftable

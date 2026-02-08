@@ -3,7 +3,7 @@
 require 'test_helper'
 require 'mocks/app'
 
-describe Pagy::OffsetPaginator do
+describe 'Pagy::OffsetPaginator Specs' do
   # We test via the public API provided by the App/Controller mixin (MockApp)
   # which delegates to OffsetPaginator.
 

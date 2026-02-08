@@ -4,7 +4,7 @@ require 'test_helper'
 require 'mocks/app'
 require 'pagy/modules/b64'
 
-describe 'Pagy::KeynavJsPaginator' do
+describe 'Pagy::KeynavJsPaginator Specs' do
   let(:collection) { Pet.order(:id) }
 
   it 'paginates with defaults (page 1)' do

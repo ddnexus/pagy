@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-describe Pagy::OptionError do
+describe 'Pagy::OptionError Specs' do
   it 'inherits from ArgumentError' do
     _(Pagy::OptionError.superclass).must_equal ArgumentError
   end
@@ -18,7 +18,7 @@ describe Pagy::OptionError do
   end
 end
 
-describe Pagy::RangeError do
+describe 'Pagy::RangeError Specs' do
   it 'inherits from OptionError' do
     _(Pagy::RangeError.superclass).must_equal Pagy::OptionError
   end
@@ -29,13 +29,13 @@ describe Pagy::RangeError do
   end
 end
 
-describe Pagy::RailsI18nLoadError do
+describe 'Pagy::RailsI18nLoadError Specs' do
   it 'inherits from LoadError' do
     _(Pagy::RailsI18nLoadError.superclass).must_equal LoadError
   end
 end
 
-describe Pagy::InternalError do
+describe 'Pagy::InternalError Specs' do
   it 'inherits from StandardError' do
     _(Pagy::InternalError.superclass).must_equal StandardError
   end

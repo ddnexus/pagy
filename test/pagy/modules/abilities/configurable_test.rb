@@ -6,7 +6,7 @@ require 'pathname'
 require 'i18n'
 require 'pagy/toolbox/helpers/info_tag' # Required for the integration test
 
-describe Pagy::Configurable do
+describe 'Pagy::Configurable Specs' do
   describe 'sync_javascript' do
     let(:destination) { Dir.mktmpdir }
     let(:all_files) { %w[pagy.mjs pagy.js pagy.js.map pagy.min.js] }

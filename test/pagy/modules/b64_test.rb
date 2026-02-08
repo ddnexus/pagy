@@ -3,7 +3,7 @@
 require 'test_helper'
 require 'pagy/modules/b64'
 
-describe Pagy::B64 do
+describe 'Pagy::B64 Specs' do
   let(:b64) { Pagy::B64 }
 
   describe 'standard methods' do

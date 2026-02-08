@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-describe Pagy::I18n::P11n::Polish do
+describe 'Pagy::I18n::P11n::Polish Specs' do
   let(:rule) { Pagy::I18n::P11n::Polish }
 
   it 'returns :one for 1' do

@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-describe Pagy::I18n::P11n::OneUptoTwoOther do
+describe 'Pagy::I18n::P11n::OneUptoTwoOther Specs' do
   let(:rule) { Pagy::I18n::P11n::OneUptoTwoOther }
 
   it 'returns :one for [0, 2)' do

@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-describe Pagy::Loader do
+describe 'Pagy::Loader Specs' do
   let(:loader) { Pagy::Loader }
 
   it 'defines public methods' do

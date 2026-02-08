@@ -3,7 +3,7 @@
 require 'test_helper'
 require 'pagy/classes/request'
 
-describe Pagy::Request do
+describe 'Pagy::Request Specs' do
   let(:default_options) { { page_key: 'page', limit_key: 'limit' } }
 
   describe 'initialization' do

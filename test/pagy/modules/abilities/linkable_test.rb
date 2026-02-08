@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-describe Pagy::Linkable do
+describe 'Pagy::Linkable Specs' do
   describe 'QueryUtils' do
     let(:utils) { Pagy::Linkable::QueryUtils }
 

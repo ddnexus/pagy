@@ -4,7 +4,7 @@ require 'test_helper'
 require 'pagy/classes/calendar/calendar'
 require 'mocks/app'
 
-describe Pagy::Calendar do
+describe 'Pagy::Calendar Specs' do
   let(:period) { [Time.zone.local(2021, 10, 21), Time.zone.local(2023, 11, 13)] }
   # Configuration mimicking what CalendarPaginator passes
   let(:conf) do

@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-describe Pagy::Offset::Countish do
+describe 'Pagy::Offset::Countish Specs' do
   let(:pagy_class) { Pagy::Offset::Countish }
 
   it 'composes page param with count' do

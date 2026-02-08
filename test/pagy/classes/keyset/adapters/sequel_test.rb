@@ -3,7 +3,7 @@
 require 'test_helper'
 require 'pagy/classes/keyset/adapters/sequel'
 
-describe Pagy::Keyset::Adapters::Sequel do
+describe 'Pagy::Keyset::Adapters::Sequel Specs' do
   # Host class to mix in the adapter
   let(:adapter_host) do
     Class.new do
