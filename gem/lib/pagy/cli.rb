@@ -3,7 +3,7 @@
 require 'optparse'
 require 'fileutils'
 require 'rbconfig'
-require 'pagy'
+require_relative '../pagy'
 require_relative '../../apps/index'
 
 class Pagy
