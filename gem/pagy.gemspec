@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
                     'support'               => 'https://github.com/ddnexus/pagy/discussions/categories/q-a' }
   s.executables << 'pagy'
   s.add_dependency 'json'
+  s.add_dependency 'uri'
   s.add_dependency 'yaml'
   s.required_ruby_version = '>= 3.2'
 end
