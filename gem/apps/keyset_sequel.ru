@@ -41,7 +41,7 @@ class PagyKeysetSequel < Sinatra::Base
 
   # Root route/action
   get '/' do
-    @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
+    @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }.freeze
     @pagy, @pets = pagy(:keyset, Pet.order(:animal, :name, Sequel.desc(:birthdate), :id),
                         limit: 10, client_max_limit: 100)
     erb :main
