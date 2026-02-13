@@ -4,11 +4,6 @@
 # that are quite a few and very useful not only for the author
 /.idea/*
 !/.idea/runConfigurations
-/.bundle/
-/.retype/
 /coverage/
-/gem/pkg/
 node_modules/
-tmp/
-/docs/.public/
-/docs/retype.manifest
+___*

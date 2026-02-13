@@ -1,0 +1,21 @@
+{
+    "recommendations": [
+        "batyan-soft.fast-tasks",
+        "dbaeumer.vscode-eslint",
+        "github.vscode-github-actions",
+        "github.vscode-pull-request-github",
+        "google.geminicodeassist",
+        "kentayamada.vscode-statusbar-commands",
+        "koichisasada.vscode-rdbg",
+        "misogi.ruby-rubocop",
+        "mitchdenny.ecdc",
+        "mujichok.vscode-project-name-in-statusbar",
+        "shopify.ruby-lsp",
+        "spadin.memento-inputs",
+        "thinker.sort-json"
+    ],
+    "unwantedRecommendations": [
+        "github.copilot",
+        "github.copilot-chat"
+    ]
+}

@@ -1,0 +1,50 @@
+{
+    "statusbarCommands.alignment": "Left",
+    "statusbarCommands.commands": [
+        {
+            "args": [
+                "Rake"
+            ],
+            "command": "workbench.action.tasks.runTask",
+            "statusBarText": "$(ruby) Rake..."
+        },
+        {
+            "args": [
+                "Rubocop"
+            ],
+            "command": "workbench.action.tasks.runTask",
+            "statusBarText": "$(symbol-event) Rubocop"
+        },
+        {
+            "args": [
+                "Unit"
+            ],
+            "command": "workbench.action.tasks.runTask",
+            "statusBarText": "$(beaker) Unit"
+        },
+        {
+            "args": [
+                "E2E"
+            ],
+            "command": "workbench.action.tasks.runTask",
+            "statusBarText": "$(beaker) E2E"
+        },
+        {
+            "args": [
+                "Docs"
+            ],
+            "command": "workbench.action.tasks.runTask",
+            "statusBarText": "$(book) Docs"
+        },
+        {
+            "args": [
+                "Run App"
+            ],
+            "command": "workbench.action.tasks.runTask",
+            "statusBarText": "$(play) App..."
+        }
+    ],
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#2e5129"
+    }
+}

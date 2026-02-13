@@ -1,31 +1,34 @@
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 import alignAssignments from 'eslint-plugin-align-assignments';
-import pluginCypress from 'eslint-plugin-cypress/flat'
+import stylistic from '@stylistic/eslint-plugin';
 
-export default tseslint.config(
+export default defineConfig([
   {
-    // We lint only typescript sources and tests. Everything else is generated.
-    files: ['src/pagy.ts', 'e2e/cypress/*.ts', 'e2e/cypress.config.ts'],
+    files: ['src/pagy.ts'],
     extends: [
       eslint.configs.recommended,
-      ...tseslint.configs.recommended,
       ...tseslint.configs.recommendedTypeChecked,
-      ...tseslint.configs.strict,  // opinionated but ok for now
-      ],
+      ...tseslint.configs.strictTypeChecked,
+    ],
     plugins: {
-      alignAssignments: alignAssignments,
-      '@typescript-eslint': tseslint.plugin,
+      'align-assignments': alignAssignments,
+      '@stylistic': stylistic,
     },
     languageOptions: {
-      parser: tseslint.parser,
-        parserOptions: {
-        project: true,
+      parserOptions: {
+        // project: true,
+        tsconfigRootDir: import.meta.dirname,
       },
     },
     rules: {
-      'alignAssignments/align-assignments': 'warn',
-      'semi': ["warn", "always", {"omitLastInOneLineBlock": true}],
+      'align-assignments/align-assignments': 'warn',
+      // Stylistic replacements
+      '@stylistic/semi': ["warn", "always", { "omitLastInOneLineBlock": true }],
+      '@stylistic/key-spacing': ['warn', { align: 'colon' }],
+
+      // TypeScript rules
       '@typescript-eslint/array-type': 'error',
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/no-unsafe-argument': 'error',
@@ -34,13 +37,5 @@ export default tseslint.config(
       '@typescript-eslint/no-unsafe-member-access': 'error',
       '@typescript-eslint/no-unsafe-return': 'error',
     }
-  },
-  {
-    files: ['e2e/cypress/*.ts', 'e2e/cypress.config.ts'],
-    ...pluginCypress.configs.recommended,
-    rules: {
-      'cypress/no-unnecessary-waiting': 'warn',
-      'cypress/unsafe-to-chain-command': 'error',
-    }
   }
-);
+]);

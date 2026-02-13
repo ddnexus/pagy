@@ -25,7 +25,8 @@ class E2eTest < Minitest::Spec
   def browser
     @browser ||= Ferrum::Browser.new(url: "http://#{E2eApp::IP}:9222",
                                      base_url: app.base_url,
-                                     timeout: 60)
+                                     timeout: 60,
+                                     slowmo: ENV['CI'] ? 0.03 : nil)
   end
 
   after(:all) { app.stop }

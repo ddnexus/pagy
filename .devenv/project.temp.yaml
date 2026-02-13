@@ -1,0 +1,36 @@
+# Project specific template (pagy)
+
+spec:
+  containers:
+  - env:
+    # Append the env variable to the ruby container
+    - (( append ))
+    - name: PATH
+      value: /opt/tools/bun/bin:/usr/local/bundle/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    volumeMounts:
+    - (( append ))
+    - name: tools-storage
+      mountPath: /opt/tools
+
+  # Append the lightpanda container to the containers
+  - (( append ))
+  - name: chromium
+    image: docker.io/zenika/alpine-chrome:latest
+    command:
+      - chromium-browser
+      - --headless
+      - --no-sandbox
+      - --use-gl=swiftshader
+      - --disable-software-rasterizer
+      - --disable-dev-shm-usage
+      - --remote-debugging-address=0.0.0.0
+      - --remote-debugging-port=9222
+    ports:
+    - containerPort: 9222
+      protocol: TCP
+
+  volumes:
+  - (( append ))
+  - name: tools-storage
+    persistentVolumeClaim:
+      claimName: shared_tools

@@ -31,9 +31,9 @@ type NavJsSeries = readonly [widths: number[],
 type InputNavJsArgs = readonly [urlToken:  string,
                                 pageToken: string,
                                 KeynavArgs?]
-type LimitTagJsArgs = readonly [from:     number,
-                                urlToken: string,
-                                pageToken: string,
+type LimitTagJsArgs = readonly [from:       number,
+                                urlToken:   string,
+                                pageToken:  string,
                                 limitToken: string]
 type NavJsTokens = readonly [before:  string,
                              anchor:  string,

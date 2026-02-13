@@ -1,9 +1,13 @@
 {
     "compilerOptions": {
-        "strict": true,
-        "target": "ESNext",
+        "lib": [
+            "esnext",
+            "dom",
+            "dom.iterable"
+        ],
         "module": "NodeNext",
         "moduleResolution": "NodeNext",
-        "lib": ["esnext", "dom", "dom.iterable"]
+        "strict": true,
+        "target": "ESNext"
     }
 }

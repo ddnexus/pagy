@@ -1,0 +1,156 @@
+{
+    "inputs": [
+        {
+            "args": {
+                "default": "demo",
+                "description": "Pagy App",
+                "id": "app",
+                "options": [
+                    "calendar",
+                    "demo",
+                    "keynav",
+                    "keyset",
+                    "rails",
+                    "repro"
+                ]
+            },
+            "command": "memento.pickString",
+            "id": "app",
+            "type": "command"
+        },
+        {
+            "args": {
+                "default": "default",
+                "description": "Rake Task",
+                "id": "rakeTask",
+                "options": [
+                    "default",
+                    "test",
+                    "test:unit",
+                    "test:e2e",
+                    "rubocop",
+                    "rubygem_release"
+                ]
+            },
+            "command": "memento.pickString",
+            "id": "rakeTask",
+            "type": "command"
+        }
+    ],
+    "tasks": [
+        {
+            "args": [
+                "${input:rakeTask}"
+            ],
+            "command": "rake",
+            "icon": {
+                "color": "terminal.ansiCyan",
+                "id": "ruby"
+            },
+            "label": "Rake",
+            "presentation": {
+                "clear": true,
+                "panel": "shared",
+                "reveal": "always",
+                "showReuseMessage": false
+            },
+            "type": "shell"
+        },
+        {
+            "command": "rake rubocop",
+            "label": "Rubocop",
+            "presentation": {
+                "clear": true,
+                "panel": "shared",
+                "reveal": "always",
+                "showReuseMessage": false
+            },
+            "type": "shell"
+        },
+        {
+            "command": "rake test:unit",
+            "label": "Unit",
+            "presentation": {
+                "clear": true,
+                "panel": "shared",
+                "reveal": "always",
+                "showReuseMessage": false
+            },
+            "type": "shell"
+        },
+        {
+            "command": "rake test:e2e",
+            "label": "E2E",
+            "presentation": {
+                "clear": true,
+                "panel": "shared",
+                "reveal": "always",
+                "showReuseMessage": false
+            },
+            "type": "shell"
+        },
+        {
+            "command": "irb --prompt simple -I gem/lib -r pagy",
+            "icon": {
+                "color": "terminal.ansiMagenta",
+                "id": "ruby"
+            },
+            "label": "IRB",
+            "presentation": {
+                "close": true
+            },
+            "type": "shell"
+        },
+        {
+            "args": [
+                "./gem/apps/${input:app}.ru"
+            ],
+            "command": "./gem/bin/pagy",
+            "icon": {
+                "color": "terminal.ansiYellow",
+                "id": "run"
+            },
+            "label": "Run App",
+            "presentation": {
+                "close": true
+            },
+            "type": "shell"
+        },
+        {
+            "command": "ruby ./scripts/bump.rb",
+            "icon": {
+                "color": "terminal.ansiBlue",
+                "id": "verified"
+            },
+            "label": "Bump",
+            "presentation": {
+                "clear": true,
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false
+            },
+            "type": "shell"
+        },
+        {
+            "command": "bun x retype start",
+            "icon": {
+                "color": "terminal.ansiGreen",
+                "id": "book"
+            },
+            "label": "Docs",
+            "options": {
+                "cwd": "${workspaceFolder}/docs"
+            },
+            "presentation": {
+                "clear": true,
+                "close": true,
+                "echo": true,
+                "focus": false,
+                "panel": "new",
+                "reveal": "silent"
+            },
+            "type": "shell"
+        }
+    ],
+    "version": "2.0.0"
+}
