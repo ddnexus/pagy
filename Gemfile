@@ -4,19 +4,20 @@ source 'https://rubygems.org'
 
 gemspec path: './gem'
 
-gem 'http'         # used by the scripts/contributor-list.rb
-gem 'irb'
-gem 'rake'
-gem 'reline'
-gem 'uri'
+gem 'rdoc', '7.0.3' # avoid conflict while using ruby:latest still on 7.0.3
 
-group :test do
+group :development, :test do
   gem 'activesupport'
+  gem 'childprocess'
+  gem 'debug'
+  gem 'ferrum'
+  gem 'http'           # used by the scripts/contributor-list.rb
   gem 'i18n'
+  gem 'irb'
   gem 'minitest'
   gem 'minitest-holdify'
+  gem 'minitest-hooks'
   gem 'minitest-mock'
-  gem 'mutex_m'                # for RubyMine
   gem 'oj', require: false     # false is for testing with or without it
   gem 'rack'
   gem 'rails-i18n'
@@ -25,7 +26,12 @@ group :test do
   gem 'rubocop-packaging'
   gem 'rubocop-performance'
   gem 'rubocop-rake'
+  gem 'rubocop-shopify'
+  gem 'rubocop-thread_safety'
+  gem 'ruby-lsp', require: false
   gem 'simplecov', require: false
+  gem 'sorbet', require: false
+  gem 'tapioca', require: false
 end
 
 group :playground do

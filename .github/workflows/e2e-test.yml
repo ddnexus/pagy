@@ -23,7 +23,7 @@ jobs:
           paths: '[
             ".github/workflows/e2e-test.yml",
             "gem/**",
-            "e2e/**",
+            "test/e2e/**",
             "Gemfile.lock",
             "bun.lockb"
             ]'
@@ -38,40 +38,32 @@ jobs:
   e2e_test:
     needs: skip_check
     if: ${{ needs.skip_check.outputs.should_skip != 'true' }}
-    name: E2E [${{ matrix.app }}] Test
+    name: E2E Test
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        app: ['demo', 'repro', 'rails', 'calendar', 'keynav']
-      fail-fast: false
     steps:
       - uses: actions/checkout@v6.0.1
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3'
+          ruby-version: '4.0'
           bundler-cache: true
-      - name: Install bun
-        uses: oven-sh/setup-bun@v2
+      - name: Cache Chrome
+        id: cache-chrome
+        uses: actions/cache@v4
         with:
-          bun-version: latest
-      - name: Install Dependencies
-        run: bun install --frozen-lockfile
-      - name: Setup Cypress Cache
-        uses: actions/cache@v5
-        with:
-          path: /home/runner/.cache/Cypress
-          key: ${{ runner.os }}-cypress-cache-${{ hashFiles('bun.lockb') }}
-      - name: Cypress [${{ matrix.app }}] Test
-        uses: cypress-io/github-action@v6
-        with:
-          working-directory: e2e
-          install: false
-          config: baseUrl=http://0.0.0.0:8080,video=false
-          start: bundle exec pagy ${{ matrix.app }} -p 8080
-          wait-on: http://0.0.0.0:8080
-          wait-on-timeout: 120
-          spec: cypress/e2e/${{ matrix.app }}.cy.ts
-          quiet: true
-        env:
-          CY_TEST: 'true'
+          path: /tmp/chrome.tar
+          key: ${{ runner.os }}-chrome-zenika-latest
+      - name: Start Chrome
+        run: |
+          if [ "${{ steps.cache-chrome.outputs.cache-hit }}" == "true" ]; then
+            docker load -i /tmp/chrome.tar
+          else
+            docker pull zenika/alpine-chrome:latest
+            docker save zenika/alpine-chrome:latest > /tmp/chrome.tar
+          fi
+          docker run -d --network host zenika/alpine-chrome:latest \
+            --headless --no-sandbox \
+            --use-gl=swiftshader --disable-software-rasterizer --disable-dev-shm-usage \
+            --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222
+      - name: Run E2E Tests
+        run: bundle exec rake test:e2e

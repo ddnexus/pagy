@@ -1,0 +1,686 @@
+---
+L15 768c7509932e0c36:
+- "#records": 'Event #86 - 2022-03-02 23:35:41 UTC'
+- "#year-nav": >-
+    <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
+    class="pagination"><li class="page-item previous"><a class="page-link" rel="prev"
+    aria-label="Previous">&lt;</a></li><li class="page-item"><a class="page-link"
+    rel="prev">2021</a></li><li class="page-item active"><a role="link" class="page-link"
+    aria-current="page" aria-disabled="true">2022</a></li><li class="page-item"><a
+    class="page-link" rel="next">2023</a></li><li class="page-item next"><a class="page-link"
+    rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#month-nav": >-
+    <nav id="month-nav" class="pagy-bootstrap series-nav" aria-label="Months"><ul
+    class="pagination"><li class="page-item previous"><a class="page-link" rel="prev"
+    aria-label="Previous">&lt;</a></li><li class="page-item"><a class="page-link">Jan</a></li><li
+    class="page-item"><a class="page-link" rel="prev">Feb</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">Mar</a></li><li
+    class="page-item"><a class="page-link" rel="next">Apr</a></li><li class="page-item"><a
+    class="page-link">May</a></li><li class="page-item"><a class="page-link">Jun</a></li><li
+    class="page-item"><a class="page-link">Jul</a></li><li class="page-item"><a
+    class="page-link">Aug</a></li><li class="page-item"><a class="page-link">Sep</a></li><li
+    class="page-item"><a class="page-link">Oct</a></li><li class="page-item"><a
+    class="page-link">Nov</a></li><li class="page-item"><a class="page-link">Dec</a></li><li
+    class="page-item next"><a class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#day-nav": >-
+    <nav id="day-nav" class="pagy-bootstrap series-nav" aria-label="Days"><ul class="pagination"><li
+    class="page-item previous"><a class="page-link" rel="prev" aria-label="Previous">&lt;</a></li><li
+    class="page-item"><a class="page-link" rel="prev">01</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">02</a></li><li
+    class="page-item"><a class="page-link" rel="next">03</a></li><li class="page-item"><a
+    class="page-link">04</a></li><li class="page-item"><a class="page-link">05</a></li><li
+    class="page-item"><a class="page-link">06</a></li><li class="page-item"><a class="page-link">07</a></li><li
+    class="page-item"><a class="page-link">08</a></li><li class="page-item"><a class="page-link">09</a></li><li
+    class="page-item"><a class="page-link">10</a></li><li class="page-item"><a class="page-link">11</a></li><li
+    class="page-item"><a class="page-link">12</a></li><li class="page-item"><a class="page-link">13</a></li><li
+    class="page-item"><a class="page-link">14</a></li><li class="page-item"><a class="page-link">15</a></li><li
+    class="page-item"><a class="page-link">16</a></li><li class="page-item"><a class="page-link">17</a></li><li
+    class="page-item"><a class="page-link">18</a></li><li class="page-item"><a class="page-link">19</a></li><li
+    class="page-item"><a class="page-link">20</a></li><li class="page-item"><a class="page-link">21</a></li><li
+    class="page-item"><a class="page-link">22</a></li><li class="page-item"><a class="page-link">23</a></li><li
+    class="page-item"><a class="page-link">24</a></li><li class="page-item"><a class="page-link">25</a></li><li
+    class="page-item"><a class="page-link">26</a></li><li class="page-item"><a class="page-link">27</a></li><li
+    class="page-item"><a class="page-link">28</a></li><li class="page-item"><a class="page-link">29</a></li><li
+    class="page-item"><a class="page-link">30</a></li><li class="page-item"><a class="page-link">31</a></li><li
+    class="page-item next"><a class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#pagy-info": <span id="pagy-info" class="pagy info">Displaying 1 item</span>
+- "#records": 'Event #86 - 2022-03-02 23:35:41 UTC'
+- "#year-nav": >-
+    <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
+    class="pagination"><li class="page-item previous"><a title="Displaying 50 items"
+    class="page-link" rel="prev" aria-label="Previous">&lt;</a></li><li class="page-item"><a
+    title="Displaying 50 items" class="page-link" rel="prev">2021</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">2022</a></li><li
+    class="page-item"><a title="Displaying 220 items" class="page-link" rel="next">2023</a></li><li
+    class="page-item next"><a title="Displaying 220 items" class="page-link" rel="next"
+    aria-label="Next">&gt;</a></li></ul></nav>
+- "#month-nav": >-
+    <nav id="month-nav" class="pagy-bootstrap series-nav" aria-label="Months"><ul
+    class="pagination"><li class="page-item previous"><a title="Displaying 17 items"
+    class="page-link" rel="prev" aria-label="Previous">&lt;</a></li><li class="page-item"><a
+    title="Displaying 18 items" class="page-link">Jan</a></li><li class="page-item"><a
+    title="Displaying 17 items" class="page-link" rel="prev">Feb</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">Mar</a></li><li
+    class="page-item"><a title="Displaying 19 items" class="page-link" rel="next">Apr</a></li><li
+    class="page-item"><a title="Displaying 18 items" class="page-link">May</a></li><li
+    class="page-item"><a title="Displaying 19 items" class="page-link">Jun</a></li><li
+    class="page-item"><a title="Displaying 24 items" class="page-link">Jul</a></li><li
+    class="page-item"><a title="Displaying 20 items" class="page-link">Aug</a></li><li
+    class="page-item"><a title="Displaying 21 items" class="page-link">Sep</a></li><li
+    class="page-item"><a title="Displaying 20 items" class="page-link">Oct</a></li><li
+    class="page-item"><a title="Displaying 18 items" class="page-link">Nov</a></li><li
+    class="page-item"><a title="Displaying 20 items" class="page-link">Dec</a></li><li
+    class="page-item next"><a title="Displaying 19 items" class="page-link" rel="next"
+    aria-label="Next">&gt;</a></li></ul></nav>
+- "#day-nav": >-
+    <nav id="day-nav" class="pagy-bootstrap series-nav" aria-label="Days"><ul class="pagination"><li
+    class="page-item previous"><a title="No items found" class="page-link empty-page"
+    rel="prev" aria-label="Previous">&lt;</a></li><li class="page-item"><a title="No
+    items found" class="page-link empty-page" rel="prev">01</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">02</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page" rel="next">03</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">04</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">05</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">06</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">07</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">08</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">09</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">10</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">11</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">12</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">13</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">14</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">15</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">16</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">17</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">18</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">19</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">20</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">21</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">22</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">23</a></li><li
+    class="page-item"><a title="Displaying 2 items" class="page-link">24</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">25</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">26</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">27</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">28</a></li><li
+    class="page-item"><a title="Displaying 2 items" class="page-link">29</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">30</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">31</a></li><li
+    class="page-item next"><a title="No items found" class="page-link empty-page"
+    rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#pagy-info": <span id="pagy-info" class="pagy info">Displaying 1 item</span>
+L20 768c7509932e0c36:
+- "#records": 'Event #86 - 2022-03-02 23:35:41 UTC'
+- "#year-nav": >-
+    <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
+    class="pagination"><li class="page-item previous"><a class="page-link" rel="prev"
+    aria-label="Previous">&lt;</a></li><li class="page-item"><a class="page-link"
+    rel="prev">2021</a></li><li class="page-item active"><a role="link" class="page-link"
+    aria-current="page" aria-disabled="true">2022</a></li><li class="page-item"><a
+    class="page-link" rel="next">2023</a></li><li class="page-item next"><a class="page-link"
+    rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#month-nav": >-
+    <nav id="month-nav" class="pagy-bootstrap series-nav" aria-label="Months"><ul
+    class="pagination"><li class="page-item previous"><a class="page-link" rel="prev"
+    aria-label="Previous">&lt;</a></li><li class="page-item"><a class="page-link">Jan</a></li><li
+    class="page-item"><a class="page-link" rel="prev">Feb</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">Mar</a></li><li
+    class="page-item"><a class="page-link" rel="next">Apr</a></li><li class="page-item"><a
+    class="page-link">May</a></li><li class="page-item"><a class="page-link">Jun</a></li><li
+    class="page-item"><a class="page-link">Jul</a></li><li class="page-item"><a
+    class="page-link">Aug</a></li><li class="page-item"><a class="page-link">Sep</a></li><li
+    class="page-item"><a class="page-link">Oct</a></li><li class="page-item"><a
+    class="page-link">Nov</a></li><li class="page-item"><a class="page-link">Dec</a></li><li
+    class="page-item next"><a class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#day-nav": >-
+    <nav id="day-nav" class="pagy-bootstrap series-nav" aria-label="Days"><ul class="pagination"><li
+    class="page-item previous"><a class="page-link" rel="prev" aria-label="Previous">&lt;</a></li><li
+    class="page-item"><a class="page-link" rel="prev">01</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">02</a></li><li
+    class="page-item"><a class="page-link" rel="next">03</a></li><li class="page-item"><a
+    class="page-link">04</a></li><li class="page-item"><a class="page-link">05</a></li><li
+    class="page-item"><a class="page-link">06</a></li><li class="page-item"><a class="page-link">07</a></li><li
+    class="page-item"><a class="page-link">08</a></li><li class="page-item"><a class="page-link">09</a></li><li
+    class="page-item"><a class="page-link">10</a></li><li class="page-item"><a class="page-link">11</a></li><li
+    class="page-item"><a class="page-link">12</a></li><li class="page-item"><a class="page-link">13</a></li><li
+    class="page-item"><a class="page-link">14</a></li><li class="page-item"><a class="page-link">15</a></li><li
+    class="page-item"><a class="page-link">16</a></li><li class="page-item"><a class="page-link">17</a></li><li
+    class="page-item"><a class="page-link">18</a></li><li class="page-item"><a class="page-link">19</a></li><li
+    class="page-item"><a class="page-link">20</a></li><li class="page-item"><a class="page-link">21</a></li><li
+    class="page-item"><a class="page-link">22</a></li><li class="page-item"><a class="page-link">23</a></li><li
+    class="page-item"><a class="page-link">24</a></li><li class="page-item"><a class="page-link">25</a></li><li
+    class="page-item"><a class="page-link">26</a></li><li class="page-item"><a class="page-link">27</a></li><li
+    class="page-item"><a class="page-link">28</a></li><li class="page-item"><a class="page-link">29</a></li><li
+    class="page-item"><a class="page-link">30</a></li><li class="page-item"><a class="page-link">31</a></li><li
+    class="page-item next"><a class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#pagy-info": <span id="pagy-info" class="pagy info">Displaying 1 item</span>
+- "#records": 'Event #86 - 2022-03-02 23:35:41 UTC'
+- "#year-nav": >-
+    <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
+    class="pagination"><li class="page-item previous"><a title="Displaying 50 items"
+    class="page-link" rel="prev" aria-label="Previous">&lt;</a></li><li class="page-item"><a
+    title="Displaying 50 items" class="page-link" rel="prev">2021</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">2022</a></li><li
+    class="page-item"><a title="Displaying 220 items" class="page-link" rel="next">2023</a></li><li
+    class="page-item next"><a title="Displaying 220 items" class="page-link" rel="next"
+    aria-label="Next">&gt;</a></li></ul></nav>
+- "#month-nav": >-
+    <nav id="month-nav" class="pagy-bootstrap series-nav" aria-label="Months"><ul
+    class="pagination"><li class="page-item previous"><a title="Displaying 17 items"
+    class="page-link" rel="prev" aria-label="Previous">&lt;</a></li><li class="page-item"><a
+    title="Displaying 18 items" class="page-link">Jan</a></li><li class="page-item"><a
+    title="Displaying 17 items" class="page-link" rel="prev">Feb</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">Mar</a></li><li
+    class="page-item"><a title="Displaying 19 items" class="page-link" rel="next">Apr</a></li><li
+    class="page-item"><a title="Displaying 18 items" class="page-link">May</a></li><li
+    class="page-item"><a title="Displaying 19 items" class="page-link">Jun</a></li><li
+    class="page-item"><a title="Displaying 24 items" class="page-link">Jul</a></li><li
+    class="page-item"><a title="Displaying 20 items" class="page-link">Aug</a></li><li
+    class="page-item"><a title="Displaying 21 items" class="page-link">Sep</a></li><li
+    class="page-item"><a title="Displaying 20 items" class="page-link">Oct</a></li><li
+    class="page-item"><a title="Displaying 18 items" class="page-link">Nov</a></li><li
+    class="page-item"><a title="Displaying 20 items" class="page-link">Dec</a></li><li
+    class="page-item next"><a title="Displaying 19 items" class="page-link" rel="next"
+    aria-label="Next">&gt;</a></li></ul></nav>
+- "#day-nav": >-
+    <nav id="day-nav" class="pagy-bootstrap series-nav" aria-label="Days"><ul class="pagination"><li
+    class="page-item previous"><a title="No items found" class="page-link empty-page"
+    rel="prev" aria-label="Previous">&lt;</a></li><li class="page-item"><a title="No
+    items found" class="page-link empty-page" rel="prev">01</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">02</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page" rel="next">03</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">04</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">05</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">06</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">07</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">08</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">09</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">10</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">11</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">12</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">13</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">14</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">15</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">16</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">17</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">18</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">19</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">20</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">21</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">22</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">23</a></li><li
+    class="page-item"><a title="Displaying 2 items" class="page-link">24</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">25</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">26</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">27</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">28</a></li><li
+    class="page-item"><a title="Displaying 2 items" class="page-link">29</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">30</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">31</a></li><li
+    class="page-item next"><a title="No items found" class="page-link empty-page"
+    rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#pagy-info": <span id="pagy-info" class="pagy info">Displaying 1 item</span>
+L24 768c7509932e0c36:
+- "#records": 'Event #106 - 2022-04-01 15:35:47 UTC'
+- "#year-nav": >-
+    <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
+    class="pagination"><li class="page-item previous"><a class="page-link" rel="prev"
+    aria-label="Previous">&lt;</a></li><li class="page-item"><a class="page-link"
+    rel="prev">2021</a></li><li class="page-item active"><a role="link" class="page-link"
+    aria-current="page" aria-disabled="true">2022</a></li><li class="page-item"><a
+    class="page-link" rel="next">2023</a></li><li class="page-item next"><a class="page-link"
+    rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#month-nav": >-
+    <nav id="month-nav" class="pagy-bootstrap series-nav" aria-label="Months"><ul
+    class="pagination"><li class="page-item previous"><a class="page-link" rel="prev"
+    aria-label="Previous">&lt;</a></li><li class="page-item"><a class="page-link">Jan</a></li><li
+    class="page-item"><a class="page-link">Feb</a></li><li class="page-item"><a
+    class="page-link" rel="prev">Mar</a></li><li class="page-item active"><a role="link"
+    class="page-link" aria-current="page" aria-disabled="true">Apr</a></li><li class="page-item"><a
+    class="page-link" rel="next">May</a></li><li class="page-item"><a class="page-link">Jun</a></li><li
+    class="page-item"><a class="page-link">Jul</a></li><li class="page-item"><a
+    class="page-link">Aug</a></li><li class="page-item"><a class="page-link">Sep</a></li><li
+    class="page-item"><a class="page-link">Oct</a></li><li class="page-item"><a
+    class="page-link">Nov</a></li><li class="page-item"><a class="page-link">Dec</a></li><li
+    class="page-item next"><a class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#day-nav": >-
+    <nav id="day-nav" class="pagy-bootstrap series-nav" aria-label="Days"><ul class="pagination"><li
+    class="page-item previous disabled"><a role="link" class="page-link" aria-disabled="true"
+    aria-label="Previous">&lt;</a></li><li class="page-item active"><a role="link"
+    class="page-link" aria-current="page" aria-disabled="true">01</a></li><li class="page-item"><a
+    class="page-link" rel="next">02</a></li><li class="page-item"><a class="page-link">03</a></li><li
+    class="page-item"><a class="page-link">04</a></li><li class="page-item"><a class="page-link">05</a></li><li
+    class="page-item"><a class="page-link">06</a></li><li class="page-item"><a class="page-link">07</a></li><li
+    class="page-item"><a class="page-link">08</a></li><li class="page-item"><a class="page-link">09</a></li><li
+    class="page-item"><a class="page-link">10</a></li><li class="page-item"><a class="page-link">11</a></li><li
+    class="page-item"><a class="page-link">12</a></li><li class="page-item"><a class="page-link">13</a></li><li
+    class="page-item"><a class="page-link">14</a></li><li class="page-item"><a class="page-link">15</a></li><li
+    class="page-item"><a class="page-link">16</a></li><li class="page-item"><a class="page-link">17</a></li><li
+    class="page-item"><a class="page-link">18</a></li><li class="page-item"><a class="page-link">19</a></li><li
+    class="page-item"><a class="page-link">20</a></li><li class="page-item"><a class="page-link">21</a></li><li
+    class="page-item"><a class="page-link">22</a></li><li class="page-item"><a class="page-link">23</a></li><li
+    class="page-item"><a class="page-link">24</a></li><li class="page-item"><a class="page-link">25</a></li><li
+    class="page-item"><a class="page-link">26</a></li><li class="page-item"><a class="page-link">27</a></li><li
+    class="page-item"><a class="page-link">28</a></li><li class="page-item"><a class="page-link">29</a></li><li
+    class="page-item"><a class="page-link">30</a></li><li class="page-item next"><a
+    class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#pagy-info": <span id="pagy-info" class="pagy info">Displaying 1 item</span>
+- "#records": 'Event #106 - 2022-04-01 15:35:47 UTC'
+- "#year-nav": >-
+    <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
+    class="pagination"><li class="page-item previous"><a title="Displaying 50 items"
+    class="page-link" rel="prev" aria-label="Previous">&lt;</a></li><li class="page-item"><a
+    title="Displaying 50 items" class="page-link" rel="prev">2021</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">2022</a></li><li
+    class="page-item"><a title="Displaying 220 items" class="page-link" rel="next">2023</a></li><li
+    class="page-item next"><a title="Displaying 220 items" class="page-link" rel="next"
+    aria-label="Next">&gt;</a></li></ul></nav>
+- "#month-nav": >-
+    <nav id="month-nav" class="pagy-bootstrap series-nav" aria-label="Months"><ul
+    class="pagination"><li class="page-item previous"><a title="Displaying 20 items"
+    class="page-link" rel="prev" aria-label="Previous">&lt;</a></li><li class="page-item"><a
+    title="Displaying 18 items" class="page-link">Jan</a></li><li class="page-item"><a
+    title="Displaying 17 items" class="page-link">Feb</a></li><li class="page-item"><a
+    title="Displaying 20 items" class="page-link" rel="prev">Mar</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">Apr</a></li><li
+    class="page-item"><a title="Displaying 18 items" class="page-link" rel="next">May</a></li><li
+    class="page-item"><a title="Displaying 19 items" class="page-link">Jun</a></li><li
+    class="page-item"><a title="Displaying 24 items" class="page-link">Jul</a></li><li
+    class="page-item"><a title="Displaying 20 items" class="page-link">Aug</a></li><li
+    class="page-item"><a title="Displaying 21 items" class="page-link">Sep</a></li><li
+    class="page-item"><a title="Displaying 20 items" class="page-link">Oct</a></li><li
+    class="page-item"><a title="Displaying 18 items" class="page-link">Nov</a></li><li
+    class="page-item"><a title="Displaying 20 items" class="page-link">Dec</a></li><li
+    class="page-item next"><a title="Displaying 18 items" class="page-link" rel="next"
+    aria-label="Next">&gt;</a></li></ul></nav>
+- "#day-nav": >-
+    <nav id="day-nav" class="pagy-bootstrap series-nav" aria-label="Days"><ul class="pagination"><li
+    class="page-item previous disabled"><a role="link" class="page-link" aria-disabled="true"
+    aria-label="Previous">&lt;</a></li><li class="page-item active"><a role="link"
+    class="page-link" aria-current="page" aria-disabled="true">01</a></li><li class="page-item"><a
+    title="Displaying 1 item" class="page-link" rel="next">02</a></li><li class="page-item"><a
+    title="Displaying 2 items" class="page-link">03</a></li><li class="page-item"><a
+    title="No items found" class="page-link empty-page">04</a></li><li class="page-item"><a
+    title="No items found" class="page-link empty-page">05</a></li><li class="page-item"><a
+    title="Displaying 1 item" class="page-link">06</a></li><li class="page-item"><a
+    title="Displaying 1 item" class="page-link">07</a></li><li class="page-item"><a
+    title="Displaying 1 item" class="page-link">08</a></li><li class="page-item"><a
+    title="No items found" class="page-link empty-page">09</a></li><li class="page-item"><a
+    title="Displaying 1 item" class="page-link">10</a></li><li class="page-item"><a
+    title="No items found" class="page-link empty-page">11</a></li><li class="page-item"><a
+    title="Displaying 1 item" class="page-link">12</a></li><li class="page-item"><a
+    title="No items found" class="page-link empty-page">13</a></li><li class="page-item"><a
+    title="Displaying 1 item" class="page-link">14</a></li><li class="page-item"><a
+    title="Displaying 1 item" class="page-link">15</a></li><li class="page-item"><a
+    title="Displaying 1 item" class="page-link">16</a></li><li class="page-item"><a
+    title="Displaying 1 item" class="page-link">17</a></li><li class="page-item"><a
+    title="No items found" class="page-link empty-page">18</a></li><li class="page-item"><a
+    title="No items found" class="page-link empty-page">19</a></li><li class="page-item"><a
+    title="Displaying 1 item" class="page-link">20</a></li><li class="page-item"><a
+    title="No items found" class="page-link empty-page">21</a></li><li class="page-item"><a
+    title="No items found" class="page-link empty-page">22</a></li><li class="page-item"><a
+    title="Displaying 1 item" class="page-link">23</a></li><li class="page-item"><a
+    title="No items found" class="page-link empty-page">24</a></li><li class="page-item"><a
+    title="Displaying 1 item" class="page-link">25</a></li><li class="page-item"><a
+    title="No items found" class="page-link empty-page">26</a></li><li class="page-item"><a
+    title="Displaying 1 item" class="page-link">27</a></li><li class="page-item"><a
+    title="No items found" class="page-link empty-page">28</a></li><li class="page-item"><a
+    title="Displaying 2 items" class="page-link">29</a></li><li class="page-item"><a
+    title="No items found" class="page-link empty-page">30</a></li><li class="page-item
+    next"><a title="Displaying 1 item" class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#pagy-info": <span id="pagy-info" class="pagy info">Displaying 1 item</span>
+L28 768c7509932e0c36:
+- "#records": ''
+- "#year-nav": >-
+    <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
+    class="pagination"><li class="page-item previous"><a class="page-link" rel="prev"
+    aria-label="Previous">&lt;</a></li><li class="page-item"><a class="page-link"
+    rel="prev">2021</a></li><li class="page-item active"><a role="link" class="page-link"
+    aria-current="page" aria-disabled="true">2022</a></li><li class="page-item"><a
+    class="page-link" rel="next">2023</a></li><li class="page-item next"><a class="page-link"
+    rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#month-nav": >-
+    <nav id="month-nav" class="pagy-bootstrap series-nav" aria-label="Months"><ul
+    class="pagination"><li class="page-item previous"><a class="page-link" rel="prev"
+    aria-label="Previous">&lt;</a></li><li class="page-item"><a class="page-link">Jan</a></li><li
+    class="page-item"><a class="page-link">Feb</a></li><li class="page-item"><a
+    class="page-link" rel="prev">Mar</a></li><li class="page-item active"><a role="link"
+    class="page-link" aria-current="page" aria-disabled="true">Apr</a></li><li class="page-item"><a
+    class="page-link" rel="next">May</a></li><li class="page-item"><a class="page-link">Jun</a></li><li
+    class="page-item"><a class="page-link">Jul</a></li><li class="page-item"><a
+    class="page-link">Aug</a></li><li class="page-item"><a class="page-link">Sep</a></li><li
+    class="page-item"><a class="page-link">Oct</a></li><li class="page-item"><a
+    class="page-link">Nov</a></li><li class="page-item"><a class="page-link">Dec</a></li><li
+    class="page-item next"><a class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#day-nav": >-
+    <nav id="day-nav" class="pagy-bootstrap series-nav" aria-label="Days"><ul class="pagination"><li
+    class="page-item previous"><a class="page-link" rel="prev" aria-label="Previous">&lt;</a></li><li
+    class="page-item"><a class="page-link">01</a></li><li class="page-item"><a class="page-link">02</a></li><li
+    class="page-item"><a class="page-link">03</a></li><li class="page-item"><a class="page-link"
+    rel="prev">04</a></li><li class="page-item active"><a role="link" class="page-link"
+    aria-current="page" aria-disabled="true">05</a></li><li class="page-item"><a
+    class="page-link" rel="next">06</a></li><li class="page-item"><a class="page-link">07</a></li><li
+    class="page-item"><a class="page-link">08</a></li><li class="page-item"><a class="page-link">09</a></li><li
+    class="page-item"><a class="page-link">10</a></li><li class="page-item"><a class="page-link">11</a></li><li
+    class="page-item"><a class="page-link">12</a></li><li class="page-item"><a class="page-link">13</a></li><li
+    class="page-item"><a class="page-link">14</a></li><li class="page-item"><a class="page-link">15</a></li><li
+    class="page-item"><a class="page-link">16</a></li><li class="page-item"><a class="page-link">17</a></li><li
+    class="page-item"><a class="page-link">18</a></li><li class="page-item"><a class="page-link">19</a></li><li
+    class="page-item"><a class="page-link">20</a></li><li class="page-item"><a class="page-link">21</a></li><li
+    class="page-item"><a class="page-link">22</a></li><li class="page-item"><a class="page-link">23</a></li><li
+    class="page-item"><a class="page-link">24</a></li><li class="page-item"><a class="page-link">25</a></li><li
+    class="page-item"><a class="page-link">26</a></li><li class="page-item"><a class="page-link">27</a></li><li
+    class="page-item"><a class="page-link">28</a></li><li class="page-item"><a class="page-link">29</a></li><li
+    class="page-item"><a class="page-link">30</a></li><li class="page-item next"><a
+    class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#pagy-info": <span id="pagy-info" class="pagy info">No items found</span>
+- "#records": ''
+- "#year-nav": >-
+    <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
+    class="pagination"><li class="page-item previous"><a title="Displaying 50 items"
+    class="page-link" rel="prev" aria-label="Previous">&lt;</a></li><li class="page-item"><a
+    title="Displaying 50 items" class="page-link" rel="prev">2021</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">2022</a></li><li
+    class="page-item"><a title="Displaying 220 items" class="page-link" rel="next">2023</a></li><li
+    class="page-item next"><a title="Displaying 220 items" class="page-link" rel="next"
+    aria-label="Next">&gt;</a></li></ul></nav>
+- "#month-nav": >-
+    <nav id="month-nav" class="pagy-bootstrap series-nav" aria-label="Months"><ul
+    class="pagination"><li class="page-item previous"><a title="Displaying 20 items"
+    class="page-link" rel="prev" aria-label="Previous">&lt;</a></li><li class="page-item"><a
+    title="Displaying 18 items" class="page-link">Jan</a></li><li class="page-item"><a
+    title="Displaying 17 items" class="page-link">Feb</a></li><li class="page-item"><a
+    title="Displaying 20 items" class="page-link" rel="prev">Mar</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">Apr</a></li><li
+    class="page-item"><a title="Displaying 18 items" class="page-link" rel="next">May</a></li><li
+    class="page-item"><a title="Displaying 19 items" class="page-link">Jun</a></li><li
+    class="page-item"><a title="Displaying 24 items" class="page-link">Jul</a></li><li
+    class="page-item"><a title="Displaying 20 items" class="page-link">Aug</a></li><li
+    class="page-item"><a title="Displaying 21 items" class="page-link">Sep</a></li><li
+    class="page-item"><a title="Displaying 20 items" class="page-link">Oct</a></li><li
+    class="page-item"><a title="Displaying 18 items" class="page-link">Nov</a></li><li
+    class="page-item"><a title="Displaying 20 items" class="page-link">Dec</a></li><li
+    class="page-item next"><a title="Displaying 18 items" class="page-link" rel="next"
+    aria-label="Next">&gt;</a></li></ul></nav>
+- "#day-nav": >-
+    <nav id="day-nav" class="pagy-bootstrap series-nav" aria-label="Days"><ul class="pagination"><li
+    class="page-item previous"><a title="No items found" class="page-link empty-page"
+    rel="prev" aria-label="Previous">&lt;</a></li><li class="page-item"><a title="Displaying
+    1 item" class="page-link">01</a></li><li class="page-item"><a title="Displaying
+    1 item" class="page-link">02</a></li><li class="page-item"><a title="Displaying
+    2 items" class="page-link">03</a></li><li class="page-item"><a title="No items
+    found" class="page-link empty-page" rel="prev">04</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">05</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link" rel="next">06</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">07</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">08</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">09</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">10</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">11</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">12</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">13</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">14</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">15</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">16</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">17</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">18</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">19</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">20</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">21</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">22</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">23</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">24</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">25</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">26</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">27</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">28</a></li><li
+    class="page-item"><a title="Displaying 2 items" class="page-link">29</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">30</a></li><li
+    class="page-item next"><a title="Displaying 1 item" class="page-link" rel="next"
+    aria-label="Next">&gt;</a></li></ul></nav>
+- "#pagy-info": <span id="pagy-info" class="pagy info">No items found</span>
+L32 768c7509932e0c36:
+- "#records": 'Event #110 - 2022-04-06 10:59:32 UTC'
+- "#year-nav": >-
+    <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
+    class="pagination"><li class="page-item previous"><a class="page-link" rel="prev"
+    aria-label="Previous">&lt;</a></li><li class="page-item"><a class="page-link"
+    rel="prev">2021</a></li><li class="page-item active"><a role="link" class="page-link"
+    aria-current="page" aria-disabled="true">2022</a></li><li class="page-item"><a
+    class="page-link" rel="next">2023</a></li><li class="page-item next"><a class="page-link"
+    rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#month-nav": >-
+    <nav id="month-nav" class="pagy-bootstrap series-nav" aria-label="Months"><ul
+    class="pagination"><li class="page-item previous"><a class="page-link" rel="prev"
+    aria-label="Previous">&lt;</a></li><li class="page-item"><a class="page-link">Jan</a></li><li
+    class="page-item"><a class="page-link">Feb</a></li><li class="page-item"><a
+    class="page-link" rel="prev">Mar</a></li><li class="page-item active"><a role="link"
+    class="page-link" aria-current="page" aria-disabled="true">Apr</a></li><li class="page-item"><a
+    class="page-link" rel="next">May</a></li><li class="page-item"><a class="page-link">Jun</a></li><li
+    class="page-item"><a class="page-link">Jul</a></li><li class="page-item"><a
+    class="page-link">Aug</a></li><li class="page-item"><a class="page-link">Sep</a></li><li
+    class="page-item"><a class="page-link">Oct</a></li><li class="page-item"><a
+    class="page-link">Nov</a></li><li class="page-item"><a class="page-link">Dec</a></li><li
+    class="page-item next"><a class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#day-nav": >-
+    <nav id="day-nav" class="pagy-bootstrap series-nav" aria-label="Days"><ul class="pagination"><li
+    class="page-item previous"><a class="page-link" rel="prev" aria-label="Previous">&lt;</a></li><li
+    class="page-item"><a class="page-link">01</a></li><li class="page-item"><a class="page-link">02</a></li><li
+    class="page-item"><a class="page-link">03</a></li><li class="page-item"><a class="page-link">04</a></li><li
+    class="page-item"><a class="page-link" rel="prev">05</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">06</a></li><li
+    class="page-item"><a class="page-link" rel="next">07</a></li><li class="page-item"><a
+    class="page-link">08</a></li><li class="page-item"><a class="page-link">09</a></li><li
+    class="page-item"><a class="page-link">10</a></li><li class="page-item"><a class="page-link">11</a></li><li
+    class="page-item"><a class="page-link">12</a></li><li class="page-item"><a class="page-link">13</a></li><li
+    class="page-item"><a class="page-link">14</a></li><li class="page-item"><a class="page-link">15</a></li><li
+    class="page-item"><a class="page-link">16</a></li><li class="page-item"><a class="page-link">17</a></li><li
+    class="page-item"><a class="page-link">18</a></li><li class="page-item"><a class="page-link">19</a></li><li
+    class="page-item"><a class="page-link">20</a></li><li class="page-item"><a class="page-link">21</a></li><li
+    class="page-item"><a class="page-link">22</a></li><li class="page-item"><a class="page-link">23</a></li><li
+    class="page-item"><a class="page-link">24</a></li><li class="page-item"><a class="page-link">25</a></li><li
+    class="page-item"><a class="page-link">26</a></li><li class="page-item"><a class="page-link">27</a></li><li
+    class="page-item"><a class="page-link">28</a></li><li class="page-item"><a class="page-link">29</a></li><li
+    class="page-item"><a class="page-link">30</a></li><li class="page-item next"><a
+    class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#pagy-info": <span id="pagy-info" class="pagy info">Displaying 1 item</span>
+- "#records": 'Event #110 - 2022-04-06 10:59:32 UTC'
+- "#year-nav": >-
+    <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
+    class="pagination"><li class="page-item previous"><a title="Displaying 50 items"
+    class="page-link" rel="prev" aria-label="Previous">&lt;</a></li><li class="page-item"><a
+    title="Displaying 50 items" class="page-link" rel="prev">2021</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">2022</a></li><li
+    class="page-item"><a title="Displaying 220 items" class="page-link" rel="next">2023</a></li><li
+    class="page-item next"><a title="Displaying 220 items" class="page-link" rel="next"
+    aria-label="Next">&gt;</a></li></ul></nav>
+- "#month-nav": >-
+    <nav id="month-nav" class="pagy-bootstrap series-nav" aria-label="Months"><ul
+    class="pagination"><li class="page-item previous"><a title="Displaying 20 items"
+    class="page-link" rel="prev" aria-label="Previous">&lt;</a></li><li class="page-item"><a
+    title="Displaying 18 items" class="page-link">Jan</a></li><li class="page-item"><a
+    title="Displaying 17 items" class="page-link">Feb</a></li><li class="page-item"><a
+    title="Displaying 20 items" class="page-link" rel="prev">Mar</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">Apr</a></li><li
+    class="page-item"><a title="Displaying 18 items" class="page-link" rel="next">May</a></li><li
+    class="page-item"><a title="Displaying 19 items" class="page-link">Jun</a></li><li
+    class="page-item"><a title="Displaying 24 items" class="page-link">Jul</a></li><li
+    class="page-item"><a title="Displaying 20 items" class="page-link">Aug</a></li><li
+    class="page-item"><a title="Displaying 21 items" class="page-link">Sep</a></li><li
+    class="page-item"><a title="Displaying 20 items" class="page-link">Oct</a></li><li
+    class="page-item"><a title="Displaying 18 items" class="page-link">Nov</a></li><li
+    class="page-item"><a title="Displaying 20 items" class="page-link">Dec</a></li><li
+    class="page-item next"><a title="Displaying 18 items" class="page-link" rel="next"
+    aria-label="Next">&gt;</a></li></ul></nav>
+- "#day-nav": >-
+    <nav id="day-nav" class="pagy-bootstrap series-nav" aria-label="Days"><ul class="pagination"><li
+    class="page-item previous"><a title="No items found" class="page-link empty-page"
+    rel="prev" aria-label="Previous">&lt;</a></li><li class="page-item"><a title="Displaying
+    1 item" class="page-link">01</a></li><li class="page-item"><a title="Displaying
+    1 item" class="page-link">02</a></li><li class="page-item"><a title="Displaying
+    2 items" class="page-link">03</a></li><li class="page-item"><a title="No items
+    found" class="page-link empty-page">04</a></li><li class="page-item"><a title="No
+    items found" class="page-link empty-page" rel="prev">05</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">06</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link" rel="next">07</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">08</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">09</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">10</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">11</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">12</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">13</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">14</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">15</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">16</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">17</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">18</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">19</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">20</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">21</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">22</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">23</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">24</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">25</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">26</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">27</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">28</a></li><li
+    class="page-item"><a title="Displaying 2 items" class="page-link">29</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">30</a></li><li
+    class="page-item next"><a title="Displaying 1 item" class="page-link" rel="next"
+    aria-label="Next">&gt;</a></li></ul></nav>
+- "#pagy-info": <span id="pagy-info" class="pagy info">Displaying 1 item</span>
+L38 768c7509932e0c36:
+- "#records": |-
+    Event #1 - 2021-10-21 13:18:23 UTC
+
+    Event #2 - 2021-10-21 23:14:50 UTC
+- "#year-nav": >-
+    <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
+    class="pagination"><li class="page-item previous disabled"><a role="link" class="page-link"
+    aria-disabled="true" aria-label="Previous">&lt;</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">2021</a></li><li
+    class="page-item"><a title="Displaying 234 items" class="page-link" rel="next">2022</a></li><li
+    class="page-item"><a title="Displaying 220 items" class="page-link">2023</a></li><li
+    class="page-item next"><a title="Displaying 234 items" class="page-link" rel="next"
+    aria-label="Next">&gt;</a></li></ul></nav>
+- "#month-nav": >-
+    <nav id="month-nav" class="pagy-bootstrap series-nav" aria-label="Months"><ul
+    class="pagination"><li class="page-item previous disabled"><a role="link" class="page-link"
+    aria-disabled="true" aria-label="Previous">&lt;</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">Oct</a></li><li
+    class="page-item"><a title="Displaying 18 items" class="page-link" rel="next">Nov</a></li><li
+    class="page-item"><a title="Displaying 25 items" class="page-link">Dec</a></li><li
+    class="page-item next"><a title="Displaying 18 items" class="page-link" rel="next"
+    aria-label="Next">&gt;</a></li></ul></nav>
+- "#day-nav": >-
+    <nav id="day-nav" class="pagy-bootstrap series-nav" aria-label="Days"><ul class="pagination"><li
+    class="page-item previous disabled"><a role="link" class="page-link" aria-disabled="true"
+    aria-label="Previous">&lt;</a></li><li class="page-item active"><a role="link"
+    class="page-link" aria-current="page" aria-disabled="true">21</a></li><li class="page-item"><a
+    title="No items found" class="page-link empty-page" rel="next">22</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">23</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">24</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">25</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">26</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">27</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">28</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">29</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">30</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">31</a></li><li
+    class="page-item next"><a title="No items found" class="page-link empty-page"
+    rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#pagy-info": <span id="pagy-info" class="pagy info">Displaying 2 items</span>
+L42 e4f6da802786009e:
+- "#records": |-
+    Event #1 - 2021-10-21 13:18:23 UTC
+
+    Event #2 - 2021-10-21 23:14:50 UTC
+
+    Event #3 - 2021-10-23 01:06:02 UTC
+
+    Event #4 - 2021-10-25 18:54:35 UTC
+
+    Event #5 - 2021-10-26 02:22:17 UTC
+
+    Event #6 - 2021-10-28 22:59:49 UTC
+
+    Event #7 - 2021-10-30 15:02:25 UTC
+
+    Event #8 - 2021-11-02 04:03:39 UTC
+
+    Event #9 - 2021-11-04 22:41:23 UTC
+
+    Event #10 - 2021-11-06 00:34:29 UTC
+
+    Event #11 - 2021-11-06 23:56:16 UTC
+
+    Event #12 - 2021-11-07 06:22:04 UTC
+
+    Event #13 - 2021-11-07 19:46:08 UTC
+
+    Event #14 - 2021-11-08 09:31:13 UTC
+
+    Event #15 - 2021-11-09 17:22:03 UTC
+
+    Event #16 - 2021-11-11 05:29:54 UTC
+
+    Event #17 - 2021-11-13 09:41:04 UTC
+
+    Event #18 - 2021-11-16 07:48:22 UTC
+
+    Event #19 - 2021-11-16 12:43:44 UTC
+
+    Event #20 - 2021-11-17 16:03:07 UTC
+- "#pages-nav": >-
+    <nav id="pages-nav" class="pagy-bootstrap series-nav" aria-label="Pages"><ul
+    class="pagination"><li class="page-item previous disabled"><a role="link" class="page-link"
+    aria-disabled="true" aria-label="Previous">&lt;</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">1</a></li><li
+    class="page-item"><a class="page-link" rel="next">2</a></li><li class="page-item"><a
+    class="page-link">3</a></li><li class="page-item"><a class="page-link">4</a></li><li
+    class="page-item"><a class="page-link">5</a></li><li class="page-item gap disabled"><a
+    role="link" class="page-link" aria-disabled="true">…</a></li><li class="page-item"><a
+    class="page-link">26</a></li><li class="page-item next"><a class="page-link"
+    rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+L46 768c7509932e0c36:
+- "#records": |-
+    Event #1 - 2021-10-21 13:18:23 UTC
+
+    Event #2 - 2021-10-21 23:14:50 UTC
+- "#year-nav": >-
+    <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
+    class="pagination"><li class="page-item previous disabled"><a role="link" class="page-link"
+    aria-disabled="true" aria-label="Previous">&lt;</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">2021</a></li><li
+    class="page-item"><a title="Displaying 234 items" class="page-link" rel="next">2022</a></li><li
+    class="page-item"><a title="Displaying 220 items" class="page-link">2023</a></li><li
+    class="page-item next"><a title="Displaying 234 items" class="page-link" rel="next"
+    aria-label="Next">&gt;</a></li></ul></nav>
+- "#month-nav": >-
+    <nav id="month-nav" class="pagy-bootstrap series-nav" aria-label="Months"><ul
+    class="pagination"><li class="page-item previous disabled"><a role="link" class="page-link"
+    aria-disabled="true" aria-label="Previous">&lt;</a></li><li class="page-item
+    active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">Oct</a></li><li
+    class="page-item"><a title="Displaying 18 items" class="page-link" rel="next">Nov</a></li><li
+    class="page-item"><a title="Displaying 25 items" class="page-link">Dec</a></li><li
+    class="page-item next"><a title="Displaying 18 items" class="page-link" rel="next"
+    aria-label="Next">&gt;</a></li></ul></nav>
+- "#day-nav": >-
+    <nav id="day-nav" class="pagy-bootstrap series-nav" aria-label="Days"><ul class="pagination"><li
+    class="page-item previous disabled"><a role="link" class="page-link" aria-disabled="true"
+    aria-label="Previous">&lt;</a></li><li class="page-item active"><a role="link"
+    class="page-link" aria-current="page" aria-disabled="true">21</a></li><li class="page-item"><a
+    title="No items found" class="page-link empty-page" rel="next">22</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">23</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">24</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">25</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">26</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">27</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">28</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">29</a></li><li
+    class="page-item"><a title="Displaying 1 item" class="page-link">30</a></li><li
+    class="page-item"><a title="No items found" class="page-link empty-page">31</a></li><li
+    class="page-item next"><a title="No items found" class="page-link empty-page"
+    rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- "#pagy-info": <span id="pagy-info" class="pagy info">Displaying 2 items</span>

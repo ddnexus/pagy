@@ -1,7 +1,6 @@
 # Ruby Test Environment
 
-Ruby is tested with [`minitest`](https://github.com/minitest/minitest) through `rake` tasks. It also uses [
-`rematch`](https://github.com/ddnexus/rematch) as a snapshot system.
+Ruby is tested with [`minitest`](https://github.com/minitest/minitest) through `rake` tasks. It also uses [`holdify`](https://github.com/ddnexus/holdify) as a snapshot system.
 
 ## Prerequisite
 

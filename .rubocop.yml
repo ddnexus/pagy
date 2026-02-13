@@ -3,6 +3,7 @@ plugins:
   - rubocop-minitest
   - rubocop-rake
   - rubocop-packaging
+  - rubocop-thread_safety
 
 # trying to be good  O:)
 AllCops:

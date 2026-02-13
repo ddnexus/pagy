@@ -15,19 +15,19 @@ module Minitest
   end
 
   # /home/dd/.local/share/JetBrains/Toolbox/apps/rubymine/plugins/ruby/rb/testing/patch/testunit/minitest/rm_reporter_plugin.rb
-  class RubyMineReporter < Reporter
-    module AvoidDoubleBacktrace
-      def with_message_and_backtrace(result)
-        exception = result.failure
-        msg       = "#{exception.class.name}: #{exception.message}" if exception
-        unless result.error? # Avoid double backtrace for errors (included in msg)
-          backtrace = "    " + Minitest.filter_backtrace(exception.backtrace)
-                                       .map { |p| p.sub(%r{^#{Dir.pwd}/}, '') }
-                                       .join("\n    ")
-        end
-        yield(msg, backtrace)
-      end
-    end
-    prepend AvoidDoubleBacktrace
-  end
+  # class RubyMineReporter < Reporter
+  #   module AvoidDoubleBacktrace
+  #     def with_message_and_backtrace(result)
+  #       exception = result.failure
+  #       msg       = "#{exception.class.name}: #{exception.message}" if exception
+  #       unless result.error? # Avoid double backtrace for errors (included in msg)
+  #         backtrace = "    " + Minitest.filter_backtrace(exception.backtrace)
+  #                                      .map { |p| p.sub(%r{^#{Dir.pwd}/}, '') }
+  #                                      .join("\n    ")
+  #       end
+  #       yield(msg, backtrace)
+  #     end
+  #   end
+  #   prepend AvoidDoubleBacktrace
+  # end
 end

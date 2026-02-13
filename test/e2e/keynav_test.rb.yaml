@@ -1,0 +1,421 @@
+---
+L8 0dc83ba929956c9f:
+- "#records": "@ids: 38,21,12,49"
+- "#series-nav": >-
+    <nav id="series-nav" class="pagy series-nav" aria-label="Pages (nav)"><a role="link"
+    aria-disabled="true" aria-label="Previous">&lt;</a><a role="link" aria-disabled="true"
+    aria-current="page">1</a><a rel="next">2</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[2, 2, ["bird", "Rocky", "2023-05-14", 49], nil]&limit=4
+- "#records": "@ids: 15,48,4,25"
+- "#series-nav": >-
+    <nav id="series-nav" class="pagy series-nav" aria-label="Pages (nav)"><a rel="prev"
+    aria-label="Previous">&lt;</a><a rel="prev">1</a><a role="link" aria-disabled="true"
+    aria-current="page">2</a><a rel="next">3</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[1, 3, nil, ["bird", "Rocky", "2023-05-14", 49]]&limit=4
+- "#records": "@ids: 38,21,12,49"
+- "#series-nav": >-
+    <nav id="series-nav" class="pagy series-nav" aria-label="Pages (nav)"><a role="link"
+    aria-disabled="true" aria-label="Previous">&lt;</a><a role="link" aria-disabled="true"
+    aria-current="page">1</a><a rel="next">2</a><a>3</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: >-
+    ?page=[2, 3, ["bird", "Rocky", "2023-05-14", 49], ["cat", "Coco", "2020-02-20",
+    25]]&limit=4
+- "#records": "@ids: 15,48,4,25"
+- "#series-nav": >-
+    <nav id="series-nav" class="pagy series-nav" aria-label="Pages (nav)"><a rel="prev"
+    aria-label="Previous">&lt;</a><a rel="prev">1</a><a role="link" aria-disabled="true"
+    aria-current="page">2</a><a rel="next">3</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[3, 3, ["cat", "Coco", "2020-02-20", 25], nil]&limit=4
+- "#records": "@ids: 2,18,13,34"
+- "#series-nav": >-
+    <nav id="series-nav" class="pagy series-nav" aria-label="Pages (nav)"><a rel="prev"
+    aria-label="Previous">&lt;</a><a>1</a><a rel="prev">2</a><a role="link" aria-disabled="true"
+    aria-current="page">3</a><a rel="next">4</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[4, 4, ["cat", "Lili", "2019-03-18", 34], nil]&limit=4
+- "#records": "@ids: 27,45,8,9"
+- "#series-nav": >-
+    <nav id="series-nav" class="pagy series-nav" aria-label="Pages (nav)"><a rel="prev"
+    aria-label="Previous">&lt;</a><a>1</a><a>2</a><a rel="prev">3</a><a role="link"
+    aria-disabled="true" aria-current="page">4</a><a rel="next">5</a><a rel="next"
+    aria-label="Next">&gt;</a></nav>
+- :location: ?page=[5, 5, ["cat", "Riki", "2018-09-14", 9], nil]&limit=4
+- "#records": "@ids: 35,39,50,44"
+- "#series-nav": >-
+    <nav id="series-nav" class="pagy series-nav" aria-label="Pages (nav)"><a rel="prev"
+    aria-label="Previous">&lt;</a><a>1</a><a>2</a><a>3</a><a rel="prev">4</a><a
+    role="link" aria-disabled="true" aria-current="page">5</a><a rel="next">6</a><a
+    rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[6, 6, ["dog", "Denis", "2022-06-19", 44], nil]&limit=4
+- "#records": "@ids: 3,40,46,1"
+- "#series-nav": >-
+    <nav id="series-nav" class="pagy series-nav" aria-label="Pages (nav)"><a rel="prev"
+    aria-label="Previous">&lt;</a><a>1</a><a>2</a><a>3</a><a>4</a><a rel="prev">5</a><a
+    role="link" aria-disabled="true" aria-current="page">6</a><a rel="next">7</a><a
+    rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[7, 7, ["dog", "Luna", "2018-03-10", 1], nil]&limit=4
+- "#records": "@ids: 28,19,22,16"
+- "#series-nav": >-
+    <nav id="series-nav" class="pagy series-nav" aria-label="Pages (nav)"><a rel="prev"
+    aria-label="Previous">&lt;</a><a>1</a><a role="separator" aria-disabled="true">…</a><a>4</a><a>5</a><a
+    rel="prev">6</a><a role="link" aria-disabled="true" aria-current="page">7</a><a
+    rel="next">8</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[8, 8, ["dog", "Vyvy", "2018-05-16", 16], nil]&limit=4
+- "#records": "@ids: 26,7,32,36"
+- "#series-nav": >-
+    <nav id="series-nav" class="pagy series-nav" aria-label="Pages (nav)"><a rel="prev"
+    aria-label="Previous">&lt;</a><a>1</a><a role="separator" aria-disabled="true">…</a><a>5</a><a>6</a><a
+    rel="prev">7</a><a role="link" aria-disabled="true" aria-current="page">8</a><a
+    rel="next">9</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[9, 9, ["horse", "Anto", "2022-08-18", 36], nil]&limit=4
+- "#records": "@ids: 47,23,30,6"
+- "#series-nav": >-
+    <nav id="series-nav" class="pagy series-nav" aria-label="Pages (nav)"><a rel="prev"
+    aria-label="Previous">&lt;</a><a>1</a><a role="separator" aria-disabled="true">…</a><a>6</a><a>7</a><a
+    rel="prev">8</a><a role="link" aria-disabled="true" aria-current="page">9</a><a
+    rel="next">10</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[10, 10, ["horse", "Neki", "2021-07-20", 6], nil]&limit=4
+- "#records": "@ids: 33,17,10,14"
+- "#series-nav": >-
+    <nav id="series-nav" class="pagy series-nav" aria-label="Pages (nav)"><a rel="prev"
+    aria-label="Previous">&lt;</a><a>1</a><a role="separator" aria-disabled="true">…</a><a>7</a><a>8</a><a
+    rel="prev">9</a><a role="link" aria-disabled="true" aria-current="page">10</a><a
+    rel="next">11</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[11, 11, ["pig", "Beli", "2020-07-26", 14], nil]&limit=4
+- "#records": "@ids: 11,24,29,42"
+- "#series-nav": >-
+    <nav id="series-nav" class="pagy series-nav" aria-label="Pages (nav)"><a rel="prev"
+    aria-label="Previous">&lt;</a><a>1</a><a role="separator" aria-disabled="true">…</a><a>8</a><a>9</a><a
+    rel="prev">10</a><a role="link" aria-disabled="true" aria-current="page">11</a><a
+    rel="next">12</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[12, 12, ["pig", "Lopi", "2019-06-19", 42], nil]&limit=4
+- "#records": "@ids: 37,5,20,31"
+- "#series-nav": >-
+    <nav id="series-nav" class="pagy series-nav" aria-label="Pages (nav)"><a rel="prev"
+    aria-label="Previous">&lt;</a><a>1</a><a role="separator" aria-disabled="true">…</a><a>9</a><a>10</a><a
+    rel="prev">11</a><a role="link" aria-disabled="true" aria-current="page">12</a><a
+    rel="next">13</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[13, 13, ["rabbit", "Susi", "2023-05-18", 31], nil]&limit=4
+- "#records": "@ids: 41,43"
+- "#series-nav": >-
+    <nav id="series-nav" class="pagy series-nav" aria-label="Pages (nav)"><a rel="prev"
+    aria-label="Previous">&lt;</a><a>1</a><a role="separator" aria-disabled="true">…</a><a>9</a><a>10</a><a>11</a><a
+    rel="prev">12</a><a role="link" aria-disabled="true" aria-current="page">13</a><a
+    role="link" aria-disabled="true" aria-label="Next">&gt;</a></nav>
+- :location: >-
+    ?page=[10, 13, ["horse", "Neki", "2021-07-20", 6], ["pig", "Beli", "2020-07-26",
+    14]]&limit=4
+- "#records": "@ids: 33,17,10,14"
+- "#series-nav": >-
+    <nav id="series-nav" class="pagy series-nav" aria-label="Pages (nav)"><a rel="prev"
+    aria-label="Previous">&lt;</a><a>1</a><a role="separator" aria-disabled="true">…</a><a
+    rel="prev">9</a><a role="link" aria-disabled="true" aria-current="page">10</a><a
+    rel="next">11</a><a>12</a><a>13</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[13, 13, ["rabbit", "Susi", "2023-05-18", 31], nil]&limit=4
+- "#records": "@ids: 41,43"
+- "#series-nav": >-
+    <nav id="series-nav" class="pagy series-nav" aria-label="Pages (nav)"><a rel="prev"
+    aria-label="Previous">&lt;</a><a>1</a><a role="separator" aria-disabled="true">…</a><a>9</a><a>10</a><a>11</a><a
+    rel="prev">12</a><a role="link" aria-disabled="true" aria-current="page">13</a><a
+    role="link" aria-disabled="true" aria-label="Next">&gt;</a></nav>
+- :location: >-
+    ?page=[12, 13, ["pig", "Lopi", "2019-06-19", 42], ["rabbit", "Susi", "2023-05-18",
+    31]]&limit=4
+- "#records": "@ids: 37,5,20,31"
+- "#series-nav": >-
+    <nav id="series-nav" class="pagy series-nav" aria-label="Pages (nav)"><a rel="prev"
+    aria-label="Previous">&lt;</a><a>1</a><a role="separator" aria-disabled="true">…</a><a>9</a><a>10</a><a
+    rel="prev">11</a><a role="link" aria-disabled="true" aria-current="page">12</a><a
+    rel="next">13</a><a rel="next" aria-label="Next">&gt;</a></nav>
+L9 5a3903eee8a4ba64:
+- "#records": "@ids: 38,21,12,49"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a role="link" aria-disabled="true" aria-label="Previous">&lt;</a><a
+    role="link" aria-current="page" aria-disabled="true">1</a><a>2</a><a rel="next"
+    aria-label="Next">&gt;</a></nav>
+- :location: ?page=[2, 2, ["bird", "Rocky", "2023-05-14", 49], nil]&limit=4
+- "#records": "@ids: 15,48,4,25"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="link" aria-current="page" aria-disabled="true">2</a><a>3</a><a rel="next"
+    aria-label="Next">&gt;</a></nav>
+- :location: ?page=[1, 3, nil, ["bird", "Rocky", "2023-05-14", 49]]&limit=4
+- "#records": "@ids: 38,21,12,49"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a role="link" aria-disabled="true" aria-label="Previous">&lt;</a><a
+    role="link" aria-current="page" aria-disabled="true">1</a><a>2</a><a>3</a><a
+    rel="next" aria-label="Next">&gt;</a></nav>
+- :location: >-
+    ?page=[2, 3, ["bird", "Rocky", "2023-05-14", 49], ["cat", "Coco", "2020-02-20",
+    25]]&limit=4
+- "#records": "@ids: 15,48,4,25"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="link" aria-current="page" aria-disabled="true">2</a><a>3</a><a rel="next"
+    aria-label="Next">&gt;</a></nav>
+- :location: ?page=[3, 3, ["cat", "Coco", "2020-02-20", 25], nil]&limit=4
+- "#records": "@ids: 2,18,13,34"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a>2</a><a
+    role="link" aria-current="page" aria-disabled="true">3</a><a>4</a><a rel="next"
+    aria-label="Next">&gt;</a></nav>
+- :location: ?page=[4, 4, ["cat", "Lili", "2019-03-18", 34], nil]&limit=4
+- "#records": "@ids: 27,45,8,9"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a>2</a><a>3</a><a
+    role="link" aria-current="page" aria-disabled="true">4</a><a>5</a><a rel="next"
+    aria-label="Next">&gt;</a></nav>
+- :location: ?page=[5, 5, ["cat", "Riki", "2018-09-14", 9], nil]&limit=4
+- "#records": "@ids: 35,39,50,44"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a>2</a><a>3</a><a>4</a><a
+    role="link" aria-current="page" aria-disabled="true">5</a><a>6</a><a rel="next"
+    aria-label="Next">&gt;</a></nav>
+- :location: ?page=[6, 6, ["dog", "Denis", "2022-06-19", 44], nil]&limit=4
+- "#records": "@ids: 3,40,46,1"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a>2</a><a>3</a><a>4</a><a>5</a><a
+    role="link" aria-current="page" aria-disabled="true">6</a><a>7</a><a rel="next"
+    aria-label="Next">&gt;</a></nav>
+- :location: ?page=[7, 7, ["dog", "Luna", "2018-03-10", 1], nil]&limit=4
+- "#records": "@ids: 28,19,22,16"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>4</a><a>5</a><a>6</a><a role="link"
+    aria-current="page" aria-disabled="true">7</a><a>8</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[8, 8, ["dog", "Vyvy", "2018-05-16", 16], nil]&limit=4
+- "#records": "@ids: 26,7,32,36"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>5</a><a>6</a><a>7</a><a role="link"
+    aria-current="page" aria-disabled="true">8</a><a>9</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[9, 9, ["horse", "Anto", "2022-08-18", 36], nil]&limit=4
+- "#records": "@ids: 47,23,30,6"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>6</a><a>7</a><a>8</a><a role="link"
+    aria-current="page" aria-disabled="true">9</a><a>10</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[10, 10, ["horse", "Neki", "2021-07-20", 6], nil]&limit=4
+- "#records": "@ids: 33,17,10,14"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>7</a><a>8</a><a>9</a><a role="link"
+    aria-current="page" aria-disabled="true">10</a><a>11</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[11, 11, ["pig", "Beli", "2020-07-26", 14], nil]&limit=4
+- "#records": "@ids: 11,24,29,42"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>8</a><a>9</a><a>10</a><a role="link"
+    aria-current="page" aria-disabled="true">11</a><a>12</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[12, 12, ["pig", "Lopi", "2019-06-19", 42], nil]&limit=4
+- "#records": "@ids: 37,5,20,31"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>9</a><a>10</a><a>11</a><a role="link"
+    aria-current="page" aria-disabled="true">12</a><a>13</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[13, 13, ["rabbit", "Susi", "2023-05-18", 31], nil]&limit=4
+- "#records": "@ids: 41,43"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>9</a><a>10</a><a>11</a><a>12</a><a
+    role="link" aria-current="page" aria-disabled="true">13</a><a role="link" aria-disabled="true"
+    aria-label="Next">&gt;</a></nav>
+- :location: >-
+    ?page=[10, 13, ["horse", "Neki", "2021-07-20", 6], ["pig", "Beli", "2020-07-26",
+    14]]&limit=4
+- "#records": "@ids: 33,17,10,14"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>9</a><a role="link" aria-current="page"
+    aria-disabled="true">10</a><a>11</a><a>12</a><a>13</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[13, 13, ["rabbit", "Susi", "2023-05-18", 31], nil]&limit=4
+- "#records": "@ids: 41,43"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>9</a><a>10</a><a>11</a><a>12</a><a
+    role="link" aria-current="page" aria-disabled="true">13</a><a role="link" aria-disabled="true"
+    aria-label="Next">&gt;</a></nav>
+- :location: >-
+    ?page=[12, 13, ["pig", "Lopi", "2019-06-19", 42], ["rabbit", "Susi", "2023-05-18",
+    31]]&limit=4
+- "#records": "@ids: 37,5,20,31"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>9</a><a>10</a><a>11</a><a role="link"
+    aria-current="page" aria-disabled="true">12</a><a>13</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- "#records": "@ids: 37,5,20,31"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>9</a><a>10</a><a>11</a><a role="link"
+    aria-current="page" aria-disabled="true">12</a><a>13</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[13, 13, ["rabbit", "Susi", "2023-05-18", 31], nil]&limit=4
+- "#records": "@ids: 41,43"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>9</a><a>10</a><a>11</a><a>12</a><a
+    role="link" aria-current="page" aria-disabled="true">13</a><a role="link" aria-disabled="true"
+    aria-label="Next">&gt;</a></nav>
+- :location: ?page=[1, 13, nil, ["bird", "Rocky", "2023-05-14", 49]]&limit=4
+- "#records": "@ids: 38,21,12,49"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a role="link" aria-disabled="true" aria-label="Previous">&lt;</a><a
+    role="link" aria-current="page" aria-disabled="true">1</a><a>2</a><a>3</a><a>4</a><a>5</a><a
+    role="separator" aria-disabled="true">…</a><a>13</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: >-
+    ?page=[2, 13, ["bird", "Rocky", "2023-05-14", 49], ["cat", "Coco", "2020-02-20",
+    25]]&limit=4
+- "#records": "@ids: 15,48,4,25"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="link" aria-current="page" aria-disabled="true">2</a><a>3</a><a>4</a><a>5</a><a
+    role="separator" aria-disabled="true">…</a><a>13</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: >-
+    ?page=[3, 13, ["cat", "Coco", "2020-02-20", 25], ["cat", "Lili", "2019-03-18",
+    34]]&limit=4
+- "#records": "@ids: 2,18,13,34"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a>2</a><a
+    role="link" aria-current="page" aria-disabled="true">3</a><a>4</a><a>5</a><a
+    role="separator" aria-disabled="true">…</a><a>13</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: >-
+    ?page=[4, 13, ["cat", "Lili", "2019-03-18", 34], ["cat", "Riki", "2018-09-14",
+    9]]&limit=4
+- "#records": "@ids: 27,45,8,9"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a>2</a><a>3</a><a
+    role="link" aria-current="page" aria-disabled="true">4</a><a>5</a><a role="separator"
+    aria-disabled="true">…</a><a>13</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: >-
+    ?page=[5, 13, ["cat", "Riki", "2018-09-14", 9], ["dog", "Denis", "2022-06-19",
+    44]]&limit=4
+- "#records": "@ids: 35,39,50,44"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>4</a><a role="link" aria-current="page"
+    aria-disabled="true">5</a><a>6</a><a role="separator" aria-disabled="true">…</a><a>13</a><a
+    rel="next" aria-label="Next">&gt;</a></nav>
+- :location: >-
+    ?page=[6, 13, ["dog", "Denis", "2022-06-19", 44], ["dog", "Luna", "2018-03-10",
+    1]]&limit=4
+- "#records": "@ids: 3,40,46,1"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>5</a><a role="link" aria-current="page"
+    aria-disabled="true">6</a><a>7</a><a role="separator" aria-disabled="true">…</a><a>13</a><a
+    rel="next" aria-label="Next">&gt;</a></nav>
+- :location: >-
+    ?page=[7, 13, ["dog", "Luna", "2018-03-10", 1], ["dog", "Vyvy", "2018-05-16",
+    16]]&limit=4
+- "#records": "@ids: 28,19,22,16"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>6</a><a role="link" aria-current="page"
+    aria-disabled="true">7</a><a>8</a><a role="separator" aria-disabled="true">…</a><a>13</a><a
+    rel="next" aria-label="Next">&gt;</a></nav>
+- :location: >-
+    ?page=[8, 13, ["dog", "Vyvy", "2018-05-16", 16], ["horse", "Anto", "2022-08-18",
+    36]]&limit=4
+- "#records": "@ids: 26,7,32,36"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>7</a><a role="link" aria-current="page"
+    aria-disabled="true">8</a><a>9</a><a role="separator" aria-disabled="true">…</a><a>13</a><a
+    rel="next" aria-label="Next">&gt;</a></nav>
+- :location: >-
+    ?page=[9, 13, ["horse", "Anto", "2022-08-18", 36], ["horse", "Neki", "2021-07-20",
+    6]]&limit=4
+- "#records": "@ids: 47,23,30,6"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>8</a><a role="link" aria-current="page"
+    aria-disabled="true">9</a><a>10</a><a role="separator" aria-disabled="true">…</a><a>13</a><a
+    rel="next" aria-label="Next">&gt;</a></nav>
+- :location: >-
+    ?page=[10, 13, ["horse", "Neki", "2021-07-20", 6], ["pig", "Beli", "2020-07-26",
+    14]]&limit=4
+- "#records": "@ids: 33,17,10,14"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>9</a><a role="link" aria-current="page"
+    aria-disabled="true">10</a><a>11</a><a>12</a><a>13</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: >-
+    ?page=[11, 13, ["pig", "Beli", "2020-07-26", 14], ["pig", "Lopi", "2019-06-19",
+    42]]&limit=4
+- "#records": "@ids: 11,24,29,42"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>9</a><a>10</a><a role="link" aria-current="page"
+    aria-disabled="true">11</a><a>12</a><a>13</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: >-
+    ?page=[12, 13, ["pig", "Lopi", "2019-06-19", 42], ["rabbit", "Susi", "2023-05-18",
+    31]]&limit=4
+- "#records": "@ids: 37,5,20,31"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>9</a><a>10</a><a>11</a><a role="link"
+    aria-current="page" aria-disabled="true">12</a><a>13</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[13, 13, ["rabbit", "Susi", "2023-05-18", 31], nil]&limit=4
+- "#records": "@ids: 41,43"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>9</a><a>10</a><a>11</a><a>12</a><a
+    role="link" aria-current="page" aria-disabled="true">13</a><a role="link" aria-disabled="true"
+    aria-label="Next">&gt;</a></nav>
+- :location: >-
+    ?page=[10, 13, ["horse", "Neki", "2021-07-20", 6], ["pig", "Beli", "2020-07-26",
+    14]]&limit=4
+- "#records": "@ids: 33,17,10,14"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>9</a><a role="link" aria-current="page"
+    aria-disabled="true">10</a><a>11</a><a>12</a><a>13</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: ?page=[13, 13, ["rabbit", "Susi", "2023-05-18", 31], nil]&limit=4
+- "#records": "@ids: 41,43"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>9</a><a>10</a><a>11</a><a>12</a><a
+    role="link" aria-current="page" aria-disabled="true">13</a><a role="link" aria-disabled="true"
+    aria-label="Next">&gt;</a></nav>
+- :location: >-
+    ?page=[12, 13, ["pig", "Lopi", "2019-06-19", 42], ["rabbit", "Susi", "2023-05-18",
+    31]]&limit=4
+- "#records": "@ids: 37,5,20,31"
+- "#series-nav-js-responsive": >-
+    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
+    (nav_js_responsive)"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
+    role="separator" aria-disabled="true">…</a><a>9</a><a>10</a><a>11</a><a role="link"
+    aria-current="page" aria-disabled="true">12</a><a>13</a><a rel="next" aria-label="Next">&gt;</a></nav>

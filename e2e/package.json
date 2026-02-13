@@ -1,6 +1,0 @@
-{
-  "name": "pagy.e2e",
-  "description": "Pagy E2E Testing",
-  "private": true,
-  "type": "module"
-}

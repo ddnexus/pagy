@@ -1,0 +1,60 @@
+name: Unit Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['**']
+
+jobs:
+  skip_check:
+    name: Skip Check
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@master
+        with:
+          concurrent_skipping: 'never'
+          skip_after_successful_duplicate: 'true'
+          paths: '[
+            ".github/workflows/unit-test.yml",
+            ".simplecov",
+            ".rubocop",
+            "gem/**",
+            "Gemfile.lock",
+            "Rakefile",
+            "test/**",
+            "tasks/**"
+            ]'
+          paths_ignore: '[
+            "gem/config/**",
+            "gem/locales/**",
+            "!gem/locales/en.yml",
+            "**/*.md"
+            ]'
+          do_not_skip: '["workflow_dispatch"]'
+
+  ruby_test:
+    needs: skip_check
+    if: ${{ needs.skip_check.outputs.should_skip != 'true' }}
+    name: Ruby ${{ matrix.ruby-version }} Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: ['3.2', '3.3', '3.4', '4.0']
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v6.0.1
+      - name: Set up ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+      - name: Check Rubocop compliance
+        run: bundle exec rubocop --format github
+      - name: Check Tests
+        run: ${{ matrix.ruby-version == '4.0' && 'COVERAGE=true ' || '' }}bundle exec rake test:unit # fail for coverage < 100%

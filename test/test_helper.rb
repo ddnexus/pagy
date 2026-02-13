@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
+require 'simplecov' if ENV['COVERAGE']
+
 $LOAD_PATH.unshift __dir__
 $LOAD_PATH.unshift File.expand_path('../gem/lib', __dir__)
-
-require 'simplecov' if ENV['CI'] || ENV['COVERAGE']
 
 require 'pagy'
 
@@ -13,7 +13,4 @@ Minitest.load :holdify
 require 'minitest/autorun'
 require 'minitest/mock'
 
-require 'helpers/minitest_backtraces'
-require 'helpers/url_assertions'
-require 'helpers/models'
-require 'helpers/test_case'
+require_relative 'helpers/minitest_backtraces'
