@@ -65,7 +65,7 @@ categories:
 !!!
 
 ```erb
-<%== @pagy.series_nav_js(**options %>  <%# default pagy style %>
+<%== @pagy.series_nav_js(**options) %>  <%# default pagy style %>
 <%== @pagy.series_nav_js(:bootstrap, **options) %>
 <%== @pagy.series_nav_js(:bulma, **options) %>
 ```
