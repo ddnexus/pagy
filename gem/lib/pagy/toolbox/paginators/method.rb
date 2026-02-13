@@ -24,7 +24,7 @@ class Pagy
                arguments = if paginator == :calendar
                              [self, collection, options]
                            else
-                             [collection, options = Pagy.options.merge(options)]
+                             [collection, options = Pagy::OPTIONS.merge(options)]
                            end
 
                options[:root_key]  = 'page' if options[:jsonapi] # enforce 'page' root_key for JSON:API
