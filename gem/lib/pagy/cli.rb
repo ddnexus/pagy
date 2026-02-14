@@ -42,9 +42,10 @@ class Pagy
         end
 
         opts.separator "\nRackup options"
-        opts.on('-e', '--env ENV', 'Environment') { |v| options[:env] = v }
-        opts.on('-o', '--host HOST', 'Host')      { |v| options[:host] = v }
-        opts.on('-p', '--port PORT', 'Port')      { |v| options[:port] = v }
+        opts.on('-e', '--env ENV', 'Environment')     { |v| options[:env] = v }
+        opts.on('-o', '--host HOST', 'Host')          { |v| options[:host] = v }
+        opts.on('-p', '--port PORT', 'Port')          { |v| options[:port] = v }
+        opts.on('-t', '--threads THREADS', 'Threads') { |v| options[:threads] = v }
 
         opts.separator "\nOther options"
         opts.on('-q', '--quiet', 'Quiet mode for development') { options[:quiet] = true }
@@ -115,6 +116,7 @@ class Pagy
 
       gem_dir = File.expand_path('../..', __dir__)
       rackup  = "rackup -I #{gem_dir}/lib -r pagy -o #{options[:host]} -p #{options[:port]} -E #{options[:env]} #{file}"
+      rackup << " -O Threads=#{options[:threads]}" if options[:threads]
       rackup << ' -q' if options[:quiet]
 
       exec(rackup)
