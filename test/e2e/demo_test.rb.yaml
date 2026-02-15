@@ -1,5 +1,6 @@
 ---
 L8 6c679dad8430eaff:
+- :location: pagy
 - "#records": '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20'
 - "#series-nav": >-
     <nav id="series-nav" class="pagy series-nav" aria-label="Pages series_nav"><a
@@ -36,6 +37,7 @@ L8 6c679dad8430eaff:
     rel="prev" aria-label="Previous">&lt;</a><a>1</a><a role="separator" aria-disabled="true">…</a><a>46</a><a>47</a><a
     rel="prev">48</a><a role="link" aria-disabled="true" aria-current="page">49</a><a
     rel="next">50</a><a rel="next" aria-label="Next">&gt;</a></nav>
+- :location: bootstrap
 - "#records": '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20'
 - "#series-nav": >-
     <nav id="series-nav" class="pagy-bootstrap series-nav" aria-label="Pages series_nav"><ul
@@ -99,6 +101,7 @@ L8 6c679dad8430eaff:
     active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">49</a></li><li
     class="page-item"><a class="page-link" rel="next">50</a></li><li class="page-item
     next"><a class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- :location: bulma
 - "#records": '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20'
 - "#series-nav": >-
     <nav id="series-nav" class="pagy-bulma series-nav pagination is-small" aria-label="Pages
@@ -156,11 +159,12 @@ L8 6c679dad8430eaff:
     class="pagination-link" rel="next">50</a></li><li><a class="pagination-next"
     rel="next" aria-label="Next">&gt;</a></li></ul></nav>
 L9 74eae9326c76a9bc:
+- :location: pagy
 - "#records": '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20'
 - "#series-nav-js-responsive": >-
     <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
     series_nav_js_responsive"><a role="link" aria-disabled="true" aria-label="Previous">&lt;</a><a
-    role="link" aria-current="page" aria-disabled="true">1</a><a>2</a><a>3</a><a>4</a><a>5</a><a
+    role="link" aria-current="page" aria-disabled="true">1</a><a>2</a><a>3</a><a>4</a><a>5</a><a>6</a><a>7</a><a>8</a><a>9</a><a
     role="separator" aria-disabled="true">…</a><a>50</a><a rel="next" aria-label="Next">&gt;</a></nav>
 - :location: pagy?page=2&limit=20
 - "#records": '21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40'
@@ -193,14 +197,6 @@ L9 74eae9326c76a9bc:
     series_nav_js_responsive"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
     role="separator" aria-disabled="true">…</a><a>46</a><a>47</a><a>48</a><a role="link"
     aria-current="page" aria-disabled="true">49</a><a>50</a><a rel="next" aria-label="Next">&gt;</a></nav>
-- "#records": >-
-    961,962,963,964,965,966,967,968,969,970,971,972,973,974,975,976,977,978,979,980
-- "#series-nav-js-responsive": >-
-    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
-    series_nav_js_responsive"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a
-    role="separator" aria-disabled="true">…</a><a>44</a><a>45</a><a>46</a><a>47</a><a>48</a><a
-    role="link" aria-current="page" aria-disabled="true">49</a><a>50</a><a rel="next"
-    aria-label="Next">&gt;</a></nav>
 - :location: pagy?page=50&limit=20
 - "#records": >-
     981,982,983,984,985,986,987,988,989,990,991,992,993,994,995,996,997,998,999,1000
@@ -237,6 +233,7 @@ L9 74eae9326c76a9bc:
     role="separator" aria-disabled="true">…</a><a>44</a><a>45</a><a>46</a><a>47</a><a>48</a><a
     role="link" aria-current="page" aria-disabled="true">49</a><a>50</a><a rel="next"
     aria-label="Next">&gt;</a></nav>
+- :location: bootstrap
 - "#records": '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20'
 - "#series-nav-js-responsive": >-
     <nav id="series-nav-js-responsive" class="pagy-rjs pagy-bootstrap series-nav-js"
@@ -246,6 +243,8 @@ L9 74eae9326c76a9bc:
     class="page-link" aria-current="page" aria-disabled="true">1</a></li><li class="page-item"><a
     class="page-link">2</a></li><li class="page-item"><a class="page-link">3</a></li><li
     class="page-item"><a class="page-link">4</a></li><li class="page-item"><a class="page-link">5</a></li><li
+    class="page-item"><a class="page-link">6</a></li><li class="page-item"><a class="page-link">7</a></li><li
+    class="page-item"><a class="page-link">8</a></li><li class="page-item"><a class="page-link">9</a></li><li
     class="page-item gap disabled"><a role="link" class="page-link" aria-disabled="true">…</a></li><li
     class="page-item"><a class="page-link">50</a></li><li class="page-item next"><a
     class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
@@ -303,20 +302,6 @@ L9 74eae9326c76a9bc:
     role="link" class="page-link" aria-current="page" aria-disabled="true">49</a></li><li
     class="page-item"><a class="page-link">50</a></li><li class="page-item next"><a
     class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
-- "#records": >-
-    961,962,963,964,965,966,967,968,969,970,971,972,973,974,975,976,977,978,979,980
-- "#series-nav-js-responsive": >-
-    <nav id="series-nav-js-responsive" class="pagy-rjs pagy-bootstrap series-nav-js"
-    aria-label="Pages series_nav_js_responsive"><ul class="pagination pagination-sm"><li
-    class="page-item previous"><a class="page-link" rel="prev" aria-label="Previous">&lt;</a></li><li
-    class="page-item"><a class="page-link">1</a></li><li class="page-item gap disabled"><a
-    role="link" class="page-link" aria-disabled="true">…</a></li><li class="page-item"><a
-    class="page-link">44</a></li><li class="page-item"><a class="page-link">45</a></li><li
-    class="page-item"><a class="page-link">46</a></li><li class="page-item"><a class="page-link">47</a></li><li
-    class="page-item"><a class="page-link">48</a></li><li class="page-item active"><a
-    role="link" class="page-link" aria-current="page" aria-disabled="true">49</a></li><li
-    class="page-item"><a class="page-link">50</a></li><li class="page-item next"><a
-    class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
 - :location: bootstrap?page=50&limit=20
 - "#records": >-
     981,982,983,984,985,986,987,988,989,990,991,992,993,994,995,996,997,998,999,1000
@@ -377,6 +362,7 @@ L9 74eae9326c76a9bc:
     role="link" class="page-link" aria-current="page" aria-disabled="true">49</a></li><li
     class="page-item"><a class="page-link">50</a></li><li class="page-item next"><a
     class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+- :location: bulma
 - "#records": '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20'
 - "#series-nav-js-responsive": >-
     <nav id="series-nav-js-responsive" class="pagy-rjs pagy-bulma series-nav-js
@@ -384,7 +370,9 @@ L9 74eae9326c76a9bc:
     role="link" class="pagination-previous" disabled="" aria-disabled="true" aria-label="Previous">&lt;</a></li><li><a
     role="link" class="pagination-link is-current" aria-current="page" aria-disabled="true">1</a></li><li><a
     class="pagination-link">2</a></li><li><a class="pagination-link">3</a></li><li><a
-    class="pagination-link">4</a></li><li><a class="pagination-link">5</a></li><li><span
+    class="pagination-link">4</a></li><li><a class="pagination-link">5</a></li><li><a
+    class="pagination-link">6</a></li><li><a class="pagination-link">7</a></li><li><a
+    class="pagination-link">8</a></li><li><a class="pagination-link">9</a></li><li><span
     class="pagination-ellipsis">…</span></li><li><a class="pagination-link">50</a></li><li><a
     class="pagination-next" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
 - :location: bulma?page=2&limit=20
@@ -429,18 +417,6 @@ L9 74eae9326c76a9bc:
     pagination is-small" aria-label="Pages series_nav_js_responsive"><ul class="pagination-list"><li><a
     class="pagination-previous" rel="prev" aria-label="Previous">&lt;</a></li><li><a
     class="pagination-link">1</a></li><li><span class="pagination-ellipsis">…</span></li><li><a
-    class="pagination-link">46</a></li><li><a class="pagination-link">47</a></li><li><a
-    class="pagination-link">48</a></li><li><a role="link" class="pagination-link
-    is-current" aria-current="page" aria-disabled="true">49</a></li><li><a class="pagination-link">50</a></li><li><a
-    class="pagination-next" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
-- "#records": >-
-    961,962,963,964,965,966,967,968,969,970,971,972,973,974,975,976,977,978,979,980
-- "#series-nav-js-responsive": >-
-    <nav id="series-nav-js-responsive" class="pagy-rjs pagy-bulma series-nav-js
-    pagination is-small" aria-label="Pages series_nav_js_responsive"><ul class="pagination-list"><li><a
-    class="pagination-previous" rel="prev" aria-label="Previous">&lt;</a></li><li><a
-    class="pagination-link">1</a></li><li><span class="pagination-ellipsis">…</span></li><li><a
-    class="pagination-link">44</a></li><li><a class="pagination-link">45</a></li><li><a
     class="pagination-link">46</a></li><li><a class="pagination-link">47</a></li><li><a
     class="pagination-link">48</a></li><li><a role="link" class="pagination-link
     is-current" aria-current="page" aria-disabled="true">49</a></li><li><a class="pagination-link">50</a></li><li><a
@@ -754,6 +730,11 @@ L12 4646c77a6b6c2b5f:
     type="number" min="1" max="100" value="18" style="padding: 0; text-align: center;
     width: 3rem;"><a style="display: none;">#</a> items per page</label></span>
 - :location: pagy?page=3&limit=5
+- "#records": '11,12,13,14,15'
+- "#limit-tag-js": >-
+    <span id="limit-tag-js" class="pagy limit-tag-js"><label>Show <input name="limit"
+    type="number" min="1" max="100" value="5" style="padding: 0; text-align: center;
+    width: 2rem;"><a style="display: none;">#</a> items per page</label></span>
 - :location: pagy?page=36
 - "#records": >-
     701,702,703,704,705,706,707,708,709,710,711,712,713,714,715,716,717,718,719,720
@@ -780,6 +761,11 @@ L12 4646c77a6b6c2b5f:
     type="number" min="1" max="100" value="18" style="padding: 0; text-align: center;
     width: 3rem;"><a style="display: none;">#</a> items per page</label></span>
 - :location: pagy?page=3&limit=5
+- "#records": '11,12,13,14,15'
+- "#limit-tag-js": >-
+    <span id="limit-tag-js" class="pagy limit-tag-js"><label>Show <input name="limit"
+    type="number" min="1" max="100" value="5" style="padding: 0; text-align: center;
+    width: 2rem;"><a style="display: none;">#</a> items per page</label></span>
 - :location: pagy?page=50
 - "#records": >-
     981,982,983,984,985,986,987,988,989,990,991,992,993,994,995,996,997,998,999,1000
@@ -806,3 +792,8 @@ L12 4646c77a6b6c2b5f:
     type="number" min="1" max="100" value="18" style="padding: 0; text-align: center;
     width: 3rem;"><a style="display: none;">#</a> items per page</label></span>
 - :location: pagy?page=3&limit=5
+- "#records": '11,12,13,14,15'
+- "#limit-tag-js": >-
+    <span id="limit-tag-js" class="pagy limit-tag-js"><label>Show <input name="limit"
+    type="number" min="1" max="100" value="5" style="padding: 0; text-align: center;
+    width: 2rem;"><a style="display: none;">#</a> items per page</label></span>

@@ -1,5 +1,6 @@
 ---
-L15 768c7509932e0c36:
+L13 3256f2992ae95090:
+- :location: "?skip_counts=true&day_page=2&year_page=2&month_page=3"
 - "#records": 'Event #86 - 2022-03-02 23:35:41 UTC'
 - "#year-nav": >-
     <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
@@ -44,6 +45,7 @@ L15 768c7509932e0c36:
     class="page-item"><a class="page-link">30</a></li><li class="page-item"><a class="page-link">31</a></li><li
     class="page-item next"><a class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
 - "#pagy-info": <span id="pagy-info" class="pagy info">Displaying 1 item</span>
+- :location: "?skip_counts=false&day_page=2&year_page=2&month_page=3"
 - "#records": 'Event #86 - 2022-03-02 23:35:41 UTC'
 - "#year-nav": >-
     <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
@@ -110,7 +112,8 @@ L15 768c7509932e0c36:
     class="page-item next"><a title="No items found" class="page-link empty-page"
     rel="next" aria-label="Next">&gt;</a></li></ul></nav>
 - "#pagy-info": <span id="pagy-info" class="pagy info">Displaying 1 item</span>
-L20 768c7509932e0c36:
+L16 f79d7d09477749bb:
+- :location: "?skip_counts=true&day_page=2&year_page=2&month_page=3"
 - "#records": 'Event #86 - 2022-03-02 23:35:41 UTC'
 - "#year-nav": >-
     <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
@@ -155,6 +158,7 @@ L20 768c7509932e0c36:
     class="page-item"><a class="page-link">30</a></li><li class="page-item"><a class="page-link">31</a></li><li
     class="page-item next"><a class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
 - "#pagy-info": <span id="pagy-info" class="pagy info">Displaying 1 item</span>
+- :location: "?skip_counts=false&day_page=2&year_page=2&month_page=3"
 - "#records": 'Event #86 - 2022-03-02 23:35:41 UTC'
 - "#year-nav": >-
     <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
@@ -221,7 +225,8 @@ L20 768c7509932e0c36:
     class="page-item next"><a title="No items found" class="page-link empty-page"
     rel="next" aria-label="Next">&gt;</a></li></ul></nav>
 - "#pagy-info": <span id="pagy-info" class="pagy info">Displaying 1 item</span>
-L24 768c7509932e0c36:
+L17 82e87e482e199ac8:
+- :location: "?skip_counts=true&year_page=2&month_page=4"
 - "#records": 'Event #106 - 2022-04-01 15:35:47 UTC'
 - "#year-nav": >-
     <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
@@ -266,6 +271,7 @@ L24 768c7509932e0c36:
     class="page-item"><a class="page-link">30</a></li><li class="page-item next"><a
     class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
 - "#pagy-info": <span id="pagy-info" class="pagy info">Displaying 1 item</span>
+- :location: "?skip_counts=false&year_page=2&month_page=4"
 - "#records": 'Event #106 - 2022-04-01 15:35:47 UTC'
 - "#year-nav": >-
     <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
@@ -330,7 +336,8 @@ L24 768c7509932e0c36:
     title="No items found" class="page-link empty-page">30</a></li><li class="page-item
     next"><a title="Displaying 1 item" class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
 - "#pagy-info": <span id="pagy-info" class="pagy info">Displaying 1 item</span>
-L28 768c7509932e0c36:
+L18 9bdd4c548c6c044e:
+- :location: "?skip_counts=true&year_page=2&month_page=4&day_page=5"
 - "#records": ''
 - "#year-nav": >-
     <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
@@ -375,6 +382,7 @@ L28 768c7509932e0c36:
     class="page-item"><a class="page-link">30</a></li><li class="page-item next"><a
     class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
 - "#pagy-info": <span id="pagy-info" class="pagy info">No items found</span>
+- :location: "?skip_counts=false&year_page=2&month_page=4&day_page=5"
 - "#records": ''
 - "#year-nav": >-
     <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
@@ -440,7 +448,8 @@ L28 768c7509932e0c36:
     class="page-item next"><a title="Displaying 1 item" class="page-link" rel="next"
     aria-label="Next">&gt;</a></li></ul></nav>
 - "#pagy-info": <span id="pagy-info" class="pagy info">No items found</span>
-L32 768c7509932e0c36:
+L19 5b0aada1590c48b0:
+- :location: "?skip_counts=true&year_page=2&month_page=4&day_page=6"
 - "#records": 'Event #110 - 2022-04-06 10:59:32 UTC'
 - "#year-nav": >-
     <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
@@ -485,6 +494,7 @@ L32 768c7509932e0c36:
     class="page-item"><a class="page-link">30</a></li><li class="page-item next"><a
     class="page-link" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
 - "#pagy-info": <span id="pagy-info" class="pagy info">Displaying 1 item</span>
+- :location: "?skip_counts=false&year_page=2&month_page=4&day_page=6"
 - "#records": 'Event #110 - 2022-04-06 10:59:32 UTC'
 - "#year-nav": >-
     <nav id="year-nav" class="pagy-bootstrap series-nav" aria-label="Years"><ul
@@ -550,7 +560,7 @@ L32 768c7509932e0c36:
     class="page-item next"><a title="Displaying 1 item" class="page-link" rel="next"
     aria-label="Next">&gt;</a></li></ul></nav>
 - "#pagy-info": <span id="pagy-info" class="pagy info">Displaying 1 item</span>
-L38 768c7509932e0c36:
+L25 9f45b3b942d4b063:
 - "#records": |-
     Event #1 - 2021-10-21 13:18:23 UTC
 
@@ -591,7 +601,8 @@ L38 768c7509932e0c36:
     class="page-item next"><a title="No items found" class="page-link empty-page"
     rel="next" aria-label="Next">&gt;</a></li></ul></nav>
 - "#pagy-info": <span id="pagy-info" class="pagy info">Displaying 2 items</span>
-L42 e4f6da802786009e:
+L27 d23f37022bb151a6:
+- :location: "?disabled=true"
 - "#records": |-
     Event #1 - 2021-10-21 13:18:23 UTC
 
@@ -643,7 +654,8 @@ L42 e4f6da802786009e:
     role="link" class="page-link" aria-disabled="true">…</a></li><li class="page-item"><a
     class="page-link">26</a></li><li class="page-item next"><a class="page-link"
     rel="next" aria-label="Next">&gt;</a></li></ul></nav>
-L46 768c7509932e0c36:
+L28 a0bb8adea36cd171:
+- :location: ''
 - "#records": |-
     Event #1 - 2021-10-21 13:18:23 UTC
 

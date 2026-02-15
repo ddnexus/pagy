@@ -1,5 +1,6 @@
 ---
 L7 b293f22afe17e078:
+- :location: ''
 - "#records": "@records: 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20"
 - "#series-nav": >-
     <nav id="series-nav" class="pagy series-nav" aria-label="Pages nav"><a role="link"
@@ -37,11 +38,12 @@ L7 b293f22afe17e078:
     rel="prev">48</a><a role="link" aria-disabled="true" aria-current="page">49</a><a
     rel="next">50</a><a rel="next" aria-label="Next">&gt;</a></nav>
 L8 55e9f67933898a5e:
+- :location: ''
 - "#records": "@records: 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20"
 - "#series-nav-js-responsive": >-
     <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
     nav_js_responsive"><a role="link" aria-disabled="true" aria-label="Previous">&lt;</a><a
-    role="link" aria-current="page" aria-disabled="true">1</a><a>2</a><a>3</a><a>4</a><a>5</a><a
+    role="link" aria-current="page" aria-disabled="true">1</a><a>2</a><a>3</a><a>4</a><a>5</a><a>6</a><a>7</a><a>8</a><a>9</a><a
     role="separator" aria-disabled="true">…</a><a>50</a><a rel="next" aria-label="Next">&gt;</a></nav>
 - :location: "?page=2&limit=20"
 - "#records": "@records: 21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40"
@@ -74,13 +76,6 @@ L8 55e9f67933898a5e:
     nav_js_responsive"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a role="separator"
     aria-disabled="true">…</a><a>46</a><a>47</a><a>48</a><a role="link" aria-current="page"
     aria-disabled="true">49</a><a>50</a><a rel="next" aria-label="Next">&gt;</a></nav>
-- "#records": >-
-    @records: 961,962,963,964,965,966,967,968,969,970,971,972,973,974,975,976,977,978,979,980
-- "#series-nav-js-responsive": >-
-    <nav id="series-nav-js-responsive" class="pagy-rjs pagy series-nav-js" aria-label="Pages
-    nav_js_responsive"><a rel="prev" aria-label="Previous">&lt;</a><a>1</a><a role="separator"
-    aria-disabled="true">…</a><a>44</a><a>45</a><a>46</a><a>47</a><a>48</a><a role="link"
-    aria-current="page" aria-disabled="true">49</a><a>50</a><a rel="next" aria-label="Next">&gt;</a></nav>
 - :location: "?page=50&limit=20"
 - "#records": >-
     @records: 981,982,983,984,985,986,987,988,989,990,991,992,993,994,995,996,997,998,999,1000
@@ -210,6 +205,11 @@ L11 8a5d6fd4316a9b74:
     type="number" min="1" max="100" value="18" style="padding: 0; text-align: center;
     width: 3rem;"><a style="display: none;">#</a> items per page</label></span>
 - :location: "?page=3&limit=5"
+- "#records": "@records: 11,12,13,14,15"
+- "#limit-tag-js": >-
+    <span id="limit-tag-js" class="pagy limit-tag-js"><label>Show <input name="limit"
+    type="number" min="1" max="100" value="5" style="padding: 0; text-align: center;
+    width: 2rem;"><a style="display: none;">#</a> items per page</label></span>
 - :location: "?page=36"
 - "#records": >-
     @records: 701,702,703,704,705,706,707,708,709,710,711,712,713,714,715,716,717,718,719,720
@@ -237,6 +237,11 @@ L11 8a5d6fd4316a9b74:
     type="number" min="1" max="100" value="18" style="padding: 0; text-align: center;
     width: 3rem;"><a style="display: none;">#</a> items per page</label></span>
 - :location: "?page=3&limit=5"
+- "#records": "@records: 11,12,13,14,15"
+- "#limit-tag-js": >-
+    <span id="limit-tag-js" class="pagy limit-tag-js"><label>Show <input name="limit"
+    type="number" min="1" max="100" value="5" style="padding: 0; text-align: center;
+    width: 2rem;"><a style="display: none;">#</a> items per page</label></span>
 - :location: "?page=50"
 - "#records": >-
     @records: 981,982,983,984,985,986,987,988,989,990,991,992,993,994,995,996,997,998,999,1000
@@ -264,3 +269,8 @@ L11 8a5d6fd4316a9b74:
     type="number" min="1" max="100" value="18" style="padding: 0; text-align: center;
     width: 3rem;"><a style="display: none;">#</a> items per page</label></span>
 - :location: "?page=3&limit=5"
+- "#records": "@records: 11,12,13,14,15"
+- "#limit-tag-js": >-
+    <span id="limit-tag-js" class="pagy limit-tag-js"><label>Show <input name="limit"
+    type="number" min="1" max="100" value="5" style="padding: 0; text-align: center;
+    width: 2rem;"><a style="display: none;">#</a> items per page</label></span>
