@@ -5,18 +5,18 @@ Ruby is tested with [`minitest`](https://github.com/minitest/minitest) through `
 ## Prerequisite
 
 - Install the gems: `bundle install`
-- E2e tests use Ferrum/Chrome. They expect to connect with Chrome at "http://127.0.0.1:9222". We use a container in a pod with the pagy-ruby-dev container in it, however you should be able to run it also locally with something like:
+- E2e tests use Ferrum/Chrome. They expect to connect with Chrome at "http://127.0.0.1:9222". You should be able to run it locally with something like:
   ```
   # The bin name may be google-chrome-stable, chromium-browser, etc.
-  google-chrome --headless  \
-                --disable-gpu \
+  google-chrome --headless=new \ 
                 --remote-debugging-port=9222 \
                 --no-first-run \
                 --no-default-browser-check \
-                --user-data-dir=remote-profile
+                --disable-gpu \
+                --log-level=3
   ```
 
-### Rake tasks
+## Rake tasks
 
 ```
 rake test
@@ -29,8 +29,8 @@ rake test:e2e:repro
 rake test:unit
 ```
 
-Run `rake default` (or just `rake`) to run also rubocp.
-Set the `COVERAGE=true` env variable to run also simplecov code and branch coverage.
+Run `rake default` (or just `rake`) to run also `rubocop`.
+Set the `COVERAGE=true` env variable to run also `simplecov` code and branch coverage.
 
 ---
 
