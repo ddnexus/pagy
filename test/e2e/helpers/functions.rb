@@ -7,7 +7,7 @@ require 'pagy/modules/b64'
 module E2eFunctions
   LOCATION_RE = %r{\Ahttp://#{Regexp.escape(E2eApp::IP)}:808\d/?}
 
-  def timeout = 0.2
+  def timeout = ENV['CI'] ? 0.6 : 0.2
 
   def goto_and_hold(id, path: '/', query: '')
     browser.goto("#{path}#{query}")
@@ -75,7 +75,7 @@ module E2eFunctions
 
       html = element.property('outerHTML')
       # Remove data-pagy and href attributes to avoid flakiness
-      # We use simple regex because we control the output and it's faster/simpler than parsing
+      # We use simple regex because we control the output, and it's faster/simpler than parsing
       html.gsub!(/ data-pagy="[^"]*"/, '')
       html.gsub!(/ href="[^"]*"/, '')
 
