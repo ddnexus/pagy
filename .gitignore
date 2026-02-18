@@ -1,7 +1,6 @@
 /.idea/
 /.bundle/
 /vendor/bundle/
-!/.idea/runConfigurations
 /coverage/
 node_modules/
 ___*
