@@ -34,7 +34,7 @@ describe 'Pagy::Search Specs' do
       args = obj.pagy_search('term', a: 1, &block)
 
       _(args).must_be_kind_of Pagy::Search::Arguments
-      _(args).must_equal [obj, 'term', { a: 1 }, block]
+      _(args).must_equal [obj, ['term'], { a: 1 }, block]
     end
 
     it 'allows chaining' do
@@ -42,7 +42,7 @@ describe 'Pagy::Search Specs' do
       # chain calls: pagy_search(...).page(2).limit(10)
       args = obj.pagy_search('term').page(2).limit(10)
 
-      _(args).must_equal [obj, 'term', {}, nil, :page, 2, :limit, 10]
+      _(args).must_equal [obj, ['term'], {}, nil, :page, 2, :limit, 10]
     end
   end
 end

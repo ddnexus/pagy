@@ -11,13 +11,13 @@ class Pagy
       if search.is_a?(Search::Arguments) # Active mode
 
         Searcher.wrap(search, options) do
-          model, term, search_options, block = search
+          model, arguments, search_options, block = search
 
           search_options[:per_page] = options[:limit]
           search_options[:page]     = options[:page]
 
           method          = options[:search_method] || Searchkick::DEFAULT[:search_method]
-          results         = model.send(method, term || '*', **search_options, &block)
+          results         = model.send(method, *arguments || '*', **search_options, &block)
           options[:count] = results.total_count
 
           [Searchkick.new(**options), results]

@@ -11,13 +11,13 @@ class Pagy
       if search.is_a?(Search::Arguments)  # Active mode
 
         Searcher.wrap(search, options) do
-          model, query_or_payload, search_options = search
+          model, arguments, search_options = search
 
           search_options[:size] = options[:limit]
           search_options[:from] = options[:limit] * ((options[:page] || 1) - 1)
 
           method          = options[:search_method] || ElasticsearchRails::DEFAULT[:search_method]
-          response_object = model.send(method, query_or_payload, **search_options)
+          response_object = model.send(method, *arguments, **search_options)
           options[:count] = total_count_from(response_object)
 
           [ElasticsearchRails.new(**options), response_object]
