@@ -8,6 +8,7 @@ require 'active_support/core_ext/integer/time'
 
 class Pagy
   # Calendar class
+  # noinspection RubyMismatchedArgumentType
   class Calendar < Hash
     path = Pathname.new(__dir__)
     autoload :Unit,    path.join('unit')
