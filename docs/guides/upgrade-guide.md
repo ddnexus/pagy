@@ -32,7 +32,7 @@ This guide focuses on getting the job done quickly. If you want to learn more ab
   [pagy.rb](../resources/initializer) initializer in its place.
 - Search the `pagy-old.rb` for code-occurrences of `Pagy::DEFAULT[...]` and move them to the new `pagy.rb` (remove them from the
   `pagy-old.rb`)
-- Replace all the `Pagy::DEFAULT[...]` entries just added to the new `pagy.rb` with `Pagy.options[...]`.
+- Replace all the `Pagy::DEFAULT[...]` entries just added to the new `pagy.rb` with `Pagy::OPTIONS[...]`.
 
 _In the next steps we will use the `pagy-old.rb` as the blueprint to guide most of the changes, and we will edit the new `pagy.rb`
 as needed._
@@ -80,8 +80,8 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 | `pagy_next_a(@pagy, ...)`                      | `@pagy.next_tag(...)`                               |
 | `pagy_prev_link(@pagy, ...)`                   | discontinued: implement manually                    |
 | `pagy_next_link(@pagy, ...)`                   | discontinued: implement manually                    |
-| `size: ...`<br/>`Pagy.options[:size] = ...`    | `slots: ...`<br/>`Pagy.options[:slots] = ...`       |
-| `ends: false`<br/>`Pagy.options[:end] = false` | `compact: true`<br/>`Pagy.options[:compact] = true` |
+| `size: ...`<br/>`Pagy::OPTIONS[:size] = ...`    | `slots: ...`<br/>`Pagy::OPTIONS[:slots] = ...`       |
+| `ends: false`<br/>`Pagy::OPTIONS[:end] = false` | `compact: true`<br/>`Pagy::OPTIONS[:compact] = true` |
 
 ==- `bootstrap`
 
@@ -94,8 +94,8 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 | `pagy_bootstrap_nav(@pagy, ...)`               | `@pagy.series_nav(:bootstrap, ...)`                 |
 | `pagy_bootstrap_nav_js(@pagy, ...)`            | `@pagy.series_nav_js(:bootstrap, ...)`              |
 | `pagy_bootstrap_combo_nav_js(@pagy, ...)`      | `@pagy.input_nav_js(:bootstrap, ...)`               |
-| `size: ...`<br/>`Pagy.options[:size] = ...`    | `slots: ...`<br/>`Pagy.options[:slots] = ...`       |
-| `ends: false`<br/>`Pagy.options[:end] = false` | `compact: true`<br/>`Pagy.options[:compact] = true` |
+| `size: ...`<br/>`Pagy::OPTIONS[:size] = ...`    | `slots: ...`<br/>`Pagy::OPTIONS[:slots] = ...`       |
+| `ends: false`<br/>`Pagy::OPTIONS[:end] = false` | `compact: true`<br/>`Pagy::OPTIONS[:compact] = true` |
 
 - **FYI**: The redundant `pagy-bootstrap` class has been removed from the `input_nav_js` body.
 
@@ -110,8 +110,8 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 | `pagy_bulma_nav(@pagy, ...)`                   | `@pagy.series_nav(:bulma, ...)`                     |
 | `pagy_bulma_nav_js(@pagy, ...)`                | `@pagy.series_nav_js(:bulma, ...)`                  |
 | `pagy_bulma_combo_nav_js(@pagy, ...)`          | `@pagy.input_nav_js(:bulma, ...)`                   |
-| `size: ...`<br/>`Pagy.options[:size] = ...`    | `slots: ...`<br/>`Pagy.options[:slots] = ...`       |
-| `ends: false`<br/>`Pagy.options[:end] = false` | `compact: true`<br/>`Pagy.options[:compact] = true` |
+| `size: ...`<br/>`Pagy::OPTIONS[:size] = ...`    | `slots: ...`<br/>`Pagy::OPTIONS[:slots] = ...`       |
+| `ends: false`<br/>`Pagy::OPTIONS[:end] = false` | `compact: true`<br/>`Pagy::OPTIONS[:compact] = true` |
 
 - **FYI**: The `is-centered` CSS class has been removed.
 - **FYI**: The previous/next links have been moved at the beginning and end of the pagination.
@@ -123,7 +123,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 | Search (old)                                                            | Replace with (new)                                    |
 |-------------------------------------------------------------------------|-------------------------------------------------------|
 | `pagy_countless(...)`                                                   | `pagy(:countless, ...)`                               |
-| `countless_minimal: true`<br/>`Pagy.options[:countless_minimal] = true` | `headless: true`<br/>`Pagy.options[:headless] = true` |
+| `countless_minimal: true`<br/>`Pagy::OPTIONS[:countless_minimal] = true` | `headless: true`<br/>`Pagy::OPTIONS[:headless] = true` |
 
 ==- `calendar`
 
@@ -151,7 +151,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 |-----------------------------------------------------------------------------------------|---------------------------------------------------------------|
 | `pagy_elasticsearch_rails(...)`                                                         | `pagy(:elasticsearch_rails, ...)`                             |
 | `Pagy.new_from_elasticsearch_rails(...)`                                                | `pagy(:elasticsearch_rails, ...)`                             |
-| `elasticsearch_rails_search: ...`<br/>`Pagy.options[:elasticsearch_rails_search] = ...` | `search_method: ...`<br/>`Pagy.options[:search_method] = ...` |
+| `elasticsearch_rails_search: ...`<br/>`Pagy::OPTIONS[:elasticsearch_rails_search] = ...` | `search_method: ...`<br/>`Pagy::OPTIONS[:search_method] = ...` |
 
 - **Customization of the `pagy_search` method name has been discontinued:**
   - Remove any existing `:elasticsearch_rails_pagy_search` variable from your code.
@@ -167,7 +167,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 |-------------------------------------------------------------------------|---------------------------------------------------------------|
 | `pagy_meilisearch(...)`                                                 | `pagy(:meilisearch, ...)`                                     |
 | `Pagy.new_from_meilisearch(...)`                                        | `pagy(:meilisearch, ...)`                                     |
-| `meilisearch_search: ...`<br/>`Pagy.options[:meilisearch_search] = ...` | `search_method: ...`<br/>`Pagy.options[:search_method] = ...` |
+| `meilisearch_search: ...`<br/>`Pagy::OPTIONS[:meilisearch_search] = ...` | `search_method: ...`<br/>`Pagy::OPTIONS[:search_method] = ...` |
 
 - **Customization of the `pagy_search` method name has been discontinued:**
   - Remove any existing `:meilisearch_pagy_search` variable from your code.
@@ -183,7 +183,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 |-----------------------------------------------------------------------|---------------------------------------------------------------|
 | `pagy_searchkick(...)`                                                | `pagy(:searchkick, ...)`                                      |
 | `Pagy.new_from_searchkick(...)`                                       | `pagy(:searchkick, ...)`                                      |
-| `searchkick_search: ...`<br/>`Pagy.options[:searchkick_search] = ...` | `search_method: ...`<br/>`Pagy.options[:search_method] = ...` |
+| `searchkick_search: ...`<br/>`Pagy::OPTIONS[:searchkick_search] = ...` | `search_method: ...`<br/>`Pagy::OPTIONS[:search_method] = ...` |
 
 - **Customization of the `pagy_search` method name has been discontinued:**
   - Remove any existing `:searchkick_pagy_search` variable from your code.
@@ -197,10 +197,10 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 |---------------------------------------------------|-----------------------------------------------------------|
 | `pagy_headers(...)`                               | `@pagy.headers_hash(...)`                                 |
 | `pagy_headers_merge`                              | `response.headers.merge!(@pagy.headers_hash)`             |
-| `headers: ...`<br/>`Pagy.options[:headers] = ...` | `headers_map: ...`<br/>`Pagy.options[:headers_map] = ...` |
+| `headers: ...`<br/>`Pagy::OPTIONS[:headers] = ...` | `headers_map: ...`<br/>`Pagy::OPTIONS[:headers_map] = ...` |
 
 - _Notice that the `:limit` header default is now `'page-limit` (it was `'page-items'`)._
-  - Set `Pagy.options[:headers_map] = { limit: 'page-items', ... }` to preserve your current API, if it relays on old default values.
+  - Set `Pagy::OPTIONS[:headers_map] = { limit: 'page-items', ... }` to preserve your current API, if it relays on old default values.
 
 ==- `jsonapi`
 
@@ -246,7 +246,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 | Search (old)                                        | Replace with (new)                                    |
 |-----------------------------------------------------|-------------------------------------------------------|
 | `pagy_metadata(@pagy, ...)`                         | `@pagy.data_hash(...)`                                |
-| `metadata: ...`<br/>`Pagy.options[:metadata] = ...` | `data_keys: ...`<br/>`Pagy.options[:data_keys] = ...` |
+| `metadata: ...`<br/>`Pagy::OPTIONS[:metadata] = ...` | `data_keys: ...`<br/>`Pagy::OPTIONS[:data_keys] = ...` |
 | data_key -> `:scaffold_url`                         | `:url_template`                                       |
 
 ==- `overflow`

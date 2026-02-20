@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'pathname'
-require 'concurrent'
 
 require_relative 'pagy/classes/exceptions'
 require_relative 'pagy/modules/abilities/linkable'
@@ -31,8 +30,7 @@ class Pagy
   autoload :Searchkick,         path.join('classes/offset/search')
   autoload :Keyset,             path.join('classes/keyset/keyset')
 
-  # Define a thread-safe hash at the class level
-  OPTIONS = Concurrent::Hash.new
+  OPTIONS = {} # rubocop:disable Style/MutableConstant
   def self.options = OPTIONS
 
   extend Configurable

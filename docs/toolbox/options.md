@@ -19,21 +19,23 @@ Pagy has a top-down hierarchical options system that allows you to set and overr
 
 #### Global level
 
-- For example `Pagy.options[:limit] = 10`.
+- For example `Pagy::OPTIONS[:limit] = 10`.
 - Set in the [pagy.rb initializer](../resources/initializer).
-- The `Pagy.options` are inherited by all paginators and helpers.
+- The `Pagy::OPTIONS` are inherited by all paginators and helpers.
 - You can set all kinds of options at the global level, no matter which is the destination downstream (i.e., paginator or helper).
+- **Notice**: Using the legacy `Pagy.options` accessor is discouraged but supported.
+- **IMPORTANT**: Freeze it after you are done in the initializer, for good safe practice.
 
 #### Paginator level
 
 - For example `pagy(paginator, collection, **options)`.
-- The options passed to a paginator override the `Pagy.options` set upstream for that instance. 
+- The options passed to a paginator override the `Pagy::OPTIONS` set upstream for that instance. 
 
 #### Helper level
 
 - For example `@pagy.series_nav(**options)`.
 - The options passed to a helper override all the upstream options for its output.
-- The otions consumed upstream are not affected.
+- The options consumed upstream are not affected.
 
 !!!success
 

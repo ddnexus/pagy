@@ -53,7 +53,7 @@ If you upgrade from version `< 9.0.0` see the following:
 - Add uri gem dependency to the gemspec
 - Freeze the @order in key* apps
 - Replace require with require_relative in Pagy::CLI
-- Make Pagy.options thread-safe
+- Make Pagy::OPTIONS thread-safe
 
 ## Version 43.2.9
 
@@ -207,7 +207,7 @@ If you upgrade from version `< 9.0.0` see the following:
 
 ## Version 43.0.4
 
-- Remove the Pagy.options from the Calendar configuration. Close #825
+- Remove the Pagy::OPTIONS from the Calendar configuration. Close #825
 
 ## Version 43.0.3
 
