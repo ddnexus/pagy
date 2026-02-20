@@ -5,7 +5,7 @@ require_relative 'support/wrap_series_nav_js'
 class Pagy
   # Return a nav with a data-pagy attribute used by the pagy.js file
   def series_nav_js(style = nil, **)
-    return send(:"#{style}_series_nav_js", **) if style
+    return send(:"#{style}_series_nav_js", **) if style && style.to_s != 'pagy'
 
     a_lambda = a_lambda(**)
     tokens   = { before:  previous_tag(a_lambda),
