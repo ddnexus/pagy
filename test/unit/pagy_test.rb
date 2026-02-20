@@ -19,7 +19,7 @@ describe 'Pagy Specs' do
   end
 
   it 'has options' do
-    _(Pagy.options).must_be_kind_of Hash
+    _(Pagy::OPTIONS).must_be_kind_of Hash
   end
 
   it 'includes modules' do

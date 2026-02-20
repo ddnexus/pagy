@@ -46,7 +46,7 @@ SECTIONS = { pagy:      { css_anchor: 'pagy-css' },
 require 'sinatra/base'
 
 # Pagy init
-Pagy.options[:client_max_limit] = 100
+Pagy::OPTIONS[:client_max_limit] = 100
 
 # Sinatra application
 class PagyDemo < Sinatra::Base
