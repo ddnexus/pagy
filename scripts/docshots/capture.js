@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 
 // --- Configuration ---
-const appURL = process.argv[2] || 'http://127.0.0.1:8088';
+const appURL = process.argv[2] || 'http://localhost:8088';
 const outputDir = process.argv[3] || path.join(__dirname, 'screenshots');
 const screenshotTargetSelector = '#target .backdrop';
 const filenameSelector = '#target .filename';
@@ -23,6 +23,7 @@ async function captureScreenshots() {
 
     console.log('Launching Puppeteer...');
     browser = await puppeteer.launch({
+                                       executablePath: '/usr/bin/google-chrome'
                                        // headless: false, // Uncomment for debugging to see the browser
                                        // slowMo: 50,      // Uncomment to slow down operations for debugging
                                      });
