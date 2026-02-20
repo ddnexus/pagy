@@ -9,6 +9,7 @@ require_relative 'pagy/modules/abilities/configurable'
 require_relative 'pagy/toolbox/helpers/loader'
 
 # Top superclass: it defines only what's common to all the subclasses
+# noinspection RubyMismatchedArgumentType
 class Pagy
   VERSION     = '43.2.10'
   ROOT        = Pathname.new(__dir__).parent.freeze
@@ -69,10 +70,11 @@ class Pagy
     default  = {}
     current  = self.class
 
-    begin
+    loop do
       default = current::DEFAULT.merge(default)
       current = current.superclass
-    end until current == Object  # rubocop:disable Lint/Loop  -- see https://github.com/rubocop/rubocop-performance/issues/362
+      break if current == Object
+    end
 
     clean_options = options.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') }
     @options      = default.merge!(clean_options).freeze
