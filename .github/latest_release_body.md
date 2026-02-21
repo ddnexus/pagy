@@ -1,13 +1,11 @@
-### Changes in 43.2.10
+### Changes in 43.3.0
 
 <!-- changes_start -->
-- Add failing test and revert code that caused empty aria label
-- Avoid invalid limit param (similar to #862)
-- Add thread flag to /bin/pagy
-- Add uri gem dependency to the gemspec
-- Freeze the @order in key* apps
-- Replace require with require_relative in Pagy::CLI
-- Make Pagy.options thread-safe
+- Add :typesense_rails paginator (See typesense/typesense-rails#17)
+- Accept a variable number of search arguments
+- Improve resilience of internal pagy nav method
+- Use Pagy::OPTIONS instead of Pagy.options for efficiency
+- Simplify assign options
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

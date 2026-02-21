@@ -16,7 +16,7 @@ expect the old/deprecated functionality to be supported ONLY during the current 
 
 ## Recommended Version Constraint
 
-Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.2.10`):
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.3.10`):
 
 The `gem 'pagy', '~> 43.0'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.
@@ -44,6 +44,14 @@ If you upgrade from version `< 9.0.0` see the following:
 > from scratch might be faster.
 
 <hr>
+
+## Version 43.3.0
+
+- Add :typesense_rails paginator (See typesense/typesense-rails#17)
+- Accept a variable number of search arguments
+- Improve resilience of internal pagy nav method
+- Use Pagy::OPTIONS instead of Pagy.options for efficiency
+- Simplify assign options
 
 ## Version 43.2.10
 
