@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.12.0.824624258029">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.12.0.824959897326">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.12.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.12.0.824624258029" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.12.0.824959897326" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.12.0.824624258029" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.12.0.824959897326" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.12.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.12.0.824624258029" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.12.0.824624258029" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.12.0.824959897326" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.12.0.824959897326" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -190,7 +190,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../../assets/images/pagy-the-frog.png">
                             </span>
                             <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.2.10</span>
+                        </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.3.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -375,7 +375,7 @@
     </div>
     <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
         <span>pagy.rb</span>
-        <span class="inline-block ml-2">2.08KB</span>
+        <span class="inline-block ml-2">2.1KB</span>
     </div>
     <a href="../../gem/config/pagy.rb" class="absolute block inset-0" target="_blank" download="pagy.rb"></a>
 </div>
@@ -384,7 +384,7 @@
 <div class="codeblock-title">pagy.rb</div>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby"># frozen_string_literal: true
 
-# Pagy initializer file (43.2.10)
+# Pagy initializer file (43.3.0)
 # See https://ddnexus.github.io/pagy/resources/initializer/
 
 ############ Global Options ################################################################
@@ -392,11 +392,12 @@
 # Add your global options below. They will be applied globally.
 # For example:
 #
-# Pagy.options[:limit] = 10               # Limit the items per page
-# Pagy.options[:client_max_limit] = 100   # The client can request a limit up to 100
-# Pagy.options[:max_pages] = 200          # Allow only 200 pages
-# Pagy.options[:jsonapi] = true           # Use JSON:API compliant URLs
+# Pagy::OPTIONS[:limit] = 10               # Limit the items per page
+# Pagy::OPTIONS[:client_max_limit] = 100   # The client can request a limit up to 100
+# Pagy::OPTIONS[:max_pages] = 200          # Allow only 200 pages
+# Pagy::OPTIONS[:jsonapi] = true           # Use JSON:API compliant URLs
 
+Pagy::OPTIONS.freeze
 
 ############ JavaScript ####################################################################
 # See https://ddnexus.github.io/pagy/resources/javascript/ for details.
