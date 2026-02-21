@@ -16,7 +16,7 @@
 # URL
 #    http://127.0.0.1:8000
 
-VERSION = '43.2.10'
+VERSION = '43.3.0'
 
 if VERSION != Pagy::VERSION
   Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")
@@ -34,7 +34,7 @@ end
 
 # Edit this section adding the legacy as needed
 # Pagy initializer
-Pagy.options[:client_max_limit] = 100
+Pagy::OPTIONS[:client_max_limit] = 100
 
 # Sinatra setup
 require 'sinatra/base'

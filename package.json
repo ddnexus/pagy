@@ -18,7 +18,9 @@
   "private": true,
   "scripts": {
     "src-lint": "eslint ./src",
-    "taze": "taze -I"
+    "taze": "taze -I",
+    "clean": "rm -rf node_modules bun.lockb ~/.bun/install/cache",
+    "reinstall": "bun run clean && bun install"
   },
   "type": "module"
 }

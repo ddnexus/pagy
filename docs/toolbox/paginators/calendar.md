@@ -102,7 +102,7 @@ You can include one or more Unit levels using keys like `:year`, `:quarter`, `:m
 
 Do not try to set `:page`, `:page_key`, `:querify`, or `:period` options manually. These options are handled automatically, so setting them explicitly has no effect.
 
-The `Pagy.options` are not applied to the Unit objects.
+The `Pagy::OPTIONS` are not applied to the Unit objects.
 !!!
  
 #### The `disabled` flag

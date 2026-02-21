@@ -5,7 +5,7 @@ require_relative 'support/wrap_series_nav'
 class Pagy
   # Return the HTML with the series of links to the pages
   def series_nav(style = nil, **)
-    return send(:"#{style}_series_nav", **) if style
+    return send(:"#{style}_series_nav", **) if style && style.to_s != 'pagy'
 
     a_lambda = a_lambda(**)
 

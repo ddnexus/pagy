@@ -3,7 +3,7 @@
 require_relative '../../modules/searcher'
 
 class Pagy
-  module MeilisearchPaginator
+  module TypesenseRailsPaginator
     module_function
 
     # Paginate from the search object
@@ -13,22 +13,22 @@ class Pagy
         Searcher.wrap(search, options) do
           model, arguments, search_options = search
 
-          search_options[:hits_per_page] = options[:limit]
-          search_options[:page]          = options[:page]
+          search_options[:per_page] = options[:limit]
+          search_options[:page]     = options[:page]
 
-          method          = options[:search_method] || Meilisearch::DEFAULT[:search_method]
+          method          = options[:search_method] || TypesenseRails::DEFAULT[:search_method]
           results         = model.send(method, *arguments, search_options)
-          options[:count] = results.raw_answer['totalHits']
+          options[:count] = results.raw_answer['found']
 
-          [Meilisearch.new(**options), results]
+          [TypesenseRails.new(**options), results]
         end
 
       else # Passive mode
-        options[:limit] = search.raw_answer['hitsPerPage']
+        options[:limit] = search.raw_answer['request_params']['per_page']
         options[:page]  = search.raw_answer['page']
-        options[:count] = search.raw_answer['totalHits']
+        options[:count] = search.raw_answer['found']
 
-        Meilisearch.new(**options)
+        TypesenseRails.new(**options)
       end
     end
   end

@@ -12,8 +12,8 @@ class Pagy
 
       pagy, results = yield
 
-      arguments = search_arguments[4..]
-      results   = results.send(*arguments) unless arguments.empty?
+      called  = search_arguments[4..]
+      results = results.send(*called) unless called.empty?
 
       [pagy, results]
     end

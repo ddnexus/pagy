@@ -13,6 +13,7 @@
         <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
       </COVERAGE_PATTERN>
     </EXTENSION>
+    <EXTENSION ID="com.github.l34130.mise.core.run.MiseRunConfigurationSettingsEditor" myConfigEnvironmentStrategy="use_project_settings" myMiseDirEnvCb="false" myMiseConfigEnvironmentTf="" />
     <EXTENSION ID="net.ashald.envfile">
       <option name="IS_ENABLED" value="false" />
       <option name="IS_SUBST" value="false" />

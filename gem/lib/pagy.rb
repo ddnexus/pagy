@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'pathname'
-require 'concurrent'
 
 require_relative 'pagy/classes/exceptions'
 require_relative 'pagy/modules/abilities/linkable'
@@ -9,8 +8,9 @@ require_relative 'pagy/modules/abilities/configurable'
 require_relative 'pagy/toolbox/helpers/loader'
 
 # Top superclass: it defines only what's common to all the subclasses
+# noinspection RubyMismatchedArgumentType
 class Pagy
-  VERSION     = '43.2.10'
+  VERSION     = '43.3.0'
   ROOT        = Pathname.new(__dir__).parent.freeze
   DEFAULT     = { limit: 20, limit_key: 'limit', page_key: 'page' }.freeze
   PAGE_TOKEN  = EscapedValue.new('P ')
@@ -28,10 +28,10 @@ class Pagy
   autoload :ElasticsearchRails, path.join('classes/offset/search')
   autoload :Meilisearch,        path.join('classes/offset/search')
   autoload :Searchkick,         path.join('classes/offset/search')
+  autoload :TypesenseRails,     path.join('classes/offset/search')
   autoload :Keyset,             path.join('classes/keyset/keyset')
 
-  # Define a thread-safe hash at the class level
-  OPTIONS = Concurrent::Hash.new
+  OPTIONS = {} # rubocop:disable Style/MutableConstant
   def self.options = OPTIONS
 
   extend Configurable
@@ -69,10 +69,11 @@ class Pagy
     default  = {}
     current  = self.class
 
-    begin
+    loop do
       default = current::DEFAULT.merge(default)
       current = current.superclass
-    end until current == Object  # rubocop:disable Lint/Loop  -- see https://github.com/rubocop/rubocop-performance/issues/362
+      break if current == Object
+    end
 
     clean_options = options.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') }
     @options      = default.merge!(clean_options).freeze

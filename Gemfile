@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 gemspec path: './gem'
 
-gem 'rdoc', '7.0.3' # avoid conflict while using ruby:latest still on 7.0.3
+gem 'rake'
 
 group :development, :test do
   gem 'activesupport'
@@ -26,12 +26,8 @@ group :development, :test do
   gem 'rubocop-packaging'
   gem 'rubocop-performance'
   gem 'rubocop-rake'
-  gem 'rubocop-shopify'
   gem 'rubocop-thread_safety'
-  gem 'ruby-lsp', require: false
   gem 'simplecov', require: false
-  gem 'sorbet', require: false
-  gem 'tapioca', require: false
 end
 
 group :playground do

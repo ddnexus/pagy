@@ -11,7 +11,7 @@ Here is a little useful information for contributing:
    the [locales  readme instructions here](https://github.com/ddnexus/pagy/blob/master/gem/locales/README.md).
 3. **Pagy repo setup**
     - Clone pagy: `git clone https://github.com/ddnexus/pagy && cd pagy`
-    - [Configure the git-hooks](https://github.com/ddnexus/pagy/tree/master/scripts/hooks)
+    - [Configure the git-hooks](https://github.com/ddnexus/pagy/tree/master/scripts/hooks) _(optional)_
 4. **Development**
     - Please create your own branch out of `master` and use it for your development and PR
     - Ensure you are basing your PR on the `master` branch and keep rebasing it on `master` when it changes
@@ -24,13 +24,12 @@ Here is a little useful information for contributing:
       - `cd` in the pagy root directory
       - Install [bun](https://bun.sh/docs/installation)
       - Run `bun install`
-      - Run `retype start`
+      - Run `bunx retype statr --port 5000`
       - Point your browser at `http://localhost:5000/pagy` for real-time feedback
 5. **Testing**
-    - If your PR **does not add any new feature** (e.g. a fix), please, just ensure that the "All checks have passed" indicator gets
-      green light on the PR page (if it's not enabled, a maintainer will enable it for you)
-    - If your PR **adds new features**, it needs [Ruby testing](https://github.com/ddnexus/pagy/tree/master/test) and/or
-      [E2E testing](https://github.com/ddnexus/pagy/tree/master/e2e) or the coverage will fail. Ask for support if you need
+    - If your PR **does not add any new feature** (e.g. a fix), please, just ensure that the indicator with "All checks have passed" gets
+      green light on the PR page (if it's not enabled, a maintainer will enable it for you).
+    - If your PR **adds new features**, it needs [Ruby testing](https://github.com/ddnexus/pagy/tree/master/test) or the coverage will fail. Ask for support if you need
       assistance.
 
 Thank you!

@@ -16,7 +16,7 @@ expect the old/deprecated functionality to be supported ONLY during the current 
 
 ## Recommended Version Constraint
 
-Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.2.10`):
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.3.10`):
 
 The `gem 'pagy', '~> 43.0'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.
@@ -45,6 +45,14 @@ If you upgrade from version `< 9.0.0` see the following:
 
 <hr>
 
+## Version 43.3.0
+
+- Add :typesense_rails paginator (See typesense/typesense-rails#17)
+- Accept a variable number of search arguments
+- Improve resilience of internal pagy nav method
+- Use Pagy::OPTIONS instead of Pagy.options for efficiency
+- Simplify assign options
+
 ## Version 43.2.10
 
 - Add failing test and revert code that caused empty aria label
@@ -53,7 +61,7 @@ If you upgrade from version `< 9.0.0` see the following:
 - Add uri gem dependency to the gemspec
 - Freeze the @order in key* apps
 - Replace require with require_relative in Pagy::CLI
-- Make Pagy.options thread-safe
+- Make Pagy::OPTIONS thread-safe
 
 ## Version 43.2.9
 
@@ -207,7 +215,7 @@ If you upgrade from version `< 9.0.0` see the following:
 
 ## Version 43.0.4
 
-- Remove the Pagy.options from the Calendar configuration. Close #825
+- Remove the Pagy::OPTIONS from the Calendar configuration. Close #825
 
 ## Version 43.0.3
 

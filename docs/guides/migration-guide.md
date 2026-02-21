@@ -38,7 +38,7 @@ Remove all the legacy settings of the old gem.
 
 #### Cleanup the Models
 
-Look for terms like `per_page`, `per`, and similar, as these are configuration settings. Include them in the appropriate paginator call in the controller (e.g., `pagy(:offset, collection, limit: 10)`) or globally in the Pagy initializer (e.g., `Pagy.options[:limit] = 10`).
+Look for terms like `per_page`, `per`, and similar, as these are configuration settings. Include them in the appropriate paginator call in the controller (e.g., `pagy(:offset, collection, limit: 10)`) or globally in the Pagy initializer (e.g., `Pagy::OPTIONS[:limit] = 10`).
 
 If the app uses the `page` scope in model methods or scopes, remove it, along with the argument used to pass the page number, while preserving the rest of the scope. Locate where the app applies this paginated scope in the controllers and replace it with the scope in a paginator statement. For example:
 

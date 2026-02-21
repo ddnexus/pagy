@@ -5,7 +5,7 @@ require_relative 'support/wrap_input_nav_js'
 class Pagy
   # JavaScript input pagination: it returns a nav with a data-pagy attribute used by the pagy.js file
   def input_nav_js(style = nil, **)
-    return send(:"#{style}_input_nav_js", **) if style
+    return send(:"#{style}_input_nav_js", **) if style && style.to_s != 'pagy'
 
     a_lambda = a_lambda(**)
 
