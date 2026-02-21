@@ -204,8 +204,9 @@ You can send selected `@pagy` instance data to the client as JSON using the [dat
 See these paginators:
 
 - [elasticsearch_rails](../toolbox/paginators/elasticsearch_rails)
-- [searchkick](../toolbox/paginators/searchkick)
 - [meilisearch](../toolbox/paginators/meilisearch)
+- [searchkick](../toolbox/paginators/searchkick)
+- [typesense_rails](../toolbox/paginators/typesense_rails)
 
 ==- Paginate by date
 

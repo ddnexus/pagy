@@ -124,12 +124,14 @@ search           = Product.pagy_search(params[:q])
 @pagy, @response = pagy(:elasticsearch_rails, search)
 @pagy, @results  = pagy(:meilisearch, search)
 @pagy, @results  = pagy(:searchkick, search)
+@pagy, @results  = pagy(:typesense_rails, search)
 
 # Or get pagy from paginated results:
 @results = Product.search(params[:q])
 @pagy    = pagy(:elasticsearch_rails, @results)
 @pagy    = pagy(:meilisearch, @results)
 @pagy    = pagy(:searchkick, @results)
+@pagy    = pagy(:typesense_rails, @results)
 ```
 
 ##### Calendar pagination

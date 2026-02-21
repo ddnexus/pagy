@@ -29,4 +29,6 @@ class Pagy
   end
 
   class Searchkick < SearchBase; end
+
+  class TypesenseRails < SearchBase; end
 end

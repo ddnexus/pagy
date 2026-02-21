@@ -11,7 +11,8 @@ class Pagy
                  calendar:            :CalendarPaginator,
                  elasticsearch_rails: :ElasticsearchRailsPaginator,
                  meilisearch:         :MeilisearchPaginator,
-                 searchkick:          :SearchkickPaginator }.freeze
+                 searchkick:          :SearchkickPaginator,
+                 typesense_rails:     :TypesenseRailsPaginator }.freeze
 
   path = Pathname.new(__dir__)
   paginators.each { |symbol, name| autoload name, path.join(symbol.to_s) }

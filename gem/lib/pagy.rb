@@ -28,6 +28,7 @@ class Pagy
   autoload :ElasticsearchRails, path.join('classes/offset/search')
   autoload :Meilisearch,        path.join('classes/offset/search')
   autoload :Searchkick,         path.join('classes/offset/search')
+  autoload :TypesenseRails,     path.join('classes/offset/search')
   autoload :Keyset,             path.join('classes/keyset/keyset')
 
   OPTIONS = {} # rubocop:disable Style/MutableConstant
