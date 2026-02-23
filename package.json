@@ -2,7 +2,7 @@
   "description": "Javascript support files",
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@stylistic/eslint-plugin": "^5.8.0",
+    "@stylistic/eslint-plugin": "^5.9.0",
     "@types/eslint__js": "^9.14.0",
     "@types/node": "25.2.2",
     "eslint": "10.0.0",
