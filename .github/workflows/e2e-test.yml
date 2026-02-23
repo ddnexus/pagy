@@ -49,7 +49,7 @@ jobs:
           bundler-cache: true
       - name: Cache Chrome
         id: cache-chrome
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: /tmp/chrome.tar
           key: ${{ runner.os }}-chrome-zenika-latest
