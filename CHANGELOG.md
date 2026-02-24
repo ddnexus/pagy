@@ -29,15 +29,15 @@ Follow the [Upgrade to 43 Guide](guides/upgrade-guide).
 
 If you upgrade from version `< 9.0.0` see the following:
 
-- [Breaking changes in version 9.0.0](CHANGELOG_LEGACY#version-900)
-- [Breaking changes in version 8.0.0](CHANGELOG_LEGACY#version-800)
-- [Breaking changes in version 7.0.0](CHANGELOG_LEGACY#version-700)
-- [Breaking changes in version 6.0.0](CHANGELOG_LEGACY#version-600)
-- [Breaking changes in version 5.0.0](CHANGELOG_LEGACY#version-500)
-- [Breaking changes in version 4.0.0](CHANGELOG_LEGACY#version-400)
-- [Breaking changes in version 3.0.0](CHANGELOG_LEGACY#version-300)
-- [Breaking changes in version 2.0.0](CHANGELOG_LEGACY#version-200)
-- [Breaking changes in version 1.0.0](CHANGELOG_LEGACY#version-100)
+- [Breaking changes in version 9.0.0](../CHANGELOG_LEGACY.md#version-900)
+- [Breaking changes in version 8.0.0](../CHANGELOG_LEGACY.md#version-800)
+- [Breaking changes in version 7.0.0](../CHANGELOG_LEGACY.md#version-700)
+- [Breaking changes in version 6.0.0](../CHANGELOG_LEGACY.md#version-600)
+- [Breaking changes in version 5.0.0](../CHANGELOG_LEGACY.md#version-500)
+- [Breaking changes in version 4.0.0](../CHANGELOG_LEGACY.md#version-400)
+- [Breaking changes in version 3.0.0](../CHANGELOG_LEGACY.md#version-300)
+- [Breaking changes in version 2.0.0](../CHANGELOG_LEGACY.md#version-200)
+- [Breaking changes in version 1.0.0](../CHANGELOG_LEGACY.md#version-100)
 
 > [!TIP]
 > If you need to update through multiple versions, reimplementing the updated pagination

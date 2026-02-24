@@ -13,7 +13,7 @@ categories:
 
 ---
 
-`:typesense` is a paginator designed for `Typesense::Rails` results.
+`:typesense_rails` is a paginator designed for `Typesense::Rails` results.
 
 #### Configuration
 
