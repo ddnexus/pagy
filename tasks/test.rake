@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rake/testtask'
-require_relative '../test/e2e/helpers/pagy_app'
+require_relative '../test/e2e/helpers/e2e_app'
 
 # Helper to define tasks
 def define_test_task(name, pattern)

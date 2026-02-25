@@ -6,7 +6,7 @@ require 'ferrum'
 require 'socket'
 require 'minitest/hooks/default'
 
-require_relative 'helpers/pagy_app'
+require_relative 'helpers/e2e_app'
 require_relative 'helpers/functions'
 
 class E2eTest < Minitest::Spec
