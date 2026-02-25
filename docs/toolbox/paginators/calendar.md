@@ -77,16 +77,16 @@ end
 
 ```erb view (template)
 <!-- Calendar filtering -->
-<%== @calendar[:year].nav %>
-<%== @calendar[:month].nav %>
+<%== @calendar[:year].series_nav %>
+<%== @calendar[:month].series_nav %>
 
-<!-- Pagy info extended for the calendar unit -->
-<%== @pagy.info %> for <%== @calendar[:month].page_label(@pagy.page, format: '%B %Y') %>.
+<!-- Pagy info_tag extended for the calendar unit -->
+<%== @pagy.info_tag %> for <%== @calendar[:month].page_label(@pagy.page, format: '%B %Y') %>.
 
 ... Render @records here ...
 
 <!-- Standard pagination for the selected month -->
-<%== @pagy.nav %>
+<%== @pagy.series_nav %>
 
 <p>Showtime: <%= @calendar.showtime %></p>
 <a href="<%= @calendar.url_at(Time.zone.now) %>">Go to now</a>
