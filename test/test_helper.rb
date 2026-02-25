@@ -12,5 +12,15 @@ require 'minitest/spec'
 Minitest.load :holdify
 require 'minitest/autorun'
 require 'minitest/mock'
+require 'minitest/reporters'
 
 require_relative 'helpers/minitest_backtraces'
+
+unless ENV['RM_INFO']
+  reporter = if ENV['CI']
+               Minitest::Reporters::DefaultReporter.new(:color => true)
+             else
+               Minitest::Reporters::ProgressReporter.new
+             end
+  Minitest::Reporters.use! reporter
+end

@@ -18,6 +18,7 @@ group :development, :test do
   gem 'minitest-holdify'
   gem 'minitest-hooks'
   gem 'minitest-mock'
+  gem 'minitest-reporters', git: 'https://github.com/minitest-reporters/minitest-reporters', branch: 'master'
   gem 'oj', require: false     # false is for testing with or without it
   gem 'rack'
   gem 'rails-i18n'
