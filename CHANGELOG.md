@@ -45,6 +45,11 @@ If you upgrade from version `< 9.0.0` see the following:
 
 <hr>
 
+## Version 43.3.1
+
+- Update assets for a few apps
+- Fix pagy.ts /.js input_nav update
+
 ## Version 43.3.0
 
 - Add :typesense_rails paginator (See typesense/typesense-rails#17)

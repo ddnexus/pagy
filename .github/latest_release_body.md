@@ -1,11 +1,8 @@
-### Changes in 43.3.0
+### Changes in 43.3.1
 
 <!-- changes_start -->
-- Add :typesense_rails paginator (See typesense/typesense-rails#17)
-- Accept a variable number of search arguments
-- Improve resilience of internal pagy nav method
-- Use Pagy::OPTIONS instead of Pagy.options for efficiency
-- Simplify assign options
+- Update assets for a few apps
+- Fix pagy.ts /.js input_nav update
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
