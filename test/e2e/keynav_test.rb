@@ -3,6 +3,8 @@
 require 'e2e/test_helper'
 
 describe 'Keynav App' do
+  parallelize_me! unless ENV['CI']
+
   pages = (1..13).map(&:to_s) + %w[10 13]
 
   it "checks series_nav" do

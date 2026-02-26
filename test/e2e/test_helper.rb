@@ -22,14 +22,10 @@ class E2eTest < Minitest::Spec
   def app_id = @app_id ||= self.class.to_s.split.first.downcase.to_sym
 
   def browser
-    @browser ||= Ferrum::Browser.new(base_url: app.base_url,
-                                     headless: "new",
-                                     window_size: [1920, 1080],
-                                     browser_options: { 'disable-gpu' => nil,
-                                                        'disable-software-rasterizer' => nil,
-                                                        'no-sandbox' => nil,
-                                                        'log-level' => '3' },
-                                     timeout: 60)
+    @browser ||= Ferrum::Browser.new(base_url:        app.base_url,
+                                     timeout:         10,
+                                     window_size:     [1920, 1080],
+                                     browser_options: { 'no-sandbox' => nil })
   end
 
   after(:all) { app.stop }

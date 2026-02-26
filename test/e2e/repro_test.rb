@@ -3,6 +3,8 @@
 require 'e2e/test_helper'
 
 describe 'Repro App' do
+  parallelize_me! unless ENV['CI']
+
   it "checks series_nav" do
     check_nav('#series-nav')
   end

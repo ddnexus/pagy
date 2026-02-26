@@ -40,10 +40,6 @@ jobs:
     if: ${{ needs.skip_check.outputs.should_skip != 'true' }}
     name: E2E Test
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        app: [ "calendar", "demo", "keynav", "repro", "rails" ]
     steps:
       - uses: actions/checkout@v6.0.1
       - name: Set up Chrome
@@ -54,4 +50,4 @@ jobs:
           ruby-version: '4.0'
           bundler-cache: true
       - name: Run E2E Tests
-        run: bundle exec rake test:e2e:${{ matrix.app }}
+        run: bundle exec rake test:e2e

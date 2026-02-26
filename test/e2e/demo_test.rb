@@ -3,6 +3,8 @@
 require 'e2e/test_helper'
 
 describe 'Demo App' do
+  parallelize_me! unless ENV['CI']
+
   it "checks series_nav" do
     %w[/pagy /bootstrap /bulma].each do |path|
       check_nav('#series-nav', path:)

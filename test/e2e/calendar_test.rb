@@ -3,6 +3,8 @@
 require 'e2e/test_helper'
 
 describe 'Calendar App' do
+  parallelize_me! unless ENV['CI']
+
   ids = %w[#year-nav #month-nav #day-nav #pagy-info]
 
   it "checks the HTML elements (skip true/false)" do
