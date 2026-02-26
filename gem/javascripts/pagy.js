@@ -104,7 +104,9 @@ window.Pagy = (() => {
     });
   };
   const initInput = (element, getUrl) => {
-    const input = element.querySelector("input"), link = element.querySelector("a"), initial = input.value, action = () => {
+    const input = element.querySelector("input"), link = element.querySelector("a");
+    let initial = input.value;
+    const action = () => {
       if (input.value === initial) {
         return;
       }
@@ -114,6 +116,7 @@ window.Pagy = (() => {
         input.select();
         return;
       }
+      initial = input.value;
       link.href = getUrl(input.value);
       link.click();
     };
@@ -126,7 +129,7 @@ window.Pagy = (() => {
     });
   };
   return {
-    version: "43.3.0",
+    version: "43.3.1",
     init(arg) {
       const target = arg instanceof HTMLElement ? arg : document, elements = target.querySelectorAll("[data-pagy]");
       for (const element of elements) {
@@ -150,5 +153,5 @@ window.Pagy = (() => {
   };
 })();
 
-//# debugId=975696F2DDC5F9D164756E2164756E21
+//# debugId=873B9EED9C5194DF64756E2164756E21
 //# sourceMappingURL=pagy.js.map
