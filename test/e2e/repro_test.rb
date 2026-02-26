@@ -3,11 +3,25 @@
 require 'e2e/test_helper'
 
 describe 'Repro App' do
-  it "checks the HTML elements" do # --> navigate to page 1
+  parallelize_me! unless ENV['CI']
+
+  it "checks series_nav" do
     check_nav('#series-nav')
+  end
+
+  it "checks series_nav_js responsive" do
     check_nav('#series-nav-js-responsive', rjs: true)
-    check_combo_nav('#input-nav-js')
+  end
+
+  it "checks input_nav_js" do
+    check_input_nav('#input-nav-js')
+  end
+
+  it "checks info_tag" do
     check_info('#pagy-info')
-    check_limit_selector('#limit-tag-js')
+  end
+
+  it "checks limit_tag_js" do
+    check_limit_tag('#limit-tag-js')
   end
 end

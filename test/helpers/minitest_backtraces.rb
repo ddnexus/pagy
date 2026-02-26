@@ -2,6 +2,13 @@
 
 # /usr/local/lib/ruby/gems/3.4.0/gems/minitest-5.25.4/lib/minitest.rb
 module Minitest
+  module ShortenPaths
+    def filter_backtrace(...) # :nodoc:
+      super.map { _1.sub(%r{^#{Dir.pwd}/}, '') }
+    end
+  end
+  singleton_class.prepend ShortenPaths
+
   class UnexpectedError
     module AvoidBacktraceMangling
       def message # :nodoc:

@@ -1,5 +1,5 @@
 ---
-L8 6c679dad8430eaff:
+L10 6c679dad8430eaff:
 - :location: pagy
 - "#records": '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20'
 - "#series-nav": <nav id="series-nav" class="pagy series-nav" aria-label="Pages series_nav"><a
@@ -138,7 +138,7 @@ L8 6c679dad8430eaff:
     role="link" class="pagination-link is-current" aria-current="page" aria-disabled="true">49</a></li><li><a
     class="pagination-link" rel="next">50</a></li><li><a class="pagination-next" rel="next"
     aria-label="Next">&gt;</a></li></ul></nav>
-L9 74eae9326c76a9bc:
+L16 74eae9326c76a9bc:
 - :location: pagy
 - "#records": '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20'
 - "#series-nav-js-responsive": <nav id="series-nav-js-responsive" class="pagy-rjs
@@ -412,7 +412,7 @@ L9 74eae9326c76a9bc:
     class="pagination-link">48</a></li><li><a role="link" class="pagination-link is-current"
     aria-current="page" aria-disabled="true">49</a></li><li><a class="pagination-link">50</a></li><li><a
     class="pagination-next" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
-L10 bffdd4abf3cbed3a:
+L22 968b4f6a1759129d:
 - :location: pagy
 - "#records": '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20'
 - "#input-nav-js": '<nav id="input-nav-js" class="pagy input-nav-js" aria-label="Pages
@@ -571,7 +571,7 @@ L10 bffdd4abf3cbed3a:
     style="text-align: center; width: 3rem; line-height: 1.2rem; border: none; border-radius:
     .25rem; padding: .0625rem; color: white; background-color: #485fc7;"><a style="display:
     none;">#</a> of 50</label></li><li><a class="pagination-next" rel="next" aria-label="Next">&gt;</a></li></ul></nav>'
-L11 03b563d9460bf908:
+L28 03b563d9460bf908:
 - :location: pagy?page=1
 - "#records": '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20'
 - "#pagy-info": <span id="pagy-info" class="pagy info">Displaying items 1-20 of 1000
@@ -608,7 +608,7 @@ L11 03b563d9460bf908:
 - "#records": '981,982,983,984,985,986,987,988,989,990,991,992,993,994,995,996,997,998,999,1000'
 - "#pagy-info": <span id="pagy-info" class="pagy info">Displaying items 981-1000 of
     1000 in total</span>
-L12 4646c77a6b6c2b5f:
+L33 d4bd035c218b9b33:
 - :location: pagy?page=1
 - "#records": '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20'
 - "#limit-tag-js": '<span id="limit-tag-js" class="pagy limit-tag-js"><label>Show

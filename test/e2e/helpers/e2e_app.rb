@@ -6,8 +6,8 @@ require 'socket'
 require_relative '../../../gem/lib/pagy'
 
 class E2eApp
-  APPS    = { repro:   { port: 8080 },
-              rails:   { port: 8081 },
+  APPS    = { repro:    { port: 8080 },
+              rails:    { port: 8081 },
               keynav:   { port: 8082 },
               demo:     { port: 8083 },
               calendar: { port: 8084 } }.freeze
@@ -23,7 +23,7 @@ class E2eApp
 
     @id   = id
     @port = APPS[@id][:port]
-    cmd   = %W[ruby -S #{Pagy::ROOT}/bin/pagy #{@id} -p #{@port} -t1:1 -q]
+    cmd   = %W[ruby -S #{Pagy::ROOT}/bin/pagy #{@id} --host 127.0.0.1 --port #{@port} -q]
 
     @process = ChildProcess.build(*cmd)
     @process.environment['E2E_TEST'] = true
@@ -48,7 +48,7 @@ class E2eApp
       TCPSocket.new(IP, @port).close
       break
     rescue Errno::ECONNREFUSED, Errno::EHOSTUNREACH
-      raise "Timeout waiting for #{@id} to start on port #{@port}" if Time.now - start > 10
+      raise "Timeout waiting for #{@id} to start on port #{@port}" if Time.now - start > 20
 
       sleep 0.2
     end

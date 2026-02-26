@@ -181,9 +181,9 @@ const Pagy = (() => {
   // Init the input element
   const initInput = (element:HTMLElement, getUrl:(v:string) => string) => {
     const input   = <HTMLInputElement>element.querySelector("input"),
-          link    = <HTMLAnchorElement>element.querySelector("a"),
-          initial = input.value,
-          action  = () => {
+          link    = <HTMLAnchorElement>element.querySelector("a");
+    let   initial = input.value;
+    const action  = () => {
                       if (input.value === initial) { return }  // not changed
                       const [min, val, max] = [input.min, input.value, input.max].map(n => parseInt(n) || 0);
                       if (val < min || val > max) {  // reset invalid/out-of-range
@@ -191,6 +191,7 @@ const Pagy = (() => {
                         input.select();
                         return;
                       }
+                      initial = input.value;
                       link.href = getUrl(input.value);
                       link.click();
                     };
@@ -201,7 +202,7 @@ const Pagy = (() => {
 
   // Public interface
   return {
-    version: "43.3.0",
+    version: "43.3.1",
 
     // Scan for elements with a "data-pagy" attribute and call their init functions with the decoded args
     init(arg?:HTMLElement) {

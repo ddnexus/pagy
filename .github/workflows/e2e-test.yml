@@ -42,28 +42,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6.0.1
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@v1
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '4.0'
           bundler-cache: true
-      - name: Cache Chrome
-        id: cache-chrome
-        uses: actions/cache@v4
-        with:
-          path: /tmp/chrome.tar
-          key: ${{ runner.os }}-chrome-zenika-latest
-      - name: Start Chrome
-        run: |
-          if [ "${{ steps.cache-chrome.outputs.cache-hit }}" == "true" ]; then
-            docker load -i /tmp/chrome.tar
-          else
-            docker pull zenika/alpine-chrome:latest
-            docker save zenika/alpine-chrome:latest > /tmp/chrome.tar
-          fi
-          docker run -d --network host zenika/alpine-chrome:latest \
-            --headless --no-sandbox \
-            --use-gl=swiftshader --disable-software-rasterizer --disable-dev-shm-usage \
-            --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222
       - name: Run E2E Tests
         run: bundle exec rake test:e2e

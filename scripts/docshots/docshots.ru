@@ -58,9 +58,9 @@ class PagyDocshots < Sinatra::Base
       when 'pagy'
         %(<link rel="stylesheet" href="/stylesheets/pagy.css">)
       when 'bootstrap'
-        %(<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">)
+        %(<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css">)
       when 'bulma'
-        %(<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">)
+        %(<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1/css/bulma.min.css">)
       end
     end
   end
