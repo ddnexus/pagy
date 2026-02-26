@@ -7,8 +7,6 @@ require 'pagy/modules/b64'
 module E2eFunctions
   LOCATION_RE = %r{\Ahttp://#{Regexp.escape(E2eApp::IP)}:808\d/?}
 
-  def timeout = ENV['CI'] ? 0.6 : 0.2
-
   def goto_and_hold(id, path: '/', query: '')
     browser.goto("#{path}#{query}")
     hold_location
@@ -17,7 +15,6 @@ module E2eFunctions
 
   def interact_and_hold(*ids)
     yield
-    browser.wait_for_reload(timeout)
     hold_location
     hold_html(*ids)
   end
@@ -26,7 +23,7 @@ module E2eFunctions
     expect({ location: }).to_hold
 
     # Ensure the content of the location is valid
-    valid_html
+    validate_html
   end
 
   def location
@@ -51,7 +48,7 @@ module E2eFunctions
     loc
   end
 
-  def valid_html
+  def validate_html
     # Nokogiri::HTML5 uses the Gumbo parser (standard-compliant)
     doc = Nokogiri::HTML5.parse(browser.body)
     errors = doc.errors
@@ -90,7 +87,6 @@ module E2eFunctions
       [600, 700].each do |width|
         browser.resize(width: width, height: 1000)
         browser.reload
-        browser.wait_for_reload(timeout)
 
         interact_with_nav(id, pages)
       end
@@ -103,30 +99,31 @@ module E2eFunctions
   def interact_with_nav(id, pages)
     # Check Next
     interact_and_hold(id) do
-      browser.at_css(id).at_xpath(".//a[contains(text(), '>')]")&.click
+      browser.at_css(id).at_xpath(".//a[contains(text(), '>')]").click
     end
 
     # Check specific pages
     pages.each do |page|
       interact_and_hold(id) do
+        # &. because not all pages may be present depending on which page we were before
         browser.at_css(id).at_xpath(".//a[contains(text(), '#{page}')]")&.click
       end
     end
 
     # Check Previous
     interact_and_hold(id) do
-      browser.at_css(id).at_xpath(".//a[contains(text(), '<')]")&.click
+      browser.at_css(id).at_xpath(".//a[contains(text(), '<')]").click
     end
   end
 
-  def check_combo_nav(id, path: '/')
+  def check_input_nav(id, path: '/')
     input_selector = "#{id} input"
 
     goto_and_hold(id, path:)
 
     # Check Next
     interact_and_hold(id) do
-      browser.at_css(id).at_xpath(".//a[contains(text(), '>')]")&.click
+      browser.at_css(id).at_xpath(".//a[contains(text(), '>')]").click
     end
 
     # Test valid entry
@@ -163,7 +160,7 @@ module E2eFunctions
 
     # Check Previous
     interact_and_hold(id) do
-      browser.at_css(id).at_xpath(".//a[contains(text(), '<')]")&.click
+      browser.at_css(id).at_xpath(".//a[contains(text(), '<')]").click
     end
   end
 
@@ -173,7 +170,7 @@ module E2eFunctions
     end
   end
 
-  def check_limit_selector(id, path: '/')
+  def check_limit_tag(id, path: '/')
     input_selector = "#{id} input"
     [1, 36, 50].each do |page|
       goto_and_hold(id, path:, query: "?page=#{page}")
@@ -185,7 +182,6 @@ module E2eFunctions
         arr.each do |invalid|
           input = browser.at_css(input_selector)
           input.focus.type(invalid, :enter)
-          browser.wait_for_reload(timeout)
 
           refute_equal invalid, input.value
           assert_match(/page=#{page}/, current_url)

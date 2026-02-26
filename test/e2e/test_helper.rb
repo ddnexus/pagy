@@ -3,7 +3,6 @@
 require_relative '../test_helper'
 
 require 'ferrum'
-require 'socket'
 require 'minitest/hooks/default'
 
 require_relative 'helpers/e2e_app'
@@ -23,8 +22,13 @@ class E2eTest < Minitest::Spec
   def app_id = @app_id ||= self.class.to_s.split.first.downcase.to_sym
 
   def browser
-    @browser ||= Ferrum::Browser.new(url: "http://#{E2eApp::IP}:9222",
-                                     base_url: app.base_url,
+    @browser ||= Ferrum::Browser.new(base_url: app.base_url,
+                                     headless: "new",
+                                     window_size: [1920, 1080],
+                                     browser_options: { 'disable-gpu' => nil,
+                                                        'disable-software-rasterizer' => nil,
+                                                        'no-sandbox' => nil,
+                                                        'log-level' => '3' },
                                      timeout: 60)
   end
 
