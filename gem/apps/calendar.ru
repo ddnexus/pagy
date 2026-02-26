@@ -46,6 +46,13 @@ require 'sinatra/base'
 class PagyCalendar < Sinatra::Base
   include Pagy::Method
 
+  if ENV['E2E_TEST']
+    get('/assets/:file') do
+      content_type 'text/css'
+      send_file Pagy::ROOT.join('../test/e2e/assets', params[:file])
+    end
+  end
+
   # This method must be implemented by the application.
   # It must return the starting and ending local Time objects array defining the calendar :period
   def pagy_calendar_period(collection)
@@ -98,8 +105,11 @@ class PagyCalendar < Sinatra::Base
         <head>
           <title>Pagy Calendar App</title>
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+          <% if ENV['E2E_TEST'] %>
+            <link rel="stylesheet" href="/assets/bootstrap.min.css">
+          <% else %>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css">
+          <% end %>
 
           <style type="text/css">
             @media screen { html, body {

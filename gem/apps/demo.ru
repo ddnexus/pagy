@@ -71,6 +71,13 @@ class PagyDemo < Sinatra::Base
     send_file Pagy::ROOT.join('stylesheets', params[:file])
   end
 
+  if ENV['E2E_TEST']
+    get('/assets/:file') do
+      content_type 'text/css'
+      send_file Pagy::ROOT.join('../test/e2e/assets', params[:file])
+    end
+  end
+
   # One route/action per style
   SECTIONS.each do |section, value|
     get("/#{section}") do
@@ -86,7 +93,7 @@ class PagyDemo < Sinatra::Base
   end
 
   PAGY_LIKE_HEAD =
-    %(#{Pagy.dev_tools if ENV['E2E_TEST'] != 'true'}
+    %(#{Pagy.dev_tools unless ENV['E2E_TEST']}
       <style>
         /* black/white backdrop color based on --B */
         .pagy { background-color: hsl(0 0 calc(100 * var(--B))) !important; }
@@ -111,14 +118,26 @@ class PagyDemo < Sinatra::Base
         <link rel="stylesheet" href="/stylesheets/pagy.css">)
       when :tailwind
         %(#{PAGY_LIKE_HEAD}
-        <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+        #{if ENV['E2E_TEST']
+            '<script src="/assets/tailwind.js"></script>'
+          else
+            '<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>'
+          end}
         <style type="text/tailwindcss">
           #{Pagy::ROOT.join('stylesheets/pagy-tailwind.css').read}
         </style>)
       when :bootstrap
-        %(<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">)
+        if ENV['E2E_TEST']
+          '<link rel="stylesheet" href="/assets/bootstrap.min.css">'
+        else
+          '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css">'
+        end
       when :bulma
-        %(<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">)
+        if ENV['E2E_TEST']
+          '<link rel="stylesheet" href="/assets/bulma.min.css">'
+        else
+          '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1/css/bulma.min.css">'
+        end
       end
     end
 
@@ -140,16 +159,18 @@ class PagyDemo < Sinatra::Base
   template :layout do
     <<~HTML
       <!DOCTYPE html>
-      <html lang="en">
+      <html lang="en" data-theme="light">
       <head>
         <title>Pagy Demo App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <%= head_for(section) %>
         <script src="/javascripts/pagy.js"></script>
         <script>window.addEventListener("load", Pagy.init);</script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+        <% unless ENV['E2E_TEST'] %>
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+        <% end %>
         <style>
           @media screen { html, body {
             font-size: 1rem;
@@ -167,7 +188,7 @@ class PagyDemo < Sinatra::Base
           }
           body {
             margin: 0 !important;
-            font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+            font-family: <%= '"Nunito Sans", ' unless ENV['E2E_TEST'] %>"Helvetica Neue", Helvetica, Arial, sans-serif !important;
             color: #303030 !important;
             background-color: #f5f5f5 !important;
           }
