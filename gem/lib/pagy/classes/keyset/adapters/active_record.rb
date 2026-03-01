@@ -7,8 +7,8 @@ class Pagy
       module ActiveRecord
         # Extract the keyset from the set
         def extract_keyset
-          @set.order_values.each_with_object({}) do |node, keyset|
-            keyset[node.value.name.to_sym] = node.direction
+          @set.order_values.to_h do |node|
+            [node.value.name.to_sym, node.direction]
           end
         end
 

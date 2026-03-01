@@ -4,7 +4,16 @@
 module Minitest
   module ShortenPaths
     def filter_backtrace(...) # :nodoc:
-      super.map { _1.sub(%r{^#{Dir.pwd}/}, '') }
+      super.map { _1.sub(%r{^#{pwd}/}, '') }
+    end
+
+    private
+
+    def pwd
+      @pwd = begin
+               git = system('git --version', out: File::NULL, err: File::NULL)
+               git ? `git rev-parse --show-toplevel`.strip : Dir.pwd
+             end
     end
   end
   singleton_class.prepend ShortenPaths

@@ -71,7 +71,7 @@ Take a look at the [Examples](#-examples) for a quick overview of the new API.
 ### <span style="font-size: .65em; vertical-align: middle">💚</span> Now it's more... with less
 
 - Compatible with all environments and collection types
-- It can use OFFSET, COUNTLESS, KEYSET, KEYNAV, CALENDAR pagination techniques
+- It can use OFFSET, COUNTLESS, KEYSET, KEYNAV, CALENDAR, SEARCH pagination techniques
 - It supports server-side rendering or faster client-side rendering for popular CSS frameworks and APIs
 - It autoloads ONLY the methods that you actually use, with almost zero configuration
 - It boasts 100% test coverage for Ruby, HTML, and JavaScript end-to-end (E2E)
@@ -115,23 +115,19 @@ render json: { pagy: @pagy.data_hash, data: @records }
 
 ##### Search server pagination
 
+Available paginators: `:elasticsearch_rails`, `:meilisearch`, `:searchkick`, `:typesense_rails`
+
 ```rb
 # Extend your models (e.g. application_record.rb)
 extend Pagy::Search
 
 # Paginate with pagy:
 search           = Product.pagy_search(params[:q])
-@pagy, @response = pagy(:elasticsearch_rails, search)
-@pagy, @results  = pagy(:meilisearch, search)
-@pagy, @results  = pagy(:searchkick, search)
-@pagy, @results  = pagy(:typesense_rails, search)
+@pagy, @response = pagy(:a_search_paginator, search)
 
 # Or get pagy from paginated results:
 @results = Product.search(params[:q])
-@pagy    = pagy(:elasticsearch_rails, @results)
-@pagy    = pagy(:meilisearch, @results)
-@pagy    = pagy(:searchkick, @results)
-@pagy    = pagy(:typesense_rails, @results)
+@pagy    = pagy(:a_search_paginator, @results)
 ```
 
 ##### Calendar pagination

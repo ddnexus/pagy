@@ -62,6 +62,7 @@ Naming/VariableNumber:
 Naming/MethodParameterName:
   Enabled: false
 
+
 # not cool
 Style/CommentedKeyword:
   Enabled: false
@@ -71,6 +72,16 @@ Style/LambdaCall:
   Enabled: false
 Style/NumberedParametersLimit:
   Enabled: false
+
+Style/OneClassPerFile:
+  Exclude:
+    - gem/apps/**/*
+    - test/**/*
+    - scripts/**/*
+
+Style/RedundantStructKeywordInit:
+  Exclude:
+    - test/**/*
 
 # Cannot inline the disabling in the file because rubocop complains anyway
 Style/RedundantInitialize:
