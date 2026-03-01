@@ -1,0 +1,33 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Tests All" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest">
+    <module name="pagy" />
+    <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
+    <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-Itest" />
+    <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+    <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+    <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+    <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+    <envs>
+      <env name="JRUBY_OPTS" value="-X+O" />
+    </envs>
+    <EXTENSION ID="BundlerRunConfigurationExtension" BUNDLE_MODE="AUTO" bundleExecEnabled="true" />
+    <EXTENSION ID="RubyCoverageRunConfigurationExtension" runner="rcov">
+      <COVERAGE_PATTERN ENABLED="true">
+        <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+      </COVERAGE_PATTERN>
+    </EXTENSION>
+    <EXTENSION ID="com.github.l34130.mise.core.run.MiseRunConfigurationSettingsEditor" myConfigEnvironmentStrategy="use_project_settings" myMiseDirEnvCb="false" myMiseConfigEnvironmentTf="" />
+    <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
+    <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="$MODULE_DIR$/test" />
+    <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
+    <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPTS_PATHS" VALUE="" />
+    <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/{*_test,test_*,*_spec}.rb" />
+    <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
+    <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="ALL_IN_FOLDER" />
+    <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+    <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+    <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+    <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
+    <method v="2" />
+  </configuration>
+</component>
