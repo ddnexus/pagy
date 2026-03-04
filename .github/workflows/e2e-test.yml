@@ -43,7 +43,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6.0.1
       - name: Set up Chrome
-        uses: browser-actions/setup-chrome@v1
+        uses: browser-actions/setup-chrome@v2
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
         with:
