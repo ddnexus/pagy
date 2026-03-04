@@ -52,17 +52,17 @@ class Pagy
       p11n = dictionary['pagy'].delete('p11n')
       raise KeyError, "missing 'p11n' key in #{locale.inspect} locale" unless p11n
 
-      locales[locale] = [flatten_to_dot_keys(dictionary), Object.const_get("Pagy::I18n::P11n::#{p11n}")]
+      locales[locale] = [dotify_keys(dictionary), Object.const_get("Pagy::I18n::P11n::#{p11n}")]
     end
 
-    # Create a flat hash with dotted notation keys
+    # Flatten a nested hash by "dotifying" its keys
     # e.g. { 'a' => { 'b' => {'c' => 3, 'd' => 4 }}} -> { 'a.b.c' => 3, 'a.b.d' => 4 }
-    def flatten_to_dot_keys(initial, prefix = '')
+    def dotify_keys(initial, prefix = '')
       initial.each_with_object({}) do |(key, value), hash|
         key = "#{prefix}#{key}"
 
         if value.is_a?(Hash)
-          hash.merge!(flatten_to_dot_keys(value, "#{key}."))
+          hash.merge!(dotify_keys(value, "#{key}."))
         else
           hash[key] = value
         end
