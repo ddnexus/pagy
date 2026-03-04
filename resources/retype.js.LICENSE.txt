@@ -5,24 +5,33 @@
  * Licensed MIT © Zeno Rocha
  */
 
-/*! #__NO_SIDE_EFFECTS__ */
+/*!
+Turbo 8.0.23
+Copyright © 2026 37signals LLC
+ */
 
 /*! MIT License. Copyright 2015-2018 Richard Moore <me@ricmoo.com>. See LICENSE.txt. */
 
 /**
-* @vue/runtime-core v3.5.17
+* @vue/compiler-dom v3.5.28
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
 
 /**
-* @vue/runtime-dom v3.5.17
+* @vue/runtime-core v3.5.28
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
 
 /**
-* @vue/shared v3.5.17
+* @vue/runtime-dom v3.5.28
+* (c) 2018-present Yuxi (Evan) You and Vue contributors
+* @license MIT
+**/
+
+/**
+* @vue/shared v3.5.28
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
