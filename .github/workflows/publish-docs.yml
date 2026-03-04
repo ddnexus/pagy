@@ -47,7 +47,7 @@ jobs:
       - uses: actions/setup-dotnet@v5
         with:
           dotnet-version: 9.0.x
-      - uses: retypeapp/action-build@v3
+      - uses: retypeapp/action-build@v4
         with:
           config_path: docs/
       - uses: retypeapp/action-github-pages@latest
