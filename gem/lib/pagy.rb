@@ -5,7 +5,7 @@ require 'pathname'
 require_relative 'pagy/classes/exceptions'
 require_relative 'pagy/modules/abilities/linkable'
 require_relative 'pagy/modules/abilities/configurable'
-require_relative 'pagy/toolbox/helpers/loader'
+require_relative 'pagy/toolbox/helpers/loaders'
 
 # Top superclass: it defines only what's common to all the subclasses
 # noinspection RubyMismatchedArgumentType
@@ -36,7 +36,7 @@ class Pagy
 
   extend Configurable
   include Linkable
-  include Loader
+  include HelperLoader
 
   attr_reader :page, :next, :in, :limit, :options
 
@@ -77,5 +77,10 @@ class Pagy
 
     clean_options = options.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') }
     @options      = default.merge!(clean_options).freeze
+  end
+
+  # Hook module for numeric UI helpers
+  module NumericHelpers
+    include NumericHelperLoader
   end
 end

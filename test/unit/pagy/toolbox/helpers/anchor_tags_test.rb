@@ -6,6 +6,8 @@ require 'pagy/toolbox/helpers/anchor_tags'
 describe 'Pagy anchor_tags' do
   let(:pagy_class) do
     Class.new(Pagy) do
+      include Pagy::NumericHelpers
+
       attr_accessor :previous, :next
 
       # Renamed 'next' argument to 'next_page' to avoid keyword collision
@@ -83,6 +85,39 @@ describe 'Pagy anchor_tags' do
       tag = pagy.next_tag(text: "Forward", aria_label: "Go Forward")
 
       _(tag).must_equal 'LINK: page=20 text="Forward" label="Go Forward"'
+    end
+  end
+
+  describe 'Pagy::Keyset' do
+    let(:pagy_class) do
+      Class.new(Pagy) do
+        attr_accessor :next
+
+        def initialize(next_page: nil)
+          @next = next_page
+        end
+
+        def a_lambda(**_opts)
+          lambda do |page, text, aria_label: nil|
+            %(LINK: page="#{page}" text="#{text}" label="#{aria_label}")
+          end
+        end
+
+        def keyset? = true
+
+        def next_tag(...) = anchor_tag_for(:next, ...)
+
+        public :next_tag
+      end
+    end
+
+    let(:pagy) { pagy_class.new }
+
+    describe '#next_tag' do
+      it 'returns enabled tag when next is set' do
+        pagy.next = 'eyJpZCI6MzB9'
+        _(pagy.next_tag).must_equal 'LINK: page="eyJpZCI6MzB9" text="&gt;" label="Next"'
+      end
     end
   end
 end

@@ -6,6 +6,8 @@ require 'pagy/toolbox/helpers/bulma/input_nav_js'
 describe 'Pagy#bulma_input_nav_js' do
   let(:pagy_class) do
     Class.new(Pagy) do
+      include Pagy::NumericHelpers
+
       attr_accessor :page, :last
 
       def initialize(page: 1, last: 10)
