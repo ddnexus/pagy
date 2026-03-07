@@ -22,6 +22,7 @@ group :development, :test do
   gem 'oj', require: false     # false is for testing with or without it
   gem 'rack'
   gem 'rails-i18n'
+  gem 'rbs'
   gem 'rubocop'
   gem 'rubocop-minitest'
   gem 'rubocop-packaging'
