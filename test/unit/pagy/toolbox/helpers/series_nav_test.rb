@@ -6,6 +6,8 @@ require 'pagy/toolbox/helpers/series_nav'
 describe 'Pagy#series_nav' do
   let(:pagy_class) do
     Class.new(Pagy) do
+      include Pagy::NumericUI
+
       # Mock dependencies
       def series(**)
         [1, '2', :gap]

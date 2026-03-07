@@ -6,6 +6,8 @@ require 'pagy/toolbox/helpers/anchor_tags'
 describe 'Pagy anchor_tags' do
   let(:pagy_class) do
     Class.new(Pagy) do
+      include Pagy::NumericUI
+
       attr_accessor :previous, :next
 
       # Renamed 'next' argument to 'next_page' to avoid keyword collision

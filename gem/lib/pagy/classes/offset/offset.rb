@@ -13,6 +13,7 @@ class Pagy
 
     include Rangeable
     include Shiftable
+    include NumericUI
 
     def initialize(**)
       assign_options(**)

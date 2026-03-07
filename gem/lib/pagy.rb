@@ -78,4 +78,7 @@ class Pagy
     clean_options = options.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') }
     @options      = default.merge!(clean_options).freeze
   end
+
+  # Hook module for numeric UI helpers
+  module NumericUI; end
 end

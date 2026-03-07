@@ -6,6 +6,8 @@ require 'pagy/toolbox/helpers/series_nav_js'
 describe 'Pagy#series_nav_js' do
   let(:pagy_class) do
     Class.new(Pagy) do
+      include Pagy::NumericUI
+
       attr_reader :wrap_args
 
       # Mock dependencies

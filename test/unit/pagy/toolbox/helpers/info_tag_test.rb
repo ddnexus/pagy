@@ -6,6 +6,8 @@ require 'pagy/toolbox/helpers/info_tag'
 describe 'Pagy#info_tag' do
   let(:pagy_class) do
     Class.new(Pagy) do
+      include Pagy::NumericUI
+
       attr_accessor :count, :page, :last, :in, :from, :to
 
       def initialize(vars = {})

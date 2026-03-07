@@ -6,6 +6,8 @@ require 'pagy/toolbox/helpers/limit_tag_js'
 describe 'Pagy#limit_tag_js' do
   let(:pagy_class) do
     Class.new(Pagy) do
+      include Pagy::NumericUI
+
       attr_accessor :limit, :from, :options
 
       def initialize(limit: 20, from: 1, options: {})
