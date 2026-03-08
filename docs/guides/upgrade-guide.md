@@ -15,29 +15,25 @@ Pagy version 43 is a complete redesign of the legacy code. Its improvements make
 !!!success Follow this guide to upgrade your app in just a few minutes.
 
 Cherry-pick only what applies to your app: you can safely skip all the rest.
+
 !!!
 
-!!! Just the steps without distractions. 
-
-This guide focuses on getting the job done quickly. If you want to learn more about the changes:
+If you want to learn more about the changes:
 
 - Consult the docs and [How To Guide](how-to)
 - Ask Pagy AI specific questions (with the bottom-right button in this page)
 - Ask in the [Q&A discussion](https://github.com/ddnexus/pagy/discussions/categories/q-a).
-!!!
 
-### 1. Replace the `pagy.rb` config file
+>>> Replace the `pagy.rb` config file
 
-- Rename your `pagy.rb` initializer as `pagy-old.rb`, and add the new, concise
-  [pagy.rb](../resources/initializer) initializer in its place.
-- Search the `pagy-old.rb` for code-occurrences of `Pagy::DEFAULT[...]` and move them to the new `pagy.rb` (remove them from the
-  `pagy-old.rb`)
-- Replace all the `Pagy::DEFAULT[...]` entries just added to the new `pagy.rb` with `Pagy::OPTIONS[...]`.
+- Rename your `pagy.rb` initializer as `pagy-old.rb`
+- Add the new [pagy.rb](../resources/initializer) initializer in its place
+- Cut/remove the `Pagy::DEFAULT[...]` lines from `pagy-old.rb` and paste/add them to `pagy.rb`
+- Replace all the `Pagy::DEFAULT[...]` entries with `Pagy::OPTIONS[...]` in `pagy.rb`
 
-_In the next steps we will use the `pagy-old.rb` as the blueprint to guide most of the changes, and we will edit the new `pagy.rb`
-as needed._
+_In the next steps we will use the `pagy-old.rb` as the blueprint to guide most of the changes, and we will edit the new `pagy.rb` as needed._
 
-### 2. Replace your used extras
+>>> Replace your used extras
 
 The new version doesn't use the extras anymore. They got integrated in the core code, and a few have been discontinued.
 
@@ -296,7 +292,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 ===
 
-### 3. Final steps
+>>> Final steps
 
 ==- Search and replace
 
@@ -338,15 +334,15 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 ===
 
-### 4. Finalize the upgrade
+>>> Finalize the upgrade
 
 ==- Javascript
 
-- If your `pagy-old.rb` contains any JavaScript setup, it should still work, so you can move it to the `pagy.rb` file, however, for apps with builders, consider using the new [Pagy.sync_javascript](../resources/javascript/#2-make-the-file-available-to-your-app) and removing all the old entries from your JavaScript config files.
+If your `pagy-old.rb` contains any JavaScript setup, it should still work, so you can move it to the `pagy.rb` file, however, for apps with builders, consider using the new [Pagy.sync_javascript](../resources/javascript/#load-it-in-your-app) and removing all the old entries from your JavaScript config files.
 
 ==- Stylesheets
 
-- The CSS for the default pagy helpers have new selectors and variables. See the new [Stylesheets](../resources/stylesheets) to interactively update your custom CSS.
+The CSS for the default pagy helpers have new selectors and variables. See the new [Stylesheets](../resources/stylesheets) to interactively update your custom CSS.
 
 !!!success CSS Frameworks
 
@@ -387,9 +383,11 @@ You may want also to check these internal renaming:
 - At this point, there should be no more code in the `pagy-old.rb`.
 
 ===
+ 
+>>>
 
 !!!warning
 
-Please report any issue with this guide opening a [new docs issue](https://github.com/ddnexus/pagy/issues/new?template=Documentation.yml).
+Please report any issue with this guide by opening a [new docs issue](https://github.com/ddnexus/pagy/issues/new?template=Documentation.yml).
 
 !!!

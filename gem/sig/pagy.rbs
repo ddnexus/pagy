@@ -19,8 +19,6 @@ module Sequel
   end
 end
 
-
-
 class Pagy
   VERSION: String
   ROOT:    Pathname

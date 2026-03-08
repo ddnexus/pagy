@@ -97,12 +97,10 @@ The Cons are overwhelming.
 
 <br/>
 
-!!!warning This file is provided as a courtesy configuration for advanced users
+!!!danger This file is provided as a courtesy configuration
 
-It is not an officially supported or tested feature, as it bypasses the standard, high-performance Pagy URL generation logic, so use it at your own risk.
-
-!!!
-
-:::code source="../gem/apps/enable_rails_page_segment.rb" title="enable_rails_page_segment.rb":::
+It is not an officially supported or tested feature, as it bypasses the standard, high-performance Pagy URL generation logic.
+ 
+**Use it at your own risk and maintenance extra work!**
 
 ===

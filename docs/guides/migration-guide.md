@@ -22,21 +22,21 @@ The Pagy API is quite different from other pagination gems, however, if you spli
 2. Run the app so to raise exceptions in order to find legacy code that may still be in place
 3. When the app runs without errors, adjust the pagination to look and work as before: just many times faster and using many times less memory
 
-### Remove the old code
+>>> Remove the old code
 
-#### Preparation
+==- Preparation
 
 - Uninstall the legacy gem and replace it with `gem "pagy"` in the `Gemfile`.
 - Add `include Pagy::Method` statement to the application controller.
 - Keep both the legacy gem and Pagy documentation accessible for reference.
 
-#### Application-wide search and replace
+==- Application-wide search and replace
 
 Search for the class name of the legacy gem, for example `WillPaginate` or `Kaminari`. You should find most of the code relative to global gem configuration, or monkey patching.
 
 Remove all the legacy settings of the old gem.
 
-#### Cleanup the Models
+==- Cleanup the Models
 
 Look for terms like `per_page`, `per`, and similar, as these are configuration settings. Include them in the appropriate paginator call in the controller (e.g., `pagy(:offset, collection, limit: 10)`) or globally in the Pagy initializer (e.g., `Pagy::OPTIONS[:limit] = 10`).
 
@@ -46,8 +46,7 @@ If the app uses the `page` scope in model methods or scopes, remove it, along wi
 #@records = Product.paginated_scope(params[:page])
 @pagy, @records = pagy(:offset, Product.non_paginated_scope)
 ```
-
-#### Search and replace in the Controllers
+==- Search and replace in the Controllers
 
 In controllers, legacy pagination statements generally map directly to Pagy, making them straightforward to convert.
 
@@ -66,7 +65,7 @@ Search for keywords like `page` and `paginate` statements and use the `pagy(:off
 @pagy, @records = pagy(:offset, Product.all, limit: 15)
 ```
 
-#### Search and replace in the Views
+==- Search and replace in the Views
 
 Similarly, in views, legacy pagination statements typically correspond directly to Pagy, simplifying conversion.
 
@@ -78,14 +77,15 @@ Search for keywords like `will_paginate` and `paginate` statement and use one of
 
 <%== @pagy.series_nav %>
 ```
+===
 
-## Find the remaining code
+>>> Find the remaining code
 
 If the app has tests, it's time to run them. If not, start the app and navigate through its pages.
 
 If any legacy code remains, it will raise an exception. Remove the old code and retry until no exceptions occur.
 
-## Fine-tuning
+>>> Fine-tuning
 
 Once the app displays pagination correctly, customize Pagy as needed. If the previous pagination used custom elements (e.g., custom params, URLs, links, HTML elements, etc.), adjustments may be required for compatibility.
 
@@ -94,3 +94,5 @@ Please take a look at the topics in the [how-to](how-to.md) documentation: that 
 ### CSS
 
 CSS styling applied to pagination elements may require minor adjustments. However, if the app uses pagination from Bootstrap or another framework, the existing CSS should function seamlessly with Pagy navigation helpers.
+
+>>>

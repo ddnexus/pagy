@@ -10,7 +10,7 @@ icon: rocket
 
 ---
 
-### 1. Install
+>>> Install
 
 Prevent unexpected breaking changes in stable releases (see [omit the patch version](http://guides.rubygems.org/patterns/#pessimistic-version-constraint)):
 
@@ -26,7 +26,7 @@ gem 'pagy', '~> 43.3' # Omit the patch segment to avoid breaking changes
   - Include the [Pagy::Console](../sandbox/console)
 !!!
 
-### 2. Use it in your app
+>>> Use it in your app
 
 - Include the `pagy` method where you are going to use it _(usually ApplicationController)_:
   ```ruby
@@ -53,15 +53,14 @@ gem 'pagy', '~> 43.3' # Omit the patch segment to avoid breaking changes
   ```
   _See all the available [@pagy methods](../toolbox/helpers)_
 
-### 3. Configure global options and special features
+>>> Configure global options and special features
 
-- See [pagy.rb initializer](../resources/initializer/)
-
-#### Pick a stylesheet or a CSS framework
-
-- For native pagy helpers you can integrate the [Stylesheets (CSS or Tailwind)](../resources/stylesheets) into your app.
-- For `:bootstrap` and `:bulma` styles, no additional CSS file is needed.
-
-#### If you use any `*_js` method...
-
-- Add [JavaScript support](../resources/javascript)
+- **Options**
+  - See [Options](../toolbox/options) and [pagy.rb initializer](../resources/initializer)
+- **CSS**
+  - For native pagy helpers you can integrate the [Stylesheets (CSS or Tailwind)](../resources/stylesheets) into your app.
+  - For `:bootstrap` and `:bulma` styles, no additional CSS file is needed.
+- **JavaScript**
+  - See [JavaScript support](../resources/javascript)
+  
+>>>

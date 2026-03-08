@@ -57,7 +57,7 @@ Pagy retrieves the page from the `'page'` request params hash. To force a specif
 
 ==- Create a new I18n Dictionary
 
-#### 1. Find the pluralization rules for your language
+>>> Find the pluralization rules for your language
 
 - Locate the locale file you need in the [list of pluralizations](https://github.com/svenfuchs/rails-i18n/tree/master/rails/pluralization)
 - Check the pluralization rules required in it. For example, the name of the file required is `one_other` for [`en.rb`](https://github.com/svenfuchs/rails-i18n/blob/master/rails/pluralization/en.rb). In Pagy, that translates to `'OneOther'`.
@@ -67,13 +67,14 @@ Pagy retrieves the page from the `'page'` request params hash. To force a specif
     - Add a new module for the pluralization (by adapting the same pluralization from the corresponding rails-i18n file) and include tests for it;
     - Or, create an issue requesting the addition of the pluralization entry and its tests.
 
-#### 2. Duplicate an existing Pagy locale dictionary file and translate it into your language.
+>>> Duplicate an existing Pagy locale dictionary file and translate it into your language.
 
 - See the [lib/locales](https://github.com/ddnexus/pagy/tree/master/gem/locales) for existing dictionaries.
 - Check that the `p11n` entry points to a module in the [P18n directory](https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/modules/i18n/p18n).
 - The mandatory pluralized entries in the dictionary file are `aria_label.nav` and `item_name`. Please provide all the necessary plurals for your language. For example, if your language uses the `EastSlavic` rule, you should provide the plurals for `one`, `few`, `many`, and `other`. If it uses `Other`, you should only provide a single value. Check other dictionary files for examples, and ask if you have any doubts.
 
 Feel free to ask for help in your Pull Request.
+>>>
 
 ==- Customize the ARIA labels
 
