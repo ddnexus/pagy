@@ -89,7 +89,7 @@ You don't know the `previous` and the `last` page; you only know the `first` and
 
 !!!success
 
-If you want to paginate backward, like: `last` ... `prev` ... `prev`, just call `reverse_order` on your set, and proceed forward
+If you want to paginate backward, like: `last` ... `previous` ... `previous`, just call `reverse_order` on your set, and proceed forward
 like:
 `first` ... `next` ... `next` ... It does exactly the same: just faster and simpler.
 

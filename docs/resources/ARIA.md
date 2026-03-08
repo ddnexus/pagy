@@ -39,7 +39,7 @@ The `nav` elements are `landmark  roles`, and should be distinctly labeled.
 
 +++ Links
 
-- Links to the previous and next pages are rendered as "&lt;" and "&gt;" and are aria-labelled as translated `"Previous"` and `"Next"`. You can customize both the link text and the `aria-label` by editing the `pagy.prev`, `pagy.next`, `pagy.aria_label.prev`, and `pagy.aria_label.next` values in the locale files.
+- Links to the previous and next pages are rendered as "&lt;" and "&gt;" and are aria-labelled as translated `"Previous"` and `"Next"`. You can customize both the link text and the `aria-label` by editing the `pagy.previous`, `pagy.next`, `pagy.aria_label.previous`, and `pagy.aria_label.next` values in the locale files.
 
 - By design, page links do not include an `aria-label` attribute because their text is a simple number (read by screen readers in the user's native language), making an explicit attribute redundant and inefficient.
 
