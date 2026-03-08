@@ -153,7 +153,7 @@ GEM
       prism (>= 1.3.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json (2.19.0)
+    json (2.19.1)
     json-schema (6.2.0)
       addressable (~> 2.8)
       bigdecimal (>= 3.1, < 5)
@@ -179,7 +179,7 @@ GEM
     minitest (6.0.2)
       drb (~> 2.0)
       prism (~> 1.5)
-    minitest-holdify (1.3.4)
+    minitest-holdify (1.3.6)
       digest-xxhash (>= 0.2.9)
       minitest (>= 5.0.0)
     minitest-hooks (1.5.3)
@@ -352,7 +352,7 @@ GEM
     stringio (3.2.0)
     thor (1.5.0)
     tilt (2.7.0)
-    timeout (0.6.0)
+    timeout (0.6.1)
     tsort (0.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -463,7 +463,7 @@ CHECKSUMS
   i18n (1.14.8) sha256=285778639134865c5e0f6269e0b818256017e8cde89993fdfcbfb64d088824a5
   io-console (0.8.2) sha256=d6e3ae7a7cc7574f4b8893b4fca2162e57a825b223a177b7afa236c5ef9814cc
   irb (1.17.0) sha256=168c4ddb93d8a361a045c41d92b2952c7a118fa73f23fe14e55609eb7a863aae
-  json (2.19.0) sha256=bc5202f083618b3af7aba3184146ec9d820f8f6de261838b577173475e499d9a
+  json (2.19.1) sha256=dd94fdc59e48bff85913829a32350b3148156bc4fd2a95a2568a78b11344082d
   json-schema (6.2.0) sha256=e8bff46ed845a22c1ab2bd0d7eccf831c01fe23bb3920caa4c74db4306813666
   language_server-protocol (3.17.0.5) sha256=fd1e39a51a28bf3eec959379985a72e296e9f9acfce46f6a79d31ca8760803cc
   lint_roller (1.1.0) sha256=2c0c845b632a7d172cb849cc90c1bce937a28c5c8ccccb50dfd46a485003cc87
@@ -475,7 +475,7 @@ CHECKSUMS
   mcp (0.8.0) sha256=ae8bd146bb8e168852866fd26f805f52744f6326afb3211e073f78a95e0c34fb
   mini_mime (1.1.5) sha256=8681b7e2e4215f2a159f9400b5816d85e9d8c6c6b491e96a12797e798f8bccef
   minitest (6.0.2) sha256=db6e57956f6ecc6134683b4c87467d6dd792323c7f0eea7b93f66bd284adbc3d
-  minitest-holdify (1.3.4) sha256=8cf921860d02e59eb808aa02b47fa3e221f9077fe80f45a74bad50b2315c7285
+  minitest-holdify (1.3.6) sha256=dc725e06735f714b5c9d34293c9cde920f077864f4986e30e750dd041a2a85d4
   minitest-hooks (1.5.3) sha256=ef50dd3bf47e6d1646befc358c640c71ca41f5650f0036b4c69929a44d6f32c4
   minitest-mock (5.27.0) sha256=7040ed7185417a966920987eaa6eaf1be4ea1fc5b25bb03ff4703f98564a55b0
   minitest-reporters (1.7.1)
@@ -548,7 +548,7 @@ CHECKSUMS
   stringio (3.2.0) sha256=c37cb2e58b4ffbd33fe5cd948c05934af997b36e0b6ca6fdf43afa234cf222e1
   thor (1.5.0) sha256=e3a9e55fe857e44859ce104a84675ab6e8cd59c650a49106a05f55f136425e73
   tilt (2.7.0) sha256=0d5b9ba69f6a36490c64b0eee9f6e9aad517e20dcc848800a06eb116f08c6ab3
-  timeout (0.6.0) sha256=6d722ad619f96ee383a0c557ec6eb8c4ecb08af3af62098a0be5057bf00de1af
+  timeout (0.6.1) sha256=78f57368a7e7bbadec56971f78a3f5ecbcfb59b7fcbb0a3ed6ddc08a5094accb
   tsort (0.2.0) sha256=9650a793f6859a43b6641671278f79cfead60ac714148aabe4e3f0060480089f
   tzinfo (2.0.6) sha256=8daf828cc77bcf7d63b0e3bdb6caa47e2272dcfaf4fbfe46f8c3a9df087a829b
   unicode-display_width (3.2.0) sha256=0cdd96b5681a5949cdbc2c55e7b420facae74c4aaf9a9815eee1087cb1853c42
