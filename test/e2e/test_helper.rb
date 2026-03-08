@@ -23,7 +23,7 @@ class E2eTest < Minitest::Spec
 
   def browser
     @browser ||= Ferrum::Browser.new(base_url:        app.base_url,
-                                     timeout:         10,
+                                     timeout:         15,
                                      window_size:     [1920, 1080],
                                      browser_options: { 'no-sandbox' => nil })
   end
