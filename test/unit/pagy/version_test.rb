@@ -26,7 +26,7 @@ describe 'Version match' do
 
     it 'matches in .github/ISSUE_TEMPLATE/Code.yml' do
       content = repo_root.join('.github/ISSUE_TEMPLATE/Code.yml').read
-      _(content).must_match "I upgraded to pagy version #{version}"
+      _(content).must_match "Run Pagy version #{version}"
     end
 
     it 'matches in config/pagy.rb' do
