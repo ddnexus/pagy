@@ -42,6 +42,8 @@ jobs:
     if: ${{ needs.skip_check.outputs.should_skip != 'true' }}
     name: Publish to docs-site branch
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v6
       # - uses: actions/setup-dotnet@v5
