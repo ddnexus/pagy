@@ -2,10 +2,8 @@ serve:
   watch:
     mode: disk  # no more surprises with retype not copying download link files!
 
-input: ./
-# input: .
-output: .retype
-# output: .public
+input: .
+output: .public
 url: geoffreymcgill.github.io/pagy
 
 branding:
