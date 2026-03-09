@@ -4,7 +4,7 @@ serve:
 
 input: .
 output: .public
-url: geoffreymcgill.github.io/pagy
+url: ddnexus.github.io/pagy
 
 branding:
   title: Pagy
