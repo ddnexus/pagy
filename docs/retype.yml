@@ -2,9 +2,11 @@ serve:
   watch:
     mode: disk  # no more surprises with retype not copying download link files!
 
-input: .
-output: .public
-url: https://ddnexus.github.io/pagy/
+input: ./
+# input: .
+output: .retype
+# output: .public
+url: geoffreymcgill.github.io/pagy
 
 branding:
   title: Pagy
