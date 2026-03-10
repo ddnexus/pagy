@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.1.0.825930618349">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.1.0.826453050485">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.1.0">
@@ -28,12 +28,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.1.0.825930618349" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.1.0.826453050485" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.1.0.825930618349" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.1.0.826453050485" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.1.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.1.0.825930618349" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.1.0.825930618349" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.1.0.826453050485" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.1.0.826453050485" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -187,7 +187,7 @@
                             <img class="max-h-10 hidden dark:inline-block" src="../../assets/images/pagy-the-frog.png">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.3.1</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.3.2</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -361,14 +361,11 @@
     </h2>
 </doc-anchor-target>
 <hr>
-<doc-anchor-target id="1-install">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#1-install">#</doc-anchor-trigger>
-        <span>1. Install</span>
-    </h3>
-</doc-anchor-target>
+<doc-steps>
+   <doc-step id="install" step-number="1">
+      <template #title>Install</template>
 <p>Prevent unexpected breaking changes in stable releases (see <a href="http://guides.rubygems.org/patterns/#pessimistic-version-constraint">omit the patch version</a>):</p>
-<div id="1-install-gemfile-stable" class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">Gemfile (stable)</div>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">gem 'pagy', '~&gt; 43.3' # Omit the patch segment to avoid breaking changes</code></pre>
 </doc-codeblock></div>
@@ -401,12 +398,9 @@
         </div>
     </div>
 </div>
-<doc-anchor-target id="2-use-it-in-your-app">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#2-use-it-in-your-app">#</doc-anchor-trigger>
-        <span>2. Use it in your app</span>
-    </h3>
-</doc-anchor-target>
+   </doc-step>
+   <doc-step id="use-it-in-your-app" step-number="2">
+      <template #title>Use it in your app</template>
 <ul>
 <li><p>Include the <code translate="no" v-pre>pagy</code> method where you are going to use it <em>(usually ApplicationController)</em>:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -432,34 +426,29 @@
 <p><em>See all the available <a href="../../toolbox/helpers/">@pagy methods</a></em></p>
 </li>
 </ul>
-<doc-anchor-target id="3-configure-global-options-and-special-features">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#3-configure-global-options-and-special-features">#</doc-anchor-trigger>
-        <span>3. Configure global options and special features</span>
-    </h3>
-</doc-anchor-target>
+   </doc-step>
+   <doc-step id="configure-global-options-and-special-features" step-number="3">
+      <template #title>Configure global options and special features</template>
 <ul>
-<li>See <a href="../../resources/initializer/">pagy.rb initializer</a></li>
+<li><strong>Options</strong>
+<ul>
+<li>See <a href="../../toolbox/options/">Options</a> and <a href="../../resources/initializer/">pagy.rb initializer</a></li>
 </ul>
-<doc-anchor-target id="pick-a-stylesheet-or-a-css-framework">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#pick-a-stylesheet-or-a-css-framework">#</doc-anchor-trigger>
-        <span>Pick a stylesheet or a CSS framework</span>
-    </h4>
-</doc-anchor-target>
+</li>
+<li><strong>CSS</strong>
 <ul>
 <li>For native pagy helpers you can integrate the <a href="../../resources/stylesheets/">Stylesheets (CSS or Tailwind)</a> into your app.</li>
 <li>For <code translate="no" v-pre>:bootstrap</code> and <code translate="no" v-pre>:bulma</code> styles, no additional CSS file is needed.</li>
 </ul>
-<doc-anchor-target id="if-you-use-any-_js-method">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#if-you-use-any-_js-method">#</doc-anchor-trigger>
-        <span>If you use any <code translate="no" v-pre>*_js</code> method...</span>
-    </h4>
-</doc-anchor-target>
+</li>
+<li><strong>JavaScript</strong>
 <ul>
-<li>Add <a href="../../resources/javascript/">JavaScript support</a></li>
+<li>See <a href="../../resources/javascript/">JavaScript support</a></li>
 </ul>
+</li>
+</ul>
+   </doc-step>
+</doc-steps>
 
                 
                 <!-- Required only on API pages -->

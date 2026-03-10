@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.1.0.825930618349">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.1.0.826453050485">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.1.0">
@@ -28,12 +28,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.1.0.825930618349" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.1.0.826453050485" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.1.0.825930618349" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.1.0.826453050485" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.1.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.1.0.825930618349" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.1.0.825930618349" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.1.0.826453050485" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.1.0.826453050485" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -187,7 +187,7 @@
                             <img class="max-h-10 hidden dark:inline-block" src="../../assets/images/pagy-the-frog.png">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.3.1</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.3.2</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -373,17 +373,33 @@
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-            <h5>The helpers and paginators named <code translate="no" v-pre>*_js</code> require JavaScript support.</h5>
+            <h5>The helpers and paginators suffixed with <code translate="no" v-pre>*_js</code> require JavaScript support.</h5>
 <p>Simply add to your code the appropriate file(s) and statements as outlined below.</p>
         </div>
     </div>
 </div>
-<doc-anchor-target id="1-choose-the-format-that-matches-your-apps-configuration">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#1-choose-the-format-that-matches-your-apps-configuration">#</doc-anchor-trigger>
-        <span>1. Choose the format that matches your app&#x27;s configuration</span>
-    </h4>
-</doc-anchor-target>
+<doc-steps>
+   <doc-step id="set-up-the-pagyinit-listener" step-number="1">
+      <template #title>Set up the <code translate="no" v-pre>Pagy.init</code> listener</template>
+<p>Attach the <code translate="no" v-pre>Pagy.init</code> to a suitable <code translate="no" v-pre>window</code> event in your page:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">// Plain JavaScript
+window.addEventListener(&quot;load&quot;, Pagy.init)
+
+// Turbo
+window.addEventListener(&quot;turbo:load&quot;, Pagy.init)
+
+// Turbolinks
+window.addEventListener(&quot;turbolinks:load&quot;, Pagy.init)
+
+// Custom event
+window.addEventListener(&quot;yourEvent&quot;, Pagy.init)</code></pre>
+</doc-codeblock></div>
+   </doc-step>
+   <doc-step id="download-a-pagy-javascript-file" step-number="2">
+      <template #title>Download a Pagy JavaScript file</template>
+<p>Pick the ES6 module with builders and pipelines; the IIFE file otherwise.<br>
+<em>(Source map and types files are for developing pagy itself.)</em></p>
 <div class="compact-dl"><p>
 <div class="mb-6 px-5 py-4 flex justify-between relative border border-base-border hover:border-base-border-hover rounded transition-colors duration-150">
     <div class="flex items-center text-base-500">
@@ -452,13 +468,11 @@
 </div>
 </p>
 </div>
-<doc-anchor-target id="2-make-the-file-available-to-your-app">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#2-make-the-file-available-to-your-app">#</doc-anchor-trigger>
-        <span>2. Make the file available to your app</span>
-    </h4>
-</doc-anchor-target>
-<p>Depending on your app&#x27;s architecture, you have a couple of options. Just pick one to uncomment in the <a href="../initializer/">pagy.rb initializer</a>:</p>
+<p>Save the file with your usual modules/javascripts assets.</p>
+   </doc-step>
+   <doc-step id="load-it-in-your-app" step-number="3">
+      <template #title>Load it in your app</template>
+<p>You have a couple of options to make the file available to your app. Just pick one to uncomment in the <a href="../initializer/">pagy.rb initializer</a>:</p>
 <ul>
 <li><p><strong>For apps with an assets pipeline...</strong></p>
 <ul>
@@ -478,29 +492,10 @@ javascript_dir = Rails.root.join('app/javascripts')
 Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?</code></pre>
 </doc-codeblock></div>
 </li>
-<li><p><strong>Load it like any other JavaScript file or module you already use in your app</strong></p>
-</li>
 </ul>
-<doc-anchor-target id="3-set-up-the-pagyinit-listener">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#3-set-up-the-pagyinit-listener">#</doc-anchor-trigger>
-        <span>3. Set up the <code translate="no" v-pre>Pagy.init</code> listener</span>
-    </h4>
-</doc-anchor-target>
-<p>The primary purpose of the JavaScript support is to utilize <code translate="no" v-pre>Pagy.init</code> as an event listener attached to a suitable <code translate="no" v-pre>window</code> event:</p>
-<div id="3-set-up-the-pagyinit-listener-code-1" class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">// Plain JavaScript
-window.addEventListener(&quot;load&quot;, Pagy.init)
-
-// Turbo
-window.addEventListener(&quot;turbo:load&quot;, Pagy.init)
-
-// Turbolinks
-window.addEventListener(&quot;turbolinks:load&quot;, Pagy.init)
-
-// Custom event
-window.addEventListener(&quot;yourEvent&quot;, Pagy.init)</code></pre>
-</doc-codeblock></div>
+<p>After that, you can load it like any other JavaScript file or module you already use in your app.</p>
+   </doc-step>
+</doc-steps>
 
                 
                 <!-- Required only on API pages -->

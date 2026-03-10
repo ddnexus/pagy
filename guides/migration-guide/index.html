@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.1.0.825930618349">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.1.0.826453050485">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.1.0">
@@ -28,12 +28,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.1.0.825930618349" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.1.0.826453050485" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.1.0.825930618349" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.1.0.826453050485" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.1.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.1.0.825930618349" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.1.0.825930618349" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.1.0.826453050485" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.1.0.826453050485" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -187,7 +187,7 @@
                             <img class="max-h-10 hidden dark:inline-block" src="../../assets/images/pagy-the-frog.png">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.3.1</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.3.2</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -375,53 +375,38 @@
 <li>Run the app so to raise exceptions in order to find legacy code that may still be in place</li>
 <li>When the app runs without errors, adjust the pagination to look and work as before: just many times faster and using many times less memory</li>
 </ol>
-<doc-anchor-target id="remove-the-old-code">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#remove-the-old-code">#</doc-anchor-trigger>
-        <span>Remove the old code</span>
-    </h3>
-</doc-anchor-target>
-<doc-anchor-target id="preparation">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#preparation">#</doc-anchor-trigger>
-        <span>Preparation</span>
-    </h4>
-</doc-anchor-target>
+<doc-steps>
+   <doc-step id="remove-the-old-code" step-number="1">
+      <template #title>Remove the old code</template>
+<doc-panels>
+   <doc-panel id="preparation" collapsed>
+       <template #title>Preparation</template>
 <ul>
 <li>Uninstall the legacy gem and replace it with <code translate="no" v-pre>gem &quot;pagy&quot;</code> in the <code translate="no" v-pre>Gemfile</code>.</li>
 <li>Add <code translate="no" v-pre>include Pagy::Method</code> statement to the application controller.</li>
 <li>Keep both the legacy gem and Pagy documentation accessible for reference.</li>
 </ul>
-<doc-anchor-target id="application-wide-search-and-replace">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#application-wide-search-and-replace">#</doc-anchor-trigger>
-        <span>Application-wide search and replace</span>
-    </h4>
-</doc-anchor-target>
+   </doc-panel>
+   <doc-panel id="application-wide-search-and-replace" collapsed>
+       <template #title>Application-wide search and replace</template>
 <p>Search for the class name of the legacy gem, for example <code translate="no" v-pre>WillPaginate</code> or <code translate="no" v-pre>Kaminari</code>. You should find most of the code relative to global gem configuration, or monkey patching.</p>
 <p>Remove all the legacy settings of the old gem.</p>
-<doc-anchor-target id="cleanup-the-models">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cleanup-the-models">#</doc-anchor-trigger>
-        <span>Cleanup the Models</span>
-    </h4>
-</doc-anchor-target>
+   </doc-panel>
+   <doc-panel id="cleanup-the-models" collapsed>
+       <template #title>Cleanup the Models</template>
 <p>Look for terms like <code translate="no" v-pre>per_page</code>, <code translate="no" v-pre>per</code>, and similar, as these are configuration settings. Include them in the appropriate paginator call in the controller (e.g., <code translate="no" v-pre>pagy(:offset, collection, limit: 10)</code>) or globally in the Pagy initializer (e.g., <code translate="no" v-pre>Pagy::OPTIONS[:limit] = 10</code>).</p>
 <p>If the app uses the <code translate="no" v-pre>page</code> scope in model methods or scopes, remove it, along with the argument used to pass the page number, while preserving the rest of the scope. Locate where the app applies this paginated scope in the controllers and replace it with the scope in a paginator statement. For example:</p>
-<div id="cleanup-the-models-controller" class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">Controller</div>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">#@records = Product.paginated_scope(params[:page])
 @pagy, @records = pagy(:offset, Product.non_paginated_scope)</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="search-and-replace-in-the-controllers">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#search-and-replace-in-the-controllers">#</doc-anchor-trigger>
-        <span>Search and replace in the Controllers</span>
-    </h4>
-</doc-anchor-target>
+   </doc-panel>
+   <doc-panel id="search-and-replace-in-the-controllers" collapsed>
+       <template #title>Search and replace in the Controllers</template>
 <p>In controllers, legacy pagination statements generally map directly to Pagy, making them straightforward to convert.</p>
 <p>Search for keywords like <code translate="no" v-pre>page</code> and <code translate="no" v-pre>paginate</code> statements and use the <code translate="no" v-pre>pagy(:offset, ...)</code> paginator instead. For example:</p>
-<div id="search-and-replace-in-the-controllers-controller" class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">Controller</div>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">#@records = Product.some_scope.page(params[:page])
 #@records = Product.paginate(:page =&gt; params[:page])
@@ -434,35 +419,28 @@
 
 @pagy, @records = pagy(:offset, Product.all, limit: 15)</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="search-and-replace-in-the-views">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#search-and-replace-in-the-views">#</doc-anchor-trigger>
-        <span>Search and replace in the Views</span>
-    </h4>
-</doc-anchor-target>
+   </doc-panel>
+   <doc-panel id="search-and-replace-in-the-views" collapsed>
+       <template #title>Search and replace in the Views</template>
 <p>Similarly, in views, legacy pagination statements typically correspond directly to Pagy, simplifying conversion.</p>
 <p>Search for keywords like <code translate="no" v-pre>will_paginate</code> and <code translate="no" v-pre>paginate</code> statement and use one of the <code translate="no" v-pre>series_nav</code> methods. For example:</p>
-<div id="search-and-replace-in-the-views-view" class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">View</div>
 <pre translate="no" class="language-erb"><code v-pre class="language-erb">&lt;%= will_paginate @records %&gt;
 &lt;%= paginate @records %&gt;
 
 &lt;%== @pagy.series_nav %&gt;</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="find-the-remaining-code">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#find-the-remaining-code">#</doc-anchor-trigger>
-        <span>Find the remaining code</span>
-    </h2>
-</doc-anchor-target>
+   </doc-panel>
+</doc-panels>
+   </doc-step>
+   <doc-step id="find-the-remaining-code" step-number="2">
+      <template #title>Find the remaining code</template>
 <p>If the app has tests, it&#x27;s time to run them. If not, start the app and navigate through its pages.</p>
 <p>If any legacy code remains, it will raise an exception. Remove the old code and retry until no exceptions occur.</p>
-<doc-anchor-target id="fine-tuning">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#fine-tuning">#</doc-anchor-trigger>
-        <span>Fine-tuning</span>
-    </h2>
-</doc-anchor-target>
+   </doc-step>
+   <doc-step id="fine-tuning" step-number="3">
+      <template #title>Fine-tuning</template>
 <p>Once the app displays pagination correctly, customize Pagy as needed. If the previous pagination used custom elements (e.g., custom params, URLs, links, HTML elements, etc.), adjustments may be required for compatibility.</p>
 <p>Please take a look at the topics in the <a href="../how-to/">how-to</a> documentation: that should cover most of your custom needs.</p>
 <doc-anchor-target id="css">
@@ -472,6 +450,8 @@
     </h3>
 </doc-anchor-target>
 <p>CSS styling applied to pagination elements may require minor adjustments. However, if the app uses pagination from Bootstrap or another framework, the existing CSS should function seamlessly with Pagy navigation helpers.</p>
+   </doc-step>
+</doc-steps>
 
                 
                 <!-- Required only on API pages -->

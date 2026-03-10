@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.1.0.825930618349">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.1.0.826453050485">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.1.0">
@@ -28,12 +28,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.1.0.825930618349" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.1.0.826453050485" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.1.0.825930618349" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.1.0.826453050485" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.1.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.1.0.825930618349" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.1.0.825930618349" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.1.0.826453050485" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.1.0.826453050485" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -187,7 +187,7 @@
                             <img class="max-h-10 hidden dark:inline-block" src="../../assets/images/pagy-the-frog.png">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.3.1</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.3.2</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -379,53 +379,25 @@
         </div>
     </div>
 </div>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-primary"></div>
-    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-callout-primary" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-            <h5>Just the steps without distractions.</h5>
-<p>This guide focuses on getting the job done quickly. If you want to learn more about the changes:</p>
+<p>If you want to learn more about the changes:</p>
 <ul>
 <li>Consult the docs and <a href="../how-to/">How To Guide</a></li>
 <li>Ask Pagy AI specific questions (with the bottom-right button in this page)</li>
 <li>Ask in the <a href="https://github.com/ddnexus/pagy/discussions/categories/q-a">Q&amp;A discussion</a>.</li>
 </ul>
-        </div>
-    </div>
-</div>
-<doc-anchor-target id="1-replace-the-pagyrb-config-file">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#1-replace-the-pagyrb-config-file">#</doc-anchor-trigger>
-        <span>1. Replace the <code translate="no" v-pre>pagy.rb</code> config file</span>
-    </h3>
-</doc-anchor-target>
+<doc-steps>
+   <doc-step id="replace-the-pagyrb-config-file" step-number="1">
+      <template #title>Replace the <code translate="no" v-pre>pagy.rb</code> config file</template>
 <ul>
-<li><p>Rename your <code translate="no" v-pre>pagy.rb</code> initializer as <code translate="no" v-pre>pagy-old.rb</code>, and add the new, concise
-<a href="../../resources/initializer/">pagy.rb</a> initializer in its place.</p>
-</li>
-<li><p>Search the <code translate="no" v-pre>pagy-old.rb</code> for code-occurrences of <code translate="no" v-pre>Pagy::DEFAULT[...]</code> and move them to the new <code translate="no" v-pre>pagy.rb</code> (remove them from the
-<code translate="no" v-pre>pagy-old.rb</code>)</p>
-</li>
-<li><p>Replace all the <code translate="no" v-pre>Pagy::DEFAULT[...]</code> entries just added to the new <code translate="no" v-pre>pagy.rb</code> with <code translate="no" v-pre>Pagy::OPTIONS[...]</code>.</p>
-</li>
+<li>Rename your <code translate="no" v-pre>pagy.rb</code> initializer as <code translate="no" v-pre>pagy-old.rb</code></li>
+<li>Add the new <a href="../../resources/initializer/">pagy.rb</a> initializer in its place</li>
+<li>Cut/remove the <code translate="no" v-pre>Pagy::DEFAULT[...]</code> lines from <code translate="no" v-pre>pagy-old.rb</code> and paste/add them to <code translate="no" v-pre>pagy.rb</code></li>
+<li>Replace all the <code translate="no" v-pre>Pagy::DEFAULT[...]</code> entries with <code translate="no" v-pre>Pagy::OPTIONS[...]</code> in <code translate="no" v-pre>pagy.rb</code></li>
 </ul>
-<p><em>In the next steps we will use the <code translate="no" v-pre>pagy-old.rb</code> as the blueprint to guide most of the changes, and we will edit the new <code translate="no" v-pre>pagy.rb</code>
-as needed.</em></p>
-<doc-anchor-target id="2-replace-your-used-extras">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#2-replace-your-used-extras">#</doc-anchor-trigger>
-        <span>2. Replace your used extras</span>
-    </h3>
-</doc-anchor-target>
+<p><em>In the next steps we will use the <code translate="no" v-pre>pagy-old.rb</code> as the blueprint to guide most of the changes, and we will edit the new <code translate="no" v-pre>pagy.rb</code> as needed.</em></p>
+   </doc-step>
+   <doc-step id="replace-your-used-extras" step-number="2">
+      <template #title>Replace your used extras</template>
 <p>The new version doesn&#x27;t use the extras anymore. They got integrated in the core code, and a few have been discontinued.</p>
 <ul>
 <li>Search any active <code translate="no" v-pre>require 'pagy/extras/*</code> in the <code translate="no" v-pre>pagy-old.rb</code> file</li>
@@ -1020,12 +992,9 @@ as needed.</em></p>
 </ul>
    </doc-panel>
 </doc-panels>
-<doc-anchor-target id="3-final-steps">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#3-final-steps">#</doc-anchor-trigger>
-        <span>3. Final steps</span>
-    </h3>
-</doc-anchor-target>
+   </doc-step>
+   <doc-step id="final-steps" step-number="3">
+      <template #title>Final steps</template>
 <doc-panels>
    <doc-panel id="search-and-replace" collapsed>
        <template #title>Search and replace</template>
@@ -1121,24 +1090,17 @@ querify = -&gt;(p) { p.except!('not_useful').merge!('custom' =&gt; 'useful') }</
 </ul>
    </doc-panel>
 </doc-panels>
-<doc-anchor-target id="4-finalize-the-upgrade">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#4-finalize-the-upgrade">#</doc-anchor-trigger>
-        <span>4. Finalize the upgrade</span>
-    </h3>
-</doc-anchor-target>
+   </doc-step>
+   <doc-step id="finalize-the-upgrade" step-number="4">
+      <template #title>Finalize the upgrade</template>
 <doc-panels>
    <doc-panel id="javascript" collapsed>
        <template #title>Javascript</template>
-<ul>
-<li>If your <code translate="no" v-pre>pagy-old.rb</code> contains any JavaScript setup, it should still work, so you can move it to the <code translate="no" v-pre>pagy.rb</code> file, however, for apps with builders, consider using the new <a href="../../resources/javascript/#2-make-the-file-available-to-your-app">Pagy.sync_javascript</a> and removing all the old entries from your JavaScript config files.</li>
-</ul>
+<p>If your <code translate="no" v-pre>pagy-old.rb</code> contains any JavaScript setup, it should still work, so you can move it to the <code translate="no" v-pre>pagy.rb</code> file, however, for apps with builders, consider using the new <a href="../../resources/javascript/#load-it-in-your-app">Pagy.sync_javascript</a> and removing all the old entries from your JavaScript config files.</p>
    </doc-panel>
    <doc-panel id="stylesheets" collapsed>
        <template #title>Stylesheets</template>
-<ul>
-<li>The CSS for the default pagy helpers have new selectors and variables. See the new <a href="../../resources/stylesheets/">Stylesheets</a> to interactively update your custom CSS.</li>
-</ul>
+<p>The CSS for the default pagy helpers have new selectors and variables. See the new <a href="../../resources/stylesheets/">Stylesheets</a> to interactively update your custom CSS.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-success"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
@@ -1220,6 +1182,8 @@ querify = -&gt;(p) { p.except!('not_useful').merge!('custom' =&gt; 'useful') }</
 </ul>
    </doc-panel>
 </doc-panels>
+   </doc-step>
+</doc-steps>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
@@ -1232,7 +1196,7 @@ querify = -&gt;(p) { p.except!('not_useful').merge!('custom' =&gt; 'useful') }</
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>Please report any issue with this guide opening a <a href="https://github.com/ddnexus/pagy/issues/new?template=Documentation.yml">new docs issue</a>.</p>
+<p>Please report any issue with this guide by opening a <a href="https://github.com/ddnexus/pagy/issues/new?template=Documentation.yml">new docs issue</a>.</p>
         </div>
     </div>
 </div>

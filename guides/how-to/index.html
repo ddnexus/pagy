@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.1.0.825930618349">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.1.0.826453050485">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.1.0">
@@ -28,12 +28,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.1.0.825930618349" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.1.0.826453050485" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.1.0.825930618349" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.1.0.826453050485" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.1.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.1.0.825930618349" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.1.0.825930618349" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.1.0.826453050485" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.1.0.826453050485" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -187,7 +187,7 @@
                             <img class="max-h-10 hidden dark:inline-block" src="../../assets/images/pagy-the-frog.png">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.3.1</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.3.2</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -425,12 +425,9 @@
    </doc-panel>
    <doc-panel id="create-a-new-i18n-dictionary" collapsed>
        <template #title>Create a new I18n Dictionary</template>
-<doc-anchor-target id="1-find-the-pluralization-rules-for-your-language">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#1-find-the-pluralization-rules-for-your-language">#</doc-anchor-trigger>
-        <span>1. Find the pluralization rules for your language</span>
-    </h4>
-</doc-anchor-target>
+<doc-steps>
+   <doc-step id="find-the-pluralization-rules-for-your-language" step-number="1">
+      <template #title>Find the pluralization rules for your language</template>
 <ul>
 <li>Locate the locale file you need in the <a href="https://github.com/svenfuchs/rails-i18n/tree/master/rails/pluralization">list of pluralizations</a></li>
 <li>Check the pluralization rules required in it. For example, the name of the file required is <code translate="no" v-pre>one_other</code> for <a href="https://github.com/svenfuchs/rails-i18n/blob/master/rails/pluralization/en.rb"><code translate="no" v-pre>en.rb</code></a>. In Pagy, that translates to <code translate="no" v-pre>'OneOther'</code>.
@@ -449,18 +446,17 @@
 </ul>
 </li>
 </ul>
-<doc-anchor-target id="2-duplicate-an-existing-pagy-locale-dictionary-file-and-translate-it-into-your-language">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#2-duplicate-an-existing-pagy-locale-dictionary-file-and-translate-it-into-your-language">#</doc-anchor-trigger>
-        <span>2. Duplicate an existing Pagy locale dictionary file and translate it into your language.</span>
-    </h4>
-</doc-anchor-target>
+   </doc-step>
+   <doc-step id="duplicate-an-existing-pagy-locale-dictionary-file-and-translate-it-into-your-language" step-number="2">
+      <template #title>Duplicate an existing Pagy locale dictionary file and translate it into your language.</template>
 <ul>
 <li>See the <a href="https://github.com/ddnexus/pagy/tree/master/gem/locales">lib/locales</a> for existing dictionaries.</li>
 <li>Check that the <code translate="no" v-pre>p11n</code> entry points to a module in the <a href="https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/modules/i18n/p18n">P18n directory</a>.</li>
 <li>The mandatory pluralized entries in the dictionary file are <code translate="no" v-pre>aria_label.nav</code> and <code translate="no" v-pre>item_name</code>. Please provide all the necessary plurals for your language. For example, if your language uses the <code translate="no" v-pre>EastSlavic</code> rule, you should provide the plurals for <code translate="no" v-pre>one</code>, <code translate="no" v-pre>few</code>, <code translate="no" v-pre>many</code>, and <code translate="no" v-pre>other</code>. If it uses <code translate="no" v-pre>Other</code>, you should only provide a single value. Check other dictionary files for examples, and ask if you have any doubts.</li>
 </ul>
 <p>Feel free to ask for help in your Pull Request.</p>
+   </doc-step>
+</doc-steps>
    </doc-panel>
    <doc-panel id="customize-the-aria-labels" collapsed>
        <template #title>Customize the ARIA labels</template>
