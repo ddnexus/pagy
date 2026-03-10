@@ -10,7 +10,7 @@ require_relative 'pagy/toolbox/helpers/loaders'
 # Top superclass: it defines only what's common to all the subclasses
 # noinspection RubyMismatchedArgumentType
 class Pagy
-  VERSION     = '43.3.1'
+  VERSION     = '43.3.2'
   ROOT        = Pathname.new(__dir__).parent.freeze
   DEFAULT     = { limit: 20, limit_key: 'limit', page_key: 'page' }.freeze
   PAGE_TOKEN  = EscapedValue.new('P ')

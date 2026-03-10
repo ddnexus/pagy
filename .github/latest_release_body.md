@@ -1,8 +1,9 @@
-### Changes in 43.3.1
+### Changes in 43.3.2
 
 <!-- changes_start -->
-- Update assets for a few apps
-- Fix pagy.ts /.js input_nav update
+- Implement NumericUI module to avoid including the numeric helpers in keynav classes
+- Improve offset accessors and update docs
+- Add basic RBS
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
