@@ -24,7 +24,7 @@ describe 'Pagy Specs' do
 
   it 'includes modules' do
     _(Pagy.included_modules).must_include Pagy::Linkable
-    _(Pagy.included_modules).must_include Pagy::Loader
+    _(Pagy.included_modules).must_include Pagy::HelperLoader
     _(Pagy.singleton_class.included_modules).must_include Pagy::Configurable
   end
 

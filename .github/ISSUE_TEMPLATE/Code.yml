@@ -6,82 +6,35 @@ title: 'Bug: '
 body:
   - type: markdown
     attributes:
-      value: >
-        ### 🙏 Thank you for your bug report!
+      value: |
+        #### Thank you for your bug report!
         
-        Please, understand that code issues are reserved for real, reproducible pagy bugs.
-        
-        _If you are not sure that your problem is actually a bug, or you have problems reproducing it,
-        please ask for [support](https://github.com/ddnexus/pagy/discussions/categories/q-a) instead._
+        Please understand that...
+        1. Code issues are reserved for real, REPRODUCIBLE code bugs
+        2. We won't guess/install/setup/debug your problem out of some description/snippet/complete-application.
 
-  - type: checkboxes
-    id: prereq
-    attributes:
-      label: 👀 Before submitting...
-      options:
-        - label: I upgraded to pagy version 43.3.1
-          required: true
-        - label: I asked [Pagy AI](https://gurubase.io/g/pagy) (Good starting point for further investigation).
-          required: true
-        - label: I searched through the [Documentation](https://ddnexus.github.io/pagy/), [Issues](https://github.com/ddnexus/pagy/issues), and [Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a)
-          required: true
+        _If you are not sure that your problem is actually a bug, or you have problems reproducing it, please ask for [support](https://github.com/ddnexus/pagy/discussions/categories/q-a) instead._
 
-  - type: markdown
-    attributes:
-      value: >
-        ### ⚡ IMPORTANT!
-        
-        **The issue MUST provide a VALID code file confirming the bug AND complying with the list below
-        OR it will be automatically closed!**
-        
-        #### 👍 VALID code files 
-        
-          - (Edited) copy of a single-file APP from the [Pagy Playground](https://ddnexus.github.io/pagy/sandbox/playground) 
-          - Link to a pagy fork containing an added test file
+        #### Before posting, ensure to...
+
+        1. Run Pagy version 43.3.2
+        2. Search through [Docs](https://ddnexus.github.io/pagy/), [Issues](https://github.com/ddnexus/pagy/issues), and [Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a)
+        3. Provide MINIMAL code to reproduce it. For example:
+          - An edited single-file APP from the [Pagy Playground](https://ddnexus.github.io/pagy/sandbox/playground)
           - A plain ruby file that can run as a single command like `ruby my_issue.rb`
-          _(without any other setup step, installation or guessing, and with no or minimal interaction required)_
-        
-        #### 🚫 INVALID "code" 
-        
-        **Please, understand that we won't guess your issue out of some snippet or description, 
-        and we won't install/setup/debug your partial or complete application.**
-        
-        
-        🚩 Avoid posting USELESS THINGS like:
-        
-          - Code snippets / Log transcripts
-          - Descriptions of errors / behaviors / expectations
-          - Rationalizations about WHY you THINK your problem is a pagy bug 
-          - Multiple files / Setup instructions / Your partial or complete applications
-          - and EVERYTHING other than the VALID code files listed above
-        
-        #### Suggestion
-        
-        Start from a [pagy APP](https://ddnexus.github.io/pagy/sandbox/playground),
-        add the smallest amount of code that exposes the bug and post it.
-        It's a very quick and simple process and, most of the times, it will make your issue just "disappear". 😉
 
   - type: checkboxes
     id: support
     attributes:
-      label: 🧐 REQUIREMENTS
+      label: Disclaimer
       options:
-        - label: I am providing a VALID code file that confirms the bug
-          required: true
-        - label: I am NOT posting any of the USELESS THINGS listed above
-          required: true
-        - label: I am aware that this issue will be automatically closed if the code file is missing or INVALID
+        - label: I am aware that this issue will be closed or converted to a discussion if the requested code is missing or invalid.
           required: true
 
   - type: textarea
     id: description
     attributes:
-      label: 💬 Description
-      placeholder: >
-        1. DO NOT POST any of the useless things listed above
-        
-        2. Describe what actually happens WITH THE CODE FILE you provided
-        
-        3. Describe what should happen instead
+      label: Description
+      placeholder: Concisely describe what happens WITH THE CODE you provided and what should happen instead...
     validations:
       required: true

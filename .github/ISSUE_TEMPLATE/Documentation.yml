@@ -11,15 +11,9 @@ body:
       value: |
         Thanks for taking the time to fill out this documentation issue!
 
-  - type: checkboxes
-    id: prereq
-    attributes:
-      label: 👀 Before submitting...
-      options:
-        - label: I asked [Pagy AI](https://gurubase.io/g/pagy) (Good starting point for further investigation).
-          required: true
-        - label: I searched through the [Documentation](https://ddnexus.github.io/pagy/), [Issues](https://github.com/ddnexus/pagy/issues), and [Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a)
-          required: true
+        #### Before posting, ensure to...
+
+        - Search through [Docs](https://ddnexus.github.io/pagy/), [Issues](https://github.com/ddnexus/pagy/issues), and [Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a)
 
   - type: textarea
     id: description

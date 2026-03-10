@@ -43,14 +43,14 @@ jobs:
     name: Publish to docs-site branch
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.1
-      - uses: actions/setup-dotnet@v5
-        with:
-          dotnet-version: 9.0.x
-      - uses: retypeapp/action-build@v4
+      - uses: actions/checkout@v6
+
+      - uses: retypeapp/action-build@latest
         with:
           config_path: docs/
+
       - uses: retypeapp/action-github-pages@latest
         with:
           branch: docsite
           update-branch: true
+          

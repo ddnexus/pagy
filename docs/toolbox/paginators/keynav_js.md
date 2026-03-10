@@ -54,7 +54,7 @@ Integrates the [Keyset Glossary](keyset#glossary)
 
 ==- How it works
 
-The Keynav pagination adds the numeric variables (`@page`, `@last`, `@prev`, `@next`, `@in`) to its instances, supporting their usage with the UI. It does so by transparently exchanging data with the client, that stores the state of the pagination.
+The Keynav pagination adds the numeric variables (`@page`, `@last`, `@previous`, `@next`, `@in`) to its instances, supporting their usage with the UI. It does so by transparently exchanging data with the client, that stores the state of the pagination.
 
 You can use the `:keyset_js` paginator as you would use the [:countless paginator](countless.md). You just need the [Keyset Setup](keyset#setup) and [JavaScript Support](../../resources/javascript.md), to get a lot more performance.
 

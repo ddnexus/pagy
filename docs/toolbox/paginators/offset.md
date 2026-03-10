@@ -57,6 +57,8 @@ See also [Common Options](../paginators#common-options)
   - The actual items in the page
 - `previous`
   - The previous page
+- `next`
+  - The next page
 - `last`
   - The last page.
 - `pages`

@@ -9,7 +9,7 @@ url: https://ddnexus.github.io/pagy/
 branding:
   title: Pagy
   logo: assets/images/pagy-the-frog.png
-  label: 43.3.1
+  label: 43.3.2
   colors:
     label:
       text: "#ffffff"
@@ -56,4 +56,4 @@ search:
   mode: full
 
 footer:
-  copyright: "&copy; 2017-2026 [Domizio Demichelis](https://github.com/ddnexus) - [MIT License](https://opensource.org/licenses/MIT)"
+  copyright: "&copy; 2017-{{ date.now.year }} [Domizio Demichelis](https://github.com/ddnexus) - [MIT License](https://opensource.org/licenses/MIT)"

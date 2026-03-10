@@ -30,7 +30,7 @@
     <method v="2" />
   </configuration>
   <configuration default="false" name="Keynav" type="ShConfigurationType" folderName="Test Apps">
-    <option name="SCRIPT_TEXT" value="bundle exec rake test:e2e:rails" />
+    <option name="SCRIPT_TEXT" value="bundle exec rake test:e2e:keynav" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="" />
     <option name="SCRIPT_OPTIONS" value="" />

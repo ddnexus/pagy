@@ -13,6 +13,7 @@ class Pagy
 
     include Rangeable
     include Shiftable
+    include NumericHelpers
 
     def initialize(**)
       assign_options(**)
@@ -32,7 +33,7 @@ class Pagy
       assign_previous_and_next
     end
 
-    attr_reader :offset, :count, :from, :to, :in, :previous, :last
+    attr_reader :offset, :count, :from, :to, :in, :previous, :next, :last
     alias pages last
 
     def records(collection)

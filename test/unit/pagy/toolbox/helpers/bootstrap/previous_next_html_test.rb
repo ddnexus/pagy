@@ -6,6 +6,8 @@ require 'pagy/toolbox/helpers/bootstrap/previous_next_html'
 describe 'Pagy#bootstrap_html_for' do
   let(:pagy_class) do
     Class.new(Pagy) do
+      include Pagy::NumericHelpers
+
       attr_accessor :previous, :next
 
       def initialize(previous: nil, next_page: nil)

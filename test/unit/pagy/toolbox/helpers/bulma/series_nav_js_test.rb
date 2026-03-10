@@ -6,6 +6,8 @@ require 'pagy/toolbox/helpers/bulma/series_nav_js'
 describe 'Pagy#bulma_series_nav_js' do
   let(:pagy_class) do
     Class.new(Pagy) do
+      include Pagy::NumericHelpers
+
       attr_reader :wrap_args
 
       # Mock dependencies

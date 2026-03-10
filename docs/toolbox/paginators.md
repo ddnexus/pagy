@@ -98,6 +98,8 @@ Individual paginators may offer additional readers, which are documented with th
   - The current page
 - `limit`
   - The items per page
+- `in`
+  - The actual items in the page
 - `options`
   - The options of the object
 - `next`

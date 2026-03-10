@@ -13,6 +13,8 @@ class Pagy
       class ActiveRecord < self; end
       class Sequel < self; end
 
+      include NumericHelpers
+
       # Finalize the instance variables needed for the UI
       def initialize(set, **)
         super

@@ -6,6 +6,8 @@ require 'pagy/toolbox/helpers/bulma/series_nav'
 describe 'Pagy#bulma_series_nav' do
   let(:pagy_class) do
     Class.new(Pagy) do
+      include Pagy::NumericHelpers
+
       # Mock dependencies
       def series(**)
         [1, '2', :gap]
