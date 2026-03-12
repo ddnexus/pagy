@@ -4,10 +4,12 @@
 
 @layer components {
   .pagy {
+    /* PagyWand variables */
     --B: 1;
     --H: 0;
     --S: 0;
     --L: 50;
+    --A: 1;
     --spacing: 0.125rem;
     --padding: 0.75rem;
     --rounding: 1.75rem;
@@ -15,15 +17,15 @@
     --font-size: 0.875rem;
     --font-weight: 600;
     --line-height: 1.75;
+    /* End PagyWand variables */
 
-    --text:               hsl(var(--H) var(--S) calc(var(--L) - (30 * var(--B))));
-    --text-hover:         hsl(var(--H) var(--S) calc(var(--L) - (33 * var(--B))));
-    --text-current:       hsl(var(--H) var(--S) calc(100 * (var(--B) + 1)));
-    --background:         hsl(var(--H) var(--S) calc(var(--L) + (30 * var(--B))));
-    --background-hover:   hsl(var(--H) var(--S) calc(var(--L) + (20 * var(--B))));
-    --background-current: hsl(var(--H) var(--S) var(--L));
-    --background-input:   hsl(var(--H) var(--S) calc(var(--L) + (45 * var(--B))));
-    --opacity: 1;
+    --text:               hsl(var(--H) var(--S) calc(var(--L) - (25 * var(--B))) / var(--A));
+    --text-hover:         hsl(var(--H) var(--S) calc(var(--L) - (30 * var(--B))) / var(--A));
+    --text-current:       hsl(var(--H) var(--S) calc(100 * (var(--B) + 1)) / var(--A));
+    --background:         hsl(var(--H) var(--S) calc(var(--L) + (30 * var(--B))) / var(--A));
+    --background-hover:   hsl(var(--H) var(--S) calc(var(--L) + (20 * var(--B))) / var(--A));
+    --background-current: hsl(var(--H) var(--S) var(--L) / var(--A));
+    --background-input:   hsl(var(--H) var(--S) calc(var(--L) + (45 * var(--B))) / var(--A));
 
     @apply flex gap-x-[var(--spacing)] font-[var(--font-weight)]
     text-[length:var(--font-size)] text-[var(--text)]
@@ -31,7 +33,7 @@
 
     a:not([role="separator"]) { /* all but gaps */
       @apply block rounded-[var(--rounding)] px-[var(--padding)] py-[calc(var(--padding)/3)] bg-[var(--background)]
-      border-solid  border-[var(--background-current)] border-[length:var(--border-width)] opacity-[var(--opacity)];
+      border-solid  border-[var(--background-current)] border-[length:var(--border-width)];
     }
 
     a[href]:hover { /* all links on hover */
@@ -43,7 +45,7 @@
     }
 
     a[role="link"]:not([aria-current]) { /* disabled links */
-      @apply opacity-[calc(var(--opacity)*.6)];
+      @apply opacity-[.6];
     }
 
     a[aria-current] {  /* current page */

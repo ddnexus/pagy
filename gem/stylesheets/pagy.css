@@ -1,4 +1,5 @@
 .pagy {
+  /* PagyWand variables */
   --B: 1;
   --H: 0;
   --S: 0;
@@ -11,14 +12,15 @@
   --font-size: 0.875rem;
   --font-weight: 600;
   --line-height: 1.75;
+  /* End PagyWand variables */
 
-  --text:               hsla(var(--H) var(--S) calc(var(--L) - (25 * var(--B))) / var(--A));
-  --text-hover:         hsla(var(--H) var(--S) calc(var(--L) - (30 * var(--B))) / var(--A));
-  --text-current:       hsla(var(--H) var(--S) calc(100 * (var(--B) + 1)) / var(--A));
-  --background:         hsla(var(--H) var(--S) calc(var(--L) + (30 * var(--B))) / var(--A));
-  --background-hover:   hsla(var(--H) var(--S) calc(var(--L) + (20 * var(--B))) / var(--A));
-  --background-current: hsla(var(--H) var(--S) var(--L) / var(--A));
-  --background-input:   hsla(var(--H) var(--S) calc(var(--L) + (45 * var(--B))) / var(--A));
+  --text:               hsl(var(--H) var(--S) calc(var(--L) - (25 * var(--B))) / var(--A));
+  --text-hover:         hsl(var(--H) var(--S) calc(var(--L) - (30 * var(--B))) / var(--A));
+  --text-current:       hsl(var(--H) var(--S) calc(100 * (var(--B) + 1)) / var(--A));
+  --background:         hsl(var(--H) var(--S) calc(var(--L) + (30 * var(--B))) / var(--A));
+  --background-hover:   hsl(var(--H) var(--S) calc(var(--L) + (20 * var(--B))) / var(--A));
+  --background-current: hsl(var(--H) var(--S) var(--L) / var(--A));
+  --background-input:   hsl(var(--H) var(--S) calc(var(--L) + (45 * var(--B))) / var(--A));
 
   color: var(--text);
   font-size: var(--font-size);
