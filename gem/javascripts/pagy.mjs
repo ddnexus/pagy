@@ -1,4 +1,4 @@
-const Pagy = (() => {
+export default (() => {
   const storageSupport = "sessionStorage" in window && "BroadcastChannel" in window;
   let pagy = "pagy", storage, sync, tabId;
   if (storageSupport) {
@@ -151,4 +151,3 @@ const Pagy = (() => {
     }
   };
 })();
-export default Pagy;

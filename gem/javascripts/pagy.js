@@ -1,5 +1,5 @@
 // pagy.ts
-window.Pagy = (() => {
+var pagy_default = (() => {
   const storageSupport = "sessionStorage" in window && "BroadcastChannel" in window;
   let pagy = "pagy", storage, sync, tabId;
   if (storageSupport) {
@@ -153,5 +153,8 @@ window.Pagy = (() => {
   };
 })();
 
-//# debugId=A1F1420FD13C520364756E2164756E21
+// ../gem/javascripts/pagy-shim.ts
+window.Pagy = pagy_default;
+
+//# debugId=693D73AB516DBCD064756E2164756E21
 //# sourceMappingURL=pagy.js.map
