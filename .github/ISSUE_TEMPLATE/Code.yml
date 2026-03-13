@@ -17,7 +17,7 @@ body:
 
         #### Before posting, ensure to...
 
-        1. Run Pagy version 43.3.2
+        1. Run Pagy version 43.3.3
         2. Search through [Docs](https://ddnexus.github.io/pagy/), [Issues](https://github.com/ddnexus/pagy/issues), and [Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a)
         3. Provide MINIMAL code to reproduce it. For example:
           - An edited single-file APP from the [Pagy Playground](https://ddnexus.github.io/pagy/sandbox/playground)

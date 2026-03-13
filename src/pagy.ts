@@ -44,8 +44,9 @@ interface NavJsElement extends HTMLElement {
   render(): void
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const Pagy = (() => {
+// The syntax used in this file has been carefully composed to minimize
+// the pagy.min.js size and avoid pollution in the window object
+export default (() => {
   const storageSupport = 'sessionStorage' in window && 'BroadcastChannel' in window;
   // eslint-disable-next-line prefer-const
   let pagy = "pagy", storage: Storage, sync: BroadcastChannel, tabId: number;
@@ -202,7 +203,7 @@ const Pagy = (() => {
 
   // Public interface
   return {
-    version: "43.3.2",
+    version: "43.3.3",
 
     // Scan for elements with a "data-pagy" attribute and call their init functions with the decoded args
     init(arg?:HTMLElement) {

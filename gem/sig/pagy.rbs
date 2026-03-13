@@ -152,13 +152,13 @@ class Pagy
   def urls_hash: (**url_opts) -> Hash[Symbol, String]
 
   def page_url: (:first | :current | :page | :previous | :next | :last | Integer page, **url_opts) -> String
+  def next_tag: (String? text, **anchor_tags_opts) -> String
 
-  module NumericUI
+  module NumericHelpers
     def series_nav:    (?Symbol? style, **series_nav_opts) -> String
     def series_nav_js: (?Symbol? style, **series_nav_js_opts) -> String
     def input_nav_js:  (?Symbol? style, **nav_opts) -> String
 
-    def next_tag:     (String? text, **anchor_tags_opts) -> String
     def previous_tag: (String? text, **anchor_tags_opts) -> String
     def limit_tag_js: (?id: String?, ?item_name: String?, **url_opts) -> String
     def info_tag:     (?id: String?, ?item_name: String?) -> String

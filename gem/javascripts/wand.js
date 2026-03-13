@@ -682,7 +682,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <dt>Hue, Saturation, Lightness, Alpha</dt>
               <dd>Generate any color. Notice that the automatic calculations work better within certain ranges/combinations.</dd>
             <dt>Hex8</dt>
-              <dd>8-digit hex-color code: useful to quickly match a color from your app. Notice that HLSA are more accurate and intuitive.</dd>
+              <dd>8-digit hex-color code: useful to quickly copy/paste and match a color from your app.</dd>
             <dt>Spacing, Padding, Rounding, Borders</dt>
               <dd>Control the layout and overall look.</dd>
             <dt>Font Size, Font Weight, Line Height</dt>

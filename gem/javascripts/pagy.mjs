@@ -1,4 +1,4 @@
-const Pagy = (() => {
+export default (() => {
   const storageSupport = "sessionStorage" in window && "BroadcastChannel" in window;
   let pagy = "pagy", storage, sync, tabId;
   if (storageSupport) {
@@ -128,7 +128,7 @@ const Pagy = (() => {
     });
   };
   return {
-    version: "43.3.2",
+    version: "43.3.3",
     init(arg) {
       const target = arg instanceof HTMLElement ? arg : document, elements = target.querySelectorAll("[data-pagy]");
       for (const element of elements) {
@@ -151,4 +151,3 @@ const Pagy = (() => {
     }
   };
 })();
-export default Pagy;

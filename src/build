@@ -7,13 +7,18 @@ root="$(git rev-parse --show-toplevel)"
 jdir="$root/gem/javascripts"
 
 echo 'Generating javascript files'
+
+# 1. ESM Module (Native export from pagy.ts)
 bun build ./pagy.ts --target=node --no-bundle --outfile=$jdir/pagy.mjs
-echo 'export default Pagy;' >> $jdir/pagy.mjs
 
+# 2. Browser IIFE (via temporary shim)
+# Create a temporary entry point that assigns the export to window
+echo 'import Pagy from "../../src/pagy.ts"; window.Pagy = Pagy;' > $jdir/pagy-shim.ts
+
+bun build $jdir/pagy-shim.ts --target=browser --minify --outfile=$jdir/pagy.min.js
+bun build $jdir/pagy-shim.ts --target=browser --sourcemap=linked --outfile=$jdir/pagy.js
+
+rm $jdir/pagy-shim.ts
+
+# 3. Wand (Browser script)
 bun build ./wand.ts --target=browser --no-bundle --outfile=$jdir/wand.js
-
-bun build ./pagy.js --target=browser --minify --outfile=$jdir/pagy.min.js
-sed -i "0,/var ./{s/var ./window.Pagy/}" $jdir/pagy.min.js
-
-bun build ./pagy.js --target=browser --sourcemap=linked --outdir=$jdir
-sed -i "0,/var Pagy/{s/var Pagy/window.Pagy/}" $jdir/pagy.js
