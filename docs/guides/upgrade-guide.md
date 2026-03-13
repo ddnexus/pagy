@@ -27,7 +27,7 @@ If you want to learn more about the changes:
 >>> Replace the `pagy.rb` config file
 
 - Rename your `pagy.rb` initializer as `pagy-old.rb`
-- Add the new [pagy.rb](../resources/initializer) initializer in its place
+- Add the new [pagy.rb](../toolbox/configuration/initializer) initializer in its place
 - Cut/remove the `Pagy::DEFAULT[...]` lines from `pagy-old.rb` and paste/add them to `pagy.rb`
 - Replace all the `Pagy::DEFAULT[...]` entries with `Pagy::OPTIONS[...]` in `pagy.rb`
 

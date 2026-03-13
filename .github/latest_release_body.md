@@ -33,7 +33,7 @@ This version introduces several enhancements, such as new `:countish` and `:keyn
   - New [PagyWand](https://ddnexus.github.io/pagy/resources/stylesheets/#pagy-wand) to integrate the pagy CSS with your app themes.
   - New **Pagy AI** available right inside your own app.
 - **Intelligent automation**
-  - [Configuration](https://ddnexus.github.io/pagy/resources/initializer/) requirements reduced by 99%.
+  - [Configuration](https://ddnexus.github.io/pagy/toolbox/configuration/initializer) requirements reduced by 99%.
   - Simplified [JavaScript](https://ddnexus.github.io/pagy/resources/javascript) setup.
   - Automatic [I18n](https://ddnexus.github.io/pagy/resources/i18n) loading.
 - **[Simpler API](https://github.com/ddnexus/pagy#examples)**

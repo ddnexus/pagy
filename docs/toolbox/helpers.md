@@ -1,5 +1,5 @@
 ---
-label: "@pagy.✳ Helpers"
+label: "&nbsp;✳&nbsp;&nbsp;&nbsp;Helpers"
 icon: mention
 order: 80
 categories:
@@ -8,7 +8,7 @@ categories:
 
 #
 
-## @pagy.<span style="font-size: .65em; vertical-align: middle">✳</span> Helpers
+## Helpers
 
 ---
 
@@ -36,7 +36,7 @@ Unused code consumes no memory.
 
 !!!success Helpers can inherit and override options
 
-See also [Options](options)
+See also [Options](configuration/options)
 !!!
 
 - `anchor_string: 'data-turbo-frame="paginate"'`

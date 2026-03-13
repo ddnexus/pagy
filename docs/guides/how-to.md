@@ -137,7 +137,7 @@ The `input_nav_js` and `limit_tag_js` use inline style attributes. You can overr
 - Identify the method file's path in the gem `lib` dir (e.g., 'pagy/...').
 - Note the name of the module where it is defined (e.g., `Pagy::...`).
 
-Copy and paste the original method in the [Pagy Initializer](../resources/initializer/)
+Copy and paste the original method in the [Pagy Initializer](../toolbox/configuration/initializer)
 
 ```ruby pagy.rb (initializer)
 require 'pagy/...' # path to the overridden method file

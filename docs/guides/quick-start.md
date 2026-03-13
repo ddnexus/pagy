@@ -56,7 +56,7 @@ gem 'pagy', '~> 43.3' # Omit the patch segment to avoid breaking changes
 >>> Configure global options and special features
 
 - **Options**
-  - See [Options](../toolbox/options) and [pagy.rb initializer](../resources/initializer)
+  - See [Options](../toolbox/configuration/options) and [pagy.rb initializer](../toolbox/configuration/initializer)
 - **CSS**
   - For native pagy helpers you can integrate the [Stylesheets (CSS or Tailwind)](../resources/stylesheets) into your app.
   - For `:bootstrap` and `:bulma` styles, no additional CSS file is needed.

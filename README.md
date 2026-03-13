@@ -42,7 +42,7 @@ This version introduces several enhancements, such as new `:countish` and `:keyn
   - New [PagyWand](https://ddnexus.github.io/pagy/resources/stylesheets/#pagy-wand) to integrate the pagy CSS with your app themes.
   - New **Pagy AI** available right inside your own app.
 - **Intelligent automation**
-  - [Configuration](https://ddnexus.github.io/pagy/resources/initializer/) requirements reduced by 99%.
+  - [Configuration](https://ddnexus.github.io/pagy/toolbox/configuration/initializer) requirements reduced by 99%.
   - Simplified [JavaScript](https://ddnexus.github.io/pagy/resources/javascript) setup.
   - Automatic [I18n](https://ddnexus.github.io/pagy/resources/i18n) loading.
 - **[Simpler API](https://github.com/ddnexus/pagy#examples)**
@@ -71,7 +71,7 @@ Take a look at the [Examples](#-examples) for a quick overview of the new API.
 ### <span style="font-size: .65em; vertical-align: middle">💚</span> Now it's more... with less
 
 - Compatible with all environments and collection types
-- It can use OFFSET, COUNTLESS, KEYSET, KEYNAV, CALENDAR, SEARCH pagination techniques
+- It can use OFFSET, COUNTISH, COUNTLESS, KEYSET, KEYNAV, SEARCH, CALENDAR, pagination techniques
 - It supports server-side rendering or faster client-side rendering for popular CSS frameworks and APIs
 - It autoloads ONLY the methods that you actually use, with almost zero configuration
 - It boasts 100% test coverage for Ruby, HTML, and JavaScript end-to-end (E2E)

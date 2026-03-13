@@ -17,7 +17,7 @@ Add the appropriate file(s) and statements to your code as outlined below.
 
 >>> Configure the initializer
 
-Depending on your JavaScript environment, uncomment the appropriate statement in the [pagy.rb initializer](initializer.md):
+Depending on your JavaScript environment, uncomment the appropriate statement in the [pagy.rb initializer](../toolbox/configuration/initializer):
 
 ##### For apps with an assets pipeline...
 

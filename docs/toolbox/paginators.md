@@ -1,5 +1,5 @@
 ---
-label: "pagy(:✳) Paginators" 
+label: "&nbsp;✳&nbsp;&nbsp;&nbsp;Paginators" 
 icon: database
 order: 90
 categories:
@@ -8,7 +8,7 @@ categories:
 
 #
 
-##  pagy(<span style="font-size: .65em; vertical-align: middle">:✳</span>) Paginators
+## Paginators
 
 ---
 
@@ -28,7 +28,7 @@ You can use it to paginate ANY collection, with ANY technique. For example:
 ```
 
 - `:offset`, `:keyset`, etc. are symbols identifying the [paginator](#paginators). They implement the specific pagination. 
-- `@pagy` is the pagination istance. It provides all the instance helper methods to use in your code.
+- `@pagy` is the pagination instance. It provides all the instance helper methods to use in your code.
 - `@records` are the records belonging to the requested page.
 
 !!!success
@@ -57,7 +57,7 @@ Unused code consumes no memory.
 
 !!!success Paginators can inherit and override options
 
-See [Options](options)
+See [Options](configuration/options)
 !!!
 
 !!! Common Options for Paginators

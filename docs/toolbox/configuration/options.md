@@ -1,7 +1,7 @@
 ---
-label: "Options ✳"
+label: "Options"
 icon: sliders
-order: 70
+order: 100
 ---
 
 #
@@ -12,7 +12,7 @@ order: 70
 
 !!! This page documents the options system
 
-The actual options are documented alongside the [paginators](paginators) and [helpers](helpers) that use them.
+The actual options are documented alongside the [paginators](../paginators) and [helpers](../helpers) that use them.
 !!!
 
 Pagy has a top-down hierarchical options system that allows you to set and override options at different levels.
@@ -20,7 +20,7 @@ Pagy has a top-down hierarchical options system that allows you to set and overr
 #### Global level
 
 - For example `Pagy::OPTIONS[:limit] = 10`.
-- Set in the [pagy.rb initializer](../resources/initializer).
+- Set in the [pagy.rb initializer](initializer).
 - The `Pagy::OPTIONS` are inherited by all paginators and helpers.
 - You can set all kinds of options at the global level, no matter which is the destination downstream (i.e., paginator or helper).
 - **Notice**: Using the legacy `Pagy.options` accessor is discouraged but supported.

@@ -73,6 +73,8 @@ lastUpdated:
 
 nav:
   mode: stack # Pro key required
+  icons:
+    mode: pages
 
 footer:
   copyright: "&copy; 2017-{{ date.now.year }} [Domizio Demichelis](https://github.com/ddnexus) - [MIT License](https://opensource.org/licenses/MIT)"
