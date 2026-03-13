@@ -1,6 +1,6 @@
 <span>[![Gem Version](https://img.shields.io/gem/v/pagy.svg?label=Pagy&labelColor=1f7a1f&color=2aa22a)](https://rubygems.org/gems/pagy)</span> <span>
 [![Supported Rubies](https://img.shields.io/badge/Ruby-EOL-ruby.svg?colorA=99004d&colorB=cc0066)](https://endoflife.date/ruby)</span> <span>
-[![Ruby Test](https://github.com/ddnexus/pagy/actions/workflows/ruby-test.yml/badge.svg?branch=master)](https://github.com/ddnexus/pagy/actions/workflows/ruby-test.yml)</span> <span>
+[![UnitTest](https://github.com/ddnexus/pagy/actions/workflows/unit-test.yml/badge.svg?branch=master)](https://github.com/ddnexus/pagy/actions/workflows/ruby-test.yml)</span> <span>
 [![E2E Test](https://github.com/ddnexus/pagy/actions/workflows/e2e-test.yml/badge.svg?branch=master)](https://github.com/ddnexus/pagy/actions/workflows/e2e-test.yml)</span> <span>
 ![Coverage](https://img.shields.io/badge/Coverage-100%25-coverage.svg?colorA=1f7a1f&colorB=2aa22a)</span> <span>
 ![Rubocop Status](https://img.shields.io/badge/Rubocop-passing-rubocop.svg?colorA=1f7a1f&colorB=2aa22a)</span> <span>
