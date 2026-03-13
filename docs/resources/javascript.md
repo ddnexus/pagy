@@ -12,8 +12,50 @@ order: 80
 
 !!!warning The helpers and paginators suffixed with `*_js` require JavaScript support.
 
-Simply add to your code the appropriate file(s) and statements as outlined below.
+Add the appropriate file(s) and statements to your code as outlined below.
 !!!
+
+>>> Config the initializer
+
+Depending on your JavaScript environment, uncomment the appropriate statement in the [pagy.rb initializer](initializer.md):
+
+##### For apps with an assets pipeline...
+
+_Compatible with Propshaft, Importmaps, Sprockets, and similar tools._
+
+```ruby
+Rails.application.config.assets.paths << Pagy::ROOT.join('javascripts')
+``` 
+
+##### For apps with a builder...
+
+_For builders like esbuild, Webpack, jsbundling-rails, etc._
+
+```ruby 
+# Example for Rails
+javascript_dir = Rails.root.join('app/javascripts')
+Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
+```
+
+>>> Load Pagy in your app
+
+##### Using the module...
+<br>
+
+```javascript
+import Pagy from "path/to/pagy.mjs"
+```
+
+##### Using the minified IIFE...
+<br>
+
+```html
+<script src="/path/to/pagy.min.js"></script>
+```
+
+```erb
+<%= javascript_include_tag "pagy.min.js" ...%>
+```
 
 >>> Set up the `Pagy.init` listener
 
@@ -32,39 +74,5 @@ window.addEventListener("turbolinks:load", Pagy.init)
 // Custom event
 window.addEventListener("yourEvent", Pagy.init)
 ```
-
->>> Download a Pagy JavaScript file 
-
-Pick the ES6 module with builders and pipelines; the IIFE file otherwise.<br>
-_(Source map and types files are for developing pagy itself.)_
-
-:::compact-dl
-[!file ES6 module](../gem/javascripts/pagy.mjs)
-[!file Minified IIFE file](../gem/javascripts/pagy.min.js)
-[!file Plain IIFE file](../gem/javascripts/pagy.js)
-[!file Source map](../gem/javascripts/pagy.js.map)
-[!file TypeScript types](../gem/javascripts/pagy.d.ts)
-:::
-
-Save the file with your usual modules/javascripts assets.
-
->>> Load it in your app
-
-You have a couple of options to make the file available to your app. Just pick one to uncomment in the [pagy.rb initializer](initializer.md):
-
-- **For apps with an assets pipeline...**
-  - _Compatible with Propshaft, Importmaps, Sprockets, and similar tools._
-  ```ruby
-  Rails.application.config.assets.paths << Pagy::ROOT.join('javascripts')
-  ```
-- **For apps with a builder...**
-  - _This works with builders like esbuild, Webpack, jsbundling-rails, etc._
-  ```ruby 
-  # Example for Rails
-  javascript_dir = Rails.root.join('app/javascripts')
-  Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
-  ```
-
-After that, you can load it like any other JavaScript file or module you already use in your app.
  
 >>>
