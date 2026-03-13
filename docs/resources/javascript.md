@@ -49,17 +49,17 @@ import Pagy from "path/to/pagy.mjs"
 ##### Using the minified IIFE...
 <br>
 
-```html
-<script src="/path/to/pagy.min.js"></script>
-```
-
 ```erb
 <%= javascript_include_tag "pagy.min.js" ...%>
 ```
 
->>> Set up the `Pagy.init` listener
+```html
+<script src="/path/to/pagy.min.js"></script>
+```
 
-Attach the `Pagy.init` to a suitable `window` event in your page:
+>>> Add the `Pagy.init` listener
+
+Use a suitable event in your page:
 
 ```javascript
 // Plain JavaScript

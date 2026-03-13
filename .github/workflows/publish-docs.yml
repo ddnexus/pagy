@@ -44,13 +44,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
       - uses: retypeapp/action-build@latest
         env:
           RETYPE_KEY: ${{ secrets.RETYPE_KEY }}
         with:
           config_path: docs/
-
 
       - uses: retypeapp/action-github-pages@latest
         with:

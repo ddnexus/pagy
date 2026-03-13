@@ -1,12 +1,12 @@
 ---
-label: Choose Wisely
+label: Choose Right
 icon: mortar-board
 order: 95
 ---
 
 #
 
-## Choose Wisely
+## Choose the right tool
 
 At the most basic level, pagination just means retrieving a (potentially big) collection of items in small sequential chunks (pages)... but there's more than one way to crack an egg.
 

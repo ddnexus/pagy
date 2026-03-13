@@ -1,6 +1,5 @@
-serve:
-  watch:
-    mode: disk  # no more surprises with retype not copying download link files!
+start:
+  pro: true
 
 input: .
 output: .public
@@ -54,6 +53,26 @@ edit:
 
 search:
   mode: full
+
+backlinks:
+  enabled: false
+
+breadcrumb:
+  enabled: false
+
+theme:
+  base:
+    base-color: "#008000"
+  dark:
+    base-color: "#7cb342"
+
+lastUpdated:
+  date:
+    enabled: true
+    source: committer
+
+nav:
+  mode: stack # Pro key required
 
 footer:
   copyright: "&copy; 2017-{{ date.now.year }} [Domizio Demichelis](https://github.com/ddnexus) - [MIT License](https://opensource.org/licenses/MIT)"

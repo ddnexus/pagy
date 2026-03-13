@@ -16,7 +16,7 @@ You can also [ask the Pagy AI](https://gurubase.io/g/pagy) for instant answers t
 
 ==- Choose the right pagination technique
 
-Check the [Choose Wisely Guide](chose_wisely.md)
+Check the [Choose Right Guide](choose_right)
 
 ==- Control the items per page
 
