@@ -15,7 +15,7 @@ order: 80
 Add the appropriate file(s) and statements to your code as outlined below.
 !!!
 
->>> Config the initializer
+>>> Configure the initializer
 
 Depending on your JavaScript environment, uncomment the appropriate statement in the [pagy.rb initializer](initializer.md):
 
