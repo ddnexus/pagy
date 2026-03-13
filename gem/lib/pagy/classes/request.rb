@@ -23,7 +23,7 @@ class Pagy
       page     = @params.dig(@options[:root_key], page_key) || @params[page_key]
       return [page.to_s.to_i, 1].max if force_integer
 
-      page unless page == ''
+      page if page.is_a?(String) && !page.empty?
     end
 
     def resolve_limit

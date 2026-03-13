@@ -44,6 +44,9 @@ class PagyKeyset < Sinatra::Base
 
     @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }.freeze
     @pagy, @pets = pagy(:keyset, Pet.order(@order), limit: 10, client_max_limit: 100)
+    # @pagy, @pets = pagy(:keyset, Pet.order(@order),
+    #                     jsonapi: true, page_key: 'number', limit_key: 'size',   # very customized jsonapi
+    #                     limit: 10, client_max_limit: 100)
     # response.headers.merge!(@pagy.headers_hash)
     erb :main
   end
