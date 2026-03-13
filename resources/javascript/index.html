@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826686560996">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826696364720">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.2.0">
@@ -13,7 +13,7 @@
     <!-- Primary Meta Tags -->
     <title>JavaScript &#128154; Pagy</title>
     <meta name="title" content="JavaScript 💚 Pagy">
-    <meta name="description" content="Simply add to your code the appropriate file(s) and statements as outlined below.">
+    <meta name="description" content="Add the appropriate file(s) and statements to your code as outlined below.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/resources/javascript/">
@@ -22,18 +22,18 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/resources/javascript/">
     <meta property="og:title" content="JavaScript 💚 Pagy">
-    <meta property="og:description" content="Simply add to your code the appropriate file(s) and statements as outlined below.">
+    <meta property="og:description" content="Add the appropriate file(s) and statements to your code as outlined below.">
     <meta property="og:site_name" content="Pagy">
     <meta property="og:locale" content="en_US">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.2.0.826686560996" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.2.0.826696364720" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826686560996" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826696364720" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826686560996" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.2.0.826686560996" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826696364720" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.2.0.826696364720" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -400,12 +400,64 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>The helpers and paginators suffixed with <code translate="no" v-pre>*_js</code> require JavaScript support.</h5>
-<p>Simply add to your code the appropriate file(s) and statements as outlined below.</p>
+<p>Add the appropriate file(s) and statements to your code as outlined below.</p>
         </div>
     </div>
 </div>
 <doc-steps>
-   <doc-step id="set-up-the-pagyinit-listener" step-number="1">
+   <doc-step id="config-the-initializer" step-number="1">
+      <template #title>Config the initializer</template>
+<p>Depending on your JavaScript environment, uncomment the appropriate statement in the <a href="../initializer/">pagy.rb initializer</a>:</p>
+<doc-anchor-target id="for-apps-with-an-assets-pipeline">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#for-apps-with-an-assets-pipeline">#</doc-anchor-trigger>
+        <span>For apps with an assets pipeline...</span>
+    </h5>
+</doc-anchor-target>
+<p><em>Compatible with Propshaft, Importmaps, Sprockets, and similar tools.</em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">Rails.application.config.assets.paths &lt;&lt; Pagy::ROOT.join('javascripts')</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="for-apps-with-a-builder">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#for-apps-with-a-builder">#</doc-anchor-trigger>
+        <span>For apps with a builder...</span>
+    </h5>
+</doc-anchor-target>
+<p><em>For builders like esbuild, Webpack, jsbundling-rails, etc.</em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby"># Example for Rails
+javascript_dir = Rails.root.join('app/javascripts')
+Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?</code></pre>
+</doc-codeblock></div>
+   </doc-step>
+   <doc-step id="load-pagy-in-your-app" step-number="2">
+      <template #title>Load Pagy in your app</template>
+<doc-anchor-target id="using-the-module">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#using-the-module">#</doc-anchor-trigger>
+        <span>Using the module...</span>
+    </h5>
+</doc-anchor-target>
+<br>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">import Pagy from &quot;path/to/pagy.mjs&quot;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="using-the-minified-iife">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#using-the-minified-iife">#</doc-anchor-trigger>
+        <span>Using the minified IIFE...</span>
+    </h5>
+</doc-anchor-target>
+<br>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-markup"><code v-pre class="language-markup">&lt;script src=&quot;/path/to/pagy.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-erb"><code v-pre class="language-erb">&lt;%= javascript_include_tag &quot;pagy.min.js&quot; ...%&gt;</code></pre>
+</doc-codeblock></div>
+   </doc-step>
+   <doc-step id="set-up-the-pagyinit-listener" step-number="3">
       <template #title>Set up the <code translate="no" v-pre>Pagy.init</code> listener</template>
 <p>Attach the <code translate="no" v-pre>Pagy.init</code> to a suitable <code translate="no" v-pre>window</code> event in your page:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -421,105 +473,6 @@ window.addEventListener(&quot;turbolinks:load&quot;, Pagy.init)
 // Custom event
 window.addEventListener(&quot;yourEvent&quot;, Pagy.init)</code></pre>
 </doc-codeblock></div>
-   </doc-step>
-   <doc-step id="download-a-pagy-javascript-file" step-number="2">
-      <template #title>Download a Pagy JavaScript file</template>
-<p>Pick the ES6 module with builders and pipelines; the IIFE file otherwise.<br>
-<em>(Source map and types files are for developing pagy itself.)</em></p>
-<div class="compact-dl"><p>
-<div class="mb-6 px-5 py-4 flex justify-between relative border border-base-border hover:border-base-border-hover rounded transition-colors duration-150">
-    <div class="flex items-center text-base-500">
-        <span class="inline-block mb-px">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M21 14c-.55 0-1 .45-1 1v4c0 .55-.45 1-1 1H5c-.55 0-1-.45-1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-4c0-.55-.45-1-1-1z"/><path d="M11.29 15.71c.09.09.2.17.33.22.12.04.25.07.38.07s.26-.03.38-.08.23-.12.33-.22l5-5a.996.996 0 10-1.41-1.41l-3.3 3.3V3c0-.55-.45-1-1-1s-1 .45-1 1v9.59l-3.29-3.3A.996.996 0 106.3 10.7l4.99 5.01z"/></svg>
-        </span>
-        <span class="inline-block font-medium ml-2">ES6 module</span>
-    </div>
-    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
-        <span>pagy.mjs</span>
-        <span class="inline-block ml-2">5.59KB</span>
-    </div>
-    <a href="../../gem/javascripts/pagy.mjs" class="absolute block inset-0" target="_blank" download="pagy.mjs"></a>
-</div>
-<div class="mb-6 px-5 py-4 flex justify-between relative border border-base-border hover:border-base-border-hover rounded transition-colors duration-150">
-    <div class="flex items-center text-base-500">
-        <span class="inline-block mb-px">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M21 14c-.55 0-1 .45-1 1v4c0 .55-.45 1-1 1H5c-.55 0-1-.45-1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-4c0-.55-.45-1-1-1z"/><path d="M11.29 15.71c.09.09.2.17.33.22.12.04.25.07.38.07s.26-.03.38-.08.23-.12.33-.22l5-5a.996.996 0 10-1.41-1.41l-3.3 3.3V3c0-.55-.45-1-1-1s-1 .45-1 1v9.59l-3.29-3.3A.996.996 0 106.3 10.7l4.99 5.01z"/></svg>
-        </span>
-        <span class="inline-block font-medium ml-2">Minified IIFE file</span>
-    </div>
-    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
-        <span>pagy.min.js</span>
-        <span class="inline-block ml-2">2.58KB</span>
-    </div>
-    <a href="../../gem/javascripts/pagy.min.js" class="absolute block inset-0" target="_blank" download="pagy.min.js"></a>
-</div>
-<div class="mb-6 px-5 py-4 flex justify-between relative border border-base-border hover:border-base-border-hover rounded transition-colors duration-150">
-    <div class="flex items-center text-base-500">
-        <span class="inline-block mb-px">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M21 14c-.55 0-1 .45-1 1v4c0 .55-.45 1-1 1H5c-.55 0-1-.45-1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-4c0-.55-.45-1-1-1z"/><path d="M11.29 15.71c.09.09.2.17.33.22.12.04.25.07.38.07s.26-.03.38-.08.23-.12.33-.22l5-5a.996.996 0 10-1.41-1.41l-3.3 3.3V3c0-.55-.45-1-1-1s-1 .45-1 1v9.59l-3.29-3.3A.996.996 0 106.3 10.7l4.99 5.01z"/></svg>
-        </span>
-        <span class="inline-block font-medium ml-2">Plain IIFE file</span>
-    </div>
-    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
-        <span>pagy.js</span>
-        <span class="inline-block ml-2">5.74KB</span>
-    </div>
-    <a href="../../gem/javascripts/pagy.js" class="absolute block inset-0" target="_blank" download="pagy.js"></a>
-</div>
-<div class="mb-6 px-5 py-4 flex justify-between relative border border-base-border hover:border-base-border-hover rounded transition-colors duration-150">
-    <div class="flex items-center text-base-500">
-        <span class="inline-block mb-px">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M21 14c-.55 0-1 .45-1 1v4c0 .55-.45 1-1 1H5c-.55 0-1-.45-1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-4c0-.55-.45-1-1-1z"/><path d="M11.29 15.71c.09.09.2.17.33.22.12.04.25.07.38.07s.26-.03.38-.08.23-.12.33-.22l5-5a.996.996 0 10-1.41-1.41l-3.3 3.3V3c0-.55-.45-1-1-1s-1 .45-1 1v9.59l-3.29-3.3A.996.996 0 106.3 10.7l4.99 5.01z"/></svg>
-        </span>
-        <span class="inline-block font-medium ml-2">Source map</span>
-    </div>
-    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
-        <span>pagy.js.map</span>
-        <span class="inline-block ml-2">16.4KB</span>
-    </div>
-    <a href="../../gem/javascripts/pagy.js.map" class="absolute block inset-0" target="_blank" download="pagy.js.map"></a>
-</div>
-<div class="mb-6 px-5 py-4 flex justify-between relative border border-base-border hover:border-base-border-hover rounded transition-colors duration-150">
-    <div class="flex items-center text-base-500">
-        <span class="inline-block mb-px">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M21 14c-.55 0-1 .45-1 1v4c0 .55-.45 1-1 1H5c-.55 0-1-.45-1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-4c0-.55-.45-1-1-1z"/><path d="M11.29 15.71c.09.09.2.17.33.22.12.04.25.07.38.07s.26-.03.38-.08.23-.12.33-.22l5-5a.996.996 0 10-1.41-1.41l-3.3 3.3V3c0-.55-.45-1-1-1s-1 .45-1 1v9.59l-3.29-3.3A.996.996 0 106.3 10.7l4.99 5.01z"/></svg>
-        </span>
-        <span class="inline-block font-medium ml-2">TypeScript types</span>
-    </div>
-    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
-        <span>pagy.d.ts</span>
-        <span class="inline-block ml-2">106B</span>
-    </div>
-    <a href="../../gem/javascripts/pagy.d.ts" class="absolute block inset-0" target="_blank" download="pagy.d.ts"></a>
-</div>
-</p>
-</div>
-<p>Save the file with your usual modules/javascripts assets.</p>
-   </doc-step>
-   <doc-step id="load-it-in-your-app" step-number="3">
-      <template #title>Load it in your app</template>
-<p>You have a couple of options to make the file available to your app. Just pick one to uncomment in the <a href="../initializer/">pagy.rb initializer</a>:</p>
-<ul>
-<li><p><strong>For apps with an assets pipeline...</strong></p>
-<ul>
-<li><em>Compatible with Propshaft, Importmaps, Sprockets, and similar tools.</em></li>
-</ul>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">Rails.application.config.assets.paths &lt;&lt; Pagy::ROOT.join('javascripts')</code></pre>
-</doc-codeblock></div>
-</li>
-<li><p><strong>For apps with a builder...</strong></p>
-<ul>
-<li><em>This works with builders like esbuild, Webpack, jsbundling-rails, etc.</em></li>
-</ul>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-ruby"><code v-pre class="language-ruby"># Example for Rails
-javascript_dir = Rails.root.join('app/javascripts')
-Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?</code></pre>
-</doc-codeblock></div>
-</li>
-</ul>
-<p>After that, you can load it like any other JavaScript file or module you already use in your app.</p>
    </doc-step>
 </doc-steps>
 <div id="retype-backlinks">
