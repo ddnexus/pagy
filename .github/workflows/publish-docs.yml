@@ -46,11 +46,13 @@ jobs:
       - uses: actions/checkout@v6
 
       - uses: retypeapp/action-build@latest
+        env:
+          RETYPE_KEY: ${{ secrets.RETYPE_KEY }}
         with:
           config_path: docs/
+
 
       - uses: retypeapp/action-github-pages@latest
         with:
           branch: docsite
           update-branch: true
-          
