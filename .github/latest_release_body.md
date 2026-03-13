@@ -1,9 +1,10 @@
-### Changes in 43.3.2
+### Changes in 43.3.3
 
 <!-- changes_start -->
-- Implement NumericUI module to avoid including the numeric helpers in keynav classes
-- Improve offset accessors and update docs
-- Add basic RBS
+- Fix Request#resolve_page with jsonapi, limit, and missing page param (#885)
+- Fix pagy-tailwind.css inconsistencies
+- Improve ts/js build process and wand help
+- Move the next_tag into the Pagy class
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

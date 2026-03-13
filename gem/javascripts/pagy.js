@@ -129,7 +129,7 @@ var pagy_default = (() => {
     });
   };
   return {
-    version: "43.3.2",
+    version: "43.3.3",
     init(arg) {
       const target = arg instanceof HTMLElement ? arg : document, elements = target.querySelectorAll("[data-pagy]");
       for (const element of elements) {
@@ -156,5 +156,5 @@ var pagy_default = (() => {
 // ../gem/javascripts/pagy-shim.ts
 window.Pagy = pagy_default;
 
-//# debugId=693D73AB516DBCD064756E2164756E21
+//# debugId=4205DF9E2954F02464756E2164756E21
 //# sourceMappingURL=pagy.js.map
