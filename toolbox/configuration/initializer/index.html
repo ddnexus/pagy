@@ -5,34 +5,35 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826705961273">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826714472145">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.2.0">
 
     <!-- Primary Meta Tags -->
-    <title>Options ✳ &#128154; Pagy</title>
-    <meta name="title" content="Options ✳ 💚 Pagy">
-    <meta name="description" content="The actual options are documented alongside the paginators and helpers that use them.">
+    <title>Initializer &#128154; Pagy</title>
+    <meta name="title" content="Initializer 💚 Pagy">
+    <meta name="description" content="Download or copy the small file below and ensure it loads (e.g., save it into the Rails config/initializers directory or require it). Read its comments for">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://ddnexus.github.io/pagy/toolbox/options/">
+    <link rel="canonical" href="https://ddnexus.github.io/pagy/toolbox/configuration/initializer/">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ddnexus.github.io/pagy/toolbox/options/">
-    <meta property="og:title" content="Options ✳ 💚 Pagy">
-    <meta property="og:description" content="The actual options are documented alongside the paginators and helpers that use them.">
+    <meta property="og:url" content="https://ddnexus.github.io/pagy/toolbox/configuration/initializer/">
+    <meta property="og:title" content="Initializer 💚 Pagy">
+    <meta property="og:description" content="Download or copy the small file below and ensure it loads (e.g., save it into the Rails config/initializers directory or require it). Read its comments for">
     <meta property="og:site_name" content="Pagy">
     <meta property="og:locale" content="en_US">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.2.0.826705961273" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.2.0.826714472145" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826705961273" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826705961273" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.2.0.826714472145" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.2.0.826714472145" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.2.0.826714472145" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -180,10 +181,10 @@
             <!-- Logo -->
             <div class="flex items-center justify-between h-full py-2 md:w-75">
                 <div class="flex items-center px-2 md:px-6">
-                    <a id="retype-branding-logo" href="../../" class="flex items-center leading-snug text-2xl">
+                    <a id="retype-branding-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                         <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
-                            <img class="max-h-10 dark:hidden md:inline-block" src="../../assets/images/pagy-the-frog.png">
-                            <img class="max-h-10 hidden dark:inline-block" src="../../assets/images/pagy-the-frog.png">
+                            <img class="max-h-10 dark:hidden md:inline-block" src="../../../assets/images/pagy-the-frog.png">
+                            <img class="max-h-10 hidden dark:inline-block" src="../../../assets/images/pagy-the-frog.png">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
                     </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.3.3</span>
@@ -353,99 +354,86 @@
         <span></span>
     </h1>
 </doc-anchor-target>
-<doc-anchor-target id="options-hierarchy">
+<doc-anchor-target id="initializer">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#options-hierarchy">#</doc-anchor-trigger>
-        <span>Options Hierarchy</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#initializer">#</doc-anchor-trigger>
+        <span>Initializer</span>
     </h2>
 </doc-anchor-target>
 <hr>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-primary"></div>
-    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-callout-primary" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-            <h5>This page documents the options system</h5>
-<p>The actual options are documented alongside the <a href="../paginators/">paginators</a> and <a href="../helpers/">helpers</a> that use them.</p>
-        </div>
+<p>Download or copy the small file below and ensure it loads <em>(e.g., save it into the Rails <code translate="no" v-pre>config/initializers</code> directory or require it)</em>. Read its comments for details.</p>
+<p>
+<div class="mb-6 px-5 py-4 flex justify-between relative border border-base-border hover:border-base-border-hover rounded transition-colors duration-150">
+    <div class="flex items-center text-base-500">
+        <span class="inline-block mb-px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M21 14c-.55 0-1 .45-1 1v4c0 .55-.45 1-1 1H5c-.55 0-1-.45-1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-4c0-.55-.45-1-1-1z"/><path d="M11.29 15.71c.09.09.2.17.33.22.12.04.25.07.38.07s.26-.03.38-.08.23-.12.33-.22l5-5a.996.996 0 10-1.41-1.41l-3.3 3.3V3c0-.55-.45-1-1-1s-1 .45-1 1v9.59l-3.29-3.3A.996.996 0 106.3 10.7l4.99 5.01z"/></svg>
+        </span>
+        <span class="inline-block font-medium ml-2">pagy.rb</span>
     </div>
-</div>
-<p>Pagy has a top-down hierarchical options system that allows you to set and override options at different levels.</p>
-<doc-anchor-target id="global-level">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#global-level">#</doc-anchor-trigger>
-        <span>Global level</span>
-    </h4>
-</doc-anchor-target>
-<ul>
-<li>For example <code translate="no" v-pre>Pagy::OPTIONS[:limit] = 10</code>.</li>
-<li>Set in the <a href="../../resources/initializer/">pagy.rb initializer</a>.</li>
-<li>The <code translate="no" v-pre>Pagy::OPTIONS</code> are inherited by all paginators and helpers.</li>
-<li>You can set all kinds of options at the global level, no matter which is the destination downstream (i.e., paginator or helper).</li>
-<li><strong>Notice</strong>: Using the legacy <code translate="no" v-pre>Pagy.options</code> accessor is discouraged but supported.</li>
-<li><strong>IMPORTANT</strong>: Freeze it after you are done in the initializer, for good safe practice.</li>
-</ul>
-<doc-anchor-target id="paginator-level">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#paginator-level">#</doc-anchor-trigger>
-        <span>Paginator level</span>
-    </h4>
-</doc-anchor-target>
-<ul>
-<li>For example <code translate="no" v-pre>pagy(paginator, collection, **options)</code>.</li>
-<li>The options passed to a paginator override the <code translate="no" v-pre>Pagy::OPTIONS</code> set upstream for that instance.</li>
-</ul>
-<doc-anchor-target id="helper-level">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#helper-level">#</doc-anchor-trigger>
-        <span>Helper level</span>
-    </h4>
-</doc-anchor-target>
-<ul>
-<li>For example <code translate="no" v-pre>@pagy.series_nav(**options)</code>.</li>
-<li>The options passed to a helper override all the upstream options for its output.</li>
-<li>The options consumed upstream are not affected.</li>
-</ul>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-success"></div>
-    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-callout-success" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
-                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-<ul>
-<li><strong>Keep options local</strong>
-<ul>
-<li>For clarity, set options as close as possible to where they&#x27;re consumed.</li>
-</ul>
-</li>
-<li><strong>Widen the scope when needed</strong>
-<ul>
-<li>Use higher-level options when they conveniently affect broader scopes.</li>
-</ul>
-</li>
-</ul>
-        </div>
+    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
+        <span>pagy.rb</span>
+        <span class="inline-block ml-2">2.1KB</span>
     </div>
+    <a href="../../../gem/config/pagy.rb" class="absolute block inset-0" target="_blank" download="pagy.rb"></a>
 </div>
+</p>
+<div id="initializer-pagyrb" class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">pagy.rb</div>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby"># frozen_string_literal: true
+
+# Pagy initializer file (43.3.3)
+# See https://ddnexus.github.io/pagy/resources/initializer/
+
+############ Global Options ################################################################
+# See https://ddnexus.github.io/pagy/toolbox/options/ for details.
+# Add your global options below. They will be applied globally.
+# For example:
+#
+# Pagy::OPTIONS[:limit] = 10               # Limit the items per page
+# Pagy::OPTIONS[:client_max_limit] = 100   # The client can request a limit up to 100
+# Pagy::OPTIONS[:max_pages] = 200          # Allow only 200 pages
+# Pagy::OPTIONS[:jsonapi] = true           # Use JSON:API compliant URLs
+
+Pagy::OPTIONS.freeze
+
+############ JavaScript ####################################################################
+# See https://ddnexus.github.io/pagy/resources/javascript/ for details.
+# Examples for Rails:
+# For apps with an assets pipeline
+# Rails.application.config.assets.paths &lt;&lt; Pagy::ROOT.join('javascripts')
+#
+# For apps with a javascript builder (e.g. esbuild, webpack, etc.)
+# javascript_dir = Rails.root.join('app/javascript')
+# Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
+
+
+############# Overriding Pagy::I18n Lookup #################################################
+# Refer to https://ddnexus.github.io/pagy/resources/i18n/ for details.
+# Override the I18n lookup by dropping your custom dictionary in some pagy dir.
+# Example for Rails:
+#
+# Pagy::I18n.pathnames &lt;&lt; Rails.root.join('config/locales/pagy')
+
+
+############# I18n Gem Translation #########################################################
+# See https://ddnexus.github.io/pagy/resources/i18n/ for details.
+#
+# Pagy.translate_with_the_slower_i18n_gem!
+
+
+############# Calendar Localization for non-en locales ####################################
+# See https://ddnexus.github.io/pagy/toolbox/paginators/calendar#localization for details.
+# Add your desired locales to the list and uncomment the following line to enable them,
+# regardless of whether you use the I18n gem for translations or not, whether with
+# Rails or not.
+#
+# Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)</code></pre>
+</doc-codeblock></div>
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-02-21T08:53:42" title="2026-02-21" data-absolute-label="Last updated on 2026-02-21" data-absolute-label-html="Last updated on 2026-02-21" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-02-21
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-13T17:53:52" title="2026-03-13" data-absolute-label="Last updated on 2026-03-13" data-absolute-label-html="Last updated on 2026-03-13" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-03-13
                     </time>
                 </div>
 
@@ -454,7 +442,7 @@
             </div>
             <footer id="retype-content-footer" class="clear-both">
                 <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mt-14">
-                    <a id="retype-edit-this-page" class="my-2.5 inline-flex items-center text-sm whitespace-nowrap text-body-link font-body-link hover:text-body-link-hover hover:underline" href="https://github.com/ddnexus/pagy/blob/master/toolbox/options.md" target="_blank" rel="noopener">
+                    <a id="retype-edit-this-page" class="my-2.5 inline-flex items-center text-sm whitespace-nowrap text-body-link font-body-link hover:text-body-link-hover hover:underline" href="https://github.com/ddnexus/pagy/blob/master/toolbox/configuration/initializer.md" target="_blank" rel="noopener">
                         <svg class="mr-1.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M20 12c-.55 0-1 .45-1 1v7c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h7c.55 0 1-.45 1-1s-.45-1-1-1H4C2.35 3 1 4.35 1 6v14c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-7c0-.55-.45-1-1-1z" /><path d="M22.21 1.79c-1.18-1.18-3.24-1.18-4.41 0l-9.5 9.5c-.13.13-.22.29-.26.46l-1 4c-.08.34.01.7.26.95.18.2.44.3.7.3.08 0 .16-.01.24-.03l4-1c.18-.04.34-.13.46-.26l9.5-9.5c1.22-1.22 1.22-3.2.01-4.42zm-1.42 3l-9.3 9.3-2.11.53.53-2.11 9.3-9.3c.42-.42 1.16-.42 1.59 0 .43.43.43 1.15-.01 1.58z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                         <span>Edit this page</span>
                     </a>
@@ -462,20 +450,20 @@
             
                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                     <div class="w-1/2">
-                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../toolbox/helpers/info_tag/">
+                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../toolbox/configuration/options/">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                             <span>
                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                <span class="block mt-1">info_​tag</span>
+                                <span class="block mt-1">Options</span>
                             </span>
                         </a>
                     </div>
             
                     <div class="w-1/2">
-                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../resources/initializer/">
+                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../resources/stylesheets/">
                             <span>
                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                <span class="block mt-1">Initializer</span>
+                                <span class="block mt-1">Stylesheets</span>
                             </span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                         </a>
@@ -519,6 +507,6 @@
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Options ✳", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Initializer", level: 3, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>
