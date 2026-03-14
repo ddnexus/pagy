@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 # Pagy initializer file (43.3.3)
-# See https://ddnexus.github.io/pagy/resources/initializer/
+# See https://ddnexus.github.io/pagy/toolbox/configuration/initializer/
+
 
 ############ Global Options ################################################################
-# See https://ddnexus.github.io/pagy/toolbox/options/ for details.
+# See https://ddnexus.github.io/pagy/toolbox/configuration/options/ for details.
 # Add your global options below. They will be applied globally.
 # For example:
 #
@@ -14,6 +15,7 @@
 # Pagy::OPTIONS[:jsonapi] = true           # Use JSON:API compliant URLs
 
 Pagy::OPTIONS.freeze
+
 
 ############ JavaScript ####################################################################
 # See https://ddnexus.github.io/pagy/resources/javascript/ for details.

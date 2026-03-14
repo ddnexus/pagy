@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826714472145">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826773780333">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.2.0">
@@ -28,12 +28,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.2.0.826714472145" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.2.0.826773780333" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826714472145" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826773780333" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826714472145" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.2.0.826714472145" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826773780333" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.2.0.826773780333" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -543,13 +543,70 @@
         </div>
     </div>
 </div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">enable_rails_page_segment.rb</div>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby"># frozen_string_literal: true
+
+# ################# IMPORTANT WARNING #################
+# This setup forces Pagy to use the Rails `url_for` method,
+# which is significantly slower (~20x) than Pagy's native URL generation.
+
+# Use this file ONLY if you absolutely want to support the page param as a dynamic segment.
+# (e.g. get '/comments(/:page)', to: 'comments#index').
+# #####################################################
+
+# USAGE
+
+# initializers/pagy.rb
+# require Pagy::ROOT.join('apps/enable_rails_page_segment.rb')
+
+# config/routes.rb (example)
+# get '/comments(/:page)', to: 'comments#index'
+
+
+# Use plain Strings tokens instead of Pagy::EscapedValue strings
+Pagy.send(:remove_const, :PAGE_TOKEN)  ; Pagy::PAGE_TOKEN  = '___PAGY_PAGE___'
+Pagy.send(:remove_const, :LIMIT_TOKEN) ; Pagy::LIMIT_TOKEN = '___PAGY_LIMIT___'
+
+# Require the pagy sources to override
+require_relative '../lib/pagy/toolbox/paginators/method'
+require_relative '../lib/pagy/modules/abilities/linkable'
+
+class Pagy
+  # Switch to the `request.params` to get access to rails-added path parameters
+  module RequestOverride
+    def get_params(request)
+      request.params
+    end
+  end
+  Request.prepend RequestOverride
+
+  # Inject the caller context into the Pagy instance
+  module MethodOverride
+    def pagy(...)
+      super.tap { _1[0].instance_variable_set(:@context, self) }
+    end
+  end
+  Method.prepend MethodOverride
+
+  # Compose the final URL using `url_for`.
+  module LinkableOverride
+    def compose_url(absolute, _path, params, fragment)
+      params[:anchor]    = fragment if fragment
+      params[:only_path] = !absolute
+      @context.url_for(params)
+    end
+  end
+  Linkable.prepend LinkableOverride
+end</code></pre>
+</doc-codeblock></div>
    </doc-panel>
 </doc-panels>
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-10T17:03:18" title="2026-03-10" data-absolute-label="Last updated on 2026-03-10" data-absolute-label-html="Last updated on 2026-03-10" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-03-10
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-14T10:19:55" title="2026-03-14" data-absolute-label="Last updated on 2026-03-14" data-absolute-label-html="Last updated on 2026-03-14" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-03-14
                     </time>
                 </div>
 
@@ -576,10 +633,10 @@
                     </div>
             
                     <div class="w-1/2">
-                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../sandbox/playground/">
+                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../resources/rbs/">
                             <span>
                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                <span class="block mt-1">Playground</span>
+                                <span class="block mt-1">RBS</span>
                             </span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                         </a>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826714472145">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826773780333">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.2.0">
@@ -13,7 +13,7 @@
     <!-- Primary Meta Tags -->
     <title>JavaScript &#128154; Pagy</title>
     <meta name="title" content="JavaScript 💚 Pagy">
-    <meta name="description" content="Add the appropriate file(s) and statements to your code as outlined below.">
+    <meta name="description" content="Add the appropriate statements to your code as outlined below.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/resources/javascript/">
@@ -22,18 +22,18 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/resources/javascript/">
     <meta property="og:title" content="JavaScript 💚 Pagy">
-    <meta property="og:description" content="Add the appropriate file(s) and statements to your code as outlined below.">
+    <meta property="og:description" content="Add the appropriate statements to your code as outlined below.">
     <meta property="og:site_name" content="Pagy">
     <meta property="og:locale" content="en_US">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.2.0.826714472145" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.2.0.826773780333" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826714472145" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826773780333" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826714472145" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.2.0.826714472145" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826773780333" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.2.0.826773780333" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -374,86 +374,99 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>The helpers and paginators suffixed with <code translate="no" v-pre>*_js</code> require JavaScript support.</h5>
-<p>Add the appropriate file(s) and statements to your code as outlined below.</p>
+<p>Add the appropriate statements to your code as outlined below.</p>
         </div>
     </div>
 </div>
 <doc-steps>
-   <doc-step id="configure-the-initializer" step-number="1">
-      <template #title>Configure the initializer</template>
-<p>Depending on your JavaScript environment, uncomment the appropriate statement in the <a href="../../toolbox/configuration/initializer/">pagy.rb initializer</a>:</p>
-<doc-anchor-target id="for-apps-with-an-assets-pipeline">
-    <h5>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#for-apps-with-an-assets-pipeline">#</doc-anchor-trigger>
-        <span>For apps with an assets pipeline...</span>
-    </h5>
-</doc-anchor-target>
-<p><em>Compatible with Propshaft, Importmaps, Sprockets, and similar tools.</em></p>
+   <doc-step id="configure-the-app" step-number="1">
+      <template #title>Configure the app</template>
+<br>
+<doc-tabs>
+<doc-tab v-cloak id="importmaps">
+<template #title>Importmaps</template>
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">config/importmap.rb</div>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">pin &quot;pagy&quot;, to: Pagy::ROOT.join(&quot;javascripts/pagy.min.js&quot;)</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">application.js</div>
+<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">import &quot;pagy&quot;</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="sprockets">
+<template #title>Sprockets</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title"><a href="../../toolbox/configuration/initializer/">pagy.rb initializer</a></div>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">Rails.application.config.assets.paths &lt;&lt; Pagy::ROOT.join('javascripts')</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="for-apps-with-a-builder">
-    <h5>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#for-apps-with-a-builder">#</doc-anchor-trigger>
-        <span>For apps with a builder...</span>
-    </h5>
-</doc-anchor-target>
-<p><em>For builders like esbuild, Webpack, jsbundling-rails, etc.</em></p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-ruby"><code v-pre class="language-ruby"># Example for Rails
-javascript_dir = Rails.root.join('app/javascripts')
+<div class="codeblock-title">application.js</div>
+<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">//= link pagy.mjs</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="propshaft">
+<template #title>Propshaft</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title"><a href="../../toolbox/configuration/initializer/">pagy.rb initializer</a></div>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">Rails.application.config.assets.paths &lt;&lt; Pagy::ROOT.join('javascripts')</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">application.js</div>
+<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">import Pagy from &quot;pagy.mjs&quot;</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="builders">
+<template #title>Builders</template>
+<p><em>Webpack, esbuild, jsbundling-rails, ...</em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title"><a href="../../toolbox/configuration/initializer/">pagy.rb initializer</a></div>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">javascript_dir = Rails.root.join('app/javascripts')
 Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?</code></pre>
 </doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">application.js</div>
+<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">import Pagy from &quot;pagy.mjs&quot;</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+</doc-tabs>
    </doc-step>
-   <doc-step id="load-pagy-in-your-app" step-number="2">
-      <template #title>Load Pagy in your app</template>
-<doc-anchor-target id="using-the-module">
-    <h5>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#using-the-module">#</doc-anchor-trigger>
-        <span>Using the module...</span>
-    </h5>
-</doc-anchor-target>
-<br>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">import Pagy from &quot;path/to/pagy.mjs&quot;</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="using-the-minified-iife">
-    <h5>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#using-the-minified-iife">#</doc-anchor-trigger>
-        <span>Using the minified IIFE...</span>
-    </h5>
-</doc-anchor-target>
-<br>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-erb"><code v-pre class="language-erb">&lt;%= javascript_include_tag &quot;pagy.min.js&quot; ...%&gt;</code></pre>
-</doc-codeblock></div>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-markup"><code v-pre class="language-markup">&lt;script src=&quot;/path/to/pagy.min.js&quot;&gt;&lt;/script&gt;</code></pre>
-</doc-codeblock></div>
-   </doc-step>
-   <doc-step id="add-the-pagyinit-listener" step-number="3">
+   <doc-step id="add-the-pagyinit-listener" step-number="2">
       <template #title>Add the <code translate="no" v-pre>Pagy.init</code> listener</template>
-<p>Use a suitable event in your page:</p>
+<br>
+<doc-tabs>
+<doc-tab v-cloak id="javascript">
+<template #title>JavaScript</template>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">// Plain JavaScript
-window.addEventListener(&quot;load&quot;, Pagy.init)
-
-// Turbo
-window.addEventListener(&quot;turbo:load&quot;, Pagy.init)
-
-// Turbolinks
-window.addEventListener(&quot;turbolinks:load&quot;, Pagy.init)
-
-// Custom event
-window.addEventListener(&quot;yourEvent&quot;, Pagy.init)</code></pre>
+<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">window.addEventListener(&quot;load&quot;, Pagy.init)</code></pre>
 </doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="turbo">
+<template #title>Turbo</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">window.addEventListener(&quot;turbo:load&quot;, Pagy.init)</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="turbolinks">
+<template #title>Turbolinks</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">window.addEventListener(&quot;turbolinks:load&quot;, Pagy.init)</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="custom">
+<template #title>Custom</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">window.addEventListener(&quot;yourEvent&quot;, Pagy.init)</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+</doc-tabs>
    </doc-step>
 </doc-steps>
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-13T17:53:52" title="2026-03-13" data-absolute-label="Last updated on 2026-03-13" data-absolute-label-html="Last updated on 2026-03-13" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-03-13
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-14T10:19:55" title="2026-03-14" data-absolute-label="Last updated on 2026-03-14" data-absolute-label-html="Last updated on 2026-03-14" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-03-14
                     </time>
                 </div>
 

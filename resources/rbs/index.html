@@ -11,29 +11,29 @@
     <meta name="generator" content="Retype 4.2.0">
 
     <!-- Primary Meta Tags -->
-    <title>page_url &#128154; Pagy</title>
-    <meta name="title" content="page_url 💚 Pagy">
-    <meta name="description" content="page_url returns the URL of any page of any instance. If the page is not available it returns nil. It is useful to build minimalistic UIs that don't use">
+    <title>RBS &#128154; Pagy</title>
+    <meta name="title" content="RBS 💚 Pagy">
+    <meta name="description" content="Pagy provides a centralized RBS file for the public API. It should give your type checker and linter the info to work in your IDE.">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://ddnexus.github.io/pagy/toolbox/helpers/page_url/">
+    <link rel="canonical" href="https://ddnexus.github.io/pagy/resources/rbs/">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ddnexus.github.io/pagy/toolbox/helpers/page_url/">
-    <meta property="og:title" content="page_url 💚 Pagy">
-    <meta property="og:description" content="page_url returns the URL of any page of any instance. If the page is not available it returns nil. It is useful to build minimalistic UIs that don't use">
+    <meta property="og:url" content="https://ddnexus.github.io/pagy/resources/rbs/">
+    <meta property="og:title" content="RBS 💚 Pagy">
+    <meta property="og:description" content="Pagy provides a centralized RBS file for the public API. It should give your type checker and linter the info to work in your IDE.">
     <meta property="og:site_name" content="Pagy">
     <meta property="og:locale" content="en_US">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../../resources/css/retype.css?v=4.2.0.826773780333" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.2.0.826773780333" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.2.0.826773780333" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.2.0.826773780333" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.2.0.826773780333" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826773780333" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826773780333" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.2.0.826773780333" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -181,10 +181,10 @@
             <!-- Logo -->
             <div class="flex items-center justify-between h-full py-2 md:w-75">
                 <div class="flex items-center px-2 md:px-6">
-                    <a id="retype-branding-logo" href="../../../" class="flex items-center leading-snug text-2xl">
+                    <a id="retype-branding-logo" href="../../" class="flex items-center leading-snug text-2xl">
                         <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
-                            <img class="max-h-10 dark:hidden md:inline-block" src="../../../assets/images/pagy-the-frog.png">
-                            <img class="max-h-10 hidden dark:inline-block" src="../../../assets/images/pagy-the-frog.png">
+                            <img class="max-h-10 dark:hidden md:inline-block" src="../../assets/images/pagy-the-frog.png">
+                            <img class="max-h-10 hidden dark:inline-block" src="../../assets/images/pagy-the-frog.png">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
                     </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.3.3</span>
@@ -354,85 +354,353 @@
         <span></span>
     </h1>
 </doc-anchor-target>
-<div class="-mt-3 mb-12 flex flex-wrap text-sm text-gray-400 dark:text-dark-350 items-center">
-    <div>In&nbsp;</div>
-    <div><a href="../../../categories/methods/">Methods</a>,&nbsp;</div>
-    <div><a href="../../../categories/helpers/">Helpers</a></div>
-</div>
-
-<doc-anchor-target id="page_url">
+<doc-anchor-target id="rbs-signatures">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#page_url">#</doc-anchor-trigger>
-        <span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/></g></g></svg> page_url</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rbs-signatures">#</doc-anchor-trigger>
+        <span>RBS Signatures</span>
     </h2>
 </doc-anchor-target>
 <hr>
-<p><code translate="no" v-pre>page_url</code> returns the URL of any page of any instance. If the page is not available it returns <code translate="no" v-pre>nil</code>. It is useful to build minimalistic UIs that don&#x27;t use nav bar links (e.g. <a href="../../paginators/keyset/">:keyset</a> paginator).</p>
+<p>Pagy provides a centralized RBS file for the public API. It should give your type checker and linter the info to work in your IDE.</p>
+<doc-panel id="rbs-file" collapsed>
+    <template #title>RBS File</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">pagy.rbs</div>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby"># sig/pagy.rbs
+
+module ActiveRecord
+  class Base[T]
+  end
+  class Relation[T]
+  end
+end
+
+module ActiveSupport
+  class TimeWithZone
+  end
+end
+
+module Sequel
+  class Dataset[T]
+  end
+  class Model[T]
+  end
+end
+
+class Pagy
+  VERSION: String
+  ROOT:    Pathname
+  OPTIONS: options
+
+  def self.options: () -&gt; options
+
+  # Class methods
+  def self.sync_javascript: (String destination, *String targets) -&gt; void
+  def self.dev_tools: (?wand_scale: Integer) -&gt; String
+  def self.translate_with_the_slower_i18n_gem!: () -&gt; void
+
+  class Offset &lt; Pagy
+    attr_reader offset:   Integer
+    attr_reader count:    Integer
+    attr_reader from:     Integer
+    attr_reader to:       Integer
+    attr_reader previous: Integer?
+    attr_reader next:     Integer?
+    attr_reader last:     Integer
+
+    alias pages last
+  end
+
+  class Countish &lt; Offset
+  end
+  class Countless &lt; Offset
+    attr_reader last: Integer?
+  end
+  class Keyset &lt; Pagy
+    class ActiveRecord &lt; Keyset
+    end
+    class Sequel &lt; Keyset
+    end
+    class Keynav &lt; Keyset
+      class ActiveRecord &lt; Keyset
+      end
+      class Sequel &lt; Keyset
+      end
+    end
+
+    attr_reader records: Array[untyped]
+  end
+
+  class Calendar &lt; ::Hash[Symbol, Calendar::Unit]
+    def self.localize_with_rails_i18n_gem: (*Symbol locales) -&gt; void
+
+    def showtime: () -&gt; ActiveSupport::TimeWithZone
+    def url_at: (ActiveSupport::TimeWithZone time, **url_opts) -&gt; String
+
+    class Unit &lt; Pagy
+      attr_reader order: Symbol
+      attr_reader from: ActiveSupport::TimeWithZone
+      attr_reader to: ActiveSupport::TimeWithZone
+      attr_reader previous: Integer?
+      attr_reader last: Integer
+      alias pages last
+    end
+
+    class Year &lt; Unit
+    end
+    class Quarter &lt; Unit
+    end
+    class Month &lt; Unit
+    end
+    class Week &lt; Unit
+    end
+    class Day &lt; Unit
+    end
+  end
+
+  class SearchBase &lt; Offset
+  end
+
+  class ElasticsearchRails &lt; SearchBase
+  end
+
+  class Meilisearch &lt; SearchBase
+  end
+
+  class Searchkick &lt; SearchBase
+  end
+
+  class TypesenseRails &lt; SearchBase
+  end
+
+  module Search
+    class Arguments &lt; Array[untyped]
+    end
+
+    def pagy_search: (*untyped arguments, untyped) -&gt; Search::Arguments
+  end
+
+  class Method
+    interface _Collection
+      def offset: (Integer offset) -&gt; _Collection
+      def limit:  (Integer limit)  -&gt; _Collection
+    end
+
+
+    type collection = _Collection | Array[untyped]
+
+    def pagy: (:offset,    collection collection, **offset_opts options)    -&gt; [Offset,    collection]
+            | (:countless, collection collection, **countless_opts options) -&gt; [Countless, collection]
+            | (:countish,  collection collection, **countish_opts options)  -&gt; [Countish,  collection]
+
+            | (:keyset,    ::ActiveRecord::Relation[untyped] set, **keyset_opts options) -&gt; [Keyset::ActiveRecord, Array[::ActiveRecord::Base[untyped]]]
+            | (:keyset,    ::Sequel::Dataset[untyped] set,        **keyset_opts options) -&gt; [Keyset::Sequel, Array[::Sequel::Model[untyped]]]
+
+            | (:keynav_js, ::ActiveRecord::Relation[untyped] set, **keyset_opts options) -&gt; [Keyset::Keynav::ActiveRecord, Array[::ActiveRecord::Base[untyped]]]
+            | (:keynav_js, ::Sequel::Dataset[untyped] set,        **keyset_opts options) -&gt; [Keyset::Keynav::Sequel, Array[::Sequel::Model[untyped]]]
+
+            | (:calendar, _Collection collection, **calendar_config) -&gt; [Calendar, Offset, _Collection]
+
+            | (:elasticsearch_rails, Search::Arguments, **search_opts options) -&gt; [ElasticsearchRails, untyped]
+            | (:elasticsearch_rails, untyped search, **search_opts options)    -&gt; ElasticsearchRails
+
+            | (:meilisearch, Search::Arguments, **search_opts options) -&gt; [Meilisearch, untyped]
+            | (:meilisearch, untyped search, **search_opts options)    -&gt; Meilisearch
+
+            | (:searchkick, Search::Arguments, **search_opts options) -&gt; [Searchkick, untyped]
+            | (:searchkick, untyped search, **search_opts options)    -&gt; Searchkick
+
+            | (:typesense_rails, Search::Arguments, **search_opts options) -&gt; [TypesenseRails, untyped]
+            | (:typesense_rails, untyped search, **search_opts options)    -&gt; TypesenseRails
+  end
+
+  # Helper methods
+  def data_hash: (**data_opts) -&gt; pagy_data_hash
+  def headers_hash: (**headers_opts) -&gt; Hash[String, String]
+  def urls_hash: (**url_opts) -&gt; Hash[Symbol, String]
+
+  def page_url: (:first | :current | :page | :previous | :next | :last | Integer page, **url_opts) -&gt; String
+  def next_tag: (String? text, **anchor_tags_opts) -&gt; String
+
+  module NumericHelpers
+    def series_nav:    (?Symbol? style, **series_nav_opts) -&gt; String
+    def series_nav_js: (?Symbol? style, **series_nav_js_opts) -&gt; String
+    def input_nav_js:  (?Symbol? style, **nav_opts) -&gt; String
+
+    def previous_tag: (String? text, **anchor_tags_opts) -&gt; String
+    def limit_tag_js: (?id: String?, ?item_name: String?, **url_opts) -&gt; String
+    def info_tag:     (?id: String?, ?item_name: String?) -&gt; String
+  end
+
+  ##### OPTIONS #####
+
+  type url_opts = {
+    ?fragment:  String,
+    ?absolute:  bool,
+    ?path:      String,
+    ?querify:   Proc,
+    ?jsonapi:   bool,
+    ?root_key:  String,
+    ?page_key:  String,
+    ?limit_key: String,
+  }
+
+  ##### Paginator Options #####
+
+  type paginator_opts = url_opts &amp; {
+    ?page:             Integer,
+    ?limit:            Integer,
+    ?max_pages:        Integer,
+    ?client_max_limit: Integer,
+    ?request:          _RackRequest | request_hash
+  }
+
+  type offset_opts = paginator_opts &amp; {
+    ?count:             Integer,
+    ?count_over:        bool,
+    ?raise_range_error: bool
+  }
+
+  type countish_opts = offset_opts &amp; {
+    ?ttl:   Integer,
+    ?epoch: Integer
+  }
+
+  type countless_opts = offset_opts &amp; {
+    ?headless: bool
+  }
+
+  type unit_opts = paginator_opts &amp; {
+    ?slots:    Integer,
+    ?compact:  bool,
+    ?format:   String,
+    ?order:    Symbol
+  }
+
+  type calendar_config = {
+    ?year:     unit_opts,
+    ?quarter:  unit_opts,
+    ?month:    unit_opts,
+    ?week:     unit_opts,
+    ?day:      unit_opts,
+    ?offset:   offset_opts,
+    ?disabled: bool
+  }
+
+  type keyset_opts = paginator_opts &amp; {
+    ?keyset:           Hash[untyped, untyped],
+    ?tuple_comparison: bool,
+    ?pre_serialize:    Proc
+  }
+
+  type search_opts = {
+    ?search_method: Symbol
+  }
+
+  ##### Helper Options #####
+
+  ### data_hash ###
+  type pagy_data_key = :url_template | :first_url | :previous_url | :current_url
+                     | :page_url | :next_url | :last_url | :count | :page
+                     | :limit | :last | :in | :from | :to | :previous
+                     | :next | :options | Symbol
+
+  # The return structure with optional keys (marked with ?)
+  type pagy_data_hash = {
+    ?url_template: String,
+    ?first_url:    String,
+    ?previous_url: String,
+    ?current_url:  String,
+    ?page_url:     String,
+    ?next_url:     String,
+    ?last_url:     String,
+    ?count:        Integer,
+    ?page:         Integer,
+    ?limit:        Integer,
+    ?last:         Integer,
+    ?in:           Integer,
+    ?from:         Integer,
+    ?to:           Integer,
+    ?previous:     Integer,
+    ?next:         Integer,
+    ?options:      options
+  } &amp; Hash[Symbol, untyped] # Intersection allows for 'send' method results
+
+  type data_opts = url_opts &amp; {
+    ?data_keys: Array[pagy_data_key]
+  }
+
+  type headers_opts = url_opts &amp; {
+    ?headers_map: Hash[Symbol, String]
+  }
+
+  ##### NumericUI Options #####
+  type anchor_tags_opts = url_opts &amp; {
+    ?text:       String,
+    ?aria_label: String
+  }
+
+  type nav_opts = url_opts &amp; {
+    ?id:            String,
+    ?aria_label:    String,
+    ?item_name:     String,
+    ?style:         :pagy | :bootstrap | :bulma,
+    ?anchor_string: String
+  }
+
+  type series_nav_opts = nav_opts &amp; {
+    ?slots:   Integer,
+    ?compact: bool,
+  }
+
+  type series_nav_js_opts = series_nav_opts &amp; {
+    ?steps: Hash[Integer, Integer]
+  }
+
+  type options = url_opts &amp; paginator_opts &amp; offset_opts &amp; countish_opts &amp; countless_opts &amp;
+                 unit_opts &amp; keyset_opts &amp; search_opts &amp;
+                 anchor_tags_opts &amp; nav_opts &amp; data_opts &amp; headers_opts &amp; nav_opts &amp; series_nav_opts &amp; series_nav_js_opts
+
+  ##### REQUEST #####
+
+  interface _RackRequest
+    def base_url: () -&gt; String
+    def path:     () -&gt; String
+    def GET:      () -&gt; Hash[String, untyped]
+    def POST:     () -&gt; Hash[String, untyped]
+    def cookies:  () -&gt; Hash[String, String]
+  end
+
+  type request_hash = {
+    base_url: String,
+    path:     String,
+    params:   Hash[String, untyped],
+    ?cookie:  String
+  }
+end</code></pre>
+</doc-codeblock></div>
+</doc-panel>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-success"></div>
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
         <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-callout-success" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-callout-warning" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
-                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
-                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
                 </g></g>
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-            <h5>It works with all paginators</h5>
+<p>Please report any issue with signatures by opening a <a href="https://github.com/ddnexus/pagy/issues/new?template=Signatures.yml" class="outbound" target="_blank"><span>new RBS issue</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.</p>
         </div>
     </div>
 </div>
-<doc-panels>
-   <doc-panel id="examples" collapsed>
-       <template #title>Examples</template>
-<div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">Console</div>
-<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">require 'pagy/console'
-=&gt; true
-
-&gt;&gt; @pagy, @records = pagy(:offset, collection.new, page: 3)
-=&gt; [#&lt;Pagy::Offset:0x00007f77c4a352f8 @count=1000, @from=41, @in=20, @in_range=true, @last=50, @limit=20, @next=4, @offset=40, @options={limit: 20, limit_key: &quot;limit&quot;, page_key: &quot;page&quot;, page: 3, request: {base_url: &quot;http://www.example.com&quot;, path: &quot;/path&quot;, params: {example: &quot;123&quot;}}, count: 1000}, @page=3, @previous=2, @to=60&gt;, [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]]
-
-&gt;&gt; @pagy.page_url(:first)
-=&gt; &quot;/path?example=123&quot;
-
-&gt;&gt; @pagy.page_url(:current)
-=&gt; &quot;/path?example=123&amp;page=3&quot;
-
-&gt;&gt; @pagy.page_url(:page) # alias of :current
-=&gt; &quot;/path?example=123&amp;page=3&quot;
-
-&gt;&gt; @pagy.page_url(:previous)
-=&gt; &quot;/path?example=123&amp;page=2&quot;
-
-&gt;&gt; @pagy.page_url(:next)
-=&gt; &quot;/path?example=123&amp;page=4&quot;
-
-&gt;&gt; @pagy.page_url(:last)
-=&gt; &quot;/path?example=123&amp;page=50&quot;
-
-&gt;&gt; @pagy.page_url(23, page_key: 'custom_page')
-=&gt; &quot;/path?example=123&amp;custom_page=23&quot;
-
-&gt;&gt; @pagy.page_url(23, absolute: true)
-=&gt; &quot;http://www.example.com/path?example=123&amp;page=23&quot;
-
-&gt;&gt; @pagy.page_url('long-page-id', absolute: true)
-=&gt; &quot;http://www.example.com/path?example=123&amp;page=long-page-id&quot;</code></pre>
-</doc-codeblock></div>
-   </doc-panel>
-   <doc-panel id="options" collapsed>
-       <template #title>Options</template>
-<p>See <a href="../../paginators/#common-url-options">Common URL Options</a></p>
-   </doc-panel>
-</doc-panels>
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2025-12-14T02:49:56" title="2025-12-14" data-absolute-label="Last updated on 2025-12-14" data-absolute-label-html="Last updated on 2025-12-14" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2025-12-14
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-14T10:19:55" title="2026-03-14" data-absolute-label="Last updated on 2026-03-14" data-absolute-label-html="Last updated on 2026-03-14" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-03-14
                     </time>
                 </div>
 
@@ -441,7 +709,7 @@
             </div>
             <footer id="retype-content-footer" class="clear-both">
                 <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mt-14">
-                    <a id="retype-edit-this-page" class="my-2.5 inline-flex items-center text-sm whitespace-nowrap text-body-link font-body-link hover:text-body-link-hover hover:underline" href="https://github.com/ddnexus/pagy/blob/master/toolbox/helpers/page_url.md" target="_blank" rel="noopener">
+                    <a id="retype-edit-this-page" class="my-2.5 inline-flex items-center text-sm whitespace-nowrap text-body-link font-body-link hover:text-body-link-hover hover:underline" href="https://github.com/ddnexus/pagy/blob/master/resources/RBS.md" target="_blank" rel="noopener">
                         <svg class="mr-1.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M20 12c-.55 0-1 .45-1 1v7c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h7c.55 0 1-.45 1-1s-.45-1-1-1H4C2.35 3 1 4.35 1 6v14c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-7c0-.55-.45-1-1-1z" /><path d="M22.21 1.79c-1.18-1.18-3.24-1.18-4.41 0l-9.5 9.5c-.13.13-.22.29-.26.46l-1 4c-.08.34.01.7.26.95.18.2.44.3.7.3.08 0 .16-.01.24-.03l4-1c.18-.04.34-.13.46-.26l9.5-9.5c1.22-1.22 1.22-3.2.01-4.42zm-1.42 3l-9.3 9.3-2.11.53.53-2.11 9.3-9.3c.42-.42 1.16-.42 1.59 0 .43.43.43 1.15-.01 1.58z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                         <span>Edit this page</span>
                     </a>
@@ -449,20 +717,20 @@
             
                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                     <div class="w-1/2">
-                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../toolbox/helpers/urls_hash/">
+                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../resources/urls/">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                             <span>
                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                <span class="block mt-1">urls_​hash</span>
+                                <span class="block mt-1">UR​Ls</span>
                             </span>
                         </a>
                     </div>
             
                     <div class="w-1/2">
-                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../toolbox/helpers/series_nav/">
+                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../sandbox/playground/">
                             <span>
                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                <span class="block mt-1">series_​nav</span>
+                                <span class="block mt-1">Playground</span>
                             </span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                         </a>
@@ -506,6 +774,6 @@
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "page_url", level: 3, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "RBS", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>
