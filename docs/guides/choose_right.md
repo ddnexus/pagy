@@ -115,9 +115,9 @@ These paginators get the count, limit and results provided by the search platfor
 !!! Paginators
 
 {.list-icon}
-- [:icon-search:&nbsp;:elasticsearch_rails](../toolbox/paginators/elasticsearch_rails.md)&nbsp;
-[:icon-search:&nbsp;:meilisearch](../toolbox/paginators/meilisearch.md)&nbsp;
-[:icon-search:&nbsp;:searchkick](../toolbox/paginators/searchkick.md)
+- [:icon-search:&nbsp;:elasticsearch_rails](../toolbox/paginators/elasticsearch_rails.md)&nbsp;&nbsp;
+[:icon-search:&nbsp;:meilisearch](../toolbox/paginators/meilisearch.md)&nbsp;&nbsp;
+[:icon-search:&nbsp;:searchkick](../toolbox/paginators/searchkick.md)&nbsp;&nbsp;
 [:icon-search:&nbsp;:typesense_rails](../toolbox/paginators/typesense_rails.md)
   - :icon-check-circle-24: **Best for**: Search Results
   - :icon-thumbsup-24:     **Pros**: Leverages the engine's native response

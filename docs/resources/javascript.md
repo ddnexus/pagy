@@ -12,67 +12,82 @@ order: 80
 
 !!!warning The helpers and paginators suffixed with `*_js` require JavaScript support.
 
-Add the appropriate file(s) and statements to your code as outlined below.
+Add the appropriate statements to your code as outlined below.
 !!!
 
->>> Configure the initializer
+>>> Configure the app
+<br>
 
-Depending on your JavaScript environment, uncomment the appropriate statement in the [pagy.rb initializer](../toolbox/configuration/initializer):
++++ Importmaps
 
-##### For apps with an assets pipeline...
+```ruby config/importmap.rb
+pin "pagy", to: Pagy::ROOT.join("javascripts/pagy.min.js")
+```
 
-_Compatible with Propshaft, Importmaps, Sprockets, and similar tools._
+```js application.js
+import "pagy"
+```
 
-```ruby
++++ Sprockets
+
+```rb [pagy.rb initializer](../toolbox/configuration/initializer)
 Rails.application.config.assets.paths << Pagy::ROOT.join('javascripts')
 ``` 
 
-##### For apps with a builder...
+```js application.js
+//= link pagy.mjs
+```
 
-_For builders like esbuild, Webpack, jsbundling-rails, etc._
++++ Propshaft
 
-```ruby 
-# Example for Rails
+```rb [pagy.rb initializer](../toolbox/configuration/initializer)
+Rails.application.config.assets.paths << Pagy::ROOT.join('javascripts')
+``` 
+
+```js application.js
+import Pagy from "pagy.mjs"
+```
+
++++ Builders
+
+_Webpack, esbuild, jsbundling-rails, ..._
+
+```rb [pagy.rb initializer](../toolbox/configuration/initializer)
 javascript_dir = Rails.root.join('app/javascripts')
 Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
 ```
 
->>> Load Pagy in your app
-
-##### Using the module...
-<br>
-
-```javascript
-import Pagy from "path/to/pagy.mjs"
+```js application.js
+import Pagy from "pagy.mjs"
 ```
-
-##### Using the minified IIFE...
-<br>
-
-```erb
-<%= javascript_include_tag "pagy.min.js" ...%>
-```
-
-```html
-<script src="/path/to/pagy.min.js"></script>
-```
++++
 
 >>> Add the `Pagy.init` listener
+<br>
 
-Use a suitable event in your page:
++++ JavaScript
 
-```javascript
-// Plain JavaScript
+```js
 window.addEventListener("load", Pagy.init)
+```
 
-// Turbo
++++ Turbo
+
+```js
 window.addEventListener("turbo:load", Pagy.init)
+```
 
-// Turbolinks
++++ Turbolinks
+
+```js
 window.addEventListener("turbolinks:load", Pagy.init)
+```
 
-// Custom event
++++ Custom
+
+```js
 window.addEventListener("yourEvent", Pagy.init)
 ```
- 
++++
+
 >>>

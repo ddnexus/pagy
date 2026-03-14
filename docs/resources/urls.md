@@ -103,4 +103,8 @@ It is not an officially supported or tested feature, as it bypasses the standard
  
 **Use it at your own risk and maintenance extra work!**
 
+!!!
+
+:::code source="../gem/apps/enable_rails_page_segment.rb" title="enable_rails_page_segment.rb":::
+
 ===

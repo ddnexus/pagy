@@ -14,4 +14,4 @@ Download or copy the small file below and ensure it loads _(e.g., save it into t
 
 [!file pagy.rb](../../gem/config/pagy.rb)
 
-:::code source="../../gem/config/pagy.rb" title="pagy.rb":::
+:::code source="../../gem/config/pagy.rb" title="pagy.rb" language="ruby":::

@@ -67,5 +67,4 @@ See also [Offset Options](offset#options)
 
 See [Offset Readers](offset#readers)
 
-
 ===

@@ -1,0 +1,20 @@
+name: Documentation
+description: File a RBS issue
+labels: [ "RBS" ]
+title: 'RBS: '
+assignees:
+  - ddnexus
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this RBS issue!
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      placeholder: Please, describe the issue...
+    validations:
+      required: true

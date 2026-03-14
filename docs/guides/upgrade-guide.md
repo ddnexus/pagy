@@ -338,7 +338,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 
 ==- Javascript
 
-If your `pagy-old.rb` contains any JavaScript setup, it should still work, so you can move it to the `pagy.rb` file, however, for apps with builders, consider using the new [Pagy.sync_javascript](../resources/javascript/#configure-the-initializer) and removing all the old entries from your JavaScript config files.
+If your `pagy-old.rb` contains any JavaScript setup, it should still work, so you can move it to the `pagy.rb` file, however, for apps with builders, consider using the new [Pagy.sync_javascript](../resources/javascript/#configure-the-app) and removing all the old entries from your JavaScript config files.
 
 ==- Stylesheets
 
