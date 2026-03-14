@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826792327201">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826792852930">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.2.0">
@@ -28,12 +28,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../../resources/css/retype.css?v=4.2.0.826792327201" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.2.0.826792852930" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.2.0.826792327201" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.2.0.826792852930" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.2.0.826792327201" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.2.0.826792327201" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.2.0.826792852930" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.2.0.826792852930" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -372,7 +372,7 @@
     </div>
     <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
         <span>pagy.rb</span>
-        <span class="inline-block ml-2">2.13KB</span>
+        <span class="inline-block ml-2">2KB</span>
     </div>
     <a href="../../../gem/config/pagy.rb" class="absolute block inset-0" target="_blank" download="pagy.rb"></a>
 </div>
@@ -400,13 +400,9 @@ Pagy::OPTIONS.freeze
 
 ############ JavaScript ####################################################################
 # See https://ddnexus.github.io/pagy/resources/javascript/ for details.
-# Examples for Rails:
-# For apps with an assets pipeline
-# Rails.application.config.assets.paths &lt;&lt; Pagy::ROOT.join('javascripts')
-#
-# For apps with a javascript builder (e.g. esbuild, webpack, etc.)
+# Copy and keep synced the JavaScript files in your app
 # javascript_dir = Rails.root.join('app/javascript')
-# Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
+# Pagy.sync_javascript(javascript_dir, 'pagy.mjs', 'pagy.min.js') if Rails.env.development?
 
 
 ############# Overriding Pagy::I18n Lookup #################################################

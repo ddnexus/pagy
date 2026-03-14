@@ -19,13 +19,9 @@ Pagy::OPTIONS.freeze
 
 ############ JavaScript ####################################################################
 # See https://ddnexus.github.io/pagy/resources/javascript/ for details.
-# Examples for Rails:
-# For apps with an assets pipeline
-# Rails.application.config.assets.paths << Pagy::ROOT.join('javascripts')
-#
-# For apps with a javascript builder (e.g. esbuild, webpack, etc.)
+# Copy and keep synced the JavaScript files in your app
 # javascript_dir = Rails.root.join('app/javascript')
-# Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
+# Pagy.sync_javascript(javascript_dir, 'pagy.mjs', 'pagy.min.js') if Rails.env.development?
 
 
 ############# Overriding Pagy::I18n Lookup #################################################
