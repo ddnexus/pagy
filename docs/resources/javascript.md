@@ -10,84 +10,33 @@ order: 80
 
 ---
 
-!!!warning The helpers and paginators suffixed with `*_js` require JavaScript support.
+!!!warning 
 
-Add the appropriate statements to your code as outlined below.
+The helpers and paginators suffixed with `*_js` require JavaScript support.
 !!!
 
->>> Configure the app
-<br>
-
-+++ Importmaps
-
-```ruby config/importmap.rb
-pin "pagy", to: Pagy::ROOT.join("javascripts/pagy.min.js")
-```
-
-```js application.js
-import "pagy"
-```
-
-+++ Sprockets
-
-```rb [pagy.rb initializer](../toolbox/configuration/initializer)
-Rails.application.config.assets.paths << Pagy::ROOT.join('javascripts')
-``` 
-
-```js application.js
-//= link pagy.mjs
-```
-
-+++ Propshaft
-
-```rb [pagy.rb initializer](../toolbox/configuration/initializer)
-Rails.application.config.assets.paths << Pagy::ROOT.join('javascripts')
-``` 
-
-```js application.js
-import Pagy from "pagy.mjs"
-```
-
-+++ Builders
-
-_Webpack, esbuild, jsbundling-rails, ..._
+>>> Sync the JavaScript files
+  
+The following statement will copy and keep synced the JavaScript files in your own `app/javascripts` dir _(or any dir you want use)_.
 
 ```rb [pagy.rb initializer](../toolbox/configuration/initializer)
 javascript_dir = Rails.root.join('app/javascripts')
-Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
+Pagy.sync_javascript(javascript_dir, 'pagy.mjs', 'pagy.min.js') if Rails.env.development?
 ```
+
+After that you should treat the files as your own, according to the configuration used by your app. For example:
 
 ```js application.js
 import Pagy from "pagy.mjs"
 ```
-+++
 
->>> Add the `Pagy.init` listener
-<br>
+>>> Add the `Pagy.init` to an event
 
-+++ JavaScript
+You can use `load`, `turbo:load`, `turbolinks:load`, or any appropriate event to init the pagy `*_js` helpers. For example:
 
 ```js
 window.addEventListener("load", Pagy.init)
 ```
 
-+++ Turbo
-
-```js
-window.addEventListener("turbo:load", Pagy.init)
-```
-
-+++ Turbolinks
-
-```js
-window.addEventListener("turbolinks:load", Pagy.init)
-```
-
-+++ Custom
-
-```js
-window.addEventListener("yourEvent", Pagy.init)
-```
-+++
 
 >>>
