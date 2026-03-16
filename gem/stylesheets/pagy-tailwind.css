@@ -4,7 +4,8 @@
 
 @layer components {
   .pagy {
-    /* PagyWand variables */
+    /* PagyWand Generated Variables */
+    /* Copy from the PagyWand "CSS Override" field, and paste in YOUR own CSS to override the style */
     --B: 1;
     --H: 0;
     --S: 0;
@@ -17,8 +18,8 @@
     --font-size: 0.875rem;
     --font-weight: 600;
     --line-height: 1.75;
-    /* End PagyWand variables */
 
+    /* Calculated Color Variables */
     --text:               hsl(var(--H) var(--S) calc(var(--L) - (25 * var(--B))) / var(--A));
     --text-hover:         hsl(var(--H) var(--S) calc(var(--L) - (30 * var(--B))) / var(--A));
     --text-current:       hsl(var(--H) var(--S) calc(100 * (var(--B) + 1)) / var(--A));
@@ -27,9 +28,12 @@
     --background-current: hsl(var(--H) var(--S) var(--L) / var(--A));
     --background-input:   hsl(var(--H) var(--S) calc(var(--L) + (45 * var(--B))) / var(--A));
 
+    /* Base Properties */
     @apply flex gap-x-[var(--spacing)] font-[var(--font-weight)]
     text-[length:var(--font-size)] text-[var(--text)]
     leading-[var(--line-height)];
+
+    /* Element Rules */
 
     a:not([role="separator"]) { /* all but gaps */
       @apply block rounded-[var(--rounding)] px-[var(--padding)] py-[calc(var(--padding)/3)] bg-[var(--background)]

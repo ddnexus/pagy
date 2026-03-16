@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (43.3.3)
+# Pagy initializer file (43.4.0)
 # See https://ddnexus.github.io/pagy/toolbox/configuration/initializer/
 
 
@@ -17,11 +17,21 @@
 Pagy::OPTIONS.freeze
 
 
-############ JavaScript ####################################################################
-# See https://ddnexus.github.io/pagy/resources/javascript/ for details.
-# Copy and keep synced the JavaScript files in your app
-# javascript_dir = Rails.root.join('app/javascript')
-# Pagy.sync_javascript(javascript_dir, 'pagy.mjs', 'pagy.min.js') if Rails.env.development?
+############ JS and CSS Resources ##########################################################
+# See https://ddnexus.github.io/pagy/resources/javascript/
+# and https://ddnexus.github.io/pagy/resources/stylesheets/ for more resources and details.
+# Copy and keep the resource files synced in the app. For example:
+#
+# if Rails.env.development?
+#   Pagy.sync(:javascript, Rails.root.join('app/javascript'), 'pagy.mjs')
+#   Pagy.sync(:stylesheet, Rails.root.join('app/stylesheets'), 'pagy.css')
+# end
+#
+# OR Alternative config ONLY for apps with an asset pipeline
+#
+# Rails.application.config.assets.paths << Pagy::ROOT.join(':javascripts')
+# Rails.application.config.assets.paths << Pagy::ROOT.join(':stylesheets')
+
 
 
 ############# Overriding Pagy::I18n Lookup #################################################

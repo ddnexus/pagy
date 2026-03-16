@@ -1,24 +1,5 @@
 # sig/pagy.rbs
 
-module ActiveRecord
-  class Base[T]
-  end
-  class Relation[T]
-  end
-end
-
-module ActiveSupport
-  class TimeWithZone
-  end
-end
-
-module Sequel
-  class Dataset[T]
-  end
-  class Model[T]
-  end
-end
-
 class Pagy
   VERSION: String
   ROOT:    Pathname
@@ -26,8 +7,12 @@ class Pagy
 
   def self.options: () -> options
 
-  # Class methods
+  # Class method
+
+  # @deprecated Use `sync(:javascripts, ...)` instead
   def self.sync_javascript: (String destination, *String targets) -> void
+
+  def self.sync: (Symbol resource, String destination, *String targets) -> void
   def self.dev_tools: (?wand_scale: Integer) -> String
   def self.translate_with_the_slower_i18n_gem!: () -> void
 
@@ -309,4 +294,23 @@ class Pagy
     params:   Hash[String, untyped],
     ?cookie:  String
   }
+end
+
+module ActiveRecord
+  class Base[T]
+  end
+  class Relation[T]
+  end
+end
+
+module ActiveSupport
+  class TimeWithZone
+  end
+end
+
+module Sequel
+  class Dataset[T]
+  end
+  class Model[T]
+  end
 end

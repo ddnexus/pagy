@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826792852930">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826970170590">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.2.0">
@@ -28,11 +28,11 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../resources/css/retype.css?v=4.2.0.826792852930" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=4.2.0.826970170590" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=4.2.0.826792852930" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=4.2.0.826970170590" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.2.0.826792852930" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.2.0.826970170590" data-turbo-eval="false" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -186,7 +186,7 @@
                             <img class="max-h-10 hidden dark:inline-block" src="../assets/images/pagy-the-frog.png">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.3.3</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.0</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -370,7 +370,7 @@ expect the old/deprecated functionality to be supported ONLY during the current 
         <span>Recommended Version Constraint</span>
     </h2>
 </doc-anchor-target>
-<p>Given a version number <code translate="no" v-pre>MAJOR.MINOR.PATCH</code> (e.g. <code translate="no" v-pre>43.3.30</code>):</p>
+<p>Given a version number <code translate="no" v-pre>MAJOR.MINOR.PATCH</code> (e.g. <code translate="no" v-pre>43.4.30</code>):</p>
 <p>The <code translate="no" v-pre>gem 'pagy', '~&gt; 43.0'</code> Gemfile entry (without the PATCH number) ensures that the <code translate="no" v-pre>bundle update</code> command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.</p>
 <p>Increment the MAJOR version in your Gemfile ONLY when you are ready to handle the BREAKING CHANGES.</p>
@@ -411,11 +411,27 @@ from scratch might be faster.</p>
     </div>
 </div>
 <hr>
+<doc-anchor-target id="version-4340">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4340">#</doc-anchor-trigger>
+        <span>Version 43.4.0</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Improve stylesheets and docs</li>
+<li>Improve JavaScript:
+<ul>
+<li>Add sync method and task</li>
+<li>Deprecate sync_javascript</li>
+<li>Simplify build, configuration and docs</li>
+</ul>
+</li>
+</ul>
 <doc-anchor-target id="version-4333">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4333">#</doc-anchor-trigger>
         <span>Version 43.3.3</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Fix Request#resolve_page with jsonapi, limit, and missing page param (#885)</li>
@@ -424,10 +440,10 @@ from scratch might be faster.</p>
 <li>Move the next_tag into the Pagy class</li>
 </ul>
 <doc-anchor-target id="version-4332">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4332">#</doc-anchor-trigger>
         <span>Version 43.3.2</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Implement NumericUI module to avoid including the numeric helpers in keynav classes</li>
@@ -435,20 +451,20 @@ from scratch might be faster.</p>
 <li>Add basic RBS</li>
 </ul>
 <doc-anchor-target id="version-4331">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4331">#</doc-anchor-trigger>
         <span>Version 43.3.1</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Update assets for a few apps</li>
 <li>Fix pagy.ts /.js input_nav update</li>
 </ul>
 <doc-anchor-target id="version-4330">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4330">#</doc-anchor-trigger>
         <span>Version 43.3.0</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Add :typesense_rails paginator (See typesense/typesense-rails#17)</li>
@@ -458,10 +474,10 @@ from scratch might be faster.</p>
 <li>Simplify assign options</li>
 </ul>
 <doc-anchor-target id="version-43210">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-43210">#</doc-anchor-trigger>
         <span>Version 43.2.10</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Add failing test and revert code that caused empty aria label</li>
@@ -473,19 +489,19 @@ from scratch might be faster.</p>
 <li>Make Pagy::OPTIONS thread-safe</li>
 </ul>
 <doc-anchor-target id="version-4329">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4329">#</doc-anchor-trigger>
         <span>Version 43.2.9</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Fix NoMethodError with tampered params (#872)</li>
 </ul>
 <doc-anchor-target id="version-4328">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4328">#</doc-anchor-trigger>
         <span>Version 43.2.8</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Add fallback to &#x27;en&#x27; for unknown locale. Implement #868.</li>
@@ -493,10 +509,10 @@ from scratch might be faster.</p>
 <li>Simplify keyset syntax</li>
 </ul>
 <doc-anchor-target id="version-4327">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4327">#</doc-anchor-trigger>
         <span>Version 43.2.7</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Add a hint predicate for DB optimizers, to multi-column keysets</li>
@@ -504,10 +520,10 @@ from scratch might be faster.</p>
 <li>Refactor anchor tag helpers</li>
 </ul>
 <doc-anchor-target id="version-4326">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4326">#</doc-anchor-trigger>
         <span>Version 43.2.6</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Refactor i18n:
@@ -521,10 +537,10 @@ file</p>
 </li>
 </ul>
 <doc-anchor-target id="version-4325">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4325">#</doc-anchor-trigger>
         <span>Version 43.2.5</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Fix Pagy::I18n.locale to ensure to_s. Close #861.</li>
@@ -552,30 +568,30 @@ file</p>
 <li>Improve simplicity and readability</li>
 </ul>
 <doc-anchor-target id="version-4324">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4324">#</doc-anchor-trigger>
         <span>Version 43.2.4</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Fix anchor_string option not being read from @options in a_lambda. Close #857</li>
 <li>Fix page &#x27;0&#x27; raising an exception</li>
 </ul>
 <doc-anchor-target id="version-4323">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4323">#</doc-anchor-trigger>
         <span>Version 43.2.3</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Remove rerun</li>
 <li>Improved direction handling in CSSs</li>
 </ul>
 <doc-anchor-target id="version-4322">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4322">#</doc-anchor-trigger>
         <span>Version 43.2.2</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Refactor bin/pagy to use the Pagy::CLI class</li>
@@ -583,10 +599,10 @@ file</p>
 <li>Simplify apps by using SQLite :memory:</li>
 </ul>
 <doc-anchor-target id="version-4321">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4321">#</doc-anchor-trigger>
         <span>Version 43.2.1</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Fix the shallow cloning of root_key params. Close #851.</li>
@@ -598,20 +614,20 @@ file</p>
 <li>Fix respond_to_missing definition arguments in Search::Arguments</li>
 </ul>
 <doc-anchor-target id="version-4320">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4320">#</doc-anchor-trigger>
         <span>Version 43.2.0</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Implement :countish paginator</li>
 <li>Simplify Pagy::Linkable</li>
 </ul>
 <doc-anchor-target id="version-4318">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4318">#</doc-anchor-trigger>
         <span>Version 43.1.8</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Refactoring of elasticsearch_rails paginator:
@@ -624,10 +640,10 @@ and unambiguous language</li>
 </li>
 </ul>
 <doc-anchor-target id="version-4317">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4317">#</doc-anchor-trigger>
         <span>Version 43.1.7</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Fix and improve search paginators:
@@ -641,38 +657,38 @@ total_count (causing multiple query executions)</li>
 </li>
 </ul>
 <doc-anchor-target id="version-4316">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4316">#</doc-anchor-trigger>
         <span>Version 43.1.6</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Ensure the request GET and POST merge into a proper params Hash</li>
 <li>Simplify code efficiency and readability</li>
 </ul>
 <doc-anchor-target id="version-4315">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4315">#</doc-anchor-trigger>
         <span>Version 43.1.5</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Fix and improve the composition of the page url. Close #835</li>
 </ul>
 <doc-anchor-target id="version-4314">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4314">#</doc-anchor-trigger>
         <span>Version 43.1.4</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Add full support for legacy countless params, url composition and (limited) behavior</li>
 </ul>
 <doc-anchor-target id="version-4313">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4313">#</doc-anchor-trigger>
         <span>Version 43.1.3</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Improve the page options handling for countless:
@@ -691,10 +707,10 @@ for compatibility with the legacy handling)</p>
 <li>Improve the info message for empty collection in countless paginations</li>
 </ul>
 <doc-anchor-target id="version-4312">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4312">#</doc-anchor-trigger>
         <span>Version 43.1.2</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Support easy countless page param overriding (for legacy param and behavior). See #816</li>
@@ -703,10 +719,10 @@ for compatibility with the legacy handling)</p>
 <li>Improve code comments</li>
 </ul>
 <doc-anchor-target id="version-4311">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4311">#</doc-anchor-trigger>
         <span>Version 43.1.1</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Makes keynav pagination compatible with nested params:
@@ -718,10 +734,10 @@ for compatibility with the legacy handling)</p>
 <li>Simplify the request code and arguments</li>
 </ul>
 <doc-anchor-target id="version-4310">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4310">#</doc-anchor-trigger>
         <span>Version 43.1.0</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Translate the aria_label.nav entry in the id, ja, kn, sw locales. Close #588, close #590, close #591, close #603.</li>
@@ -736,66 +752,66 @@ for compatibility with the legacy handling)</p>
 <li>Fix and simplify the pagy console code</li>
 </ul>
 <doc-anchor-target id="version-4307">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4307">#</doc-anchor-trigger>
         <span>Version 43.0.7</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Add compatibility for searchkick 6. Close #831</li>
 <li>Fix the search paginators request in passive mode. Close #830.</li>
 </ul>
 <doc-anchor-target id="version-4306">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4306">#</doc-anchor-trigger>
         <span>Version 43.0.6</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Improve Pagy AI Widget scripts</li>
 </ul>
 <doc-anchor-target id="version-4305">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4305">#</doc-anchor-trigger>
         <span>Version 43.0.5</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Add console loader for easier usage</li>
 <li>Add comment for the calendar usage. Close #827.</li>
 </ul>
 <doc-anchor-target id="version-4304">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4304">#</doc-anchor-trigger>
         <span>Version 43.0.4</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Remove the Pagy::OPTIONS from the Calendar configuration. Close #825</li>
 </ul>
 <doc-anchor-target id="version-4303">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4303">#</doc-anchor-trigger>
         <span>Version 43.0.3</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Update tr.yml (#824)</li>
 </ul>
 <doc-anchor-target id="version-4302">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4302">#</doc-anchor-trigger>
         <span>Version 43.0.2</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Ensure the Pagy::Request#params are the original params sent with the request. Close #821</li>
 </ul>
 <doc-anchor-target id="version-4301">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4301">#</doc-anchor-trigger>
         <span>Version 43.0.1</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>Reimplement reading params from POST requests; rename internal variables. Close #821</li>
@@ -804,10 +820,10 @@ for compatibility with the legacy handling)</p>
 <li>Link to documentation website&#x27;s CHANGELOG page (#804)</li>
 </ul>
 <doc-anchor-target id="version-4300">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4300">#</doc-anchor-trigger>
         <span>Version 43.0.0</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <p>We needed a leap version to unequivocally signal that it&#x27;s not just a major version: it&#x27;s a complete redesign of the legacy
 code at all levels, usage and API included.</p>

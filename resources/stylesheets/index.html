@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826792852930">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826970170590">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.2.0">
@@ -13,7 +13,7 @@
     <!-- Primary Meta Tags -->
     <title>Stylesheets &#128154; Pagy</title>
     <meta name="title" content="Stylesheets 💚 Pagy">
-    <meta name="description" content="Pagy includes a couple of CSS files that you can download, link, or copy, and integrate with your app.">
+    <meta name="description" content="Pagy includes a couple of CSS files and the tools to integrate with your app's themes interactively.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/resources/stylesheets/">
@@ -22,18 +22,18 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/resources/stylesheets/">
     <meta property="og:title" content="Stylesheets 💚 Pagy">
-    <meta property="og:description" content="Pagy includes a couple of CSS files that you can download, link, or copy, and integrate with your app.">
+    <meta property="og:description" content="Pagy includes a couple of CSS files and the tools to integrate with your app's themes interactively.">
     <meta property="og:site_name" content="Pagy">
     <meta property="og:locale" content="en_US">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.2.0.826792852930" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.2.0.826970170590" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826792852930" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826970170590" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826792852930" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.2.0.826792852930" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826970170590" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.2.0.826970170590" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -187,7 +187,7 @@
                             <img class="max-h-10 hidden dark:inline-block" src="../../assets/images/pagy-the-frog.png">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.3.3</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.0</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -361,7 +361,7 @@
     </h2>
 </doc-anchor-target>
 <hr>
-<p>Pagy includes a couple of CSS files that you can download, link, or copy, and integrate with your app.</p>
+<p>Pagy includes a couple of CSS files and the tools to integrate with your app&#x27;s themes <em>interactively</em>.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
@@ -378,40 +378,12 @@
         </div>
     </div>
 </div>
-<doc-anchor-target id="rtl-support">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#rtl-support">#</doc-anchor-trigger>
-        <span>RTL Support</span>
-    </h3>
-</doc-anchor-target>
-<p>The pagy stylesheets automatically support Right-To-Left (RTL) languages. You just need to set the <code translate="no" v-pre>dir=&quot;rtl&quot;</code> attribute on the <code translate="no" v-pre>html</code> tag or any parent element of the pagination.</p>
-<doc-anchor-target id="pagy-wand">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#pagy-wand">#</doc-anchor-trigger>
-        <span>Pagy Wand</span>
-    </h3>
-</doc-anchor-target>
-<p>The <a href="../../sandbox/dev_tools/#pagy-wand">Pagy Wand</a> customizes the CSS and integrates it with your app&#x27;s themes <em>interactively</em>.</p>
-<div class="raised"><p><figure class="content-center">
-    <img src="../../assets/images/dev-tools.png" alt="PagyWand" class="max-w-full h-auto rounded-image-rounded border-image-border border-image-border-width" width="606" />
-    <figcaption class="caption">PagyWand</figcaption>
-</figure>
-</p>
-</div>
-<p>Watch the Pagy wand <a href="https://youtu.be/GhhNRrVG9jg" class="outbound" target="_blank"><span>demo video</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>:</p>
-<div class="raised"><p><figure class="content-center">
-    <a href="https://youtu.be/GhhNRrVG9jg">
-        <img src="../../assets/images/pagy-wand-demo-screenshot.png" alt="" class="max-w-full h-auto rounded-image-rounded border-image-border border-image-border-width" width="973" height="718" />
-    </a>
-    <figcaption class="caption"></figcaption>
-</figure>
-</p>
-</div>
-<br>
-<p>Should you need finer control, the <code translate="no" v-pre>pagy.css</code> and <code translate="no" v-pre>pagy-tailwind.css</code> calculate more specific variables, that you can manually override.</p>
-<doc-panels>
-   <doc-panel id="css-files" collapsed>
-       <template #title>CSS Files</template>
+<doc-steps>
+   <doc-step id="pick-a-file" step-number="1">
+      <template #title>Pick a file...</template>
+<doc-tabs>
+<doc-tab v-cloak id="pagycss">
+<template #title>pagy.css</template>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-success"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
@@ -424,36 +396,17 @@
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>Color variables are calculated automatically, however, you can customize any color by just overriding its variable.</p>
-<p>Use the <doc-anchor-trigger to="#pagy-wand">Pagy Wand</doc-anchor-trigger> right in your app or in the <a href="../../sandbox/playground/#demo-app">Demo app</a>.</p>
+<p>Good for any app</p>
         </div>
     </div>
 </div>
-<doc-tabs>
-<doc-tab v-cloak id="pagycss">
-<template #title>pagy.css</template>
-<p>
-<div class="mb-6 px-5 py-4 flex justify-between relative border border-base-border hover:border-base-border-hover rounded transition-colors duration-150">
-    <div class="flex items-center text-base-500">
-        <span class="inline-block mb-px">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M21 14c-.55 0-1 .45-1 1v4c0 .55-.45 1-1 1H5c-.55 0-1-.45-1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-4c0-.55-.45-1-1-1z"/><path d="M11.29 15.71c.09.09.2.17.33.22.12.04.25.07.38.07s.26-.03.38-.08.23-.12.33-.22l5-5a.996.996 0 10-1.41-1.41l-3.3 3.3V3c0-.55-.45-1-1-1s-1 .45-1 1v9.59l-3.29-3.3A.996.996 0 106.3 10.7l4.99 5.01z"/></svg>
-        </span>
-        <span class="inline-block font-medium ml-2">pagy.css</span>
-    </div>
-    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
-        <span>pagy.css</span>
-        <span class="inline-block ml-2">2.27KB</span>
-    </div>
-    <a href="../../gem/stylesheets/pagy.css" class="absolute block inset-0" target="_blank" download="pagy.css"></a>
-</div>
-</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">stylesheet_path = Pagy::ROOT.join('stylesheets/pagy.css')</code></pre>
-</doc-codeblock></div>
+<doc-panel id="css-source" collapsed>
+    <template #title>CSS Source</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">pagy.css</div>
 <pre translate="no" class="language-css"><code v-pre class="language-css">.pagy {
-  /* PagyWand variables */
+  /* PagyWand Generated Variables */
+  /* Copy from the PagyWand &quot;CSS Override&quot; field, and paste in YOUR own CSS to override the style */
   --B: 1;
   --H: 0;
   --S: 0;
@@ -466,8 +419,8 @@
   --font-size: 0.875rem;
   --font-weight: 600;
   --line-height: 1.75;
-  /* End PagyWand variables */
 
+  /* Calculated Color Variables */
   --text:               hsl(var(--H) var(--S) calc(var(--L) - (25 * var(--B))) / var(--A));
   --text-hover:         hsl(var(--H) var(--S) calc(var(--L) - (30 * var(--B))) / var(--A));
   --text-current:       hsl(var(--H) var(--S) calc(100 * (var(--B) + 1)) / var(--A));
@@ -476,12 +429,15 @@
   --background-current: hsl(var(--H) var(--S) var(--L) / var(--A));
   --background-input:   hsl(var(--H) var(--S) calc(var(--L) + (45 * var(--B))) / var(--A));
 
+  /* Base Properties */
   color: var(--text);
   font-size: var(--font-size);
   line-height: var(--line-height);
   font-weight: var(--font-weight);
   display: flex;
 }
+
+/* Element Rules */
 
 .pagy &gt; :not([hidden]) ~ :not([hidden]) {
   margin-inline-start: var(--spacing);
@@ -532,27 +488,28 @@
   background-color: var(--background-input);
 }</code></pre>
 </doc-codeblock></div>
+</doc-panel>
 </doc-tab>
 <doc-tab v-cloak id="pagy-tailwindcss">
 <template #title>pagy-tailwind.css</template>
-<p>
-<div class="mb-6 px-5 py-4 flex justify-between relative border border-base-border hover:border-base-border-hover rounded transition-colors duration-150">
-    <div class="flex items-center text-base-500">
-        <span class="inline-block mb-px">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" role="presentation" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"/><path d="M21 14c-.55 0-1 .45-1 1v4c0 .55-.45 1-1 1H5c-.55 0-1-.45-1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-4c0-.55-.45-1-1-1z"/><path d="M11.29 15.71c.09.09.2.17.33.22.12.04.25.07.38.07s.26-.03.38-.08.23-.12.33-.22l5-5a.996.996 0 10-1.41-1.41l-3.3 3.3V3c0-.55-.45-1-1-1s-1 .45-1 1v9.59l-3.29-3.3A.996.996 0 106.3 10.7l4.99 5.01z"/></svg>
-        </span>
-        <span class="inline-block font-medium ml-2">pagy-tailwind.css</span>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
+    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-callout-warning" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Good only for apps using tailwind</h5>
+        </div>
     </div>
-    <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
-        <span>pagy-tailwind.css</span>
-        <span class="inline-block ml-2">2.36KB</span>
-    </div>
-    <a href="../../gem/stylesheets/pagy-tailwind.css" class="absolute block inset-0" target="_blank" download="pagy-tailwind.css"></a>
 </div>
-</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">stylesheet_path = Pagy::ROOT.join('stylesheets/pagy-tailwind.css')</code></pre>
-</doc-codeblock></div>
+<doc-panel id="css-source" collapsed>
+    <template #title>CSS Source</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">pagy-tailwind.css</div>
 <pre translate="no" class="language-css"><code v-pre class="language-css">@tailwind base;
@@ -561,7 +518,8 @@
 
 @layer components {
   .pagy {
-    /* PagyWand variables */
+    /* PagyWand Generated Variables */
+    /* Copy from the PagyWand &quot;CSS Override&quot; field, and paste in YOUR own CSS to override the style */
     --B: 1;
     --H: 0;
     --S: 0;
@@ -574,8 +532,8 @@
     --font-size: 0.875rem;
     --font-weight: 600;
     --line-height: 1.75;
-    /* End PagyWand variables */
 
+    /* Calculated Color Variables */
     --text:               hsl(var(--H) var(--S) calc(var(--L) - (25 * var(--B))) / var(--A));
     --text-hover:         hsl(var(--H) var(--S) calc(var(--L) - (30 * var(--B))) / var(--A));
     --text-current:       hsl(var(--H) var(--S) calc(100 * (var(--B) + 1)) / var(--A));
@@ -584,9 +542,12 @@
     --background-current: hsl(var(--H) var(--S) var(--L) / var(--A));
     --background-input:   hsl(var(--H) var(--S) calc(var(--L) + (45 * var(--B))) / var(--A));
 
+    /* Base Properties */
     @apply flex gap-x-[var(--spacing)] font-[var(--font-weight)]
     text-[length:var(--font-size)] text-[var(--text)]
     leading-[var(--line-height)];
+
+    /* Element Rules */
 
     a:not([role=&quot;separator&quot;]) { /* all but gaps */
       @apply block rounded-[var(--rounding)] px-[var(--padding)] py-[calc(var(--padding)/3)] bg-[var(--background)]
@@ -622,11 +583,98 @@
   }
 }</code></pre>
 </doc-codeblock></div>
+</doc-panel>
 </doc-tab>
 </doc-tabs>
+   </doc-step>
+   <doc-step id="pick-a-configuration" step-number="2">
+      <template #title>Pick a configuration...</template>
+<doc-tabs>
+<doc-tab v-cloak id="sync">
+<template #title>Sync</template>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-success"></div>
+    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-callout-success" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
+                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Works with any app</h5>
+        </div>
+    </div>
+</div>
+<p>The following statement will copy and keep synced the <code translate="no" v-pre>pagy*</code> file in your own <code translate="no" v-pre>app/stylesheets</code> dir <em>(or any dir you may want use)</em>.</p>
+<p>It will become and processed exactly like one of your own files.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title"><a href="../../toolbox/configuration/initializer/">pagy.rb initializer</a></div>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby"># Replace 'pagy*' with the file you picked
+Pagy.sync(:stylesheet, Rails.root.join('app/stylesheets'), 'pagy*') if Rails.development?</code></pre>
+</doc-codeblock></div>
+<doc-panel id="sync-task" collapsed>
+    <template #title>Sync Task</template>
+<p>If you prefer to sync manually or during an automation step, you can define your own task with a single line in the <code translate="no" v-pre>Rakefile</code>, or <code translate="no" v-pre>*.rake</code> file:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby"># Pagy::SyncTask.new(resource, destination, *targets) 
+# Replace 'pagy*' with the file you picked
+Pagy::SyncTask.new(:stylesheet, Rails.root.join('app/stylesheets'), 'pagy*')</code></pre>
+</doc-codeblock></div>
+<p>and exec it with...</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">bundle exec rake pagy:sync:stylesheet</code></pre>
+</doc-codeblock></div>
+</doc-panel>
+</doc-tab>
+<doc-tab v-cloak id="pipeline">
+<template #title>Pipeline</template>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
+    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-callout-warning" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Works only with apps with an assets pipeline</h5>
+        </div>
+    </div>
+</div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">Rails.application.config.assets.paths &lt;&lt; Pagy::ROOT.join('stylesheets') </code></pre>
+</doc-codeblock></div>
+</doc-tab>
+</doc-tabs>
+   </doc-step>
+   <doc-step id="customize-the-style" step-number="3">
+      <template #title>Customize the style...</template>
+<p>Add this line to any template <code translate="no" v-pre>&lt;head&gt;</code>...</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-erb"><code v-pre class="language-erb">&lt;%== Pagy.dev_tools %&gt;</code></pre>
+</doc-codeblock></div>
+<p>and adjust a few slider to see the change in real time, right in your app, with the <a href="../../sandbox/dev_tools/">Pagy Wand</a></p>
+<div class="raised"><p><figure class="content-center">
+    <img src="../../assets/images/dev-tools.png" alt="PagyWand" class="max-w-full h-auto rounded-image-rounded border-image-border border-image-border-width" width="300" />
+    <figcaption class="caption">PagyWand</figcaption>
+</figure>
+</p>
+</div>
+   </doc-step>
+</doc-steps>
+<doc-panels>
+   <doc-panel id="rtl-support" collapsed>
+       <template #title>RTL Support</template>
+<p>The pagy stylesheets automatically support Right-To-Left (RTL) languages. It respects the standard <code translate="no" v-pre>dir=&quot;rtl&quot;</code> attribute of the <code translate="no" v-pre>html</code> tag or any parent element of the pagination.</p>
    </doc-panel>
-   <doc-panel id="html-structure-of-nav-bars" collapsed>
-       <template #title>HTML Structure of Nav Bars</template>
+   <doc-panel id="in-depth-html-structure" collapsed>
+       <template #title>In Depth: HTML Structure</template>
 <p>To ensure a minimalistic valid output, complete with all the ARIA attributes, pagy outputs a single line with the minimum number of tags and attributes required to identify all the parts of the nav bars:</p>
 <ul>
 <li>The output of <code translate="no" v-pre>series_nav</code> and <code translate="no" v-pre>series_nav_js</code> helpers, is a series of <code translate="no" v-pre>a</code> tags inside a <code translate="no" v-pre>nav</code> tag wrapper.</li>
@@ -650,7 +698,7 @@
 <ul>
 <li>You can target the <code translate="no" v-pre>gap</code> with <code translate="no" v-pre>.pagy a:[role=&quot;separator&quot;]</code></li>
 <li>You can target the previous and next links by using <code translate="no" v-pre>.pagy a:first-child</code> and <code translate="no" v-pre>.pagy a:last-child</code> pseudo classes</li>
-<li>Check the stylesheet comment to target other specific elements.</li>
+<li>Check the stylesheet comments to target other specific elements.</li>
 </ul>
         </div>
     </div>
@@ -660,8 +708,8 @@
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-01-10T04:02:35" title="2026-01-10" data-absolute-label="Last updated on 2026-01-10" data-absolute-label-html="Last updated on 2026-01-10" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-01-10
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-16T16:47:58" title="2026-03-16" data-absolute-label="Last updated on 2026-03-16" data-absolute-label-html="Last updated on 2026-03-16" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-03-16
                     </time>
                 </div>
 
