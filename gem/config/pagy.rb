@@ -27,7 +27,7 @@ Pagy::OPTIONS.freeze
 #   Pagy.sync(:stylesheet, Rails.root.join('app/stylesheets'), 'pagy.css')
 # end
 #
-# OR Alternative config ONLY for apps with an asset pipeline
+# As an alternative, use this config ONLY for apps with an asset pipeline
 #
 # Rails.application.config.assets.paths << Pagy::ROOT.join(':javascripts')
 # Rails.application.config.assets.paths << Pagy::ROOT.join(':stylesheets')
