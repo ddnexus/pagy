@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826986515883">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827076530443">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 4.2.0">
+    <meta name="generator" content="Retype 4.3.0">
 
     <!-- Primary Meta Tags -->
     <title>CHANGELOG &#128154; Pagy</title>
@@ -26,13 +26,19 @@
     <meta property="og:site_name" content="Pagy">
     <meta property="og:locale" content="en_US">
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://ddnexus.github.io/pagy/changelog/">
+    <meta name="twitter:title" content="CHANGELOG 💚 Pagy">
+    <meta name="twitter:description" content="Pagy follows the Semantic Versioning 2.0.0, and introduces BREAKING CHANGES only for MAJOR versions.">
+
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../resources/css/retype.css?v=4.2.0.826986515883" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=4.3.0.827076530443" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=4.2.0.826986515883" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.2.0.826986515883" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=4.3.0.827076530443" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/retype.js?v=4.3.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.3.0.827076530443" data-turbo-eval="false" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -180,10 +186,10 @@
             <!-- Logo -->
             <div class="flex items-center justify-between h-full py-2 md:w-75">
                 <div class="flex items-center px-2 md:px-6">
-                    <a id="retype-branding-logo" href="../" class="flex items-center leading-snug text-2xl">
+                    <a id="retype-branding-logo" href="https://ddnexus.github.io/pagy/" class="flex items-center leading-snug text-2xl">
                         <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
-                            <img class="max-h-10 dark:hidden md:inline-block" src="../assets/images/pagy-the-frog.png">
-                            <img class="max-h-10 hidden dark:inline-block" src="../assets/images/pagy-the-frog.png">
+                            <img class="max-h-10 dark:hidden md:inline-block" src="../assets/images/pagy-the-frog.png" alt="" width="300" height="281">
+                            <img class="max-h-10 hidden dark:inline-block" src="../assets/images/pagy-the-frog.png" alt="" width="300" height="281">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
                     </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.0</span>
@@ -198,40 +204,32 @@
                     <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
                         <li class="mr-6">
                             <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://github.com/ddnexus/pagy" target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
-                                    <g fill="currentColor">
-                                        <path d="M10.303 16.652c-2.837-.344-4.835-2.385-4.835-5.028 0-1.074.387-2.235 1.031-3.008-.279-.709-.236-2.214.086-2.837.86-.107 2.02.344 2.708.967.816-.258 1.676-.386 2.728-.386 1.053 0 1.913.128 2.686.365.666-.602 1.848-1.053 2.708-.946.3.581.344 2.085.064 2.815.688.817 1.053 1.913 1.053 3.03 0 2.643-1.998 4.641-4.877 5.006.73.473 1.224 1.504 1.224 2.686v2.235c0 .644.537 1.01 1.182.752 3.889-1.483 6.94-5.372 6.94-10.185 0-6.081-4.942-11.044-11.022-11.044-6.081 0-10.98 4.963-10.98 11.044a10.84 10.84 0 0 0 7.112 10.206c.58.215 1.139-.172 1.139-.752v-1.719a2.768 2.768 0 0 1-1.032.215c-1.418 0-2.256-.773-2.857-2.213-.237-.58-.495-.924-.989-.988-.258-.022-.344-.129-.344-.258 0-.258.43-.451.86-.451.623 0 1.16.386 1.719 1.181.43.623.881.903 1.418.903.537 0 .881-.194 1.375-.688.365-.365.645-.687.903-.902Z"/>
-                                    </g>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                    <path d="M10.303 16.652c-2.837-.344-4.835-2.385-4.835-5.028 0-1.074.387-2.235 1.031-3.008-.279-.709-.236-2.214.086-2.837.86-.107 2.02.344 2.708.967.816-.258 1.676-.386 2.728-.386 1.053 0 1.913.128 2.686.365.666-.602 1.848-1.053 2.708-.946.3.581.344 2.085.064 2.815.688.817 1.053 1.913 1.053 3.03 0 2.643-1.998 4.641-4.877 5.006.73.473 1.224 1.504 1.224 2.686v2.235c0 .644.537 1.01 1.182.752 3.889-1.483 6.94-5.372 6.94-10.185 0-6.081-4.942-11.044-11.022-11.044-6.081 0-10.98 4.963-10.98 11.044a10.84 10.84 0 0 0 7.112 10.206c.58.215 1.139-.172 1.139-.752v-1.719a2.768 2.768 0 0 1-1.032.215c-1.418 0-2.256-.773-2.857-2.213-.237-.58-.495-.924-.989-.988-.258-.022-.344-.129-.344-.258 0-.258.43-.451.86-.451.623 0 1.16.386 1.719 1.181.43.623.881.903 1.418.903.537 0 .881-.194 1.375-.688.365-.365.645-.687.903-.902Z"/>
                                 </svg>
                                 <span>GitHub</span>
                             </a>
                         </li>
                         <li class="mr-6">
                             <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://github.com/ddnexus/pagy/issues" target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
-                                    <g fill="currentColor">
-                                        <path d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1ZM2.5 12a9.5 9.5 0 0 0 9.5 9.5 9.5 9.5 0 0 0 9.5-9.5A9.5 9.5 0 0 0 12 2.5 9.5 9.5 0 0 0 2.5 12Zm9.5 2a2 2 0 1 1-.001-3.999A2 2 0 0 1 12 14Z"/>
-                                    </g>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                    <path d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1ZM2.5 12a9.5 9.5 0 0 0 9.5 9.5 9.5 9.5 0 0 0 9.5-9.5A9.5 9.5 0 0 0 12 2.5 9.5 9.5 0 0 0 2.5 12Zm9.5 2a2 2 0 1 1-.001-3.999A2 2 0 0 1 12 14Z"/>
                                 </svg>
                                 <span>Issues</span>
                             </a>
                         </li>
                         <li class="mr-6">
                             <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://github.com/ddnexus/pagy/discussions/categories/q-a" target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
-                                    <g fill="currentColor">
-                                        <path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0 1 14.25 14H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 15.543V14H1.75A1.75 1.75 0 0 1 0 12.25v-9.5C0 1.784.784 1 1.75 1ZM1.5 2.75v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Z"/><path d="M22.5 8.75a.25.25 0 0 0-.25-.25h-3.5a.75.75 0 0 1 0-1.5h3.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0 1 22.25 20H21v1.543a1.457 1.457 0 0 1-2.487 1.03L15.939 20H10.75A1.75 1.75 0 0 1 9 18.25v-1.465a.75.75 0 0 1 1.5 0v1.465c0 .138.112.25.25.25h5.5a.75.75 0 0 1 .53.22l2.72 2.72v-2.19a.75.75 0 0 1 .75-.75h2a.25.25 0 0 0 .25-.25v-9.5Z"/>
-                                    </g>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                    <path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0 1 14.25 14H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 15.543V14H1.75A1.75 1.75 0 0 1 0 12.25v-9.5C0 1.784.784 1 1.75 1ZM1.5 2.75v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Z"/><path d="M22.5 8.75a.25.25 0 0 0-.25-.25h-3.5a.75.75 0 0 1 0-1.5h3.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0 1 22.25 20H21v1.543a1.457 1.457 0 0 1-2.487 1.03L15.939 20H10.75A1.75 1.75 0 0 1 9 18.25v-1.465a.75.75 0 0 1 1.5 0v1.465c0 .138.112.25.25.25h5.5a.75.75 0 0 1 .53.22l2.72 2.72v-2.19a.75.75 0 0 1 .75-.75h2a.25.25 0 0 0 .25-.25v-9.5Z"/>
                                 </svg>
                                 <span>Q&amp;A</span>
                             </a>
                         </li>
                         <li class="mr-6">
                             <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://github.com/ddnexus/pagy/discussions" target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
-                                    <g fill="currentColor">
-                                        <path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0 1 14.25 14H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 15.543V14H1.75A1.75 1.75 0 0 1 0 12.25v-9.5C0 1.784.784 1 1.75 1ZM1.5 2.75v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Z"/><path d="M22.5 8.75a.25.25 0 0 0-.25-.25h-3.5a.75.75 0 0 1 0-1.5h3.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0 1 22.25 20H21v1.543a1.457 1.457 0 0 1-2.487 1.03L15.939 20H10.75A1.75 1.75 0 0 1 9 18.25v-1.465a.75.75 0 0 1 1.5 0v1.465c0 .138.112.25.25.25h5.5a.75.75 0 0 1 .53.22l2.72 2.72v-2.19a.75.75 0 0 1 .75-.75h2a.25.25 0 0 0 .25-.25v-9.5Z"/>
-                                    </g>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                    <path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0 1 14.25 14H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 15.543V14H1.75A1.75 1.75 0 0 1 0 12.25v-9.5C0 1.784.784 1 1.75 1ZM1.5 2.75v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Z"/><path d="M22.5 8.75a.25.25 0 0 0-.25-.25h-3.5a.75.75 0 0 1 0-1.5h3.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0 1 22.25 20H21v1.543a1.457 1.457 0 0 1-2.487 1.03L15.939 20H10.75A1.75 1.75 0 0 1 9 18.25v-1.465a.75.75 0 0 1 1.5 0v1.465c0 .138.112.25.25.25h5.5a.75.75 0 0 1 .53.22l2.72 2.72v-2.19a.75.75 0 0 1 .75-.75h2a.25.25 0 0 0 .25-.25v-9.5Z"/>
                                 </svg>
                                 <span>Discussions</span>
                             </a>
@@ -287,40 +285,32 @@
                             <ul class="flex flex-wrap justify-center items-center">
                                 <li class="mr-6">
                                     <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://github.com/ddnexus/pagy" target="_blank">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
-                                            <g fill="currentColor">
-                                                <path d="M10.303 16.652c-2.837-.344-4.835-2.385-4.835-5.028 0-1.074.387-2.235 1.031-3.008-.279-.709-.236-2.214.086-2.837.86-.107 2.02.344 2.708.967.816-.258 1.676-.386 2.728-.386 1.053 0 1.913.128 2.686.365.666-.602 1.848-1.053 2.708-.946.3.581.344 2.085.064 2.815.688.817 1.053 1.913 1.053 3.03 0 2.643-1.998 4.641-4.877 5.006.73.473 1.224 1.504 1.224 2.686v2.235c0 .644.537 1.01 1.182.752 3.889-1.483 6.94-5.372 6.94-10.185 0-6.081-4.942-11.044-11.022-11.044-6.081 0-10.98 4.963-10.98 11.044a10.84 10.84 0 0 0 7.112 10.206c.58.215 1.139-.172 1.139-.752v-1.719a2.768 2.768 0 0 1-1.032.215c-1.418 0-2.256-.773-2.857-2.213-.237-.58-.495-.924-.989-.988-.258-.022-.344-.129-.344-.258 0-.258.43-.451.86-.451.623 0 1.16.386 1.719 1.181.43.623.881.903 1.418.903.537 0 .881-.194 1.375-.688.365-.365.645-.687.903-.902Z"/>
-                                            </g>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                            <path d="M10.303 16.652c-2.837-.344-4.835-2.385-4.835-5.028 0-1.074.387-2.235 1.031-3.008-.279-.709-.236-2.214.086-2.837.86-.107 2.02.344 2.708.967.816-.258 1.676-.386 2.728-.386 1.053 0 1.913.128 2.686.365.666-.602 1.848-1.053 2.708-.946.3.581.344 2.085.064 2.815.688.817 1.053 1.913 1.053 3.03 0 2.643-1.998 4.641-4.877 5.006.73.473 1.224 1.504 1.224 2.686v2.235c0 .644.537 1.01 1.182.752 3.889-1.483 6.94-5.372 6.94-10.185 0-6.081-4.942-11.044-11.022-11.044-6.081 0-10.98 4.963-10.98 11.044a10.84 10.84 0 0 0 7.112 10.206c.58.215 1.139-.172 1.139-.752v-1.719a2.768 2.768 0 0 1-1.032.215c-1.418 0-2.256-.773-2.857-2.213-.237-.58-.495-.924-.989-.988-.258-.022-.344-.129-.344-.258 0-.258.43-.451.86-.451.623 0 1.16.386 1.719 1.181.43.623.881.903 1.418.903.537 0 .881-.194 1.375-.688.365-.365.645-.687.903-.902Z"/>
                                         </svg>
                                         <span>GitHub</span>
                                     </a>
                                 </li>
                                 <li class="mr-6">
                                     <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://github.com/ddnexus/pagy/issues" target="_blank">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
-                                            <g fill="currentColor">
-                                                <path d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1ZM2.5 12a9.5 9.5 0 0 0 9.5 9.5 9.5 9.5 0 0 0 9.5-9.5A9.5 9.5 0 0 0 12 2.5 9.5 9.5 0 0 0 2.5 12Zm9.5 2a2 2 0 1 1-.001-3.999A2 2 0 0 1 12 14Z"/>
-                                            </g>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                            <path d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1ZM2.5 12a9.5 9.5 0 0 0 9.5 9.5 9.5 9.5 0 0 0 9.5-9.5A9.5 9.5 0 0 0 12 2.5 9.5 9.5 0 0 0 2.5 12Zm9.5 2a2 2 0 1 1-.001-3.999A2 2 0 0 1 12 14Z"/>
                                         </svg>
                                         <span>Issues</span>
                                     </a>
                                 </li>
                                 <li class="mr-6">
                                     <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://github.com/ddnexus/pagy/discussions/categories/q-a" target="_blank">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
-                                            <g fill="currentColor">
-                                                <path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0 1 14.25 14H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 15.543V14H1.75A1.75 1.75 0 0 1 0 12.25v-9.5C0 1.784.784 1 1.75 1ZM1.5 2.75v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Z"/><path d="M22.5 8.75a.25.25 0 0 0-.25-.25h-3.5a.75.75 0 0 1 0-1.5h3.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0 1 22.25 20H21v1.543a1.457 1.457 0 0 1-2.487 1.03L15.939 20H10.75A1.75 1.75 0 0 1 9 18.25v-1.465a.75.75 0 0 1 1.5 0v1.465c0 .138.112.25.25.25h5.5a.75.75 0 0 1 .53.22l2.72 2.72v-2.19a.75.75 0 0 1 .75-.75h2a.25.25 0 0 0 .25-.25v-9.5Z"/>
-                                            </g>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                            <path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0 1 14.25 14H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 15.543V14H1.75A1.75 1.75 0 0 1 0 12.25v-9.5C0 1.784.784 1 1.75 1ZM1.5 2.75v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Z"/><path d="M22.5 8.75a.25.25 0 0 0-.25-.25h-3.5a.75.75 0 0 1 0-1.5h3.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0 1 22.25 20H21v1.543a1.457 1.457 0 0 1-2.487 1.03L15.939 20H10.75A1.75 1.75 0 0 1 9 18.25v-1.465a.75.75 0 0 1 1.5 0v1.465c0 .138.112.25.25.25h5.5a.75.75 0 0 1 .53.22l2.72 2.72v-2.19a.75.75 0 0 1 .75-.75h2a.25.25 0 0 0 .25-.25v-9.5Z"/>
                                         </svg>
                                         <span>Q&amp;A</span>
                                     </a>
                                 </li>
                                 <li class="mr-6">
                                     <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text hover:text-header-text-hover" href="https://github.com/ddnexus/pagy/discussions" target="_blank">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
-                                            <g fill="currentColor">
-                                                <path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0 1 14.25 14H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 15.543V14H1.75A1.75 1.75 0 0 1 0 12.25v-9.5C0 1.784.784 1 1.75 1ZM1.5 2.75v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Z"/><path d="M22.5 8.75a.25.25 0 0 0-.25-.25h-3.5a.75.75 0 0 1 0-1.5h3.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0 1 22.25 20H21v1.543a1.457 1.457 0 0 1-2.487 1.03L15.939 20H10.75A1.75 1.75 0 0 1 9 18.25v-1.465a.75.75 0 0 1 1.5 0v1.465c0 .138.112.25.25.25h5.5a.75.75 0 0 1 .53.22l2.72 2.72v-2.19a.75.75 0 0 1 .75-.75h2a.25.25 0 0 0 .25-.25v-9.5Z"/>
-                                            </g>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1.5" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                                            <path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0 1 14.25 14H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 15.543V14H1.75A1.75 1.75 0 0 1 0 12.25v-9.5C0 1.784.784 1 1.75 1ZM1.5 2.75v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Z"/><path d="M22.5 8.75a.25.25 0 0 0-.25-.25h-3.5a.75.75 0 0 1 0-1.5h3.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0 1 22.25 20H21v1.543a1.457 1.457 0 0 1-2.487 1.03L15.939 20H10.75A1.75 1.75 0 0 1 9 18.25v-1.465a.75.75 0 0 1 1.5 0v1.465c0 .138.112.25.25.25h5.5a.75.75 0 0 1 .53.22l2.72 2.72v-2.19a.75.75 0 0 1 .75-.75h2a.25.25 0 0 0 .25-.25v-9.5Z"/>
                                         </svg>
                                         <span>Discussions</span>
                                     </a>
@@ -347,39 +337,19 @@
                 <!-- Rendered if sidebar right is enabled -->
                 <div id="retype-sidebar-right-toggle"></div>
                 <!-- Page content  -->
-<doc-anchor-target id="changelog" class="break-words">
-    <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changelog">#</doc-anchor-trigger>
-        <span>CHANGELOG</span>
-    </h1>
-</doc-anchor-target>
-<doc-anchor-target id="release-policy">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#release-policy">#</doc-anchor-trigger>
-        <span>Release Policy</span>
-    </h2>
-</doc-anchor-target>
+<h1 id="changelog">CHANGELOG</h1>
+<h2 id="release-policy">Release Policy</h2>
 <p>Pagy follows the <a href="https://semver.org/" class="outbound" target="_blank"><span>Semantic Versioning 2.0.0</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, and introduces BREAKING CHANGES only for MAJOR versions.</p>
 <p>We release any new version (MAJOR, MINOR, PATCH) as soon as it is ready for release, regardless of any time constraint, frequency
 or duration.</p>
 <p>We rarely deprecate elements (releasing a new MAJOR version is just simpler and more efficient). However, when we do, you can
 expect the old/deprecated functionality to be supported ONLY during the current MAJOR version.</p>
-<doc-anchor-target id="recommended-version-constraint">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-version-constraint">#</doc-anchor-trigger>
-        <span>Recommended Version Constraint</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="recommended-version-constraint">Recommended Version Constraint</h2>
 <p>Given a version number <code translate="no" v-pre>MAJOR.MINOR.PATCH</code> (e.g. <code translate="no" v-pre>43.4.30</code>):</p>
 <p>The <code translate="no" v-pre>gem 'pagy', '~&gt; 43.0'</code> Gemfile entry (without the PATCH number) ensures that the <code translate="no" v-pre>bundle update</code> command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.</p>
 <p>Increment the MAJOR version in your Gemfile ONLY when you are ready to handle the BREAKING CHANGES.</p>
-<doc-anchor-target id="breaking-changes">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes">#</doc-anchor-trigger>
-        <span>Breaking Changes</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="breaking-changes">Breaking Changes</h2>
 <p>Follow the <a href="../guides/upgrade-guide/">Upgrade to 43 Guide</a>.</p>
 <p>If you upgrade from version <code translate="no" v-pre>&lt; 9.0.0</code> see the following:</p>
 <ul>
@@ -411,12 +381,7 @@ from scratch might be faster.</p>
     </div>
 </div>
 <hr>
-<doc-anchor-target id="version-4340">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4340">#</doc-anchor-trigger>
-        <span>Version 43.4.0</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4340">Version 43.4.0</h3>
 <ul>
 <li>Improve stylesheets and docs</li>
 <li>Improve JavaScript:
@@ -427,45 +392,25 @@ from scratch might be faster.</p>
 </ul>
 </li>
 </ul>
-<doc-anchor-target id="version-4333">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4333">#</doc-anchor-trigger>
-        <span>Version 43.3.3</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4333">Version 43.3.3</h3>
 <ul>
 <li>Fix Request#resolve_page with jsonapi, limit, and missing page param (#885)</li>
 <li>Fix pagy-tailwind.css inconsistencies</li>
 <li>Improve ts/js build process and wand help</li>
 <li>Move the next_tag into the Pagy class</li>
 </ul>
-<doc-anchor-target id="version-4332">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4332">#</doc-anchor-trigger>
-        <span>Version 43.3.2</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4332">Version 43.3.2</h3>
 <ul>
 <li>Implement NumericUI module to avoid including the numeric helpers in keynav classes</li>
 <li>Improve offset accessors and update docs</li>
 <li>Add basic RBS</li>
 </ul>
-<doc-anchor-target id="version-4331">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4331">#</doc-anchor-trigger>
-        <span>Version 43.3.1</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4331">Version 43.3.1</h3>
 <ul>
 <li>Update assets for a few apps</li>
 <li>Fix pagy.ts /.js input_nav update</li>
 </ul>
-<doc-anchor-target id="version-4330">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4330">#</doc-anchor-trigger>
-        <span>Version 43.3.0</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4330">Version 43.3.0</h3>
 <ul>
 <li>Add :typesense_rails paginator (See typesense/typesense-rails#17)</li>
 <li>Accept a variable number of search arguments</li>
@@ -473,12 +418,7 @@ from scratch might be faster.</p>
 <li>Use Pagy::OPTIONS instead of Pagy.options for efficiency</li>
 <li>Simplify assign options</li>
 </ul>
-<doc-anchor-target id="version-43210">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-43210">#</doc-anchor-trigger>
-        <span>Version 43.2.10</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-43210">Version 43.2.10</h3>
 <ul>
 <li>Add failing test and revert code that caused empty aria label</li>
 <li>Avoid invalid limit param (similar to #862)</li>
@@ -488,43 +428,23 @@ from scratch might be faster.</p>
 <li>Replace require with require_relative in Pagy::CLI</li>
 <li>Make Pagy::OPTIONS thread-safe</li>
 </ul>
-<doc-anchor-target id="version-4329">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4329">#</doc-anchor-trigger>
-        <span>Version 43.2.9</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4329">Version 43.2.9</h3>
 <ul>
 <li>Fix NoMethodError with tampered params (#872)</li>
 </ul>
-<doc-anchor-target id="version-4328">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4328">#</doc-anchor-trigger>
-        <span>Version 43.2.8</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4328">Version 43.2.8</h3>
 <ul>
 <li>Add fallback to &#x27;en&#x27; for unknown locale. Implement #868.</li>
 <li>Fix resolve_page with empty page in classes with non-integer page. Close #863</li>
 <li>Simplify keyset syntax</li>
 </ul>
-<doc-anchor-target id="version-4327">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4327">#</doc-anchor-trigger>
-        <span>Version 43.2.7</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4327">Version 43.2.7</h3>
 <ul>
 <li>Add a hint predicate for DB optimizers, to multi-column keysets</li>
 <li>Improve code readability and style</li>
 <li>Refactor anchor tag helpers</li>
 </ul>
-<doc-anchor-target id="version-4326">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4326">#</doc-anchor-trigger>
-        <span>Version 43.2.6</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4326">Version 43.2.6</h3>
 <ul>
 <li>Refactor i18n:
 <ul>
@@ -536,12 +456,7 @@ file</p>
 </ul>
 </li>
 </ul>
-<doc-anchor-target id="version-4325">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4325">#</doc-anchor-trigger>
-        <span>Version 43.2.5</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4325">Version 43.2.5</h3>
 <ul>
 <li>Fix Pagy::I18n.locale to ensure to_s. Close #861.</li>
 <li>Reduce endless methods to very short, paramless ones</li>
@@ -567,43 +482,23 @@ file</p>
 </li>
 <li>Improve simplicity and readability</li>
 </ul>
-<doc-anchor-target id="version-4324">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4324">#</doc-anchor-trigger>
-        <span>Version 43.2.4</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4324">Version 43.2.4</h3>
 <ul>
 <li>Fix anchor_string option not being read from @options in a_lambda. Close #857</li>
 <li>Fix page &#x27;0&#x27; raising an exception</li>
 </ul>
-<doc-anchor-target id="version-4323">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4323">#</doc-anchor-trigger>
-        <span>Version 43.2.3</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4323">Version 43.2.3</h3>
 <ul>
 <li>Remove rerun</li>
 <li>Improved direction handling in CSSs</li>
 </ul>
-<doc-anchor-target id="version-4322">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4322">#</doc-anchor-trigger>
-        <span>Version 43.2.2</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4322">Version 43.2.2</h3>
 <ul>
 <li>Refactor bin/pagy to use the Pagy::CLI class</li>
 <li>Replace optimist with the optparse standard lib</li>
 <li>Simplify apps by using SQLite :memory:</li>
 </ul>
-<doc-anchor-target id="version-4321">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4321">#</doc-anchor-trigger>
-        <span>Version 43.2.1</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4321">Version 43.2.1</h3>
 <ul>
 <li>Fix the shallow cloning of root_key params. Close #851.</li>
 <li>Implements support for easy overriding</li>
@@ -613,22 +508,12 @@ file</p>
 <li>Remove warning when fit_time</li>
 <li>Fix respond_to_missing definition arguments in Search::Arguments</li>
 </ul>
-<doc-anchor-target id="version-4320">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4320">#</doc-anchor-trigger>
-        <span>Version 43.2.0</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4320">Version 43.2.0</h3>
 <ul>
 <li>Implement :countish paginator</li>
 <li>Simplify Pagy::Linkable</li>
 </ul>
-<doc-anchor-target id="version-4318">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4318">#</doc-anchor-trigger>
-        <span>Version 43.1.8</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4318">Version 43.1.8</h3>
 <ul>
 <li>Refactoring of elasticsearch_rails paginator:
 <ul>
@@ -639,12 +524,7 @@ and unambiguous language</li>
 </ul>
 </li>
 </ul>
-<doc-anchor-target id="version-4317">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4317">#</doc-anchor-trigger>
-        <span>Version 43.1.7</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4317">Version 43.1.7</h3>
 <ul>
 <li>Fix and improve search paginators:
 <ul>
@@ -656,40 +536,20 @@ total_count (causing multiple query executions)</li>
 </ul>
 </li>
 </ul>
-<doc-anchor-target id="version-4316">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4316">#</doc-anchor-trigger>
-        <span>Version 43.1.6</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4316">Version 43.1.6</h3>
 <ul>
 <li>Ensure the request GET and POST merge into a proper params Hash</li>
 <li>Simplify code efficiency and readability</li>
 </ul>
-<doc-anchor-target id="version-4315">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4315">#</doc-anchor-trigger>
-        <span>Version 43.1.5</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4315">Version 43.1.5</h3>
 <ul>
 <li>Fix and improve the composition of the page url. Close #835</li>
 </ul>
-<doc-anchor-target id="version-4314">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4314">#</doc-anchor-trigger>
-        <span>Version 43.1.4</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4314">Version 43.1.4</h3>
 <ul>
 <li>Add full support for legacy countless params, url composition and (limited) behavior</li>
 </ul>
-<doc-anchor-target id="version-4313">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4313">#</doc-anchor-trigger>
-        <span>Version 43.1.3</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4313">Version 43.1.3</h3>
 <ul>
 <li>Improve the page options handling for countless:
 <ul>
@@ -706,24 +566,14 @@ for compatibility with the legacy handling)</p>
 </li>
 <li>Improve the info message for empty collection in countless paginations</li>
 </ul>
-<doc-anchor-target id="version-4312">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4312">#</doc-anchor-trigger>
-        <span>Version 43.1.2</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4312">Version 43.1.2</h3>
 <ul>
 <li>Support easy countless page param overriding (for legacy param and behavior). See #816</li>
 <li>Handle legacy page param for :countless paginator. Close #832</li>
 <li>Improve mock collections</li>
 <li>Improve code comments</li>
 </ul>
-<doc-anchor-target id="version-4311">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4311">#</doc-anchor-trigger>
-        <span>Version 43.1.1</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4311">Version 43.1.1</h3>
 <ul>
 <li>Makes keynav pagination compatible with nested params:
 <ul>
@@ -733,12 +583,7 @@ for compatibility with the legacy handling)</p>
 </li>
 <li>Simplify the request code and arguments</li>
 </ul>
-<doc-anchor-target id="version-4310">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4310">#</doc-anchor-trigger>
-        <span>Version 43.1.0</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4310">Version 43.1.0</h3>
 <ul>
 <li>Translate the aria_label.nav entry in the id, ja, kn, sw locales. Close #588, close #590, close #591, close #603.</li>
 <li>Improve the Pagy AI panel</li>
@@ -751,89 +596,44 @@ for compatibility with the legacy handling)</p>
 </li>
 <li>Fix and simplify the pagy console code</li>
 </ul>
-<doc-anchor-target id="version-4307">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4307">#</doc-anchor-trigger>
-        <span>Version 43.0.7</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4307">Version 43.0.7</h3>
 <ul>
 <li>Add compatibility for searchkick 6. Close #831</li>
 <li>Fix the search paginators request in passive mode. Close #830.</li>
 </ul>
-<doc-anchor-target id="version-4306">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4306">#</doc-anchor-trigger>
-        <span>Version 43.0.6</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4306">Version 43.0.6</h3>
 <ul>
 <li>Improve Pagy AI Widget scripts</li>
 </ul>
-<doc-anchor-target id="version-4305">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4305">#</doc-anchor-trigger>
-        <span>Version 43.0.5</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4305">Version 43.0.5</h3>
 <ul>
 <li>Add console loader for easier usage</li>
 <li>Add comment for the calendar usage. Close #827.</li>
 </ul>
-<doc-anchor-target id="version-4304">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4304">#</doc-anchor-trigger>
-        <span>Version 43.0.4</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4304">Version 43.0.4</h3>
 <ul>
 <li>Remove the Pagy::OPTIONS from the Calendar configuration. Close #825</li>
 </ul>
-<doc-anchor-target id="version-4303">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4303">#</doc-anchor-trigger>
-        <span>Version 43.0.3</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4303">Version 43.0.3</h3>
 <ul>
 <li>Update tr.yml (#824)</li>
 </ul>
-<doc-anchor-target id="version-4302">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4302">#</doc-anchor-trigger>
-        <span>Version 43.0.2</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4302">Version 43.0.2</h3>
 <ul>
 <li>Ensure the Pagy::Request#params are the original params sent with the request. Close #821</li>
 </ul>
-<doc-anchor-target id="version-4301">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4301">#</doc-anchor-trigger>
-        <span>Version 43.0.1</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4301">Version 43.0.1</h3>
 <ul>
 <li>Reimplement reading params from POST requests; rename internal variables. Close #821</li>
 <li>Fix AI widget problem for apps. Close #817.</li>
 <li>Improve I18n documentation. Close #811</li>
 <li>Link to documentation website&#x27;s CHANGELOG page (#804)</li>
 </ul>
-<doc-anchor-target id="version-4300">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-4300">#</doc-anchor-trigger>
-        <span>Version 43.0.0</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="version-4300">Version 43.0.0</h3>
 <p>We needed a leap version to unequivocally signal that it&#x27;s not just a major version: it&#x27;s a complete redesign of the legacy
 code at all levels, usage and API included.</p>
 <p><strong>Why 43?</strong> Because it&#x27;s exactly one step beyond <em>&quot;The answer to the ultimate question of life, the Universe, and everything.&quot;</em> <span class="docs-emoji">&#x1F609;</span></p>
-<doc-anchor-target id="changes">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes">#</doc-anchor-trigger>
-        <span>Changes</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="changes">Changes</h2>
 <ul>
 <li><strong>The Countless pagination remembers the last page</strong>
 <ul>

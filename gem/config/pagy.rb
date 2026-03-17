@@ -33,7 +33,6 @@ Pagy::OPTIONS.freeze
 # Rails.application.config.assets.paths << Pagy::ROOT.join(':stylesheets')
 
 
-
 ############# Overriding Pagy::I18n Lookup #################################################
 # Refer to https://ddnexus.github.io/pagy/resources/i18n/ for details.
 # Override the I18n lookup by dropping your custom dictionary in some pagy dir.
