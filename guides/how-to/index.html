@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827112804533">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827216823691">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.3.0">
@@ -34,12 +34,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.3.0.827112804533" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.3.0.827216823691" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.3.0.827112804533" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.3.0.827216823691" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.3.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.3.0.827112804533" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.3.0.827112804533" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.3.0.827216823691" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.3.0.827216823691" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -193,7 +193,7 @@
                             <img class="max-h-10 hidden dark:inline-block" src="../../assets/images/pagy-the-frog.png" alt="" width="300" height="281">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.0</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.1</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -350,41 +350,14 @@
    </doc-panel>
    <doc-panel id="control-the-items-per-page" collapsed>
        <template #title>Control the items per page</template>
-<ul>
-<li><strong>Fixed</strong>
-<ul>
-<li>Use the <code translate="no" v-pre>:limit</code> option to set the number of items to serve with each page.</li>
-</ul>
-</li>
-<li><strong>Requestable</strong>
-<ul>
-<li>Use the <code translate="no" v-pre>limit</code> option combined with the <code translate="no" v-pre>:client_max_limit</code> option, allowing the client to request a variable <code translate="no" v-pre>:limit</code> up to the specified <code translate="no" v-pre>:client_max_limit</code>.</li>
-<li>Additionally, you can use the <a href="../../toolbox/helpers/limit_tag_js/">limit_tag_js</a> helper to provide a UI selector to the user.</li>
-</ul>
-</li>
-</ul>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">@pagy, @products = pagy(:offset, collection, limit: 10)
-@pagy, @products = pagy(:offset, collection, limit: 10, client_max_limit: 1_000)</code></pre>
-</doc-codeblock></div>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
-    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-callout-warning" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
-                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-            <h5>ActiveRecord <code translate="no" v-pre>limit</code></h5>
-<p>The <code translate="no" v-pre>:limit</code> option defined here will override any existing <code translate="no" v-pre>limit</code> set in <code translate="no" v-pre>ActiveRecord</code> collections.</p>
-        </div>
-    </div>
-</div>
-<p>See <a href="../../toolbox/paginators/#common-options">Common Options</a>.</p>
+<dl>
+<dt>Fixed</dt>
+<dd>Use the <code translate="no" v-pre>:limit</code> option to set the number of items to serve with each page. <em>(See <a href="../../toolbox/paginators/#common-options">Common Options</a>)</em></dd>
+<dt>Requestable </dt>
+<dd>Use the <code translate="no" v-pre>:limit</code> option combined with the <code translate="no" v-pre>:client_max_limit</code> option, allowing the client to request a variable <code translate="no" v-pre>:limit</code> up to the specified <code translate="no" v-pre>:client_max_limit</code>. <em>(See <a href="../../toolbox/paginators/#common-options">Common Options</a>)</em></dd>
+<dt>Interactive</dt>
+<dd>Use the <a href="../../toolbox/helpers/limit_tag_js/">limit_tag_js</a> helper to provide a UI selector to the user.</dd>
+</dl>
    </doc-panel>
    <doc-panel id="control-the-pagination-bar" collapsed>
        <template #title>Control the pagination bar</template>
@@ -482,53 +455,55 @@ Pagy::AnyModule.prepend MyOverridingModule</code></pre>
    <doc-panel id="paginate-activerecord-collections" collapsed>
        <template #title>Paginate ActiveRecord collections</template>
 <p>Pagy works seamlessly with <code translate="no" v-pre>ActiveRecord</code> collections, but certain collections may require specific handling:</p>
-<ul>
-<li><strong>Grouped collections</strong>
-<ul>
-<li>For better performance of grouped counts, you may want to use the <a href="../../toolbox/paginators/offset/#options">:count_over</a> option</li>
-</ul>
-</li>
-<li><p><strong>Decorated collections</strong></p>
-<ul>
-<li>Do it in two steps:
-<ol>
-<li>Get the page of records without decoration</li>
-<li>Decorate the retrieved records.</li>
-</ol>
-</li>
-</ul>
+<div>
+<doc-panels>
+   <doc-panel id="grouped-collections">
+       <template #title>Grouped collections</template>
+<p>For better performance of grouped counts, you may want to use the <a href="../../toolbox/paginators/offset/#options">:count_over</a> option</p>
+   </doc-panel>
+   <doc-panel id="decorated-collections">
+       <template #title>Decorated collections</template>
+<p>Do it in two steps:</p>
+<doc-steps>
+   <doc-step id="get-the-page-of-records-without-decoration" step-number="1">
+      <template #title>Get the page of records without decoration</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">controller</div>
-<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">@pagy, records     = pagy(:offset, Post.all)
-@decorated_records = records.decorate # or YourDecorator.method(records) whatever works</code></pre>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">@pagy, records = pagy(:offset, Post.all)</code></pre>
 </doc-codeblock></div>
-</li>
-<li><p><strong>Custom scope/count</strong></p>
-<ul>
-<li>If the default pagy doesn&#x27;t get the right count:</li>
-</ul>
+   </doc-step>
+   <doc-step id="decorate-the-retrieved-records" step-number="2">
+      <template #title>Decorate the retrieved records.</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">controller</div>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">@decorated_records = records.decorate # or YourDecorator.method(records) whatever works</code></pre>
+</doc-codeblock></div>
+   </doc-step>
+</doc-steps>
+   </doc-panel>
+   <doc-panel id="custom-scopecount">
+       <template #title>Custom scope/count</template>
+<p>If the default pagy doesn&#x27;t get the right count:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">controller</div>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby"># pass the right count to pagy (that will directly use it skipping its own `collection.count(:all)`)
 @pagy, @records = pagy(:offset, custom_scope, count: custom_count) # Example implementation</code></pre>
 </doc-codeblock></div>
-</li>
-<li><p><strong>Ransack results</strong></p>
-<ul>
-<li>Ransack&#x27;s <code translate="no" v-pre>result</code> method returns an <code translate="no" v-pre>ActiveRecord</code> collection that is ready for pagination:</li>
-</ul>
+   </doc-panel>
+   <doc-panel id="ransack-results">
+       <template #title>Ransack results</template>
+<p>Ransack&#x27;s <code translate="no" v-pre>result</code> method returns an <code translate="no" v-pre>ActiveRecord</code> collection that is ready for pagination:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">controller</div>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">q = Person.ransack(params[:q])
 @pagy, @people = pagy(:offset, q.result)</code></pre>
 </doc-codeblock></div>
-</li>
-<li><strong>PostgreSQL Collections</strong>
-<ul>
-<li><a href="../../toolbox/paginators/#troubleshooting">Always ensure your collections are ordered!</a></li>
-</ul>
-</li>
-</ul>
+   </doc-panel>
+   <doc-panel id="postgresql-collections">
+       <template #title>PostgreSQL Collections</template>
+<p><a href="../../toolbox/paginators/#troubleshooting">Always ensure your collections are ordered!</a></p>
+   </doc-panel>
+</div>
    </doc-panel>
    <doc-panel id="paginate-for-generic-api-clients" collapsed>
        <template #title>Paginate for generic API clients</template>
@@ -561,7 +536,12 @@ Pagy::AnyModule.prepend MyOverridingModule</code></pre>
    <doc-panel id="paginate-multiple-independent-collections" collapsed>
        <template #title>Paginate multiple independent collections</template>
 <p>When you need to paginate multiple collections in a single request, you need to explicitly differentiate the pagination objects. Here are some common methods to achieve this:</p>
-<h5 id="override-the-request-path">Override the request path</h5>
+<div>
+<doc-panels>
+   <doc-panel id="badge-variantinfo-sizes-cornerspill-texta-override-the-request-path">
+       <template #title><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border h-5 px-1.5 text-2xs rounded-full">
+    <span>A</span>
+</span>  Override the request path</template>
 <br/>
 <p>By default, Pagy generates links using the same path as the request path. To generate links pointing to a different controller or path, explicitly pass the desired <code translate="no" v-pre>:path</code>. For example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -577,11 +557,15 @@ end</code></pre>
 &lt;!-- Pagination links of `/foos?page=2` instead of `/dashboard?page=2` --&gt;
 &lt;!-- Pagination links of `/bars?page=2` etc. --&gt;</code></pre>
 </doc-codeblock></div>
-<h5 id="use-separate-turbo-frames-actions">Use separate turbo frames actions</h5>
+   </doc-panel>
+   <doc-panel id="badge-variantinfo-sizes-cornerspill-textb-use-separate-turbo-frames-actions">
+       <template #title><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border h-5 px-1.5 text-2xs rounded-full">
+    <span>B</span>
+</span>  Use separate turbo frames actions</template>
 <br/>
 <p>If you&#x27;re using <a href="https://hotwired.dev/" class="outbound" target="_blank"><span>hotwire</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> (<a href="https://github.com/hotwired/turbo-rails" class="outbound" target="_blank"><span>turbo-rails</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> being the Rails implementation), another way of maintaining independent contexts is using separate turbo frames actions. Just wrap each independent context in a <code translate="no" v-pre>turbo_frame_tag</code> and ensure a matching <code translate="no" v-pre>turbo_frame_tag</code> is returned:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-erb"><code v-pre class="language-erb">  &lt;-- movies/index.html.erb --&gt;
+<pre translate="no" class="language-erb"><code v-pre class="language-erb">&lt;-- movies/index.html.erb --&gt;
 
 &lt;-- movies#bad_movies --&gt;
 &lt;%= turbo_frame_tag &quot;bad_movies&quot;, src: bad_movies_path do %&gt;
@@ -596,8 +580,8 @@ end</code></pre>
 &lt;% end %&gt;   </code></pre>
 </doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">  # controller action 
-def good
+<div class="codeblock-title">Controller Action</div>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">def good
   @pagy, @movies = pagy(:offset, Movie.good, limit: 5)
 end
 
@@ -606,27 +590,37 @@ def bad
 end </code></pre>
 </doc-codeblock></div>
 <p>Consider <a href="https://bhserna.com/building-data-grid-with-search-rails-hotwire-ransack.html" class="outbound" target="_blank"><span>Benito Serna&#x27;s implementation of turbo-frames (on Rails) using search forms with the Ransack gem</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> along with a corresponding <a href="https://github.com/bhserna/dynamic_data_grid_hotwire_ransack" class="outbound" target="_blank"><span>demo app</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> for a similar implementation of the above logic.</p>
-<h5 id="use-the-root_key-option">Use the root_key option</h5>
+   </doc-panel>
+   <doc-panel id="badge-variantinfo-sizes-cornerspill-textc-use-the-root_key-option">
+       <template #title><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border h-5 px-1.5 text-2xs rounded-full">
+    <span>C</span>
+</span>  Use the root_key option</template>
 <br/>
 <p>By default, pagy creates flat URLs for its links. If you need to handle multiple pagy instance in the same request, you can nest the <code translate="no" v-pre>:page</code> and -if you use it- the <code translate="no" v-pre>:limit</code> params by passing the <code translate="no" v-pre>:root_key</code> option to the paginator:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">Controller Action</div>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">
-def index # controller action
+def index
   @pagy_stars, @stars     = pagy(:offset, Star.all, root_key: 'stars')
   @pagy_nebulae, @nebulae = pagy(:offset, Nebula.all, root_key: 'nebulae')
 end</code></pre>
 </doc-codeblock></div>
-<h5 id="use-different-page-keys">Use different page keys</h5>
+   </doc-panel>
+   <doc-panel id="badge-variantinfo-sizes-cornerspill-textd-use-different-page-keys">
+       <template #title><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border h-5 px-1.5 text-2xs rounded-full">
+    <span>D</span>
+</span>  Use different page keys</template>
 <br/>
 <p>You can also paginate multiple model in the same request by simply using different <code translate="no" v-pre>:page_key</code> for each instance:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">
-def index # controller action
+def index
   @pagy_stars, @stars     = pagy(:offset, Star.all, page_key: 'pagy_stars')
   @pagy_nebulae, @nebulae = pagy(:offset, Nebula.all, page_key: 'pagy_nebulae')
 end</code></pre>
 </doc-codeblock></div>
+   </doc-panel>
+</div>
    </doc-panel>
    <doc-panel id="paginate-only-max_pages-regardless-of-the-count" collapsed>
        <template #title>Paginate only max_pages, regardless of the count</template>
@@ -884,8 +878,8 @@ end</code></pre>
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-17T20:52:44" title="2026-03-17" data-absolute-label="Last updated on 2026-03-17" data-absolute-label-html="Last updated on 2026-03-17" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-03-17
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-19T13:19:16" title="2026-03-19" data-absolute-label="Last updated on 2026-03-19" data-absolute-label-html="Last updated on 2026-03-19" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-03-19
                     </time>
                 </div>
 

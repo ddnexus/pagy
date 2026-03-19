@@ -5,11 +5,10 @@ class Pagy
   ROOT:    Pathname
   OPTIONS: options
 
+  # @deprecated Use `Pagy::OPTIONS` instead
   def self.options: () -> options
 
-  # Class method
-
-  # @deprecated Use `sync(:javascripts, ...)` instead
+  # @deprecated Use `sync(:javascript, ...)` instead
   def self.sync_javascript: (String destination, *String targets) -> void
 
   def self.sync: (Symbol resource, String destination, *String targets) -> void

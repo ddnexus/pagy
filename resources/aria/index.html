@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827112804533">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827216823691">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.3.0">
@@ -34,12 +34,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.3.0.827112804533" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.3.0.827216823691" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.3.0.827112804533" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.3.0.827216823691" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.3.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.3.0.827112804533" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.3.0.827112804533" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.3.0.827216823691" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.3.0.827216823691" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -193,7 +193,7 @@
                             <img class="max-h-10 hidden dark:inline-block" src="../../assets/images/pagy-the-frog.png" alt="" width="300" height="281">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.0</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.1</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -342,29 +342,11 @@
 <h2 id="aria-attributes"><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M13.974 8.114a3.573 3.573 0 1 0-3.947 0c-.302.21-.57.467-.79.762H3.708a.75.75 0 1 0 0 1.5h4.885a2.93 2.93 0 0 0-.026.188l-.814 7.267-.499 4.142a.75.75 0 1 0 1.49.18l.42-3.486h5.67l.42 3.485a.75.75 0 0 0 1.49-.18l-.5-4.142-.813-7.266a3.502 3.502 0 0 0-.026-.188h4.885a.75.75 0 1 0 0-1.5h-5.527a3.466 3.466 0 0 0-.79-.762Zm.099-2.979a2.073 2.073 0 1 1-4.146 0 2.073 2.073 0 0 1 4.146 0Zm-.131 5.596.72 6.436H9.338l.72-6.436a1.954 1.954 0 0 1 3.884 0Z"/></g></g></svg>  ARIA Attributes</h2>
 <hr>
 <p>Since version <code translate="no" v-pre>7.0.0</code>, Pagy introduced a consistent set of ARIA-compliant attributes across all its helpers.</p>
-<doc-tabs>
-<doc-tab v-cloak id="nav-helpers">
-<template #title>Nav helpers</template>
+<doc-panels>
+   <doc-panel id="nav-helpers">
+       <template #title>Nav helpers</template>
 <p>Pagy provides a customizable <code translate="no" v-pre>aria-label</code> for the root element of its helpers. It is usually a <code translate="no" v-pre>nav</code> element. For the few helper styles that use a different root element, Pagy adds a <code translate="no" v-pre>role=&quot;navigation&quot;</code> attribute.</p>
 <p>The default string for the <code translate="no" v-pre>aria-label</code> of the root element is &quot;Page&quot; / &quot;Pages&quot; (translated and pluralized according to the total number of pages). This is arguably a better description of the navigation content than just &quot;Pagination&quot; (which is also difficult to translate in certain languages).</p>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-success"></div>
-    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-callout-success" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
-                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-            <h5>Help us with your languages!</h5>
-<p>Please check the <code translate="no" v-pre>pagy.aria_label.nav</code> in the <a href="https://github.com/ddnexus/pagy/tree/master/gem/locales" class="outbound" target="_blank"><span>locale files</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>
-used by your app to ensure correctness in translation and pluralization. If it isn&#x27;t, please post your translation in the issue linked within the file. Thank you!</p>
-        </div>
-    </div>
-</div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-danger"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
@@ -378,7 +360,10 @@ used by your app to ensure correctness in translation and pluralization. If it i
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Don&#x27;t rely on ARIA default with multiple nav elements!</h5>
-<p>The <code translate="no" v-pre>nav</code> elements are <code translate="no" v-pre>landmark  roles</code>, and should be distinctly labeled.</p>
+<p>The <code translate="no" v-pre>nav</code> elements are <code translate="no" v-pre>landmark  roles</code> and should be distinctly labeled.</p>
+        </div>
+    </div>
+</div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-success"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
@@ -399,27 +384,22 @@ used by your app to ensure correctness in translation and pluralization. If it i
         </div>
     </div>
 </div>
-        </div>
-    </div>
-</div>
-</doc-tab>
-<doc-tab v-cloak id="links">
-<template #title>Links</template>
-<ul>
-<li>Links to the previous and next pages are rendered as &quot;&lt;&quot; and &quot;&gt;&quot; and are aria-labelled as translated <code translate="no" v-pre>&quot;Previous&quot;</code> and <code translate="no" v-pre>&quot;Next&quot;</code>. You can customize both the link text and the <code translate="no" v-pre>aria-label</code> by editing the <code translate="no" v-pre>pagy.previous</code>, <code translate="no" v-pre>pagy.next</code>, <code translate="no" v-pre>pagy.aria_label.previous</code>, and <code translate="no" v-pre>pagy.aria_label.next</code> values in the locale files.</li>
-<li>By design, page links do not include an <code translate="no" v-pre>aria-label</code> attribute because their text is a simple number (read by screen readers in the user&#x27;s native language), making an explicit attribute redundant and inefficient.</li>
-<li>Disabled links include the <code translate="no" v-pre>aria-disabled=&quot;true&quot;</code> attribute.</li>
-<li>The current page is marked with the <code translate="no" v-pre>aria-current=&quot;page&quot;</code> attribute.</li>
-<li>The <code translate="no" v-pre>role=&quot;link&quot;</code> attribute is applied to link elements in styles that lack an <code translate="no" v-pre>a</code> tag or a <code translate="no" v-pre>href</code> attribute.</li>
-<li>The <code translate="no" v-pre>role=&quot;separator&quot;</code> is applied to the <code translate="no" v-pre>:gap</code>.</li>
-</ul>
-</doc-tab>
-</doc-tabs>
+   </doc-panel>
+   <doc-panel id="links" collapsed>
+       <template #title>Links</template>
+<p>Links to the previous and next pages are rendered as &quot;&lt;&quot; and &quot;&gt;&quot; and are aria-labelled as translated <code translate="no" v-pre>&quot;Previous&quot;</code> and <code translate="no" v-pre>&quot;Next&quot;</code>. You can customize both the link text and the <code translate="no" v-pre>aria-label</code> by editing the <code translate="no" v-pre>pagy.previous</code>, <code translate="no" v-pre>pagy.next</code>, <code translate="no" v-pre>pagy.aria_label.previous</code>, and <code translate="no" v-pre>pagy.aria_label.next</code> values in the locale files.</p>
+<p>Page links do not include an <code translate="no" v-pre>aria-label</code> attribute because their text is a simple number (read by screen readers in the user&#x27;s native language), making an explicit attribute redundant and inefficient.</p>
+<p>Disabled links include the <code translate="no" v-pre>aria-disabled=&quot;true&quot;</code> attribute.</p>
+<p>The current page is marked with the <code translate="no" v-pre>aria-current=&quot;page&quot;</code> attribute.</p>
+<p>The <code translate="no" v-pre>role=&quot;link&quot;</code> attribute is applied to link elements in styles that lack an <code translate="no" v-pre>a</code> tag or a <code translate="no" v-pre>href</code> attribute.</p>
+<p>The <code translate="no" v-pre>role=&quot;separator&quot;</code> is applied to the <code translate="no" v-pre>:gap</code>.</p>
+   </doc-panel>
+</doc-panels>
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-16T21:26:04" title="2026-03-16" data-absolute-label="Last updated on 2026-03-16" data-absolute-label-html="Last updated on 2026-03-16" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-03-16
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-19T13:19:16" title="2026-03-19" data-absolute-label="Last updated on 2026-03-19" data-absolute-label-html="Last updated on 2026-03-19" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-03-19
                     </time>
                 </div>
 
