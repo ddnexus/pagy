@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827370793153">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827386251926">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.3.0">
@@ -34,12 +34,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.3.0.827370793153" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.3.0.827386251926" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.3.0.827370793153" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.3.0.827386251926" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.3.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.3.0.827370793153" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.3.0.827370793153" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.3.0.827386251926" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.3.0.827386251926" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -139,6 +139,9 @@
     <!-- ai_widget_end -->
 
     <style>
+      .sidebar-right {
+        display: none;
+      }
       .compact-dl div {
         border: none !important;
         margin: 0;
@@ -193,7 +196,7 @@
                             <img class="max-h-10 hidden dark:inline-block" src="../../assets/images/pagy-the-frog.png" alt="" width="300" height="281">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.1</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.2</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -413,7 +416,7 @@ pagy ./rails.ru</code></pre>
 <dd>
 <p>These are the interactive showcase/repro for the <code translate="no" v-pre>:keyset</code> paginator with <code translate="no" v-pre>ActiveRecord</code> or <code translate="no" v-pre>Sequel</code> sets:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-bash"><code v-pre class="language-bash">pagy | grep key   
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">pagy | grep key
 keynav                     Showcase the Keynav pagination (ActiveRecord example)
 keyset                     Showcase the Keyset pagination (ActiveRecord example)
 keyset_sequel              Showcase the Keyset pagination (Sequel example)
@@ -430,7 +433,7 @@ pagy keyset_sequel</code></pre>
 <p>All the pagy apps use <a href="https://bundler.io/guides/bundler_in_a_single_file_ruby_script.html" class="outbound" target="_blank"><span>bundler/inline</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.</p>
 <p>Depending on your environment, you might get this message for some gem:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-none"><code v-pre class="language-none">You have already activated GEMNAME v1, but your Gemfile requires GEMNAME v2. 
+<pre translate="no" class="language-none"><code v-pre class="language-none">You have already activated GEMNAME v1, but your Gemfile requires GEMNAME v2.
 Prepending `bundle exec` to your command may solve this.</code></pre>
 </doc-codeblock></div>
 <p>If <code translate="no" v-pre>bundle exec</code> doesn&#x27;t solve it, then try <code translate="no" v-pre>bundle update</code> and <code translate="no" v-pre>gem cleanup</code>. If you encounter another error after that:</p>
@@ -442,8 +445,8 @@ Prepending `bundle exec` to your command may solve this.</code></pre>
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-19T13:19:16" title="2026-03-19" data-absolute-label="Last updated on 2026-03-19" data-absolute-label-html="Last updated on 2026-03-19" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-03-19
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-21T12:08:29" title="2026-03-21" data-absolute-label="Last updated on 2026-03-21" data-absolute-label-html="Last updated on 2026-03-21" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-03-21
                     </time>
                 </div>
 

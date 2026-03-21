@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827370793153">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827386251926">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.3.0">
@@ -34,12 +34,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../../resources/css/retype.css?v=4.3.0.827370793153" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.3.0.827386251926" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.3.0.827370793153" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.3.0.827386251926" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.3.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.3.0.827370793153" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.3.0.827370793153" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.3.0.827386251926" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.3.0.827386251926" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -139,6 +139,9 @@
     <!-- ai_widget_end -->
 
     <style>
+      .sidebar-right {
+        display: none;
+      }
       .compact-dl div {
         border: none !important;
         margin: 0;
@@ -193,7 +196,7 @@
                             <img class="max-h-10 hidden dark:inline-block" src="../../../assets/images/pagy-the-frog.png" alt="" width="300" height="281">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.1</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.2</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -365,6 +368,15 @@
     </div>
 </div>
 <doc-panels>
+   <doc-panel id="usage">
+       <template #title>Usage</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Console</div>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">@pagy.page_url(:next)
+@pagy.page_url(23, page_key: 'custom_page')
+...</code></pre>
+</doc-codeblock></div>
+   </doc-panel>
    <doc-panel id="examples" collapsed>
        <template #title>Examples</template>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -405,14 +417,14 @@
    </doc-panel>
    <doc-panel id="options" collapsed>
        <template #title>Options</template>
-<p>See <a href="../../paginators/#common-url-options">Common URL Options</a></p>
+<p>See <a href="../#shared-options">Helpers Shared Options</a></p>
    </doc-panel>
 </doc-panels>
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-16T21:26:04" title="2026-03-16" data-absolute-label="Last updated on 2026-03-16" data-absolute-label-html="Last updated on 2026-03-16" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-03-16
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-21T12:08:29" title="2026-03-21" data-absolute-label="Last updated on 2026-03-21" data-absolute-label-html="Last updated on 2026-03-21" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-03-21
                     </time>
                 </div>
 

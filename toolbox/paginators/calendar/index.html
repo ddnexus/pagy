@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827370793153">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827386251926">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.3.0">
@@ -34,12 +34,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../../resources/css/retype.css?v=4.3.0.827370793153" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.3.0.827386251926" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.3.0.827370793153" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.3.0.827386251926" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.3.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.3.0.827370793153" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.3.0.827370793153" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.3.0.827386251926" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.3.0.827386251926" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -139,6 +139,9 @@
     <!-- ai_widget_end -->
 
     <style>
+      .sidebar-right {
+        display: none;
+      }
       .compact-dl div {
         border: none !important;
         margin: 0;
@@ -193,7 +196,7 @@
                             <img class="max-h-10 hidden dark:inline-block" src="../../../assets/images/pagy-the-frog.png" alt="" width="300" height="281">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.1</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.2</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -406,20 +409,10 @@
         </div>
     </div>
 </div>
-<div id="calendar-code-1" class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">  @calendar, @pagy, @records = pagy(:calendar, collection, year: {}, month: {}, offset: {})</code></pre>
-</doc-codeblock></div>
-<ul>
-<li><code translate="no" v-pre>@calendar</code> is a specialized hash that contains the pagy time unit objects (e.g., <code translate="no" v-pre>:year</code> and <code translate="no" v-pre>:month</code> in this example).</li>
-<li><code translate="no" v-pre>@pagy</code> is the object representing the current page of records.</li>
-<li><code translate="no" v-pre>@records</code> is the paginated subset of the collection.</li>
-<li>The <code translate="no" v-pre>:year</code> and <code translate="no" v-pre>:month</code> parameters create time unit objects (default options are used in this example).</li>
-<li><code translate="no" v-pre>:offset</code> is the offset instance that paginates the time-filtered collection.</li>
-</ul>
 <doc-panels>
-   <doc-panel id="usage" collapsed>
-       <template #title>Usage</template>
-<p>You must define a few simple methods in your app to configure and coordinate the objects created by the <code translate="no" v-pre>pagy</code> method. Se the following examples and comments (adapted from the <a href="../../../sandbox/playground/#calendar">Calendar app code</a>)</p>
+   <doc-panel id="setup" collapsed>
+       <template #title>Setup</template>
+<p>You must define a few simple methods in your app to configure and coordinate the objects created by the <code translate="no" v-pre>pagy</code> method. See the following examples and comments <em>(adapted from the <a href="../../../sandbox/playground/#calendar">Calendar app code</a>)</em></p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">Controller</div>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby"># Note: All time values must be instances of ActiveSupport::TimeWithZone.
@@ -436,7 +429,7 @@ def pagy_calendar_filter(collection, from, to)
 end
 
 # OPTIONAL: return the array of counts per time unit
-# If this method is defined, pagy  will add an extra 'empty-page' CSS class 
+# If this method is defined, pagy  will add an extra 'empty-page' CSS class
 # to the links leading to empty pages, along with a title attribute containing information about each page link.
 def pagy_calendar_counts(collection, unit, from, to)
   # If collection is in order: :desc, add the reverse: true option to the next line
@@ -469,6 +462,19 @@ end</code></pre>
 &lt;a href=&quot;&lt;%= @calendar.url_at(Time.zone.now) %&gt;&quot;&gt;Go to now&lt;/a&gt;</code></pre>
 </doc-codeblock></div>
    </doc-panel>
+   <doc-panel id="usage">
+       <template #title>Usage</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">  @calendar, @pagy, @records = pagy(:calendar, collection, year: {}, month: {}, offset: {})</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><code translate="no" v-pre>@calendar</code> is a specialized hash that contains the pagy time unit objects (e.g., <code translate="no" v-pre>:year</code> and <code translate="no" v-pre>:month</code> in this example).</li>
+<li><code translate="no" v-pre>@pagy</code> is the object representing the current page of records.</li>
+<li><code translate="no" v-pre>@records</code> is the paginated subset of the collection.</li>
+<li>The <code translate="no" v-pre>:year</code> and <code translate="no" v-pre>:month</code> parameters create time unit objects (default options are used in this example).</li>
+<li><code translate="no" v-pre>:offset</code> is the offset instance that paginates the time-filtered collection.</li>
+</ul>
+   </doc-panel>
    <doc-panel id="calendar-configuration" collapsed>
        <template #title>Calendar Configuration</template>
 <p>The calendar configuration defines the calendar objects to be generated. These objects filter the collection by the selected time units.</p>
@@ -497,24 +503,15 @@ end</code></pre>
    </doc-panel>
    <doc-panel id="calendar-methods" collapsed>
        <template #title>Calendar Methods</template>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-base-border" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-medium leading-snug text-gray-900 border-b border-base-border dark:text-white">
-        <span><code translate="no" v-pre>@calendar.url_at(time_with_zone, **options)</code></span>
-    </div>
-    <div class="px-5 py-3 docs-columns-content">
-<p>Returns a URL complete with all parameters for the pages in each filter bar that includes the given time. For example:
+<dl>
+<dt><code translate="no" v-pre>@calendar.url_at(time, **options)</code></dt>
+<dd><p>Returns a URL complete with all parameters for the pages in each filter bar that includes the given time. For example:
 <code translate="no" v-pre>@calendar.url_at(Time.zone.now)</code> generates the filter bar URLs pointing to today.</p>
 <p>If <code translate="no" v-pre>time</code> is outside the pagination range it raises a <code translate="no" v-pre>Pagy::RangeError</code>, however you can pass the <code translate="no" v-pre>fit_time: true</code> option to avoid the error and get the url to the page closest to the passed time argument (first or last page).</p>
-    </div>
-</div>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-base-border" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-medium leading-snug text-gray-900 border-b border-base-border dark:text-white">
-        <span><code translate="no" v-pre>@calendar.showtime</code></span>
-    </div>
-    <div class="px-5 py-3 docs-columns-content">
-<p>Displays the time of the smallest time unit currently visible on the calendar.</p>
-    </div>
-</div>
+</dd>
+<dt><code translate="no" v-pre>@calendar.showtime</code></dt>
+<dd>Displays the time of the smallest time unit currently visible on the calendar.</dd>
+</dl>
    </doc-panel>
    <doc-panel id="unit-options" collapsed>
        <template #title>Unit Options</template>
@@ -527,7 +524,7 @@ end</code></pre>
    </doc-panel>
    <doc-panel id="offset-configuration" collapsed>
        <template #title>Offset configuration</template>
-<p>This is the optional configuration for the core <code translate="no" v-pre>:offset</code> paginator. If omitted a default one will be created. It is always used, regardless of the <code translate="no" v-pre>:disabled</code> flag value.</p>
+<p>This is the optional configuration for the core <a href="../offset/">:offset</a> paginator. If omitted a default one will be created. It is always used, regardless of the <code translate="no" v-pre>:disabled</code> flag value.</p>
 <p>It is not subject to the restrictions mentioned in the <doc-anchor-trigger to="#calendar-configuration">Calendar configuration</doc-anchor-trigger>.</p>
    </doc-panel>
    <doc-panel id="localization" collapsed>
@@ -562,8 +559,8 @@ end</code></pre>
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-19T13:19:16" title="2026-03-19" data-absolute-label="Last updated on 2026-03-19" data-absolute-label-html="Last updated on 2026-03-19" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-03-19
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-21T12:08:29" title="2026-03-21" data-absolute-label="Last updated on 2026-03-21" data-absolute-label-html="Last updated on 2026-03-21" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-03-21
                     </time>
                 </div>
 

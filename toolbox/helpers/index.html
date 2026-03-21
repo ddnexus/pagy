@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827370793153">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827386251926">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.3.0">
@@ -34,12 +34,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.3.0.827370793153" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.3.0.827386251926" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.3.0.827370793153" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.3.0.827386251926" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.3.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.3.0.827370793153" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.3.0.827370793153" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.3.0.827386251926" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.3.0.827386251926" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -139,6 +139,9 @@
     <!-- ai_widget_end -->
 
     <style>
+      .sidebar-right {
+        display: none;
+      }
       .compact-dl div {
         border: none !important;
         margin: 0;
@@ -193,7 +196,7 @@
                             <img class="max-h-10 hidden dark:inline-block" src="../../assets/images/pagy-the-frog.png" alt="" width="300" height="281">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.1</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.2</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -366,38 +369,10 @@
     </div>
 </div>
 <doc-panels>
-   <doc-panel id="common-options" collapsed>
-       <template #title>Common Options</template>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-success"></div>
-    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-callout-success" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
-                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-            <h5>Helpers can inherit and override options</h5>
-<p>See also <a href="../configuration/options/">Options</a></p>
-        </div>
-    </div>
-</div>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-base-border" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-medium leading-snug text-gray-900 border-b border-base-border dark:text-white">
-        <span><code translate="no" v-pre>anchor_string: 'data-turbo-frame=&quot;paginate&quot;'</code></span>
-    </div>
-    <div class="px-5 py-3 docs-columns-content">
-<p>Concatenate a verbatim raw string to the internal HTML of the anchor tags. It must contain properly formatted HTML attributes. It&#x27;s not suitable for <code translate="no" v-pre>*_hash</code> helpers.</p>
-    </div>
-</div>
-   </doc-panel>
-   <doc-panel id="common-nav-styles" collapsed>
-       <template #title>Common Nav Styles</template>
+   <doc-panel id="shared-nav-styles" collapsed>
+       <template #title>Shared Nav Styles</template>
 <dl>
-<dt><code translate="no" v-pre>:pagy/nil</code> </dt>
+<dt><code translate="no" v-pre>:pagy/nil</code></dt>
 <dd>Pagy default style</dd>
 <dt><code translate="no" v-pre>:bootstrap</code></dt>
 <dd>Set <code translate="no" v-pre>classes: 'pagination pagination-sm any-class'</code> style option to override the default <code translate="no" v-pre>'pagination'</code> class.</dd>
@@ -405,8 +380,34 @@
 <dd>Set <code translate="no" v-pre>classes: 'pagination is-small any-class'</code> style option to override the default <code translate="no" v-pre>'pagination'</code> classes.</dd>
 </dl>
    </doc-panel>
-   <doc-panel id="common-nav-options" collapsed>
-       <template #title>Common Nav Options</template>
+   <doc-panel id="shared-options" collapsed>
+       <template #title>Shared Options</template>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-primary"></div>
+    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-callout-primary" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Helpers may add and document specific <a href="../configuration/options/">Options</a>.</h5>
+        </div>
+    </div>
+</div>
+<dl>
+<dt><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M21 12a9 9 0 0 1-9 9 9 9 0 0 1-9-9 9 9 0 0 1 9-9 9 9 0 0 1 9 9Zm-1.5 0a7.5 7.5 0 1 0-15 0 7.5 7.5 0 0 0 15 0Z"/><path d="M12 .25a.75.75 0 0 1 .75.75v5a.75.75 0 0 1-1.5 0V1A.75.75 0 0 1 12 .25Zm-6 11a.75.75 0 0 1 0 1.5H1a.75.75 0 0 1 0-1.5Zm17 0a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1 0-1.5Zm-11 6a.75.75 0 0 1 .75.75v5a.75.75 0 0 1-1.5 0v-5a.75.75 0 0 1 .75-.75Z"/></g></g></svg>  URL Options</dt>
+<dd>See <a href="../../resources/urls/#url-options">URL Options</a></dd>
+<dt><code translate="no" v-pre>anchor_string: 'data-turbo-frame=&quot;paginate&quot;'</code></dt>
+<dd>Concatenate a verbatim raw string to the internal HTML of the anchor tags. It must contain properly formatted HTML attributes. It&#x27;s not suitable for <code translate="no" v-pre>*_hash</code> helpers.</dd>
+</dl>
+   </doc-panel>
+   <doc-panel id="navs-shared-options" collapsed>
+       <template #title>Navs Shared Options</template>
 <dl>
 <dt><code translate="no" v-pre>id: 'my-nav'</code></dt>
 <dd>Set the <code translate="no" v-pre>id</code> HTML attribute of the <code translate="no" v-pre>nav</code> tag.</dd>
@@ -455,8 +456,8 @@
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-19T13:19:16" title="2026-03-19" data-absolute-label="Last updated on 2026-03-19" data-absolute-label-html="Last updated on 2026-03-19" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-03-19
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-21T12:08:29" title="2026-03-21" data-absolute-label="Last updated on 2026-03-21" data-absolute-label-html="Last updated on 2026-03-21" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-03-21
                     </time>
                 </div>
 

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827370793153">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827386251926">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.3.0">
@@ -34,12 +34,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../../resources/css/retype.css?v=4.3.0.827370793153" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.3.0.827386251926" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.3.0.827370793153" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.3.0.827386251926" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.3.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.3.0.827370793153" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.3.0.827370793153" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.3.0.827386251926" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.3.0.827386251926" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -139,6 +139,9 @@
     <!-- ai_widget_end -->
 
     <style>
+      .sidebar-right {
+        display: none;
+      }
       .compact-dl div {
         border: none !important;
         margin: 0;
@@ -193,7 +196,7 @@
                             <img class="max-h-10 hidden dark:inline-block" src="../../../assets/images/pagy-the-frog.png" alt="" width="300" height="281">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.1</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.2</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -352,7 +355,52 @@
     <span>Check it out with <code translate="no" v-pre>bundle exec pagy keyset</code></span>
 </a></p>
 </div>
-<div id="keyset-controller" class="codeblock-wrapper"><doc-codeblock>
+<doc-panels>
+   <doc-panel id="setup" collapsed>
+       <template #title>Setup</template>
+<p>Depending on your <strong>order requirements</strong>, here is how you set it up for maximum efficiency:</p>
+<doc-tabs>
+<doc-tab v-cloak id="specific-order">
+<template #title>Specific order</template>
+<doc-steps>
+   <doc-step id="ensure-that-your-set-is-uniquely-ordered" step-number="1">
+      <template #title>Ensure that your set is <code translate="no" v-pre>uniquely ordered</code></template>
+<p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border h-5 px-1.5 text-2xs rounded-full">
+    <span>Option 1</span>
+</span>  If the combination of the values of the ordered columns <strong>is certainly unique</strong>...</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">set = collection.order(:brand).order(:model)</code></pre>
+</doc-codeblock></div>
+<p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border h-5 px-1.5 text-2xs rounded-full">
+    <span>Option 2</span>
+</span>  If <strong>it&#x27;s possibly not unique</strong>, just append a unique column to the order (e.g., your primary keys).</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">set = collection.order(:last_name).order(:first_name).order(:id)</code></pre>
+</doc-codeblock></div>
+   </doc-step>
+   <doc-step id="ensure-that-your-table-has-the-appropriate-index-and-index-type" step-number="2">
+      <template #title>Ensure that your table has the appropriate index AND index type</template>
+<p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border h-5 px-1.5 text-2xs rounded-full">
+    <span>•1</span>
+</span>  The index must include the exact same columns and ordering direction of your set.<br>
+<span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border h-5 px-1.5 text-2xs rounded-full">
+    <span>•2</span>
+</span>  The index type must minimize the data scan (e.g. B-tree, B+ Tree, ...)</p>
+   </doc-step>
+</doc-steps>
+</doc-tab>
+<doc-tab v-cloak id="no-order">
+<template #title>No order</template>
+<p>Just order by <code translate="no" v-pre>:id</code>. It&#x27;s fast out of the box without any setup...</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">set = collection.order(:id)</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+</doc-tabs>
+   </doc-panel>
+   <doc-panel id="usage">
+       <template #title>Usage</template>
+<div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">Controller</div>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">@pagy, @records = pagy(:keyset, set, **options)</code></pre>
 </doc-codeblock></div>
@@ -360,36 +408,10 @@
 <li><code translate="no" v-pre>@pagy</code> is the pagination instance. It provides the <doc-anchor-trigger to="#readers">readers</doc-anchor-trigger> and the <a href="../../helpers/">helpers</a> to use in your code.</li>
 <li><code translate="no" v-pre>@records</code> is the eager-loaded <code translate="no" v-pre>Array</code> of the page records.</li>
 </ul>
-<div id="keyset-code-1" class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-erb"><code v-pre class="language-erb">&lt;!-- The only supported UI helper --&gt;
 &lt;%== @pagy.next_tag(text: 'Next page &amp;gt;') %&gt;</code></pre>
 </doc-codeblock></div>
-<doc-panels>
-   <doc-panel id="glossary" collapsed>
-       <template #title>Glossary</template>
-<p>There are a few peculiar aspects of the keyset pagination technique that you might not be familiar with. Here is a concise list:</p>
-<dl>
-<dt><code translate="no" v-pre>offset pagination</code></dt>
-<dd>The technique to fetch each page by incrementing the <code translate="no" v-pre>offset</code> from the collection start.<br/>It requires two queries per page (or only one if you use <a href="../countless/">countless</a>): it&#x27;s slow toward the end of big tables.<br/>It can be used for a rich frontend: it&#x27;s the classic pagy pagination.</dd>
-<dt><code translate="no" v-pre>keyset pagination</code></dt>
-<dd>The technique to fetch the next page starting after the latest fetched record in a <code translate="no" v-pre>uniquely ordered</code> collection.<br/>It requires only one query per page (without OFFSET). if properly indexed, it&#x27;s the fastest technique, regardless of the table size and position. Supports only infinite pagination, with no other frontend helpers.</dd>
-<dt><code translate="no" v-pre>keynav pagination</code></dt>
-<dd>The pagy exclusive technique to use <code translate="no" v-pre>keyset</code> pagination, providing <strong>nearly complete</strong> UI support. The fasted technique with UI capabilities.</dd>
-<dt><code translate="no" v-pre>uniquely ordered</code></dt>
-<dd>The property of a <code translate="no" v-pre>set</code>, when the concatenation of the values of the ordered columns is unique for each record. It is similar to a composite primary <code translate="no" v-pre>key</code> for the ordered table, but dynamically based on the <code translate="no" v-pre>keyset</code> columns.</dd>
-<dt><code translate="no" v-pre>set</code></dt>
-<dd>The <code translate="no" v-pre>uniquely ordered</code> <code translate="no" v-pre>ActiveRecord::Relation</code> or <code translate="no" v-pre>Sequel::Dataset</code> collection to paginate.</dd>
-<dt><code translate="no" v-pre>keyset</code></dt>
-<dd>The hash of column/order pairs. Pagy extracts it from the order of the <code translate="no" v-pre>set</code>.</dd>
-<dt><code translate="no" v-pre>keyset attributes</code></dt>
-<dd>The hash of attributes of the <code translate="no" v-pre>keyset</code> columns of a record.</dd>
-<dt><code translate="no" v-pre>cutoff</code></dt>
-<dd>The value that identifies where the <code translate="no" v-pre>page</code> ends, and the <code translate="no" v-pre>next</code> one begins. It is the <code translate="no" v-pre>Base64</code> URL-safe encoded string of the serialized array of the <code translate="no" v-pre>keyet attribute</code> values.</dd>
-<dt><code translate="no" v-pre>page</code></dt>
-<dd>The current <code translate="no" v-pre>page</code>, i.e. the page of records beginning after the <code translate="no" v-pre>cutoff</code> of the previous page. Also the <code translate="no" v-pre>:page</code> option, which is set to the <code translate="no" v-pre>cutoff</code> of the previous page</dd>
-<dt><code translate="no" v-pre>next</code></dt>
-<dd>The next <code translate="no" v-pre>page</code>, i.e. the page of records beginning after the <code translate="no" v-pre>cutoff</code>. Also the <code translate="no" v-pre>cutoff</code> value retured by the <code translate="no" v-pre>next</code> method.</dd>
-</dl>
    </doc-panel>
    <doc-panel id="features" collapsed>
        <template #title>Features</template>
@@ -438,7 +460,7 @@
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-            <h5>When possible, use the <a href="../keynav_js/">:keynav_js</a> paginator to overcome almost all these constraints.</h5>
+            <h5>When an UI is needed and using <a href="../../../guides/choose-right/#keyset">KEYSET Pagination</a> is possible, use the <a href="../keynav_js/">:keynav_js</a> paginator to overcome almost all these constraints.</h5>
         </div>
     </div>
 </div>
@@ -498,65 +520,33 @@ like:
     </div>
 </div>
    </doc-panel>
-   <doc-panel id="setup" collapsed>
-       <template #title>Setup</template>
-<p>Ensure that your set is <code translate="no" v-pre>uniquely ordered</code>, and that your tables have the appropriate indexes.</p>
-<p>Depending on your order requirements, here is how you set it up:</p>
-<doc-tabs>
-<doc-tab v-cloak id="no-order-requirements">
-<template #title>No order requirements</template>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-success"></div>
-    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-callout-success" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
-                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-            <h5>If you don&#x27;t need any specific ordering...</h5>
-<p><code translate="no" v-pre>order(:id)</code> is the simplest choice because the <code translate="no" v-pre>id</code> column is unique and already indexed.</p>
-<p>It is fast out of the box without any setup.
-<br><br><br><br></p>
-        </div>
-    </div>
-</div>
-</doc-tab>
-<doc-tab v-cloak id="specific-order-requirements">
-<template #title>Specific order requirements</template>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-success"></div>
-    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-callout-success" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
-                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-            <h5>If you need a specific ordering...</h5>
-<ul>
-<li><strong>In order to make it work</strong>...
-<ul>
-<li>Ensure the uniquenes of the last ordered columns OR append your primary keys to your order.</li>
-</ul>
-</li>
-<li><strong>In order to make it fast</strong>...<br/>
-<ul>
-<li>Ensure to have an index including the exact same columns and ordering direction of your set.</li>
-</ul>
-</li>
-</ul>
-        </div>
-    </div>
-</div>
-</doc-tab>
-</doc-tabs>
+   <doc-panel id="glossary" collapsed>
+       <template #title>Glossary</template>
+<p>There are a few peculiar aspects of the keyset pagination technique that you might not be familiar with. Here is a concise list:</p>
+<dl>
+<dt><code translate="no" v-pre>offset pagination</code></dt>
+<dd>The technique to fetch each page by incrementing the <code translate="no" v-pre>offset</code> from the collection start.<br/>It requires two queries per page (or only one if you use <a href="../countless/">countless</a>): it&#x27;s slow toward the end of big tables.<br/>It can be used for a rich frontend: it&#x27;s the classic pagy pagination.</dd>
+<dt><code translate="no" v-pre>keyset pagination</code></dt>
+<dd>The technique to fetch the next page starting after the latest fetched record in a <code translate="no" v-pre>uniquely ordered</code> collection.<br/>It requires only one query per page (without OFFSET). if properly indexed, it&#x27;s the fastest technique, regardless of the table size and position. Supports only infinite pagination, with no other frontend helpers.</dd>
+<dt><code translate="no" v-pre>keynav pagination</code></dt>
+<dd>The pagy exclusive technique to use <code translate="no" v-pre>keyset</code> pagination, providing <strong>nearly complete</strong> UI support. The fasted technique with UI capabilities.</dd>
+<dt><code translate="no" v-pre>uniquely ordered</code></dt>
+<dd>The property of a <code translate="no" v-pre>set</code>, when the concatenation of the values of the ordered columns is unique for each record. It is similar to a composite primary <code translate="no" v-pre>key</code> for the ordered table, but dynamically based on the <code translate="no" v-pre>keyset</code> columns.</dd>
+<dt><code translate="no" v-pre>set</code></dt>
+<dd>The <code translate="no" v-pre>uniquely ordered</code> <code translate="no" v-pre>ActiveRecord::Relation</code> or <code translate="no" v-pre>Sequel::Dataset</code> collection to paginate.</dd>
+<dt><code translate="no" v-pre>keyset</code></dt>
+<dd>The hash of column/order pairs. Pagy extracts it from the order of the <code translate="no" v-pre>set</code>.</dd>
+<dt><code translate="no" v-pre>keyset attributes</code></dt>
+<dd>The hash of attributes of the <code translate="no" v-pre>keyset</code> columns of a record.</dd>
+<dt><code translate="no" v-pre>cutoff</code></dt>
+<dd>The value that identifies where the <code translate="no" v-pre>page</code> ends, and the <code translate="no" v-pre>next</code> one begins. It is the <code translate="no" v-pre>Base64</code> URL-safe encoded string of the serialized array of the <code translate="no" v-pre>keyet attribute</code> values.</dd>
+<dt><code translate="no" v-pre>cutoffs</code></dt>
+<dd>The array of <code translate="no" v-pre>cutoff</code>s of the known pagination state, used only by <a href="../keynav_js/">keynav</a> to keep track of the visited pages during the navigation. They are cached in the <code translate="no" v-pre>sessionStorage</code> of the client.</dd>
+<dt><code translate="no" v-pre>page</code></dt>
+<dd>The current <code translate="no" v-pre>page</code>, i.e. the page of records beginning after the <code translate="no" v-pre>cutoff</code> of the previous page. Also the <code translate="no" v-pre>:page</code> option, which is set to the <code translate="no" v-pre>cutoff</code> of the previous page</dd>
+<dt><code translate="no" v-pre>next</code></dt>
+<dd>The next <code translate="no" v-pre>page</code>, i.e. the page of records beginning after the <code translate="no" v-pre>cutoff</code>. Also the <code translate="no" v-pre>cutoff</code> value retured by the <code translate="no" v-pre>next</code> method.</dd>
+</dl>
    </doc-panel>
    <doc-panel id="options" collapsed>
        <template #title>Options</template>
@@ -575,7 +565,7 @@ end</code></pre>
 </doc-codeblock></div>
 </dd>
 </dl>
-<p>See also <a href="../#common-options">Common Options</a></p>
+<p>See also <a href="../#shared-options">Paginators Shared Options</a></p>
    </doc-panel>
    <doc-panel id="readers" collapsed>
        <template #title>Readers</template>
@@ -583,7 +573,7 @@ end</code></pre>
 <dt><code translate="no" v-pre>records</code></dt>
 <dd>The <code translate="no" v-pre>Array</code> of fetched records for the current page.</dd>
 </dl>
-<p>See also <a href="../#common-readers">Common Readers</a></p>
+<p>See also <a href="../#shared-readers">Paginators Shared Readers</a></p>
    </doc-panel>
    <doc-panel id="how-it-works" collapsed>
        <template #title>How it works</template>
@@ -728,8 +718,8 @@ beginning of set &gt;[· · · · · · · · · X]· · · · · · · · · Y]
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-19T13:19:16" title="2026-03-19" data-absolute-label="Last updated on 2026-03-19" data-absolute-label-html="Last updated on 2026-03-19" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-03-19
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-21T12:08:29" title="2026-03-21" data-absolute-label="Last updated on 2026-03-21" data-absolute-label-html="Last updated on 2026-03-21" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-03-21
                     </time>
                 </div>
 

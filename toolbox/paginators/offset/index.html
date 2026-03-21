@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827370793153">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827386251926">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.3.0">
@@ -34,12 +34,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../../resources/css/retype.css?v=4.3.0.827370793153" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.3.0.827386251926" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.3.0.827370793153" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.3.0.827386251926" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.3.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.3.0.827370793153" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.3.0.827370793153" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.3.0.827386251926" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.3.0.827386251926" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -139,6 +139,9 @@
     <!-- ai_widget_end -->
 
     <style>
+      .sidebar-right {
+        display: none;
+      }
       .compact-dl div {
         border: none !important;
         margin: 0;
@@ -193,7 +196,7 @@
                             <img class="max-h-10 hidden dark:inline-block" src="../../../assets/images/pagy-the-frog.png" alt="" width="300" height="281">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.1</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.2</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -347,6 +350,12 @@
 <h2 id="offset"><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M11.22 5.22a.749.749 0 0 1 1.06 0l6.25 6.25a.749.749 0 0 1 0 1.06l-6.25 6.25a.749.749 0 1 1-1.06-1.06l4.969-4.97H1.75a.75.75 0 0 1 0-1.5h14.439L11.22 6.28a.749.749 0 0 1 0-1.06Zm10.03-1.47a.75.75 0 0 1 .75.75v15a.75.75 0 0 1-1.5 0v-15a.75.75 0 0 1 .75-.75Z"/></g></g></svg>  :offset</h2>
 <hr>
 <p><code translate="no" v-pre>:offset</code> is a generic <a href="../../../guides/choose-right/#offset">OFFSET</a> paginator usable with ORM collections or regular <code translate="no" v-pre>Array</code> objects.</p>
+<p>It uses the complete <a href="../../../guides/choose-right/#offset">OFFSET</a> pagination technique, which triggers two SQL queries per request:</p>
+<ul>
+<li>a <code translate="no" v-pre>COUNT</code> query to get the count</li>
+<li>an <code translate="no" v-pre>OFFSET</code> + <code translate="no" v-pre>LIMIT</code> query to get the records</li>
+</ul>
+<p>It <strong>fully</strong> supports all the helpers and navigators.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
@@ -360,17 +369,14 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Consider using the <code translate="no" v-pre>:countish</code> paginator when possible!</h5>
-<p>The <a href="../countish/">:countish</a> offers identical UI features but it&#x27;s faster.</p>
+<p>The <a href="../countish/">:countish</a> paginator offers identical UI features, but it&#x27;s up to 2x faster.</p>
         </div>
     </div>
 </div>
-<p>It uses the complete <a href="../../../guides/choose-right/#offset">OFFSET</a> pagination technique, which triggers two SQL queries per request:</p>
-<ul>
-<li>a <code translate="no" v-pre>COUNT</code> query to get the count</li>
-<li>an <code translate="no" v-pre>OFFSET</code> + <code translate="no" v-pre>LIMIT</code> query to get the records</li>
-</ul>
-<p>It <strong>fully</strong> supports all the helpers and navigators.</p>
-<div id="offset-controller" class="codeblock-wrapper"><doc-codeblock>
+<doc-panels>
+   <doc-panel id="usage">
+       <template #title>Usage</template>
+<div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">Controller</div>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">@pagy, @records = pagy(:offset, collection, **options)</code></pre>
 </doc-codeblock></div>
@@ -378,7 +384,7 @@
 <li><code translate="no" v-pre>@pagy</code> is the pagination instance. It provides the <doc-anchor-trigger to="#readers">readers</doc-anchor-trigger> and the <a href="../../helpers/">helpers</a> to use in your code.</li>
 <li><code translate="no" v-pre>@records</code> represents the paginated collection of records for the page (lazy-loaded records).</li>
 </ul>
-<doc-panels>
+   </doc-panel>
    <doc-panel id="options" collapsed>
        <template #title>Options</template>
 <dl>
@@ -387,7 +393,7 @@
 <dt><code translate="no" v-pre>raise_range_error: true</code></dt>
 <dd>Enable the <code translate="no" v-pre>Pagy::RangeError</code> (which is otherwise rescued to an empty page by default).</dd>
 </dl>
-<p>See also <a href="../#common-options">Common Options</a></p>
+<p>See also <a href="../#shared-options">Paginators Shared Options</a></p>
    </doc-panel>
    <doc-panel id="readers" collapsed>
        <template #title>Readers</template>
@@ -413,22 +419,22 @@
 <dt><code translate="no" v-pre>records</code></dt>
 <dd>The fetched records for the current page.</dd>
 </dl>
-<p>See also <a href="../#common-readers">Common Readers</a></p>
+<p>See also <a href="../#shared-readers">Paginators Shared Readers</a></p>
    </doc-panel>
    <doc-panel id="exceptions" collapsed>
        <template #title>Exceptions</template>
 <dl>
 <dt><code translate="no" v-pre>Pagy::RangeError</code></dt>
-<dd>A subclass of <a href="../#common-exceptions"><code translate="no" v-pre>Pagy::OptionError</code></a> raised when the <code translate="no" v-pre>raise_range_error: true</code> option is enabled.</dd>
+<dd>A subclass of <a href="../#shared-exceptions"><code translate="no" v-pre>Pagy::OptionError</code></a> raised when the <code translate="no" v-pre>raise_range_error: true</code> option is enabled.</dd>
 </dl>
-<p>See also <a href="../#common-exceptions">Common Exceptions</a></p>
+<p>See also <a href="../#shared-exceptions">Paginator Shared Exceptions</a></p>
    </doc-panel>
 </doc-panels>
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-19T13:19:16" title="2026-03-19" data-absolute-label="Last updated on 2026-03-19" data-absolute-label-html="Last updated on 2026-03-19" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-03-19
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-21T12:08:29" title="2026-03-21" data-absolute-label="Last updated on 2026-03-21" data-absolute-label-html="Last updated on 2026-03-21" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-03-21
                     </time>
                 </div>
 
