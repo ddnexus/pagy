@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827387006793">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827388931723">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.3.0">
@@ -34,12 +34,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.3.0.827387006793" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.3.0.827388931723" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.3.0.827387006793" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.3.0.827388931723" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.3.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.3.0.827387006793" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.3.0.827387006793" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.3.0.827388931723" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.3.0.827388931723" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -371,7 +371,7 @@
 <h3 id="steps">Steps</h3>
 <doc-steps>
    <doc-step id="replace-the-pagyrb-config-file" step-number="1">
-      <template #title>Replace the <code translate="no" v-pre>pagy.rb</code> config file</template>
+      <template #title>Replace the <code translate="no" v-pre>pagy.rb</code> config file...</template>
 <ul>
 <li>Rename your <code translate="no" v-pre>pagy.rb</code> initializer as <code translate="no" v-pre>pagy-old.rb</code></li>
 <li>Add the new <a href="../../toolbox/configuration/initializer/">pagy.rb</a> initializer in its place</li>
@@ -380,8 +380,8 @@
 </ul>
 <p><em>In the next steps we will use the <code translate="no" v-pre>pagy-old.rb</code> as the blueprint to guide most of the changes, and we will edit the new <code translate="no" v-pre>pagy.rb</code> as needed.</em></p>
    </doc-step>
-   <doc-step id="replace-your-used-extras" step-number="2">
-      <template #title>Replace your used extras</template>
+   <doc-step id="remove-your-used-extras" step-number="2">
+      <template #title>Remove your used extras...</template>
 <p>The new version doesn&#x27;t use the extras anymore. They got integrated in the core code, and a few have been discontinued.</p>
 <ul>
 <li>Search any active <code translate="no" v-pre>require 'pagy/extras/*</code> in the <code translate="no" v-pre>pagy-old.rb</code> file...</li>
@@ -973,8 +973,8 @@
    </doc-panel>
 </doc-panels>
    </doc-step>
-   <doc-step id="final-steps" step-number="3">
-      <template #title>Final steps</template>
+   <doc-step id="update-the-api" step-number="3">
+      <template #title>Update the API...</template>
 <doc-panels>
    <doc-panel id="search-and-replace" collapsed>
        <template #title>Search and replace</template>
@@ -1072,7 +1072,7 @@ querify = -&gt;(p) { p.except!('not_useful').merge!('custom' =&gt; 'useful') }</
 </doc-panels>
    </doc-step>
    <doc-step id="finalize-the-upgrade" step-number="4">
-      <template #title>Finalize the upgrade</template>
+      <template #title>Finalize the upgrade...</template>
 <doc-panels>
    <doc-panel id="javascript" collapsed>
        <template #title>Javascript</template>
@@ -1183,7 +1183,7 @@ querify = -&gt;(p) { p.except!('not_useful').merge!('custom' =&gt; 'useful') }</
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-21T12:08:29" title="2026-03-21" data-absolute-label="Last updated on 2026-03-21" data-absolute-label-html="Last updated on 2026-03-21" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-21T13:14:51" title="2026-03-21" data-absolute-label="Last updated on 2026-03-21" data-absolute-label-html="Last updated on 2026-03-21" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
                         Last updated on 2026-03-21
                     </time>
                 </div>
