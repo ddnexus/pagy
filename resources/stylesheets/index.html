@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827464173575">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827589654717">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.3.0">
@@ -34,12 +34,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.3.0.827464173575" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.3.0.827589654717" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.3.0.827464173575" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.3.0.827589654717" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.3.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.3.0.827464173575" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.3.0.827464173575" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.3.0.827589654717" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.3.0.827589654717" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -399,9 +399,7 @@
         </div>
     </div>
 </div>
-<br>
 <h3 id="setup">Setup</h3>
-<br>
 <doc-steps>
    <doc-step id="pick-a-file" step-number="1">
       <template #title>Pick a file...</template>
@@ -692,7 +690,7 @@ Pagy::SyncTask.new(:stylesheet, Rails.root.join('app/stylesheets'), 'pagy*')</co
 </doc-steps>
 <doc-panels>
    <doc-panel id="selectors" collapsed>
-       <template #title>Selectors</template>
+       <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M12.75 8a.75.75 0 0 0-1.5 0v2.701l-2.34-1.35a.75.75 0 0 0-.75 1.298L10.5 12l-2.34 1.35a.75.75 0 1 0 .75 1.3l2.34-1.35V16a.75.75 0 0 0 1.5 0v-2.701l2.34 1.35a.75.75 0 0 0 .75-1.298L13.5 12l2.34-1.35a.75.75 0 0 0-.75-1.3l-2.34 1.351V8Z"/><path d="M2 3.75C2 2.784 2.784 2 3.75 2h16.5c.966 0 1.75.784 1.75 1.75v16.5A1.75 1.75 0 0 1 20.25 22H3.75A1.75 1.75 0 0 1 2 20.25V3.75Zm1.75-.25a.25.25 0 0 0-.25.25v16.5c0 .138.112.25.25.25h16.5a.25.25 0 0 0 .25-.25V3.75a.25.25 0 0 0-.25-.25H3.75Z"/></g></g></svg>  Selectors</template>
 <p>To ensure a minimalistic valid output, complete with all the <a href="../aria/">ARIA attributes</a>, pagy outputs a single line with the minimum number of tags and attributes required to identify all the parts of the nav bars:</p>
 <ul>
 <li>The output of <code translate="no" v-pre>series_nav</code> and <code translate="no" v-pre>series_nav_js</code> helpers, is a series of <code translate="no" v-pre>a</code> tags inside a <code translate="no" v-pre>nav</code> tag wrapper.</li>
@@ -726,15 +724,15 @@ Pagy::SyncTask.new(:stylesheet, Rails.root.join('app/stylesheets'), 'pagy*')</co
 </div>
    </doc-panel>
    <doc-panel id="rtl" collapsed>
-       <template #title>RTL</template>
+       <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M10.78 19.03a.75.75 0 0 1-1.06 0l-6.25-6.25a.75.75 0 0 1 0-1.06l6.25-6.25a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L5.81 11.5h14.44a.75.75 0 0 1 0 1.5H5.81l4.97 4.97a.75.75 0 0 1 0 1.06Z"/></g></g></svg>  RTL</template>
 <p>The pagy stylesheets automatically support Right-To-Left (RTL) languages. It respects the standard <code translate="no" v-pre>dir=&quot;rtl&quot;</code> attribute of the <code translate="no" v-pre>html</code> tag or any parent element of the pagination.</p>
    </doc-panel>
 </doc-panels>
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-21T12:08:29" title="2026-03-21" data-absolute-label="Last updated on 2026-03-21" data-absolute-label-html="Last updated on 2026-03-21" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-03-21
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-23T21:00:00" title="2026-03-23" data-absolute-label="Last updated on 2026-03-23" data-absolute-label-html="Last updated on 2026-03-23" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-03-23
                     </time>
                 </div>
 

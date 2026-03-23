@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827464173575">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.3.0.827589654717">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.3.0">
@@ -34,12 +34,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.3.0.827464173575" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.3.0.827589654717" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.3.0.827464173575" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.3.0.827589654717" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.3.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.3.0.827464173575" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.3.0.827464173575" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.3.0.827589654717" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.3.0.827589654717" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -421,6 +421,7 @@
 <li>As you proceed, remove each entry from the <code translate="no" v-pre>pagy-old.rb</code>.</li>
 </ul>
 <h4 id="extras">Extras</h4>
+<br>
 <doc-panels>
    <doc-panel id="array" collapsed>
        <template #title><code translate="no" v-pre>array</code></template>
@@ -1081,7 +1082,7 @@
    </doc-panel>
    <doc-panel id="replace-the-params-variable" collapsed>
        <template #title>Replace the <code translate="no" v-pre>:params</code> variable...</template>
-<p>Use the <code translate="no" v-pre>:querify</code> option, which is a <code translate="no" v-pre>lambda</code> that can modify the string-keyed params hash at will. It is a bit more verbose, but it&#x27;s more powerful and low-level. It solves an incompatibility with the old high-level <code translate="no" v-pre>:params</code> hash/lambda and improves performance. It is part of the <a href="../../resources/urls/#url-options">URL Options</a> group that gives you full and efficient control over the URL composition. For example:</p>
+<p>Use the <code translate="no" v-pre>:querify</code> option, which is a <code translate="no" v-pre>lambda</code> that can modify the string-keyed params hash at will. It is a bit more verbose, but it&#x27;s more powerful and low-level. It solves an incompatibility with the old high-level <code translate="no" v-pre>:params</code> hash/lambda and improves performance. It is part of the <a href="../../resources/urls/#options">URL Options</a> group that gives you full and efficient control over the URL composition. For example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby"># Old symbol-keyed, high-level hash variable
 params: { a: 1, b: 2 }
@@ -1102,7 +1103,7 @@ querify = -&gt;(p) { p.except!('not_useful').merge!('custom' =&gt; 'useful') }</
 <doc-panels>
    <doc-panel id="javascript" collapsed>
        <template #title>Javascript</template>
-<p>If your <code translate="no" v-pre>pagy-old.rb</code> contains any JavaScript setup, it should still work, so you can move it to the <code translate="no" v-pre>pagy.rb</code> file, however, for apps with builders, consider using the new <a href="../../resources/javascript/#pick-a-configuration">Pagy.sync_javascript</a> and removing all the old entries from your JavaScript config files.</p>
+<p>If your <code translate="no" v-pre>pagy-old.rb</code> contains any JavaScript setup, it should still work, so you can move it to the <code translate="no" v-pre>pagy.rb</code> file, however, for apps with builders, consider using the new <a href="../../resources/javascript/#pick-a-configuration">Pagy.sync</a> and removing all the old entries from your JavaScript config files.</p>
    </doc-panel>
    <doc-panel id="stylesheets" collapsed>
        <template #title>Stylesheets</template>
@@ -1132,7 +1133,7 @@ querify = -&gt;(p) { p.except!('not_useful').merge!('custom' =&gt; 'useful') }</
 </span>   If your <code translate="no" v-pre>pagy-old.rb</code> contains the <code translate="no" v-pre>Pagy::I18n</code> setup, and the setup includes some custom dictionary file, then uncomment and set up the relevant <code translate="no" v-pre>Pagy::I18n</code> lookup section in the <code translate="no" v-pre>pagy.rb</code> file. <em>(See the <a href="../../resources/i18n/">I18n docs</a> for details)</em></p>
 <p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border h-5 px-1.5 text-2xs rounded-full">
     <span>•2</span>
-</span>   Update your custom dictionary files (if any) to the new <a href="../../resources/i18n/#dictionary-file-example">dictionary structure</a>, or they won&#x27;t work correctly.</p>
+</span>   Update your custom dictionary files (if any) to the new <a href="../../resources/i18n/#sample-dictionary">dictionary structure</a>, or they won&#x27;t work correctly.</p>
 <p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border h-5 px-1.5 text-2xs rounded-full">
     <span>•3</span>
 </span>  Remove all the I18n code from the <code translate="no" v-pre>pagy-old.rb</code>. All the locales are autoloaded when your app uses them.</p>
@@ -1227,8 +1228,8 @@ querify = -&gt;(p) { p.except!('not_useful').merge!('custom' =&gt; 'useful') }</
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-22T09:38:58" title="2026-03-22" data-absolute-label="Last updated on 2026-03-22" data-absolute-label-html="Last updated on 2026-03-22" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-03-22
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-23T21:00:00" title="2026-03-23" data-absolute-label="Last updated on 2026-03-23" data-absolute-label-html="Last updated on 2026-03-23" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-03-23
                     </time>
                 </div>
 
