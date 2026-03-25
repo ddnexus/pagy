@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.4.0.827750744262">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.4.0.827764614117">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.4.0">
@@ -34,12 +34,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.4.0.827750744262" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.4.0.827764614117" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.4.0.827750744262" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.4.0.827764614117" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.4.0.827750744262" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.4.0.827750744262" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.4.0.827764614117" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.4.0.827764614117" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -424,8 +424,9 @@
 <li>When you find one, follow the specific section below to upgrade your code.</li>
 <li>As you proceed, remove each entry from the <code translate="no" v-pre>pagy-old.rb</code>.</li>
 </ul>
-<h4 id="extras">Extras</h4>
-<br>
+<doc-panel id="extras" collapsed>
+    <template #title>Extras</template>
+<div>
 <doc-panels expando>
    <doc-panel id="array" collapsed>
        <template #title><code translate="no" v-pre>array</code></template>
@@ -965,7 +966,7 @@
 <li>The <code translate="no" v-pre>:overflow</code> variable is not used anymore.</li>
 <li>If you did not use the extra (i.e., Pagy raised errors), set <code translate="no" v-pre>raise_range_error: true</code>.</li>
 <li>If you used <code translate="no" v-pre>overflow: :empty_page</code> or just required the overflow extra, simply remove it (this is now the default behavior).</li>
-<li>If you used <code translate="no" v-pre>overflow: :last_page</code> and still want this behavior despite the reasons above, see this <a href="https://ddnexus.github.io/pagy/guides/how-to/#raise-pagyrangeerror-exceptions" class="outbound" target="_blank"><span>How To Example</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.</li>
+<li>If you used <code translate="no" v-pre>overflow: :last_page</code> and still want this behavior despite the reasons above, see this <a href="../how-to/#pagyrangeerror">How To Example</a>.</li>
 </ul>
 </li>
 </ul>
@@ -1008,7 +1009,8 @@
 <li>Use an appropriate approach to address your requirement, such as utilizing URL rewriting at the HTTP server level.</li>
 </ul>
    </doc-panel>
-</doc-panels>
+</div>
+</doc-panel>
    </doc-step>
    <doc-step id="update-the-api" step-number="3">
       <template #title>Update the API...</template>
@@ -1232,7 +1234,7 @@ querify = -&gt;(p) { p.except!('not_useful').merge!('custom' =&gt; 'useful') }</
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-25T17:36:51" title="2026-03-25" data-absolute-label="Last updated on 2026-03-25" data-absolute-label-html="Last updated on 2026-03-25" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-25T20:47:54" title="2026-03-25" data-absolute-label="Last updated on 2026-03-25" data-absolute-label-html="Last updated on 2026-03-25" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
                         Last updated on 2026-03-25
                     </time>
                 </div>
