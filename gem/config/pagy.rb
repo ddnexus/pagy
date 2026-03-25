@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (43.4.2)
+# Pagy initializer file (43.4.3)
 # See https://ddnexus.github.io/pagy/toolbox/configuration/initializer/
 
 
@@ -10,8 +10,7 @@
 # For example:
 #
 # Pagy::OPTIONS[:limit] = 10               # Limit the items per page
-# Pagy::OPTIONS[:client_max_limit] = 100   # The client can request a limit up to 100
-# Pagy::OPTIONS[:max_pages] = 200          # Allow only 200 pages
+# Pagy::OPTIONS[:client_max_limit] = 100   # The client is allowed to request a limit up to 100
 # Pagy::OPTIONS[:jsonapi] = true           # Use JSON:API compliant URLs
 
 Pagy::OPTIONS.freeze

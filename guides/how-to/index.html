@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.4.0.827677067723">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.4.0.827750744262">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.4.0">
@@ -34,12 +34,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.4.0.827677067723" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.4.0.827750744262" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.4.0.827677067723" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.4.0.827750744262" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.4.0.827677067723" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.4.0.827677067723" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.4.0.827750744262" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.4.0.827750744262" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -212,7 +212,7 @@
                             <img class="max-h-10 md:inline-block" src="../../assets/images/pagy-the-frog.png" alt="" width="43" height="40">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.2</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.4.3</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -396,9 +396,9 @@
        <template #title>Control the items per page</template>
 <dl>
 <dt id="fixed">Fixed</dt>
-<dd>Use the <code translate="no" v-pre>:limit</code> option to set the number of items to serve with each page. <em>(See <a href="../../toolbox/paginators/#shared-options">Paginators Shared Options</a>)</em></dd>
+<dd>Pass the <code translate="no" v-pre>:limit</code> option to the paginator to set the number of items to serve with each page.</dd>
 <dt id="requestable">Requestable</dt>
-<dd>Use the <code translate="no" v-pre>:limit</code> option combined with the <code translate="no" v-pre>:client_max_limit</code> option, allowing the client to request a variable <code translate="no" v-pre>:limit</code> up to the specified <code translate="no" v-pre>:client_max_limit</code>. <em>(See <a href="../../toolbox/paginators/#shared-options">Paginators Shared Options</a>)</em></dd>
+<dd>Pass the <code translate="no" v-pre>:limit</code> option combined with the <code translate="no" v-pre>:client_max_limit</code> option to the paginator, allowing the client to request a variable <code translate="no" v-pre>:limit</code> up to the specified <code translate="no" v-pre>:client_max_limit</code>.</dd>
 <dt id="interactive">Interactive</dt>
 <dd>Use the <a href="../../toolbox/helpers/limit_tag_js/">limit_tag_js</a> helper to provide a UI selector to the user.</dd>
 </dl>
@@ -423,7 +423,7 @@
    <doc-panel id="customize-the-aria-labels" collapsed>
        <template #title>Customize the ARIA labels</template>
 <p>You can customize the <code translate="no" v-pre>aria-label</code> attributes of any <code translate="no" v-pre>*nav*</code> helper by providing a <code translate="no" v-pre>:aria_label</code> string.</p>
-<p>See the <a href="../../toolbox/helpers/#navs-shared-options">:aria_label</a> option.</p>
+<p>Pass the <code translate="no" v-pre>:aria_label</code> option to the helper.</p>
 <p>You can also replace the <code translate="no" v-pre>pagy.aria_label.nav</code> strings in the dictionary, as well as the <code translate="no" v-pre>pagy.aria_label.previous</code> and the <code translate="no" v-pre>pagy.aria_label.next</code>.</p>
 <p>See <a href="../../resources/aria/">ARIA</a>.</p>
    </doc-panel>
@@ -454,7 +454,7 @@
    </doc-panel>
    <doc-panel id="add-html-attributes-to-the-anchor-tags-links" collapsed>
        <template #title>Add HTML attributes to the anchor tags (links)</template>
-<p>Use the <a href="../../toolbox/helpers/#shared-options">:anchor_string</a>. It&#x27;s especially useful for adding <code translate="no" v-pre>data-turbo-*</code> or <code translate="no" v-pre>data-*</code> Stimulus attributes.</p>
+<p>Pass the <code translate="no" v-pre>:anchor_string</code> option to the helper. It&#x27;s especially useful for adding <code translate="no" v-pre>data-turbo-*</code> or <code translate="no" v-pre>data-*</code> Stimulus attributes.</p>
    </doc-panel>
    <doc-panel id="customize-css-styles" collapsed>
        <template #title>Customize CSS styles</template>
@@ -555,8 +555,8 @@ Pagy::AnyModule.prepend MyOverridingModule</code></pre>
 <ul>
 <li><a href="../../toolbox/paginators/keyset/">:keyset paginator</a></li>
 <li><a href="../../toolbox/helpers/headers_hash/">headers_hash helper</a></li>
-<li><a href="../../toolbox/paginators/#shared-options">:client_max_limit option</a></li>
-<li><a href="../../toolbox/paginators/#shared-options">:jsonapi option</a></li>
+<li><code translate="no" v-pre>:client_max_limit</code> paginator option</li>
+<li><code translate="no" v-pre>:jsonapi option</code> paginator option</li>
 </ul>
    </doc-panel>
    <doc-panel id="paginate-for-javascript-frameworks" collapsed>
@@ -658,9 +658,16 @@ end</code></pre>
    </doc-panel>
 </div>
    </doc-panel>
-   <doc-panel id="paginate-only-max_pages-regardless-of-the-count" collapsed>
-       <template #title>Paginate only max_pages, regardless of the count</template>
-<p>See <a href="../../toolbox/paginators/#shared-options">:max_pages</a> option</p>
+   <doc-panel id="paginate-only-max-records" collapsed>
+       <template #title>Paginate only MAX records</template>
+<p>You may want to limit the availability of your records either for speeding up the DB queries (especially important if you use <a href="../choose-right/#offset">OFFSET</a> pagination), or simply to avoid exposing all your data to scrapers.</p>
+<p>The best way to ensure this is limiting your collection with <code translate="no" v-pre>limit(max_count)</code>, and passing it as a sub-collection to <code translate="no" v-pre>pagy</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">collection      = Product.where(...).limit(1000)
+sub_collection  = collection.from(collection, :products)
+@pagy, @records = pagy(:offset, sub_collection, ...)</code></pre>
+</doc-codeblock></div>
+<p>It works with all <a href="../choose-right/#offset">OFFSET</a> and <a href="../choose-right/#keyset">KEYSET</a> paginators.</p>
    </doc-panel>
    <doc-panel id="paginate-collections-with-metadata" collapsed>
        <template #title>Paginate collections with metadata</template>
@@ -863,7 +870,7 @@ require &quot;pagy/toolbox/helpers/support/a_lambda&quot;</code></pre>
    </doc-panel>
    <doc-panel id="use-pagy-with-non-rack-apps" collapsed>
        <template #title>Use Pagy with non-rack apps</template>
-<p>For non-rack environments that don&#x27;t respond to the request method, you should pass the <a href="../../toolbox/paginators/#shared-options">:request</a> option to the paginator.</p>
+<p>For non-rack environments that don&#x27;t respond to the request method, you should pass the <code translate="no" v-pre>:request</code> option to the paginator.</p>
    </doc-panel>
    <doc-panel id="use-pagy-outside-controllers-or-views" collapsed>
        <template #title>Use <code translate="no" v-pre>pagy</code> outside controllers or views</template>
@@ -946,8 +953,8 @@ end</code></pre>
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-23T21:00:00" title="2026-03-23" data-absolute-label="Last updated on 2026-03-23" data-absolute-label-html="Last updated on 2026-03-23" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-03-23
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-25T17:36:51" title="2026-03-25" data-absolute-label="Last updated on 2026-03-25" data-absolute-label-html="Last updated on 2026-03-25" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-03-25
                     </time>
                 </div>
 
