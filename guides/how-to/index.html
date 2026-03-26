@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.4.0.827764614117">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.4.0.827824549743">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.4.0">
@@ -34,12 +34,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.4.0.827764614117" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.4.0.827824549743" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.4.0.827764614117" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.4.0.827824549743" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.4.0.827764614117" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.4.0.827764614117" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.4.0.827824549743" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.4.0.827824549743" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -460,15 +460,18 @@
        <template #title>Customize CSS styles</template>
 <p>Pagy includes different formats of <a href="../../resources/stylesheets/">stylesheets</a> for customization, as well as styled <code translate="no" v-pre>nav</code> tags for <code translate="no" v-pre>:bootstrap</code> and <code translate="no" v-pre>:bulma</code>.</p>
 <p>You can also override the specific helper method.</p>
-   </doc-panel>
-   <doc-panel id="override-css-rules-in-element-style-attribute" collapsed>
-       <template #title>Override CSS rules in element &quot;style&quot; attribute</template>
+<div>
+<doc-panels>
+   <doc-panel id="override-th-element-style-attribute" collapsed>
+       <template #title>Override th element &quot;style&quot; attribute</template>
 <p>The <code translate="no" v-pre>input_nav_js</code> and <code translate="no" v-pre>limit_tag_js</code> use inline style attributes. You can override these rules in your stylesheet files using the <code translate="no" v-pre>[style]</code> attribute selector and <code translate="no" v-pre>!important</code>. Below is an example of overriding the <code translate="no" v-pre>width</code> of an <code translate="no" v-pre>input</code> element:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-css"><code v-pre class="language-css">.pagy input[style] {
   width: 5rem !important; /* just an useless example */
 }</code></pre>
 </doc-codeblock></div>
+   </doc-panel>
+</div>
    </doc-panel>
    <doc-panel id="override-pagy-methods" collapsed>
        <template #title>Override pagy methods</template>
@@ -502,11 +505,11 @@ Pagy::AnyModule.prepend MyOverridingModule</code></pre>
 <div>
 <doc-panels expando>
    <doc-panel id="grouped-collections" collapsed>
-       <template #title>Grouped collections</template>
+       <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M12 1.25c2.487 0 4.773.402 6.466 1.079.844.337 1.577.758 2.112 1.264.536.507.922 1.151.922 1.907v12.987l-.026.013h.026c0 .756-.386 1.4-.922 1.907-.535.506-1.268.927-2.112 1.264-1.693.677-3.979 1.079-6.466 1.079s-4.774-.402-6.466-1.079c-.844-.337-1.577-.758-2.112-1.264C2.886 19.9 2.5 19.256 2.5 18.5h.026l-.026-.013V5.5c0-.756.386-1.4.922-1.907.535-.506 1.268-.927 2.112-1.264C7.226 1.652 9.513 1.25 12 1.25ZM4 14.371v4.116l-.013.013H4c0 .211.103.487.453.817.351.332.898.666 1.638.962 1.475.589 3.564.971 5.909.971 2.345 0 4.434-.381 5.909-.971.739-.296 1.288-.63 1.638-.962.349-.33.453-.607.453-.817h.013L20 18.487v-4.116a7.85 7.85 0 0 1-1.534.8c-1.693.677-3.979 1.079-6.466 1.079s-4.774-.402-6.466-1.079a7.843 7.843 0 0 1-1.534-.8ZM20 12V7.871a7.85 7.85 0 0 1-1.534.8C16.773 9.348 14.487 9.75 12 9.75s-4.774-.402-6.466-1.079A7.85 7.85 0 0 1 4 7.871V12c0 .21.104.487.453.817.35.332.899.666 1.638.961 1.475.59 3.564.972 5.909.972 2.345 0 4.434-.382 5.909-.972.74-.295 1.287-.629 1.638-.96.35-.33.453-.607.453-.818ZM4 5.5c0 .211.103.487.453.817.351.332.898.666 1.638.962 1.475.589 3.564.971 5.909.971 2.345 0 4.434-.381 5.909-.971.739-.296 1.288-.63 1.638-.962.349-.33.453-.607.453-.817 0-.211-.103-.487-.453-.817-.351-.332-.898-.666-1.638-.962-1.475-.589-3.564-.971-5.909-.971-2.345 0-4.434.381-5.909.971-.739.296-1.288.63-1.638.962C4.104 5.013 4 5.29 4 5.5Z"/></g></g></svg>  Grouped collections</template>
 <p>For better performance of grouped counts, you may want to use the <a href="../../toolbox/paginators/offset/#options">:count_over</a> option</p>
    </doc-panel>
    <doc-panel id="decorated-collections" collapsed>
-       <template #title>Decorated collections</template>
+       <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M12 1.25c2.487 0 4.773.402 6.466 1.079.844.337 1.577.758 2.112 1.264.536.507.922 1.151.922 1.907v12.987l-.026.013h.026c0 .756-.386 1.4-.922 1.907-.535.506-1.268.927-2.112 1.264-1.693.677-3.979 1.079-6.466 1.079s-4.774-.402-6.466-1.079c-.844-.337-1.577-.758-2.112-1.264C2.886 19.9 2.5 19.256 2.5 18.5h.026l-.026-.013V5.5c0-.756.386-1.4.922-1.907.535-.506 1.268-.927 2.112-1.264C7.226 1.652 9.513 1.25 12 1.25ZM4 14.371v4.116l-.013.013H4c0 .211.103.487.453.817.351.332.898.666 1.638.962 1.475.589 3.564.971 5.909.971 2.345 0 4.434-.381 5.909-.971.739-.296 1.288-.63 1.638-.962.349-.33.453-.607.453-.817h.013L20 18.487v-4.116a7.85 7.85 0 0 1-1.534.8c-1.693.677-3.979 1.079-6.466 1.079s-4.774-.402-6.466-1.079a7.843 7.843 0 0 1-1.534-.8ZM20 12V7.871a7.85 7.85 0 0 1-1.534.8C16.773 9.348 14.487 9.75 12 9.75s-4.774-.402-6.466-1.079A7.85 7.85 0 0 1 4 7.871V12c0 .21.104.487.453.817.35.332.899.666 1.638.961 1.475.59 3.564.972 5.909.972 2.345 0 4.434-.382 5.909-.972.74-.295 1.287-.629 1.638-.96.35-.33.453-.607.453-.818ZM4 5.5c0 .211.103.487.453.817.351.332.898.666 1.638.962 1.475.589 3.564.971 5.909.971 2.345 0 4.434-.381 5.909-.971.739-.296 1.288-.63 1.638-.962.349-.33.453-.607.453-.817 0-.211-.103-.487-.453-.817-.351-.332-.898-.666-1.638-.962-1.475-.589-3.564-.971-5.909-.971-2.345 0-4.434.381-5.909.971-.739.296-1.288.63-1.638.962C4.104 5.013 4 5.29 4 5.5Z"/></g></g></svg>  Decorated collections</template>
 <p>Do it in two steps:</p>
 <doc-steps>
    <doc-step id="get-the-page-of-records-without-decoration" step-number="1">
@@ -526,7 +529,7 @@ Pagy::AnyModule.prepend MyOverridingModule</code></pre>
 </doc-steps>
    </doc-panel>
    <doc-panel id="custom-scopecount" collapsed>
-       <template #title>Custom scope/count</template>
+       <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M12 1.25c2.487 0 4.773.402 6.466 1.079.844.337 1.577.758 2.112 1.264.536.507.922 1.151.922 1.907v12.987l-.026.013h.026c0 .756-.386 1.4-.922 1.907-.535.506-1.268.927-2.112 1.264-1.693.677-3.979 1.079-6.466 1.079s-4.774-.402-6.466-1.079c-.844-.337-1.577-.758-2.112-1.264C2.886 19.9 2.5 19.256 2.5 18.5h.026l-.026-.013V5.5c0-.756.386-1.4.922-1.907.535-.506 1.268-.927 2.112-1.264C7.226 1.652 9.513 1.25 12 1.25ZM4 14.371v4.116l-.013.013H4c0 .211.103.487.453.817.351.332.898.666 1.638.962 1.475.589 3.564.971 5.909.971 2.345 0 4.434-.381 5.909-.971.739-.296 1.288-.63 1.638-.962.349-.33.453-.607.453-.817h.013L20 18.487v-4.116a7.85 7.85 0 0 1-1.534.8c-1.693.677-3.979 1.079-6.466 1.079s-4.774-.402-6.466-1.079a7.843 7.843 0 0 1-1.534-.8ZM20 12V7.871a7.85 7.85 0 0 1-1.534.8C16.773 9.348 14.487 9.75 12 9.75s-4.774-.402-6.466-1.079A7.85 7.85 0 0 1 4 7.871V12c0 .21.104.487.453.817.35.332.899.666 1.638.961 1.475.59 3.564.972 5.909.972 2.345 0 4.434-.382 5.909-.972.74-.295 1.287-.629 1.638-.96.35-.33.453-.607.453-.818ZM4 5.5c0 .211.103.487.453.817.351.332.898.666 1.638.962 1.475.589 3.564.971 5.909.971 2.345 0 4.434-.381 5.909-.971.739-.296 1.288-.63 1.638-.962.349-.33.453-.607.453-.817 0-.211-.103-.487-.453-.817-.351-.332-.898-.666-1.638-.962-1.475-.589-3.564-.971-5.909-.971-2.345 0-4.434.381-5.909.971-.739.296-1.288.63-1.638.962C4.104 5.013 4 5.29 4 5.5Z"/></g></g></svg>  Custom scope/count</template>
 <p>If the default pagy doesn&#x27;t get the right count:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">controller</div>
@@ -535,7 +538,7 @@ Pagy::AnyModule.prepend MyOverridingModule</code></pre>
 </doc-codeblock></div>
    </doc-panel>
    <doc-panel id="ransack-results" collapsed>
-       <template #title>Ransack results</template>
+       <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M12 1.25c2.487 0 4.773.402 6.466 1.079.844.337 1.577.758 2.112 1.264.536.507.922 1.151.922 1.907v12.987l-.026.013h.026c0 .756-.386 1.4-.922 1.907-.535.506-1.268.927-2.112 1.264-1.693.677-3.979 1.079-6.466 1.079s-4.774-.402-6.466-1.079c-.844-.337-1.577-.758-2.112-1.264C2.886 19.9 2.5 19.256 2.5 18.5h.026l-.026-.013V5.5c0-.756.386-1.4.922-1.907.535-.506 1.268-.927 2.112-1.264C7.226 1.652 9.513 1.25 12 1.25ZM4 14.371v4.116l-.013.013H4c0 .211.103.487.453.817.351.332.898.666 1.638.962 1.475.589 3.564.971 5.909.971 2.345 0 4.434-.381 5.909-.971.739-.296 1.288-.63 1.638-.962.349-.33.453-.607.453-.817h.013L20 18.487v-4.116a7.85 7.85 0 0 1-1.534.8c-1.693.677-3.979 1.079-6.466 1.079s-4.774-.402-6.466-1.079a7.843 7.843 0 0 1-1.534-.8ZM20 12V7.871a7.85 7.85 0 0 1-1.534.8C16.773 9.348 14.487 9.75 12 9.75s-4.774-.402-6.466-1.079A7.85 7.85 0 0 1 4 7.871V12c0 .21.104.487.453.817.35.332.899.666 1.638.961 1.475.59 3.564.972 5.909.972 2.345 0 4.434-.382 5.909-.972.74-.295 1.287-.629 1.638-.96.35-.33.453-.607.453-.818ZM4 5.5c0 .211.103.487.453.817.351.332.898.666 1.638.962 1.475.589 3.564.971 5.909.971 2.345 0 4.434-.381 5.909-.971.739-.296 1.288-.63 1.638-.962.349-.33.453-.607.453-.817 0-.211-.103-.487-.453-.817-.351-.332-.898-.666-1.638-.962-1.475-.589-3.564-.971-5.909-.971-2.345 0-4.434.381-5.909.971-.739.296-1.288.63-1.638.962C4.104 5.013 4 5.29 4 5.5Z"/></g></g></svg>  Ransack results</template>
 <p>Ransack&#x27;s <code translate="no" v-pre>result</code> method returns an <code translate="no" v-pre>ActiveRecord</code> collection that is ready for pagination:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">controller</div>
@@ -544,7 +547,7 @@ Pagy::AnyModule.prepend MyOverridingModule</code></pre>
 </doc-codeblock></div>
    </doc-panel>
    <doc-panel id="postgresql-collections" collapsed>
-       <template #title>PostgreSQL Collections</template>
+       <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M12 1.25c2.487 0 4.773.402 6.466 1.079.844.337 1.577.758 2.112 1.264.536.507.922 1.151.922 1.907v12.987l-.026.013h.026c0 .756-.386 1.4-.922 1.907-.535.506-1.268.927-2.112 1.264-1.693.677-3.979 1.079-6.466 1.079s-4.774-.402-6.466-1.079c-.844-.337-1.577-.758-2.112-1.264C2.886 19.9 2.5 19.256 2.5 18.5h.026l-.026-.013V5.5c0-.756.386-1.4.922-1.907.535-.506 1.268-.927 2.112-1.264C7.226 1.652 9.513 1.25 12 1.25ZM4 14.371v4.116l-.013.013H4c0 .211.103.487.453.817.351.332.898.666 1.638.962 1.475.589 3.564.971 5.909.971 2.345 0 4.434-.381 5.909-.971.739-.296 1.288-.63 1.638-.962.349-.33.453-.607.453-.817h.013L20 18.487v-4.116a7.85 7.85 0 0 1-1.534.8c-1.693.677-3.979 1.079-6.466 1.079s-4.774-.402-6.466-1.079a7.843 7.843 0 0 1-1.534-.8ZM20 12V7.871a7.85 7.85 0 0 1-1.534.8C16.773 9.348 14.487 9.75 12 9.75s-4.774-.402-6.466-1.079A7.85 7.85 0 0 1 4 7.871V12c0 .21.104.487.453.817.35.332.899.666 1.638.961 1.475.59 3.564.972 5.909.972 2.345 0 4.434-.382 5.909-.972.74-.295 1.287-.629 1.638-.96.35-.33.453-.607.453-.818ZM4 5.5c0 .211.103.487.453.817.351.332.898.666 1.638.962 1.475.589 3.564.971 5.909.971 2.345 0 4.434-.381 5.909-.971.739-.296 1.288-.63 1.638-.962.349-.33.453-.607.453-.817 0-.211-.103-.487-.453-.817-.351-.332-.898-.666-1.638-.962-1.475-.589-3.564-.971-5.909-.971-2.345 0-4.434.381-5.909.971-.739.296-1.288.63-1.638.962C4.104 5.013 4 5.29 4 5.5Z"/></g></g></svg>  PostgreSQL Collections</template>
 <p><a href="../../toolbox/paginators/#troubleshooting">Always ensure your collections are ordered!</a></p>
    </doc-panel>
 </div>
@@ -660,14 +663,34 @@ end</code></pre>
    </doc-panel>
    <doc-panel id="paginate-only-max-records" collapsed>
        <template #title>Paginate only MAX records</template>
-<p>You may want to limit the availability of your records either for speeding up the DB queries (especially important if you use <a href="../choose-right/#offset">OFFSET</a> pagination), or simply to avoid exposing all your data to scrapers.</p>
-<p>The best way to ensure this is limiting your collection with <code translate="no" v-pre>limit(max_count)</code>, and passing it as a sub-collection to <code translate="no" v-pre>pagy</code>:</p>
+<p>You may want to limit the availability of your records either for speeding up the DB queries (especially useful with <a href="../choose-right/#offset">OFFSET</a> paginators with big tables), or simply to avoid exposing all your data to scrapers.</p>
+<p>The best way to ensure it, is creating a limited collection using an ActiveRecord Virtual Table:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">collection      = Product.where(...).limit(1000)
-sub_collection  = collection.from(collection, :products)
-@pagy, @records = pagy(:offset, sub_collection, ...)</code></pre>
+<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">max_records     = 10_000
+collection      = Product.where(...).limit(max_records)   # Add the max_records limit to your collection
+limited         = collection.from(collection, :products)  # Create a limited collection using the :products Virtual Table
+@pagy, @records = pagy(:offset, limited, **options)       # Paginate the limited collection</code></pre>
 </doc-codeblock></div>
-<p>It works with all <a href="../choose-right/#offset">OFFSET</a> and <a href="../choose-right/#keyset">KEYSET</a> paginators.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-success"></div>
+    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="block text-callout-success" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
+                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<ul>
+<li>It works with all <a href="../choose-right/#offset">OFFSET</a> and <a href="../choose-right/#keyset">KEYSET</a> paginators.</li>
+<li>It produces faster COUNT and OFFSET queries, limiting the table scan</li>
+<li>It enforces strict control over the quantity of records you expose</li>
+</ul>
+        </div>
+    </div>
+</div>
    </doc-panel>
    <doc-panel id="paginate-collections-with-metadata" collapsed>
        <template #title>Paginate collections with metadata</template>
@@ -694,16 +717,6 @@ tobj = Tmdb::Search.movie(&quot;Harry Potter&quot;, page: params[:page])
 <pre translate="no" class="language-erb"><code v-pre class="language-erb">&lt;%== @pagy.series_nav if @pagy.last &gt; 1 %&gt;</code></pre>
 </doc-codeblock></div>
    </doc-panel>
-   <doc-panel id="deal-with-a-slow-collection-count" collapsed>
-       <template #title>Deal with a slow collection COUNT(*)</template>
-<p>Check out these paginators:</p>
-<ul>
-<li><a href="../../toolbox/paginators/countish/">:countish</a></li>
-<li><a href="../../toolbox/paginators/countless/">:countless</a></li>
-<li><a href="../../toolbox/paginators/keyset/">:keyset</a></li>
-<li><a href="../../toolbox/paginators/keynav_js/">:keynav_js</a></li>
-</ul>
-   </doc-panel>
    <doc-panel id="maximize-performance" collapsed>
        <template #title>Maximize Performance</template>
 <ul>
@@ -719,6 +732,11 @@ tobj = Tmdb::Search.movie(&quot;Harry Potter&quot;, page: params[:page])
 <ul>
 <li><a href="../../toolbox/helpers/series_nav_js/">series_nav_js</a></li>
 <li><a href="../../toolbox/helpers/input_nav_js/">series_nav_js</a></li>
+</ul>
+</li>
+<li>When possible
+<ul>
+<li><a href="./#paginate-only-max-records">Paginate only MAX records</a></li>
 </ul>
 </li>
 </ul>
@@ -758,24 +776,6 @@ end</code></pre>
 </doc-codeblock></div>
    </doc-panel>
 </div>
-   </doc-panel>
-   <doc-panel id="manage-bad-bot-requests" collapsed>
-       <template #title>Manage bad bot requests</template>
-<p>Bots may attempt to sniff your app by posting questionable page params e.g. <code translate="no" v-pre>https://some_url&amp;page=password</code> and generate tons of annoying bad request errors.</p>
-<p>Here is a snippet to handle that:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">controller</div>
-<pre translate="no" class="language-ruby"><code v-pre class="language-ruby">rescue_from Pagy::OptionError do |exception|
-  if exception.option == :page
-    # apply your own logic to handle / not handle the exception
-    redirect_to action: :index, params: request.query_parameters.merge(page: 1) # redirect to the first page
-    # or just force the page without redirecting
-    # @pagy, @records = pagy(:offset, collection, page: 1)
-  else
-    raise
-  end
-end</code></pre>
-</doc-codeblock></div>
    </doc-panel>
    <doc-panel id="test-with-pagy" collapsed>
        <template #title>Test with Pagy</template>
@@ -952,8 +952,8 @@ end</code></pre>
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-25T20:47:54" title="2026-03-25" data-absolute-label="Last updated on 2026-03-25" data-absolute-label-html="Last updated on 2026-03-25" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-03-25
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-26T14:15:08" title="2026-03-26" data-absolute-label="Last updated on 2026-03-26" data-absolute-label-html="Last updated on 2026-03-26" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-03-26
                     </time>
                 </div>
 
