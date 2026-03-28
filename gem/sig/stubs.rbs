@@ -1,0 +1,14 @@
+module LLHttp
+  class Parser
+  end
+
+  class Delegate
+  end
+end
+
+module Sequel
+  class Dataset[unchecked out T]
+  end
+  class Model[unchecked out T]
+  end
+end

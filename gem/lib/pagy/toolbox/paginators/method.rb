@@ -18,7 +18,7 @@ class Pagy
   paginators.each { |symbol, name| autoload name, path.join(symbol.to_s) }
 
   # Pagy::Method defines the #pagy method to be included in the app controller/view.
-  Method = Module.new do
+  Method = ::Module.new do
              protected
 
              define_method :pagy do |paginator = :offset, collection, **options|

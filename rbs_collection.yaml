@@ -1,0 +1,21 @@
+sources:
+  - name: ruby/gem_rbs_collection
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    revision: main
+    repo_dir: gems
+path: .gem_rbs_collection
+gems:
+  - name: activerecord
+  - name: activesupport
+  - name: http
+    ignore: true
+  - name: forwardable
+  - name: logger
+  - name: monitor
+  - name: pathname
+    ignore: true  # <--- This prevents it from being added to the lock
+  - name: rack
+  - name: zlib
+
+standard_library:
+  - core
