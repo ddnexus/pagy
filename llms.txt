@@ -1,0 +1,64 @@
+﻿#  💚 Pagy
+
+> Gem Version Supported Rubies UnitTest E2E Test Coverage Rubocop Status MIT license Commits Downloads Stars Gurubase
+
+- [Pagy The Leaping Gem!](https://ddnexus.github.io/pagy/readme.md): Pagy The Leaping Gem!
+- [CHANGELOG](https://ddnexus.github.io/pagy/changelog.md): Pagy follows the Semantic Versioning 2.0.0, and introduces BREAKING CHANGES only for MAJOR versions.
+
+## Guides
+
+- [Quick Start](https://ddnexus.github.io/pagy/guides/quick-start.md): Check the Migration Guide first
+- [Choose Right](https://ddnexus.github.io/pagy/guides/choose-right.md): At the most basic level, pagination just means retrieving a (potentially big) collection of items in small sequential chunks (pages)... but there's more than one way to crack an egg.
+- [How To](https://ddnexus.github.io/pagy/guides/how-to.md): This page provides practical tips and examples to help you to use Pagy efficiently.
+- [Migrate Legacy Pagination](https://ddnexus.github.io/pagy/guides/migration-guide.md): This page tries to cover most of the standard changes you will need to make in order to migrate from legacy pagination.
+- [Upgrade to 43](https://ddnexus.github.io/pagy/guides/upgrade-guide.md): Pagy version 43 is a complete redesign of the legacy code. Its improvements make pagination a lot simpler and powerful, but require a quite different way to use it.
+- [Use Pagy NEXT](https://ddnexus.github.io/pagy/guides/pagy-next.md): Just edit the Gemfile...
+
+## Toolbox
+
+###  ✳   Paginators
+
+- [ ✳   Paginators](https://ddnexus.github.io/pagy/toolbox/paginators.md): The pagy method provides a common interface to all paginators. Include it where you are going to paginate a collection (usually in ApplicationController):
+- [:offset](https://ddnexus.github.io/pagy/toolbox/paginators/offset.md): :offset is a generic OFFSET paginator usable with ORM collections or regular Array objects.
+- [:countish](https://ddnexus.github.io/pagy/toolbox/paginators/countish.md): :countish is an OFFSET paginator that memoizes the result of the COUNT query in the page links, running it only once per collection (instead of once per page), optionally recounting it when it's stale.
+- [:countless](https://ddnexus.github.io/pagy/toolbox/paginators/countless.md): :countless is an OFFSET paginator that avoids the COUNT query, reducing the number of queries per page in half. UI helpers are working with some limitations (see Caveat).
+- [:keyset](https://ddnexus.github.io/pagy/toolbox/paginators/keyset.md): :keyset is the fastest KEYSET paginator for ActiveRecord::Relation or Sequel::Dataset SQL ordered collections.
+- [:keynav_js](https://ddnexus.github.io/pagy/toolbox/paginators/keynav_js.md): :keynav_js is a fast KEYSET paginator that supports the UI. It's a pagy exclusive technique.
+- [:calendar](https://ddnexus.github.io/pagy/toolbox/paginators/calendar.md): calendar_app
+- [:elasticsearch_rails](https://ddnexus.github.io/pagy/toolbox/paginators/elasticsearch_rails.md): :elasticsearch_rails is a SEARCH paginator for ElasticsearchRails response objects.
+- [:meilisearch](https://ddnexus.github.io/pagy/toolbox/paginators/meilisearch.md): :meilisearch is a SEARCH paginator designed for Meilisearch results.
+- [:searchkick](https://ddnexus.github.io/pagy/toolbox/paginators/searchkick.md): :searchkick is a SEARCH paginator for Searchkick::Results objects.
+- [:typesense_rails](https://ddnexus.github.io/pagy/toolbox/paginators/typesense_rails.md): :typesense_rails is a SEARCH paginator designed for Typesense::Rails results.
+
+###  ✳   Helpers
+
+- [ ✳   Helpers](https://ddnexus.github.io/pagy/toolbox/helpers.md): The @pagy instance provides all the helpers to use in your code.
+- [data_hash](https://ddnexus.github.io/pagy/toolbox/helpers/data_hash.md): data_hash plucks a hash of key-value pairs from the pagy object. It is useful for exporting pagination data to JavaScript frameworks like Vue.js, React.js, etc.
+- [headers_hash](https://ddnexus.github.io/pagy/toolbox/helpers/headers_hash.md): headers_hash generates the standard link header defined in the RFC-8288, and adds 4 customizable headers useful for pagination, that you can merge into the response.headers.
+- [urls_hash](https://ddnexus.github.io/pagy/toolbox/helpers/urls_hash.md): urls_hash returns the :first, :previous, :next, :last non-nil URLs hash.
+- [page_url](https://ddnexus.github.io/pagy/toolbox/helpers/page_url.md): page_url returns the URL of any page of any instance. If the page is not available it returns nil. It is useful to build minimalistic UIs that don't use nav bar links (e.g.
+- [series_nav](https://ddnexus.github.io/pagy/toolbox/helpers/series_nav.md): series_nav
+- [series_nav_js](https://ddnexus.github.io/pagy/toolbox/helpers/series_nav_js.md): series_nav_js functions similarly to a series_nav, with the following added features:
+- [input_nav_js](https://ddnexus.github.io/pagy/toolbox/helpers/input_nav_js.md): input_nav_js
+- [anchor_tags](https://ddnexus.github.io/pagy/toolbox/helpers/anchor_tags.md): The previous_tag and next_tag return the enabled/disabled previous/next page anchor tag.
+- [limit_tag_js](https://ddnexus.github.io/pagy/toolbox/helpers/limit_tag_js.md): The limit_tag_js allows the user to select any arbitrary limit per page, up to the :max_limit option. It raises an OptionError exception if the :max_limit is not truthy.
+- [info_tag](https://ddnexus.github.io/pagy/toolbox/helpers/info_tag.md): info_tag provides information about the content of the current pagination.
+
+###  ✳   Configuration
+
+- [Options](https://ddnexus.github.io/pagy/toolbox/configuration/options.md): The actual options are documented alongside the paginators and helpers that consume them.
+- [Initializer](https://ddnexus.github.io/pagy/toolbox/configuration/initializer.md): Download or copy the small file below and ensure it loads (e.g., save it into the Rails config/initializers directory or require it). Read its comments for details.
+
+## Resources
+
+- [Stylesheets](https://ddnexus.github.io/pagy/resources/stylesheets.md): Pagy includes a couple of CSS files and the tools to integrate with your app's themes interactively.
+- [JavaScript](https://ddnexus.github.io/pagy/resources/javascript.md): It is not a requirement, but if present, the pagy JSON generation will be faster.
+- [I18n](https://ddnexus.github.io/pagy/resources/i18n.md): Pagy handles string translation and pluralization using its own efficient i18n implementation.
+- [ARIA](https://ddnexus.github.io/pagy/resources/aria.md): Since version 7.0.0, Pagy introduced a consistent set of ARIA-compliant attributes across all its helpers.
+- [URLs](https://ddnexus.github.io/pagy/resources/urls.md): Pagy uses the current URL as the base to generate all the other page URLs. It retrieves it from the self.request when available, or from a :request option set to a Rack::Request or a simple Hash of :base_url, :path, :params (and a pagy :cookie value in case of Keynav pagination).
+
+## Sandbox
+
+- [Playground](https://ddnexus.github.io/pagy/sandbox/playground.md): You can showcase, clone, and develop a few Pagy apps without needing to set anything up on your side!
+- [Console](https://ddnexus.github.io/pagy/sandbox/console.md): Allows you to interact with Pagy in an irb or pry environment without an app, providing a pre-configured stubbed environment for you.
+- [DevTools](https://ddnexus.github.io/pagy/sandbox/dev_tools.md): Pagy offers a couple of tools to ease your development process.
