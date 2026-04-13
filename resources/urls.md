@@ -78,25 +78,25 @@ Pagy does not support, nor recommends dynamic path segments for the `:page` para
 
 The Cons are overwhelming.
 
-##### Pros
+##### :icon-thumbsup:&nbsp; Pros
 
 {.list-icon}
-- :icon-thumbsup: Aesthetically cleaner URLs
-- :icon-thumbsup: Possibility to cache single pages at the edge _(rarely necessary)_
+- • Aesthetically cleaner URLs
+- • Possibility to cache single pages at the edge _(rarely necessary)_
 
-##### Cons
+#####  :icon-thumbsdown: Cons
 
 {.list-icon}
 - **RFC 3986 Compliance**
-  - :icon-thumbsdown: The `:page` parameter represents non-hierarchical data, which fits the definition of the query string component.
-  - :icon-thumbsdown: It does not fit the definition of the path component, which represents hierarchical resources.
+  - • The `:page` parameter represents non-hierarchical data, which fits the definition of the query string component.
+  - • It does not fit the definition of the path component, which represents hierarchical resources.
 - **Data Identification**
-  - :icon-thumbsdown: A query string parameter is labeled data (`?page=2`) identifiable without external context.
-  - :icon-thumbsdown: A path segment (`/2`) is unlabeled and relies on external routing logic to be handled, so it cannot be identified/used by agnostic code.
+  - • A query string parameter is labeled data (`?page=2`) identifiable without external context.
+  - • A path segment (`/2`) is unlabeled and relies on external routing logic to be handled, so it cannot be identified/used by agnostic code.
 - **Performance**
-  - :icon-thumbsdown: Dynamic segments are framework-specific routing concepts, not query params concepts.
-  - :icon-thumbsdown: Using framework code is not only non-agnostic, but significantly slower than pagy's generic query param handling.
-  - :icon-thumbsdown: Using it _(or even just checking for it)_ would be an unnecessary burden for all the apps.
+  - • Dynamic segments are framework-specific routing concepts, not query params concepts.
+  - • Using framework code is not only non-agnostic, but significantly slower than pagy's generic query param handling.
+  - • Using it _(or even just checking for it)_ would be an unnecessary burden for all the apps.
 
 :::
 ==- OK, but what if I still want it in my own app?

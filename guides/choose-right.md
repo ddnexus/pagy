@@ -4,9 +4,9 @@
 
 ---
 
-At the most basic level, pagination just means retrieving a (potentially big) collection of items in small sequential chunks (pages)... but there's more than one way to crack an egg.
+Pagination just means retrieving a (potentially big) collection of items in small sequential chunks (pages).
 
-Pagy offers four different techniques, each implementing different types of paginators. Choose the right one to ensure the best performance and workflow.
+Pagy offers four different pagination techniques, each implementing different types of paginators. Choose the right one to ensure the best performance and workflow.
 
 ### Pagination Types
 
@@ -81,7 +81,7 @@ Use the [:keynav_js](#keyset-paginators) paginator.
 - [:icon-key:&nbsp;:keynav_js](/toolbox/paginators/keynav_js)
   - :icon-check-circle: __Best for__: Standard App (Large Data)
   - :icon-thumbsup:     __Pros__: All the pros of `:keyset`+`:countless`, numeric pages
-  - :icon-thumbsdown:   __Cons__: Same as `:countless`, requires JavaScript support (or it falls back to the `:countless` paginator)
+  - :icon-thumbsdown:   __Cons__: Same as `:countless`, requires [JavaScript Support](/resources/javascript) (or it falls back to the `:countless` paginator)
 
 ===
 

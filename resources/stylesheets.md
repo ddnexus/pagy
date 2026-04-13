@@ -45,7 +45,7 @@ You don't need any stylesheets if you use the pagy `:bootstrap` or `:bulma` help
 !!!success Works with any app
 !!!
 
-The following statement will copy and keep synced the `pagy*` file in your own `app/stylesheets` dir _(or any dir you may want use)_.
+The following statement will copy and keep synced your picked `pagy*` file in your own `app/stylesheets` dir _(or any dir you may want use)_.
 
 It will become and processed exactly like one of your own files.
 
@@ -89,7 +89,7 @@ Add this line to any template `<head>`...
 <%== Pagy.dev_tools %>
 ```
 
-and adjust a few sliders to see the change in real time, right in your app, with the [Pagy Wand](/sandbox/dev_tools)
+and adjust a few sliders to see the change in real time, right in your app, with the [Pagy Wand](/sandbox/dev_tools). Then copy the `CSS Override` field and paste it in your own CSS.
 
 :::raised
 ![PagyWand](/assets/images/dev-tools.png){width=300}

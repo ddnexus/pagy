@@ -52,6 +52,10 @@ If you upgrade from version `< 9.0.0` see the following:
 - `:client_max_limit` option: use `:max_limit` instead.
 <hr>
 
+#### Version 43.5.1
+
+- Remove ghost code from cli; improve tests
+
 #### Version 43.5.0
 
 - Update javascripts according to es-linting

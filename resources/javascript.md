@@ -10,7 +10,7 @@ It is not a requirement, but if present, the pagy `JSON` generation will be fast
 
 ### Setup
 
->>> Pick a format...
+>>> Pick a file...
 
 +++ pagy.mjs
 
@@ -39,7 +39,7 @@ Make `Pagy` available in your JavaScript environment with...
 
 +++ pagy.js
 
-!!!warning Use it only for development / debugging of Pagy itself.
+!!!warning Use it only for debugging Pagy itself.
 !!!
 
 +++
@@ -51,7 +51,7 @@ Make `Pagy` available in your JavaScript environment with...
 !!!success Works with any app
 !!!
 
-The following statement will copy and keep synced the `pagy*` file in your own `app/javascript` dir _(or any dir you may want use)_.
+The following statement will copy and keep synced your picked `pagy*` file in your own `app/javascript` dir _(or any dir you may want use)_.
 
 It will become and processed exactly like one of your own files.
 

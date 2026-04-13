@@ -4,7 +4,9 @@
 
 ---
 
-Download or copy the small file below and ensure it loads _(e.g., save it into the Rails `config/initializers` directory or require it)_. Read its comments for details.
+Set your global options/defaults, or configure a few special features by editing the sample file below.
+
+Ensure it loads by saving it into the Rails `config/initializers` directory or require it.
 
 [!file pagy.rb](/gem/config/pagy.rb)
 

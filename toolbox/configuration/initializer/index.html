@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.5.2.828933572628">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.5.3.829397428840">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 4.5.2">
+    <meta name="generator" content="Retype 4.5.3">
 
     <!-- Primary Meta Tags -->
     <title>Initializer &#128154; Pagy</title>
     <meta name="title" content="Initializer 💚 Pagy">
-    <meta name="description" content="Download or copy the small file below and ensure it loads (e.g., save it into the Rails config/initializers directory or require it). Read its comments for details.">
+    <meta name="description" content="Set your global options/defaults, or configure a few special features by editing the sample file below.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/toolbox/configuration/initializer/">
@@ -23,7 +23,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/toolbox/configuration/initializer/">
     <meta property="og:title" content="Initializer 💚 Pagy">
-    <meta property="og:description" content="Download or copy the small file below and ensure it loads (e.g., save it into the Rails config/initializers directory or require it). Read its comments for details.">
+    <meta property="og:description" content="Set your global options/defaults, or configure a few special features by editing the sample file below.">
     <meta property="og:site_name" content="Pagy">
     <meta property="og:locale" content="en_US">
 
@@ -31,19 +31,19 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://ddnexus.github.io/pagy/toolbox/configuration/initializer/">
     <meta name="twitter:title" content="Initializer 💚 Pagy">
-    <meta name="twitter:description" content="Download or copy the small file below and ensure it loads (e.g., save it into the Rails config/initializers directory or require it). Read its comments for details.">
+    <meta name="twitter:description" content="Set your global options/defaults, or configure a few special features by editing the sample file below.">
 
     <!-- Alternate Markdown -->
     <link rel="alternate" type="text/markdown" href="https://ddnexus.github.io/pagy/toolbox/configuration/initializer.md">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../../resources/css/retype.css?v=4.5.2.828933572628" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.5.3.829397428840" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.5.2.828933572628" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.5.2" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.5.2.828933572628" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.5.2.828933572628" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.5.3.829397428840" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.5.3" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.5.3.829397428840" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.5.3.829397428840" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -216,7 +216,7 @@
                             <img class="max-h-10 md:inline-block" src="../../../assets/images/pagy-the-frog.png" alt="" width="43" height="40">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.5.0</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.5.1</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -400,7 +400,8 @@
 <h1 id="section"></h1>
 <h2 id="initializer"><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Zm-1.5 0a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"/><path d="M12 1c.266 0 .532.009.797.028.763.055 1.345.617 1.512 1.304l.352 1.45c.019.078.09.171.225.221.247.089.49.19.728.302.13.061.246.044.315.002l1.275-.776c.603-.368 1.411-.353 1.99.147.402.349.78.726 1.128 1.129.501.578.515 1.386.147 1.99l-.776 1.274c-.042.069-.058.185.002.315.112.238.213.481.303.728.048.135.142.205.22.225l1.45.352c.687.167 1.249.749 1.303 1.512.038.531.038 1.063 0 1.594-.054.763-.616 1.345-1.303 1.512l-1.45.352c-.078.019-.171.09-.221.225-.089.248-.19.491-.302.728-.061.13-.044.246-.002.315l.776 1.275c.368.603.353 1.411-.147 1.99-.349.402-.726.78-1.129 1.128-.578.501-1.386.515-1.99.147l-1.274-.776c-.069-.042-.185-.058-.314.002a8.606 8.606 0 0 1-.729.303c-.135.048-.205.142-.225.22l-.352 1.45c-.167.687-.749 1.249-1.512 1.303-.531.038-1.063.038-1.594 0-.763-.054-1.345-.616-1.512-1.303l-.352-1.45c-.019-.078-.09-.171-.225-.221a8.138 8.138 0 0 1-.728-.302c-.13-.061-.246-.044-.315-.002l-1.275.776c-.603.368-1.411.353-1.99-.147-.402-.349-.78-.726-1.128-1.129-.501-.578-.515-1.386-.147-1.99l.776-1.274c.042-.069.058-.185-.002-.314a8.606 8.606 0 0 1-.303-.729c-.048-.135-.142-.205-.22-.225l-1.45-.352c-.687-.167-1.249-.749-1.304-1.512a11.158 11.158 0 0 1 0-1.594c.055-.763.617-1.345 1.304-1.512l1.45-.352c.078-.019.171-.09.221-.225.089-.248.19-.491.302-.728.061-.13.044-.246.002-.315l-.776-1.275c-.368-.603-.353-1.411.147-1.99.349-.402.726-.78 1.129-1.128.578-.501 1.386-.515 1.99-.147l1.274.776c.069.042.185.058.315-.002.238-.112.481-.213.728-.303.135-.048.205-.142.225-.22l.352-1.45c.167-.687.749-1.249 1.512-1.304C11.466 1.01 11.732 1 12 1Zm-.69 1.525c-.055.004-.135.05-.161.161l-.353 1.45a1.832 1.832 0 0 1-1.172 1.277 7.147 7.147 0 0 0-.6.249 1.833 1.833 0 0 1-1.734-.074l-1.274-.776c-.098-.06-.186-.036-.228 0a9.774 9.774 0 0 0-.976.976c-.036.042-.06.131 0 .228l.776 1.274c.314.529.342 1.18.074 1.734a7.147 7.147 0 0 0-.249.6 1.831 1.831 0 0 1-1.278 1.173l-1.45.351c-.11.027-.156.107-.16.162a9.63 9.63 0 0 0 0 1.38c.004.055.05.135.161.161l1.45.353a1.832 1.832 0 0 1 1.277 1.172c.074.204.157.404.249.6.268.553.24 1.204-.074 1.733l-.776 1.275c-.06.098-.036.186 0 .228.301.348.628.675.976.976.042.036.131.06.228 0l1.274-.776a1.83 1.83 0 0 1 1.734-.075c.196.093.396.176.6.25a1.831 1.831 0 0 1 1.173 1.278l.351 1.45c.027.11.107.156.162.16a9.63 9.63 0 0 0 1.38 0c.055-.004.135-.05.161-.161l.353-1.45a1.834 1.834 0 0 1 1.172-1.278 6.82 6.82 0 0 0 .6-.248 1.831 1.831 0 0 1 1.733.074l1.275.776c.098.06.186.036.228 0 .348-.301.675-.628.976-.976.036-.042.06-.131 0-.228l-.776-1.275a1.834 1.834 0 0 1-.075-1.733c.093-.196.176-.396.25-.6a1.831 1.831 0 0 1 1.278-1.173l1.45-.351c.11-.027.156-.107.16-.162a9.63 9.63 0 0 0 0-1.38c-.004-.055-.05-.135-.161-.161l-1.45-.353c-.626-.152-1.08-.625-1.278-1.172a6.576 6.576 0 0 0-.248-.6 1.833 1.833 0 0 1 .074-1.734l.776-1.274c.06-.098.036-.186 0-.228a9.774 9.774 0 0 0-.976-.976c-.042-.036-.131-.06-.228 0l-1.275.776a1.831 1.831 0 0 1-1.733.074 6.88 6.88 0 0 0-.6-.249 1.835 1.835 0 0 1-1.173-1.278l-.351-1.45c-.027-.11-.107-.156-.162-.16a9.63 9.63 0 0 0-1.38 0Z"/></g></g></svg>  Initializer</h2>
 <hr>
-<p>Download or copy the small file below and ensure it loads <em>(e.g., save it into the Rails <code translate="no" v-pre>config/initializers</code> directory or require it)</em>. Read its comments for details.</p>
+<p>Set your global options/defaults, or configure a few special features by editing the sample file below.</p>
+<p>Ensure it loads by saving it into the Rails <code translate="no" v-pre>config/initializers</code> directory or require it.</p>
 <p>
 <div class="mb-6 px-5 py-4 flex justify-between relative border border-base-border hover:border-base-border-hover rounded transition-colors duration-150">
     <div class="flex items-center text-base-500">
@@ -411,7 +412,7 @@
     </div>
     <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
         <span>pagy.rb</span>
-        <span class="inline-block ml-2">2.28KB</span>
+        <span class="inline-block ml-2">1.83KB</span>
     </div>
     <a href="../../../gem/config/pagy.rb" class="absolute block inset-0" target="_blank" download="pagy.rb"></a>
 </div>
@@ -420,14 +421,13 @@
 <div class="codeblock-title">pagy.rb</div>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby"># frozen_string_literal: true
 
-# Pagy initializer file (43.5.0)
+# Pagy initializer file (43.5.1)
 # See https://ddnexus.github.io/pagy/toolbox/configuration/initializer/
 
 
 ############ Global Options ################################################################
 # See https://ddnexus.github.io/pagy/toolbox/configuration/options/ for details.
-# Add your global options below. They will be applied globally.
-# For example:
+# Examples:
 #
 # Pagy::OPTIONS[:limit]     = 10     # Limit the items per page
 # Pagy::OPTIONS[:max_limit] = 100    # The client is allowed to request a limit up to 100
@@ -435,50 +435,42 @@
 
 Pagy::OPTIONS.freeze
 
-
 ############ JS and CSS Resources ##########################################################
 # See https://ddnexus.github.io/pagy/resources/javascript/
-# and https://ddnexus.github.io/pagy/resources/stylesheets/ for more resources and details.
-# Copy and keep the resource files synced in the app. For example:
+# and https://ddnexus.github.io/pagy/resources/stylesheets/ for details.
+# Sync example:
 #
 # if Rails.env.development?
 #   Pagy.sync(:javascript, Rails.root.join('app/javascript'), 'pagy.mjs')
 #   Pagy.sync(:stylesheet, Rails.root.join('app/stylesheets'), 'pagy.css')
 # end
 #
-# As an alternative, use this config ONLY for apps with an asset pipeline
+# Pipeline example:
 #
 # Rails.application.config.assets.paths &lt;&lt; Pagy::ROOT.join(':javascripts')
 # Rails.application.config.assets.paths &lt;&lt; Pagy::ROOT.join(':stylesheets')
 
-
 ############# Overriding Pagy::I18n Lookup #################################################
-# Refer to https://ddnexus.github.io/pagy/resources/i18n/ for details.
-# Override the I18n lookup by dropping your custom dictionary in some pagy dir.
+# See https://ddnexus.github.io/pagy/resources/i18n/ for details.
 # Example for Rails:
 #
 # Pagy::I18n.pathnames &lt;&lt; Rails.root.join('config/locales/pagy')
-
 
 ############# I18n Gem Translation #########################################################
 # See https://ddnexus.github.io/pagy/resources/i18n/ for details.
 #
 # Pagy.translate_with_the_slower_i18n_gem!
 
-
 ############# Calendar Localization for non-en locales ####################################
 # See https://ddnexus.github.io/pagy/toolbox/paginators/calendar#localization for details.
-# Add your desired locales to the list and uncomment the following line to enable them,
-# regardless of whether you use the I18n gem for translations or not, whether with
-# Rails or not.
 #
 # Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)</code></pre>
 </doc-codeblock></div>
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-25T20:47:54" title="2026-03-25" data-absolute-label="Last updated on 2026-03-25" data-absolute-label-html="Last updated on 2026-03-25" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-03-25
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-04-13T18:59:36" title="2026-04-13" data-absolute-label="Last updated on 2026-04-13" data-absolute-label-html="Last updated on 2026-04-13" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-04-13
                     </time>
                 </div>
 
