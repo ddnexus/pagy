@@ -11,7 +11,7 @@ It will become and processed exactly like one of your own files.
 
 ```rb [pagy.rb initializer](/toolbox/configuration/initializer)
 # Replace 'pagy*' with the file you picked
-Pagy.sync({{ $.resource }}, Rails.root.join('{{ $.remote_dir }}'), 'pagy*') if Rails.development?
+Pagy.sync({{ $.resource }}, Rails.root.join('{{ $.remote_dir }}'), 'pagy*') if Rails.env.development?
 ```
 ==- Sync Task
 
