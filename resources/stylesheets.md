@@ -51,7 +51,7 @@ It will become and processed exactly like one of your own files.
 
 ```rb [pagy.rb initializer](/toolbox/configuration/initializer)
 # Replace 'pagy*' with the file you picked
-Pagy.sync(:stylesheet, Rails.root.join('app/stylesheets'), 'pagy*') if Rails.development?
+Pagy.sync(:stylesheet, Rails.root.join('app/stylesheets'), 'pagy*') if Rails.env.development?
 ```
 ==- Sync Task
 
