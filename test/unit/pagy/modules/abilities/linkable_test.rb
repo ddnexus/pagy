@@ -148,5 +148,19 @@ describe 'Pagy::Linkable Specs' do
       url = subject.call_compose_page_url(2)
       _(url).must_equal_url '/foo?limit=10&page=2'
     end
+
+    it 'does not duplicate params when page_key is a symbol' do
+      subject = linkable_class.new(request_params: { 'page' => '1' },
+                                   options:        { page_key: :page })
+      url = subject.call_compose_page_url(2)
+      _(url).must_equal_url '/foo?page=2'
+    end
+
+    it 'does not duplicate params when limit_key is a symbol' do
+      subject = linkable_class.new(request_params: { 'limit' => '10' },
+                                   options:        { limit_key: :limit, max_limit: 50, limit: 20 })
+      url = subject.call_compose_page_url(2)
+      _(url).must_equal_url '/foo?limit=20&page=2'
+    end
   end
 end
