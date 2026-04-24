@@ -87,30 +87,25 @@ Rails.application.config.assets.paths << Pagy::ROOT.join('javascripts')
 
 +++
 
->>> Add the `Pagy.init` to an event...
+>>> Run the `Pagy.init` on...
 
-+++ load
++++ "load" event
+
+Pick which applies to your environment:
 
 ```js
 window.addEventListener("load", Pagy.init)
-```
-
-+++ turbo:load
-
-```js
 window.addEventListener("turbo:load", Pagy.init)
-```
-
-+++ turbolinks:load
-
-```js
 window.addEventListener("turbolinks:load", Pagy.init)
+window.addEventListener("your-event", Pagy.init)
 ```
 
-+++ custom
++++ Stimulus connect
 
 ```js
-window.addEventListener("your-event", Pagy.init)
+connect() {
+  Pagy.init(this.element);
+}
 ```
 
 +++

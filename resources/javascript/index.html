@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.5.3.829815850536">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.5.3.830329381157">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.5.3">
@@ -38,12 +38,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.5.3.829815850536" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.5.3.830329381157" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.5.3.829815850536" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.5.3.830329381157" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.5.3" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.5.3.829815850536" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.5.3.829815850536" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.5.3.830329381157" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.5.3.830329381157" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -216,7 +216,7 @@
                             <img class="max-h-10 md:inline-block" src="../../assets/images/pagy-the-frog.png" alt="" width="43" height="40">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.5.1</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.5.2</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -551,31 +551,25 @@ Pagy::SyncTask.new(:javascript, Rails.root.join('app/javascript'), 'pagy*')</cod
 </doc-tab>
 </doc-tabs>
    </doc-step>
-   <doc-step id="add-the-pagyinit-to-an-event" step-number="3">
-      <template #title>Add the <code translate="no" v-pre>Pagy.init</code> to an event...</template>
+   <doc-step id="run-the-pagyinit-on" step-number="3">
+      <template #title>Run the <code translate="no" v-pre>Pagy.init</code> on...</template>
 <doc-tabs>
-<doc-tab v-cloak id="load">
-<template #title>load</template>
+<doc-tab v-cloak id="load-event">
+<template #title>&quot;load&quot; event</template>
+<p>Pick which applies to your environment:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">window.addEventListener(&quot;load&quot;, Pagy.init)</code></pre>
+<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">window.addEventListener(&quot;load&quot;, Pagy.init)
+window.addEventListener(&quot;turbo:load&quot;, Pagy.init)
+window.addEventListener(&quot;turbolinks:load&quot;, Pagy.init)
+window.addEventListener(&quot;your-event&quot;, Pagy.init)</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="turboload">
-<template #title>turbo:load</template>
+<doc-tab v-cloak id="stimulus-connect">
+<template #title>Stimulus connect</template>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">window.addEventListener(&quot;turbo:load&quot;, Pagy.init)</code></pre>
-</doc-codeblock></div>
-</doc-tab>
-<doc-tab v-cloak id="turbolinksload">
-<template #title>turbolinks:load</template>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">window.addEventListener(&quot;turbolinks:load&quot;, Pagy.init)</code></pre>
-</doc-codeblock></div>
-</doc-tab>
-<doc-tab v-cloak id="custom">
-<template #title>custom</template>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">window.addEventListener(&quot;your-event&quot;, Pagy.init)</code></pre>
+<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">connect() {
+  Pagy.init(this.element);
+}</code></pre>
 </doc-codeblock></div>
 </doc-tab>
 </doc-tabs>
@@ -584,8 +578,8 @@ Pagy::SyncTask.new(:javascript, Rails.root.join('app/javascript'), 'pagy*')</cod
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-04-13T18:59:36" title="2026-04-13" data-absolute-label="Last updated on 2026-04-13" data-absolute-label-html="Last updated on 2026-04-13" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-04-13
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-04-24T08:30:47" title="2026-04-24" data-absolute-label="Last updated on 2026-04-24" data-absolute-label-html="Last updated on 2026-04-24" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-04-24
                     </time>
                 </div>
 

@@ -52,6 +52,11 @@ If you upgrade from version `< 9.0.0` see the following:
 - `:client_max_limit` option: use `:max_limit` instead.
 <hr>
 
+#### Version 43.5.2
+
+- Add type validation for page and limit keys type (close #895)
+- Simplify series_nav_js removing "pagy-rjs" CSS class (Fix #894)
+
 #### Version 43.5.1
 
 - Remove ghost code from cli; improve tests
