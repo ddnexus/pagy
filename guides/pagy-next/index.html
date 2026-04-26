@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.5.3.830329381157">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.5.3.830536442772">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.5.3">
@@ -38,12 +38,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.5.3.830329381157" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.5.3.830536442772" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.5.3.830329381157" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.5.3.830536442772" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.5.3" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.5.3.830329381157" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.5.3.830329381157" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.5.3.830536442772" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.5.3.830536442772" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -216,7 +216,7 @@
                             <img class="max-h-10 md:inline-block" src="../../assets/images/pagy-the-frog.png" alt="" width="43" height="40">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.5.2</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.5.3</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -408,7 +408,7 @@
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">Gemfile (diff)</div>
 <pre translate="no" class="language-diff"><code v-pre class="language-diff">- gem 'pagy', '~&gt; 43.5'                         # MINOR version restriction
-+ gem 'pagy', '~&gt; 43.5.2', require: 'pagy/next' # PATCH version restriction + pagy/next entry point</code></pre>
++ gem 'pagy', '~&gt; 43.5.3', require: 'pagy/next' # PATCH version restriction + pagy/next entry point</code></pre>
 </doc-codeblock></div>
 <p>As an alternative <em>(without Gemfile changes)</em>, ensure the environment variable <code translate="no" v-pre>PAGY_NEXT=true</code> is set, BEFORE <code translate="no" v-pre>pagy</code> is required.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -417,7 +417,7 @@
 &gt;&gt; require 'pagy'
 =&gt; true
 &gt;&gt; Pagy::VERSION
-=&gt; &quot;43.5.2.next&quot;</code></pre>
+=&gt; &quot;43.5.3.next&quot;</code></pre>
 </doc-codeblock></div>
         </div>
     </div>
@@ -441,7 +441,7 @@
         <div class="pr-5 ml-3 w-full">
             <h5>Adjust the gem update policy!</h5>
 <ul>
-<li>Use a stricter PATCH version restriction (e.g., replace <code translate="no" v-pre>~&gt; 43.5</code> with <code translate="no" v-pre>~&gt; 43.5.2</code>)</li>
+<li>Use a stricter PATCH version restriction (e.g., replace <code translate="no" v-pre>~&gt; 43.5</code> with <code translate="no" v-pre>~&gt; 43.5.3</code>)</li>
 <li>Follow the <a href="../../changelog/#deprecations">Deprecations Instructions</a> after <code translate="no" v-pre>bundle update</code> involving MINOR or MAJOR releases.</li>
 </ul>
         </div>
@@ -451,8 +451,8 @@
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-04-24T08:59:39" title="2026-04-24" data-absolute-label="Last updated on 2026-04-24" data-absolute-label-html="Last updated on 2026-04-24" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-04-24
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-04-26T18:05:54" title="2026-04-26" data-absolute-label="Last updated on 2026-04-26" data-absolute-label-html="Last updated on 2026-04-26" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-04-26
                     </time>
                 </div>
 

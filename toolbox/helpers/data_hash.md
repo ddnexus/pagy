@@ -51,10 +51,11 @@ require 'pagy/console'
   - `:pages`
   - `:previous`
   - `:previous_url`
+  - `:series`
   - `:to`
   - `:url_template`
 
-  Notice that you can also add other pagy method names not included in the default list (see [this discussion](https://github.com/ddnexus/pagy/discussions/812) for an example)
+  Notice that you can also add other pagy method names not included in the default list.
 
 `absolute: true`
 : Makes the URL absolute.

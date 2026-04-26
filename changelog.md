@@ -52,6 +52,11 @@ If you upgrade from version `< 9.0.0` see the following:
 - `:client_max_limit` option: use `:max_limit` instead.
 <hr>
 
+#### Version 43.5.3
+
+- Autoload series, a_lambda and page_label
+- Add Hungarian localization file for Pagy (#896)
+
 #### Version 43.5.2
 
 - Add type validation for page and limit keys type (close #895)
