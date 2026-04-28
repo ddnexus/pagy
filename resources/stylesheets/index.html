@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.5.3.830536442772">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.5.3.830692633722">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.5.3">
@@ -38,12 +38,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.5.3.830536442772" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.5.3.830692633722" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.5.3.830536442772" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.5.3.830692633722" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.5.3" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.5.3.830536442772" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.5.3.830536442772" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.5.3.830692633722" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.5.3.830692633722" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -434,92 +434,7 @@
 </div>
 <doc-panel id="css-source" collapsed>
     <template #title>CSS Source</template>
-<div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">pagy.css</div>
-<pre translate="no" class="language-css"><code v-pre class="language-css">.pagy {
-  /* PagyWand Generated Variables */
-  /* Copy from the PagyWand &quot;CSS Override&quot; field, and paste in YOUR own CSS to override the style */
-  --B: 1;
-  --H: 0;
-  --S: 0;
-  --L: 50;
-  --A: 1;
-  --spacing: 0.125rem;
-  --padding: 0.75rem;
-  --rounding: 1.75rem;
-  --border-width: 0rem;
-  --font-size: 0.875rem;
-  --font-weight: 600;
-  --line-height: 1.75;
-
-  /* Calculated Color Variables */
-  --text:               hsl(var(--H) var(--S) calc(var(--L) - (25 * var(--B))) / var(--A));
-  --text-hover:         hsl(var(--H) var(--S) calc(var(--L) - (30 * var(--B))) / var(--A));
-  --text-current:       hsl(var(--H) var(--S) calc(100 * (var(--B) + 1)) / var(--A));
-  --background:         hsl(var(--H) var(--S) calc(var(--L) + (30 * var(--B))) / var(--A));
-  --background-hover:   hsl(var(--H) var(--S) calc(var(--L) + (20 * var(--B))) / var(--A));
-  --background-current: hsl(var(--H) var(--S) var(--L) / var(--A));
-  --background-input:   hsl(var(--H) var(--S) calc(var(--L) + (45 * var(--B))) / var(--A));
-
-  /* Base Properties */
-  color: var(--text);
-  font-size: var(--font-size);
-  line-height: var(--line-height);
-  font-weight: var(--font-weight);
-  display: flex;
-}
-
-/* Element Rules */
-
-.pagy &gt; :not([hidden]) ~ :not([hidden]) {
-  margin-inline-start: var(--spacing);
-}
-
-.pagy a:not([role=&quot;separator&quot;]) { /* all but gaps */
-  display: block;
-  text-decoration: none;
-  background-color: var(--background);
-  padding: calc(var(--padding) / 3) var(--padding);
-  border: var(--border-width) solid var(--background-current);
-  border-radius: var(--rounding);
-  color: inherit;
-}
-
-.pagy a[href]:hover { /* all links on hover */
-  background-color: var(--background-hover);
-  color: var(--text-hover)
-}
-
-.pagy a:not([href]) { /* all but links */
-  cursor: default;
-}
-
-.pagy a[role=&quot;link&quot;]:not([aria-current]) { /* disabled links */
-  opacity: .6;
-}
-
-.pagy a[aria-current] {  /* current page */
-  background-color: var(--background-current);
-  color: var(--text-current);
-  border-color: var(--text);
-}
-
-.pagy label {
-  white-space: nowrap;
-  display: inline-block;
-  border: var(--border-width) solid var(--background-current);
-  border-radius: var(--rounding);
-  background-color: var(--background);
-  padding: calc((var(--padding) / 3) - var(--border-width)) var(--padding);
-}
-
-.pagy label input {
-  all: unset;
-  border: var(--border-width) solid var(--background-current);
-  border-radius: calc(var(--rounding) / 2) !important;
-  background-color: var(--background-input);
-}</code></pre>
-</doc-codeblock></div>
+:::code source=&quot;/gem/stylesheets/pagy.css&quot; title=&quot;pagy.css&quot;:::
 </doc-panel>
 </doc-tab>
 <doc-tab v-cloak id="pagy-tailwindcss">
@@ -542,77 +457,7 @@
 </div>
 <doc-panel id="css-source-1" collapsed>
     <template #title>CSS Source</template>
-<div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">pagy-tailwind.css</div>
-<pre translate="no" class="language-css"><code v-pre class="language-css">@import &quot;tailwindcss&quot;;
-
-@layer components {
-  .pagy {
-    /* PagyWand Generated Variables */
-    /* Copy from the PagyWand &quot;CSS Override&quot; field, and paste in YOUR own CSS to override the style */
-    --B: 1;
-    --H: 0;
-    --S: 0;
-    --L: 50;
-    --A: 1;
-    --spacing: 0.125rem;
-    --padding: 0.75rem;
-    --rounding: 1.75rem;
-    --border-width: 0rem;
-    --font-size: 0.875rem;
-    --font-weight: 600;
-    --line-height: 1.75;
-
-    /* Calculated Color Variables */
-    --text:               hsl(var(--H) var(--S) calc(var(--L) - (25 * var(--B))) / var(--A));
-    --text-hover:         hsl(var(--H) var(--S) calc(var(--L) - (30 * var(--B))) / var(--A));
-    --text-current:       hsl(var(--H) var(--S) calc(100 * (var(--B) + 1)) / var(--A));
-    --background:         hsl(var(--H) var(--S) calc(var(--L) + (30 * var(--B))) / var(--A));
-    --background-hover:   hsl(var(--H) var(--S) calc(var(--L) + (20 * var(--B))) / var(--A));
-    --background-current: hsl(var(--H) var(--S) var(--L) / var(--A));
-    --background-input:   hsl(var(--H) var(--S) calc(var(--L) + (45 * var(--B))) / var(--A));
-
-    /* Base Properties */
-    @apply flex gap-x-[var(--spacing)] font-[var(--font-weight)]
-    text-[length:var(--font-size)] text-[var(--text)]
-    leading-[var(--line-height)];
-
-    /* Element Rules */
-
-    a:not([role=&quot;separator&quot;]) { /* all but gaps */
-      @apply block rounded-[var(--rounding)] px-[var(--padding)] py-[calc(var(--padding)/3)] bg-[var(--background)]
-      border-solid  border-[var(--background-current)] border-[length:var(--border-width)];
-    }
-
-    a[href]:hover { /* all links on hover */
-      @apply bg-[var(--background-hover)] text-[var(--text-hover)];
-    }
-
-    a:not([href]) { /* all but links */
-      @apply cursor-default
-    }
-
-    a[role=&quot;link&quot;]:not([aria-current]) { /* disabled links */
-      @apply opacity-[.6];
-    }
-
-    a[aria-current] {  /* current page */
-      @apply bg-[var(--background-current)] text-[var(--text-current)];
-    }
-
-    label {
-      @apply inline-block whitespace-nowrap rounded-[var(--rounding)] px-[var(--padding)]
-      py-[calc(var(--padding)/3-var(--border-width))]
-      bg-[var(--background)] border-solid border-[length:var(--border-width)] border-[var(--background-current)];
-
-      input {
-        @apply text-[var(--text)] text-[length:var(--font-size)] leading-[var(--line-height)] rounded-[calc(var(--rounding)/2)]
-        font-[var(--font-weight)] bg-[var(--background-input)] border-[length:var(--border-width)] border-[var(--background-current)];
-      }
-    }
-  }
-}</code></pre>
-</doc-codeblock></div>
+:::code source=&quot;/gem/stylesheets/pagy-tailwind.css&quot; title=&quot;pagy-tailwind.css&quot;:::
 </doc-panel>
 </doc-tab>
 </doc-tabs>
