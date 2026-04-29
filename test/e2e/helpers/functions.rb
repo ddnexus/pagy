@@ -7,14 +7,32 @@ require 'pagy/modules/b64'
 module E2eFunctions
   LOCATION_RE = %r{\Ahttp://#{Regexp.escape(E2eApp::IP)}:808\d/?}
 
+  # Allow enough time to render or change location, without slower down faster cases
+  # A test may go into timeout if the location is not designed to change
+  def poll_until
+    timeout = 0.5
+    start   = Time.now
+
+    while (Time.now - start) < timeout
+      break if yield
+
+      sleep 0.1
+    end
+  end
+
   def goto_and_hold(id, path: '/', query: '')
+    current_url = browser.current_url
     browser.goto("#{path}#{query}")
+    poll_until { current_url != browser.current_url }
+
     hold_location
     hold_html(id)
   end
 
   def interact_and_hold(*ids)
+    current_url = browser.current_url
     yield
+    poll_until { current_url != browser.current_url }
     hold_location
     hold_html(*ids)
   end
@@ -69,16 +87,7 @@ module E2eFunctions
     ids.each do |id|
       element = browser.at_css(id)
 
-      #----- Wait for complete render
-      timeout = 5
-      start   = Time.now
-
-      while (Time.now - start) < timeout
-        break if element.text.strip != "" # Or check element.attribute("class")
-
-        sleep 0.1
-      end
-      #-----
+      poll_until { element.text.strip != "" }
 
       html = element.property('outerHTML')
       # Remove data-pagy and href attributes to avoid flakiness
@@ -109,6 +118,7 @@ module E2eFunctions
   def interact_with_nav(id, pages)
     # Check Next
     interact_and_hold(id) do
+      sleep 0.3
       browser.at_css(id).at_xpath(".//a[contains(text(), '>')]").click
     end
 
@@ -130,7 +140,7 @@ module E2eFunctions
     input_selector = "#{id} input"
 
     goto_and_hold(id, path:)
-
+    sleep 0.3
     # Check Next
     interact_and_hold(id) do
       browser.at_css(id).at_xpath(".//a[contains(text(), '>')]").click
