@@ -7,7 +7,12 @@ output: .public
 url: https://ddnexus.github.io/pagy/
 
 include:
+  - "/assets/nav.html.erb"
+  - "/gem/apps/enable_rails_page_segment.rb"
   - "/gem/config/pagy.rb"
+  - "/gem/locales/en.yml"
+  - "/gem/stylesheets/pagy.css"
+  - "/gem/stylesheets/pagy-tailwind.css"
 
 branding:
   title: Pagy
