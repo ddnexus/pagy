@@ -1,6 +1,6 @@
 ﻿#  💚 Pagy
 
-> Gem Version Supported Rubies UnitTest E2E Test Coverage Rubocop Status MIT license Commits Downloads Stars Gurubase
+> Gem Version Supported Rubies API Test E2E Test Coverage Rubocop Status MIT license Commits Downloads Stars Gurubase
 
 - [Pagy The Leaping Gem!](https://ddnexus.github.io/pagy/readme.md): Pagy The Leaping Gem!
 - [CHANGELOG](https://ddnexus.github.io/pagy/changelog.md): Pagy follows the Semantic Versioning 2.0.0, and introduces BREAKING CHANGES only for MAJOR versions.
