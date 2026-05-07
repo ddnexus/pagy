@@ -128,7 +128,7 @@ There are a few peculiar aspects of the keyset pagination technique that you mig
 : The current `page`, i.e. the page of records beginning after the `cutoff` of the previous page. Also the `:page` option, which is set to the `cutoff` of the previous page
 
 `next`
-: The next `page`, i.e. the page of records beginning after the `cutoff`. Also the `cutoff` value retured by the `next` method.
+: The next `page`, i.e. the page of records beginning after the `cutoff`. Also the `cutoff` value returned by the `next` method.
 
 ==- :icon-log:&nbsp; In Depth: Cutoffs
 
