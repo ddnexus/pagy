@@ -104,7 +104,7 @@ There are a few peculiar aspects of the keyset pagination technique that you mig
 : The technique to fetch the next page starting after the latest fetched record in a `uniquely ordered` collection.<br/>It requires only one query per page (without OFFSET). if properly indexed, it's the fastest technique, regardless of the table size and position. Supports only infinite pagination, with no other frontend helpers.
 
 `keynav pagination`
-: The pagy exclusive technique to use `keyset` pagination, providing **nearly complete** UI support. The fasted technique with UI capabilities.
+: The pagy exclusive technique to use `keyset` pagination, providing **nearly complete** UI support. The fastest technique with UI capabilities.
 
 `uniquely ordered`
 : The property of a `set`, when the concatenation of the values of the ordered columns is unique for each record. It is similar to a composite primary `key` for the ordered table, but dynamically based on the `keyset` columns.
@@ -119,7 +119,7 @@ There are a few peculiar aspects of the keyset pagination technique that you mig
 : The hash of attributes of the `keyset` columns of a record.
 
 `cutoff`
-: The value that identifies where the `page` ends, and the `next` one begins. It is the `Base64` URL-safe encoded string of the serialized array of the `keyet attribute` values.
+: The value that identifies where the `page` ends, and the `next` one begins. It is the `Base64` URL-safe encoded string of the serialized array of the `keyset attribute` values.
 
 `cutoffs`
 : The array of `cutoff`s of the known pagination state, used only by [keynav](keynav_js) to keep track of the visited pages during the navigation. They are cached in the `sessionStorage` of the client.
