@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.5.3.831100475972">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.5.3.831535222262">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.5.3">
@@ -38,12 +38,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../../resources/css/retype.css?v=4.5.3.831100475972" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.5.3.831535222262" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.5.3.831100475972" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.5.3.831535222262" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.5.3" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.5.3.831100475972" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.5.3.831100475972" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.5.3.831535222262" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.5.3.831535222262" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -590,7 +590,7 @@ end</code></pre>
 <dt id="term-18"><code translate="no" v-pre>keyset pagination</code></dt>
 <dd>The technique to fetch the next page starting after the latest fetched record in a <code translate="no" v-pre>uniquely ordered</code> collection.<br/>It requires only one query per page (without OFFSET). if properly indexed, it&#x27;s the fastest technique, regardless of the table size and position. Supports only infinite pagination, with no other frontend helpers.</dd>
 <dt id="term-19"><code translate="no" v-pre>keynav pagination</code></dt>
-<dd>The pagy exclusive technique to use <code translate="no" v-pre>keyset</code> pagination, providing <strong>nearly complete</strong> UI support. The fasted technique with UI capabilities.</dd>
+<dd>The pagy exclusive technique to use <code translate="no" v-pre>keyset</code> pagination, providing <strong>nearly complete</strong> UI support. The fastest technique with UI capabilities.</dd>
 <dt id="term-20"><code translate="no" v-pre>uniquely ordered</code></dt>
 <dd>The property of a <code translate="no" v-pre>set</code>, when the concatenation of the values of the ordered columns is unique for each record. It is similar to a composite primary <code translate="no" v-pre>key</code> for the ordered table, but dynamically based on the <code translate="no" v-pre>keyset</code> columns.</dd>
 <dt id="term-21"><code translate="no" v-pre>set</code></dt>
@@ -600,13 +600,13 @@ end</code></pre>
 <dt id="term-23"><code translate="no" v-pre>keyset attributes</code></dt>
 <dd>The hash of attributes of the <code translate="no" v-pre>keyset</code> columns of a record.</dd>
 <dt id="term-24"><code translate="no" v-pre>cutoff</code></dt>
-<dd>The value that identifies where the <code translate="no" v-pre>page</code> ends, and the <code translate="no" v-pre>next</code> one begins. It is the <code translate="no" v-pre>Base64</code> URL-safe encoded string of the serialized array of the <code translate="no" v-pre>keyet attribute</code> values.</dd>
+<dd>The value that identifies where the <code translate="no" v-pre>page</code> ends, and the <code translate="no" v-pre>next</code> one begins. It is the <code translate="no" v-pre>Base64</code> URL-safe encoded string of the serialized array of the <code translate="no" v-pre>keyset attribute</code> values.</dd>
 <dt id="term-25"><code translate="no" v-pre>cutoffs</code></dt>
 <dd>The array of <code translate="no" v-pre>cutoff</code>s of the known pagination state, used only by <a href="../keynav_js/">keynav</a> to keep track of the visited pages during the navigation. They are cached in the <code translate="no" v-pre>sessionStorage</code> of the client.</dd>
 <dt id="term-26"><code translate="no" v-pre>page</code></dt>
 <dd>The current <code translate="no" v-pre>page</code>, i.e. the page of records beginning after the <code translate="no" v-pre>cutoff</code> of the previous page. Also the <code translate="no" v-pre>:page</code> option, which is set to the <code translate="no" v-pre>cutoff</code> of the previous page</dd>
 <dt id="term-27"><code translate="no" v-pre>next</code></dt>
-<dd>The next <code translate="no" v-pre>page</code>, i.e. the page of records beginning after the <code translate="no" v-pre>cutoff</code>. Also the <code translate="no" v-pre>cutoff</code> value retured by the <code translate="no" v-pre>next</code> method.</dd>
+<dd>The next <code translate="no" v-pre>page</code>, i.e. the page of records beginning after the <code translate="no" v-pre>cutoff</code>. Also the <code translate="no" v-pre>cutoff</code> value returned by the <code translate="no" v-pre>next</code> method.</dd>
 </dl>
    </doc-panel>
    <doc-panel id="in-depth-cutoffs" collapsed>
@@ -740,8 +740,8 @@ beginning of set &gt;[· · · · · · · · · X]· · · · · · · · · Y]
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-04-05T10:50:42" title="2026-04-05" data-absolute-label="Last updated on 2026-04-05" data-absolute-label-html="Last updated on 2026-04-05" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-04-05
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-05-08T07:59:42" title="2026-05-08" data-absolute-label="Last updated on 2026-05-08" data-absolute-label-html="Last updated on 2026-05-08" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-05-08
                     </time>
                 </div>
 
