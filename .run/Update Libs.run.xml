@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Update Libs" type="ShConfigurationType" folderName="Tools">
-    <option name="SCRIPT_TEXT" value="bundle update &amp;&amp; bunx taze" />
+    <option name="SCRIPT_TEXT" value="bundle update --all &amp;&amp; bun taze-up" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="" />
     <option name="SCRIPT_OPTIONS" value="" />

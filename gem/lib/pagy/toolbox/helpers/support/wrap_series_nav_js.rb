@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative 'series'
 require_relative 'nav_aria_label_attribute'
 require_relative 'data_pagy_attribute'
 

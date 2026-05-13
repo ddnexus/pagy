@@ -56,6 +56,10 @@ If you upgrade from version `< 9.0.0` see the following:
 - `:client_max_limit` option: use `:max_limit` instead.
 <hr>
 
+#### Version 43.5.4
+
+- Fix SERIES_SLOTS loading error (close #902)
+
 #### Version 43.5.3
 
 - Autoload series, a_lambda and page_label

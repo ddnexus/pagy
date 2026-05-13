@@ -1,8 +1,7 @@
-### Changes in 43.5.3
+### Changes in 43.5.4
 
 <!-- changes_start -->
-- Autoload series, a_lambda and page_label
-- Add Hungarian localization file for Pagy (#896)
+- Fix SERIES_SLOTS loading error (close #902)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
