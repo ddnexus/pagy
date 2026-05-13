@@ -9,7 +9,7 @@ require_relative 'pagy/toolbox/helpers/loaders'
 
 # Top superclass
 class Pagy
-  VERSION     = '43.5.3'
+  VERSION     = '43.5.4'
   ROOT        = Pathname.new(__dir__).parent.freeze
   DEFAULT     = { limit: 20, limit_key: 'limit', page_key: 'page' }.freeze
   PAGE_TOKEN  = EscapedValue.new('P ')
