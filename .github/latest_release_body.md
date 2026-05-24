@@ -1,7 +1,11 @@
-### Changes in 43.5.4
+### Changes in 43.5.5
 
 <!-- changes_start -->
-- Fix SERIES_SLOTS loading error (close #902)
+- Rescue malformed page request param in Pagy::Keyset and KeynavJsPaginator (#907)
+  * Rescue malformed page request param in Pagy::Keyset and KeynavJsPaginator
+  * Simplify decoding logic
+  ---------
+  Co-authored-by: Domizio Demichelis <dd.nexus@gmail.com>
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

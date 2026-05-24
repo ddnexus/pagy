@@ -17,7 +17,7 @@ include:
 branding:
   title: Pagy
   logo: assets/images/pagy-the-frog.png
-  label: 43.5.4
+  label: 43.5.5
   colors:
     label:
       text: "#ffffff"
