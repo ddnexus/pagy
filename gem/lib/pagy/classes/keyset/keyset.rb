@@ -48,6 +48,13 @@ class Pagy
       include(adapter_module) unless self < adapter_module
     end
 
+    # Decode the page option (Keyset.decode function)
+    def self.decode(page)
+      JSON.parse(B64.urlsafe_decode(page)) if page
+    rescue JSON::ParserError, ArgumentError
+      nil
+    end
+
     def initialize(set, **)
       assign_options(**)
       assign_and_check(limit: 1)
@@ -82,9 +89,7 @@ class Pagy
     def keyset? = true
 
     def assign_page
-      return unless (@page = @options[:page])
-
-      @prior_cutoff = JSON.parse(B64.urlsafe_decode(@page))
+      @prior_cutoff = Keyset.decode(@options[:page])
     end
 
     def fetch_records

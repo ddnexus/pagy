@@ -34,6 +34,20 @@ describe "Pagy Keyset" do
           # returns a subclass instance, which is_a? Pagy::Keyset
           _(Pagy::Keyset.new(model.order(:id))).must_be_kind_of Pagy::Keyset
         end
+
+        it 'treats malformed base64 page param as first page' do
+          # Garbage that fails Base64.urlsafe_decode64 (raises ArgumentError)
+          pagy = Pagy::Keyset.new(model.order(:id), page: 'NOT_BASE64', limit: 5)
+          _(pagy.page).must_be_nil
+          _(pagy.records.size).must_equal 5
+        end
+
+        it 'treats malformed JSON page param as first page' do
+          # Valid base64 of "hello" but not valid JSON (raises JSON::ParserError)
+          pagy = Pagy::Keyset.new(model.order(:id), page: 'aGVsbG8', limit: 5)
+          _(pagy.page).must_be_nil
+          _(pagy.records.size).must_equal 5
+        end
       end
 
       describe 'uses optional options' do
