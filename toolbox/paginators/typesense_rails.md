@@ -24,7 +24,7 @@ extend Pagy::Search
 ```
 
 ```ruby Controller
-# Get the collection in one of the following ways
+# Get the collection
 search = Article.pagy_search(params[:q], to_query)
 # Paginate it
 @pagy, @response = pagy(:typesense_rails, search, **options)
