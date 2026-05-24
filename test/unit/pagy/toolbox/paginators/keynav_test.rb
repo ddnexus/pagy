@@ -59,4 +59,26 @@ describe 'Pagy::KeynavJsPaginator Specs' do
 
     _(pagy).must_be_kind_of Pagy::Offset::Countless
   end
+
+  it 'treats malformed base64 page param as first page' do
+    # Garbage that fails Base64.urlsafe_decode64 (raises ArgumentError)
+    app = MockApp.new(params: { page: 'NOT_BASE64' })
+
+    pagy, records = app.pagy(:keynav_js, collection, limit: 10)
+
+    _(pagy).must_be_kind_of Pagy::Keyset::Keynav
+    _(pagy.page).must_equal 1
+    _(records.first.id).must_equal 1
+  end
+
+  it 'treats malformed JSON page param as first page' do
+    # Valid base64 of "hello" but not valid JSON (raises JSON::ParserError)
+    app = MockApp.new(params: { page: 'aGVsbG8' })
+
+    pagy, records = app.pagy(:keynav_js, collection, limit: 10)
+
+    _(pagy).must_be_kind_of Pagy::Keyset::Keynav
+    _(pagy.page).must_equal 1
+    _(records.first.id).must_equal 1
+  end
 end

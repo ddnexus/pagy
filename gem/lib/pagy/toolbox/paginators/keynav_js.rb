@@ -12,9 +12,13 @@ class Pagy
       return CountlessPaginator.paginate(set, page:, **options) if page&.match(' ')  # countless fallback
 
       if page.is_a?(String)  # keynav page param
-        page_arguments = JSON.parse(B64.urlsafe_decode(page))
-        # Restart the pagination from page 1/nil if the url has been requested from another browser
-        options[:page] = page_arguments if options[:request].cookie == page_arguments.shift
+        begin
+          page_arguments = JSON.parse(B64.urlsafe_decode(page))
+          # Restart the pagination from page 1/nil if the url has been requested from another browser
+          options[:page] = page_arguments if options[:request].cookie == page_arguments.shift
+        rescue JSON::ParserError, ArgumentError
+          # Malformed page param: fall through to first page (options[:page] stays unset)
+        end
       end
 
       options[:limit] = options[:request].resolve_limit

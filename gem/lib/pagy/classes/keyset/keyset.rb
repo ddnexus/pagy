@@ -85,6 +85,8 @@ class Pagy
       return unless (@page = @options[:page])
 
       @prior_cutoff = JSON.parse(B64.urlsafe_decode(@page))
+    rescue JSON::ParserError, ArgumentError
+      @page = nil
     end
 
     def fetch_records
