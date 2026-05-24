@@ -6,6 +6,7 @@ require 'pathname'
 module Scripty
   ROOT = Pathname.new(`git rev-parse --show-toplevel`.chomp)
 
+  # Suppress echo when run in RubyMine console
   if ENV['RM_INFO'] || ENV['RUBYLIB']&.include?('rubymine')
     require 'io/console'
     $stdin.echo = false if $stdin.tty?
@@ -32,7 +33,7 @@ module Scripty
     system(editor, filepath.to_s)
   end
 
-  # Replace a string in filepth
+  # Replace a string in filepath
   def replace_string_in_file(filepath, search, replace, all: false)
     filepath = ROOT.join(filepath)
     content  = filepath.read
@@ -40,14 +41,14 @@ module Scripty
     filepath.write(content)
   end
 
-  # Extract a section from filepth
+  # Extract a section from filepath
   def extract_section_from_file(filepath, section)
     filepath = ROOT.join(filepath)
     content  = filepath.read
     content[/<!-- #{section}_start -->\n(.*)<!-- #{section}_end -->/m, 1]
   end
 
-  # Replace a section in filepth
+  # Replace a section in filepath
   def replace_section_in_file(filepath, section, new_content)
     filepath = ROOT.join(filepath)
     content  = filepath.read
