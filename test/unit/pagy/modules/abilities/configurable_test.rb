@@ -61,19 +61,26 @@ describe 'Pagy::Configurable Specs' do
     it 'generates the wand tag with default scale' do
       generated_html = Pagy.dev_tools # scale: 1 is default
 
-      # Check script tag structure and content using regex for flexibility with whitespace
-      _(generated_html).must_match %r{<script id="pagy-wand" data-scale="1">\s*#{Regexp.escape(js_content)}\s*</script>}m
+      # Default Integer 1 is coerced to 1.0 by to_f (parseFloat("1.0") === 1 client-side)
+      _(generated_html).must_match %r{<script id="pagy-wand" data-scale="1\.0">\s*#{Regexp.escape(js_content)}\s*</script>}m
       # Check style tag structure and content using regex
       _(generated_html).must_match %r{<style id="pagy-wand-default">\s*#{Regexp.escape(css_content)}\s*</style>}m
     end
 
-    it 'generates the wand tag with custom scale' do
+    it 'generates the wand tag with custom fractional scale' do
       generated_html = Pagy.dev_tools(wand_scale: 2.5)
 
-      # Check script tag structure and content with custom scale
+      # Fractional scale is preserved (to_f, not to_i)
       _(generated_html).must_match %r{<script id="pagy-wand" data-scale="2\.5">\s*#{Regexp.escape(js_content)}\s*</script>}m
-      # Check style tag structure and content (should be the same)
       _(generated_html).must_match %r{<style id="pagy-wand-default">\s*#{Regexp.escape(css_content)}\s*</style>}m
+    end
+
+    it 'neutralizes a non-numeric wand_scale (no attribute injection)' do
+      generated_html = Pagy.dev_tools(wand_scale: %(1"></script><script>alert(1)</script>))
+
+      # to_f stops at the first non-numeric char: the payload collapses to 1.0
+      _(generated_html).must_match(/<script id="pagy-wand" data-scale="1\.0">/)
+      _(generated_html).wont_include '<script>alert(1)</script>'
     end
   end
 

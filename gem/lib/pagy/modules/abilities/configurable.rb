@@ -12,13 +12,16 @@ class Pagy
       FileUtils.cp(files, destination)
     end
 
-    # Generate the script and style tags to help development
+    # Generate the script and style tags to help development.
+    # wand_scale is coerced with to_f: wand.js reads data-scale via parseFloat
+    # and multiplies it into rem sizes, so fractional scales are meaningful;
+    # the coercion also neutralizes any non-numeric string passed in.
     def dev_tools(wand_scale: 1)
       <<~HTML
         <script id="pagy-ai-widget">
           #{ROOT.join('javascripts/ai_widget.js').read}
         </script>
-        <script id="pagy-wand" data-scale="#{wand_scale}">
+        <script id="pagy-wand" data-scale="#{wand_scale.to_f}">
           #{ROOT.join('javascripts/wand.js').read}
         </script>
         <style id="pagy-wand-default">
