@@ -44,6 +44,10 @@ Pagy retrieves the page from the `'page'` request params hash. To force a specif
 @pagy, @records = pagy(:offset, collection, page: 3) # force page #3
 ```
 
+==- Handle user input
+
+See [Safety](/guides/safety)
+
 ==- Customize the ARIA labels
 
 You can customize the `aria-label` attributes of any `*nav*` helper by providing a `:aria_label` string.

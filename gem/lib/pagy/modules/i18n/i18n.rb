@@ -8,8 +8,7 @@ class Pagy
   module I18n
     class KeyError < KeyError; end
 
-    # BCP 47-shaped locale (matches all the gem/locales/*.yml names, e.g. en, ckb, pt-BR, sv-SE).
-    # Used to reject anything that could be used as a path component in the locale file lookup.
+    # Match only valid locale names. (See https://www.rfc-editor.org/info/rfc4647/)
     LOCALE_PATTERN = /\A[a-zA-Z]{2,8}(-[a-zA-Z0-9]{1,8})*\z/
 
     extend self
@@ -22,10 +21,7 @@ class Pagy
       @locales ||= {}
     end
 
-    # Store the variable for the duration of a single request.
-    # value.to_s[LOCALE_PATTERN] keeps a valid locale, and stores nil for both
-    # nil (reset to the default) and any invalid/path-like string, which then
-    # falls back to the default locale without raising or logging.
+    # Set a valid locale or nil for the duration of a single request. Avoid errors/logging.
     def locale=(value)
       Thread.current[:pagy_locale] = value.to_s[LOCALE_PATTERN]
     end

@@ -13,9 +13,6 @@ class Pagy
     end
 
     # Generate the script and style tags to help development.
-    # wand_scale is coerced with to_f: wand.js reads data-scale via parseFloat
-    # and multiplies it into rem sizes, so fractional scales are meaningful;
-    # the coercion also neutralizes any non-numeric string passed in.
     def dev_tools(wand_scale: 1)
       <<~HTML
         <script id="pagy-ai-widget">
