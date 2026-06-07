@@ -18,17 +18,17 @@ The Pagy API is quite different from other pagination gems, however, if you spli
 
 >>> Remove the old code
 
-==- {{ include "snippets/mini-step" step: "•1" }} Preparation
+==- {{ include "snippets/mini-step" step: "1" }} Preparation
 
 - Uninstall the legacy gem and replace it with `gem "pagy"` in the `Gemfile`.
 - Add `include Pagy::Method` statement to the application controller.
 
-==- {{ include "snippets/mini-step" step: "•2" }} Application-wide search and replace
+==- {{ include "snippets/mini-step" step: "2" }} Application-wide search and replace
 
 - Search for the class name of the legacy gem, for example `WillPaginate` or `Kaminari`. You should find most of the code relative to global gem configuration or monkey patching.
 - Remove all the legacy settings of the old gem.
 
-==- {{ include "snippets/mini-step" step: "•3" }} Cleanup the Models
+==- {{ include "snippets/mini-step" step: "3" }} Cleanup the Models
 
 Look for terms like `per_page`, `per`, and similar, as these are configuration settings. Include them in the appropriate paginator call in the controller (e.g., `pagy(:offset, collection, limit: 10)`) or globally in the Pagy initializer (e.g., `Pagy::OPTIONS[:limit] = 10`).
 
@@ -39,7 +39,7 @@ If the app uses the `page` scope in model methods or scopes, remove it, along wi
 @pagy, @records = pagy(:offset, Product.non_paginated_scope)
 ```
 
-==- {{ include "snippets/mini-step" step: "•4" }} Search and replace in the Controllers
+==- {{ include "snippets/mini-step" step: "4" }} Search and replace in the Controllers
 
 In controllers, legacy pagination statements generally map directly to Pagy, making them straightforward to convert.
 
@@ -58,7 +58,7 @@ Search for keywords like `page` and `paginate` statements and use the `pagy(:off
 @pagy, @records = pagy(:offset, Product.all, limit: 15)
 ```
 
-==- {{ include "snippets/mini-step" step: "•5" }} Search and replace in the Views
+==- {{ include "snippets/mini-step" step: "5" }} Search and replace in the Views
 
 Similarly, in views, legacy pagination statements typically correspond directly to Pagy, simplifying conversion.
 

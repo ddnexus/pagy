@@ -61,8 +61,6 @@ If you upgrade from version `< 9.0.0` see the following:
 - Rescue malformed page request param in Pagy::Keyset and KeynavJsPaginator (#907)
   *  Rescue malformed page request param in Pagy::Keyset and KeynavJsPaginator
   * Simplify decoding logic
-  ---------
-  Co-authored-by: Domizio Demichelis <dd.nexus@gmail.com>
 
 #### Version 43.5.4
 

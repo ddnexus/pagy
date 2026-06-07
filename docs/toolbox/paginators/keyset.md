@@ -64,8 +64,8 @@ set = collection.order(:last_name).order(:first_name).order(:id)
 
 >>> Ensure that your table has the appropriate index AND index type
 
-{{ include "snippets/mini-step" step: "•1" }} The index must include the exact same columns and ordering direction of your set.<br>
-{{ include "snippets/mini-step" step: "•2" }} The index type must minimize the data scan (e.g. B-tree, B+ Tree, ...)
+{{ include "snippets/mini-step" step: "1" }} The index must include the exact same columns and ordering direction of your set.<br>
+{{ include "snippets/mini-step" step: "2" }} The index type must minimize the data scan (e.g. B-tree, B+ Tree, ...)
 
 >>>
 
