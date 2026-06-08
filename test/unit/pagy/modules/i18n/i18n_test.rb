@@ -47,6 +47,21 @@ describe 'Pagy::I18n Specs' do
     it 'has default pathnames' do
       _(i18n.pathnames).must_include Pagy::ROOT.join('locales')
     end
+
+    it 'accepts BCP 47 shaped locales' do
+      i18n.locale = 'pt-BR'
+      _(i18n.locale).must_equal 'pt-BR'
+
+      i18n.locale = 'zh-Hant-CN'
+      _(i18n.locale).must_equal 'zh-Hant-CN'
+    end
+
+    it 'silently falls back to the default for invalid or path-like locales' do
+      ['/etc/passwd', '../../config/secrets', 'en_US', 'en;rm', ''].each do |bad|
+        i18n.locale = bad
+        _(i18n.locale).must_equal 'en' # stored as nil, getter returns the default
+      end
+    end
   end
 
   describe 'translation logic' do
@@ -118,9 +133,9 @@ describe 'Pagy::I18n Specs' do
     it 'falls back to en using cached locale' do
       i18n.locale = 'en'
       i18n.translate('pagy.item_name', count: 1)
-      i18n.locale = 'unknown_cached'
+      i18n.locale = 'zz' # valid BCP 47 shape, but no zz.yml dictionary
       _out, err = capture_io { _(i18n.translate('pagy.item_name', count: 1)).must_equal 'item' }
-      _(err).must_match 'Pagy::I18n: missing dictionary file for "unknown_cached" locale; using "en" instead'
+      _(err).must_match 'Pagy::I18n: missing dictionary file for "zz" locale; using "en" instead'
     end
 
     it 'raises error for missing pagy key' do
@@ -131,10 +146,10 @@ describe 'Pagy::I18n Specs' do
     end
 
     it 'raises error for missing p11n key' do
-      File.write(File.join(tmp_dir, 'broken_p11n.yml'), "broken_p11n:\n  pagy:\n    key: 'val'")
-      i18n.locale = 'broken_p11n'
+      File.write(File.join(tmp_dir, 'badp.yml'), "badp:\n  pagy:\n    key: 'val'")
+      i18n.locale = 'badp'
       err = _ { i18n.translate('foo') }.must_raise Pagy::I18n::KeyError
-      _(err.message).must_match "missing 'p11n' key in \"broken_p11n\" locale"
+      _(err.message).must_match "missing 'p11n' key in \"badp\" locale"
     end
 
     it 'caches loaded locales' do

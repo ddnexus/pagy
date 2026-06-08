@@ -8,6 +8,9 @@ class Pagy
   module I18n
     class KeyError < KeyError; end
 
+    # Match only valid locale names. (See https://www.rfc-editor.org/info/rfc4647/)
+    LOCALE_PATTERN = /\A[a-zA-Z]{2,8}(-[a-zA-Z0-9]{1,8})*\z/
+
     extend self
 
     def pathnames
@@ -18,9 +21,9 @@ class Pagy
       @locales ||= {}
     end
 
-    # Store the variable for the duration of a single request
+    # Set a valid locale or nil for the duration of a single request. Avoid errors/logging.
     def locale=(value)
-      Thread.current[:pagy_locale] = value.to_s
+      Thread.current[:pagy_locale] = value.to_s[LOCALE_PATTERN]
     end
 
     def locale
