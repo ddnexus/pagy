@@ -89,7 +89,7 @@ require 'pagy/console'
 : Makes the URL absolute.
 
 `path: '/my_path'`
-: Overrides the request path in pagination URLs. Use the path only (not the absolute URL). _(see [Override the request path](/guides/how-to#paginate-multiple-independent-collections))_
+: Overrides the request path in pagination URLs. Use the path only (not the absolute URL). _(see [Override the request path](/guides/how-to#override-the-request-path))_
 
 `fragment: '...'`
 : URL fragment string.

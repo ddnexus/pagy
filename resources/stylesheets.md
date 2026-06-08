@@ -83,7 +83,7 @@ Rails.application.config.assets.paths << Pagy::ROOT.join('stylesheets')
 
 >>> Customize the style...
 
-Add this line to any template `<head>`...
+Add this line to any template/layout `<head>` while developing:
 
 ```erb
 <%== Pagy.dev_tools %>

@@ -340,11 +340,11 @@ Supported CSS frameworks (like Bootstrap and Bulma) don't require any change.
 
 ==- Pagy::I18n and Locale Files
 
-[!badge variant="info" size="s" corners="pill" text="•1"]&nbsp;  If your `pagy-old.rb` contains the `Pagy::I18n` setup, and the setup includes some custom dictionary file, then uncomment and set up the relevant `Pagy::I18n` lookup section in the `pagy.rb` file. _(See the [I18n docs](/resources/i18n) for details)_
+[!badge variant="info" size="s" corners="pill" text="1"]&nbsp;  If your `pagy-old.rb` contains the `Pagy::I18n` setup, and the setup includes some custom dictionary file, then uncomment and set up the relevant `Pagy::I18n` lookup section in the `pagy.rb` file. _(See the [I18n docs](/resources/i18n) for details)_
 
-[!badge variant="info" size="s" corners="pill" text="•2"]&nbsp;  Update your custom dictionary files (if any) to the new [dictionary structure](/resources/i18n/#sample-dictionary), or they won't work correctly.
+[!badge variant="info" size="s" corners="pill" text="2"]&nbsp;  Update your custom dictionary files (if any) to the new [dictionary structure](/resources/i18n/#sample-dictionary), or they won't work correctly.
 
-[!badge variant="info" size="s" corners="pill" text="•3"]&nbsp; Remove all the I18n code from the `pagy-old.rb`. All the locales are autoloaded when your app uses them.
+[!badge variant="info" size="s" corners="pill" text="3"]&nbsp; Remove all the I18n code from the `pagy-old.rb`. All the locales are autoloaded when your app uses them.
 
 ==- Overriding
 

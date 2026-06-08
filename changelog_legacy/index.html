@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.5.3.832939591896">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.834219755734">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 4.5.3">
+    <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
     <title>LEGACY CHANGELOG &#128154; Pagy</title>
@@ -38,11 +38,11 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../resources/css/retype.css?v=4.5.3.832939591896" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=4.6.0.834219755734" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=4.5.3.832939591896" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../resources/js/retype.js?v=4.5.3" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.5.3.832939591896" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=4.6.0.834219755734" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.6.0.834219755734" data-turbo-eval="false" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -215,7 +215,7 @@
                             <img class="max-h-10 md:inline-block" src="../assets/images/pagy-the-frog.png" alt="" width="43" height="40">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.5.5</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.5.6</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -502,6 +502,16 @@ fetched from a collection (plural entity), so they are kept as before (e.g. <cod
 singular entity), are now unmistakably referenced as the <code translate="no" v-pre>limit</code> everywhere (code, API, files, extras, docs, etc.). The logic
 didn&#x27;t change so you have just to globally search &#x27;items&#x27; and replace with <code translate="no" v-pre>limit</code> and you should be done... or use the detailed
 table below:</p>
+<retype-table copy-text="| Type              | Search                   | Replace                      |
+|-------------------|--------------------------|------------------------------|
+| Pagy Variable     | `:items`                 | `:limit`                     |
+| Extra Path        | `pagy/extras/items`      | `pagy/extras/limit`          |
+| Extra Variable    | `:items_param`           | `:limit_param`               |
+| Default URL param | `items`                  | `limit`                      |
+| Extra Variable    | `:items_extra`           | `:limit_extra`               |
+| Extra Variable    | `:max_items`             | `:limit_max`  (now inverted) |
+| Extra Method      | `pagy_items_selector_js` | `pagy_limit_selector_js`     |
+| Extra Variable    | `:headers[:items]`       | `:headers[limit]`            |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -555,6 +565,7 @@ table below:</p>
 </tbody>
 </table>
 </div>
+</retype-table>
 <h4 id="code-changes">Code changes</h4>
 <ul>
 <li>
@@ -2282,6 +2293,10 @@ Generating the URL by using the application params method breaks rails apps beca
 <h4 id="renamed-nav-helper-methods-and-files">Renamed nav helper methods and files</h4>
 <p>The javascript-powered helpers (<code translate="no" v-pre>pagy*_responsive_nav</code>, <code translate="no" v-pre>pagy*_compact_nav</code> and <code translate="no" v-pre>items_selector</code>) have been renamed in order to be simpler and more descriptive of their arguments, features and requirements. They have been improved internally, but you need only to search and replace because their usage has not been changed.</p>
 <h4 id="bootstrap-extra">Bootstrap Extra</h4>
+<retype-table copy-text="| v2.0+                                          | v3.0+                            |
+|:-----------------------------------------------|:---------------------------------|
+| `pagy_bootstrap_responsive_nav` `:breakpoints` | `pagy_bootstrap_nav_js` `:steps` |
+| `pagy_bootstrap_compact_nav`                   | `pagy_bootstrap_combo_nav_js`    |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -2302,7 +2317,12 @@ Generating the URL by using the application params method breaks rails apps beca
 </tbody>
 </table>
 </div>
+</retype-table>
 <h4 id="bulma-extra">Bulma Extra</h4>
+<retype-table copy-text="| v2.0+                                      | v3.0+                        |
+|:-------------------------------------------|:-----------------------------|
+| `pagy_bulma_responsive_nav` `:breakpoints` | `pagy_bulma_nav_js` `:steps` |
+| `pagy_bulma_compact_nav`                   | `pagy_bulma_combo_nav_js`    |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -2323,7 +2343,12 @@ Generating the URL by using the application params method breaks rails apps beca
 </tbody>
 </table>
 </div>
+</retype-table>
 <h4 id="foundation-extra">Foundation Extra</h4>
+<retype-table copy-text="| v2.0+                                           | v3.0+                             |
+|:------------------------------------------------|:----------------------------------|
+| `pagy_foundation_responsive_nav` `:breakpoints` | `pagy_foundation_nav_js` `:steps` |
+| `pagy_foundation_compact_nav`                   | `pagy_foundation_combo_nav_js`    |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -2344,7 +2369,12 @@ Generating the URL by using the application params method breaks rails apps beca
 </tbody>
 </table>
 </div>
+</retype-table>
 <h4 id="materialize-extra">Materialize Extra</h4>
+<retype-table copy-text="| v2.0+                                            | v3.0+                              |
+|:-------------------------------------------------|:-----------------------------------|
+| `pagy_materialize_responsive_nav` `:breakpoints` | `pagy_materialize_nav_js` `:steps` |
+| `pagy_materialize_compact_nav`                   | `pagy_materialize_combo_nav_js`    |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -2365,7 +2395,14 @@ Generating the URL by using the application params method breaks rails apps beca
 </tbody>
 </table>
 </div>
+</retype-table>
 <h4 id="plain--navs-extra">Plain &gt; Navs Extra</h4>
+<retype-table copy-text="| v2.0+                                      | v3.0+                        |
+|:-------------------------------------------|:-----------------------------|
+| `pagy_plain_nav` (`pagy_nav` alias)        | - removed -                  |
+| `pagy_plain_responsive_nav` `:breakpoints` | `pagy_nav_js` `:steps`       |
+| `pagy_plain_compact_nav`                   | `pagy_combo_nav_js`          |
+| `require &quot;pagy/extras/plain&quot;`              | `require &quot;pagy/extras/navs&quot;` |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -2394,7 +2431,12 @@ Generating the URL by using the application params method breaks rails apps beca
 </tbody>
 </table>
 </div>
+</retype-table>
 <h4 id="semantic-extra">Semantic Extra</h4>
+<retype-table copy-text="| v2.0+                                         | v3.0+                           |
+|:----------------------------------------------|:--------------------------------|
+| `pagy_semantic_responsive_nav` `:breakpoints` | `pagy_semantic_nav_js` `:steps` |
+| `pagy_semantic_compact_nav`                   | `pagy_semantic_combo_nav_js`    |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -2415,6 +2457,7 @@ Generating the URL by using the application params method breaks rails apps beca
 </tbody>
 </table>
 </div>
+</retype-table>
 <h4 id="renamed-pagyvars">Renamed Pagy::VARS</h4>
 <p><code translate="no" v-pre>Pagy::Vars[:breakpoints]</code> has been renamed as <code translate="no" v-pre>Pagy::VARS[:steps]</code></p>
 <h4 id="renamed-items_selector">Renamed items_selector</h4>
@@ -2423,6 +2466,20 @@ Generating the URL by using the application params method breaks rails apps beca
 <p><strong>Notice</strong>: You can skip the following sections if you did not override any nav helper.</p>
 <h4 id="css-nav-classes">CSS nav classes</h4>
 <p>The <code translate="no" v-pre>nav</code> CSS classes follow the same renaming rules of the helper methods:</p>
+<retype-table copy-text="| v2.0+                             | v3.0+                           |
+|:----------------------------------|:--------------------------------|
+| `pagy-bootstrap-responsive-nav`   | `pagy-bootstrap-nav-js`         |
+| `pagy-bootstrap-compact-nav`      | `pagy-bootstrap-combo-nav-js`   |
+| `pagy-bulma-responsive-nav`       | `pagy-bulma-nav-js`             |
+| `pagy-bulma-compact-nav`          | `pagy-bulma-combo-nav-js`       |
+| `pagy-foundation-responsive-nav`  | `pagy-foundation-nav-js`        |
+| `pagy-foundation-compact-nav`     | `pagy-foundation-combo-nav-js`  |
+| `pagy-materialize-responsive-nav` | `pagy-materialize-nav-js`       |
+| `pagy-materialize-compact-nav`    | `pagy-materialize-combo-nav-js` |
+| `pagy-plain-responsive-nav`       | `pagy-nav-js`                   |
+| `pagy-plain-compact-nav`          | `pagy-combo-nav-js`             |
+| `pagy-semantic-responsive-nav`    | `pagy-semantic-nav-js`          |
+| `pagy-semantic-compact-nav`       | `pagy-semantic-combo-nav-js`    |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -2483,8 +2540,14 @@ Generating the URL by using the application params method breaks rails apps beca
 </tbody>
 </table>
 </div>
+</retype-table>
 <h4 id="css-json-tag-classes">CSS JSON tag classes</h4>
 <p>Renamed first param passed to the <code translate="no" v-pre>pagy_json_tag</code>:</p>
+<retype-table copy-text="| v2.0+         | v3.0+             |
+|:--------------|:------------------|
+| `:responsive` | `:nav`            |
+| `:compact`    | `:combo_nav`      |
+| `:items`      | `:items_selector` |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -2509,7 +2572,13 @@ Generating the URL by using the application params method breaks rails apps beca
 </tbody>
 </table>
 </div>
+</retype-table>
 <h4 id="javascript-functions">Javascript functions</h4>
+<retype-table copy-text="| v2.0+             | v3.0+                 |
+|:------------------|:----------------------|
+| `Pagy.responsive` | `Pagy.nav`            |
+| `Pagy.compact`    | `Pagy.combo_nav`      |
+| `Pagy.items`      | `Pagy.items_selector` |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -2534,6 +2603,7 @@ Generating the URL by using the application params method breaks rails apps beca
 </tbody>
 </table>
 </div>
+</retype-table>
 <h4 id="dropped-marginal-methods">Dropped marginal methods</h4>
 <p>Dropped <code translate="no" v-pre>pagy_serialized</code>, <code translate="no" v-pre>pagy_apply_init_tag</code> and <code translate="no" v-pre>PagyInit</code> javascript namespace. They were too basic to be useful as support for javascript powered custom component.</p>
 <h3 id="commits-41">Commits</h3>
@@ -2703,6 +2773,11 @@ base_url instead of request.url</p>
 <h4 id="renamed-methods-and-files-already-deprecated">Renamed methods and files (already deprecated)</h4>
 <p>The following methods have been renamed. You only need to search and replace, because the functionality has not been changed.</p>
 <h4 id="bootstrap-extra-1">Bootstrap Extra</h4>
+<retype-table copy-text="| Legacy Name                     | New Name                        |
+|:--------------------------------|:--------------------------------|
+| `pagy_nav_bootstrap`            | `pagy_bootstrap_nav`            |
+| `pagy_nav_compact_bootstrap`    | `pagy_bootstrap_compact_nav`    |
+| `pagy_nav_responsive_bootstrap` | `pagy_bootstrap_responsive_nav` |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -2727,7 +2802,13 @@ base_url instead of request.url</p>
 </tbody>
 </table>
 </div>
+</retype-table>
 <h4 id="bulma-extra-1">Bulma Extra</h4>
+<retype-table copy-text="| Legacy Name                 | New Name                    |
+|:----------------------------|:----------------------------|
+| `pagy_nav_bulma`            | `pagy_bulma_nav`            |
+| `pagy_nav_compact_bulma`    | `pagy_bulma_compact_nav`    |
+| `pagy_nav_responsive_bulma` | `pagy_bulma_responsive_nav` |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -2752,7 +2833,13 @@ base_url instead of request.url</p>
 </tbody>
 </table>
 </div>
+</retype-table>
 <h4 id="foundation-extra-1">Foundation Extra</h4>
+<retype-table copy-text="| Legacy Name                      | New Name                         |
+|:---------------------------------|:---------------------------------|
+| `pagy_nav_foundation`            | `pagy_foundation_nav`            |
+| `pagy_nav_compact_foundation`    | `pagy_foundation_compact_nav`    |
+| `pagy_nav_responsive_foundation` | `pagy_foundation_responsive_nav` |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -2777,7 +2864,13 @@ base_url instead of request.url</p>
 </tbody>
 </table>
 </div>
+</retype-table>
 <h4 id="materialize-extra-1">Materialize Extra</h4>
+<retype-table copy-text="| Legacy Name                       | New Name                          |
+|:----------------------------------|:----------------------------------|
+| `pagy_nav_materialize`            | `pagy_materialize_nav`            |
+| `pagy_nav_compact_materialize`    | `pagy_materialize_compact_nav`    |
+| `pagy_nav_responsive_materialize` | `pagy_materialize_responsive_nav` |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -2802,7 +2895,14 @@ base_url instead of request.url</p>
 </tbody>
 </table>
 </div>
+</retype-table>
 <h4 id="navs-extra">Navs Extra</h4>
+<retype-table copy-text="| Legacy Name                  | New Name                            |
+|:-----------------------------|:------------------------------------|
+|                              | `pagy_plain_nav` (`pagy_nav` alias) |
+| `pagy_nav_compact`           | `pagy_plain_compact_nav`            |
+| `pagy_nav_responsive`        | `pagy_plain_responsive_nav`         |
+| `require &quot;pagy/extras/navs&quot;` | `require &quot;pagy/extras/plain&quot;`       |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -2831,7 +2931,13 @@ base_url instead of request.url</p>
 </tbody>
 </table>
 </div>
+</retype-table>
 <h4 id="semantic-extra-1">Semantic Extra</h4>
+<retype-table copy-text="| Legacy Name                    | New Name                       |
+|:-------------------------------|:-------------------------------|
+| `pagy_nav_semantic`            | `pagy_semantic_nav`            |
+| `pagy_nav_compact_semantic`    | `pagy_semantic_compact_nav`    |
+| `pagy_nav_responsive_semantic` | `pagy_semantic_responsive_nav` |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -2856,6 +2962,7 @@ base_url instead of request.url</p>
 </tbody>
 </table>
 </div>
+</retype-table>
 <h4 id="renamed-classes-and-params-in-helpers-1">Renamed classes and params in helpers</h4>
 <p><strong>Notice</strong>: You can skip this section if you did not override any nav helper.</p>
 <h4 id="css-nav-classes-1">CSS nav classes</h4>
@@ -3614,13 +3721,7 @@ base_url instead of request.url</p>
 <li><a href="https://github.com/ddnexus/pagy/commit/e610b82" class="outbound" target="_blank"><span>e610b82</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>: minor docs fixes</li>
 </ul>
 
-                <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-03-25T21:27:31" title="2026-03-25" data-absolute-label="Last updated on 2026-03-25" data-absolute-label-html="Last updated on 2026-03-25" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-03-25
-                    </time>
-                </div>
-
                 <!-- Required only on API pages -->
                 <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
             </div>

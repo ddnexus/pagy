@@ -33,7 +33,7 @@ Make `Pagy` available in your JavaScript environment with...
 ```erb ERB template / HTML page
 <%= javascript_include_tag "pagy.min.js" ...%>
 
-<!-- or if your app does not provide helpers -->
+<!-- or if your framework does not provide helpers -->
 <script src="/path/to/pagy.min.js"></script>
 ```
 

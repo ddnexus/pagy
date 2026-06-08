@@ -12,17 +12,17 @@ The Pagy API is quite different from other pagination gems, however, if you spli
 
 >>> Remove the old code
 
-==- [!badge variant="info" size="s" corners="pill" text="•1"]&nbsp; Preparation
+==- [!badge variant="info" size="s" corners="pill" text="1"]&nbsp; Preparation
 
 - Uninstall the legacy gem and replace it with `gem "pagy"` in the `Gemfile`.
 - Add `include Pagy::Method` statement to the application controller.
 
-==- [!badge variant="info" size="s" corners="pill" text="•2"]&nbsp; Application-wide search and replace
+==- [!badge variant="info" size="s" corners="pill" text="2"]&nbsp; Application-wide search and replace
 
 - Search for the class name of the legacy gem, for example `WillPaginate` or `Kaminari`. You should find most of the code relative to global gem configuration or monkey patching.
 - Remove all the legacy settings of the old gem.
 
-==- [!badge variant="info" size="s" corners="pill" text="•3"]&nbsp; Cleanup the Models
+==- [!badge variant="info" size="s" corners="pill" text="3"]&nbsp; Cleanup the Models
 
 Look for terms like `per_page`, `per`, and similar, as these are configuration settings. Include them in the appropriate paginator call in the controller (e.g., `pagy(:offset, collection, limit: 10)`) or globally in the Pagy initializer (e.g., `Pagy::OPTIONS[:limit] = 10`).
 
@@ -33,7 +33,7 @@ If the app uses the `page` scope in model methods or scopes, remove it, along wi
 @pagy, @records = pagy(:offset, Product.non_paginated_scope)
 ```
 
-==- [!badge variant="info" size="s" corners="pill" text="•4"]&nbsp; Search and replace in the Controllers
+==- [!badge variant="info" size="s" corners="pill" text="4"]&nbsp; Search and replace in the Controllers
 
 In controllers, legacy pagination statements generally map directly to Pagy, making them straightforward to convert.
 
@@ -52,7 +52,7 @@ Search for keywords like `page` and `paginate` statements and use the `pagy(:off
 @pagy, @records = pagy(:offset, Product.all, limit: 15)
 ```
 
-==- [!badge variant="info" size="s" corners="pill" text="•5"]&nbsp; Search and replace in the Views
+==- [!badge variant="info" size="s" corners="pill" text="5"]&nbsp; Search and replace in the Views
 
 Similarly, in views, legacy pagination statements typically correspond directly to Pagy, simplifying conversion.
 

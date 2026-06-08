@@ -57,8 +57,8 @@ set = collection.order(:last_name).order(:first_name).order(:id)
 
 >>> Ensure that your table has the appropriate index AND index type
 
-[!badge variant="info" size="s" corners="pill" text="•1"]&nbsp; The index must include the exact same columns and ordering direction of your set.<br>
-[!badge variant="info" size="s" corners="pill" text="•2"]&nbsp; The index type must minimize the data scan (e.g. B-tree, B+ Tree, ...)
+[!badge variant="info" size="s" corners="pill" text="1"]&nbsp; The index must include the exact same columns and ordering direction of your set.<br>
+[!badge variant="info" size="s" corners="pill" text="2"]&nbsp; The index type must minimize the data scan (e.g. B-tree, B+ Tree, ...)
 
 >>>
 

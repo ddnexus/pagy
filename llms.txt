@@ -8,6 +8,7 @@
 ## Guides
 
 - [Quick Start](https://ddnexus.github.io/pagy/guides/quick-start.md): Check the Migration Guide first
+- [Safety](https://ddnexus.github.io/pagy/guides/safety.md): Pagy handles the input of its own URL params safely, and assumes that all the configuration, options and arguments you set in your code are safe to use verbatim in its helpers.
 - [Choose Right](https://ddnexus.github.io/pagy/guides/choose-right.md): Pagination just means retrieving a (potentially big) collection of items in small sequential chunks (pages).
 - [How To](https://ddnexus.github.io/pagy/guides/how-to.md): This page provides practical tips and examples to help you to use Pagy efficiently.
 - [Migrate Legacy Pagination](https://ddnexus.github.io/pagy/guides/migration-guide.md): This page tries to cover most of the standard changes you will need to make in order to migrate from legacy pagination.

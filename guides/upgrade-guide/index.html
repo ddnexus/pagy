@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.5.3.832939591896">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.834219755734">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 4.5.3">
+    <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
     <title>Upgrade to 43 &#128154; Pagy</title>
@@ -38,12 +38,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.5.3.832939591896" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.834219755734" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.5.3.832939591896" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.5.3" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.5.3.832939591896" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.5.3.832939591896" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.834219755734" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.834219755734" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.834219755734" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -216,7 +216,7 @@
                             <img class="max-h-10 md:inline-block" src="../../assets/images/pagy-the-frog.png" alt="" width="43" height="40">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.5.5</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.5.6</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -436,6 +436,9 @@
 <doc-panels expando>
    <doc-panel id="array" collapsed>
        <template #title><code translate="no" v-pre>array</code></template>
+<retype-table copy-text="| Search (old)      | Replace with (new)  |
+|-------------------|---------------------|
+| `pagy_array(...)` | `pagy(:offset,...)` |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="compact">
 <thead>
@@ -452,9 +455,13 @@
 </tbody>
 </table>
 </div>
+</retype-table>
    </doc-panel>
    <doc-panel id="arel" collapsed>
        <template #title><code translate="no" v-pre>arel</code></template>
+<retype-table copy-text="| Search (old)     | Replace with (new)                     |
+|------------------|----------------------------------------|
+| `pagy_arel(...)` | `pagy(:offset, count_over: true, ...)` |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="compact">
 <thead>
@@ -471,12 +478,26 @@
 </tbody>
 </table>
 </div>
+</retype-table>
    </doc-panel>
    <doc-panel id="pagy" collapsed>
        <template #title><code translate="no" v-pre>pagy</code></template>
 <ul>
 <li>All the old helpers are now <code translate="no" v-pre>@pagy</code> instance methods with more explicit names.</li>
 </ul>
+<retype-table copy-text="| Search (old)                                    | Replace with (new)                                  |
+|-------------------------------------------------|-----------------------------------------------------|
+| `pagy_nav_js(@pagy, ...)`                       | `@pagy.series_nav_js(...)`                          |
+| `pagy_combo_nav_js(@pagy, ...)`                 | `@pagy.input_nav_js(...)`                           |
+| `pagy_limit_selector_js(@pagy, ...)`            | `@pagy.limit_tag_js(...)`                           |
+| `pagy_prev_url(@pagy, ...)`                     | `@pagy.page_url(:previous, ...)`                    |
+| `pagy_next_url(@pagy, ...)`                     | `@pagy.page_url(:next, ...)`                        |
+| `pagy_prev_a(@pagy, ...)`                       | `@pagy.previous_tag(...)`                           |
+| `pagy_next_a(@pagy, ...)`                       | `@pagy.next_tag(...)`                               |
+| `pagy_prev_link(@pagy, ...)`                    | discontinued: implement manually                    |
+| `pagy_next_link(@pagy, ...)`                    | discontinued: implement manually                    |
+| `size: ...`&lt;br/&gt;`Pagy::OPTIONS[:size] = ...`    | `slots: ...`&lt;br/&gt;`Pagy::OPTIONS[:slots] = ...`       |
+| `ends: false`&lt;br/&gt;`Pagy::OPTIONS[:end] = false` | `compact: true`&lt;br/&gt;`Pagy::OPTIONS[:compact] = true` |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="compact">
 <thead>
@@ -533,12 +554,20 @@
 </tbody>
 </table>
 </div>
+</retype-table>
    </doc-panel>
    <doc-panel id="bootstrap" collapsed>
        <template #title><code translate="no" v-pre>bootstrap</code></template>
 <ul>
 <li>All the old helpers are now <code translate="no" v-pre>@pagy</code> instance methods with more explicit names.</li>
 </ul>
+<retype-table copy-text="| Search (old)                                    | Replace with (new)                                  |
+|-------------------------------------------------|-----------------------------------------------------|
+| `pagy_bootstrap_nav(@pagy, ...)`                | `@pagy.series_nav(:bootstrap, ...)`                 |
+| `pagy_bootstrap_nav_js(@pagy, ...)`             | `@pagy.series_nav_js(:bootstrap, ...)`              |
+| `pagy_bootstrap_combo_nav_js(@pagy, ...)`       | `@pagy.input_nav_js(:bootstrap, ...)`               |
+| `size: ...`&lt;br/&gt;`Pagy::OPTIONS[:size] = ...`    | `slots: ...`&lt;br/&gt;`Pagy::OPTIONS[:slots] = ...`       |
+| `ends: false`&lt;br/&gt;`Pagy::OPTIONS[:end] = false` | `compact: true`&lt;br/&gt;`Pagy::OPTIONS[:compact] = true` |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="compact">
 <thead>
@@ -571,6 +600,7 @@
 </tbody>
 </table>
 </div>
+</retype-table>
 <ul>
 <li><strong>FYI</strong>: The redundant <code translate="no" v-pre>pagy-bootstrap</code> class has been removed from the <code translate="no" v-pre>input_nav_js</code> body.</li>
 </ul>
@@ -580,6 +610,13 @@
 <ul>
 <li>All the old helpers are now <code translate="no" v-pre>@pagy</code> instance methods with more explicit names.</li>
 </ul>
+<retype-table copy-text="| Search (old)                                    | Replace with (new)                                  |
+|-------------------------------------------------|-----------------------------------------------------|
+| `pagy_bulma_nav(@pagy, ...)`                    | `@pagy.series_nav(:bulma, ...)`                     |
+| `pagy_bulma_nav_js(@pagy, ...)`                 | `@pagy.series_nav_js(:bulma, ...)`                  |
+| `pagy_bulma_combo_nav_js(@pagy, ...)`           | `@pagy.input_nav_js(:bulma, ...)`                   |
+| `size: ...`&lt;br/&gt;`Pagy::OPTIONS[:size] = ...`    | `slots: ...`&lt;br/&gt;`Pagy::OPTIONS[:slots] = ...`       |
+| `ends: false`&lt;br/&gt;`Pagy::OPTIONS[:end] = false` | `compact: true`&lt;br/&gt;`Pagy::OPTIONS[:compact] = true` |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="compact">
 <thead>
@@ -612,6 +649,7 @@
 </tbody>
 </table>
 </div>
+</retype-table>
 <ul>
 <li><strong>FYI</strong>: The <code translate="no" v-pre>is-centered</code> CSS class has been removed.</li>
 <li><strong>FYI</strong>: The previous/next links have been moved at the beginning and end of the pagination.</li>
@@ -619,6 +657,10 @@
    </doc-panel>
    <doc-panel id="countless" collapsed>
        <template #title><code translate="no" v-pre>countless</code></template>
+<retype-table copy-text="| Search (old)                                                             | Replace with (new)                                    |
+|--------------------------------------------------------------------------|-------------------------------------------------------|
+| `pagy_countless(...)`                                                    | `pagy(:countless, ...)`                               |
+| `countless_minimal: true`&lt;br/&gt;`Pagy::OPTIONS[:countless_minimal] = true` | `headless: true`&lt;br/&gt;`Pagy::OPTIONS[:headless] = true` |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="compact">
 <thead>
@@ -639,9 +681,16 @@
 </tbody>
 </table>
 </div>
+</retype-table>
    </doc-panel>
    <doc-panel id="calendar" collapsed>
        <template #title><code translate="no" v-pre>calendar</code></template>
+<retype-table copy-text="| Search (old)                      | Replace with (new)     |
+|-----------------------------------|------------------------|
+| `pagy_calendar(...)`              | `pagy(:calendar, ...)` |
+| `Pagy::Calendar::OutOfRangeError` | `Pagy::RangeError`     |
+| flag: `active: true`              | `disabled: false`      |
+| config: `pagy: ...`               | `offset: ...`          |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="compact">
 <thead>
@@ -670,6 +719,7 @@
 </tbody>
 </table>
 </div>
+</retype-table>
 <ul>
 <li>
 <p>If your <code translate="no" v-pre>pagy-old.rb</code> file contains any localization configuration, then uncomment and customize the following line in the
@@ -686,6 +736,11 @@
 <ul>
 <li>Active and passive modes are now handled by the same <code translate="no" v-pre>pagy</code> method:</li>
 </ul>
+<retype-table copy-text="| Search (old)                                                                             | Replace with (new)                                            |
+|------------------------------------------------------------------------------------------|---------------------------------------------------------------|
+| `pagy_elasticsearch_rails(...)`                                                          | `pagy(:elasticsearch_rails, ...)`                             |
+| `Pagy.new_from_elasticsearch_rails(...)`                                                 | `pagy(:elasticsearch_rails, ...)`                             |
+| `elasticsearch_rails_search: ...`&lt;br/&gt;`Pagy::OPTIONS[:elasticsearch_rails_search] = ...` | `search_method: ...`&lt;br/&gt;`Pagy::OPTIONS[:search_method] = ...` |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="compact">
 <thead>
@@ -710,6 +765,7 @@
 </tbody>
 </table>
 </div>
+</retype-table>
 <ul>
 <li><strong>Customization of the <code translate="no" v-pre>pagy_search</code> method name has been discontinued:</strong>
 <ul>
@@ -724,6 +780,11 @@
 <ul>
 <li>Active and passive modes are now handled by the same <code translate="no" v-pre>pagy</code> method:</li>
 </ul>
+<retype-table copy-text="| Search (old)                                                             | Replace with (new)                                            |
+|--------------------------------------------------------------------------|---------------------------------------------------------------|
+| `pagy_meilisearch(...)`                                                  | `pagy(:meilisearch, ...)`                                     |
+| `Pagy.new_from_meilisearch(...)`                                         | `pagy(:meilisearch, ...)`                                     |
+| `meilisearch_search: ...`&lt;br/&gt;`Pagy::OPTIONS[:meilisearch_search] = ...` | `search_method: ...`&lt;br/&gt;`Pagy::OPTIONS[:search_method] = ...` |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="compact">
 <thead>
@@ -748,6 +809,7 @@
 </tbody>
 </table>
 </div>
+</retype-table>
 <ul>
 <li><strong>Customization of the <code translate="no" v-pre>pagy_search</code> method name has been discontinued:</strong>
 <ul>
@@ -762,6 +824,11 @@
 <ul>
 <li>Active and passive modes are now handled by the same <code translate="no" v-pre>pagy</code> method:</li>
 </ul>
+<retype-table copy-text="| Search (old)                                                           | Replace with (new)                                            |
+|------------------------------------------------------------------------|---------------------------------------------------------------|
+| `pagy_searchkick(...)`                                                 | `pagy(:searchkick, ...)`                                      |
+| `Pagy.new_from_searchkick(...)`                                        | `pagy(:searchkick, ...)`                                      |
+| `searchkick_search: ...`&lt;br/&gt;`Pagy::OPTIONS[:searchkick_search] = ...` | `search_method: ...`&lt;br/&gt;`Pagy::OPTIONS[:search_method] = ...` |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="compact">
 <thead>
@@ -786,6 +853,7 @@
 </tbody>
 </table>
 </div>
+</retype-table>
 <ul>
 <li><strong>Customization of the <code translate="no" v-pre>pagy_search</code> method name has been discontinued:</strong>
 <ul>
@@ -797,6 +865,11 @@
    </doc-panel>
    <doc-panel id="headers" collapsed>
        <template #title><code translate="no" v-pre>headers</code></template>
+<retype-table copy-text="| Search (old)                                       | Replace with (new)                                        |
+|----------------------------------------------------|-----------------------------------------------------------|
+| `pagy_headers(...)`                                | `@pagy.headers_hash(...)`                                 |
+| `pagy_headers_merge`                               | `response.headers.merge!(@pagy.headers_hash)`             |
+| `headers: ...`&lt;br/&gt;`Pagy::OPTIONS[:headers] = ...` | `headers_map: ...`&lt;br/&gt;`Pagy::OPTIONS[:headers_map] = ...` |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="compact">
 <thead>
@@ -821,6 +894,7 @@
 </tbody>
 </table>
 </div>
+</retype-table>
 <ul>
 <li><em>Notice that the <code translate="no" v-pre>:limit</code> header default is now <code translate="no" v-pre>'page-limit</code> (it was <code translate="no" v-pre>'page-items'</code>).</em>
 <ul>
@@ -831,6 +905,9 @@
    </doc-panel>
    <doc-panel id="jsonapi" collapsed>
        <template #title><code translate="no" v-pre>jsonapi</code></template>
+<retype-table copy-text="| Search (old)                     | Replace with (new)     |
+|----------------------------------|------------------------|
+| `pagy_jsonapi_links(@pagy, ...)` | `@pagy.urls_hash(...)` |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="compact">
 <thead>
@@ -847,6 +924,7 @@
 </tbody>
 </table>
 </div>
+</retype-table>
 <ul>
 <li><em>Notice that the <code translate="no" v-pre>nil</code> links are now removed as the <code translate="no" v-pre>JSON:API</code> specifications require.</em></li>
 <li>IMPORTANT: Enable the feature by explicitly setting the <code translate="no" v-pre>jsonapi: true</code> option <em>(in the initializer or <code translate="no" v-pre>pagy</code> method)</em>.</li>
@@ -854,6 +932,12 @@
    </doc-panel>
    <doc-panel id="keyset" collapsed>
        <template #title><code translate="no" v-pre>keyset</code></template>
+<retype-table copy-text="| Search (old)                        | Replace with (new)            |
+|-------------------------------------|-------------------------------|
+| `pagy_keyset(...)`                  | `pagy(:keyset, ...)`          |
+| `pagy_keyset_first_url(@pagy, ...)` | `@pagy.page_url(:first, ...)` |
+| `pagy_keyset_next_url(@pagy, ...)`  | `@pagy.page_url(:next, ...)`  |
+| `filter_newest: ...`                | override `compose_predicate`  |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="compact">
 <thead>
@@ -882,6 +966,7 @@
 </tbody>
 </table>
 </div>
+</retype-table>
 <ul>
 <li>Replace any existing <code translate="no" v-pre>:jsonify_keyset_attributes</code> with <code translate="no" v-pre>:pre_serialize</code>.
 <ul>
@@ -892,6 +977,11 @@
    </doc-panel>
    <doc-panel id="limit" collapsed>
        <template #title><code translate="no" v-pre>limit</code></template>
+<retype-table copy-text="| Search (old)                       | Replace with (new)                |
+|------------------------------------|-----------------------------------|
+| `limit_param: :...` (symbol value) | `limit_key: '...'` (string value) |
+| `limit_extra: ...`                 | delete                            |
+| `max_limit: ...`                   | delete                            |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="compact">
 <thead>
@@ -916,12 +1006,18 @@
 </tbody>
 </table>
 </div>
+</retype-table>
 <ul>
 <li>Enable the feature by setting <code translate="no" v-pre>max_limit: allowed_max_limit</code> option <em>(in the initializer or <code translate="no" v-pre>pagy</code> method)</em>.</li>
 </ul>
    </doc-panel>
    <doc-panel id="metadata" collapsed>
        <template #title><code translate="no" v-pre>metadata</code></template>
+<retype-table copy-text="| Search (old)                                         | Replace with (new)                                    |
+|------------------------------------------------------|-------------------------------------------------------|
+| `pagy_metadata(@pagy, ...)`                          | `@pagy.data_hash(...)`                                |
+| `metadata: ...`&lt;br/&gt;`Pagy::OPTIONS[:metadata] = ...` | `data_keys: ...`&lt;br/&gt;`Pagy::OPTIONS[:data_keys] = ...` |
+| data_key -&gt; `:scaffold_url`                          | `:url_template`                                       |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="compact">
 <thead>
@@ -946,6 +1042,7 @@
 </tbody>
 </table>
 </div>
+</retype-table>
    </doc-panel>
    <doc-panel id="overflow" collapsed>
        <template #title><code translate="no" v-pre>overflow</code></template>
@@ -1025,6 +1122,22 @@
 <doc-panels expando>
    <doc-panel id="search-and-replace" collapsed>
        <template #title>Search and replace</template>
+<retype-table copy-text="| Search (old)                         | Replace with (new)                 |
+|--------------------------------------|------------------------------------|
+| `include Pagy::Backend`              | `include Pagy::Method`             |
+| `include Pagy::Frontend`             | _(remove: integrated)_             |
+| `pagy_nav(@pagy, ...)`               | `@pagy.series_nav(...)`            |
+| `Pagy.root.`                         | `Pagy::ROOT.`                      |
+| `page_param: :...` _(symbol value)_  | `page_key: '...'` _(string value)_ |
+| `pagy_info(@pagy, ...)`              | `@pagy.info_tag(...)`              |
+| `@pagy_locale = ...`                 | `Pagy::I18n = ...`                 |
+| `@pagy.vars`                         | `@pagy.options`                    |
+| `VariableError`                      | `OptionError`                      |
+| `&lt;error&gt;.variable`                   | `&lt;error&gt;.option`                   |
+| `fragment: '#...'` _(mandatory '#')_ | `fragment: '...'` _(optional '#')_ |
+| `count_args: ...`                    | _(remove: integrated)_             |
+| `outset: ...`                        | _(remove: discontinued)_           |
+| `cycle: ...`                         | _(remove: discontinued)_           |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="compact">
 <thead>
@@ -1093,6 +1206,7 @@
 </tbody>
 </table>
 </div>
+</retype-table>
    </doc-panel>
    <doc-panel id="replace-the-params-variable" collapsed>
        <template #title>Replace the <code translate="no" v-pre>:params</code> variable...</template>
@@ -1143,13 +1257,13 @@ querify = -&gt;(p) { p.except!('not_useful').merge!('custom' =&gt; 'useful') }</
    <doc-panel id="pagyi18n-and-locale-files" collapsed>
        <template #title>Pagy::I18n and Locale Files</template>
 <p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border h-5 px-1.5 text-2xs rounded-full">
-    <span>•1</span>
+    <span>1</span>
 </span>   If your <code translate="no" v-pre>pagy-old.rb</code> contains the <code translate="no" v-pre>Pagy::I18n</code> setup, and the setup includes some custom dictionary file, then uncomment and set up the relevant <code translate="no" v-pre>Pagy::I18n</code> lookup section in the <code translate="no" v-pre>pagy.rb</code> file. <em>(See the <a href="../../resources/i18n/">I18n docs</a> for details)</em></p>
 <p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border h-5 px-1.5 text-2xs rounded-full">
-    <span>•2</span>
+    <span>2</span>
 </span>   Update your custom dictionary files (if any) to the new <a href="../../resources/i18n/#sample-dictionary">dictionary structure</a>, or they won&#x27;t work correctly.</p>
 <p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border h-5 px-1.5 text-2xs rounded-full">
-    <span>•3</span>
+    <span>3</span>
 </span>  Remove all the I18n code from the <code translate="no" v-pre>pagy-old.rb</code>. All the locales are autoloaded when your app uses them.</p>
    </doc-panel>
    <doc-panel id="overriding" collapsed>
@@ -1166,6 +1280,13 @@ querify = -&gt;(p) { p.except!('not_useful').merge!('custom' =&gt; 'useful') }</
 </li>
 </ul>
 <p>You may want also to check these internal renaming:</p>
+<retype-table copy-text="| Search (old)         | Replace with (new)     |
+|----------------------|------------------------|
+| `pagy_url_for(@pagy` | `@pagy.page_url(`      |
+| `pagy_anchor(pagy`   | `pagy.a_lambda(`       |
+| `pagy_t`             | `Pagy::I18n.translate` |
+| `label_for`          | `page_label`           |
+| `label`              | `page_label`           |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="compact">
 <thead>
@@ -1198,6 +1319,7 @@ querify = -&gt;(p) { p.except!('not_useful').merge!('custom' =&gt; 'useful') }</
 </tbody>
 </table>
 </div>
+</retype-table>
    </doc-panel>
    <doc-panel id="delete-the-pagy-oldrb-file" collapsed>
        <template #title>Delete the <code translate="no" v-pre>pagy-old.rb</code> file</template>
@@ -1242,8 +1364,8 @@ querify = -&gt;(p) { p.except!('not_useful').merge!('custom' =&gt; 'useful') }</
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-04-05T10:50:42" title="2026-04-05" data-absolute-label="Last updated on 2026-04-05" data-absolute-label-html="Last updated on 2026-04-05" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-04-05
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-06-07T14:23:09" title="2026-06-07" data-absolute-label="Last updated on 2026-06-07" data-absolute-label-html="Last updated on 2026-06-07" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-06-07
                     </time>
                 </div>
 

@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.5.3.832939591896">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.834219755734">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 4.5.3">
+    <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
     <title>Migrate Legacy Pagination &#128154; Pagy</title>
@@ -38,12 +38,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.5.3.832939591896" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.834219755734" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.5.3.832939591896" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.5.3" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.5.3.832939591896" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.5.3.832939591896" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.834219755734" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.834219755734" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.834219755734" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -216,7 +216,7 @@
                             <img class="max-h-10 md:inline-block" src="../../assets/images/pagy-the-frog.png" alt="" width="43" height="40">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.5.5</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.5.6</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -401,7 +401,7 @@
 <doc-panels expando>
    <doc-panel id="badge-variantinfo-sizes-cornerspill-text1-preparation" collapsed>
        <template #title><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border h-5 px-1.5 text-2xs rounded-full">
-    <span>•1</span>
+    <span>1</span>
 </span>  Preparation</template>
 <ul>
 <li>Uninstall the legacy gem and replace it with <code translate="no" v-pre>gem &quot;pagy&quot;</code> in the <code translate="no" v-pre>Gemfile</code>.</li>
@@ -410,7 +410,7 @@
    </doc-panel>
    <doc-panel id="badge-variantinfo-sizes-cornerspill-text2-application-wide-search-and-replace" collapsed>
        <template #title><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border h-5 px-1.5 text-2xs rounded-full">
-    <span>•2</span>
+    <span>2</span>
 </span>  Application-wide search and replace</template>
 <ul>
 <li>Search for the class name of the legacy gem, for example <code translate="no" v-pre>WillPaginate</code> or <code translate="no" v-pre>Kaminari</code>. You should find most of the code relative to global gem configuration or monkey patching.</li>
@@ -419,7 +419,7 @@
    </doc-panel>
    <doc-panel id="badge-variantinfo-sizes-cornerspill-text3-cleanup-the-models" collapsed>
        <template #title><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border h-5 px-1.5 text-2xs rounded-full">
-    <span>•3</span>
+    <span>3</span>
 </span>  Cleanup the Models</template>
 <p>Look for terms like <code translate="no" v-pre>per_page</code>, <code translate="no" v-pre>per</code>, and similar, as these are configuration settings. Include them in the appropriate paginator call in the controller (e.g., <code translate="no" v-pre>pagy(:offset, collection, limit: 10)</code>) or globally in the Pagy initializer (e.g., <code translate="no" v-pre>Pagy::OPTIONS[:limit] = 10</code>).</p>
 <p>If the app uses the <code translate="no" v-pre>page</code> scope in model methods or scopes, remove it, along with the argument used to pass the page number, while preserving the rest of the scope. Locate where the app applies this paginated scope in the controllers and replace it with the scope in a paginator statement. For example:</p>
@@ -431,7 +431,7 @@
    </doc-panel>
    <doc-panel id="badge-variantinfo-sizes-cornerspill-text4-search-and-replace-in-the-controllers" collapsed>
        <template #title><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border h-5 px-1.5 text-2xs rounded-full">
-    <span>•4</span>
+    <span>4</span>
 </span>  Search and replace in the Controllers</template>
 <p>In controllers, legacy pagination statements generally map directly to Pagy, making them straightforward to convert.</p>
 <p>Search for keywords like <code translate="no" v-pre>page</code> and <code translate="no" v-pre>paginate</code> statements and use the <code translate="no" v-pre>pagy(:offset, ...)</code> paginator instead. For example:</p>
@@ -451,7 +451,7 @@
    </doc-panel>
    <doc-panel id="badge-variantinfo-sizes-cornerspill-text5-search-and-replace-in-the-views" collapsed>
        <template #title><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border h-5 px-1.5 text-2xs rounded-full">
-    <span>•5</span>
+    <span>5</span>
 </span>  Search and replace in the Views</template>
 <p>Similarly, in views, legacy pagination statements typically correspond directly to Pagy, simplifying conversion.</p>
 <p>Search for keywords like <code translate="no" v-pre>will_paginate</code> and <code translate="no" v-pre>paginate</code> statement and use one of the <code translate="no" v-pre>series_nav</code> methods. For example:</p>
@@ -511,8 +511,8 @@
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-04-08T07:52:32" title="2026-04-08" data-absolute-label="Last updated on 2026-04-08" data-absolute-label-html="Last updated on 2026-04-08" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-04-08
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-06-07T14:23:09" title="2026-06-07" data-absolute-label="Last updated on 2026-06-07" data-absolute-label-html="Last updated on 2026-06-07" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-06-07
                     </time>
                 </div>
 
