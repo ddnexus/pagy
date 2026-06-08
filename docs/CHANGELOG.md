@@ -20,7 +20,7 @@ expect the old/deprecated functionality to be supported ONLY during the current 
 
 ### Recommended Version Constraint
 
-Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.5.50`):
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.5.60`):
 
 The `gem 'pagy', '~> 43.0'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.
@@ -55,6 +55,13 @@ If you upgrade from version `< 9.0.0` see the following:
   **IMPORTANT**: The [Issue #890](https://github.com/ddnexus/pagy/issues/890) still affect the `:max_pages` option, so stop using it ASAP.
 - `:client_max_limit` option: use `:max_limit` instead.
 <hr>
+
+#### Version 43.5.6
+
+- Validate I18n locale input, coerce dev_tools wand_scale, add input-safety docs (#908)
+  * Coerce dev_tools wand_scale to a float
+  * Validate the I18n locale against a BCP 47 pattern
+  * Update docs and comments about safety
 
 #### Version 43.5.5
 

@@ -1,11 +1,10 @@
-### Changes in 43.5.5
+### Changes in 43.5.6
 
 <!-- changes_start -->
-- Rescue malformed page request param in Pagy::Keyset and KeynavJsPaginator (#907)
-  * Rescue malformed page request param in Pagy::Keyset and KeynavJsPaginator
-  * Simplify decoding logic
-  ---------
-  Co-authored-by: Domizio Demichelis <dd.nexus@gmail.com>
+- Validate I18n locale input, coerce dev_tools wand_scale, add input-safety docs (#908)
+  * Coerce dev_tools wand_scale to a float
+  * Validate the I18n locale against a BCP 47 pattern
+  * Update docs and comments about safety
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
