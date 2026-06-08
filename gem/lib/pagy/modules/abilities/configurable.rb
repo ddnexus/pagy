@@ -12,13 +12,13 @@ class Pagy
       FileUtils.cp(files, destination)
     end
 
-    # Generate the script and style tags to help development
+    # Generate the script and style tags to help development.
     def dev_tools(wand_scale: 1)
       <<~HTML
         <script id="pagy-ai-widget">
           #{ROOT.join('javascripts/ai_widget.js').read}
         </script>
-        <script id="pagy-wand" data-scale="#{wand_scale}">
+        <script id="pagy-wand" data-scale="#{wand_scale.to_f}">
           #{ROOT.join('javascripts/wand.js').read}
         </script>
         <style id="pagy-wand-default">

@@ -28,13 +28,13 @@ gem 'pagy', '~> 43.5' # MINOR version restriction, to avoid breaking changes
 
 >>> Use it...
 
-=== {{ include "snippets/mini-step" step: "•1" }} Include the `pagy` method where you are going to use it _(usually ApplicationController)_:
+=== {{ include "snippets/mini-step" step: "1" }} Include the `pagy` method where you are going to use it _(usually ApplicationController)_:
 
 ```ruby
 include Pagy::Method
 ```
 
-=== {{ include "snippets/mini-step" step: "•2" }} Use it to paginate any collection with any technique:
+=== {{ include "snippets/mini-step" step: "2" }} Use it to paginate any collection with any technique:
 
 ```ruby
 @pagy, @records = pagy(:offset, Product.some_scope, **options) # :offset paginator
@@ -44,7 +44,7 @@ include Pagy::Method
 
 _Read the [Choose Right](choose-right) guide to pick the right [paginators](/toolbox/paginators#paginators) for your app_
 
-=== {{ include "snippets/mini-step" step: "•3" }} Render navigator tags and other helpers with the `@pagy` instance methods:
+=== {{ include "snippets/mini-step" step: "3" }} Render navigator tags and other helpers with the `@pagy` instance methods:
 
 ```erb
 <%# Render navigation bar helpers with various types and styles %>

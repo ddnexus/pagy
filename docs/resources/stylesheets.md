@@ -50,7 +50,7 @@ You don't need any stylesheets if you use the pagy `:bootstrap` or `:bulma` help
 
 >>> Customize the style...
 
-Add this line to any template `<head>`...
+Add this line to any template/layout `<head>` while developing:
 
 ```erb
 <%== Pagy.dev_tools %>
