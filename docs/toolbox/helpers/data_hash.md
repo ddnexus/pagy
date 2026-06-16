@@ -61,7 +61,7 @@ require 'pagy/console'
   - `:to`
   - `:url_template`
 
-  Notice that you can also add other pagy method names not included in the default list.
+  Notice that you can also add other `@pagy` instance method names not included in the default list.
 
 {{ include "options/helper-url" }}
 
