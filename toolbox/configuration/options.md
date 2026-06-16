@@ -16,7 +16,7 @@ Pagy implements a hierarchical options system working at three different levels,
 
 - For example `Pagy::OPTIONS[:limit] = 10` set in the [pagy.rb initializer](initializer).
 - The `Pagy::OPTIONS` are inherited by all paginators and helpers.
-- **IMPORTANT**: Freeze it after you are done in the initializer, for good safe practice.
+- **Good practice**: Ensure to add `Pagy::OPTIONS.freeze` at the end of the initializer if you use it.
 
 >>> Paginator
 
