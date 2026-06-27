@@ -16,7 +16,8 @@
 
 _Agnostic pagination in plain ruby_
 
-<br/>
+> [!IMPORTANT]
+> ⭐ Thank you for supporting Pagy with a Star! ⭐
 
 <a href="https://ddnexus.github.io/pagy/sandbox/playground/#demo">
   <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">
@@ -67,7 +68,7 @@ Take a look at the [Examples](#-examples) for a quick overview of the new API.
 
 <br/>
 
-### <span style="font-size: .65em; vertical-align: middle">💚</span> Now it's more... with less
+### ... and now it's more, with less.
 
 - Compatible with all environments and collection types
 - It can use OFFSET, COUNTISH, COUNTLESS, KEYSET, KEYNAV, SEARCH, CALENDAR, pagination techniques
@@ -203,6 +204,8 @@ Dynamically fills the container width.
 <%== @pagy.input_nav_js(:bulma) %>
 ```
 
+<br/>
+
 ### <span style="font-size: .65em; vertical-align: middle">💚</span> Dev Tools
 
 Integrate pagy with your app's themes interactively ([watch demo](https://youtu.be/GhhNRrVG9jg)), and ask specific questions to the Pagy AI __right in your app__! You need only a single line in your page/layout `head` to get the Pagy Wand and the Pagy AI:
@@ -216,6 +219,8 @@ Integrate pagy with your app's themes interactively ([watch demo](https://youtu.
 <a href="https://ddnexus.github.io/pagy/sandbox/playground/#demo">
   <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">
 </a><br><br>
+
+<br/>
 
 ### <span style="font-size: .65em; vertical-align: middle">💚</span> Support and Docs
 
@@ -238,9 +243,9 @@ Integrate pagy with your app's themes interactively ([watch demo](https://youtu.
 
 Special thanks to:
 
-- [Ben Koshy](https://github.com/benkoshy) for his contributions to the documentation, user support and interaction with external frameworks
 - [JetBrains](http://www.jetbrains.com?from=https%3A%2F%2Fgithub.com%2Fddnexus%2Fpagy) for their free OpenSource license.
-- [The Stargazers](https://github.com/ddnexus/pagy/stargazers) for showing their support
+- [Ben Koshy](https://github.com/benkoshy) for his contributions to the documentation, user support and interaction with external frameworks.
+- [The Stargazers](https://github.com/ddnexus/pagy/stargazers) for their support.
 
 <br/>
 
@@ -272,7 +277,6 @@ See [Contributing](https://github.com/ddnexus/pagy/blob/master/.github/CONTRIBUT
 
 </details>
 
-<br/>
 <br/>
 
 ### <span style="font-size: .65em; vertical-align: middle">💚</span> License
