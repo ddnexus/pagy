@@ -16,14 +16,14 @@
 
 _Agnostic pagination in plain ruby_
 
-> [!IMPORTANT]
-> ⭐ Thank you for supporting Pagy with a Star! ⭐
+<br/>
+
+> [!TIP]
+> ⭐ If you like Pagy, please support it with a Star! ⭐
+
+<br/>
 
 <!-- whats_new_start -->
-
-<a href="https://ddnexus.github.io/pagy/sandbox/playground/#demo">
-  <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">
-</a><br><br>
 
 ### Version 43
 
@@ -79,6 +79,11 @@ Take a look at the [Examples](#-examples) for a quick overview of the new API.
 - It supports server-side rendering or faster client-side rendering for popular CSS frameworks and APIs
 - It autoloads ONLY the methods that you actually use, with almost zero configuration
 - It boasts 100% test coverage for Ruby, HTML, and JavaScript end-to-end (E2E)
+
+<br/>
+
+> [!TIP]
+> ⭐ If you like Pagy, please support it with a Star! ⭐
 
 <br/>
 
@@ -220,9 +225,7 @@ Integrate pagy with your app's themes interactively ([watch demo](https://youtu.
 
 <img src="assets/images/dev-tools.png" width="450"><br/>
 
-<a href="https://ddnexus.github.io/pagy/sandbox/playground/#demo">
-  <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">
-</a><br><br>
+See [Dev Tools](https://ddnexus.github.io/pagy/sandbox/dev_tools/)
 
 <br/>
 
@@ -234,6 +237,11 @@ Integrate pagy with your app's themes interactively ([watch demo](https://youtu.
 - [Discussions](https://github.com/ddnexus/pagy/discussions/categories/q-a)
 - [Issues](https://github.com/ddnexus/pagy/issues)
 - [Changelog](https://ddnexus.github.io/pagy/changelog)
+
+<br/>
+
+> [!TIP]
+> ⭐ If you like Pagy, please support it with a Star! ⭐
 
 <br/>
 
