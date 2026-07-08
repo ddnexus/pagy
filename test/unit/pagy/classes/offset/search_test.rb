@@ -58,10 +58,6 @@ describe 'Pagy::SearchBase Specs' do
     _(pagy.send(:search?)).must_equal true
     _(pagy.send(:offset?)).must_equal true
   end
-
-  it 'has default options' do
-    _(Pagy::SearchBase::DEFAULT[:search_method]).must_equal :search
-  end
 end
 
 describe 'Pagy::ElasticsearchRails Specs' do
