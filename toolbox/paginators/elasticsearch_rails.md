@@ -25,6 +25,9 @@ search = Article.pagy_search(params[:q]).records
 search = Article.pagy_search(params[:q]).results
 # Paginate it
 @pagy, @response = pagy(:elasticsearch_rails, search, **options)
+
+# IMPORTANT: If the elasticsearch max_result_window is != 10_000, ensure to sync it with pagy
+@pagy, @response = pagy(:searchkick, search, max_result_window: 1_000, ...)
 ```
 
 +++ Passive mode
@@ -38,6 +41,9 @@ Pagy creates its object out of your result.
 @response = Article.search('*', from: 0, size: 10, ...)
 # Get the pagy object out of it
 @pagy = pagy(:elasticsearch_rails, @response, **options)
+
+# IMPORTANT: If the elasticsearch max_result_window is != 10_000, ensure to sync it with pagy
+@pagy, @response = pagy(:searchkick, search, max_result_window: 1_000, ...)
 ```
 
 +++
@@ -47,6 +53,9 @@ Search paginators don't query a DB, but use the same positional technique as [:o
 !!!
 
 ==- :icon-sliders:&nbsp; Options
+
+`max_result_window: 1_000`
+: Set it to the actual `max_result_window` applied by elasticsearch, to get an accurate pagination count (default `10_000`).
 
 `search_method: :my_search`
 : Customize the name of the `elasticsearch_rails` method to use (default `:search`).

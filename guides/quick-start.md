@@ -13,7 +13,7 @@ Check the [Migration Guide](migration-guide) first
 >>> Install it...
 
 ```ruby Gemfile
-gem 'pagy', '~> 43.5' # MINOR version restriction, to avoid breaking changes
+gem 'pagy', '~> 43.6' # MINOR version restriction, to avoid breaking changes
 ```
 
 >>> Try it...
