@@ -1,19 +1,12 @@
-### Changes in 43.5.6
+### Changes in 43.6.0
 
 <!-- changes_start -->
-- Validate I18n locale input, coerce dev_tools wand_scale, add input-safety docs (#908)
-  * Coerce dev_tools wand_scale to a float
-  * Validate the I18n locale against a BCP 47 pattern
-  * Update docs and comments about safety
+- Add the max_result_window option to the searchkick and elasticsearch_rails paginators to get an accurate count (#910)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
 
 <!-- whats_new_start -->
-
-<a href="https://ddnexus.github.io/pagy/sandbox/playground/#demo">
-  <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">
-</a><br><br>
 
 ### Version 43
 
