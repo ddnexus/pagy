@@ -16,7 +16,7 @@ describe 'Pagy#a_lambda' do
 
       # Mock Linkable#compose_page_url
       def compose_page_url(page, **_opts)
-        "https://example.com/foo?page=#{page}"
+        "https://example.com/foo?&not=%26not&page=#{page}"
       end
 
       # Mock Calendar methods
@@ -60,35 +60,35 @@ describe 'Pagy#a_lambda' do
 
     it 'generates a basic link lambda' do
       output = pagy.a_lambda.call(3)
-      _(output).must_equal '<a href="https://example.com/foo?page=3">3</a>'
+      _(output).must_equal '<a href="https://example.com/foo?&amp;not=%26not&amp;page=3">3</a>'
     end
 
     it 'supports custom text' do
       output = pagy.a_lambda.call(3, 'Three')
-      _(output).must_equal '<a href="https://example.com/foo?page=3">Three</a>'
+      _(output).must_equal '<a href="https://example.com/foo?&amp;not=%26not&amp;page=3">Three</a>'
     end
 
     it 'supports classes' do
       output = pagy.a_lambda.call(3, '3', classes: 'my-class')
-      _(output).must_equal '<a href="https://example.com/foo?page=3" class="my-class">3</a>'
+      _(output).must_equal '<a href="https://example.com/foo?&amp;not=%26not&amp;page=3" class="my-class">3</a>'
     end
 
     it 'supports aria-label' do
       output = pagy.a_lambda.call(3, '3', aria_label: 'Go to page 3')
-      _(output).must_equal '<a href="https://example.com/foo?page=3" aria-label="Go to page 3">3</a>'
+      _(output).must_equal '<a href="https://example.com/foo?&amp;not=%26not&amp;page=3" aria-label="Go to page 3">3</a>'
     end
 
     it 'supports anchor_string injection' do
       # anchor_string is passed to the factory method, not the lambda
       output_lambda = pagy.a_lambda(anchor_string: 'data-remote="true"')
       output = output_lambda.call(3)
-      _(output).must_equal '<a href="https://example.com/foo?page=3" data-remote="true">3</a>'
+      _(output).must_equal '<a href="https://example.com/foo?&amp;not=%26not&amp;page=3" data-remote="true">3</a>'
     end
 
     it 'reads anchor_string from @options when not passed directly' do
       pagy_with_anchor = pagy_class.new(anchor_string: 'data-turbo="true" data-foo="bar"')
       output = pagy_with_anchor.a_lambda.call(3)
-      _(output).must_equal '<a href="https://example.com/foo?page=3" data-turbo="true" data-foo="bar">3</a>'
+      _(output).must_equal '<a href="https://example.com/foo?&amp;not=%26not&amp;page=3" data-turbo="true" data-foo="bar">3</a>'
     end
 
     it 'adds rel="prev" if page is @previous' do
