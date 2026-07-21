@@ -29,7 +29,7 @@ Increment the MAJOR version in your Gemfile ONLY when you are ready to handle th
 
 ### Breaking Changes
 
-Follow the [Upgrade to 43 Guide](/guides/upgrade-guide).
+Follow the [Upgrade to 43 Guide](./guides/upgrade-guide.md).
 
 If you upgrade from version `< 9.0.0` see the following:
 
