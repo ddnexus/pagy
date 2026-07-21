@@ -62,8 +62,8 @@ describe 'Pagy::Linkable Specs' do
           )
           @options = {
             page_key: 'page',
-          limit_key: 'limit',
-          limit: 20
+            limit_key: 'limit',
+            limit: 20
           }.merge(options)
         end
 
@@ -86,6 +86,14 @@ describe 'Pagy::Linkable Specs' do
       subject = linkable_class.new(request_params: { 'page' => '1' })
       url = subject.call_compose_page_url(2)
       _(url).must_equal_url '/foo?page=2'
+    end
+
+    it 'handles entity parameters' do
+      # Request has page=1, should be overwritten
+      subject = linkable_class.new(request_params: { 'a' => '1', 'not_a' => '&not' })
+      url = subject.call_compose_page_url(2)
+      _(url).must_equal('/foo?a=1&not_a=%26not&page=2')
+      _(url).must_equal_url '/foo?a=1&not_a=%26not&page=2'
     end
 
     it 'handles root_key (nested params)' do

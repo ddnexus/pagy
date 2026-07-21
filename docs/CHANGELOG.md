@@ -56,6 +56,10 @@ If you upgrade from version `< 9.0.0` see the following:
 - `:client_max_limit` option: use `:max_limit` instead.
 <hr>
 
+#### Version 43.6.1
+
+- HTML escape URL strings in href attributes (Fix #914)
+
 #### Version 43.6.0
 
 - Add the max_result_window option to the searchkick and elasticsearch_rails paginators to get an accurate count (#910)
