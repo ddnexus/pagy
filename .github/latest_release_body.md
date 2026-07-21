@@ -1,7 +1,7 @@
-### Changes in 43.6.0
+### Changes in 43.6.1
 
 <!-- changes_start -->
-- Add the max_result_window option to the searchkick and elasticsearch_rails paginators to get an accurate count (#910)
+- HTML escape URL strings in href attributes (Fix #914)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
