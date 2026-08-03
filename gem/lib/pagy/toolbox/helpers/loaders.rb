@@ -12,10 +12,10 @@ class Pagy
                     loader_name = :"_pagy_loader_for_#{method}"
                     define_method(loader_name) do |*args, **kwargs|
                       # Tests shadow the usage of these lines
-                      # :nocov:
+                      # simplecov:disable
                       require_relative path
                       send(method, *args, **kwargs)
-                      # :nocov:
+                      # simplecov:enable
                     end
                     alias_method method, loader_name
                     send(visibility, method)

@@ -73,9 +73,9 @@ class Pagy
       # Localization other than :en, requires the rails-I18n gem.
       def localize(time, **options)
         # Impossible to "unprepend" the rails-i18n after it runs localize_with_rails_i18n_gem in test.
-        # :nocov:
+        # simplecov:disable
         time.strftime(options[:format])
-        # :nocov:
+        # simplecov:enable
       end
 
       # The number of time units to offset from the @initial time, in order to get the ordered starting time for the page.

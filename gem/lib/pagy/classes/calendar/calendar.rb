@@ -23,11 +23,11 @@ class Pagy
     class << self
       def localize_with_rails_i18n_gem(*locales)
         Unit.prepend(Module.new { def localize(...) = ::I18n.localize(...) })
-        # :nocov:
+        # simplecov:disable
         raise RailsI18nLoadError, "Pagy: The gem 'rails-i18n' must be installed if you don't use Rails" \
               unless (path = Gem.loaded_specs['rails-i18n']&.full_gem_path)
 
-        # :nocov:
+        # simplecov:enable
         path = Pathname.new(path)
         ::I18n.load_path += locales.map { |locale| path.join("rails/locale/#{locale}.yml") }
       end
@@ -80,9 +80,9 @@ class Pagy
         unit_conf[:period]  = unit_object&.send(:active_period) || @period
         unit_conf[:page]    = @params[unit_conf[:page_key]] # requested page
         # Simplecov doesn't need to cover a fail block_given?
-        # :nocov:
+        # simplecov:disable
         unit_conf[:counts] = yield(unit, unit_conf[:period]) if block_given?
-        # :nocov:
+        # simplecov:enable
         calendar[unit] = unit_object = create(unit, **unit_conf)
       end
 

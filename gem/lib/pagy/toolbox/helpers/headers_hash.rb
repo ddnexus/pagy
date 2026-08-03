@@ -16,14 +16,14 @@ class Pagy
     headers_map.each_with_object('link' => links) do |(key, name), hash|
       next unless name
 
-      # :nocov:
+      # simplecov:disable
       value = case key
               when :page  then @page
               when :limit then @limit unless calendar?
               when :pages then @last  if @count
               when :count then @count
               end
-      # :nocov:
+      # simplecov:enable
       hash[name] = value.to_s if value
     end
   end

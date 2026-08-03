@@ -2,7 +2,7 @@
 
 # Console loader
 
-# :nocov:
+# simplecov:disable
 require 'pagy'
 include Pagy::Console # rubocop:disable Style/MixinUsage
-# :nocov:
+# simplecov:enable

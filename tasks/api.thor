@@ -33,22 +33,20 @@ class Test < Thor
 
     desc 'coverage', 'Test API coverage'
     def coverage
+      require 'simplecov'
+
       ENV['COVERAGE'] = 'true' # set COVERAGE for all (see run_tests)
       invoke 'all'
 
-      # Require SimpleCov just to check the coverage of the api tasks
-      require 'simplecov'
-      SimpleCov.formatter = SimpleCov::Formatter::HTMLFormatter # create the HTML report
-      SimpleCov.merge_timeout(10) unless ENV['CI']              # fast dev env iterations
-      SimpleCov.minimum_coverage(line: 100, branch: 100)        # require minimum_coverage from the all task results
-
-      puts
-      begin
-        SimpleCov.at_exit_behavior # Trigger exit(2) if coverage is insufficient
-      rescue SystemExit => e
-        puts "Report: file://#{SimpleCov.coverage_path}/index.html" if e.status == 2
-        raise
+      puts "\nMerging coverage..."
+      SimpleCov.collate Dir['coverage/*/.resultset.json'] do
+        enable_coverage :branch
+        minimum_coverage line: 100, branch: 100
+        merge_timeout(10) unless ENV['CI'] # fast dev env iterations
       end
+    rescue SystemExit => e
+      puts "Report: file://#{SimpleCov.coverage_path}/index.html" if e.status == 2
+      raise
     end
   end
 end

@@ -2,9 +2,9 @@
 # frozen_string_literal: true
 
 ENV['PAGY_NEXT'] = 'true'
-# :nocov:
+# simplecov:disable
 require_relative '../pagy' unless defined?(Pagy)  # avoid circular require (also from pagy itself)
-# :nocov:
+# simplecov:enable
 
 class Pagy
   VERSION = "#{remove_const(:VERSION)}.next".freeze
