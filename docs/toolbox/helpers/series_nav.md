@@ -30,8 +30,7 @@ image: ""
 
 `series_nav` returns an HTML string containing pagination links, wrapped in a `nav` tag, ready to be used in your view.
 
-!!!warning It works with all paginators but `:keyset`
-!!!
+{{ include "snippets/all-but-keyset" }}
 
 === :icon-tools:&nbsp; Usage
 

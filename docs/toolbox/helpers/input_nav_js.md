@@ -32,8 +32,7 @@ image: ""
 
 It is the fastest and lightest navigator, recommended when you care about efficiency and server load (see [Maximizing Performance](../../guides/how-to#maximize-performance)) still needing UI.
 
-!!!warning It works with all paginators but `:keyset`
-!!!
+{{ include "snippets/all-but-keyset" }}
 
 === :icon-tools:&nbsp; Usage
 

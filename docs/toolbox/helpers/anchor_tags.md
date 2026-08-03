@@ -24,11 +24,11 @@ The `previous_tag` and `next_tag` return the enabled/disabled previous/next page
 
 Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `:countless`, `:keyset` paginators).
 
-!!!success `next_tag` works with all paginators
+!!!success
+`next_tag` works with all paginators
 !!!
 
-!!!warning `previous_tag` works with all paginators but `:keyset`
-!!!
+{{ include "snippets/all-but-keyset" what: "`previous_tag`" }}
 
 === :icon-tools:&nbsp; Usage
 

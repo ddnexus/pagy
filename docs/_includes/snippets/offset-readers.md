@@ -19,4 +19,4 @@
 `previous`
 : The previous page
 
-{{ include "paginator-readers"
+{{ include "paginator-readers" }}

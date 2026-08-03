@@ -58,8 +58,7 @@ image: ""
 1. Optional responsiveness: Dynamically fills the container width.
 2. Improves performance and optimizes resource usage (see [Maximizing Performance](../../guides/how-to#maximize-performance)).
 
-!!!warning It works with all paginators but `:keyset`
-!!!
+{{ include "snippets/all-but-keyset" }}
 
 === :icon-tools:&nbsp; Usage
 
