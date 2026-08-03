@@ -43,6 +43,7 @@ jobs:
           RETYPE_KEY: ${{ secrets.RETYPE_KEY }}
         with:
           config_path: docs/
+          override: '{"url": "https://${{github.actor}}.github.io/pagy/"}'
 
       - uses: retypeapp/action-github-pages@latest
         with:
