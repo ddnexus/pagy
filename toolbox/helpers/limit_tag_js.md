@@ -15,7 +15,8 @@
 
 The `limit_tag_js` allows the user to select any arbitrary limit per page, up to the `:max_limit` option. It raises an `OptionError` exception if the `:max_limit` is not truthy.
 
-!!!warning It works with all paginators but `:keyset`
+!!!warning
+It works with all paginators but `:keyset`
 !!!
 
 === :icon-tools:&nbsp; Usage

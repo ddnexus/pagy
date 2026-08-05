@@ -25,7 +25,8 @@
 
 It is the fastest and lightest navigator, recommended when you care about efficiency and server load (see [Maximizing Performance](../../guides/how-to#maximize-performance)) still needing UI.
 
-!!!warning It works with all paginators but `:keyset`
+!!!warning
+It works with all paginators but `:keyset`
 !!!
 
 === :icon-tools:&nbsp; Usage
@@ -73,9 +74,11 @@ require 'pagy/console'
 `aria_label: 'My Label'`
 : Override the default `pagy.aria_label.nav` string of the `aria-label` attribute.<br/>See [ARIA](/resources/aria.md)
 
-  !!!danger The `nav` elements are `landmark  roles`, and should be distinctly labeled!
+  !!!danger
+  The `nav` elements are `landmark  roles`, and should be distinctly labeled!
 
-  !!!success Override the default `:aria_label`s for multiple navs with distinct values!
+  !!!success
+  Override the default `:aria_label`s for multiple navs with distinct values!
 
   ```erb
   <%# Explicitly set the aria_label %>

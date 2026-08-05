@@ -15,7 +15,8 @@
 
 `info_tag` provides information about the content of the current pagination.
 
-!!!warning It works with all paginators but `:keyset`
+!!!warning
+It works with all paginators but `:keyset`
 !!!
 
 === :icon-tools:&nbsp; Usage
