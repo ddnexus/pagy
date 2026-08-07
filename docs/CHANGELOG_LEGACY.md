@@ -1,10 +1,13 @@
 ---
-icon: versions-24
+icon: versions
 layout: page
 visibility: hidden
 ---
 
 # LEGACY CHANGELOG
+
+> [!WARNING]
+> Many links on this page may refer to old resources and may return HTTP 404 "Not Found"
 
 ### Version 9.3.4
 
