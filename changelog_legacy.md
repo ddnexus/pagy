@@ -1,5 +1,8 @@
 # LEGACY CHANGELOG
 
+> [!WARNING]
+> Many links on this page may refer to old resources and may return HTTP 404 "Not Found"
+
 ### Version 9.3.4
 
 - Fix method visibility in JsonApiExtra (#765)

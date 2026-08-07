@@ -25,19 +25,19 @@ Increment the MAJOR version in your Gemfile ONLY when you are ready to handle th
 
 ### Breaking Changes
 
-Follow the [Upgrade to 43 Guide](/guides/upgrade-guide).
+Follow the [Upgrade to 43 Guide](https://ddnexus.github.io/pagy/guides/upgrade-guide).
 
 If you upgrade from version `< 9.0.0` see the following:
 
-- [Breaking changes in version 9.0.0](/CHANGELOG_LEGACY.md#version-900)
-- [Breaking changes in version 8.0.0](/CHANGELOG_LEGACY.md#version-800)
-- [Breaking changes in version 7.0.0](/CHANGELOG_LEGACY.md#version-700)
-- [Breaking changes in version 6.0.0](/CHANGELOG_LEGACY.md#version-600)
-- [Breaking changes in version 5.0.0](/CHANGELOG_LEGACY.md#version-500)
-- [Breaking changes in version 4.0.0](/CHANGELOG_LEGACY.md#version-400)
-- [Breaking changes in version 3.0.0](/CHANGELOG_LEGACY.md#version-300)
-- [Breaking changes in version 2.0.0](/CHANGELOG_LEGACY.md#version-200)
-- [Breaking changes in version 1.0.0](/CHANGELOG_LEGACY.md#version-100)
+- [Breaking changes in version 9.0.0](https://ddnexus.github.io/pagy/changelog_legacy#version-900)
+- [Breaking changes in version 8.0.0](https://ddnexus.github.io/pagy/changelog_legacy#version-800)
+- [Breaking changes in version 7.0.0](https://ddnexus.github.io/pagy/changelog_legacy#version-700)
+- [Breaking changes in version 6.0.0](https://ddnexus.github.io/pagy/changelog_legacy#version-600)
+- [Breaking changes in version 5.0.0](https://ddnexus.github.io/pagy/changelog_legacy#version-500)
+- [Breaking changes in version 4.0.0](https://ddnexus.github.io/pagy/changelog_legacy#version-400)
+- [Breaking changes in version 3.0.0](https://ddnexus.github.io/pagy/changelog_legacy#version-300)
+- [Breaking changes in version 2.0.0](https://ddnexus.github.io/pagy/changelog_legacy#version-200)
+- [Breaking changes in version 1.0.0](https://ddnexus.github.io/pagy/changelog_legacy#version-100)
 
 > [!TIP]
 > If you need to update through multiple versions, reimplementing the updated pagination
@@ -47,7 +47,7 @@ If you upgrade from version `< 9.0.0` see the following:
 
 - `Pagy.options`: Use `Pagy::OPTIONS` directly.
 - `Pagy.sync_javascript(...)`: Use `Pagy.sync(:javascript, ...)` instead.
-- `:max_pages` option: [follow this method](/guides/how-to/#paginate-only-max-records) instead.<br>
+- `:max_pages` option: [follow this method](https://ddnexus.github.io/pagy/guides/how-to/#paginate-only-max-records) instead.<br>
   **IMPORTANT**: The [Issue #890](https://github.com/ddnexus/pagy/issues/890) still affect the `:max_pages` option, so stop using it ASAP.
 - `:client_max_limit` option: use `:max_limit` instead.
 <hr>
@@ -356,4 +356,4 @@ code at all levels, usage and API included.
 - **Bootstrap and Bulma**
   - Fixed a few style glitches.
 
-[LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md)
+[LEGACY CHANGELOG >>>](https://ddnexus.github.io/pagy/changelog_legacy)

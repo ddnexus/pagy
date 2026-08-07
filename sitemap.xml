@@ -16,10 +16,10 @@
     <loc>https://ddnexus.github.io/pagy/toolbox/helpers/</loc>
   </url>
   <url>
-    <loc>https://ddnexus.github.io/pagy/guides/upgrade-guide/</loc>
+    <loc>https://ddnexus.github.io/pagy/guides/quick-start/</loc>
   </url>
   <url>
-    <loc>https://ddnexus.github.io/pagy/guides/quick-start/</loc>
+    <loc>https://ddnexus.github.io/pagy/guides/upgrade-guide/</loc>
   </url>
   <url>
     <loc>https://ddnexus.github.io/pagy/guides/migration-guide/</loc>
@@ -64,13 +64,13 @@
     <loc>https://ddnexus.github.io/pagy/resources/i18n/</loc>
   </url>
   <url>
+    <loc>https://ddnexus.github.io/pagy/resources/aria/</loc>
+  </url>
+  <url>
     <loc>https://ddnexus.github.io/pagy/toolbox/paginators/elasticsearch_rails/</loc>
   </url>
   <url>
     <loc>https://ddnexus.github.io/pagy/toolbox/paginators/meilisearch/</loc>
-  </url>
-  <url>
-    <loc>https://ddnexus.github.io/pagy/resources/aria/</loc>
   </url>
   <url>
     <loc>https://ddnexus.github.io/pagy/toolbox/paginators/searchkick/</loc>
@@ -125,6 +125,6 @@
   </url>
   <url>
     <loc>https://ddnexus.github.io/pagy/assets/nav.html</loc>
-    <lastmod>2026-08-05T13:07:32Z</lastmod>
+    <lastmod>2026-08-07T03:36:45Z</lastmod>
   </url>
 </urlset>
