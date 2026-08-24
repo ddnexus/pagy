@@ -52,6 +52,10 @@ If you upgrade from version `< 9.0.0` see the following:
 - `:client_max_limit` option: use `:max_limit` instead.
 <hr>
 
+#### Version 43.6.2
+
+- Fix nil records returned for Array collections on page overflow (#920) (Fix #919)
+
 #### Version 43.6.1
 
 - HTML escape URL strings in href attributes (Fix #914)
