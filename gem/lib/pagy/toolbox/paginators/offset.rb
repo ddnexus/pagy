@@ -13,7 +13,9 @@ class Pagy
 
       pagy    = Offset.new(**options)
       records = if collection.instance_of?(Array)
-                  collection[pagy.offset, pagy.limit]
+                  # Array#[](start, length) returns nil (not []) when start > size,
+                  # e.g. on an out-of-range page served as an empty page
+                  collection[pagy.offset, pagy.limit] || []
                 else
                   pagy.records(collection)
                 end
