@@ -1,7 +1,7 @@
-### Changes in 43.6.1
+### Changes in 43.6.2
 
 <!-- changes_start -->
-- HTML escape URL strings in href attributes (Fix #914)
+- Fix nil records returned for Array collections on page overflow (#920) (Fix #919)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
