@@ -74,8 +74,8 @@ class Pagy
     @request = options.delete(:request) # internal object
     validate_string_values(options)
 
-    default  = {}
-    current  = self.class
+    default = {}
+    current = self.class
 
     loop do
       default = current::DEFAULT.merge(default)
