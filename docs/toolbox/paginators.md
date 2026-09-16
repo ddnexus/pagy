@@ -35,7 +35,7 @@ The `pagy` method expects to find the rack request at `self.request`, however, y
 
 ### Paginators
 
-!!!tip Read also the [Choose Right Guide](/guides/choose-right.md) to ensure good performance and smooth workflow.
+!!!tip Read also the [Choose Right](/guides/choose-right.md) Guide to ensure good performance and smooth workflow.
 !!!
 
 The `paginators` are symbolic names of different pagination types/contexts (e.g., `:offset`, `:keyset`, `countless`, etc.). You pass the name to the `pagy` method and pagy will internally instantiate and handle the appropriate paginator class.

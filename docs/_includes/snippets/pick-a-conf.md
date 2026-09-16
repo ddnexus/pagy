@@ -5,9 +5,7 @@
 !!!success Works with any app
 !!!
 
-The following statement will copy and keep synced your picked `pagy*` file in your own `{{ $.remote_dir }}` dir _(or any dir you may want use)_.
-
-It will become and processed exactly like one of your own files.
+The following statement will <u>copy and keep synced</u> your picked `pagy*` file in your own asset dir, so it will be processed like an asset of your app.
 
 ```rb [pagy.rb initializer](/toolbox/configuration/initializer)
 # Replace 'pagy*' with the file you picked
