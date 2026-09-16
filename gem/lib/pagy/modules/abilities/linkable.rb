@@ -53,7 +53,7 @@ class Pagy
                   end
 
       { opts[:page_key]  => compose_page_param(page),
-        opts[:limit_key] => opts[:max_limit] && opts[:limit] }.each do |k, v|
+        opts[:limit_key] => opts[:client_limit] && opts[:limit] }.each do |k, v|
         v ? container[k] = v : container.delete(k)
       end
 

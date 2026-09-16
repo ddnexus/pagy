@@ -231,9 +231,9 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 |------------------------------------|-----------------------------------|
 | `limit_param: :...` (symbol value) | `limit_key: '...'` (string value) |
 | `limit_extra: ...`                 | delete                            |
-| `max_limit: ...`                   | delete                            |
+| `client_limit: ...`                | delete                            |
 
-- Enable the feature by setting `max_limit: allowed_max_limit` option _(in the initializer or `pagy` method)_.
+- Enable the feature by setting `client_limit: allowed_max_limit` option _(in the initializer or `pagy` method)_.
 
 ==- `metadata`
 

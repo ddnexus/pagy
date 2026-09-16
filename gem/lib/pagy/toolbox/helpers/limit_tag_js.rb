@@ -4,10 +4,10 @@ require_relative 'support/data_pagy_attribute'
 
 class Pagy
   module NumericHelpers
-    def limit_tag_js(id: nil, item_name: nil, max_limit: @options[:max_limit], **)
-      raise OptionError.new(self, :max_limit, 'to be truthy', max_limit) unless max_limit
+    def limit_tag_js(id: nil, item_name: nil, client_limit: @options[:client_limit], **)
+      raise OptionError.new(self, :client_limit, 'to be truthy', client_limit) unless client_limit
 
-      limit_input = %(<input name="limit" type="number" min="1" max="#{max_limit}" value="#{
+      limit_input = %(<input name="limit" type="number" min="1" max="#{client_limit}" value="#{
                       @limit}" style="padding: 0; text-align: center; width: #{@limit.to_s.length + 1}rem;">#{A_TAG})
 
       url_token = compose_page_url(PAGE_TOKEN, limit: LIMIT_TOKEN)

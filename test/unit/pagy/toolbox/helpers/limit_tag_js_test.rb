@@ -30,11 +30,11 @@ describe 'Pagy#limit_tag_js' do
     end
   end
 
-  let(:options) { { max_limit: 100 } }
+  let(:options) { { client_limit: 100 } }
   let(:pagy) { pagy_class.new(limit: 20, from: 1, options: options) }
 
-  it 'raises OptionError if max_limit is missing' do
-    pagy.options[:max_limit] = nil
+  it 'raises OptionError if client_limit is missing' do
+    pagy.options[:client_limit] = nil
     _ { pagy.limit_tag_js }.must_raise Pagy::OptionError
   end
 
@@ -68,8 +68,8 @@ describe 'Pagy#limit_tag_js' do
     _(html).must_match(/widgets per page/)
   end
 
-  it 'accepts max_limit override' do
-    html = pagy.limit_tag_js(max_limit: 50)
+  it 'accepts client_limit override' do
+    html = pagy.limit_tag_js(client_limit: 50)
     _(html).must_match(/max="50"/)
   end
 end

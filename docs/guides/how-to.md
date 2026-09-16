@@ -19,11 +19,10 @@ Check the [Choose Right Guide](choose-right)
 ==- Control the items per page
 
 Fixed
-: Pass the `:limit` option to the paginator to set the number of items to serve with each page.
+: Set the `:limit` option to the number of items to serve with each page.
 
 Requestable
-
-: Pass the `:limit` combined with the `:max_limit` options to the paginator, allowing the client to request a variable `:limit` up to the specified `:max_limit`. _See also the `:limit_key` explained in the [Customize the URL keys](#customize-the-URL-keys) section below._
+: Set the `:client_limit` option to allow the client to request up to the `:client_limit`. If the client omits to request a specific limit, pagy will fall back to its regular behavior. See also [Customize the URL keys](#customize-the-url-keys) below.
 
 Interactive
 : Use the [limit_tag_js](/toolbox/helpers/limit_tag_js) helper to provide a UI selector to the user.
@@ -31,7 +30,7 @@ Interactive
 ==- Customize the URL keys
 
 - Set `page_key: 'custom_page'` to customize URL generation, e.g., `?custom_page=3`.
-- Set the `:limit_key` to customize the `limit` param the same way.
+- Set the `:limit_key` to customize the `limit` param the same way. (Only useful if `:client_limit` is allowed).
 
 See [URL Options](/resources/urls#options)
 
@@ -187,7 +186,7 @@ Explore the following options:
 
 - [:keyset paginator](/toolbox/paginators/keyset)
 - [headers_hash helper](/toolbox/helpers/headers_hash)
-- `:max_limit` paginator option
+- `:client_limit` paginator option
 - `:jsonapi` paginator option
 
 ==- Paginate for JavaScript Frameworks

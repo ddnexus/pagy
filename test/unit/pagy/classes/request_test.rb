@@ -98,15 +98,15 @@ describe 'Pagy::Request Specs' do
   end
 
   describe '#resolve_limit' do
-    it 'returns default limit when max_limit is not set' do
+    it 'returns default limit when client_limit is not set' do
       # Uses Pagy::DEFAULT or options[:limit]
       req = Pagy::Request.new(default_options.merge(limit: 25, request: { params: { 'limit' => '100' } }))
-      # Should ignore params because max_limit is not set
+      # Should ignore params because client_limit is not set
       _(req.resolve_limit).must_equal 25
     end
 
-    describe 'with max_limit' do
-      let(:opts) { default_options.merge(max_limit: 50, request: { params: {} }) }
+    describe 'with client_limit' do
+      let(:opts) { default_options.merge(client_limit: 50, request: { params: {} }) }
 
       it 'returns params limit if within max' do
         opts[:request][:params] = { 'limit' => '30' }

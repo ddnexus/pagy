@@ -43,7 +43,7 @@ describe 'Pagy Deprecated Code' do
     it 'works with Offset' do
       assert_output(nil, /:client_max_limit/) do
         pagy = Pagy::Offset.new(limit: 10, client_max_limit: 5)
-        _(pagy.options[:max_limit]).must_equal 5
+        _(pagy.options[:client_limit]).must_equal 5
         _(pagy.options[:client_max_limit]).must_be_nil
       end
     end
@@ -53,6 +53,25 @@ describe 'Pagy Deprecated Code' do
         limit = Pagy::Request.new({ request: { base_url: 'http://example.com',
                                                params: { 'limit' => 21 }},
                                     client_max_limit: 30 }).resolve_limit
+        _(limit).must_equal 21
+      end
+    end
+  end
+
+  describe 'Deprecated :max_limit option' do
+    it 'works with Offset' do
+      assert_output(nil, /:max_limit/) do
+        pagy = Pagy::Offset.new(limit: 10, max_limit: 5)
+        _(pagy.options[:client_limit]).must_equal 5
+        _(pagy.options[:max_limit]).must_be_nil
+      end
+    end
+
+    it 'works with the resolve_limit' do
+      assert_output(nil, /:max_limit/) do
+        limit = Pagy::Request.new({ request: { base_url: 'http://example.com',
+                                               params: { 'limit' => 21 }},
+                                    max_limit: 30 }).resolve_limit
         _(limit).must_equal 21
       end
     end
