@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Rubocorrect" type="ShConfigurationType" folderName="Test">
-    <option name="SCRIPT_TEXT" value="bundle exec rubocop -a" />
+    <option name="SCRIPT_TEXT" value="bundle exec rubocop -A" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="" />
     <option name="SCRIPT_OPTIONS" value="" />

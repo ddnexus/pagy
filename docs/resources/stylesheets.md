@@ -12,7 +12,7 @@ image: ""
 
 ---
 
-Pagy includes a couple of CSS files and the tools to integrate with your app's themes _interactively_.
+Pagy includes a couple of CSS files and the tools to integrate your app's themes _interactively_.
 
 !!!warning
 You don't need any stylesheets if you use the pagy `:bootstrap` or `:bulma` helpers and styles.

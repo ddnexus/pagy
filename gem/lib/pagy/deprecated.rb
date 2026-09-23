@@ -6,9 +6,9 @@
 class Pagy
   module Deprecated
     def self.client_max_limit(options)
-      if (max_limit = options.delete(:client_max_limit))
-        options[:max_limit] ||= max_limit
-        warn '[PAGY] the :client_max_limit option is deprecated: use :max_limit instead.'
+      options[:client_limit] ||= options[:max_limit] || options[:client_max_limit]
+      %i[max_limit client_max_limit].each do |key|
+        warn "[PAGY] the #{key.inspect} option is deprecated: use :client_limit instead." if options.delete(key)
       end
     end
 

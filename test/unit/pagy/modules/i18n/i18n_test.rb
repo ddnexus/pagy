@@ -33,13 +33,12 @@ describe 'Pagy::I18n Specs' do
       i18n.locale = 'es'
       _(i18n.locale).must_equal 'es'
 
-      # rubocop:disable ThreadSafety/NewThread
+      # rubocop:disable-next ThreadSafety/NewThread
       Thread.new do
         _(i18n.locale).must_equal 'en'
         i18n.locale = 'it'
         _(i18n.locale).must_equal 'it'
       end.join
-      # rubocop:enable ThreadSafety/NewThread
 
       _(i18n.locale).must_equal 'es'
     end

@@ -36,14 +36,19 @@ describe 'Pagy Next Mode' do
   end
 
   describe 'Deprecated :client_max_limit option' do
-    it 'allows max_limit options' do
-      pagy = Pagy::Offset.new(limit: 10, max_limit: 5)
-      _(pagy.options[:max_limit]).must_equal 5
+    it 'allows client_limit options' do
+      pagy = Pagy::Offset.new(limit: 10, client_limit: 5)
+      _(pagy.options[:client_limit]).must_equal 5
     end
 
     it 'does not warn or translate legacy client_max_limit options' do
       err = _ { Pagy::Offset.new(limit: 10, client_max_limit: 5) }.must_raise Pagy::NextError
       _(err.message).must_match(':client_max_limit')
+    end
+
+    it 'does not warn or translate legacy max_limit options' do
+      err = _ { Pagy::Offset.new(limit: 10, max_limit: 5) }.must_raise Pagy::NextError
+      _(err.message).must_match(':max_limit')
     end
 
     it 'works with the resolve_limit' do

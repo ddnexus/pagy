@@ -16,7 +16,7 @@
 # URL
 #    http://127.0.0.1:8000
 
-VERSION = '43.6.2'
+VERSION = '43.6.3'
 
 if VERSION != Pagy::VERSION
   Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")
@@ -34,7 +34,7 @@ end
 
 # Edit this section adding the legacy as needed
 # Pagy initializer
-Pagy::OPTIONS[:max_limit] = 100
+Pagy::OPTIONS[:client_limit] = 100
 
 # Sinatra setup
 require 'sinatra/base'
@@ -56,7 +56,7 @@ class PagyRepro < Sinatra::Base
   get '/' do
     collection = MockCollection.new
     @pagy, @records = pagy(collection) # simplest form
-    # @pagy, @records = pagy(:offset, collection, limit: 7, max_limit: 30)
+    # @pagy, @records = pagy(:offset, collection, limit: 7, client_limit: 30)
     # @pagy, @records = pagy(:countish, collection, ttl: 20)
     # @pagy, @records = pagy(:countless, collection)
     # @pagy, @records = pagy(Array(1..1000))

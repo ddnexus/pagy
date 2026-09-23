@@ -16,7 +16,7 @@
 # URL
 #    http://127.0.0.1:8000
 
-VERSION = '43.6.2'
+VERSION = '43.6.3'
 
 if VERSION != Pagy::VERSION
   Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")
@@ -102,7 +102,7 @@ class CommentsController < ActionController::Base # :nodoc:
   include Pagy::Method
 
   def index
-    @pagy, @comments = pagy(:offset, Comment.all, limit: 10, max_limit: 100)
+    @pagy, @comments = pagy(:offset, Comment.all, limit: 10, client_limit: 100)
     # Reload the page in the network tab of the Chrome Inspector to check
     # response.headers.merge!(@pagy.headers_hash)
     render inline: TEMPLATE

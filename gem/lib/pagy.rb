@@ -9,7 +9,7 @@ require_relative 'pagy/toolbox/helpers/loaders'
 
 # Top superclass
 class Pagy
-  VERSION     = '43.6.2'
+  VERSION     = '43.6.3'
   ROOT        = Pathname.new(__dir__).parent.freeze
   DEFAULT     = { limit: 20, limit_key: 'limit', page_key: 'page' }.freeze
   PAGE_TOKEN  = EscapedValue.new('P ')
@@ -74,8 +74,8 @@ class Pagy
     @request = options.delete(:request) # internal object
     validate_string_values(options)
 
-    default  = {}
-    current  = self.class
+    default = {}
+    current = self.class
 
     loop do
       default = current::DEFAULT.merge(default)

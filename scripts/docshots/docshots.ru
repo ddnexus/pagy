@@ -17,7 +17,7 @@ end
 
 # Edit this section adding the legacy as needed
 # Pagy initializer
-Pagy::OPTIONS[:max_limit] = 100
+Pagy::OPTIONS[:client_limit] = 100
 
 # Sinatra setup
 require 'sinatra/base'

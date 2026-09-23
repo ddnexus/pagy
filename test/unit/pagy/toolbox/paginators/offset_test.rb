@@ -36,9 +36,9 @@ describe 'Pagy::OffsetPaginator Specs' do
       # Simulate client requesting limit 5 via params
       app = MockApp.new(params: { page: 1, limit: 5 })
 
-      # Pass limit: 10 as option, but enable max_limit to allow client override
+      # Pass limit: 10 as option, but enable client_limit to allow client override
       # The params limit (5) should take precedence over the default/option (10)
-      pagy, results = app.pagy(collection, limit: 10, max_limit: 20)
+      pagy, results = app.pagy(collection, limit: 10, client_limit: 20)
 
       _(pagy.page).must_equal 1
       _(pagy.limit).must_equal 5

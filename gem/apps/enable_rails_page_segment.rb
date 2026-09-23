@@ -47,7 +47,7 @@ class Pagy
   # Compose the final URL using `url_for`.
   module LinkableOverride
     def compose_url(absolute, _path, params, fragment)
-      params[:anchor]    = fragment if fragment
+      params[:anchor]    = fragment unless fragment.to_s.empty?
       params[:only_path] = !absolute
       @context.url_for(params)
     end

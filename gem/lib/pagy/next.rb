@@ -14,7 +14,7 @@ class Pagy
   module Discontinued
     # Ensure a discontinued option won't pass unnoticed shadowing a bug
     def assign_options(**options)
-      discontinued = options.keys & %i[max_pages client_max_limit]
+      discontinued = options.keys & %i[max_pages client_max_limit max_limit]
       return super if discontinued.empty?
 
       raise NextError, "discontinued #{discontinued.map(&:inspect).join(', ')}: " \
