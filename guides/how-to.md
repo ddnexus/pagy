@@ -13,19 +13,25 @@ Check the [Choose Right Guide](choose-right)
 ==- Control the items per page
 
 Fixed
-: Pass the `:limit` option to the paginator to set the number of items to serve with each page.
+: Set the `:limit` option to the number of items to serve with each page.
 
 Requestable
-: Pass the `:limit` option combined with the `:max_limit` option to the paginator, allowing the client to request a variable `:limit` up to the specified `:max_limit`.
+: Set the `:client_limit` option to allow the client to request up to the `:client_limit`. If the client omits to request a specific limit, pagy will fall back to its regular behavior. See also [Customize the URL keys](#customize-the-url-keys) below.
 
 Interactive
 : Use the [limit_tag_js](/toolbox/helpers/limit_tag_js) helper to provide a UI selector to the user.
 
+==- Customize the URL keys
+
+- Set `page_key: 'custom_page'` to customize URL generation, e.g., `?custom_page=3`.
+- Set the `:limit_key` to customize the `limit` param the same way. (Only useful if `:client_limit` is allowed).
+
+See [URL Options](/resources/urls#options)
+
 ==- Control the pagination bar
 
-Pagy provides [series_nav](/toolbox/helpers/series_nav) and [series_nav_js](/toolbox/helpers/series_nav_js) helpers for displaying a pagination bar.
-
-You can customize the number and position of page links in the navigation bar using:
+You can customize the number and position of page links of the [series_nav](/toolbox/helpers/series_nav) and [series_nav_js](/toolbox/helpers/series_nav_js)
+  navigation bars using:
 
 - The [:slots and :compact options](/toolbox/helpers/series_nav#options).
 - Overriding the `series` method for full control over the pagination bar
@@ -51,15 +57,6 @@ Pass the `:aria_label` option to the helper.
 You can also replace the `pagy.aria_label.nav` strings in the dictionary, as well as the `pagy.aria_label.previous` and the `pagy.aria_label.next`.
 
 See [ARIA](/resources/ARIA).
-
-==- Customize the page and limit URL keys
-
-By default, Pagy retrieves the page from the request params hash and generates URLs using the `"page"` key, e.g., `?page=3`.
-
-- Set `page_key: 'custom_page'` to customize URL generation, e.g., `?custom_page=3`.
-- Set the `:limit_key` to customize the `limit` param the same way.
-
-See [URL Options](/resources/urls#options)
 
 ==- Paginate with JSON:API nested URLs
 
@@ -183,8 +180,8 @@ Explore the following options:
 
 - [:keyset paginator](/toolbox/paginators/keyset)
 - [headers_hash helper](/toolbox/helpers/headers_hash)
-- `:max_limit` paginator option
-- `:jsonapi option` paginator option
+- `:client_limit` paginator option
+- `:jsonapi` paginator option
 
 ==- Paginate for JavaScript Frameworks
 

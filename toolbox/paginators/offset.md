@@ -37,8 +37,8 @@ The [:countish](countish) paginator offers identical UI features, but it's up to
 `limit: 10`
 : Specifies the number of items per page (default: `20`)
 
-`max_limit: 200`
-: Allow the client to request a `:limit` up to `:max_limit`. A higher requested `:limit` is silently capped.
+`client_limit: 200`
+: Allow the client to request a `:limit` up to `:client_limit`. A higher requested `:limit` is silently capped.
 
   **IMPORTANT** If falsey or zero, the client cannot request any `:limit`.
 

@@ -4,7 +4,7 @@
 
 ---
 
-Pagy includes a couple of CSS files and the tools to integrate with your app's themes _interactively_.
+Pagy includes a couple of CSS files and the tools to integrate your app's themes _interactively_.
 
 !!!warning
 You don't need any stylesheets if you use the pagy `:bootstrap` or `:bulma` helpers and styles.
@@ -45,9 +45,7 @@ You don't need any stylesheets if you use the pagy `:bootstrap` or `:bulma` help
 !!!success Works with any app
 !!!
 
-The following statement will copy and keep synced your picked `pagy*` file in your own `app/stylesheets` dir _(or any dir you may want use)_.
-
-It will become and processed exactly like one of your own files.
+The following statement will <u>copy and keep synced</u> your picked `pagy*` file in your own asset dir, so it will be processed like an asset of your app.
 
 ```rb [pagy.rb initializer](/toolbox/configuration/initializer)
 # Replace 'pagy*' with the file you picked

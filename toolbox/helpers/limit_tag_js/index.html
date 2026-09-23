@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.840880812757">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.843454445497">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -13,7 +13,7 @@
     <!-- Primary Meta Tags -->
     <title>limit_tag_js &#128154; Pagy</title>
     <meta name="title" content="limit_tag_js 💚 Pagy">
-    <meta name="description" content="The limit_tag_js allows the user to select any arbitrary limit per page, up to the :max_limit option. It raises an OptionError exception if the :max_limit is not truthy.">
+    <meta name="description" content="The limit_tag_js allows the user to select any arbitrary limit per page, up to the :client_limit option. It raises an OptionError exception if the :client_limit is not truthy.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/toolbox/helpers/limit_tag_js/">
@@ -23,7 +23,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/toolbox/helpers/limit_tag_js/">
     <meta property="og:title" content="limit_tag_js 💚 Pagy">
-    <meta property="og:description" content="The limit_tag_js allows the user to select any arbitrary limit per page, up to the :max_limit option. It raises an OptionError exception if the :max_limit is not truthy.">
+    <meta property="og:description" content="The limit_tag_js allows the user to select any arbitrary limit per page, up to the :client_limit option. It raises an OptionError exception if the :client_limit is not truthy.">
     <meta property="og:site_name" content="Pagy">
     <meta property="og:locale" content="en_US">
 
@@ -31,19 +31,19 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://ddnexus.github.io/pagy/toolbox/helpers/limit_tag_js/">
     <meta name="twitter:title" content="limit_tag_js 💚 Pagy">
-    <meta name="twitter:description" content="The limit_tag_js allows the user to select any arbitrary limit per page, up to the :max_limit option. It raises an OptionError exception if the :max_limit is not truthy.">
+    <meta name="twitter:description" content="The limit_tag_js allows the user to select any arbitrary limit per page, up to the :client_limit option. It raises an OptionError exception if the :client_limit is not truthy.">
 
     <!-- Alternate Markdown -->
     <link rel="alternate" type="text/markdown" href="https://ddnexus.github.io/pagy/toolbox/helpers/limit_tag_js.md">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../../resources/css/retype.css?v=4.6.0.840880812757" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.6.0.843454445497" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.840880812757" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.843454445497" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.840880812757" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.840880812757" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.843454445497" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.843454445497" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -216,7 +216,7 @@
                             <img class="max-h-10 md:inline-block" src="../../../assets/images/pagy-the-frog.png" alt="" width="43" height="40">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.6.2</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.6.3</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -415,7 +415,7 @@
     <span>Check it out with <code translate="no" v-pre>bundle exec pagy demo</code></span>
 </a></p>
 </div>
-<p>The <code translate="no" v-pre>limit_tag_js</code> allows the user to select any arbitrary limit per page, up to the <code translate="no" v-pre>:max_limit</code> option. It raises an <code translate="no" v-pre>OptionError</code> exception if the <code translate="no" v-pre>:max_limit</code> is not truthy.</p>
+<p>The <code translate="no" v-pre>limit_tag_js</code> allows the user to select any arbitrary limit per page, up to the <code translate="no" v-pre>:client_limit</code> option. It raises an <code translate="no" v-pre>OptionError</code> exception if the <code translate="no" v-pre>:client_limit</code> is not truthy.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
@@ -463,11 +463,11 @@
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">require 'pagy/console'
 =&gt; true
 
-&gt;&gt; puts @pagy.limit_tag_js(max_limit: 100)
+&gt;&gt; puts @pagy.limit_tag_js(client_limit: 100)
 &lt;span class=&quot;pagy limit-tag-js&quot; data-pagy=&quot;WyJzaiIsNDEsIi9wYXRoP2V4YW1wbGU9MTIzJnBhZ2U9UCAiXQ==&quot;&gt;&lt;label&gt;Show &lt;input name=&quot;limit&quot; type=&quot;number&quot; min=&quot;1&quot; max=&quot;&quot; value=&quot;20&quot; style=&quot;padding: 0; text-align: center; width: 3rem;&quot;&gt;&lt;a style=&quot;display: none;&quot;&gt;#&lt;/a&gt; items per page&lt;/label&gt;&lt;/span&gt;
 =&gt; nil
 
-&gt;&gt; puts @pagy.limit_tag_js(max_limit: 100, id: 'my-elector', item_name: 'Products')
+&gt;&gt; puts @pagy.limit_tag_js(client_limit: 100, id: 'my-elector', item_name: 'Products')
 &lt;span id=&quot;my-elector&quot; class=&quot;pagy limit-tag-js&quot; data-pagy=&quot;WyJzaiIsNDEsIi9wYXRoP2V4YW1wbGU9MTIzJnBhZ2U9UCAiXQ==&quot;&gt;&lt;label&gt;Show &lt;input name=&quot;limit&quot; type=&quot;number&quot; min=&quot;1&quot; max=&quot;&quot; value=&quot;20&quot; style=&quot;padding: 0; text-align: center; width: 3rem;&quot;&gt;&lt;a style=&quot;display: none;&quot;&gt;#&lt;/a&gt; Products per page&lt;/label&gt;&lt;/span&gt;
 =&gt; nil</code></pre>
 </doc-codeblock></div>
@@ -513,8 +513,8 @@
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-08-05T19:59:53" title="2026-08-05" data-absolute-label="Last updated on 2026-08-05" data-absolute-label-html="Last updated on 2026-08-05" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-08-05
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-09-23T09:51:33" title="2026-09-23" data-absolute-label="Last updated on 2026-09-23" data-absolute-label-html="Last updated on 2026-09-23" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-09-23
                     </time>
                 </div>
 

@@ -42,7 +42,7 @@
 - [series_nav_js](https://ddnexus.github.io/pagy/toolbox/helpers/series_nav_js.md): series_nav_js functions similarly to a series_nav, with the following added features:
 - [input_nav_js](https://ddnexus.github.io/pagy/toolbox/helpers/input_nav_js.md): input_nav_js
 - [anchor_tags](https://ddnexus.github.io/pagy/toolbox/helpers/anchor_tags.md): The previous_tag and next_tag return the enabled/disabled previous/next page anchor tag.
-- [limit_tag_js](https://ddnexus.github.io/pagy/toolbox/helpers/limit_tag_js.md): The limit_tag_js allows the user to select any arbitrary limit per page, up to the :max_limit option. It raises an OptionError exception if the :max_limit is not truthy.
+- [limit_tag_js](https://ddnexus.github.io/pagy/toolbox/helpers/limit_tag_js.md): The limit_tag_js allows the user to select any arbitrary limit per page, up to the :client_limit option. It raises an OptionError exception if the :client_limit is not truthy.
 - [info_tag](https://ddnexus.github.io/pagy/toolbox/helpers/info_tag.md): info_tag provides information about the content of the current pagination.
 
 ###  ✳   Configuration
@@ -52,7 +52,7 @@
 
 ## Resources
 
-- [Stylesheets](https://ddnexus.github.io/pagy/resources/stylesheets.md): Pagy includes a couple of CSS files and the tools to integrate with your app's themes interactively.
+- [Stylesheets](https://ddnexus.github.io/pagy/resources/stylesheets.md): Pagy includes a couple of CSS files and the tools to integrate your app's themes interactively.
 - [JavaScript](https://ddnexus.github.io/pagy/resources/javascript.md): It is not a requirement, but if present, the pagy JSON generation will be faster.
 - [I18n](https://ddnexus.github.io/pagy/resources/i18n.md): Pagy handles string translation and pluralization using its own efficient i18n implementation.
 - [ARIA](https://ddnexus.github.io/pagy/resources/aria.md): Since version 7.0.0, Pagy introduced a consistent set of ARIA-compliant attributes across all its helpers.

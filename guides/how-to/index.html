@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.840880812757">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.843454445497">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -38,12 +38,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.6.0.840880812757" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.843454445497" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.840880812757" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.843454445497" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.840880812757" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.840880812757" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.843454445497" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.843454445497" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -216,7 +216,7 @@
                             <img class="max-h-10 md:inline-block" src="../../assets/images/pagy-the-frog.png" alt="" width="43" height="40">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.6.2</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.6.3</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -402,17 +402,25 @@
        <template #title>Control the items per page</template>
 <dl>
 <dt id="fixed">Fixed</dt>
-<dd>Pass the <code translate="no" v-pre>:limit</code> option to the paginator to set the number of items to serve with each page.</dd>
+<dd>Set the <code translate="no" v-pre>:limit</code> option to the number of items to serve with each page.</dd>
 <dt id="requestable">Requestable</dt>
-<dd>Pass the <code translate="no" v-pre>:limit</code> option combined with the <code translate="no" v-pre>:max_limit</code> option to the paginator, allowing the client to request a variable <code translate="no" v-pre>:limit</code> up to the specified <code translate="no" v-pre>:max_limit</code>.</dd>
+<dd>Set the <code translate="no" v-pre>:client_limit</code> option to allow the client to request up to the <code translate="no" v-pre>:client_limit</code>. If the client omits to request a specific limit, pagy will fall back to its regular behavior. See also <doc-anchor-trigger to="#customize-the-url-keys">Customize the URL keys</doc-anchor-trigger> below.</dd>
 <dt id="interactive">Interactive</dt>
 <dd>Use the <a href="../../toolbox/helpers/limit_tag_js/">limit_tag_js</a> helper to provide a UI selector to the user.</dd>
 </dl>
    </doc-panel>
+   <doc-panel id="customize-the-url-keys" collapsed>
+       <template #title>Customize the URL keys</template>
+<ul>
+<li>Set <code translate="no" v-pre>page_key: 'custom_page'</code> to customize URL generation, e.g., <code translate="no" v-pre>?custom_page=3</code>.</li>
+<li>Set the <code translate="no" v-pre>:limit_key</code> to customize the <code translate="no" v-pre>limit</code> param the same way. (Only useful if <code translate="no" v-pre>:client_limit</code> is allowed).</li>
+</ul>
+<p>See <a href="../../resources/urls/#options">URL Options</a></p>
+   </doc-panel>
    <doc-panel id="control-the-pagination-bar" collapsed>
        <template #title>Control the pagination bar</template>
-<p>Pagy provides <a href="../../toolbox/helpers/series_nav/">series_nav</a> and <a href="../../toolbox/helpers/series_nav_js/">series_nav_js</a> helpers for displaying a pagination bar.</p>
-<p>You can customize the number and position of page links in the navigation bar using:</p>
+<p>You can customize the number and position of page links of the <a href="../../toolbox/helpers/series_nav/">series_nav</a> and <a href="../../toolbox/helpers/series_nav_js/">series_nav_js</a>
+navigation bars using:</p>
 <ul>
 <li>The <a href="../../toolbox/helpers/series_nav/#options">:slots and :compact options</a>.</li>
 <li>Overriding the <code translate="no" v-pre>series</code> method for full control over the pagination bar</li>
@@ -436,15 +444,6 @@
 <p>Pass the <code translate="no" v-pre>:aria_label</code> option to the helper.</p>
 <p>You can also replace the <code translate="no" v-pre>pagy.aria_label.nav</code> strings in the dictionary, as well as the <code translate="no" v-pre>pagy.aria_label.previous</code> and the <code translate="no" v-pre>pagy.aria_label.next</code>.</p>
 <p>See <a href="../../resources/aria/">ARIA</a>.</p>
-   </doc-panel>
-   <doc-panel id="customize-the-page-and-limit-url-keys" collapsed>
-       <template #title>Customize the page and limit URL keys</template>
-<p>By default, Pagy retrieves the page from the request params hash and generates URLs using the <code translate="no" v-pre>&quot;page&quot;</code> key, e.g., <code translate="no" v-pre>?page=3</code>.</p>
-<ul>
-<li>Set <code translate="no" v-pre>page_key: 'custom_page'</code> to customize URL generation, e.g., <code translate="no" v-pre>?custom_page=3</code>.</li>
-<li>Set the <code translate="no" v-pre>:limit_key</code> to customize the <code translate="no" v-pre>limit</code> param the same way.</li>
-</ul>
-<p>See <a href="../../resources/urls/#options">URL Options</a></p>
    </doc-panel>
    <doc-panel id="paginate-with-jsonapi-nested-urls" collapsed>
        <template #title>Paginate with JSON:API nested URLs</template>
@@ -568,8 +567,8 @@ Pagy::AnyModule.prepend MyOverridingModule</code></pre>
 <ul>
 <li><a href="../../toolbox/paginators/keyset/">:keyset paginator</a></li>
 <li><a href="../../toolbox/helpers/headers_hash/">headers_hash helper</a></li>
-<li><code translate="no" v-pre>:max_limit</code> paginator option</li>
-<li><code translate="no" v-pre>:jsonapi option</code> paginator option</li>
+<li><code translate="no" v-pre>:client_limit</code> paginator option</li>
+<li><code translate="no" v-pre>:jsonapi</code> paginator option</li>
 </ul>
    </doc-panel>
    <doc-panel id="paginate-for-javascript-frameworks" collapsed>
@@ -958,8 +957,8 @@ end</code></pre>
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-06-08T14:11:46" title="2026-06-08" data-absolute-label="Last updated on 2026-06-08" data-absolute-label-html="Last updated on 2026-06-08" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-06-08
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-09-23T09:51:33" title="2026-09-23" data-absolute-label="Last updated on 2026-09-23" data-absolute-label-html="Last updated on 2026-09-23" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-09-23
                     </time>
                 </div>
 
