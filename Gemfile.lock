@@ -1,7 +1,7 @@
 PATH
   remote: gem
   specs:
-    pagy (43.6.2)
+    pagy (43.6.3)
       json
       uri
       yaml
@@ -444,7 +444,7 @@ CHECKSUMS
   nokogiri (1.19.4-x86_64-linux-musl) sha256=17dfb7c1fa194ae02fbf7c51a7afc8d278045ab3fdacfd86f91d02d7b274470b
   oj (3.17.6) sha256=f511257e01a12030c3ceb8023cd2e96fca924ea9c741f57ea366816f1fd8e68c
   ostruct (0.6.3) sha256=95a2ed4a4bd1d190784e666b47b2d3f078e4a9efda2fccf18f84ddc6538ed912
-  pagy (43.6.2)
+  pagy (43.6.3)
   parallel (2.2.0) sha256=e1059c5fd7b649558a0aec38a769f06a42942bdb40503d005a59c352fe011cd8
   parser (3.3.12.0) sha256=21a6d7f755d5a24dfbdc6e6b772e4e879a52e7631a88bc5a3a134606052c9828
   pp (0.6.4) sha256=dfcb0fce700c41456265922884f9fe195d7fbb0674a3578e6c0f69588e82b570

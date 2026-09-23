@@ -1,7 +1,7 @@
-### Changes in 43.6.2
+### Changes in 43.6.3
 
 <!-- changes_start -->
-- Fix nil records returned for Array collections on page overflow (#920) (Fix #919)
+- Deprecate the :max_limit in favor of the more descriptive :client_limit option.
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

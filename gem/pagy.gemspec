@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = 'pagy'
-  s.version     = '43.6.2'
+  s.version     = '43.6.3'
   s.authors     = ['Domizio Demichelis']
   s.email       = ['dd.nexus@gmail.com']
   s.summary     = 'Pagy 🐸 The Leaping Gem!'

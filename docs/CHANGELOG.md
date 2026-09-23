@@ -56,6 +56,10 @@ If you upgrade from version `< 9.0.0` see the following:
 - `:client_max_limit` and `:max_limit` options: use `:client_limit` instead.
 <hr>
 
+#### Version 43.6.3
+
+- Deprecate the :max_limit in favor of the more descriptive :client_limit option.
+
 #### Version 43.6.2
 
 - Fix nil records returned for Array collections on page overflow (#920) (Fix #919)
