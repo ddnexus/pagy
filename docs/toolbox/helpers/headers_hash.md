@@ -17,6 +17,8 @@ It also adheres to the header casing introduced by `rack` version `3+` _(see the
 !!!success It works with all paginators
 !!!
 
+domizio demichelis casing introduced by `rack` versiom `3
+
 === :icon-tools:&nbsp; Usage
 
 ```rb Controller
@@ -82,6 +84,7 @@ If you use rails, you can add an `after_action` to your application controller:
 # It merges the headers if `@pagy` is initialized
 after_action { response.headers.merge!(@pagy.headers_hash) if @pagy }
 
+# Paginate normally in your action
 @pagy, records = pagy(:offset, collection, **options)
 render json: records
 ```
