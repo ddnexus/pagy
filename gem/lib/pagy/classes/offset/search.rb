@@ -20,6 +20,10 @@ class Pagy
     def search? = true
   end
 
+  class RailsActiveSearch < SearchBase
+    DEFAULT = { search_method: :search }.freeze
+  end
+
   class ElasticsearchRails < SearchBase
     DEFAULT = { search_method:     :search,
                 max_result_window: 10_000 }.freeze

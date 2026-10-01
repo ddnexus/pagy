@@ -24,6 +24,7 @@ class Pagy
   autoload :Calendar,           path.join('classes/calendar/calendar')
   autoload :Offset,             path.join('classes/offset/offset')
   autoload :Search,             path.join('classes/offset/search')
+  autoload :RailsActiveSearch,  path.join('classes/offset/search')
   autoload :ElasticsearchRails, path.join('classes/offset/search')
   autoload :Meilisearch,        path.join('classes/offset/search')
   autoload :Searchkick,         path.join('classes/offset/search')

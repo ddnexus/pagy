@@ -21,6 +21,7 @@ group :development, :test do
   gem 'minitest-reporters'
   gem 'oj', require: false # false is for testing with or without it
   gem 'rack'
+  gem 'rails-active_search'
   gem 'rails-i18n'
   gem 'rubocop'
   gem 'rubocop-minitest'
