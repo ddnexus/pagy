@@ -14,7 +14,7 @@ nav:
 
 ---
 
-`:typesense_rails` is a [SEARCH](/guides/choose-right/#search) paginator designed for `Typesense::Rails` results.
+`:typesense_rails` is a [SEARCH](/guides/choose-right/#search) paginator for `Typesense::Rails` search results.
 
 === :icon-list-ordered:&nbsp; Setup
 
@@ -25,7 +25,6 @@ Ensure `Typesense.configuration[:pagination_backend] == nil`.
 +++ Active mode
 
 !!!success Pagy searches and paginates
-
 You use the `pagy_search` method in place of the `search` method.
 !!!
 
@@ -40,7 +39,7 @@ search = Article.pagy_search(params[:q], to_query)
 @pagy, @response = pagy(:typesense_rails, search, **options)
 ```
 
-+++ Passive Mode
++++ Passive mode
 
 !!!success You search and paginate
 Pagy creates its object out of your result.
@@ -56,13 +55,13 @@ Pagy creates its object out of your result.
 +++
 
 !!!
-Search paginators don't query a DB, but use the same positional technique as [:offset](offset.md) paginators, with shared options and readers.
+Search paginators use the same positional technique as [:offset](offset.md) paginators, with shared options and readers.
 !!!
 
 ==- :icon-sliders:&nbsp; Options
 
 `search_method: :my_search`
-: Customize the name of the `typesense_rails` method to use (default `:search`).
+: Customize the name of the `Typesense::Rails` search method to use in active mode (default `:search`).
 
 {{ include "options/paginator" }}
 

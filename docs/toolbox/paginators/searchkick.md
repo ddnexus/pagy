@@ -10,7 +10,7 @@ order: 30
 
 ---
 
-`:searchkick` is a [SEARCH](/guides/choose-right/#search) paginator for  `Searchkick::Results` objects.
+`:searchkick` is a [SEARCH](/guides/choose-right/#search) paginator for `Searchkick` search results.
 
 === :icon-list-ordered:&nbsp; Setup
 
@@ -55,13 +55,13 @@ Pagy creates its object out of your result.
 @pagy = pagy(:searchkick, @results, **options)
 
 # IMPORTANT: If the elasticsearch max_result_window is != 10_000, ensure to sync it with pagy
-@pagy, @response = pagy(:searchkick, search, max_result_window: 1_000, ...)
+@pagy = pagy(:searchkick, @results, max_result_window: 1_000, ...)
 ```
 
 +++
 
 !!!
-Search paginators don't query a DB, but use the same positional technique as [:offset](offset.md) paginators, with shared options and readers.
+Search paginators use the same positional technique as [:offset](offset.md) paginators, with shared options and readers.
 !!!
 
 ==- :icon-sliders:&nbsp; Options
@@ -71,7 +71,7 @@ Search paginators don't query a DB, but use the same positional technique as [:o
  to get pagination working properly (default `10_000`).
 
 `search_method: :my_search`
-: Customize the name of the `searchkick` method to use (default `:search`).
+: Customize the name of the `Searchkick` search method to use in active mode (default `:search`).
 
 {{ include "options/paginator" }}
 

@@ -10,13 +10,13 @@ order: 50
 
 ---
 
-`:elasticsearch_rails` is a [SEARCH](/guides/choose-right/#search) paginator for `ElasticsearchRails` response objects.
+`:elasticsearch_rails` is a [SEARCH](/guides/choose-right/#search) paginator for `ElasticsearchRails` search results.
 
 === :icon-tools:&nbsp; Usage
 
 +++ Active mode
 
-!!!success Pagy searches and paginate
+!!!success Pagy searches and paginates
 You use the `pagy_search` method in place of the `search` method.
 !!!
 
@@ -33,7 +33,7 @@ search = Article.pagy_search(params[:q]).results
 @pagy, @response = pagy(:elasticsearch_rails, search, **options)
 
 # IMPORTANT: If the elasticsearch max_result_window is != 10_000, ensure to sync it with pagy
-@pagy, @response = pagy(:searchkick, search, max_result_window: 1_000, ...)
+@pagy, @response = pagy(:elasticsearch_rails, search, max_result_window: 1_000, ...)
 ```
 
 +++ Passive mode
@@ -49,13 +49,13 @@ Pagy creates its object out of your result.
 @pagy = pagy(:elasticsearch_rails, @response, **options)
 
 # IMPORTANT: If the elasticsearch max_result_window is != 10_000, ensure to sync it with pagy
-@pagy, @response = pagy(:searchkick, search, max_result_window: 1_000, ...)
+@pagy = pagy(:elasticsearch_rails, @response, max_result_window: 1_000, ...)
 ```
 
 +++
 
 !!!
-Search paginators don't query a DB, but use the same positional technique as [:offset](offset.md) paginators, with shared options and readers.
+Search paginators use the same positional technique as [:offset](offset.md) paginators, with shared options and readers.
 !!!
 
 ==- :icon-sliders:&nbsp; Options
@@ -64,7 +64,7 @@ Search paginators don't query a DB, but use the same positional technique as [:o
 : Set it to the actual `max_result_window` applied by elasticsearch, to get an accurate pagination count (default `10_000`).
 
 `search_method: :my_search`
-: Customize the name of the `elasticsearch_rails` method to use (default `:search`).
+: Customize the name of the `ElasticsearchRails` search method to use in active mode (default `:search`).
 
 {{ include "options/paginator" }}
 
