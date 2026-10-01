@@ -148,8 +148,6 @@ GEM
     minitest-holdify (1.3.7)
       digest-xxhash (>= 0.2.9)
       minitest (>= 5.0.0)
-    minitest-hooks (1.5.4)
-      minitest (> 5.3)
     minitest-mock (5.27.0)
     minitest-reporters (1.8.0)
       ansi
@@ -354,7 +352,6 @@ DEPENDENCIES
   irb
   minitest
   minitest-holdify
-  minitest-hooks
   minitest-mock
   minitest-reporters
   oj
@@ -428,7 +425,6 @@ CHECKSUMS
   mini_mime (1.1.5) sha256=8681b7e2e4215f2a159f9400b5816d85e9d8c6c6b491e96a12797e798f8bccef
   minitest (6.0.6) sha256=153ea36d1d987a62942382b61075745042a2b3123b1cd48f4c3675af9cc7d6f1
   minitest-holdify (1.3.7) sha256=452589037e495b094d9706d42425aff079da2ca0231544ceaa4f20de8608f542
-  minitest-hooks (1.5.4) sha256=1254069f3da51fea234dc4ff974108d03d19260ad5c4b78eed9695726a5069b8
   minitest-mock (5.27.0) sha256=7040ed7185417a966920987eaa6eaf1be4ea1fc5b25bb03ff4703f98564a55b0
   minitest-reporters (1.8.0) sha256=8ce5280fb73ad3178ae525454df169b6f28c1b38b1d088ea91815d3a370ba384
   mustermann (3.1.1) sha256=4c6170c7234d5499c345562ba7c7dfe73e1754286dcc1abb053064d66a127198

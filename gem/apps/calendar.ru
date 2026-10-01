@@ -46,6 +46,10 @@ require 'sinatra/base'
 class PagyCalendar < Sinatra::Base
   include Pagy::Method
 
+  # Serve one request at a time: concurrent requests calling the groupdate SQLite function
+  # on the shared in-memory database deadlock the server
+  use Rack::Lock
+
   if ENV['E2E_TEST']
     get('/assets/:file') do
       content_type 'text/css'

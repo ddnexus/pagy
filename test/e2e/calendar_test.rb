@@ -9,7 +9,7 @@ describe 'Calendar App' do
 
   it "checks the HTML elements (skip true/false)" do
     %w[true false].each do |val|
-      browser.goto("?skip_counts=#{val}")
+      visit("?skip_counts=#{val}")
 
       # Test #go-to-day
       interact_and_hold(*ids) { browser.at_css('#go-to-day').click }
@@ -23,7 +23,7 @@ describe 'Calendar App' do
   end
 
   it 'tests app toggle' do
-    browser.goto('/')
+    visit('/')
     hold_html(*ids)
 
     interact_and_hold('#pages-nav') { browser.at_css('#toggle').click }
