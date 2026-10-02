@@ -6,6 +6,8 @@ require 'rbconfig'
 
 describe 'Docs console examples' do
   it 'match the actual console output' do
+    skip 'The docs show the Hash#inspect format of ruby >= 3.4' if RUBY_VERSION < '3.4'
+
     script = Pagy::ROOT.parent.join('scripts/update_console_examples.rb').to_s
     # The docs show the CURRENT API output, also when the suite runs with PAGY_NEXT
     output, status = Open3.capture2e({ 'PAGY_NEXT' => nil }, RbConfig.ruby, script, '--check')

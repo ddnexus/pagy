@@ -13,6 +13,8 @@ include Scripty # rubocop:disable Style/MixinUsage
 $LOAD_PATH.unshift(ROOT.join('gem/lib').to_s)
 require 'pagy/console'
 
+abort 'The docs show the Hash#inspect format of ruby >= 3.4: run this script with ruby >= 3.4' if RUBY_VERSION < '3.4'
+
 CHECK = ARGV.include?('--check')
 BLOCK = /^```ruby Console\n(.*?)^```/m
 
