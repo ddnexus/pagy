@@ -82,7 +82,7 @@ require 'pagy/console'
 => nil
 
 >> puts @pagy.series_nav_js(:bulma, id: 'my-nav', aria_label: 'Products', slots: 3)
-<nav id="my-nav" class="pagy-bulma series-nav-js pagination" aria-label="Products" data-pagy="WyJzbmoiLFsiPHVsIGNsYXNzPVwicGFnaW5hdGlvbi1saXN0XCI+PGxpPjxhIGhyZWY9XCIvcGF0aD9leGFtcGxlPTEyMyZhbXA7cGFnZT0yXCIgY2xhc3M9XCJwYWdpbmF0aW9uLXByZXZpb3VzXCIgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJQcmV2aW91c1wiPiZsdDs8L2E+PC9saT4iLCI8bGk+PGEgaHJlZj1cIi9wYXRoP2V4YW1wbGU9MTIzJmFtcDtwYWdlPVAgXCIgY2xhc3M9XCJwYWdpbmF0aW9uLWxpbmtcIj5MPC9hPjwvbGk+IiwiPGxpPjxhIHJvbGU9XCJsaW5rXCIgY2xhc3M9XCJwYWdpbmF0aW9uLWxpbmsgaXMtY3VycmVudFwiIGFyaWEtY3VycmVudD1cInBhZ2VcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPkw8L2E+PC9saT4iLCI8bGk+PHNwYW4gY2xhc3M9XCJwYWdpbmF0aW9uLWVsbGlwc2lzXCI+JmhlbGxpcDs8L3NwYW4+PC9saT4iLCI8bGk+PGEgaHJlZj1cIi9wYXRoP2V4YW1wbGU9MTIzJmFtcDtwYWdlPTRcIiBjbGFzcz1cInBhZ2luYXRpb24tbmV4dFwiIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+PC9saT48L3VsPiJdLCJQICIsW1swXSxbWzEsMiwiMyIsNCw1LCJnYXAiLDUwXV0sbnVsbF1d"></nav>
+<nav id="my-nav" class="pagy-bulma series-nav-js pagination" aria-label="Products" data-pagy="WyJzbmoiLFsiPHVsIGNsYXNzPVwicGFnaW5hdGlvbi1saXN0XCI+PGxpPjxhIGhyZWY9XCIvcGF0aD9leGFtcGxlPTEyMyZhbXA7cGFnZT0yXCIgY2xhc3M9XCJwYWdpbmF0aW9uLXByZXZpb3VzXCIgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJQcmV2aW91c1wiPiZsdDs8L2E+PC9saT4iLCI8bGk+PGEgaHJlZj1cIi9wYXRoP2V4YW1wbGU9MTIzJmFtcDtwYWdlPVAgXCIgY2xhc3M9XCJwYWdpbmF0aW9uLWxpbmtcIj5MPC9hPjwvbGk+IiwiPGxpPjxhIHJvbGU9XCJsaW5rXCIgY2xhc3M9XCJwYWdpbmF0aW9uLWxpbmsgaXMtY3VycmVudFwiIGFyaWEtY3VycmVudD1cInBhZ2VcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPkw8L2E+PC9saT4iLCI8bGk+PHNwYW4gY2xhc3M9XCJwYWdpbmF0aW9uLWVsbGlwc2lzXCI+JmhlbGxpcDs8L3NwYW4+PC9saT4iLCI8bGk+PGEgaHJlZj1cIi9wYXRoP2V4YW1wbGU9MTIzJmFtcDtwYWdlPTRcIiBjbGFzcz1cInBhZ2luYXRpb24tbmV4dFwiIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+PC9saT48L3VsPiJdLCJQICIsW1swXSxbWzIsIjMiLDRdXSxudWxsXV0="></nav>
 => nil
 ```
 
@@ -93,7 +93,7 @@ require 'pagy/console'
 {{ include "options/series" }}
 
 `steps: { 0 => 5, 540 => 7, ... }`
-: Enable responsiveness. Assign a different number of `:slots` to different tag widths.
+: Enable responsiveness. Assign a different number of `:slots` to different tag widths. It overrides the `:slots` option.
 
 {{ include "options/navs" }}
 
@@ -114,7 +114,7 @@ You can set any number of steps with any arbitrary width/slots. The only require
 !!!
 
 !!! Notice
-The `:slots` and `:compact` options used by the `series_nav` are not directly available.
+The `:steps` option overrides the `:slots` option, while the `:compact` option applies to all the steps.
 !!!
 
 #### Setting the right steps

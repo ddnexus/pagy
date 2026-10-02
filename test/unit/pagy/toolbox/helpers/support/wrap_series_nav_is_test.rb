@@ -14,10 +14,10 @@ describe 'Pagy#wrap_series_nav_js' do
       end
 
       # Mock dependencies
-      def series(slots:)
-        # Return a simple array based on slots, including :gap if slots > 3
+      def series(slots:, compact: nil)
+        # Return a simple array based on slots, including :gap if slots > 3 and not compact
         res = (1..slots).to_a
-        res[-2] = :gap if slots > 3
+        res[-2] = :gap if slots > 3 && !compact
         res
       end
 
@@ -71,6 +71,39 @@ describe 'Pagy#wrap_series_nav_js' do
       _(widths).must_equal [100, 0]
       _(series).must_equal [[1, 2, 3, :gap, 5], [1, 2, 3]]
       _(labels).must_be_nil
+    end
+
+    it 'uses the SERIES_SLOTS default without :slots and :steps' do
+      _, series, = pagy_class.new.sequels
+
+      _(series.first.size).must_equal Pagy::SERIES_SLOTS
+    end
+
+    it 'gives precedence to the helper :slots over the instance :slots' do
+      pagy = pagy_class.new(slots: 5)
+      _, series, = pagy.sequels(slots: 3)
+
+      _(series).must_equal [[1, 2, 3]]
+    end
+
+    it 'gives precedence to :steps over :slots' do
+      pagy = pagy_class.new(slots: 9)
+      widths, series, = pagy.sequels(slots: 7, steps: { 0 => 3 })
+
+      _(widths).must_equal [0]
+      _(series).must_equal [[1, 2, 3]]
+    end
+
+    it 'applies the instance or the helper :compact to all the steps' do
+      steps = { 0 => 4, 100 => 5 }
+      _, series, = pagy_class.new(steps:, compact: true).sequels
+      _(series).must_equal [[1, 2, 3, 4, 5], [1, 2, 3, 4]]
+
+      _, series, = pagy_class.new(steps:).sequels(compact: true)
+      _(series).must_equal [[1, 2, 3, 4, 5], [1, 2, 3, 4]]
+
+      _, series, = pagy_class.new(steps:, compact: true).sequels(compact: false)
+      _(series).must_equal [[1, 2, 3, :gap, 5], [1, 2, :gap, 4]]
     end
 
     it 'generates labels if calendar' do

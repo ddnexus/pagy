@@ -9,11 +9,11 @@ class Pagy
   private
 
   # The reverse-sorted array of widths, series, and labels generated from the :steps hash.
-  # If :steps is false it will use the single {0 => @options[:slots]} length
-  def sequels(steps: @options[:steps] || { 0 => @options[:slots] || SERIES_SLOTS }, **)
+  # If :steps is not set it will use the single {0 => slots} step; :compact applies to all the steps
+  def sequels(slots: @options[:slots] || SERIES_SLOTS, compact: @options[:compact], steps: @options[:steps] || { 0 => slots }, **)
     raise OptionError.new(self, :steps, 'to define the 0 width', steps) unless steps.key?(0)
 
-    widths, series = steps.sort.reverse.map { |width, slots| [width, series(slots:)] }.transpose
+    widths, series = steps.sort.reverse.map { |width, step_slots| [width, series(slots: step_slots, compact:)] }.transpose
     [widths, series, page_labels(series)]
   end
 
