@@ -34,6 +34,16 @@ describe 'Pagy::RailsActiveSearchPaginator' do
         _(results.count).must_equal 20
       end
 
+      it 'applies the chained calls to the query' do
+        args = MockRailsActiveSearch::Model.pagy_search('a').filter(suffix: '5').sort(:desc)
+
+        pagy, results = app.pagy(:rails_active_search, args, page: 2, limit: 10)
+
+        _(pagy.count).must_equal 100
+        _(pagy.page).must_equal 2
+        _(results.to_a).must_equal %w[a-895 a-885 a-875 a-865 a-855 a-845 a-835 a-825 a-815 a-805]
+      end
+
       it 'uses the :search_method option' do
         model = Class.new(MockRailsActiveSearch::Model) do
           def self.custom_search(...) = search(...)

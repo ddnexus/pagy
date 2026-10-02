@@ -8,20 +8,18 @@ class Pagy
 
     def paginate(search, options)
       if search.is_a?(Search::Arguments) # Active mode
+        Searcher.resolve(options)
+        model, arguments, search_options, block, calls = search
 
-        Searcher.wrap(search, options) do
-          model, arguments, search_options, block = search
+        method          = options[:search_method] || RailsActiveSearch::DEFAULT[:search_method]
+        # The chained calls build the ActiveSearch::Query, so they apply before executing it
+        query           = Searcher.chain(model.send(method, *arguments, **search_options, &block), calls)
+        results         = query.limit(options[:limit])
+                               .offset(options[:limit] * (options[:page] - 1))
+                               .results
+        options[:count] = results.total
 
-          method          = options[:search_method] || RailsActiveSearch::DEFAULT[:search_method]
-          query           = model.send(method, *arguments, **search_options, &block)
-          results         = query.limit(options[:limit])
-                                 .offset(options[:limit] * (options[:page] - 1))
-                                 .results
-          options[:count] = results.total
-
-          [RailsActiveSearch.new(**options), results]
-        end
-
+        [RailsActiveSearch.new(**options), results]
       else # Passive mode (ActiveSearch::Results)
         # TODO: use the public readers when ActiveSearch::Results will provide them
         limit           = search.instance_variable_get(:@limit)

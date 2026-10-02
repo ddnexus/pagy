@@ -2,6 +2,7 @@
 
 require 'unit/test_helper'
 require 'pagy/modules/searcher'
+require 'pagy/classes/offset/search'
 
 describe 'Pagy::Searcher Specs' do
   let(:searcher) { Pagy::Searcher }
@@ -27,14 +28,17 @@ describe 'Pagy::Searcher Specs' do
       def scope_with_arg(arg)
         [:scope_called, arg]
       end
+
+      def scope_with_kwargs(arg, key:)
+        [:kwargs_called, arg, key, yield]
+      end
     end
   end
 
   let(:results) { mock_results_class.new }
 
-  it 'returns results directly when no chaining (calling is empty)' do
-    # pagy_search_args: [model, term, options, block] (size 4) -> calling is empty
-    args = [nil, nil, nil, nil]
+  it 'returns results directly when no chaining (calls is empty)' do
+    args = Pagy::Search::Arguments.new(nil, nil, nil, nil)
 
     _pagy, res = searcher.wrap(args, options) do
       [:pagy_obj, results]
@@ -43,10 +47,8 @@ describe 'Pagy::Searcher Specs' do
     _(res).must_equal results
   end
 
-  it 'applies chained method to results (calling is present)' do
-    # pagy_search_args: [..., :records]
-    # This triggers the `results.send(*calling)` branch
-    args = [nil, nil, nil, nil, :records]
+  it 'applies chained method to results (calls is present)' do
+    args = Pagy::Search::Arguments.new(nil, nil, nil, nil).records
 
     _pagy, res = searcher.wrap(args, options) do
       [:pagy_obj, results]
@@ -56,13 +58,26 @@ describe 'Pagy::Searcher Specs' do
   end
 
   it 'applies chained method with arguments to results' do
-    # pagy_search_args: [..., :scope_with_arg, 123]
-    args = [nil, nil, nil, nil, :scope_with_arg, 123]
+    args = Pagy::Search::Arguments.new(nil, nil, nil, nil).scope_with_arg(123)
 
     _pagy, res = searcher.wrap(args, options) do
       [:pagy_obj, results]
     end
 
     _(res).must_equal [:scope_called, 123]
+  end
+
+  it 'applies multiple chained methods in order, with keyword arguments and block' do
+    args = Pagy::Search::Arguments.new(nil, nil, nil, nil).records.first
+
+    _pagy, res = searcher.wrap(args, options) { [:pagy_obj, results] }
+
+    _(res).must_equal :records_called
+
+    args = Pagy::Search::Arguments.new(nil, nil, nil, nil).scope_with_kwargs(1, key: 2) { 3 }
+
+    _pagy, res = searcher.wrap(args, options) { [:pagy_obj, results] }
+
+    _(res).must_equal [:kwargs_called, 1, 2, 3]
   end
 end

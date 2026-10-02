@@ -33,9 +33,15 @@ extend Pagy::Search
 ```ruby Controller
 # Get the collection (ActiveSearch keyword arguments, e.g., index: or scope:, are passed through)
 search = Article.pagy_search(params[:q])
+# Chain any ActiveSearch::Query method that returns a query (e.g., filter, sort, highlight)
+search = Article.pagy_search(params[:q]).filter(status: 'published').sort(published_at: :desc)
 # Paginate it: @results is the ActiveSearch::Results of the page
 @pagy, @results = pagy(:rails_active_search, search, **options)
 ```
+
+!!!warning
+Do not chain the pagination methods (`limit`, `offset`, `page`) nor the methods that end the chain (e.g., `results`, `to_native_query`).
+!!!
 
 +++ Passive mode
 

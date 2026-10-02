@@ -6,15 +6,22 @@ class Pagy
 
     # Common search logic
     def wrap(search_arguments, options)
+      resolve(options)
+      pagy, results = yield
+      *, calls = search_arguments
+
+      [pagy, chain(results, calls)]
+    end
+
+    # Resolve the page and limit from the request
+    def resolve(options)
       options[:page] ||= options[:request].resolve_page
       options[:limit]  = options[:request].resolve_limit
+    end
 
-      pagy, results = yield
-
-      called  = search_arguments[4..]
-      results = results.send(*called) unless called.empty?
-
-      [pagy, results]
+    # Apply the calls recorded by Search::Arguments
+    def chain(receiver, calls)
+      calls.reduce(receiver) { |object, (name, args, kwargs, block)| object.send(name, *args, **kwargs, &block) }
     end
   end
 end
