@@ -4,7 +4,7 @@
 #    Showcase the Keyset pagination (ActiveRecord example)
 #
 # DOC
-#    https://ddnexus.github.io/pagy/playground/#keyset-apps
+#    https://ddnexus.github.io/pagy/sandbox/playground/#keysets
 #
 # BIN HELP
 #    pagy -h

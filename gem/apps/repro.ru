@@ -4,7 +4,7 @@
 #    Reproduce generic/simple issues
 #
 # DOC
-#    https://ddnexus.github.io/pagy/playground/#repro-app
+#    https://ddnexus.github.io/pagy/sandbox/playground/#repro
 #
 # BIN HELP
 #    pagy -h

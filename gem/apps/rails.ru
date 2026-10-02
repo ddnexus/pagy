@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 # DESCRIPTION
-#    Reproduce rails related issues
+#    Reproduce Rails-related issues
 #
 # DOC
-#    https://ddnexus.github.io/pagy/playground/#rails-app
+#    https://ddnexus.github.io/pagy/sandbox/playground/#rails
 #
 # BIN HELP
 #    pagy -h
@@ -28,7 +28,7 @@ gemfile(!Pagy::ROOT.join('pagy.gemspec').exist?) do
   source 'https://rubygems.org'
   gem 'oj'
   gem 'puma'
-  gem 'rails', '~> 8.0'
+  gem 'rails', '~> 8.1'
   gem 'sqlite3'
 end
 

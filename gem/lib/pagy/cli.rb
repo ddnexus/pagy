@@ -23,7 +23,7 @@ class Pagy
 
       parser = OptionParser.new do |opts|
         opts.banner = <<~BANNER
-          Pagy #{VERSION} (https://ddnexus.github.io/pagy/playground)
+          Pagy #{VERSION} (https://ddnexus.github.io/pagy/sandbox/playground)
           Playground to showcase, clone and develop Pagy APPs
 
           Usage:

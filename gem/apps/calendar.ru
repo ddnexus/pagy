@@ -4,7 +4,7 @@
 #    Showcase the calendar; reproduce related issues
 #
 # DOC
-#    https://ddnexus.github.io/pagy/playground/#5-calendar-app
+#    https://ddnexus.github.io/pagy/sandbox/playground/#calendar
 #
 # BIN HELP
 #    pagy -h

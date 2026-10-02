@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
 # DESCRIPTION
-#    Reproduce rails related issues
+#    Showcase the ActiveSearch pagination (active and passive modes)
 #
 # DOC
-#    https://ddnexus.github.io/pagy/playground/#rails-app
+#    https://ddnexus.github.io/pagy/sandbox/playground/#active-search
 #
 # BIN HELP
 #    pagy -h
 #
 # DEV USAGE
-#    pagy clone rails
-#    pagy ./rails.ru
+#    pagy clone active_search
+#    pagy ./active_search.ru
 #
 # URL
 #    http://127.0.0.1:8000
@@ -41,7 +41,7 @@ require 'rails-active_search'
 OUTPUT = Rails.env.showcase? ? IO::NULL : $stdout
 
 # Rails config
-class PagyRails < Rails::Application # :nodoc:
+class PagyActiveSearch < Rails::Application # :nodoc:
   config.root       = __dir__
   config.eager_load = false
   config.session_store :cookie_store, key: 'cookie_store_key'
@@ -49,20 +49,16 @@ class PagyRails < Rails::Application # :nodoc:
 
   config.logger = Logger.new(OUTPUT)
   Rails.logger  = config.logger
-
-  # Pagy initializer
-  # require Pagy::ROOT.join('apps/enable_rails_page_segment.rb') # Uncomment to test the enable_rails_page_segment.rb override
 end
 
 # Initialize the app in order to run the ActiveSearch engine initializers
-PagyRails.initialize!
+PagyActiveSearch.initialize!
 
 # Draw the routes after the initialization, which would otherwise reset them
-PagyRails.routes.draw do
+PagyActiveSearch.routes.draw do
   root to: 'comments#active'
   get '/comments/active', to: 'comments#active'
   get '/comments/passive', to: 'comments#passive'
-  # get '/comments(/:page)', to: 'comments#index'  # Uncomment to test the enable_rails_page_segment.rb override
   get '/javascripts/:file', to: 'pagy#javascripts', file: /.*/
 end
 
@@ -180,13 +176,13 @@ class PagyController < ActionController::Base
   end
 end
 
-run PagyRails
+run PagyActiveSearch
 
 TEMPLATE = <<~ERB
   <!DOCTYPE html>
   <html lang="en">
     <head>
-      <title>Pagy Rails App</title>
+      <title>Pagy ActiveSearch App</title>
       <script src="/javascripts/pagy.js"></script>
       <script>
         window.addEventListener("load", Pagy.init);
@@ -231,7 +227,7 @@ TEMPLATE = <<~ERB
     <body>
 
       <div class="main-content">
-        <h1>Pagy Rails App</h1>
+        <h1>Pagy ActiveSearch App</h1>
         <p> Self-contained, standalone Rails app usable to easily reproduce any rails related pagy issue.</p>
 
         <h2>Versions</h2>
