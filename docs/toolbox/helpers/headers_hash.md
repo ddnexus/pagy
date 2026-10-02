@@ -38,11 +38,11 @@ require 'pagy/console'
 => [#<Pagy::Offset:0x00007f0802c9a020 @request=#<Pagy::Request:0x00007f0802c84e28 @options={page: 3, request: #<Pagy::Request:0x00007f0802c84e28 ...>, client_limit: nil, limit: 20, count: 1000}, @base_url="http://www.example.com", @path="/path", @params={example: "123"}, @cookie=nil>, @options={limit: 20, limit_key: "limit", page_key: "page", page: 3, client_limit: nil, count: 1000}, @limit=20, @count=1000, @page=3, @last=50, @offset=40, @in_range=true, @from=41, @to=60, @in=20, @previous=2, @next=4>, [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]]
 
 >> @pagy.headers_hash(absolute: true)
-=> {"link" => "<http://www.example.com/path?example=123>; rel=\"first\", <http://www.example.com/path?example=123&page=2>; rel=\"previous\", <http://www.example.com/path?example=123&page=4>; rel=\"next\", <http://www.example.com/path?example=123&page=50>; rel=\"last\"", "current-page" => "3", "page-limit" => "20", "total-count" => "1000", "total-pages" => "50"}
+=> {"link" => "<http://www.example.com/path?example=123>; rel=\"first\", <http://www.example.com/path?example=123&page=2>; rel=\"prev\", <http://www.example.com/path?example=123&page=4>; rel=\"next\", <http://www.example.com/path?example=123&page=50>; rel=\"last\"", "current-page" => "3", "page-limit" => "20", "total-count" => "1000", "total-pages" => "50"}
 ```
 
 ```text Example of default output
-link <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>; rel="previous",
+link <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>; rel="prev",
 <https://example.com:8080/foo?page=4>; rel="next", <https://example.com:8080/foo?page=50>; rel="last"
 current-page 3
 page-limit 20

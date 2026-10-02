@@ -12,6 +12,10 @@ order: 180
 
 `urls_hash` returns the `:first`, `:previous`, `:next`, `:last` non-`nil` URLs hash.
 
+!!! JSON:API
+With the `jsonapi: true` option, the `:previous` key becomes `:prev`, as the [JSON:API](https://jsonapi.org/format/#fetching-pagination) specification requires.
+!!!
+
 !!!success It works with all paginators
 !!!
 
