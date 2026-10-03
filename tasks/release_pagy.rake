@@ -9,6 +9,7 @@ module VersionTagOverride
 end
 Bundler::GemHelper.prepend VersionTagOverride
 
+# Manual fallback of the .github/workflows/release.yml (it does not create the GitHub release)
 desc 'Checks-build-release-tag-cleanup cycle'
 task :release_pagy do
   abort 'Working tree dirty!' unless `git status --porcelain`.empty?

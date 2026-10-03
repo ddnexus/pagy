@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 # Update the files related to version changes
+# Usage: scripts/bump.rb [patch|minor|major|X.Y.Z]
 
 require 'tempfile'
 require_relative 'scripty'
@@ -12,14 +13,32 @@ include Scripty # rubocop:disable Style/MixinUsage
 abort('Working tree dirty!') unless `git status --porcelain`.empty?
 
 ##### VERSION INPUT
-# Prompt for the new version
+# The old version is the latest release tag, which must match the Pagy::VERSION
 require_relative '../gem/lib/pagy'
-old_version = Gem::Version.new(Pagy::VERSION)
-puts "Current Pagy::VERSION: #{old_version}"
-print 'Enter the new version: '
-new_version = Gem::Version.new(gets.chomp)
+system('git fetch --tags --quiet origin')
+old_version = Gem::Version.new(`git describe --tags --abbrev=0 origin/master`.chomp)
+abort("Pagy::VERSION #{Pagy::VERSION} does not match the latest tag #{old_version}!") \
+  unless Gem::Version.new(Pagy::VERSION) == old_version
 
-abort('Invalid version!') unless new_version > old_version
+major, minor, patch = old_version.segments
+candidates = { 'patch' => "#{major}.#{minor}.#{patch + 1}",
+               'minor' => "#{major}.#{minor + 1}.0",
+               'major' => "#{major + 1}.0.0" }
+
+input = ARGV.shift # empty ARGV, or Kernel#gets would read it as files
+unless input
+  puts "Latest release: #{old_version}"
+  candidates.each_with_index { |(type, version), i| puts "  #{i + 1}) #{type.ljust(5)} #{version}" }
+  print 'Choose 1-3, a type, or enter the version: '
+  input = gets.chomp
+  input = candidates.keys[input.to_i - 1] if input.match?(/\A[1-3]\z/)
+end
+input = candidates[input] || input
+
+abort("Invalid version: #{input.inspect}") unless Gem::Version.correct?(input) && input.match?(/\A\d+\.\d+\.\d+\z/)
+new_version = Gem::Version.new(input)
+abort("Version #{new_version} must be greater than #{old_version}!") unless new_version > old_version
+puts "Bumping #{old_version} -> #{new_version}"
 
 ##### GITLOG CREATION
 # Create a tempfile with the formatted changes from the gem-filtered gitlog
@@ -56,10 +75,7 @@ new_major, new_minor, = new_version.to_s.split('.')
 old_base_version      = "#{old_major}.#{old_minor}"
 new_base_version      = "#{new_major}.#{new_minor}"
 
-%w[docs/CHANGELOG.md
-   docs/guides/quick-start.md].each do |path|
-  replace_string_in_file(path, old_base_version, new_base_version)
-end
+replace_string_in_file('docs/guides/quick-start.md', old_base_version, new_base_version)
 
 next_path = 'docs/guides/pagy-next.md'
 replace_string_in_file(next_path, old_version.to_s, new_version.to_s, all: true)
@@ -71,7 +87,7 @@ system(Scripty::ROOT.join('src/build').to_s)
 
 ##### RELEASE BODY
 # Prepare the .github/latest_release_body.md file.
-# Used by .github/workflows/create_release.yml which is triggered by the :rubygem_release task (push tag).
+# Used by .github/workflows/release.yml to create the GitHub release.
 release_body_path = '.github/latest_release_body.md'
 
 # Copy the whats_new from the README to the latest_release_body file
@@ -89,7 +105,7 @@ edit_file?(release_body_path, 'Release Body')
 ##### CHANGELOG
 # Add the changes to the CHANGELOG
 replace_string_in_file('docs/CHANGELOG.md', /<hr>\n/, "<hr>\n\n#### Version #{new_version}\n\n#{changes}")
-replace_string_in_file('docs/CHANGELOG.md', "(e.g. `#{old_version}", "(e.g. `#{new_version}")
+replace_string_in_file('docs/CHANGELOG.md', "(e.g. `#{old_version}`)", "(e.g. `#{new_version}`)")
 
 # Run the test to check the consistency of versioning across files
 unless system(%(ruby #{Pagy::ROOT.parent.join('test/unit/pagy/version_test.rb')}))
@@ -109,4 +125,10 @@ end
 confirm_to('commit the changes') do
   system('git add -A')
   system("git commit -m 'Version #{new_version}'")
+
+  # Optional push: when the CI passes, run the "Release" workflow
+  confirm_to('push the dev branch') do
+    system('git push origin dev') &&
+      puts("\nWhen the CI passes, run: gh workflow run release.yml -f version=#{new_version}")
+  end
 end

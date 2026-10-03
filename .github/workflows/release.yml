@@ -1,0 +1,112 @@
+name: Release
+
+# Run manually after the "Version X.Y.Z" commit is pushed to dev and the CI passed:
+#   gh workflow run release.yml -f version=X.Y.Z [-f dry_run=true]
+# It merges dev into master, tags, publishes the gem (RubyGems trusted publishing),
+# creates the GitHub release and publishes the docs.
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (must match Pagy::VERSION in dev)'
+        required: true
+        type: string
+      dry_run:
+        description: 'Check, merge and build without pushing or publishing anything'
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  actions: write   # dispatch the docs workflow and read CI runs
+  id-token: write  # RubyGems trusted publishing
+
+jobs:
+  release:
+    name: Release ${{ inputs.version }}
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ inputs.version }}
+      DRY_RUN: ${{ inputs.dry_run }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: Check preconditions
+        run: |
+          set -euo pipefail
+          fail() { echo "::error::$1"; exit 1; }
+          git fetch --tags --quiet origin
+
+          dev_version=$(git show origin/dev:gem/lib/pagy.rb | sed -nE "s/^\s*VERSION\s*=\s*'([^']+)'.*/\1/p")
+          [[ "$dev_version" == "$VERSION" ]] || fail "Pagy::VERSION in dev is '$dev_version', not '$VERSION'"
+
+          git rev-parse -q --verify "refs/tags/$VERSION" >/dev/null && fail "Tag $VERSION already exists"
+
+          latest=$(git describe --tags --abbrev=0 origin/master)
+          [[ "$(printf '%s\n%s\n' "$latest" "$VERSION" | sort -V | tail -1)" == "$VERSION" && "$latest" != "$VERSION" ]] \
+            || fail "Version $VERSION is not greater than the latest tag $latest"
+
+          sha=$(git rev-parse origin/dev)
+          subject=$(git log -1 --format=%s "$sha")
+          [[ "$subject" == "Version $VERSION" ]] || fail "dev HEAD is '$subject', not 'Version $VERSION'"
+
+          for wf in api-test.yml e2e-test.yml; do
+            conclusion=$(gh run list --commit "$sha" --workflow "$wf" --limit 1 --json conclusion --jq '.[0].conclusion // "missing"')
+            [[ "$conclusion" == "success" ]] || fail "$wf for dev $sha is '$conclusion', not 'success'"
+          done
+          echo "All checks passed for $VERSION ($sha)"
+
+      - name: Merge dev into master
+        run: |
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git merge --no-ff origin/dev -m "Merge branch 'dev'"
+
+      - name: Set up ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '4.0'
+
+      - name: Build gem
+        run: |
+          cp LICENSE.txt gem/LICENSE.txt
+          cd gem && gem build pagy.gemspec --output "pagy-$VERSION.gem"
+
+      - name: Upload gem artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pagy-${{ inputs.version }}.gem
+          path: gem/pagy-${{ inputs.version }}.gem
+
+      - name: Configure RubyGems credentials (fails before pushing anything if trusted publishing is not set up)
+        if: ${{ !inputs.dry_run }}
+        uses: rubygems/configure-rubygems-credentials@v1.0.0
+
+      - name: Push master and tag
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git tag "$VERSION"
+          git push origin master "refs/tags/$VERSION"
+
+      - name: Publish gem
+        if: ${{ !inputs.dry_run }}
+        run: gem push "gem/pagy-$VERSION.gem"
+
+      - name: Create GitHub release
+        if: ${{ !inputs.dry_run }}
+        run: gh release create "$VERSION" --verify-tag --title "Version $VERSION" --notes-file .github/latest_release_body.md
+
+      # Pushes made with the GITHUB_TOKEN do not trigger workflows, so dispatch it explicitly
+      - name: Publish docs
+        if: ${{ !inputs.dry_run }}
+        run: gh workflow run publish-docs.yml --ref master
