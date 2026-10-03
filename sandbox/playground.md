@@ -12,7 +12,7 @@ $ pagy --help
 
 ### :icon-apps:&nbsp; Apps
 
-We have a few single-file apps ready to run in your browser for various purposes. Most of them are used to run the [E2e Test](https://github.com/ddnexus/pagy/blob/master/.github/workflows/e2e-test.yml) workflow.
+We have a few single-file apps ready to run in your browser for various purposes. Most of them are used to run the [E2E Test](https://github.com/ddnexus/pagy/blob/master/.github/workflows/e2e-test.yml) workflow.
 
 ==- :icon-pulse:&nbsp; Repro _(interaction example)_ {#repro}
 
@@ -34,54 +34,65 @@ This command runs your `rackup` app with a `puma` server.
 pagy path/to/your-repro.ru
 ```
 
->>> Open a browser and navigate to http://127.0.0.1:8000
+>>> Open a browser and navigate to <http://127.0.0.1:8000>
 
 >>>
 
 ==- :icon-ruby:&nbsp; Rails {#rails}
 
-Use it to reproduce **Rails-related** Pagy issues
+Use it to reproduce **Rails-related** Pagy issues.
 
-  ```sh
-  pagy clone rails
-  pagy ./rails.ru
-  ```
+```sh
+pagy clone rails
+pagy ./rails.ru
+```
+
+==- :icon-search:&nbsp; Active Search {#active-search}
+
+The interactive showcase for the `:rails_active_search` paginator, in active and passive modes.
+
+```sh
+pagy active_search
+```
 
 ==- :icon-eye:&nbsp; Demo {#demo}
 
-The interactive showcase for all the pagy helpers and CSS styles
+The interactive showcase for all the pagy helpers and CSS styles.
 
-  ```sh
-  pagy demo
-  ```
+```sh
+pagy demo
+```
 
 ==- :icon-calendar:&nbsp; Calendar {#calendar}
 
-This is the interactive showcase and reproduction tool for the `:calendar` paginator
+The interactive showcase and reproduction tool for the `:calendar` paginator.
 
-  ```sh
-  pagy calendar
-  ```
+```sh
+pagy calendar
+```
 
-==- :icon-key:&nbsp; Keyset / Keynav  {#keysets}
+==- :icon-key:&nbsp; Keyset / Keynav {#keysets}
 
-These are the interactive showcase/repro for the `:keyset` paginator with `ActiveRecord` or `Sequel` sets:
+The interactive showcases/repros for the `:keyset` and `:keynav_js` paginators with `ActiveRecord` or `Sequel` sets, and for multiple independent `:keynav_js` instances (`keynav+root_key`):
 
-  ```sh
-  pagy | grep key
-    keynav                     Showcase the Keynav pagination (ActiveRecord example)
-    keyset                     Showcase the Keyset pagination (ActiveRecord example)
-    keyset_sequel              Showcase the Keyset pagination (Sequel example)
+```sh
+pagy --help | grep key
+  keynav+root_key    Showcase the Keynav pagination with independent instances
+  keynav             Showcase the Keynav pagination (ActiveRecord example)
+  keyset             Showcase the Keyset pagination (ActiveRecord example)
+  keyset_sequel      Showcase the Keyset pagination (Sequel example)
 
-  pagy keynav
-  pagy keyset
-  pagy keyset_sequel
-  ```
+pagy keynav
+pagy keynav+root_key
+pagy keyset
+pagy keyset_sequel
+```
+
 ===
 
 ==- :icon-stop:&nbsp; Troubleshooting
 
-All the pagy apps use [bundler/inline](https://bundler.io/guides/bundler_in_a_single_file_ruby_script.html), that should be able to install all the gems automatically at app startup.
+All the pagy apps use [bundler/inline](https://bundler.io/guides/bundler_in_a_single_file_ruby_script.html), which should be able to install all the gems automatically at app startup.
 
 Depending on your environment, you might get this message for some gem:
 

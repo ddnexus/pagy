@@ -16,7 +16,7 @@ expect the old/deprecated functionality to be supported ONLY during the current 
 
 ### Recommended Version Constraint
 
-Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.6.3`):
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.7.0`):
 
 The `gem 'pagy', '~> 43.0'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.
@@ -51,6 +51,19 @@ If you upgrade from version `< 9.0.0` see the following:
   **IMPORTANT**: The [Issue #890](https://github.com/ddnexus/pagy/issues/890) still affect the `:max_pages` option, so stop using it ASAP.
 - `:client_max_limit` and `:max_limit` options: use `:client_limit` instead.
 <hr>
+
+#### Version 43.7.0
+
+- Refactor the Search::Arguments and Searcher classes to allow more flexibility in chaining queres.
+- Fix the non-standard "previous" link relation in headers_hash and JSON:API urls_hash
+  - headers_hash emits the conventional rel="prev" in the link header
+  - urls_hash returns the :prev key with jsonapi: true, as the JSON:API specification requires
+  - urls_hash keeps the :previous key otherwise
+- Fix series_nav_js ignoring the :slots and :compact helper options
+  - The :slots and :compact options passed to the series_nav_js helpers were silently ignored
+  - The :steps option overrides the :slots option, while the :compact option applies to all the steps
+- Fix the playground doc URLs and make the playground apps consistent
+- Add :rails_active_search paginator, test and docs
 
 #### Version 43.6.3
 

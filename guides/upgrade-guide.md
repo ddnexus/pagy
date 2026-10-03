@@ -4,7 +4,7 @@
 
 ---
 
-Pagy version 43 is a complete redesign of the legacy code. Its improvements make pagination a lot simpler and powerful, but require a quite different way to use it.
+Pagy version 43 is a complete redesign of the legacy code. Its improvements make pagination a lot simpler and more powerful, but require a quite different way to use it.
 
 !!!success Follow this guide to upgrade your app in just a few minutes.
 Cherry-pick only what applies to your app: you can safely skip all the rest.
@@ -14,18 +14,18 @@ Cherry-pick only what applies to your app: you can safely skip all the rest.
 
 >>> Replace the `pagy.rb` config file...
 
-- Rename your `pagy.rb` initializer as `pagy-old.rb`
-- Add the new [pagy.rb](/toolbox/configuration/initializer) initializer in its place
-- Cut/remove the `Pagy::DEFAULT[...]` lines from `pagy-old.rb` and paste/add them to `pagy.rb`
-- Replace all the `Pagy::DEFAULT[...]` entries with `Pagy::OPTIONS[...]` in `pagy.rb`
+- Rename your `pagy.rb` initializer as `pagy-old.rb`.
+- Add the new [pagy.rb](/toolbox/configuration/initializer) initializer in its place.
+- Cut/remove the `Pagy::DEFAULT[...]` lines from `pagy-old.rb` and paste/add them to `pagy.rb`.
+- Replace all the `Pagy::DEFAULT[...]` entries with `Pagy::OPTIONS[...]` in `pagy.rb`.
 
 _In the next steps we will use the `pagy-old.rb` as the blueprint to guide most of the changes, and we will edit the new `pagy.rb` as needed._
 
 >>> Remove your used extras...
 
-The new version doesn't use the extras anymore. They got integrated in the core code, and a few have been discontinued.
+The new version doesn't use the extras anymore. They got integrated into the core code, and a few have been discontinued.
 
-- Search any active `require 'pagy/extras/*` in the `pagy-old.rb` file...
+- Search for any active `require 'pagy/extras/*'` in the `pagy-old.rb` file...
 - When you find one, follow the specific section below to upgrade your code.
 - As you proceed, remove each entry from the `pagy-old.rb`.
 
@@ -66,7 +66,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 | `pagy_prev_link(@pagy, ...)`                    | discontinued: implement manually                    |
 | `pagy_next_link(@pagy, ...)`                    | discontinued: implement manually                    |
 | `size: ...`<br/>`Pagy::OPTIONS[:size] = ...`    | `slots: ...`<br/>`Pagy::OPTIONS[:slots] = ...`       |
-| `ends: false`<br/>`Pagy::OPTIONS[:end] = false` | `compact: true`<br/>`Pagy::OPTIONS[:compact] = true` |
+| `ends: false`<br/>`Pagy::OPTIONS[:ends] = false` | `compact: true`<br/>`Pagy::OPTIONS[:compact] = true` |
 
 ==- `bootstrap`
 
@@ -80,7 +80,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 | `pagy_bootstrap_nav_js(@pagy, ...)`             | `@pagy.series_nav_js(:bootstrap, ...)`              |
 | `pagy_bootstrap_combo_nav_js(@pagy, ...)`       | `@pagy.input_nav_js(:bootstrap, ...)`               |
 | `size: ...`<br/>`Pagy::OPTIONS[:size] = ...`    | `slots: ...`<br/>`Pagy::OPTIONS[:slots] = ...`       |
-| `ends: false`<br/>`Pagy::OPTIONS[:end] = false` | `compact: true`<br/>`Pagy::OPTIONS[:compact] = true` |
+| `ends: false`<br/>`Pagy::OPTIONS[:ends] = false` | `compact: true`<br/>`Pagy::OPTIONS[:compact] = true` |
 
 - **FYI**: The redundant `pagy-bootstrap` class has been removed from the `input_nav_js` body.
 
@@ -96,10 +96,10 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 | `pagy_bulma_nav_js(@pagy, ...)`                 | `@pagy.series_nav_js(:bulma, ...)`                  |
 | `pagy_bulma_combo_nav_js(@pagy, ...)`           | `@pagy.input_nav_js(:bulma, ...)`                   |
 | `size: ...`<br/>`Pagy::OPTIONS[:size] = ...`    | `slots: ...`<br/>`Pagy::OPTIONS[:slots] = ...`       |
-| `ends: false`<br/>`Pagy::OPTIONS[:end] = false` | `compact: true`<br/>`Pagy::OPTIONS[:compact] = true` |
+| `ends: false`<br/>`Pagy::OPTIONS[:ends] = false` | `compact: true`<br/>`Pagy::OPTIONS[:compact] = true` |
 
 - **FYI**: The `is-centered` CSS class has been removed.
-- **FYI**: The previous/next links have been moved at the beginning and end of the pagination.
+- **FYI**: The previous/next links have been moved to the beginning and end of the pagination.
 
 ==- `countless`
 
@@ -121,8 +121,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 | flag: `active: true`              | `disabled: false`      |
 | config: `pagy: ...`               | `offset: ...`          |
 
-- If your `pagy-old.rb` file contains any localization configuration, then uncomment and customize the following line in the
-  `pagy.rb` initializer: `Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)`.
+- If your `pagy-old.rb` file contains any localization configuration, then uncomment and customize the following line in the `pagy.rb` initializer: `Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)`.
   - _Note: In non-Rails applications, calendar localization requires adding `rails-i18n` to your Gemfile._
 - Remove any existing `Pagy::Calendar::*::DEFAULT`. Pass the options to each unit when you paginate.
 
@@ -142,7 +141,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
   - Remove any existing `:elasticsearch_rails_pagy_search` variable from your code.
   - Replace your custom method name with the standard `pagy_search` method.
 
-==-  `meilisearch`
+==- `meilisearch`
 
 - Active and passive modes are now handled by the same `pagy` method:
 
@@ -184,8 +183,8 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 | `pagy_headers_merge`                               | `response.headers.merge!(@pagy.headers_hash)`             |
 | `headers: ...`<br/>`Pagy::OPTIONS[:headers] = ...` | `headers_map: ...`<br/>`Pagy::OPTIONS[:headers_map] = ...` |
 
-- _Notice that the `:limit` header default is now `'page-limit` (it was `'page-items'`)._
-  - Set `Pagy::OPTIONS[:headers_map] = { limit: 'page-items', ... }` to preserve your current API, if it relays on old default values.
+- _Notice that the `:limit` header default is now `'page-limit'` (it was `'page-items'`)._
+  - Set `Pagy::OPTIONS[:headers_map] = { limit: 'page-items', ... }` to preserve your current API, if it relies on the old default values.
 
 ==- `jsonapi`
 
@@ -195,8 +194,8 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 |----------------------------------|------------------------|
 | `pagy_jsonapi_links(@pagy, ...)` | `@pagy.urls_hash(...)` |
 
-- _Notice that the `nil` links are now removed as the `JSON:API` specifications require._
-- IMPORTANT: Enable the feature by explicitly setting the `jsonapi: true` option _(in the initializer or `pagy` method)_.
+- _Notice that the `nil` links are now removed as the `JSON:API` specification requires._
+- **IMPORTANT**: Enable the feature by explicitly setting the `jsonapi: true` option _(in the initializer or `pagy` method)_.
 
 ==- `keyset`
 
@@ -241,12 +240,12 @@ The new version doesn't use the extras anymore. They got integrated in the core 
   - Now, Pagy behaves the same as it did before when requiring the overflow extra and using its default settings.
 - The legacy `pagy.overflow?` is now the `pagy.in_range?` method, which checks/returns the opposite state/boolean.
 - The `overflow: :last_page` behavior has been discontinued because it provides nearly no benefit:
-  - **Why there is little benefit in serving the last page?**
+  - **Why is there little benefit in serving the last page?**
     - The navigation bar for an out-of-range request is rendered identically to that of the last page.
     - The only difference is that there are no records/results to display.
     - The "previous page" button points to the last page, so if users truly want to see the last page results (which they have likely already seen), they can simply click the link.
 - **Summary for keeping the same behavior**:
-  - The `:overflow` variable is not used anymore.
+  - The `:overflow` option is not used anymore.
   - If you did not use the extra (i.e., Pagy raised errors), set `raise_range_error: true`.
   - If you used `overflow: :empty_page` or just required the overflow extra, simply remove it (this is now the default behavior).
   - If you used `overflow: :last_page` and still want this behavior despite the reasons above, see this [How To Example](/guides/how-to/#pagyrangeerror).
@@ -258,7 +257,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
   ```ruby
   request: { base_url: 'http://www.example.com',
              path:     '/path',
-             params:   { 'param1' => 1234 }, # The string-keyed hash params from the request
+             params:   { 'param1' => 1234 }, # The string-keyed params hash from the request
              cookie:   'xyz' }               # The 'pagy' cookie, only for keynav
   ```
 
@@ -296,7 +295,7 @@ The new version doesn't use the extras anymore. They got integrated in the core 
 | `Pagy.root.`                         | `Pagy::ROOT.`                      |
 | `page_param: :...` _(symbol value)_  | `page_key: '...'` _(string value)_ |
 | `pagy_info(@pagy, ...)`              | `@pagy.info_tag(...)`              |
-| `@pagy_locale = ...`                 | `Pagy::I18n = ...`                 |
+| `@pagy_locale = ...`                 | `Pagy::I18n.locale = ...`          |
 | `@pagy.vars`                         | `@pagy.options`                    |
 | `VariableError`                      | `OptionError`                      |
 | `<error>.variable`                   | `<error>.option`                   |
@@ -314,8 +313,8 @@ Use the `:querify` option, which is a `lambda` that can modify the string-keyed 
 params: { a: 1, b: 2 }
 # New string-keyed, low-level, direct modification of the params hash
 querify: ->(p) { p.merge!('a' => 1, 'b' => 2) }
-# It also allows to do things like:
-querify = ->(p) { p.except!('not_useful').merge!('custom' => 'useful') }
+# It also allows things like:
+querify: ->(p) { p.except!('not_useful').merge!('custom' => 'useful') }
 ```
 
 ==- Replace the `*prev*` abbreviated naming
@@ -326,13 +325,13 @@ Use `*previous*` in all the options, accessors, methods, etc.
 
 >>> Finalize the upgrade...
 
-==- Javascript
+==- JavaScript
 
-If your `pagy-old.rb` contains any JavaScript setup, it should still work, so you can move it to the `pagy.rb` file, however, for apps with builders, consider using the new [Pagy.sync](/resources/javascript/#pick-a-configuration) and removing all the old entries from your JavaScript config files.
+If your `pagy-old.rb` contains any JavaScript setup, it should still work, so you can move it to the `pagy.rb` file; however, for apps with builders, consider using the new [Pagy.sync](/resources/javascript/#pick-a-configuration) and removing all the old entries from your JavaScript config files.
 
 ==- Stylesheets
 
-The CSS for the default pagy helpers have new selectors and variables. See the new [Stylesheets](/resources/stylesheets) to interactively update your custom CSS.
+The CSS for the default pagy helpers has new selectors and variables. See the new [Stylesheets](/resources/stylesheets) to interactively update your custom CSS.
 
 !!!success CSS Frameworks
 Supported CSS frameworks (like Bootstrap and Bulma) don't require any change.
@@ -340,22 +339,22 @@ Supported CSS frameworks (like Bootstrap and Bulma) don't require any change.
 
 ==- Pagy::I18n and Locale Files
 
-[!badge variant="info" size="s" corners="pill" text="1"]&nbsp;  If your `pagy-old.rb` contains the `Pagy::I18n` setup, and the setup includes some custom dictionary file, then uncomment and set up the relevant `Pagy::I18n` lookup section in the `pagy.rb` file. _(See the [I18n docs](/resources/i18n) for details)_
+[!badge variant="info" size="s" corners="pill" text="1"]&nbsp; If your `pagy-old.rb` contains the `Pagy::I18n` setup, and the setup includes some custom dictionary files, then uncomment and set up the relevant `Pagy::I18n` lookup section in the `pagy.rb` file. _(See the [I18n docs](/resources/i18n) for details)_
 
-[!badge variant="info" size="s" corners="pill" text="2"]&nbsp;  Update your custom dictionary files (if any) to the new [dictionary structure](/resources/i18n/#sample-dictionary), or they won't work correctly.
+[!badge variant="info" size="s" corners="pill" text="2"]&nbsp; Update your custom dictionary files (if any) to the new [dictionary structure](/resources/i18n/#sample-dictionary), or they won't work correctly.
 
 [!badge variant="info" size="s" corners="pill" text="3"]&nbsp; Remove all the I18n code from the `pagy-old.rb`. All the locales are autoloaded when your app uses them.
 
 ==- Overriding
 
-- Overriding methods in controllers/helpers is not possible or discouraged.
+- Overriding methods in controllers/helpers is either impossible or discouraged.
 - The cleanest approach for local overriding is via Ruby refinements or the initializer for global override.
 - Check the [How To Override Pagy Methods](/guides/how-to/#override-pagy-methods).
-- If your `pagy-old.rb` contains overridden methods, copy the methods over to the `pagy.rb` initializer, however, consider that:
+- If your `pagy-old.rb` contains overridden methods, copy the methods over to the `pagy.rb` initializer; however, consider that:
   - Internal Pagy protected methods have been extensively refactored, likely renamed, and occasionally removed.
   - You should reconcile internal overrides by reviewing the updated Pagy codebase.
 
-You may want also to check these internal renaming:
+You may also want to check these internal renamings:
 
 {.compact}
 
@@ -382,5 +381,5 @@ Feel free to ask for further help via [Pagy Support](https://github.com/ddnexus/
 !!!
 
 !!!warning
-Please report any issue with this guide by opening a [New Docs Issue](https://github.com/ddnexus/pagy/issues/new?template=Documentation.yml).
+Please report any issues with this guide by opening a [New Docs Issue](https://github.com/ddnexus/pagy/issues/new?template=Documentation.yml).
 !!!

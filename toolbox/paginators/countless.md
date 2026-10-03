@@ -4,10 +4,10 @@
 
 ---
 
-`:countless` is an [OFFSET](/guides/choose-right/#offset) paginator that avoids the `COUNT` query, reducing the number of queries per page in half. UI helpers are working with some limitations (see [Caveat](#caveat)).
+`:countless` is an [OFFSET](/guides/choose-right/#offset) paginator that avoids the `COUNT` query, cutting the number of queries per page in half. UI helpers work with some limitations (see [Caveat](#caveat)).
 
 !!!warning Consider using the `:keynav_js` paginator when possible!
-The [:keynav_js](keynav_js.md) offers identical UI features but utilizes the faster [KEYSET](/guides/choose-right) pagination.
+The [:keynav_js](keynav_js.md) offers identical UI features but uses the faster [KEYSET](/guides/choose-right/#keyset) pagination.
 !!!
 
 === :icon-tools:&nbsp; Usage
@@ -34,7 +34,7 @@ The [:keynav_js](keynav_js.md) offers identical UI features but utilizes the fas
 : Enable the `Pagy::RangeError` (which is otherwise rescued to an empty page by default).
 
 `limit: 10`
-: Specifies the number of items per page (default: `20`)
+: Specifies the number of items per page (default: `20`).
 
 `client_limit: 200`
 : Allow the client to request a `:limit` up to `:client_limit`. A higher requested `:limit` is silently capped.
@@ -42,22 +42,22 @@ The [:keynav_js](keynav_js.md) offers identical UI features but utilizes the fas
   **IMPORTANT** If falsey or zero, the client cannot request any `:limit`.
 
 `page: force_page`
-: Set it only to force the current `:page`. _(It is set automatically from the request param)_.
+: Set it only to force the current `:page`. _(It is set automatically from the request param)_
 
 `request: request || hash`
-: Pagy tries to find the `Rake::Request` at `self.request`. Set it only when it's not directly available in your code (e.g., Hanami, standalone app, test,...). For example:
-  ```ruby
-  hash_request = { base_url: 'http://www.example.com',
+: Pagy tries to find the `Rack::Request` at `self.request`. Set it only when it's not directly available in your code (e.g., Hanami, standalone app, test,...). For example:
+    ```ruby
+    hash_request = { base_url: 'http://www.example.com',
                      path:     '/path',
                      params:   { 'param1' => 1234 }, # The string-keyed params hash from the request
                      cookie:   'xyz' }               # The 'pagy' cookie, only for keynav
-  ```
+    ```
 
 `jsonapi: true`
 : Enables JSON:API-compliant URLs with nested query string (e.g., `?page[number]=2&page[size]=100`).
 
 `root_key: 'my_root'`
-: Set it to enable nested URLs with nested query string `?my_root[page]=2&my_root[limit]=100`)). Use it to handle multiple pagination objects in the same request.
+: Set it to enable nested URLs with nested query string `?my_root[page]=2&my_root[limit]=100`. Use it to handle multiple pagination objects in the same request.
 
 `page_key: 'my_page'`
 : Set it to change the key string used for the `:page` in URLs (default `'page'`).
@@ -68,10 +68,10 @@ The [:keynav_js](keynav_js.md) offers identical UI features but utilizes the fas
 ==- :icon-mention:&nbsp; Readers
 
 `offset`
-: The OFFSET used in the SQL query
+: The OFFSET used in the SQL query.
 
 `count`
-: The collection count
+: The collection count.
 
 `from`
 : The position in the collection of the first item on the page. _(Different Pagy classes may use different value types for it)._
@@ -86,25 +86,25 @@ The [:keynav_js](keynav_js.md) offers identical UI features but utilizes the fas
 : The number of pages.
 
 `previous`
-: The previous page
+: The previous page.
 
 `next`
-: The next page
+: The next page.
 
 `page`
-: The current page
+: The current page.
 
 `limit`
-: The items per page
+: The items per page.
 
 `in`
-: The actual items in the page
+: The actual items in the page.
 
 `records`
 : The fetched records for the current page.
 
 `options`
-: The hash of options of the object
+: The hash of options of the object.
 
 ==- :icon-alert:&nbsp; Caveat
 

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.844320178327">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.844334357436">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -38,12 +38,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.6.0.844320178327" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.844334357436" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.844320178327" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.844334357436" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.844320178327" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.844320178327" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.844334357436" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.844334357436" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -216,7 +216,7 @@
                             <img class="max-h-10 md:inline-block" src="../../assets/images/pagy-the-frog.png" alt="" width="43" height="40">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.6.3</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.7.0</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -407,23 +407,23 @@
 <p>Just edit the Gemfile...</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">Gemfile (diff)</div>
-<pre translate="no" class="language-diff"><code v-pre class="language-diff">- gem 'pagy', '~&gt; 43.6'                         # MINOR version restriction
-+ gem 'pagy', '~&gt; 43.6.3', require: 'pagy/next' # PATCH version restriction + pagy/next entry point</code></pre>
+<pre translate="no" class="language-diff"><code v-pre class="language-diff">- gem 'pagy', '~&gt; 43.7'                         # MINOR version restriction
++ gem 'pagy', '~&gt; 43.7.0', require: 'pagy/next' # PATCH version restriction + pagy/next entry point</code></pre>
 </doc-codeblock></div>
-<p>As an alternative <em>(without Gemfile changes)</em>, ensure the environment variable <code translate="no" v-pre>PAGY_NEXT=true</code> is set, BEFORE <code translate="no" v-pre>pagy</code> is required.</p>
+<p>As an alternative <em>(without Gemfile changes)</em>, ensure the environment variable <code translate="no" v-pre>PAGY_NEXT=true</code> is set BEFORE <code translate="no" v-pre>pagy</code> is required.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">IRB</div>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">$ PAGY_NEXT=true irb
 &gt;&gt; require 'pagy'
 =&gt; true
 &gt;&gt; Pagy::VERSION
-=&gt; &quot;43.6.3.next&quot;</code></pre>
+=&gt; &quot;43.7.0.next&quot;</code></pre>
 </doc-codeblock></div>
         </div>
     </div>
 </div>
 <h3 id="how-does-it-work">How does it work?</h3>
-<p>Pagy NEXT is the code that will be released as the next MAJOR version. It is already implemented and available in the current version, however it is overridden with the legacy code and deprecation warnings to respect the <a href="https://semver.org/" class="outbound" target="_blank"><span>SemVer</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> contract.</p>
+<p>Pagy NEXT is the code that will be released as the next MAJOR version. It is already implemented and available in the current version; however, it is overridden with the legacy code and deprecation warnings to respect the <a href="https://semver.org/" class="outbound" target="_blank"><span>SemVer</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> contract.</p>
 <p>Pagy NEXT provides an opt-in mechanism to bypass the legacy layer entirely. By using <code translate="no" v-pre>require: 'pagy/next'</code> or setting <code translate="no" v-pre>PAGY_NEXT=true</code>, you effectively run the next MAJOR version&#x27;s code today.</p>
 <h3 id="how-should-you-maintain-it">How should you maintain it?</h3>
 <p>This &quot;early access&quot; mode is lighter and faster, but <strong>requires immediate adherence to the latest API changes</strong>.</p>
@@ -441,18 +441,18 @@
         <div class="pr-5 ml-3 w-full">
             <h5>Adjust the gem update policy!</h5>
 <ul>
-<li>Use a stricter PATCH version restriction (e.g., replace <code translate="no" v-pre>~&gt; 43.6</code> with <code translate="no" v-pre>~&gt; 43.6.3</code>)</li>
+<li>Use a stricter PATCH version restriction (e.g., replace <code translate="no" v-pre>~&gt; 43.7</code> with <code translate="no" v-pre>~&gt; 43.7.0</code>).</li>
 <li>Follow the <a href="../../changelog/#deprecations">Deprecations Instructions</a> after <code translate="no" v-pre>bundle update</code> involving MINOR or MAJOR releases.</li>
 </ul>
         </div>
     </div>
 </div>
-<p>With the PATCH version restriction, bundle will automatically update <strong>only</strong> PATCH releases, ensuring your NEXT code won&#x27;t break on update. However, remember to manually check <code translate="no" v-pre>bundle outdated</code> more often to avoid missing MINOR or MAJOR releases.</p>
+<p>With the PATCH version restriction, Bundler will automatically update <strong>only</strong> PATCH releases, ensuring your NEXT code won&#x27;t break on update. However, remember to manually check <code translate="no" v-pre>bundle outdated</code> more often to avoid missing MINOR or MAJOR releases.</p>
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-09-23T11:52:35" title="2026-09-23" data-absolute-label="Last updated on 2026-09-23" data-absolute-label-html="Last updated on 2026-09-23" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-09-23
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-10-03T15:26:55" title="2026-10-03" data-absolute-label="Last updated on 2026-10-03" data-absolute-label-html="Last updated on 2026-10-03" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-10-03
                     </time>
                 </div>
 

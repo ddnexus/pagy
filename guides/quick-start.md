@@ -5,7 +5,7 @@
 ---
 
 !!!question Migrating from another pagination gem?
-Check the [Migration Guide](migration-guide) first
+Check the [Migration Guide](migration-guide) first.
 !!!
 
 ### Steps
@@ -13,7 +13,7 @@ Check the [Migration Guide](migration-guide) first
 >>> Install it...
 
 ```ruby Gemfile
-gem 'pagy', '~> 43.6' # MINOR version restriction, to avoid breaking changes
+gem 'pagy', '~> 43.7' # MINOR version restriction, to avoid breaking changes
 ```
 
 >>> Try it...
@@ -38,7 +38,7 @@ include Pagy::Method
 
 _Read the [Choose Right](choose-right) guide to pick the right [paginators](/toolbox/paginators#paginators) for your app_
 
-=== [!badge variant="info" size="s" corners="pill" text="3"]&nbsp; Render navigator tags and other helpers with the `@pagy` instance methods:
+=== [!badge variant="info" size="s" corners="pill" text="3"]&nbsp; Render navigation tags and other helpers with the `@pagy` instance methods:
 
 ```erb
 <%# Render navigation bar helpers with various types and styles %>
@@ -47,7 +47,9 @@ _Read the [Choose Right](choose-right) guide to pick the right [paginators](/too
 <%== @pagy.input_nav_js(:bulma) %>
 <%== @pagy.info_tag %>
 ```
+
 _See all the available [@pagy helpers](/toolbox/helpers)_
 
 ===
+
 >>>

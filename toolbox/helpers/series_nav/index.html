@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.844320178327">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.844334357436">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -38,12 +38,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../../resources/css/retype.css?v=4.6.0.844320178327" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.6.0.844334357436" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.844320178327" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.844334357436" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.844320178327" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.844320178327" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.844334357436" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.844334357436" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -216,7 +216,7 @@
                             <img class="max-h-10 md:inline-block" src="../../../assets/images/pagy-the-frog.png" alt="" width="43" height="40">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.6.3</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.7.0</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -435,7 +435,7 @@
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>It works with all paginators but <code translate="no" v-pre>:keyset</code></p>
+<p>It works with all paginators but <code translate="no" v-pre>:keyset</code>.</p>
         </div>
     </div>
 </div>
@@ -456,14 +456,14 @@
 =&gt; true
 
 &gt;&gt; @pagy, @records = pagy(:offset, collection.new, page: 3)
-=&gt; [#&lt;Pagy::Offset:0x00007f6b44bf36f8 @count=1000, @from=41, @in=20, @in_range=true, @last=50, @limit=20, @next=4, @offset=40, @options={limit: 20, limit_key: &quot;limit&quot;, page_key: &quot;page&quot;, page: 3, count: 1000}, @page=3, @previous=2, @request=#&lt;Pagy::Request:0x00007f6b4525f320 @base_url=&quot;http://www.example.com&quot;, @cookie=nil, @jsonapi=nil, @path=&quot;/path&quot;, @params={example: &quot;123&quot;}&gt;, @to=60&gt;, [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]]
+=&gt; [#&lt;Pagy::Offset:0x00007f0802af1fe8 @request=#&lt;Pagy::Request:0x00007f0802faae68 @options={page: 3, request: #&lt;Pagy::Request:0x00007f0802faae68 ...&gt;, client_limit: nil, limit: 20, count: 1000}, @base_url=&quot;http://www.example.com&quot;, @path=&quot;/path&quot;, @params={example: &quot;123&quot;}, @cookie=nil&gt;, @options={limit: 20, limit_key: &quot;limit&quot;, page_key: &quot;page&quot;, page: 3, client_limit: nil, count: 1000}, @limit=20, @count=1000, @page=3, @last=50, @offset=40, @in_range=true, @from=41, @to=60, @in=20, @previous=2, @next=4&gt;, [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]]
 
 &gt;&gt; puts @pagy.series_nav
-&lt;nav class=&quot;pagy series-nav&quot; aria-label=&quot;Pages&quot;&gt;&lt;a href=&quot;/path?example=123&amp;page=2&quot; rel=&quot;prev&quot; aria-label=&quot;Previous&quot;&gt;&amp;lt;&lt;/a&gt;&lt;a href=&quot;/path?example=123&amp;page=1&quot;&gt;1&lt;/a&gt;&lt;a href=&quot;/path?example=123&amp;page=2&quot; rel=&quot;prev&quot;&gt;2&lt;/a&gt;&lt;a role=&quot;link&quot; aria-disabled=&quot;true&quot; aria-current=&quot;page&quot;&gt;3&lt;/a&gt;&lt;a href=&quot;/path?example=123&amp;page=4&quot; rel=&quot;next&quot;&gt;4&lt;/a&gt;&lt;a href=&quot;/path?example=123&amp;page=5&quot;&gt;5&lt;/a&gt;&lt;a role=&quot;separator&quot; aria-disabled=&quot;true&quot;&gt;&amp;hellip;&lt;/a&gt;&lt;a href=&quot;/path?example=123&amp;page=50&quot;&gt;50&lt;/a&gt;&lt;a href=&quot;/path?example=123&amp;page=4&quot; rel=&quot;next&quot; aria-label=&quot;Next&quot;&gt;&amp;gt;&lt;/a&gt;&lt;/nav&gt;
+&lt;nav class=&quot;pagy series-nav&quot; aria-label=&quot;Pages&quot;&gt;&lt;a href=&quot;/path?example=123&amp;amp;page=2&quot; rel=&quot;prev&quot; aria-label=&quot;Previous&quot;&gt;&amp;lt;&lt;/a&gt;&lt;a href=&quot;/path?example=123&amp;amp;page=1&quot;&gt;1&lt;/a&gt;&lt;a href=&quot;/path?example=123&amp;amp;page=2&quot; rel=&quot;prev&quot;&gt;2&lt;/a&gt;&lt;a role=&quot;link&quot; aria-disabled=&quot;true&quot; aria-current=&quot;page&quot;&gt;3&lt;/a&gt;&lt;a href=&quot;/path?example=123&amp;amp;page=4&quot; rel=&quot;next&quot;&gt;4&lt;/a&gt;&lt;a href=&quot;/path?example=123&amp;amp;page=5&quot;&gt;5&lt;/a&gt;&lt;a role=&quot;separator&quot; aria-disabled=&quot;true&quot;&gt;&amp;hellip;&lt;/a&gt;&lt;a href=&quot;/path?example=123&amp;amp;page=50&quot;&gt;50&lt;/a&gt;&lt;a href=&quot;/path?example=123&amp;amp;page=4&quot; rel=&quot;next&quot; aria-label=&quot;Next&quot;&gt;&amp;gt;&lt;/a&gt;&lt;/nav&gt;
 =&gt; nil
 
 &gt;&gt; puts @pagy.series_nav(:bulma, id: 'my-nav', aria_label: 'Products', slots: 3)
-&lt;nav id=&quot;my-nav&quot; class=&quot;pagy-bulma series-nav pagination&quot; aria-label=&quot;Products&quot;&gt;&lt;ul class=&quot;pagination-list&quot;&gt;&lt;li&gt;&lt;a href=&quot;/path?example=123&amp;page=2&quot; class=&quot;pagination-previous&quot; rel=&quot;prev&quot; aria-label=&quot;Previous&quot;&gt;&amp;lt;&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;/path?example=123&amp;page=2&quot; class=&quot;pagination-link&quot; rel=&quot;prev&quot;&gt;2&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a role=&quot;link&quot; class=&quot;pagination-link is-current&quot; aria-current=&quot;page&quot; aria-disabled=&quot;true&quot;&gt;3&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;/path?example=123&amp;page=4&quot; class=&quot;pagination-link&quot; rel=&quot;next&quot;&gt;4&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;/path?example=123&amp;page=4&quot; class=&quot;pagination-next&quot; rel=&quot;next&quot; aria-label=&quot;Next&quot;&gt;&amp;gt;&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/nav&gt;
+&lt;nav id=&quot;my-nav&quot; class=&quot;pagy-bulma series-nav pagination&quot; aria-label=&quot;Products&quot;&gt;&lt;ul class=&quot;pagination-list&quot;&gt;&lt;li&gt;&lt;a href=&quot;/path?example=123&amp;amp;page=2&quot; class=&quot;pagination-previous&quot; rel=&quot;prev&quot; aria-label=&quot;Previous&quot;&gt;&amp;lt;&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;/path?example=123&amp;amp;page=2&quot; class=&quot;pagination-link&quot; rel=&quot;prev&quot;&gt;2&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a role=&quot;link&quot; class=&quot;pagination-link is-current&quot; aria-current=&quot;page&quot; aria-disabled=&quot;true&quot;&gt;3&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;/path?example=123&amp;amp;page=4&quot; class=&quot;pagination-link&quot; rel=&quot;next&quot;&gt;4&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;/path?example=123&amp;amp;page=4&quot; class=&quot;pagination-next&quot; rel=&quot;next&quot; aria-label=&quot;Next&quot;&gt;&amp;gt;&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/nav&gt;
 =&gt; nil</code></pre>
 </doc-codeblock></div>
    </doc-panel>
@@ -484,17 +484,17 @@
 <dt id="term-3"><code translate="no" v-pre>slots: 9</code></dt>
 <dd><p>Override the default number of page <code translate="no" v-pre>:slots</code> used for the navigation bar.</p>
 <ul>
-<li><code translate="no" v-pre>slots &lt; 7</code> causes the slots to be filled by contiguous pages around the current one</li>
-<li><code translate="no" v-pre>slots &gt;= 7</code> causes the first and last slots to be occupied by first and last pages, separated by the rest with a <code translate="no" v-pre>...</code> (<code translate="no" v-pre>:gap</code>) slot when needed.</li>
-<li>Prefer odd numbers of slots, which determine the current page to be in the central slot.</li>
+<li><code translate="no" v-pre>slots &lt; 7</code> fills the slots with contiguous pages around the current one.</li>
+<li><code translate="no" v-pre>slots &gt;= 7</code> reserves the first and last slots for the first and last pages, separated from the rest by a <code translate="no" v-pre>...</code> (<code translate="no" v-pre>:gap</code>) slot when needed.</li>
+<li>Prefer odd numbers of slots, which place the current page in the central slot.</li>
 </ul>
 </dd>
 <dt id="term-4"><code translate="no" v-pre>compact: true</code></dt>
-<dd>Fill all the slots with contiguous pages, regardless the number of slots.</dd>
+<dd>Fill all the slots with contiguous pages, regardless of the number of slots.</dd>
 <dt id="term-5"><code translate="no" v-pre>id: 'my-nav'</code></dt>
 <dd>Set the <code translate="no" v-pre>id</code> HTML attribute of the <code translate="no" v-pre>nav</code> tag.</dd>
 <dt id="term-6"><code translate="no" v-pre>aria_label: 'My Label'</code></dt>
-<dd><p>Override the default <code translate="no" v-pre>pagy.aria_label.nav</code> string of the <code translate="no" v-pre>aria-label</code> attribute.<br/>See <a href="../../../resources/aria/">ARIA</a></p>
+<dd><p>Override the default <code translate="no" v-pre>pagy.aria_label.nav</code> string of the <code translate="no" v-pre>aria-label</code> attribute.<br/>See <a href="../../../resources/aria/">ARIA</a>.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-danger"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
@@ -507,10 +507,12 @@
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>The <code translate="no" v-pre>nav</code> elements are <code translate="no" v-pre>landmark  roles</code>, and should be distinctly labeled!</p>
+<p>The <code translate="no" v-pre>nav</code> elements are <code translate="no" v-pre>landmark roles</code> and should be distinctly labeled!</p>
         </div>
     </div>
 </div>
+</dd>
+</dl>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-success"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
@@ -524,14 +526,14 @@
         </div>
         <div class="pr-5 ml-3 w-full">
 <p>Override the default <code translate="no" v-pre>:aria_label</code>s for multiple navs with distinct values!</p>
-        </div>
-    </div>
-</div>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-erb"><code v-pre class="language-erb">&lt;%# Explicitly set the aria_label %&gt;
 &lt;%== @pagy.series_nav(aria_label: 'Search result pages') %&gt;</code></pre>
 </doc-codeblock></div>
-</dd>
+        </div>
+    </div>
+</div>
+<dl>
 <dt id="term-7"><code translate="no" v-pre>anchor_string: 'data-turbo-frame=&quot;paginate&quot;'</code></dt>
 <dd>Concatenate a verbatim raw string to the internal HTML of the anchor tags. It must contain properly formatted HTML attributes. It&#x27;s not suitable for <code translate="no" v-pre>*_hash</code> helpers.</dd>
 <dt id="term-8"><code translate="no" v-pre>absolute: true</code></dt>
@@ -541,7 +543,8 @@
 <dt id="term-10"><code translate="no" v-pre>fragment: '...'</code></dt>
 <dd>URL fragment string.</dd>
 <dt id="term-11"><code translate="no" v-pre>querify: tweak</code></dt>
-<dd><p>Set it to a <code translate="no" v-pre>Lambda</code> to directly edit the passed string-keyed params hash itself. Its result is ignored.</p>
+<dd>
+<p>Set it to a <code translate="no" v-pre>lambda</code> to directly edit the passed string-keyed params hash itself. Its result is ignored.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">tweak = -&gt;(q) { q.except!('not_useful').merge!('custom' =&gt; 'useful') }</code></pre>
 </doc-codeblock></div>
@@ -552,8 +555,8 @@
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-08-05T19:59:53" title="2026-08-05" data-absolute-label="Last updated on 2026-08-05" data-absolute-label-html="Last updated on 2026-08-05" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-08-05
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-10-03T12:20:21" title="2026-10-03" data-absolute-label="Last updated on 2026-10-03" data-absolute-label-html="Last updated on 2026-10-03" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-10-03
                     </time>
                 </div>
 

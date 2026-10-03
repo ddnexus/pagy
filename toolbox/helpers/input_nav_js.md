@@ -23,10 +23,10 @@
 
 `input_nav_js` combines navigation and pagination info in a single compact element.
 
-It is the fastest and lightest navigator, recommended when you care about efficiency and server load (see [Maximizing Performance](../../guides/how-to#maximize-performance)) still needing UI.
+It is the fastest and lightest navigator, recommended when you care about efficiency and server load while still needing a UI (see [Maximize performance](/guides/how-to#maximize-performance)).
 
 !!!warning
-It works with all paginators but `:keyset`
+It works with all paginators but `:keyset`.
 !!!
 
 === :icon-tools:&nbsp; Usage
@@ -44,14 +44,14 @@ require 'pagy/console'
 => true
 
 >> @pagy, @records = pagy(:offset, collection.new, page: 3)
-=> [#<Pagy::Offset:0x00007f0b3c132998 @count=1000, @from=41, @in=20, @in_range=true, @last=50, @limit=20, @next=4, @offset=40, @options={limit: 20, limit_key: "limit", page_key: "page", page: 3, count: 1000}, @page=3, @previous=2, @request=#<Pagy::Request:0x00007f0b3c7ac530 @base_url="http://www.example.com", @cookie=nil, @jsonapi=nil, @path="/path", @params={example: "123"}>, @to=60>, [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]]
+=> [#<Pagy::Offset:0x00007f0802afd168 @request=#<Pagy::Request:0x00007f0802c830c8 @options={page: 3, request: #<Pagy::Request:0x00007f0802c830c8 ...>, client_limit: nil, limit: 20, count: 1000}, @base_url="http://www.example.com", @path="/path", @params={example: "123"}, @cookie=nil>, @options={limit: 20, limit_key: "limit", page_key: "page", page: 3, client_limit: nil, count: 1000}, @limit=20, @count=1000, @page=3, @last=50, @offset=40, @in_range=true, @from=41, @to=60, @in=20, @previous=2, @next=4>, [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]]
 
 >> puts @pagy.input_nav_js
-<nav class="pagy input-nav-js" aria-label="Pages" data-pagy="WyJpbmoiLCIvcGF0aD9leGFtcGxlPTEyMyZwYWdlPVAgIl0="><a href="/path?example=123&page=2" rel="prev" aria-label="Previous">&lt;</a><label>Page <input name="page" type="number" min="1" max="50" value="3" aria-current="page" style="text-align: center; width: 2rem; padding: 0;"><a style="display: none;">#</a> of 50</label><a href="/path?example=123&page=4" rel="next" aria-label="Next">&gt;</a></nav>
+<nav class="pagy input-nav-js" aria-label="Pages" data-pagy="WyJpbmoiLCIvcGF0aD9leGFtcGxlPTEyMyZwYWdlPVAgIiwiUCAiXQ=="><a href="/path?example=123&amp;page=2" rel="prev" aria-label="Previous">&lt;</a><label>Page <input name="page" type="number" min="1" max="50" value="3" aria-current="page" style="text-align: center; width: 2rem; padding: 0;"><a style="display: none;">#</a> of 50</label><a href="/path?example=123&amp;page=4" rel="next" aria-label="Next">&gt;</a></nav>
 => nil
 
 >> puts @pagy.input_nav_js(:bulma, id: 'input-nav', aria_label: 'My pages')
-<nav id="input-nav" class="pagy-bulma input-nav-js pagination" aria-label="My pages" data-pagy="WyJpbmoiLCIvcGF0aD9leGFtcGxlPTEyMyZwYWdlPVAgIl0="><ul class="pagination-list"><li><a href="/path?example=123&page=2" class="pagination-previous" rel="prev" aria-label="Previous">&lt;</a></li><li class="pagination-link"><label>Page <input name="page" type="number" min="1" max="50" value="3" aria-current="page"style="text-align: center; width: 2rem; line-height: 1.2rem; border: none; border-radius: .25rem; padding: .0625rem; color: white; background-color: #485fc7;"><a style="display: none;">#</a> of 50</label></li><li><a href="/path?example=123&page=4" class="pagination-next" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+<nav id="input-nav" class="pagy-bulma input-nav-js pagination" aria-label="My pages" data-pagy="WyJpbmoiLCIvcGF0aD9leGFtcGxlPTEyMyZwYWdlPVAgIiwiUCAiXQ=="><ul class="pagination-list"><li><a href="/path?example=123&amp;page=2" class="pagination-previous" rel="prev" aria-label="Previous">&lt;</a></li><li class="pagination-link"><label>Page <input name="page" type="number" min="1" max="50" value="3" aria-current="page"style="text-align: center; width: 2rem; line-height: 1.2rem; border: none; border-radius: .25rem; padding: .0625rem; color: white; background-color: #485fc7;"><a style="display: none;">#</a> of 50</label></li><li><a href="/path?example=123&amp;page=4" class="pagination-next" rel="next" aria-label="Next">&gt;</a></li></ul></nav>
 => nil
 ```
 
@@ -72,18 +72,19 @@ require 'pagy/console'
 : Set the `id` HTML attribute of the `nav` tag.
 
 `aria_label: 'My Label'`
-: Override the default `pagy.aria_label.nav` string of the `aria-label` attribute.<br/>See [ARIA](/resources/aria.md)
+: Override the default `pagy.aria_label.nav` string of the `aria-label` attribute.<br/>See [ARIA](/resources/ARIA.md).
 
   !!!danger
-  The `nav` elements are `landmark  roles`, and should be distinctly labeled!
+  The `nav` elements are `landmark roles` and should be distinctly labeled!
+  !!!
 
   !!!success
   Override the default `:aria_label`s for multiple navs with distinct values!
-
   ```erb
   <%# Explicitly set the aria_label %>
   <%== @pagy.series_nav(aria_label: 'Search result pages') %>
   ```
+  !!!
 
 `anchor_string: 'data-turbo-frame="paginate"'`
 : Concatenate a verbatim raw string to the internal HTML of the anchor tags. It must contain properly formatted HTML attributes. It's not suitable for `*_hash` helpers.
@@ -98,7 +99,7 @@ require 'pagy/console'
 : URL fragment string.
 
 `querify: tweak`
-: Set it to a `Lambda` to directly edit the passed string-keyed params hash itself. Its result is ignored.
+: Set it to a `lambda` to directly edit the passed string-keyed params hash itself. Its result is ignored.
   ```ruby
   tweak = ->(q) { q.except!('not_useful').merge!('custom' => 'useful') }
   ```
@@ -106,7 +107,7 @@ require 'pagy/console'
 ==- :icon-alert:&nbsp; Caveats
 
 !!!danger Overriding `*_js` helpers is not recommended
-The `*_js` helpers are tightly coupled with the javascript code, so any partial overriding on one side would be quite fragile
-and might break in a next release.
+The `*_js` helpers are tightly coupled with the JavaScript code, so any partial overriding on one side would be quite fragile and might break in future releases.
 !!!
+
 ===

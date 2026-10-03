@@ -1,38 +1,67 @@
 #
 
-## :icon-move-to-end:&nbsp;&nbsp;:offset
+## :icon-search:&nbsp;&nbsp;:rails_active_search
 
 ---
 
-`:offset` is a generic [OFFSET](/guides/choose-right/#offset) paginator usable with ORM collections or regular `Array` objects.
+`:rails_active_search` is a [SEARCH](/guides/choose-right/#search) paginator for `ActiveSearch` (`rails-active_search` gem) search results.
 
-It uses the complete [OFFSET](/guides/choose-right/#offset) pagination technique, which triggers two SQL queries per request:
-
-- a `COUNT` query to get the count;
-- an `OFFSET` + `LIMIT` query to get the records.
-
-It **fully** supports all the helpers and navigators.
-
-!!!warning Consider using the `:countish` paginator when possible!
-The [:countish](countish) paginator offers identical UI features, but it's up to 2x faster.
-!!!
+[!button corners="pill" variant="info" icon="play-24" text="Check it out with `bundle exec pagy active_search`"](/sandbox/playground/#active-search)
 
 === :icon-tools:&nbsp; Usage
 
-```ruby Controller
-@pagy, @records = pagy(:offset, collection, **options)
++++ Active mode
+
+!!!success Pagy searches and paginates
+You use the `pagy_search` method in place of the `search` method.
+!!!
+
+```ruby Model
+extend Pagy::Search
 ```
 
-- `@pagy` is the pagination instance. It provides the [readers](#readers) and the [helpers](../helpers) to use in your code.
-- `@records` represents the paginated collection of records for the page (lazy-loaded records).
+```ruby Controller
+# Get the collection (ActiveSearch keyword arguments, e.g., index: or scope:, are passed through)
+search = Article.pagy_search(params[:q])
+# Chain any ActiveSearch::Query method that returns a query (e.g., filter, sort, highlight)
+search = Article.pagy_search(params[:q]).filter(status: 'published').sort(published_at: :desc)
+# Paginate it: @results is the ActiveSearch::Results of the page
+@pagy, @results = pagy(:rails_active_search, search, **options)
+```
+
+!!!warning
+Do not chain the pagination methods (`limit`, `offset`, `page`) nor the methods that end the chain (e.g., `results`, `to_native_query`).
+!!!
+
++++ Passive mode
+
+!!!success You search and paginate
+Pagy creates its object out of your result.
+!!!
+
+```ruby Controller
+# Standard results (already paginated)
+@results = Article.search(params[:q]).limit(10).offset(20).results
+# or
+@results = Article.search(params[:q]).page(3, per_page: 10).results
+# Get the pagy object out of it
+@pagy    = pagy(:rails_active_search, @results, **options)
+```
+
+!!!warning
+The `:limit` and `:page` are extracted from the results, so use a single Integer `per_page` with `page`: an Array of page sizes is not supported.
+!!!
+
++++
+
+!!!
+Search paginators use the same positional technique as [:offset](offset.md) paginators, with shared options and readers.
+!!!
 
 ==- :icon-sliders:&nbsp; Options
 
-`count_over: true`
-: Use this option with `GROUP BY` collections to calculate the total number of results using `COUNT(*) OVER ()`.
-
-`raise_range_error: true`
-: Enable the `Pagy::RangeError` (which is otherwise rescued to an empty page by default).
+`search_method: :my_search`
+: Customize the name of the `ActiveSearch` search method to use in active mode (default `:search`).
 
 `limit: 10`
 : Specifies the number of items per page (default: `20`).

@@ -15,14 +15,14 @@
 
 The `previous_tag` and `next_tag` return the enabled/disabled previous/next page anchor tag.
 
-Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `:countless`, `:keyset` paginators).
+Useful to build minimalistic UIs that don't use nav bar links (e.g., `:countless`, `:keyset` paginators).
 
 !!!success
 `next_tag` works with all paginators
 !!!
 
 !!!warning
-`previous_tag` works with all paginators but `:keyset`
+`previous_tag` works with all paginators but `:keyset`.
 !!!
 
 === :icon-tools:&nbsp; Usage
@@ -39,25 +39,25 @@ require 'pagy/console'
 => true
 
 >> puts @pagy.previous_tag
-<a href="/path?example=123&page=2" aria-label="Previous">&lt;</a>
+<a href="/path?example=123&amp;page=2" rel="prev" aria-label="Previous">&lt;</a>
 => nil
 
 >> puts @pagy.next_tag
-<a href="/path?example=123&page=4" aria-label="Next">&gt;</a>
+<a href="/path?example=123&amp;page=4" rel="next" aria-label="Next">&gt;</a>
 => nil
 
 >> puts @pagy.next_tag(text: 'Show Next', aria_label: 'my-next')
-<a href="/path?example=123&page=4" aria-label="my-next">Show Next</a>
+<a href="/path?example=123&amp;page=4" rel="next" aria-label="my-next">Show Next</a>
 => nil
 ```
 
 ==- :icon-sliders:&nbsp; Options
 
 `text: 'My Page'`
-: Override the default text _(instead of looking up the `pagy.previous`/`pagy.next` entry in the dictionary)_
+: Override the default text _(instead of looking up the `pagy.previous`/`pagy.next` entry in the dictionary)_.
 
 `aria_label: 'My Link'`
-: Override the default aria label _(instead of looking up the `pagy.aria_label.previous`/`pagy.aria_label.next` entry in the dictionary)_
+: Override the default aria label _(instead of looking up the `pagy.aria_label.previous`/`pagy.aria_label.next` entry in the dictionary)_.
 
 `absolute: true`
 : Makes the URL absolute.
@@ -69,7 +69,7 @@ require 'pagy/console'
 : URL fragment string.
 
 `querify: tweak`
-: Set it to a `Lambda` to directly edit the passed string-keyed params hash itself. Its result is ignored.
+: Set it to a `lambda` to directly edit the passed string-keyed params hash itself. Its result is ignored.
   ```ruby
   tweak = ->(q) { q.except!('not_useful').merge!('custom' => 'useful') }
   ```

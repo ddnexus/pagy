@@ -4,7 +4,7 @@
 
 ---
 
-This page provides practical tips and examples to help you to use Pagy efficiently.
+This page provides practical tips and examples to help you use Pagy efficiently.
 
 ==- Choose the right pagination technique
 
@@ -30,11 +30,10 @@ See [URL Options](/resources/urls#options)
 
 ==- Control the pagination bar
 
-You can customize the number and position of page links of the [series_nav](/toolbox/helpers/series_nav) and [series_nav_js](/toolbox/helpers/series_nav_js)
-  navigation bars using:
+You can customize the number and position of page links of the [series_nav](/toolbox/helpers/series_nav) and [series_nav_js](/toolbox/helpers/series_nav_js) navigation bars using:
 
 - The [:slots and :compact options](/toolbox/helpers/series_nav#options).
-- Overriding the `series` method for full control over the pagination bar
+- Overriding the `series` method for full control over the pagination bar.
 
 ==- Force the `:page`
 
@@ -50,9 +49,7 @@ See [Safety](/guides/safety)
 
 ==- Customize the ARIA labels
 
-You can customize the `aria-label` attributes of any `*nav*` helper by providing a `:aria_label` string.
-
-Pass the `:aria_label` option to the helper.
+You can customize the `aria-label` attributes of any `*nav*` helper by passing the `:aria_label` option to the helper.
 
 You can also replace the `pagy.aria_label.nav` strings in the dictionary, as well as the `pagy.aria_label.previous` and the `pagy.aria_label.next`.
 
@@ -86,13 +83,13 @@ Pagy includes different formats of [stylesheets](/resources/stylesheets) for cus
 You can also override the specific helper method.
 
 :::
-==- Override th element "style" attribute
+==- Override the element "style" attribute
 
 The `input_nav_js` and `limit_tag_js` use inline style attributes. You can override these rules in your stylesheet files using the `[style]` attribute selector and `!important`. Below is an example of overriding the `width` of an `input` element:
 
 ```css
 .pagy input[style] {
-  width: 5rem !important; /* just an useless example */
+  width: 5rem !important; /* just a useless example */
 }
 ```
 :::
@@ -119,7 +116,7 @@ Pagy::AnyModule.prepend MyOverridingModule
 
 If you need assistance, ask in the [Q&A discussions](https://github.com/ddnexus/pagy/discussions/categories/q-a).
 
-==- Paginate an Array
+==- Paginate an array
 
 Simply pass it as the collection: `pagy(:offset, my_array, **options)`
 
@@ -131,7 +128,7 @@ Pagy works seamlessly with `ActiveRecord` collections, but certain collections m
 
 ==- :icon-database:&nbsp; Grouped collections
 
-For better performance of grouped counts, you may want to use the [:count_over](/toolbox/paginators/offset#options) option
+For better performance of grouped counts, you may want to use the [:count_over](/toolbox/paginators/offset#options) option.
 
 ==- :icon-database:&nbsp; Decorated collections
 
@@ -142,10 +139,10 @@ Do it in two steps:
 ```ruby controller
 @pagy, records = pagy(:offset, Post.all)
 ```
->>> Decorate the retrieved records.
+>>> Decorate the retrieved records
 
 ```ruby controller
-@decorated_records = records.decorate # or YourDecorator.method(records) whatever works
+@decorated_records = records.decorate # or YourDecorator.method(records), whatever works
 ```
 
 >>>
@@ -168,7 +165,7 @@ q = Person.ransack(params[:q])
 @pagy, @people = pagy(:offset, q.result)
 ```
 
-==- :icon-database:&nbsp; PostgreSQL Collections
+==- :icon-database:&nbsp; PostgreSQL collections
 
 [Always ensure your collections are ordered!](/toolbox/paginators#troubleshooting)
 
@@ -183,7 +180,7 @@ Explore the following options:
 - `:client_limit` paginator option
 - `:jsonapi` paginator option
 
-==- Paginate for JavaScript Frameworks
+==- Paginate for JavaScript frameworks
 
 You can send selected `@pagy` instance data to the client as JSON using the [data_hash](/toolbox/helpers/data_hash) helper, including pagination metadata in your JSON response.
 
@@ -193,6 +190,7 @@ See these paginators:
 
 - [elasticsearch_rails](/toolbox/paginators/elasticsearch_rails)
 - [meilisearch](/toolbox/paginators/meilisearch)
+- [rails_active_search](/toolbox/paginators/rails_active_search)
 - [searchkick](/toolbox/paginators/searchkick)
 - [typesense_rails](/toolbox/paginators/typesense_rails)
 
@@ -211,8 +209,7 @@ When you need to paginate multiple collections in a single request, you need to 
 
 By default, Pagy generates links using the same path as the request path. To generate links pointing to a different controller or path, explicitly pass the desired `:path`. For example:
 
-```rb
-
+```rb Controller
 def index
   @pagy_foos, @foos = pagy(:offset, Foo.all, path: '/foos')
   @pagy_bars, @bars = pagy(:offset, Bar.all, path: '/bars')
@@ -226,29 +223,29 @@ end
 <!-- Pagination links of `/bars?page=2` etc. -->
 ```
 
-==- :icon-light-bulb:&nbsp; Use separate turbo frames actions
+==- :icon-light-bulb:&nbsp; Use separate Turbo Frame actions
 
 <br/>
 
-If you're using [hotwire](https://hotwired.dev/) ([turbo-rails](https://github.com/hotwired/turbo-rails) being the Rails implementation), another way of maintaining independent contexts is using separate turbo frames actions. Just wrap each independent context in a `turbo_frame_tag` and ensure a matching `turbo_frame_tag` is returned:
+If you're using [hotwire](https://hotwired.dev/) ([turbo-rails](https://github.com/hotwired/turbo-rails) being the Rails implementation), another way of maintaining independent contexts is using separate Turbo Frame actions. Just wrap each independent context in a `turbo_frame_tag` and ensure a matching `turbo_frame_tag` is returned:
 
 ```erb
-<-- movies/index.html.erb -->
+<%# movies/index.html.erb %>
 
-<-- movies#bad_movies -->
+<%# movies#bad_movies %>
 <%= turbo_frame_tag "bad_movies", src: bad_movies_path do %>
 <%= render "movies_table", locals: {movies: @movies}%>
 <%== @pagy.series_nav %>
 <% end %>
 
-<-- movies#good_movies -->
+<%# movies#good_movies %>
 <%= turbo_frame_tag "good_movies", src: good_movies_path  do %>
 <%= render "movies_table", locals: {movies: @movies}%>
 <%== @pagy.series_nav %>
 <% end %>
 ```
 
-```rb Controller Action
+```rb Controller
 def good
   @pagy, @movies = pagy(:offset, Movie.good, limit: 5)
 end
@@ -258,16 +255,13 @@ def bad
 end
 ```
 
-Consider [Benito Serna's implementation of turbo-frames (on Rails) using search forms with the Ransack gem](https://bhserna.com/building-data-grid-with-search-rails-hotwire-ransack.html) along with a corresponding [demo app](https://github.com/bhserna/dynamic_data_grid_hotwire_ransack) for a similar implementation of the above logic.
-
 ==- :icon-light-bulb:&nbsp; Use the root_key option
 
 <br/>
 
-By default, pagy creates flat URLs for its links. If you need to handle multiple pagy instance in the same request, you can nest the `:page` and -if you use it- the `:limit` params by passing the `:root_key` option to the paginator:
+By default, pagy creates flat URLs for its links. If you need to handle multiple pagy instances in the same request, you can nest the `:page` and (if you use it) the `:limit` params by passing the `:root_key` option to the paginator:
 
-```rb Controller Action
-
+```rb Controller
 def index
   @pagy_stars, @stars     = pagy(:offset, Star.all, root_key: 'stars')
   @pagy_nebulae, @nebulae = pagy(:offset, Nebula.all, root_key: 'nebulae')
@@ -278,10 +272,9 @@ end
 
 <br/>
 
-You can also paginate multiple model in the same request by simply using different `:page_key` for each instance:
+You can also paginate multiple models in the same request by simply using a different `:page_key` for each instance:
 
-```rb
-
+```rb Controller
 def index
   @pagy_stars, @stars     = pagy(:offset, Star.all, page_key: 'pagy_stars')
   @pagy_nebulae, @nebulae = pagy(:offset, Nebula.all, page_key: 'pagy_nebulae')
@@ -294,7 +287,7 @@ end
 
 You may want to limit the availability of your records either for speeding up the DB queries (especially useful with [OFFSET](/guides/choose-right/#offset) paginators with big tables), or simply to avoid exposing all your data to scrapers.
 
-The best way to ensure it, is creating a limited collection using an ActiveRecord Virtual Table:
+The best way to ensure it is to create a limited collection using an ActiveRecord Virtual Table:
 
 ```rb
 max_records     = 10_000
@@ -302,17 +295,18 @@ collection      = Product.where(...).limit(max_records)   # Add the max_records 
 limited         = collection.from(collection, :products)  # Create a limited collection using the :products Virtual Table
 @pagy, @records = pagy(:offset, limited, **options)       # Paginate the limited collection
 ```
+
 !!!success
 - It works with all [OFFSET](/guides/choose-right/#offset) and [KEYSET](/guides/choose-right/#keyset) paginators.
-- It produces faster COUNT and OFFSET queries, limiting the table scan
-- It enforces strict control over the quantity of records you expose
+- It produces faster COUNT and OFFSET queries, limiting the table scan.
+- It enforces strict control over the quantity of records you expose.
 !!!
 
 ==- Paginate collections with metadata
 
 When your collection is already paginated and contains count and pagination metadata, you don't need any `pagy*` controller method.
 
-For example this is a Tmdb API search result object, but you can apply the same principle to any other type of collection metadata:
+For example, this is a Tmdb API search result object, but you can apply the same principle to any other type of collection metadata:
 
 ```rb
 #<Tmdb::Result page=1, total_pages=23, total_results=446, results=[#<Tmdb::Movie ..>,#<Tmdb::Movie...>,...]...>
@@ -324,7 +318,7 @@ As you can see, it contains the pagination metadata that you can use to set up t
 # get the paginated collection
 tobj = Tmdb::Search.movie("Harry Potter", page: params[:page])
 # use its count and page to initialize the @pagy object
-@pagy = Pagy::Offset.new(count: tobj.total_results, page: tobj.page, request: Pagy::Request.new(request))
+@pagy = Pagy::Offset.new(count: tobj.total_results, page: tobj.page, request: Pagy::Request.new(request: request))
 # set the paginated collection records
 @movies = tobj.results
 ```
@@ -337,26 +331,20 @@ Unlike other gems, Pagy does not decide for you that the nav of a single page of
 <%== @pagy.series_nav if @pagy.last > 1 %>
 ```
 
-==- Maximize Performance
+==- Maximize performance
 
 - Consider the paginators:
   - [:countish](/toolbox/paginators/countish)
   - [:countless](/toolbox/paginators/countless)
   - [:keyset](/toolbox/paginators/keyset)
   - [:keynav_js](/toolbox/paginators/keynav_js)
-- Consider the  helpers:
+- Consider the helpers:
   - [series_nav_js](/toolbox/helpers/series_nav_js)
   - [input_nav_js](/toolbox/helpers/input_nav_js)
-- When possible
+- When possible:
   - [Paginate only MAX records](#paginate-only-max-records)
 
-==- Ignore Brakeman false positives warnings
-
-Pagy outputs safe HTML, however being an agnostic pagination gem it does not use the specific `html_safe` rails helper for its output. That is noted by the [Brakeman](https://github.com/presidentbeef/brakeman) gem, that will raise a `UnescapedOutputs` warning.
-
-Avoid the warning by adding it to the `brakeman.ignore` file. More details [here](https://github.com/ddnexus/pagy/issues/243) and [here](https://github.com/presidentbeef/brakeman/issues/1519).
-
-==- Handle Pagy Exceptions
+==- Handle Pagy exceptions
 
 :::
 
@@ -370,7 +358,7 @@ It is a subclass of `ArgumentError` that offers information to rescue invalid op
 
 ==- :icon-stop:&nbsp; `Pagy::RangeError`
 
-With the [OFFSET](/guides/choose-right/#offset) pagination technique, it may happen that the users/clients paginate after the end of the collection (when one or a few records got deleted) and a user went to a stale page.
+With the [OFFSET](/guides/choose-right/#offset) pagination technique, users/clients may request a page beyond the end of the collection (e.g., when some records got deleted and a user follows a stale page link).
 
 By default, Pagy doesn't raise any exceptions for requesting an out-of-range page. Instead, it does not retrieve any records and serves the navs as usual, so the user can visit a different page.
 
@@ -389,20 +377,20 @@ end
 
 ==- Test with Pagy
 
-* Pagy has 100% test coverage.
-* You only need to test pagy if you have overridden methods.
+- Pagy has 100% test coverage.
+- You only need to test pagy if you have overridden methods.
 
-==- Using your pagination templates
+==- Use your own pagination templates
 
 !!!warning Warning!
-The pagy nav helpers are not only a lot faster than templates, but accept dynamic arguments and comply with ARIA and I18n standards.
+The pagy nav helpers are not only a lot faster than templates, but they also accept dynamic arguments and comply with ARIA and I18n standards.
 
 Using your own templates is possible, but it's likely just reinventing a slower wheel.
 !!!
 
 If you really need to use your own templates, you absolutely can.
 
-Here is a static example that doesn't use any other helper nor dictionary file for the sake of simplicity, however, feel free to add your dynamic options and use any helper and dictionary entries as you need:
+Here is a static example that doesn't use any other helper or dictionary file for the sake of simplicity; however, feel free to add your dynamic options and use any helper and dictionary entries as you need:
 
 :::code source="/assets/nav.html.erb" :::
 
@@ -419,12 +407,12 @@ You may want to look at the actual output interactively by running:
 pagy demo
 ```
 
-...and point your browser to  http://127.0.0.1:8000/template
+...and point your browser to <http://127.0.0.1:8000/template>.
 !!!
 
 ==- Use Pagy with non-rack apps
 
-For non-rack environments that don't respond to the request method, you should pass the `:request` option to the paginator.
+For non-rack environments that don't respond to the `request` method, you should pass the `:request` option to the paginator.
 
 ==- Use `pagy` outside controllers or views
 
@@ -475,7 +463,7 @@ end
 ```
 
 !!!success Notice: ensure a server-side storage
-If you use the `session` for caching, configure it to use `ActiveRecord`, `Redis`, or any server-side storage
+If you use the `session` for caching, configure it to use `ActiveRecord`, `Redis`, or any server-side storage.
 !!!
 
 ===

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.844320178327">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.844334357436">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -38,12 +38,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../../resources/css/retype.css?v=4.6.0.844320178327" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=4.6.0.844334357436" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.844320178327" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=4.6.0.844334357436" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.844320178327" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.844320178327" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=4.6.0.844334357436" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=4.6.0.844334357436" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -216,7 +216,7 @@
                             <img class="max-h-10 md:inline-block" src="../../../assets/images/pagy-the-frog.png" alt="" width="43" height="40">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.6.3</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.7.0</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -475,8 +475,8 @@
 </div>
 <p><code translate="no" v-pre>series_nav_js</code> functions similarly to a <a href="../series_nav/">series_nav</a>, with the following added features:</p>
 <ol>
-<li>Optional responsiveness: Dynamically fills the container width.</li>
-<li>Improves performance and optimizes resource usage (see <a href="../../../guides/how-to/#maximize-performance">Maximizing Performance</a>).</li>
+<li>Optional responsiveness: dynamically fills the container width.</li>
+<li>Improves performance and optimizes resource usage (see <a href="../../../guides/how-to/#maximize-performance">Maximize performance</a>).</li>
 </ol>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
@@ -490,7 +490,7 @@
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>It works with all paginators but <code translate="no" v-pre>:keyset</code></p>
+<p>It works with all paginators but <code translate="no" v-pre>:keyset</code>.</p>
         </div>
     </div>
 </div>
@@ -511,14 +511,14 @@
 =&gt; true
 
 &gt;&gt; @pagy, @records = pagy(:offset, collection.new, page: 3)
-=&gt; [#&lt;Pagy::Offset:0x00007f3d1c193718 @count=1000, @from=41, @in=20, @in_range=true, @last=50, @limit=20, @next=4, @offset=40, @options={limit: 20, limit_key: &quot;limit&quot;, page_key: &quot;page&quot;, page: 3, count: 1000}, @page=3, @previous=2, @request=#&lt;Pagy::Request:0x00007f3d1c7ff2f0 @base_url=&quot;http://www.example.com&quot;, @cookie=nil, @jsonapi=nil, @path=&quot;/path&quot;, @params={example: &quot;123&quot;}&gt;, @to=60&gt;, [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]]
+=&gt; [#&lt;Pagy::Offset:0x00007f0802cb1540 @request=#&lt;Pagy::Request:0x00007f0802fa9068 @options={page: 3, request: #&lt;Pagy::Request:0x00007f0802fa9068 ...&gt;, client_limit: nil, limit: 20, count: 1000}, @base_url=&quot;http://www.example.com&quot;, @path=&quot;/path&quot;, @params={example: &quot;123&quot;}, @cookie=nil&gt;, @options={limit: 20, limit_key: &quot;limit&quot;, page_key: &quot;page&quot;, page: 3, client_limit: nil, count: 1000}, @limit=20, @count=1000, @page=3, @last=50, @offset=40, @in_range=true, @from=41, @to=60, @in=20, @previous=2, @next=4&gt;, [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]]
 
 &gt;&gt; puts @pagy.series_nav_js
-&lt;nav class=&quot;pagy series-nav-js&quot; aria-label=&quot;Pages&quot; data-pagy=&quot;WyJzbmoiLFsiPGEgaHJlZj1cIi9wYXRoP2V4YW1wbGU9MTIzJnBhZ2U9MlwiIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwiUHJldmlvdXNcIj4mbHQ7PC9hPiIsIjxhIGhyZWY9XCIvcGF0aD9leGFtcGxlPTEyMyZwYWdlPVAgXCI+TDwvYT4iLCI8YSByb2xlPVwibGlua1wiIGFyaWEtY3VycmVudD1cInBhZ2VcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPkw8L2E+IiwiPGEgcm9sZT1cInNlcGFyYXRvclwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+JmhlbGxpcDs8L2E+IiwiPGEgaHJlZj1cIi9wYXRoP2V4YW1wbGU9MTIzJnBhZ2U9NFwiIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+Il0sW1swXSxbWzEsMiwiMyIsNCw1LCJnYXAiLDUwXV0sbnVsbF1d&quot;&gt;&lt;/nav&gt;
+&lt;nav class=&quot;pagy series-nav-js&quot; aria-label=&quot;Pages&quot; data-pagy=&quot;WyJzbmoiLFsiPGEgaHJlZj1cIi9wYXRoP2V4YW1wbGU9MTIzJmFtcDtwYWdlPTJcIiByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cIlByZXZpb3VzXCI+Jmx0OzwvYT4iLCI8YSBocmVmPVwiL3BhdGg/ZXhhbXBsZT0xMjMmYW1wO3BhZ2U9UCBcIj5MPC9hPiIsIjxhIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwicGFnZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+TDwvYT4iLCI8YSByb2xlPVwic2VwYXJhdG9yXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT4iLCI8YSBocmVmPVwiL3BhdGg/ZXhhbXBsZT0xMjMmYW1wO3BhZ2U9NFwiIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+Il0sIlAgIixbWzBdLFtbMSwyLCIzIiw0LDUsImdhcCIsNTBdXSxudWxsXV0=&quot;&gt;&lt;/nav&gt;
 =&gt; nil
 
 &gt;&gt; puts @pagy.series_nav_js(:bulma, id: 'my-nav', aria_label: 'Products', slots: 3)
-&lt;nav id=&quot;my-nav&quot; class=&quot;pagy-bulma series-nav-js pagination&quot; aria-label=&quot;Products&quot; data-pagy=&quot;WyJzbmoiLFsiPHVsIGNsYXNzPVwicGFnaW5hdGlvbi1saXN0XCI+PGxpPjxhIGhyZWY9XCIvcGF0aD9leGFtcGxlPTEyMyZwYWdlPTJcIiBjbGFzcz1cInBhZ2luYXRpb24tcHJldmlvdXNcIiByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cIlByZXZpb3VzXCI+Jmx0OzwvYT48L2xpPiIsIjxsaT48YSBocmVmPVwiL3BhdGg/ZXhhbXBsZT0xMjMmcGFnZT1QIFwiIGNsYXNzPVwicGFnaW5hdGlvbi1saW5rXCI+TDwvYT48L2xpPiIsIjxsaT48YSByb2xlPVwibGlua1wiIGNsYXNzPVwicGFnaW5hdGlvbi1saW5rIGlzLWN1cnJlbnRcIiBhcmlhLWN1cnJlbnQ9XCJwYWdlXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5MPC9hPjwvbGk+IiwiPGxpPjxzcGFuIGNsYXNzPVwicGFnaW5hdGlvbi1lbGxpcHNpc1wiPiZoZWxsaXA7PC9zcGFuPjwvbGk+IiwiPGxpPjxhIGhyZWY9XCIvcGF0aD9leGFtcGxlPTEyMyZwYWdlPTRcIiBjbGFzcz1cInBhZ2luYXRpb24tbmV4dFwiIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+PC9saT48L3VsPiJdLFtbMF0sW1sxLDIsIjMiLDQsNSwiZ2FwIiw1MF1dLG51bGxdXQ==&quot;&gt;&lt;/nav&gt;
+&lt;nav id=&quot;my-nav&quot; class=&quot;pagy-bulma series-nav-js pagination&quot; aria-label=&quot;Products&quot; data-pagy=&quot;WyJzbmoiLFsiPHVsIGNsYXNzPVwicGFnaW5hdGlvbi1saXN0XCI+PGxpPjxhIGhyZWY9XCIvcGF0aD9leGFtcGxlPTEyMyZhbXA7cGFnZT0yXCIgY2xhc3M9XCJwYWdpbmF0aW9uLXByZXZpb3VzXCIgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJQcmV2aW91c1wiPiZsdDs8L2E+PC9saT4iLCI8bGk+PGEgaHJlZj1cIi9wYXRoP2V4YW1wbGU9MTIzJmFtcDtwYWdlPVAgXCIgY2xhc3M9XCJwYWdpbmF0aW9uLWxpbmtcIj5MPC9hPjwvbGk+IiwiPGxpPjxhIHJvbGU9XCJsaW5rXCIgY2xhc3M9XCJwYWdpbmF0aW9uLWxpbmsgaXMtY3VycmVudFwiIGFyaWEtY3VycmVudD1cInBhZ2VcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPkw8L2E+PC9saT4iLCI8bGk+PHNwYW4gY2xhc3M9XCJwYWdpbmF0aW9uLWVsbGlwc2lzXCI+JmhlbGxpcDs8L3NwYW4+PC9saT4iLCI8bGk+PGEgaHJlZj1cIi9wYXRoP2V4YW1wbGU9MTIzJmFtcDtwYWdlPTRcIiBjbGFzcz1cInBhZ2luYXRpb24tbmV4dFwiIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+PC9saT48L3VsPiJdLCJQICIsW1swXSxbWzIsIjMiLDRdXSxudWxsXV0=&quot;&gt;&lt;/nav&gt;
 =&gt; nil</code></pre>
 </doc-codeblock></div>
    </doc-panel>
@@ -539,19 +539,19 @@
 <dt id="term-3"><code translate="no" v-pre>slots: 9</code></dt>
 <dd><p>Override the default number of page <code translate="no" v-pre>:slots</code> used for the navigation bar.</p>
 <ul>
-<li><code translate="no" v-pre>slots &lt; 7</code> causes the slots to be filled by contiguous pages around the current one</li>
-<li><code translate="no" v-pre>slots &gt;= 7</code> causes the first and last slots to be occupied by first and last pages, separated by the rest with a <code translate="no" v-pre>...</code> (<code translate="no" v-pre>:gap</code>) slot when needed.</li>
-<li>Prefer odd numbers of slots, which determine the current page to be in the central slot.</li>
+<li><code translate="no" v-pre>slots &lt; 7</code> fills the slots with contiguous pages around the current one.</li>
+<li><code translate="no" v-pre>slots &gt;= 7</code> reserves the first and last slots for the first and last pages, separated from the rest by a <code translate="no" v-pre>...</code> (<code translate="no" v-pre>:gap</code>) slot when needed.</li>
+<li>Prefer odd numbers of slots, which place the current page in the central slot.</li>
 </ul>
 </dd>
 <dt id="term-4"><code translate="no" v-pre>compact: true</code></dt>
-<dd>Fill all the slots with contiguous pages, regardless the number of slots.</dd>
+<dd>Fill all the slots with contiguous pages, regardless of the number of slots.</dd>
 <dt id="term-5"><code translate="no" v-pre>steps: { 0 =&gt; 5, 540 =&gt; 7, ... }</code></dt>
-<dd>Enable responsiveness. Assign different number of <code translate="no" v-pre>:slots</code> to different tag widths.</dd>
+<dd>Enable responsiveness. Assign a different number of <code translate="no" v-pre>:slots</code> to different tag widths. It overrides the <code translate="no" v-pre>:slots</code> option.</dd>
 <dt id="term-6"><code translate="no" v-pre>id: 'my-nav'</code></dt>
 <dd>Set the <code translate="no" v-pre>id</code> HTML attribute of the <code translate="no" v-pre>nav</code> tag.</dd>
 <dt id="term-7"><code translate="no" v-pre>aria_label: 'My Label'</code></dt>
-<dd><p>Override the default <code translate="no" v-pre>pagy.aria_label.nav</code> string of the <code translate="no" v-pre>aria-label</code> attribute.<br/>See <a href="../../../resources/aria/">ARIA</a></p>
+<dd><p>Override the default <code translate="no" v-pre>pagy.aria_label.nav</code> string of the <code translate="no" v-pre>aria-label</code> attribute.<br/>See <a href="../../../resources/aria/">ARIA</a>.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-danger"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
@@ -564,10 +564,12 @@
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>The <code translate="no" v-pre>nav</code> elements are <code translate="no" v-pre>landmark  roles</code>, and should be distinctly labeled!</p>
+<p>The <code translate="no" v-pre>nav</code> elements are <code translate="no" v-pre>landmark roles</code> and should be distinctly labeled!</p>
         </div>
     </div>
 </div>
+</dd>
+</dl>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-success"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
@@ -581,14 +583,14 @@
         </div>
         <div class="pr-5 ml-3 w-full">
 <p>Override the default <code translate="no" v-pre>:aria_label</code>s for multiple navs with distinct values!</p>
-        </div>
-    </div>
-</div>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-erb"><code v-pre class="language-erb">&lt;%# Explicitly set the aria_label %&gt;
 &lt;%== @pagy.series_nav(aria_label: 'Search result pages') %&gt;</code></pre>
 </doc-codeblock></div>
-</dd>
+        </div>
+    </div>
+</div>
+<dl>
 <dt id="term-8"><code translate="no" v-pre>anchor_string: 'data-turbo-frame=&quot;paginate&quot;'</code></dt>
 <dd>Concatenate a verbatim raw string to the internal HTML of the anchor tags. It must contain properly formatted HTML attributes. It&#x27;s not suitable for <code translate="no" v-pre>*_hash</code> helpers.</dd>
 <dt id="term-9"><code translate="no" v-pre>absolute: true</code></dt>
@@ -598,7 +600,8 @@
 <dt id="term-11"><code translate="no" v-pre>fragment: '...'</code></dt>
 <dd>URL fragment string.</dd>
 <dt id="term-12"><code translate="no" v-pre>querify: tweak</code></dt>
-<dd><p>Set it to a <code translate="no" v-pre>Lambda</code> to directly edit the passed string-keyed params hash itself. Its result is ignored.</p>
+<dd>
+<p>Set it to a <code translate="no" v-pre>lambda</code> to directly edit the passed string-keyed params hash itself. Its result is ignored.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-ruby"><code v-pre class="language-ruby">tweak = -&gt;(q) { q.except!('not_useful').merge!('custom' =&gt; 'useful') }</code></pre>
 </doc-codeblock></div>
@@ -607,10 +610,10 @@
    </doc-panel>
    <doc-panel id="in-depth-steps-option" collapsed>
        <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M9.197 10a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5h-6.5Zm-2.382 4a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5h-6.5Zm-1.581 4a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5h-6.5Z"/><path d="M4.125 0h15.75a4.11 4.11 0 0 1 2.92 1.205A4.11 4.11 0 0 1 24 4.125c0 1.384-.476 2.794-1.128 4.16-.652 1.365-1.515 2.757-2.352 4.104l-.008.013c-.849 1.368-1.669 2.691-2.28 3.97-.614 1.283-.982 2.45-.982 3.503a2.625 2.625 0 1 0 4.083-2.183.75.75 0 1 1 .834-1.247A4.126 4.126 0 0 1 19.875 24H4.5a4.125 4.125 0 0 1-4.125-4.125c0-2.234 1.258-4.656 2.59-6.902.348-.586.702-1.162 1.05-1.728.8-1.304 1.567-2.553 2.144-3.738H3.39c-.823 0-1.886-.193-2.567-1.035A3.647 3.647 0 0 1 0 4.125 4.125 4.125 0 0 1 4.125 0ZM15.75 19.875c0-1.38.476-2.786 1.128-4.15.649-1.358 1.509-2.743 2.343-4.086l.017-.028c.849-1.367 1.669-2.692 2.28-3.972.614-1.285.982-2.457.982-3.514A2.615 2.615 0 0 0 19.875 1.5a2.625 2.625 0 0 0-2.625 2.625c0 .865.421 1.509 1.167 2.009A.75.75 0 0 1 18 7.507H7.812c-.65 1.483-1.624 3.069-2.577 4.619-.334.544-.666 1.083-.98 1.612-1.355 2.287-2.38 4.371-2.38 6.137A2.625 2.625 0 0 0 4.5 22.5h12.193a4.108 4.108 0 0 1-.943-2.625ZM1.5 4.125c-.01.511.163 1.008.487 1.403.254.313.74.479 1.402.479h12.86a3.648 3.648 0 0 1-.499-1.882 4.11 4.11 0 0 1 .943-2.625H4.125A2.625 2.625 0 0 0 1.5 4.125Z"/></g></g></svg>  In Depth: <code translate="no" v-pre>:steps</code> Option</template>
-<p>Notice: when <code translate="no" v-pre>:steps</code> is not set, the <code translate="no" v-pre>series_nav_js</code> behaves almost as a <code translate="no" v-pre>series_nav</code>: just faster.</p>
+<p>Notice: when <code translate="no" v-pre>:steps</code> is not set, the <code translate="no" v-pre>series_nav_js</code> behaves almost like a <code translate="no" v-pre>series_nav</code>: just faster.</p>
 <p>Set it as a hash, where the keys are integers representing the widths in pixels, and the values are the <code translate="no" v-pre>:slots</code> options to be applied for those widths.</p>
 <p>For example:</p>
-<p><code translate="no" v-pre>{ 0 =&gt; 5, 540 =&gt; 7, 720 =&gt; 9 }</code> means that from <code translate="no" v-pre>0</code> to <code translate="no" v-pre>540</code> pixels width, Pagy will use <code translate="no" v-pre>5</code> slots, from <code translate="no" v-pre>540</code> to <code translate="no" v-pre>720</code> it will use <code translate="no" v-pre>7</code> slots, and over <code translate="no" v-pre>720</code> it will use <code translate="no" v-pre>9</code> slots. (Read more about the <code translate="no" v-pre>:slots</code> option in the <a href="../../../guides/how-to/#control-the-pagination-bar">How to control the pagination bar</a> section.)</p>
+<p><code translate="no" v-pre>{ 0 =&gt; 5, 540 =&gt; 7, 720 =&gt; 9 }</code> means that from <code translate="no" v-pre>0</code> to <code translate="no" v-pre>540</code> pixels width, Pagy will use <code translate="no" v-pre>5</code> slots, from <code translate="no" v-pre>540</code> to <code translate="no" v-pre>720</code> it will use <code translate="no" v-pre>7</code> slots, and over <code translate="no" v-pre>720</code> it will use <code translate="no" v-pre>9</code> slots. (Read more about the <code translate="no" v-pre>:slots</code> option in the <a href="../../../guides/how-to/#control-the-pagination-bar">Control the pagination bar</a> section.)</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
@@ -624,7 +627,7 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>:steps must contain a <code translate="no" v-pre>0</code> width</h5>
-<p>You can set any number of steps with any arbitrary width/slots. The only requirement is that the <code translate="no" v-pre>:steps</code> hash must always contain the <code translate="no" v-pre>0</code> width, or a <code translate="no" v-pre>Pagy::OptionsError</code> exception will be raised.</p>
+<p>You can set any number of steps with any arbitrary width/slots. The only requirement is that the <code translate="no" v-pre>:steps</code> hash must always contain the <code translate="no" v-pre>0</code> width, or a <code translate="no" v-pre>Pagy::OptionError</code> exception will be raised.</p>
         </div>
     </div>
 </div>
@@ -642,7 +645,7 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Notice</h5>
-<p>The <code translate="no" v-pre>:slots</code> and <code translate="no" v-pre>:compact</code> options used by the <code translate="no" v-pre>series_nav</code> are not directly available.</p>
+<p>The <code translate="no" v-pre>:steps</code> option overrides the <code translate="no" v-pre>:slots</code> option, while the <code translate="no" v-pre>:compact</code> option applies to all the steps.</p>
         </div>
     </div>
 </div>
@@ -672,9 +675,9 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>HTML Fallback</h5>
-<p>If Javascript is disabled in the client browser, this helper will not render anything. You should implement your own HTML fallback:</p>
+<p>If JavaScript is disabled in the client browser, this helper will not render anything. You should implement your own HTML fallback:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-erb"><code v-pre class="language-erb">&lt;noscript&gt;&lt;%== pagy_nav(@pagy) %&gt;&lt;/noscript&gt;</code></pre>
+<pre translate="no" class="language-erb"><code v-pre class="language-erb">&lt;noscript&gt;&lt;%== @pagy.series_nav %&gt;&lt;/noscript&gt;</code></pre>
 </doc-codeblock></div>
         </div>
     </div>
@@ -712,8 +715,7 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Overriding <code translate="no" v-pre>*_js</code> helpers is not recommended</h5>
-<p>The <code translate="no" v-pre>*_js</code> helpers are tightly coupled with the javascript code, so any partial overriding on one side would be quite fragile
-and might break in a next release.</p>
+<p>The <code translate="no" v-pre>*_js</code> helpers are tightly coupled with the JavaScript code, so any partial overriding on one side would be quite fragile and might break in future releases.</p>
         </div>
     </div>
 </div>
@@ -722,8 +724,8 @@ and might break in a next release.</p>
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-08-05T19:59:53" title="2026-08-05" data-absolute-label="Last updated on 2026-08-05" data-absolute-label-html="Last updated on 2026-08-05" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-08-05
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-10-03T12:20:21" title="2026-10-03" data-absolute-label="Last updated on 2026-10-03" data-absolute-label-html="Last updated on 2026-10-03" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-10-03
                     </time>
                 </div>
 

@@ -13,10 +13,10 @@
 [!button corners="pill" variant="info" icon="play-24" text="Check it out with `bundle exec pagy demo`"](/sandbox/playground/#demo)
 :::
 
-The `limit_tag_js` allows the user to select any arbitrary limit per page, up to the `:client_limit` option. It raises an `OptionError` exception if the `:client_limit` is not truthy.
+The `limit_tag_js` allows the user to select any arbitrary limit per page, up to the `:client_limit` option. It raises a `Pagy::OptionError` exception if the `:client_limit` is not truthy.
 
 !!!warning
-It works with all paginators but `:keyset`
+It works with all paginators but `:keyset`.
 !!!
 
 === :icon-tools:&nbsp; Usage
@@ -36,11 +36,11 @@ require 'pagy/console'
 => true
 
 >> puts @pagy.limit_tag_js(client_limit: 100)
-<span class="pagy limit-tag-js" data-pagy="WyJzaiIsNDEsIi9wYXRoP2V4YW1wbGU9MTIzJnBhZ2U9UCAiXQ=="><label>Show <input name="limit" type="number" min="1" max="" value="20" style="padding: 0; text-align: center; width: 3rem;"><a style="display: none;">#</a> items per page</label></span>
+<span class="pagy limit-tag-js" data-pagy="WyJsdGoiLDQxLCIvcGF0aD9leGFtcGxlPTEyMyZwYWdlPVAgIiwiUCAiLCJMICJd"><label>Show <input name="limit" type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"><a style="display: none;">#</a> items per page</label></span>
 => nil
 
 >> puts @pagy.limit_tag_js(client_limit: 100, id: 'my-elector', item_name: 'Products')
-<span id="my-elector" class="pagy limit-tag-js" data-pagy="WyJzaiIsNDEsIi9wYXRoP2V4YW1wbGU9MTIzJnBhZ2U9UCAiXQ=="><label>Show <input name="limit" type="number" min="1" max="" value="20" style="padding: 0; text-align: center; width: 3rem;"><a style="display: none;">#</a> Products per page</label></span>
+<span id="my-elector" class="pagy limit-tag-js" data-pagy="WyJsdGoiLDQxLCIvcGF0aD9leGFtcGxlPTEyMyZwYWdlPVAgIiwiUCAiLCJMICJd"><label>Show <input name="limit" type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"><a style="display: none;">#</a> Products per page</label></span>
 => nil
 ```
 
@@ -56,7 +56,7 @@ require 'pagy/console'
 : URL fragment string.
 
 `querify: tweak`
-: Set it to a `Lambda` to directly edit the passed string-keyed params hash itself. Its result is ignored.
+: Set it to a `lambda` to directly edit the passed string-keyed params hash itself. Its result is ignored.
   ```ruby
   tweak = ->(q) { q.except!('not_useful').merge!('custom' => 'useful') }
   ```
@@ -66,4 +66,5 @@ require 'pagy/console'
 !!!danger Overriding `*_js` helpers is not recommended
 The `*_js` helpers are tightly coupled with the JavaScript code, so any partial overriding on one side would be quite fragile and might break in future releases.
 !!!
+
 ===
