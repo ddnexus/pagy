@@ -4,19 +4,19 @@
 #    Showcase the Keynav pagination with independent instances
 #
 # DOC
-#    https://ddnexus.github.io/pagy/playground/#keyset-apps
+#    https://ddnexus.github.io/pagy/sandbox/playground/#keysets
 #
 # BIN HELP
 #    pagy -h
 #
 # DEV USAGE
-#    pagy clone keynav
-#    pagy ./keynav.ru
+#    pagy clone keynav+root_key
+#    pagy ./keynav+root_key.ru
 #
 # URL
 #    http://127.0.0.1:8000
 
-VERSION = '43.6.3'
+VERSION = '43.7.0'
 
 if VERSION != Pagy::VERSION
   Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")
@@ -35,7 +35,7 @@ end
 # Sinatra setup
 require 'sinatra/base'
 # Sinatra application
-class PagyKeynav < Sinatra::Base
+class PagyKeynavRootKey < Sinatra::Base
   include Pagy::Method
 
   get('/javascripts/:file') do
@@ -132,7 +132,7 @@ class PagyKeynav < Sinatra::Base
   template :main do
     <<~ERB
       <div class="main-content">
-        <h1>Pagy Keynav App</h1>
+        <h1>Pagy Keynav (root_key) App</h1>
         <p>Self-contained, standalone app usable to easily reproduce any Keynav related pagy issue
         with ActiveRecord sets.</p>
         <p>The panels below show how to use the <code>:root_key</code> option for independent instances in the same request.</p>
@@ -313,4 +313,4 @@ data.each_line(chomp: true) do |pet|
 end
 Pet.insert_all(pets)
 
-run PagyKeynav
+run PagyKeynavRootKey

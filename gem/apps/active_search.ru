@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
 # DESCRIPTION
-#    Reproduce Rails-related issues
+#    Showcase the ActiveSearch pagination (active and passive modes)
 #
 # DOC
-#    https://ddnexus.github.io/pagy/sandbox/playground/#rails
+#    https://ddnexus.github.io/pagy/sandbox/playground/#active-search
 #
 # BIN HELP
 #    pagy -h
 #
 # DEV USAGE
-#    pagy clone rails
-#    pagy ./rails.ru
+#    pagy clone active_search
+#    pagy ./active_search.ru
 #
 # URL
 #    http://127.0.0.1:8000
@@ -30,32 +30,41 @@ gemfile(!Pagy::ROOT.join('pagy.gemspec').exist?) do
   gem 'puma'
   gem 'rails', '~> 8.1'
   gem 'sqlite3'
+  gem 'rails-active_search'
 end
 
 # require 'rails/all'     # too much stuff
 require 'action_controller/railtie'
 require 'active_record'
+require 'rails-active_search'
 
 OUTPUT = Rails.env.showcase? ? IO::NULL : $stdout
 
 # Rails config
-class PagyRails < Rails::Application # :nodoc:
-  config.root = __dir__
+class PagyActiveSearch < Rails::Application # :nodoc:
+  config.root       = __dir__
+  config.eager_load = false
   config.session_store :cookie_store, key: 'cookie_store_key'
   Rails.application.credentials.secret_key_base = 'absolute_secret'
 
   config.logger = Logger.new(OUTPUT)
   Rails.logger  = config.logger
-
-  # Pagy initializer
-  # require Pagy::ROOT.join('apps/enable_rails_page_segment.rb') # Uncomment to test the enable_rails_page_segment.rb override
-
-  routes.draw do
-    root to: 'comments#index'
-    # get '/comments(/:page)', to: 'comments#index'  # Uncomment to test the enable_rails_page_segment.rb override
-    get '/javascripts/:file', to: 'pagy#javascripts', file: /.*/
-  end
 end
+
+# Initialize the app in order to run the ActiveSearch engine initializers
+PagyActiveSearch.initialize!
+
+# Draw the routes after the initialization, which would otherwise reset them
+PagyActiveSearch.routes.draw do
+  root to: 'comments#active'
+  get '/comments/active', to: 'comments#active'
+  get '/comments/passive', to: 'comments#passive'
+  get '/javascripts/:file', to: 'pagy#javascripts', file: /.*/
+end
+
+# ActiveSearch reads its stores only from config/search.yml, so we apply the equivalent config directly.
+# The sqlite adapter uses the ActiveRecord connection, so it takes no connection options.
+ActiveSearch.configuration.apply_store_config(adapter: :sqlite)
 
 # Activerecord initializer
 ActiveRecord::Base.logger = Logger.new(OUTPUT)
@@ -69,17 +78,52 @@ ActiveRecord::Schema.define do
     t.string :body
     t.integer :post_id
   end
+
+  # ActiveSearch sqlite documents: a table for the filterable fields and an FTS5 table for the text fields
+  create_table :post_documents, force: true do |t|
+    t.string :post_id, null: false, index: { unique: true }
+  end
+  create_virtual_table :post_documents_fts, :fts5, [:title]
+
+  create_table :comment_documents, force: true do |t|
+    t.string :comment_id, null: false, index: { unique: true }
+    t.integer :post_id
+  end
+  create_virtual_table :comment_documents_fts, :fts5, [:body]
 end
 
+class ApplicationRecord < ActiveRecord::Base
+  primary_abstract_class
+end
+
+# ActiveSearch document models (one per index)
+class PostDocument < ApplicationRecord; end
+class CommentDocument < ApplicationRecord; end
+
 # Models
-class Post < ActiveRecord::Base # :nodoc:
+class Post < ApplicationRecord # :nodoc:
+  extend Pagy::Search
+
   has_many :comments
+  has_search async: false
 end
 
 # :nodoc:
 
-class Comment < ActiveRecord::Base # :nodoc:
+class Comment < ApplicationRecord # :nodoc:
+  extend Pagy::Search
+
   belongs_to :post
+  has_search async: false
+end
+
+ActiveSearch.define_index(:posts) do
+  text :title
+end
+
+ActiveSearch.define_index(:comments) do
+  text :body
+  integer :post_id
 end
 
 # :nodoc:
@@ -101,8 +145,19 @@ class CommentsController < ActionController::Base # :nodoc:
   include Rails.application.routes.url_helpers
   include Pagy::Method
 
-  def index
-    @pagy, @comments = pagy(:offset, Comment.all, limit: 10, client_limit: 100)
+  def active
+    search = Comment.pagy_search(params[:q])
+    @pagy, @comments = pagy(:rails_active_search, search, limit: 10, client_limit: 100)
+    # Reload the page in the network tab of the Chrome Inspector to check
+    # response.headers.merge!(@pagy.headers_hash)
+    render inline: TEMPLATE
+  end
+
+  def passive
+    limit     = [params[:limit].to_i, 10].max.clamp(..100)
+    page      = [params[:page].to_i, 1].max
+    @comments = Comment.search(params[:q]).limit(limit).offset(limit * (page - 1)).results
+    @pagy     = pagy(:rails_active_search, @comments, client_limit: 100)
     # Reload the page in the network tab of the Chrome Inspector to check
     # response.headers.merge!(@pagy.headers_hash)
     render inline: TEMPLATE
@@ -121,13 +176,13 @@ class PagyController < ActionController::Base
   end
 end
 
-run PagyRails
+run PagyActiveSearch
 
 TEMPLATE = <<~ERB
   <!DOCTYPE html>
   <html lang="en">
     <head>
-      <title>Pagy Rails App</title>
+      <title>Pagy ActiveSearch App</title>
       <script src="/javascripts/pagy.js"></script>
       <script>
         window.addEventListener("load", Pagy.init);
@@ -172,7 +227,7 @@ TEMPLATE = <<~ERB
     <body>
 
       <div class="main-content">
-        <h1>Pagy Rails App</h1>
+        <h1>Pagy ActiveSearch App</h1>
         <p> Self-contained, standalone Rails app usable to easily reproduce any rails related pagy issue.</p>
 
         <h2>Versions</h2>
@@ -183,7 +238,19 @@ TEMPLATE = <<~ERB
           <li>Pagy:  <%== Pagy::VERSION %></li>
         </ul>
 
-        <h3>Collection</h3>
+        <h3>Active Collection</h3>
+        <%= form_with url:  { controller: 'comments', action: 'active' }, method: :get, local: true do |form| %>
+          <%= form.text_field :q, value: params[:q], placeholder: "Search..." %>
+          <%= form.submit "Search" %>
+        <% end %>
+
+        <h3>Passive Collection</h3>
+        <%= form_with url:  { controller: 'comments', action: 'passive' }, method: :get, local: true do |form| %>
+          <%= form.text_field :q, value: params[:q], placeholder: "Search..." %>
+          <%= form.submit "Search" %>
+        <% end %>
+
+
         <div id="records" class="collection">
         <% @comments.each do |comment| %>
           <p style="margin: 0;"><%= comment.body %></p>

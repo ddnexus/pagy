@@ -1,3 +1,3 @@
 !!!warning
-{{ $.what | object.default "It" }} works with all paginators but `:keyset`
+{{ $.what | object.default "It" }} works with all paginators but `:keyset`.
 !!!

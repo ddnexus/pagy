@@ -9,6 +9,7 @@ describe 'Pagy#urls_hash' do
       attr_accessor :previous, :next, :count, :last
 
       def initialize(vars = {})
+        @options  = vars[:options] || {}
         @previous = vars[:previous]
         @next     = vars[:next]
         @count    = vars[:count]
@@ -64,5 +65,13 @@ describe 'Pagy#urls_hash' do
 
     _(hash.keys).wont_include :last
     _(hash[:next]).must_equal "https://example.com/3"
+  end
+
+  it 'uses the :prev key with jsonapi: true' do
+    pagy = pagy_class.new(previous: 1, next: 3, count: 100, last: 5, options: { jsonapi: true })
+    hash = pagy.urls_hash
+
+    _(hash.keys).must_equal %i[first prev next last]
+    _(hash[:prev]).must_equal "https://example.com/1"
   end
 end

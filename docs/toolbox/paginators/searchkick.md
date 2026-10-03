@@ -10,7 +10,7 @@ order: 30
 
 ---
 
-`:searchkick` is a [SEARCH](/guides/choose-right/#search) paginator for  `Searchkick::Results` objects.
+`:searchkick` is a [SEARCH](/guides/choose-right/#search) paginator for `Searchkick` search results.
 
 === :icon-list-ordered:&nbsp; Setup
 
@@ -23,7 +23,7 @@ Searchkick.extend Pagy::Search
 +++ Active mode
 
 !!!success Pagy searches and paginates
-Use the `pagy_search` method instead of the `search` method.
+You use the `pagy_search` method in place of the `search` method.
 !!!
 
 ```ruby Model
@@ -33,12 +33,12 @@ extend Pagy::Search
 ```ruby Controller
 # Single model
 search = Article.pagy_search(params[:q])
-# Multi models
-search = Searchkick.pagy_search(params[:q], models: [Article, Categories])
+# Multiple models
+search = Searchkick.pagy_search(params[:q], models: [Article, Category])
 # Paginate it
 @pagy, @response = pagy(:searchkick, search, **options)
 
-# IMPORTANT: If the elasticsearch max_result_window is != 10_000, ensure to sync it with pagy
+# IMPORTANT: If the Elasticsearch max_result_window is != 10_000, sync it with pagy
 @pagy, @response = pagy(:searchkick, search, max_result_window: 1_000, ...)
 ```
 
@@ -50,28 +50,27 @@ Pagy creates its object out of your result.
 
 ```ruby Controller
 # Standard results (already paginated)
-@results = Article.search('*', page: 1, per_page: 10, ...)
+@results = Article.search(params[:q], page: 1, per_page: 10, ...)
 # Get the pagy object out of it
 @pagy = pagy(:searchkick, @results, **options)
 
-# IMPORTANT: If the elasticsearch max_result_window is != 10_000, ensure to sync it with pagy
-@pagy, @response = pagy(:searchkick, search, max_result_window: 1_000, ...)
+# IMPORTANT: If the Elasticsearch max_result_window is != 10_000, sync it with pagy
+@pagy = pagy(:searchkick, @results, max_result_window: 1_000, ...)
 ```
 
 +++
 
 !!!
-Search paginators don't query a DB, but use the same positional technique as [:offset](offset.md) paginators, with shared options and readers.
+Search paginators use the same positional technique as [:offset](offset.md) paginators, with shared options and readers.
 !!!
 
 ==- :icon-sliders:&nbsp; Options
 
 `max_result_window: 1_000`
-: Sync the actual elasticsearch max_result_window with pagy
- to get pagination working properly (default `10_000`).
+: Set it to the actual `max_result_window` applied by Elasticsearch, to get an accurate pagination count (default `10_000`).
 
 `search_method: :my_search`
-: Customize the name of the `searchkick` method to use (default `:search`).
+: Customize the name of the `Searchkick` search method to use in active mode (default `:search`).
 
 {{ include "options/paginator" }}
 

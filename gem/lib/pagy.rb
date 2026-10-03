@@ -9,7 +9,7 @@ require_relative 'pagy/toolbox/helpers/loaders'
 
 # Top superclass
 class Pagy
-  VERSION     = '43.6.3'
+  VERSION     = '43.7.0'
   ROOT        = Pathname.new(__dir__).parent.freeze
   DEFAULT     = { limit: 20, limit_key: 'limit', page_key: 'page' }.freeze
   PAGE_TOKEN  = EscapedValue.new('P ')
@@ -24,6 +24,7 @@ class Pagy
   autoload :Calendar,           path.join('classes/calendar/calendar')
   autoload :Offset,             path.join('classes/offset/offset')
   autoload :Search,             path.join('classes/offset/search')
+  autoload :RailsActiveSearch,  path.join('classes/offset/search')
   autoload :ElasticsearchRails, path.join('classes/offset/search')
   autoload :Meilisearch,        path.join('classes/offset/search')
   autoload :Searchkick,         path.join('classes/offset/search')

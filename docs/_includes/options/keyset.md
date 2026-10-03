@@ -6,11 +6,11 @@
 
 `pre_serialize: serialize`
 : Set it to a `lambda` that receives the `keyset_attributes` hash. Modify this hash directly to customize the serialization of specific values (e.g., to preserve `Time` object precision). The lambda's return value is ignored.
-  ```ruby
-  serialize = lambda do |attributes|
-    # Convert it to a string matching the stored value/format in SQLite DB
-    attributes[:created_at] = attributes[:created_at].strftime('%F %T.%6N')
-  end
-  ```
+    ```ruby
+    serialize = lambda do |attributes|
+      # Convert it to a string matching the stored value/format in SQLite DB
+      attributes[:created_at] = attributes[:created_at].strftime('%F %T.%6N')
+    end
+    ```
 
 {{ include "paginator" }}

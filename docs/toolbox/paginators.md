@@ -8,6 +8,8 @@ order: 90
 
 ## ✳&nbsp;&nbsp;Paginators
 
+---
+
 ||| The `pagy` Method
 
 The `pagy` method provides a common interface to all paginators. Include it where you are going to paginate a collection _(usually in ApplicationController)_:
@@ -15,6 +17,7 @@ The `pagy` method provides a common interface to all paginators. Include it wher
 ```ruby
 include Pagy::Method
 ```
+
 You can use it to paginate ANY collection, with ANY technique. For example:
 
 ```ruby
@@ -28,17 +31,17 @@ You can use it to paginate ANY collection, with ANY technique. For example:
 - `@records` are the records belonging to the requested page.
 
 !!!info
-The `pagy` method expects to find the rack request at `self.request`, however, you can also use pagy [outside controllers or views](/guides/how-to/#use-pagy-outside-controllers-or-views), or pass your own `:request` option.
+The `pagy` method expects to find the rack request at `self.request`; however, you can also use pagy [outside controllers or views](/guides/how-to/#use-pagy-outside-controllers-or-views), or pass your own `:request` option.
 !!!
 
 |||
 
 ### Paginators
 
-!!!tip Read also the [Choose Right](/guides/choose-right.md) Guide to ensure good performance and smooth workflow.
+!!!tip Also read the [Choose Right](/guides/choose-right.md) guide to ensure good performance and a smooth workflow.
 !!!
 
-The `paginators` are symbolic names of different pagination types/contexts (e.g., `:offset`, `:keyset`, `countless`, etc.). You pass the name to the `pagy` method and pagy will internally instantiate and handle the appropriate paginator class.
+The `paginators` are symbolic names of different pagination types/contexts (e.g., `:offset`, `:keyset`, `:countless`, etc.). You pass the name to the `pagy` method and pagy will internally instantiate and handle the appropriate paginator class.
 
 !!!warning Avoid instantiating Pagy classes directly
 Instantiate paginator classes only if the documentation explicitly suggests it.

@@ -14,10 +14,13 @@ include:
   - "/gem/stylesheets/pagy.css"
   - "/gem/stylesheets/pagy-tailwind.css"
 
+exclude:
+  - "/CLAUDE.md"
+
 branding:
   title: Pagy
   logo: assets/images/pagy-the-frog.png
-  label: 43.6.3
+  label: 43.7.0
   colors:
     label:
       text: "#ffffff"

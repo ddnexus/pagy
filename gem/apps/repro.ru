@@ -4,7 +4,7 @@
 #    Reproduce generic/simple issues
 #
 # DOC
-#    https://ddnexus.github.io/pagy/playground/#repro-app
+#    https://ddnexus.github.io/pagy/sandbox/playground/#repro
 #
 # BIN HELP
 #    pagy -h
@@ -16,7 +16,7 @@
 # URL
 #    http://127.0.0.1:8000
 
-VERSION = '43.6.3'
+VERSION = '43.7.0'
 
 if VERSION != Pagy::VERSION
   Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")

@@ -10,7 +10,7 @@ order: 80
 
 ---
 
-!!!tip Add the `oj` gem to your gemfile
+!!!tip Add the `oj` gem to your Gemfile
 It is not a requirement, but if present, the pagy `JSON` generation will be faster.
 !!!
 
@@ -20,7 +20,7 @@ It is not a requirement, but if present, the pagy `JSON` generation will be fast
 
 +++ pagy.mjs
 
-!!!success Good for apps **with** a minifier _(Sprockets, builers, ...)_
+!!!success Good for apps **with** a minifier _(Sprockets, builders, ...)_
 !!!
 
 Make `Pagy` available in your JavaScript environment with...

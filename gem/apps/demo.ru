@@ -4,7 +4,7 @@
 #    Showcase all the helpers and styles
 #
 # DOC
-#    https://ddnexus.github.io/pagy/playground/#demo-app
+#    https://ddnexus.github.io/pagy/sandbox/playground/#demo
 #
 # BIN HELP
 #    pagy -h
@@ -19,7 +19,7 @@
 # URL
 #    http://127.0.0.1:8000
 
-VERSION = '43.6.3'
+VERSION = '43.7.0'
 
 if VERSION != Pagy::VERSION
   Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")

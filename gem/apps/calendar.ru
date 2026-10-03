@@ -4,7 +4,7 @@
 #    Showcase the calendar; reproduce related issues
 #
 # DOC
-#    https://ddnexus.github.io/pagy/playground/#5-calendar-app
+#    https://ddnexus.github.io/pagy/sandbox/playground/#calendar
 #
 # BIN HELP
 #    pagy -h
@@ -16,7 +16,7 @@
 # URL
 #    http://127.0.0.1:8000
 
-VERSION = '43.6.3'
+VERSION = '43.7.0'
 
 if VERSION != Pagy::VERSION
   Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")
@@ -45,6 +45,10 @@ require 'sinatra/base'
 # Sinatra application
 class PagyCalendar < Sinatra::Base
   include Pagy::Method
+
+  # Serve one request at a time: concurrent requests calling the groupdate SQLite function
+  # on the shared in-memory database deadlock the server
+  use Rack::Lock
 
   if ENV['E2E_TEST']
     get('/assets/:file') do

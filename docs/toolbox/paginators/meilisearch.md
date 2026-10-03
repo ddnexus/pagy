@@ -10,7 +10,7 @@ order: 40
 
 ---
 
-`:meilisearch` is a [SEARCH](/guides/choose-right/#search) paginator designed for `Meilisearch` results.
+`:meilisearch` is a [SEARCH](/guides/choose-right/#search) paginator for `Meilisearch` search results.
 
 === :icon-tools:&nbsp; Usage
 
@@ -33,15 +33,15 @@ search = Article.pagy_search(params[:q]).results
 @pagy, @response = pagy(:meilisearch, search, **options)
 ```
 
-+++ Passive Mode
-!!!success You search and paginate
++++ Passive mode
 
+!!!success You search and paginate
 Pagy creates its object out of your result.
 !!!
 
 ```ruby Controller
 # Standard results (already paginated)
-@results = Model.ms_search(nil, hits_per_page: 10, page: 10, **options)
+@results = Article.ms_search(params[:q], hits_per_page: 10, page: 10, ...)
 # Get the pagy object out of it
 @pagy    = pagy(:meilisearch, @results, **options)
 ```
@@ -49,13 +49,13 @@ Pagy creates its object out of your result.
 +++
 
 !!!
-Search paginators don't query a DB, but use the same positional technique as [:offset](offset.md) paginators, with shared options and readers.
+Search paginators use the same positional technique as [:offset](offset.md) paginators, with shared options and readers.
 !!!
 
 ==- :icon-sliders:&nbsp; Options
 
 `search_method: :my_search`
-: Customize the name of the `meilisearch` method to use (default `:ms_search`).
+: Customize the name of the `Meilisearch` search method to use in active mode (default `:ms_search`).
 
 {{ include "options/paginator" }}
 

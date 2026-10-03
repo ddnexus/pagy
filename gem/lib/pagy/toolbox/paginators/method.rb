@@ -11,6 +11,7 @@ class Pagy
                  calendar:            :CalendarPaginator,
                  elasticsearch_rails: :ElasticsearchRailsPaginator,
                  meilisearch:         :MeilisearchPaginator,
+                 rails_active_search: :RailsActiveSearchPaginator,
                  searchkick:          :SearchkickPaginator,
                  typesense_rails:     :TypesenseRailsPaginator }.freeze
 

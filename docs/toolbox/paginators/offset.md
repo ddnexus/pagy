@@ -14,8 +14,8 @@ order: 100
 
 It uses the complete [OFFSET](/guides/choose-right/#offset) pagination technique, which triggers two SQL queries per request:
 
-- a `COUNT` query to get the count
-- an `OFFSET` + `LIMIT` query to get the records
+- a `COUNT` query to get the count;
+- an `OFFSET` + `LIMIT` query to get the records.
 
 It **fully** supports all the helpers and navigators.
 
@@ -29,7 +29,7 @@ The [:countish](countish) paginator offers identical UI features, but it's up to
 @pagy, @records = pagy(:offset, collection, **options)
 ```
 
-- `@pagy` is the pagination instance. It provides the [readers](/toolbox/paginators/offset/#readers) and the [helpers](../helpers) to use in your code.
+- `@pagy` is the pagination instance. It provides the [readers](#readers) and the [helpers](../helpers) to use in your code.
 - `@records` represents the paginated collection of records for the page (lazy-loaded records).
 
 ==- :icon-sliders:&nbsp; Options

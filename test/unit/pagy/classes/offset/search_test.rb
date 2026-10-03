@@ -4,20 +4,30 @@ require 'unit/test_helper'
 
 describe 'Pagy::Search Specs' do
   describe 'Arguments' do
-    it 'collects method calls via method_missing' do
-      args = Pagy::Search::Arguments.new
-      args.foo
-      args.bar(1, 2)
+    it 'records the chained calls via method_missing' do
+      block = proc {}
+      args  = Pagy::Search::Arguments.new(:model, ['term'], {}, nil)
+      chain = args.foo.bar(1, 2, key: 3, &block)
 
-      # Array#push appends arguments
-      # .foo -> method_missing(:foo) -> push(:foo)
-      # .bar(1,2) -> method_missing(:bar, 1, 2) -> push(:bar, 1, 2)
-      _(args).must_equal [:foo, :bar, 1, 2]
+      _(chain).must_be_same_as args
+      _(args.to_ary).must_equal [:model, ['term'], {}, nil, [[:foo, [], {}, nil], [:bar, [1, 2], { key: 3 }, block]]]
     end
 
-    it 'responds to missing methods' do
+    it 'records the methods of Array and Enumerable' do
+      args = Pagy::Search::Arguments.new(:model, [], {}, nil)
+      args.filter(status: 'published').reject(archived: true).sort(:title)
+
+      _(args.to_ary.last).must_equal [[:filter, [], { status: 'published' }, nil],
+                                      [:reject, [], { archived: true }, nil],
+                                      [:sort, [:title], {}, nil]]
+    end
+
+    it 'responds to missing methods except the conversion methods' do
       args = Pagy::Search::Arguments.new
       _(args.respond_to?(:any_method)).must_equal true
+      _(args.respond_to?(:to_str)).must_equal false
+      _(args.respond_to?(:to_ary)).must_equal true
+      _(proc { args.to_str }).must_raise NoMethodError
     end
   end
 
@@ -34,7 +44,7 @@ describe 'Pagy::Search Specs' do
       args = obj.pagy_search('term', a: 1, &block)
 
       _(args).must_be_kind_of Pagy::Search::Arguments
-      _(args).must_equal [obj, ['term'], { a: 1 }, block]
+      _(args.to_ary).must_equal [obj, ['term'], { a: 1 }, block, []]
     end
 
     it 'allows chaining' do
@@ -42,7 +52,7 @@ describe 'Pagy::Search Specs' do
       # chain calls: pagy_search(...).page(2).limit(10)
       args = obj.pagy_search('term').page(2).limit(10)
 
-      _(args).must_equal [obj, ['term'], {}, nil, :page, 2, :limit, 10]
+      _(args.to_ary).must_equal [obj, ['term'], {}, nil, [[:page, [2], {}, nil], [:limit, [10], {}, nil]]]
     end
   end
 end

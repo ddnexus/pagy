@@ -1,8 +1,8 @@
 `offset`
-: The OFFSET used in the SQL query
+: The OFFSET used in the SQL query.
 
 `count`
-: The collection count
+: The collection count.
 
 `from`
 : The position in the collection of the first item on the page. _(Different Pagy classes may use different value types for it)._
@@ -17,6 +17,6 @@
 : The number of pages.
 
 `previous`
-: The previous page
+: The previous page.
 
 {{ include "paginator-readers" }}

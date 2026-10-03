@@ -25,13 +25,13 @@ It is straightforward to understand and set up and very versatile for the UI, bu
 ==- Shortcomings
 
 - **DB Performance**
-  - Counting records might be quite expensive in terms of execution time and DB load. The standard OFFSET pagination causes the DB to count twice per page: one for the total records and another for the records to skip.
+  - Counting records might be quite expensive in terms of execution time and DB load. The standard OFFSET pagination causes the DB to count twice per page: once for the total records and another for the records to skip.
 - **Data Shift**
   - If records are created or deleted during browsing, the calculated OFFSET may become inconsistent. The user may see previous records again or miss records entirely.
   - Notice that querying the precise count for each page DOES NOT fix the data-shift problem.
 
 !!!tip For better DB performance with OFFSET...
-- Use the [:countish](#offset-paginators) or [:countless](#offset-paginators) paginators to improve the DB performance **up-to two times**.
+- Use the [:countish](#offset-paginators) or [:countless](#offset-paginators) paginators to improve the DB performance **up to two times**.
 - [Paginate only MAX records](/guides/how-to/#paginate-only-max-records) when possible.
 !!!
 
@@ -61,7 +61,7 @@ It is straightforward to understand and set up and very versatile for the UI, bu
 
 >>> :icon-key:&nbsp;&nbsp;KEYSET {#keyset}
 
-The KEYSET pagination technique allows the fastest and lighter DB performance. It does not count the (ordered) collection (which makes it faster), nor calculates any numeric page pointers in advance (which avoids the data-shift during browsing). It just uses the values in the last record of the page to retrieve the next page.
+The KEYSET pagination technique allows the fastest and lightest DB performance. It does not count the (ordered) collection (which makes it faster), nor does it calculate any numeric page pointers in advance (which avoids the data-shift during browsing). It just uses the values in the last record of the page to retrieve the next page.
 
 ==- Shortcomings
 
@@ -73,21 +73,21 @@ The KEYSET pagination technique allows the fastest and lighter DB performance. I
 Use the [:keynav_js](#keyset-paginators) paginator.
 !!!
 
-==- Paginators&nbsp;&nbsp;[!badge variant="contrast" size="xs" corners="pill" text="2"]  {#keyset-paginators}
+==- Paginators&nbsp;&nbsp;[!badge variant="contrast" size="xs" corners="pill" text="2"] {#keyset-paginators}
 
 <br/>
 
 {.list-icon}
-- [:icon-key:&nbsp;:keyset](/toolbox/paginators/keyset)
-  - :icon-check-circle: __Best for__: API, Infinite Scroll
-  - :icon-thumbsup:     __Pros__: Fastest paginator, no data-shift, fastest single query per page
-  - :icon-thumbsdown:   __Cons__: Very limited UI support, appropriate DB indices required
+- [:icon-key:&nbsp;:keyset](/toolbox/paginators/keyset.md)
+  - :icon-check-circle: **Best for**: API, Infinite Scroll
+  - :icon-thumbsup:     **Pros**: Fastest paginator, no data-shift, fastest single query per page
+  - :icon-thumbsdown:   **Cons**: Very limited UI support, appropriate DB indices required
 
 {.list-icon}
-- [:icon-key:&nbsp;:keynav_js](/toolbox/paginators/keynav_js)
-  - :icon-check-circle: __Best for__: Standard App (Large Data)
-  - :icon-thumbsup:     __Pros__: All the pros of `:keyset`+`:countless`, numeric pages
-  - :icon-thumbsdown:   __Cons__: Same as `:countless`, requires [JavaScript Support](/resources/javascript) (or it falls back to the `:countless` paginator)
+- [:icon-key:&nbsp;:keynav_js](/toolbox/paginators/keynav_js.md)
+  - :icon-check-circle: **Best for**: Standard App (Large Data)
+  - :icon-thumbsup:     **Pros**: All the pros of `:keyset`+`:countless`, numeric pages
+  - :icon-thumbsdown:   **Cons**: Same as `:countless`, requires [JavaScript Support](/resources/javascript) (or it falls back to the `:countless` paginator)
 
 ===
 
@@ -98,8 +98,8 @@ This hybrid technique filters by a specific time period (Year, Month, Day, etc.)
 ==- Paginator&nbsp;&nbsp;[!badge variant="contrast" size="xs" corners="pill" text="1"]
 
 {.list-icon}
-- [:icon-calendar: :calendar](/toolbox/paginators/calendar.md)
-  - :icon-check-circle: **Best for**: Time-Series, Logs collections
+- [:icon-calendar:&nbsp;:calendar](/toolbox/paginators/calendar.md)
+  - :icon-check-circle: **Best for**: Time-series, log collections
   - :icon-thumbsup:     **Pros**: Natural navigation for date-based data
   - :icon-thumbsdown:   **Cons**: The setup for the UI is more involved
 
@@ -107,20 +107,21 @@ This hybrid technique filters by a specific time period (Year, Month, Day, etc.)
 
 >>> :icon-search:&nbsp;&nbsp;SEARCH {#search}
 
-Pagy supports `ElasticsearchRails`, `Meilisearch`, `Searchkick`, and `TypesenseRails`.
+Pagy supports `ElasticsearchRails`, `Meilisearch`, `ActiveSearch`, `Searchkick`, and `TypesenseRails`.
 
 The search paginators get the count, limit and results provided by the search platform. Pagy acts as an interface to these underlying gems, using the [OFFSET](#offset) technique, without its shortcomings.
 
-==- Paginators&nbsp;&nbsp;[!badge variant="contrast" size="xs" corners="pill" text="4"]
+==- Paginators&nbsp;&nbsp;[!badge variant="contrast" size="xs" corners="pill" text="5"]
 
 {.list-icon}
 - [:icon-search:&nbsp;:elasticsearch_rails](/toolbox/paginators/elasticsearch_rails.md)&nbsp;&nbsp;
 [:icon-search:&nbsp;:meilisearch](/toolbox/paginators/meilisearch.md)&nbsp;&nbsp;
+[:icon-search:&nbsp;:rails_active_search](/toolbox/paginators/rails_active_search.md)&nbsp;&nbsp;
 [:icon-search:&nbsp;:searchkick](/toolbox/paginators/searchkick.md)&nbsp;&nbsp;
 [:icon-search:&nbsp;:typesense_rails](/toolbox/paginators/typesense_rails.md)
   - :icon-check-circle: **Best for**: Search Results
   - :icon-thumbsup:     **Pros**: Leverages the engine's native response
-  - :icon-thumbsdown:   **Cons**: None (simple interface with search platform gems)
+  - :icon-thumbsdown:   **Cons**: None (simple interface with the search platform gems)
 
 ===
 

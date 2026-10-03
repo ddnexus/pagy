@@ -14,6 +14,7 @@ describe 'Pagy#headers_hash' do
         @limit   = vars[:limit]
         @last    = vars[:last]
         @count   = vars[:count]
+        @urls    = vars[:urls] || { 'first' => 'http://example.com/1', 'next' => 'http://example.com/3' }
       end
 
       def calendar?
@@ -22,7 +23,7 @@ describe 'Pagy#headers_hash' do
 
       # Mock urls_hash to avoid dependency on Linkable/UrlsHash logic
       def urls_hash(absolute: false, **_opts) # rubocop:disable Lint/UnusedMethodArgument
-        { 'first' => 'http://example.com/1', 'next' => 'http://example.com/3' }
+        @urls
       end
 
       public :headers_hash
@@ -38,6 +39,13 @@ describe 'Pagy#headers_hash' do
     _(headers['page-limit']).must_equal '20'
     _(headers['total-pages']).must_equal '5'
     _(headers['total-count']).must_equal '100'
+  end
+
+  it 'uses rel="prev" for the :previous url' do
+    pagy    = pagy_class.new(page: 2, urls: { first: 'http://example.com/1', previous: 'http://example.com/1' })
+    headers = pagy.headers_hash
+
+    _(headers['link']).must_equal '<http://example.com/1>; rel="first", <http://example.com/1>; rel="prev"'
   end
 
   it 'omits limit if calendar' do

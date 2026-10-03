@@ -7,34 +7,67 @@ require 'pagy/modules/b64'
 module E2eFunctions
   LOCATION_RE = %r{\Ahttp://#{Regexp.escape(E2eApp::IP)}:808\d/?}
 
-  # Allow enough time to render or change location, without slower down faster cases
-  # A test may go into timeout if the location is not designed to change
-  def poll_until
-    timeout = 0.5
-    start   = Time.now
+  # Injected into each new document: it identifies the document and tracks its load, DOM changes and unload
+  PAGE_TRACKER = <<~JS
+    (() => {
+      const e2e = window.__e2e = { id: Math.random().toString(36).slice(2), loaded: false, changed: performance.now() };
+      // Registered before the page listeners, so the timeout runs after all of them (e.g. Pagy.init)
+      addEventListener('load', () => setTimeout(() => { e2e.loaded = true; e2e.changed = performance.now() }));
+      // Fired synchronously at the start of a navigation, i.e. before the click/type/blur command returns
+      addEventListener('beforeunload', () => { e2e.leaving = true });
+      new MutationObserver(() => { e2e.changed = performance.now() })
+        .observe(document, { subtree: true, childList: true, attributes: true, characterData: true });
+    })();
+  JS
+  SETTLE_MS    = 200 # without DOM changes after load (e.g. series_nav_js rendering, keynav augmentation)
+  PAGE_TIMEOUT = 15
 
-    while (Time.now - start) < timeout
-      break if yield
+  # Run the action, then wait for the page to be loaded and settled.
+  # If the action started a navigation, wait for the new document: the old one doesn't count.
+  def settle
+    from = page_id
+    yield
+    from = nil unless navigating?(from)
+    deadline = Time.now + PAGE_TIMEOUT
+    until page_settled?(from)
+      flunk "Timeout waiting for the page to settle at #{browser.current_url}" if Time.now > deadline
 
-      sleep 0.1
+      sleep 0.05
     end
   end
 
-  def goto_and_hold(id, path: '/', query: '')
-    current_url = browser.current_url
-    browser.goto("#{path}#{query}")
-    poll_until { current_url != browser.current_url }
+  def page_id = browser.evaluate('window.__e2e?.id')
 
+  def navigating?(from)
+    browser.evaluate('window.__e2e?.id !== arguments[0] || !!window.__e2e?.leaving', from)
+  rescue Ferrum::Error # the old document is already gone
+    true
+  end
+
+  def page_settled?(from)
+    id, loaded, quiet = browser.evaluate('window.__e2e && [__e2e.id, __e2e.loaded, performance.now() - __e2e.changed]')
+    id != from && loaded && quiet >= SETTLE_MS
+  rescue Ferrum::Error # evaluated while navigating
+    false
+  end
+
+  def visit(url) = settle { browser.goto(url) }
+
+  def goto_and_hold(id, path: '/', query: '')
+    visit("#{path}#{query}")
     hold_location
     hold_html(id)
   end
 
-  def interact_and_hold(*ids)
-    current_url = browser.current_url
-    yield
-    poll_until { current_url != browser.current_url }
+  def interact_and_hold(*ids, &)
+    settle(&)
     hold_location
     hold_html(*ids)
+  end
+
+  # Click the first link in id containing text (if any), and hold
+  def click_and_hold(id, text)
+    interact_and_hold(id) { browser.at_css(id).at_xpath(".//a[contains(text(), '#{text}')]")&.click }
   end
 
   def hold_location
@@ -86,8 +119,7 @@ module E2eFunctions
     # Hold content for each id
     ids.each do |id|
       element = browser.at_css(id)
-
-      poll_until { element.text.strip != "" }
+      refute_nil element, "Element #{id} not found at #{browser.current_url}"
 
       html = element.property('outerHTML')
       # Remove data-pagy and href attributes to avoid flakiness
@@ -105,7 +137,7 @@ module E2eFunctions
     if rjs
       [600, 700].each do |width|
         browser.resize(width: width, height: 1000)
-        browser.reload
+        settle { browser.reload }
 
         interact_with_nav(id, pages)
       end
@@ -116,35 +148,16 @@ module E2eFunctions
   end
 
   def interact_with_nav(id, pages)
-    # Check Next
-    interact_and_hold(id) do
-      sleep 0.3
-      browser.at_css(id).at_xpath(".//a[contains(text(), '>')]").click
-    end
-
-    # Check specific pages
-    pages.each do |page|
-      interact_and_hold(id) do
-        # &. because not all pages may be present depending on which page we were before
-        browser.at_css(id).at_xpath(".//a[contains(text(), '#{page}')]")&.click
-      end
-    end
-
-    # Check Previous
-    interact_and_hold(id) do
-      browser.at_css(id).at_xpath(".//a[contains(text(), '<')]").click
-    end
+    click_and_hold(id, '>')                          # Check Next
+    pages.each { |page| click_and_hold(id, page) }   # Check specific pages (not all present in any page)
+    click_and_hold(id, '<')                          # Check Previous
   end
 
   def check_input_nav(id, path: '/')
     input_selector = "#{id} input"
 
     goto_and_hold(id, path:)
-    sleep 0.3
-    # Check Next
-    interact_and_hold(id) do
-      browser.at_css(id).at_xpath(".//a[contains(text(), '>')]").click
-    end
+    click_and_hold(id, '>') # Check Next
 
     # Test valid entry
     # Re-finding node after potential navigation/reload
@@ -178,10 +191,7 @@ module E2eFunctions
       browser.at_css(input_selector).focus.type(:down, :enter)
     end
 
-    # Check Previous
-    interact_and_hold(id) do
-      browser.at_css(id).at_xpath(".//a[contains(text(), '<')]").click
-    end
+    click_and_hold(id, '<') # Check Previous
   end
 
   def check_info(id, **)
@@ -195,8 +205,6 @@ module E2eFunctions
     [1, 36, 50].each do |page|
       goto_and_hold(id, path:, query: "?page=#{page}")
 
-      current_url = browser.current_url
-
       if page == 36
         arr = %w[abcd 1000]
         arr.each do |invalid|
@@ -204,7 +212,7 @@ module E2eFunctions
           input.focus.type(invalid, :enter)
 
           refute_equal invalid, input.value
-          assert_match(/page=#{page}/, current_url)
+          assert_match(/page=#{page}/, browser.current_url)
         end
       end
       interact_and_hold(id) do
@@ -219,7 +227,7 @@ module E2eFunctions
         browser.at_css(input_selector).focus.type(:up, :enter)
       end
 
-      browser.goto("#{path}?page=2&limit=10")
+      visit("#{path}?page=2&limit=10")
       assert_match(/page=2/, browser.current_url)
 
       interact_and_hold(id) do
