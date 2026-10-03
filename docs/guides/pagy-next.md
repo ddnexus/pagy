@@ -19,8 +19,8 @@ nav:
 Just edit the Gemfile...
 
 ```diff Gemfile (diff)
-- gem 'pagy', '~> 43.6'                         # MINOR version restriction
-+ gem 'pagy', '~> 43.6.3', require: 'pagy/next' # PATCH version restriction + pagy/next entry point
+- gem 'pagy', '~> 43.7'                         # MINOR version restriction
++ gem 'pagy', '~> 43.7.0', require: 'pagy/next' # PATCH version restriction + pagy/next entry point
 ```
 
 As an alternative _(without Gemfile changes)_, ensure the environment variable `PAGY_NEXT=true` is set BEFORE `pagy` is required.
@@ -30,7 +30,7 @@ $ PAGY_NEXT=true irb
 >> require 'pagy'
 => true
 >> Pagy::VERSION
-=> "43.6.3.next"
+=> "43.7.0.next"
 ```
 
 !!!
@@ -47,7 +47,7 @@ This "early access" mode is lighter and faster, but **requires immediate adheren
 
 !!!warning Adjust the gem update policy!
 
-- Use a stricter PATCH version restriction (e.g., replace `~> 43.6` with `~> 43.6.3`).
+- Use a stricter PATCH version restriction (e.g., replace `~> 43.7` with `~> 43.7.0`).
 - Follow the [Deprecations Instructions](/changelog/#deprecations) after `bundle update` involving MINOR or MAJOR releases.
 !!!
 
