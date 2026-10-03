@@ -16,7 +16,7 @@ expect the old/deprecated functionality to be supported ONLY during the current 
 
 ### Recommended Version Constraint
 
-Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.6.60`):
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.6.3`):
 
 The `gem 'pagy', '~> 43.0'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.
