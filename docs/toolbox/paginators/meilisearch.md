@@ -41,7 +41,7 @@ Pagy creates its object out of your result.
 
 ```ruby Controller
 # Standard results (already paginated)
-@results = Model.ms_search(nil, hits_per_page: 10, page: 10, **options)
+@results = Article.ms_search(params[:q], hits_per_page: 10, page: 10, ...)
 # Get the pagy object out of it
 @pagy    = pagy(:meilisearch, @results, **options)
 ```

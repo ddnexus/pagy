@@ -34,11 +34,12 @@ It **fully** supports all the helpers and navigators.
 ==- :icon-sliders:&nbsp; Options
 
 `ttl: 180`
-: A positive number of seconds enables recounting. Set to `nil` (falsey) queries the DB for the COUNT only once, and reuse it for all the other pages served.
+: A positive number of seconds enables recounting. Setting it to `nil` (falsey) queries the DB for the COUNT only once, and reuses it for all the other pages served.
 
   !!!warning Recounting/TTL
   - Recounting gets the user more precise info and minimizes the page differences with lengthy page-browsing and abundant DB insertions/deletions.
-    - It does not fix the OFFSET-intrinsic "drift" of records on active DB insertions/deletions.
+  - It does not fix the OFFSET-intrinsic data-shift of records on active DB insertions/deletions.
+  !!!
 
 {{ include "options/offset" }}
 

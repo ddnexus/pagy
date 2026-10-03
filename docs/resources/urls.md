@@ -13,12 +13,12 @@ order: 50
 Pagy uses the current URL as the base to generate all the other page URLs. It retrieves it from the `self.request` when available, or from a `:request` option set to a `Rack::Request` or a simple Hash of `:base_url`, `:path`, `:params` _(and a pagy `:cookie` value in case of Keynav pagination)_.
 
 !!!primary
-Pagy generates its specialized URLs ~20x faster than generic helpers like rails' `url_for`. When possible, it just replaces the page value, without recalculating every part of a URL.
+Pagy generates its specialized URLs ~20x faster than generic helpers like Rails' `url_for`. When possible, it just replaces the page value, without recalculating every part of a URL.
 !!!
 
 ==- :icon-sliders:&nbsp; Options
 
-These options give you full control over the URL composition for [paginator](/toolbox/paginators.md) and [helper](/toolbox/helpers.md):
+These options give you full control over the URL composition for [paginators](/toolbox/paginators.md) and [helpers](/toolbox/helpers.md):
 
 :::
 
@@ -39,8 +39,9 @@ Pagy ignores the `request.params` because they are modified differently by diffe
 !!!
 
 !!!danger No symbolic params!
-The params that Pagy handles composing its URLs, are **strictly string-keyed**. That's how every gem/framework handles URLs, because it avoids the maintenance and performance overhead of converting symbols back and forth during URL composition.
+The params that Pagy handles when composing its URLs are **strictly string-keyed**. That's how every gem/framework handles URLs, because it avoids the maintenance and performance overhead of converting symbols back and forth during URL composition.
 !!!
+
 ==- :icon-download:&nbsp; GET
 
 Serving paginated collections is a retrieval action that does not modify data; therefore, it should rely on GET requests. Since most applications follow this standard, Pagy parses and produces GET URLs out of the box.
@@ -51,10 +52,10 @@ If you must use POST to retrieve paginated collections, you should build your ow
 
 ==- :icon-stop:&nbsp; Dynamic Segments
 
-Routers (like the Rails' one) allow defining parameters as part of the path (e.g., `/items/:page`)...
+Routers (like the Rails router) allow defining parameters as part of the path (e.g., `/items/:page`)...
 
 !!!danger
-Pagy does not support, nor recommends dynamic path segments for the `:page` param.
+Pagy neither supports nor recommends dynamic path segments for the `:page` param.
 !!!
 
 #### Why?
@@ -67,7 +68,7 @@ The Cons are overwhelming.
 - • Aesthetically cleaner URLs
 - • Possibility to cache single pages at the edge _(rarely necessary)_
 
-#####  :icon-thumbsdown: Cons
+##### :icon-thumbsdown:&nbsp; Cons
 
 {.list-icon}
 - **RFC 3986 Compliance**
@@ -92,7 +93,7 @@ It is not an officially supported or tested feature, as it bypasses the standard
 **Use it at your own risk and extra maintenance!**
 !!!
 
-:::code source="../gem/apps/enable_rails_page_segment.rb" title="enable_rails_page_segment.rb":::
+:::code source="/gem/apps/enable_rails_page_segment.rb" title="enable_rails_page_segment.rb":::
 
 :::
 ===

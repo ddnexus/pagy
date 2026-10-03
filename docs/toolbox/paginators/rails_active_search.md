@@ -16,6 +16,8 @@ nav:
 
 `:rails_active_search` is a [SEARCH](/guides/choose-right/#search) paginator for `ActiveSearch` (`rails-active_search` gem) search results.
 
+{{ include "snippets/run-app" app: "active_search" anchor: "active-search" }}
+
 === :icon-tools:&nbsp; Usage
 
 +++ Active mode
@@ -29,7 +31,7 @@ extend Pagy::Search
 ```
 
 ```ruby Controller
-# Get the collection (ActiveSearch keyword arguments, e.g. index: or scope:, are passed through)
+# Get the collection (ActiveSearch keyword arguments, e.g., index: or scope:, are passed through)
 search = Article.pagy_search(params[:q])
 # Paginate it: @results is the ActiveSearch::Results of the page
 @pagy, @results = pagy(:rails_active_search, search, **options)

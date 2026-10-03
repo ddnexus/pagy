@@ -8,7 +8,7 @@
 : URL fragment string.
 
 `querify: tweak`
-: Set it to a `Lambda` to directly edit the passed string-keyed params hash itself. Its result is ignored.
+: Set it to a `lambda` to directly edit the passed string-keyed params hash itself. Its result is ignored.
   ```ruby
   tweak = ->(q) { q.except!('not_useful').merge!('custom' => 'useful') }
   ```

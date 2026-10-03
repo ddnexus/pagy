@@ -47,7 +47,7 @@ Pagy creates its object out of your result.
 
 ```ruby Controller
 # Standard results (already paginated)
-@results = Model.search(params[:q], to_query, { per_page: 10, page: 10, ...})
+@results = Article.search(params[:q], to_query, { per_page: 10, page: 10, ... })
 # Get the pagy object out of it
 @pagy    = pagy(:typesense_rails, @results, **options)
 ```

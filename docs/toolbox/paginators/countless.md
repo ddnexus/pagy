@@ -10,10 +10,10 @@ order: 90
 
 ---
 
-`:countless` is an [OFFSET](/guides/choose-right/#offset) paginator that avoids the `COUNT` query, reducing the number of queries per page in half. UI helpers are working with some limitations (see [Caveat](#caveat)).
+`:countless` is an [OFFSET](/guides/choose-right/#offset) paginator that avoids the `COUNT` query, cutting the number of queries per page in half. UI helpers work with some limitations (see [Caveat](#caveat)).
 
 !!!warning Consider using the `:keynav_js` paginator when possible!
-The [:keynav_js](keynav_js.md) offers identical UI features but utilizes the faster [KEYSET](/guides/choose-right) pagination.
+The [:keynav_js](keynav_js.md) offers identical UI features but uses the faster [KEYSET](/guides/choose-right/#keyset) pagination.
 !!!
 
 === :icon-tools:&nbsp; Usage

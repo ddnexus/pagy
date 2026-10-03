@@ -16,17 +16,16 @@ It uses a much faster pagination technique than [OFFSET](/guides/choose-right/#o
 
 {{ include "snippets/run-app" app: "keyset" anchor: "keysets" }}
 
-
 ==- :icon-blocked:&nbsp; Constraints
 
-!!!tip When an UI is needed, and using [KEYSET Pagination](/guides/choose-right/#keyset) is possible, use the [:keynav_js](keynav_js) paginator to overcome almost all these constraints.
+!!!tip When a UI is needed, and using [KEYSET Pagination](/guides/choose-right/#keyset) is possible, use the [:keynav_js](keynav_js) paginator to overcome almost all these constraints.
 !!!
 
 !!!warning With any KEYSET pagination technique...
 - You can only paginate from one page to the next: no jumping to arbitrary pages.
 - The `set` must be `uniquely ordered`. Add the primary key (usually `:id`) as the last order column to be sure.
-- You should add the most suitable DB index for your ordering strategy, or it there will be no performance gain.
-  !!!
+- You should add the most suitable DB index for your ordering strategy, or there will be no performance gain.
+!!!
 
 !!!warning With Pagy `:keyset`...
 You don't know the `previous` and the `last` page; you only know the `first` and `next` pages.
@@ -65,7 +64,7 @@ set = collection.order(:last_name).order(:first_name).order(:id)
 >>> Ensure that your table has the appropriate index AND index type
 
 {{ include "snippets/mini-step" step: "1" }} The index must include the exact same columns and ordering direction of your set.<br>
-{{ include "snippets/mini-step" step: "2" }} The index type must minimize the data scan (e.g. B-tree, B+ Tree, ...)
+{{ include "snippets/mini-step" step: "2" }} The index type must minimize the data scan (e.g., B-tree, B+ tree, ...).
 
 >>>
 
@@ -101,10 +100,10 @@ There are a few peculiar aspects of the keyset pagination technique that you mig
 : The technique to fetch each page by incrementing the `offset` from the collection start.<br/>It requires two queries per page (or only one if you use [countless](countless.md)): it's slow toward the end of big tables.<br/>It can be used for a rich frontend: it's the classic pagy pagination.
 
 `keyset pagination`
-: The technique to fetch the next page starting after the latest fetched record in a `uniquely ordered` collection.<br/>It requires only one query per page (without OFFSET). if properly indexed, it's the fastest technique, regardless of the table size and position. Supports only infinite pagination, with no other frontend helpers.
+: The technique to fetch the next page starting after the latest fetched record in a `uniquely ordered` collection.<br/>It requires only one query per page (without OFFSET). If properly indexed, it's the fastest technique, regardless of the table size and position. Supports only infinite pagination, with no other frontend helpers.
 
 `keynav pagination`
-: The pagy exclusive technique to use `keyset` pagination, providing **nearly complete** UI support. The fastest technique with UI capabilities.
+: The Pagy-exclusive technique to use `keyset` pagination, providing **nearly complete** UI support. The fastest technique with UI capabilities.
 
 `uniquely ordered`
 : The property of a `set`, when the concatenation of the values of the ordered columns is unique for each record. It is similar to a composite primary `key` for the ordered table, but dynamically based on the `keyset` columns.
@@ -125,7 +124,7 @@ There are a few peculiar aspects of the keyset pagination technique that you mig
 : The array of `cutoff`s of the known pagination state, used only by [keynav](keynav_js) to keep track of the visited pages during the navigation. They are cached in the `sessionStorage` of the client.
 
 `page`
-: The current `page`, i.e. the page of records beginning after the `cutoff` of the previous page. Also the `:page` option, which is set to the `cutoff` of the previous page
+: The current `page`, i.e. the page of records beginning after the `cutoff` of the previous page. Also the `:page` option, which is set to the `cutoff` of the previous page.
 
 `next`
 : The next `page`, i.e. the page of records beginning after the `cutoff`. Also the `cutoff` value returned by the `next` method.
@@ -147,7 +146,7 @@ At this point, it's the exact same first page pulled with OFFSET pagination, how
 
 So we read the `id` of the last one, which is the value `X` in our example... and that is the `cutoff` value of the first page. It can be described as: _"the point up to the value `X` in the `id` column"_.
 
-Notice that this is not like saying _"up to the record `X`"_. It's important to understand that a `cutoff` refers just to a cutoff value of a column (or the values of multiple column, in case of multi-columns keysets).
+Notice that this is not like saying _"up to the record `X`"_. It's important to understand that a `cutoff` refers just to a cutoff value of a column (or the values of multiple columns, in case of multi-column keysets).
 
 Indeed, that very record could be deleted right after we read it, and our `cutoff-X` will still be the valid truth that we paginated the `set` up to the "X" value, cutting any further record off the `page`...
 
@@ -170,11 +169,11 @@ beginning of set >[· · · · · · · · · X]· · · · · · · · · Y]· 
 When we pull the `next` page from the `cutoff-Y`, we find only the remaining 9 records, which means that it's the _"last page"_, which naturally ends with the end of the `set`, so it doesn't have any `cutoff` value to separate it from further records.
 
 !!! Keynotes
-- A `cutoff` identifies a "cutoff value", for a `page` in the `set`. It is not a record, nor a reference to it.
+- A `cutoff` identifies a "cutoff value" for a `page` in the `set`. It is not a record, nor a reference to it.
 - Its value is extracted from the `keyset attributes values` array of the last record of the `page`, converted to JSON, and encoded as a Base64 URL-safe string, for easy use in URLs.
   - The `:keyset` paginator embeds it in the request URL; the `:keynav_js` paginator caches it on the client `sessionStorage`.
-- All the `page`s but the last, end with the `cutoff`.
-- All the `page`s but the first, begin AFTER the `cutoff` of the previous `page`.
+- All the `page`s but the last end with the `cutoff`.
+- All the `page`s but the first begin AFTER the `cutoff` of the previous `page`.
 !!!
 
 ==- :icon-stop:&nbsp; Troubleshooting
@@ -202,13 +201,13 @@ Product.order(:name, :production_date, :id)
 
 ||| :icon-question: Encoding issue
 
-The generic `to_json` method used to encode the `page` may lose some information when decoded
+The generic `to_json` method used to encode the `page` may lose some information when decoded.
 
 ||| :icon-check-circle: Solution
 
-- Check the actual executed DB query and the actual stored value
-- Identify the column that has a format that doesn't match with the keyset
-- Override the encoding with the [:pre_serialize](#options) option
+- Check the actual executed DB query and the actual stored value.
+- Identify the column that has a format that doesn't match the keyset.
+- Override the encoding with the [:pre_serialize](#options) option.
 
 |||
 
@@ -216,13 +215,13 @@ The generic `to_json` method used to encode the `page` may lose some information
 
 ||| :icon-question: Index issue
 
-The index has the wrong order, or it's the wrong type
+The index has the wrong order, or it's the wrong type.
 
 ||| :icon-check-circle: Solutions
 
-- Ensure that the index reflects exactly the columns sequence and order of your keyset
-- Use a B-tree or B+ Tree index. Use SQL `EXPLAIN ANALYZE` or similar tool to confirm no table scan is performed.
-- With a same-direction order keysets, enabling the `:tuple_comparison` option may help if your DB supports it.
+- Ensure that the index reflects exactly the column sequence and order of your keyset.
+- Use a B-tree or B+ Tree index. Use SQL `EXPLAIN ANALYZE` or a similar tool to confirm no table scan is performed.
+- With same-direction keysets, enabling the `:tuple_comparison` option may help if your DB supports it.
 
 |||
 

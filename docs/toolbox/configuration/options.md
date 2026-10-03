@@ -14,25 +14,25 @@ order: 100
 The actual options are documented alongside the [paginators](../paginators) and [helpers](../helpers) that consume them.
 !!!
 
-Pagy implements a hierarchical options system working at three different levels, regardless where the option gets consumed.
+Pagy implements a hierarchical options system working at three different levels, regardless of where the option gets consumed.
 
 ### Levels
 
 >>> Global
 
-- For example `Pagy::OPTIONS[:limit] = 10` set in the [pagy.rb initializer](initializer).
+- For example, `Pagy::OPTIONS[:limit] = 10` set in the [pagy.rb initializer](initializer).
 - The `Pagy::OPTIONS` are inherited by all paginators and helpers.
-- **Good practice**: Ensure to use `Pagy::OPTIONS.freeze` after you set your `Pagy::OPTIONS`.
+- **Good practice**: Call `Pagy::OPTIONS.freeze` after you set your `Pagy::OPTIONS`.
 
 >>> Paginator
 
-- For example `pagy(paginator, collection, **options)`.
+- For example, `pagy(paginator, collection, **options)`.
 - The options passed to a paginator override the `Pagy::OPTIONS` for that instance.
 - They are also inherited by all the helpers used by the instance.
 
 >>> Helper
 
-- For example `@pagy.series_nav(**options)`.
+- For example, `@pagy.series_nav(**options)`.
 - The options passed to a helper override the options affecting its output.
 - The options consumed upstream are not affected.
 

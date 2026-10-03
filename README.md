@@ -14,7 +14,7 @@
 
 <h2><img src="assets/images/pagy-the-frog.png" alt="💚" width="75" style="vertical-align:bottom;"><br/>Pagy the leaping gem!</h2>
 
-_Agnostic pagination in plain ruby_
+_Agnostic pagination in plain Ruby_
 
 <br/>
 
@@ -75,7 +75,7 @@ Take a look at the [Examples](#-examples) for a quick overview of the new API.
 ### ... and now it's more, with less.
 
 - Compatible with all environments and collection types
-- It can use OFFSET, COUNTISH, COUNTLESS, KEYSET, KEYNAV, SEARCH, CALENDAR, pagination techniques
+- It can use OFFSET, COUNTISH, COUNTLESS, KEYSET, KEYNAV, SEARCH, and CALENDAR pagination techniques
 - It supports server-side rendering or faster client-side rendering for popular CSS frameworks and APIs
 - It autoloads ONLY the methods that you actually use, with almost zero configuration
 - It boasts 100% test coverage for Ruby, HTML, and JavaScript end-to-end (E2E)
@@ -124,7 +124,7 @@ render json: { pagy: @pagy.data_hash, data: @records }
 
 ##### Search server pagination
 
-Available paginators: `:elasticsearch_rails`, `:meilisearch`, `:searchkick`, `:typesense_rails`
+Available paginators: `:elasticsearch_rails`, `:meilisearch`, `:rails_active_search`, `:searchkick`, `:typesense_rails`
 
 ```rb
 # Extend your models (e.g. application_record.rb)
@@ -170,7 +170,7 @@ Default `:pagy`, `:bootstrap` and `:bulma` styles shown.
 <img src="assets/images/bulma-series_nav.png" width="342"><br/>
 
 ```erb
-<!-- Render client side nav bar helpers with different html and styles -->
+<!-- Render server side nav bar helpers with different html and styles -->
 <%== @pagy.series_nav %> <!-- pagy style -->
 <%== @pagy.series_nav(:bootstrap) %>
 <%== @pagy.series_nav(:bulma) %>
@@ -180,7 +180,7 @@ Default `:pagy`, `:bootstrap` and `:bulma` styles shown.
 
 ```rb
 # pagy.rb initializer
-javascript_dir = Rails.root.join('app/javascripts')
+javascript_dir = Rails.root.join('app/javascript')
 Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
 ```
 
@@ -207,7 +207,7 @@ Dynamically fills the container width.
 <img src="assets/images/pagy-input_nav_js.png" width="229"><br/>
 
 ```erb
-<!-- Render client side nav inout helpers with different html and styles -->
+<!-- Render client side nav input helpers with different html and styles -->
 <%== @pagy.input_nav_js %> <!-- pagy style -->
 <%== @pagy.input_nav_js(:bootstrap) %>
 <%== @pagy.input_nav_js(:bulma) %>
@@ -258,7 +258,7 @@ See [Dev Tools](https://ddnexus.github.io/pagy/sandbox/dev_tools/)
 
 Special thanks to:
 
-- [JetBrains](http://www.jetbrains.com?from=https%3A%2F%2Fgithub.com%2Fddnexus%2Fpagy) for their free OpenSource license.
+- [JetBrains](http://www.jetbrains.com?from=https%3A%2F%2Fgithub.com%2Fddnexus%2Fpagy) for their free open source license.
 - [Ben Koshy](https://github.com/benkoshy) for his contributions to the documentation, user support and interaction with external frameworks.
 - [The Stargazers](https://github.com/ddnexus/pagy/stargazers) for their support.
 

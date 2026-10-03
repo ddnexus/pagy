@@ -10,7 +10,7 @@ order: 60
 
 ---
 
-Since version `7.0.0`, Pagy introduced a consistent set of ARIA-compliant attributes across all its helpers.
+Pagy provides a consistent set of ARIA-compliant attributes across all its helpers.
 
 === :icon-code:&nbsp; Nav helpers
 
@@ -19,7 +19,7 @@ Pagy provides a customizable `aria-label` for the root element of its helpers. I
 The default string for the `aria-label` of the root element is "Page" / "Pages" (translated and pluralized according to the total number of pages). This is arguably a better description of the navigation content than just "Pagination" (which is also difficult to translate in certain languages).
 
 !!!danger Don't rely on ARIA default with multiple nav elements!
-The `nav` elements are `landmark  roles` and should be distinctly labeled.
+The `nav` elements are `landmark roles` and should be distinctly labeled.
 !!!
 
 !!!success Override the default `:aria_label`s for multiple navs with distinct values!

@@ -14,16 +14,16 @@ nav:
 
 ---
 
-`:keynav_js` is a fast [KEYSET](/guides/choose-right/#keyset) paginator that supports the UI. It's a pagy exclusive technique.
+`:keynav_js` is a fast [KEYSET](/guides/choose-right/#keyset) paginator that supports the UI. It's a Pagy-exclusive technique.
 
-The Keynav pagination adds the numeric variables (`@page`, `@last`, `@previous`, `@next`, `@in`) to its instances, supporting their usage with the UI. It does so by transparently exchanging data with the client, that stores the state of the pagination.
+The Keynav pagination adds the numeric variables (`@page`, `@last`, `@previous`, `@next`, `@in`) to its instances, supporting their usage with the UI. It does so by transparently exchanging data with the client, which stores the state of the pagination.
 
 If something goes wrong on the client side, it falls back to the [:countless](countless.md) paginator seamlessly.
 
 {{ include "snippets/run-app" app: "keynav" anchor: "keysets" }}
 
 !!!warning This documentation extends the [:keyset](keyset.md) documentation.
-It's easier to understand if you familiarize with the [:keyset](keyset.md) docs.
+It's easier to understand if you are familiar with the [:keyset](keyset.md) docs.
 !!!
 
 ==- :icon-list-ordered:&nbsp; Setup
@@ -60,7 +60,7 @@ It's easier to understand if you familiarize with the [:keyset](keyset.md) docs.
 
 {{ include "snippets/keyset-readers" }}
 
-==- :icon-log:&nbsp; In-depth: Cutoffs Filtering
+==- :icon-log:&nbsp; In Depth: Cutoffs Filtering
 
 Let's take a new look at the diagram of the keyset pagination explained in the [Keyset documentation](keyset#in-depth-cutoffs):
 
@@ -71,7 +71,7 @@ beginning of set >[· · · · · · · · · X]· · · · · · · · · Y]· 
                                    cutoff-X            cutoff-Y
 ```
 
-Let's suppose that we navigate till page #3 (i.e., the last page), and we click on the link for page #2. We have stored the `cutoff-X`, so we can pull the 10 records after `cutoff-X` again as we did the first time... but are we sure that we would get the same results?
+Let's suppose that we navigate to page #3 (i.e., the last page), and we click on the link for page #2. We have stored the `cutoff-X`, so we can pull the 10 records after `cutoff-X` again as we did the first time... but are we sure that we would get the same results?
 
 Let's suppose that the database just changed: 1 record was inserted before `cutoff-X`, and 2 records were deleted after `cutoff-X`...
 
@@ -82,15 +82,15 @@ beginning of set >[· · · · · · · · · · X]· · · · · · · Y]· · 
                                    cutoff-X        cutoff-Y
 ```
 
-At this point pulling 10 records from the `cutoff-X` would get also the first 2 records from page 3, if you navigate on page 3, you will pull the same 2 records again also for page #3.
+At this point, pulling 10 records from the `cutoff-X` would also get the first 2 records of page #3, and if you then navigate to page #3, you would pull the same 2 records again.
 
-Indeed, not only the results have changed, but the cutoffs appear to have also shifted their absolute position in the set. In reality, the cutoffs have the same value as before, so they maintained their relative position in the set. However, now there is a different number of records falling into the same pages, which is totally consistent with the changes, but possibly unexpected. That is... if you have the mindset of OFFSET pagination, where the pages are split by number of records (absolute position) and not by their position relative to the records in the set.
+Indeed, not only have the results changed, but the cutoffs appear to have also shifted their absolute position in the set. In reality, the cutoffs have the same value as before, so they maintained their relative position in the set. However, now there is a different number of records falling into the same pages, which is totally consistent with the changes, but possibly unexpected. That is... if you have the mindset of OFFSET pagination, where the pages are split by number of records (absolute position) and not by their position relative to the records in the set.
 
 !!!
-The main goal of pagination is to split the results into manageable chunks and ensure it is as fast and accurate as possible, so the variation in the page size seems not relevant to that. However, should it be relevant to you, you can always use the classic OFFSET pagination and accept its slowness and inaccuracy.
+The main goal of pagination is to split the results into manageable chunks and ensure it is as fast and accurate as possible, so the variation in the page size doesn't seem relevant to that. However, should it be relevant to you, you can always use the classic OFFSET pagination and accept its slowness and inaccuracy.
 !!!
 
-Pagy keynav doesn't use the LIMIT to pull the records of already visited pages. Instead, it replaces the LIMIT with the same filter used for the `beginning` of the page, but it just compounds it with the negated filter of the `ending` of the page.
+Pagy keynav doesn't use the LIMIT to pull the records of already visited pages. Instead, it replaces the LIMIT with the same filter used for the `beginning` of the page, and compounds it with the negated filter of the `ending` of the page.
 
 For example, the filtering of the page could be logically described like:
 
