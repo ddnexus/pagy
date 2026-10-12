@@ -37,7 +37,7 @@ class Pagy
     alias pages last
 
     def records(collection)
-      collection.offset(@offset).limit(@limit)
+      collection.offset([@offset, @count].compact.min).limit(@limit)
     end
 
     protected

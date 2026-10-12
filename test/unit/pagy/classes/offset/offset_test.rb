@@ -78,6 +78,22 @@ describe 'Pagy::Offset Specs' do
       collection.verify
       intermediate.verify
     end
+
+    it 'never offsets past the count on an out-of-range page' do
+      # A tampered page can be so large that its offset overflows the database integer
+      collection = Minitest::Mock.new
+      pagy = pagy_class.new(count: 100, page: 10**25, limit: 10)
+
+      intermediate = Minitest::Mock.new
+      intermediate.expect :limit, :result, [10]
+
+      collection.expect :offset, intermediate, [100]
+
+      _(pagy.records(collection)).must_equal :result
+
+      collection.verify
+      intermediate.verify
+    end
   end
 
   describe 'out of range handling' do
