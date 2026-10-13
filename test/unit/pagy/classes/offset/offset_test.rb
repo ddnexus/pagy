@@ -78,6 +78,29 @@ describe 'Pagy::Offset Specs' do
       collection.verify
       intermediate.verify
     end
+
+    it 'never offsets past the count on an out-of-range page' do
+      # A tampered page can be so large that its offset overflows the database integer
+      collection = Minitest::Mock.new
+      pagy = pagy_class.new(count: 100, page: 10**25, limit: 10)
+
+      intermediate = Minitest::Mock.new
+      intermediate.expect :limit, :result, [10]
+
+      collection.expect :offset, intermediate, [100]
+
+      _(pagy.records(collection)).must_equal :result
+
+      collection.verify
+      intermediate.verify
+    end
+
+    it 'never offsets past the database limit on an out-of-range page with a huge count' do
+      # A tampered :countish count can be past the database limit too
+      pagy = pagy_class.new(count: 10**40, page: 10**40, limit: 10)
+
+      _(pagy.offset).must_equal Pagy::Offset::MAX_OFFSET
+    end
   end
 
   describe 'out of range handling' do
@@ -96,6 +119,9 @@ describe 'Pagy::Offset Specs' do
       _(pagy.in).must_equal 0
       _(pagy.previous).must_equal 10 # inherits last page
       _(pagy.next).must_be_nil
+
+      # The empty page starts right after the last record, whatever the page
+      _(pagy_class.new(count: 100, page: 12, limit: 10).offset).must_equal 100
     end
   end
 end

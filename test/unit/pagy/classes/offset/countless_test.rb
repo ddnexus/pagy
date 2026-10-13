@@ -107,6 +107,21 @@ describe 'Pagy::Offset::Countless Specs' do
       _(pagy.records(collection)).must_equal :result
       _(pagy.last).must_be_nil
     end
+
+    it 'never offsets past the database limit on a huge page' do
+      # Without a count, the cap at the database limit is all that keeps the offset valid
+      pagy = pagy_class.new(page: 10**25, limit: 10, headless: true)
+      collection = Minitest::Mock.new
+
+      intermediate = Minitest::Mock.new
+      intermediate.expect :limit, :result, [10]
+      collection.expect :offset, intermediate, [Pagy::Offset::MAX_OFFSET]
+
+      _(pagy.records(collection)).must_equal :result
+
+      collection.verify
+      intermediate.verify
+    end
   end
 
   describe 'finalization logic' do
