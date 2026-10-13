@@ -1,16 +1,7 @@
-### Changes in 43.7.0
+### Changes in 43.7.1
 
 <!-- changes_start -->
-- Refactor the Search::Arguments and Searcher classes to allow more flexibility in chaining queres.
-- Fix the non-standard "previous" link relation in headers_hash and JSON:API urls_hash
-  - headers_hash emits the conventional rel="prev" in the link header
-  - urls_hash returns the :prev key with jsonapi: true, as the JSON:API specification requires
-  - urls_hash keeps the :previous key otherwise
-- Fix series_nav_js ignoring the :slots and :compact helper options
-  - The :slots and :compact options passed to the series_nav_js helpers were silently ignored
-  - The :steps option overrides the :slots option, while the :compact option applies to all the steps
-- Fix the playground doc URLs and make the playground apps consistent
-- Add :rails_active_search paginator, test and docs
+- Fix the database error on an out-of-range page with a huge page number (#929)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

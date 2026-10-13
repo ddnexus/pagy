@@ -32,6 +32,15 @@ describe 'Pagy::OffsetPaginator Specs' do
       _(results).must_equal []
     end
 
+    it 'returns empty records on an out-of-range page with a huge page number' do
+      # Ruby indexes an Array with a C long, so the computed offset would raise a RangeError
+      app = MockApp.new(params: { page: '9' * 25 })
+      pagy, results = app.pagy(collection, limit: 5)
+
+      _(pagy.in).must_equal 0
+      _(results).must_equal []
+    end
+
     it 'prioritizes params limit over option limit (when allowed)' do
       # Simulate client requesting limit 5 via params
       app = MockApp.new(params: { page: 1, limit: 5 })

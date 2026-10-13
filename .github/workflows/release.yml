@@ -24,8 +24,8 @@ concurrency:
 
 permissions:
   contents: write
-  actions: write   # dispatch the docs workflow and read CI runs
-  id-token: write  # RubyGems trusted publishing
+  actions: write # dispatch the docs workflow and read CI runs
+  id-token: write # RubyGems trusted publishing
 
 jobs:
   release:
@@ -73,7 +73,7 @@ jobs:
           git merge --no-ff origin/dev -m "Merge branch 'dev'"
 
       - name: Set up ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@v1.329.0
         with:
           ruby-version: '4.0'
 
