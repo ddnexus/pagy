@@ -6,7 +6,8 @@ require_relative '../../modules/abilities/rangeable'
 class Pagy
   # Implements Offset Pagination
   class Offset < Pagy
-    DEFAULT = { page: 1 }.freeze
+    DEFAULT    = { page: 1 }.freeze
+    MAX_OFFSET = (2**63) - 1 # largest OFFSET accepted by SQLite, PostgreSQL and MySQL
 
     autoload :Countless, Pathname.new(__dir__).join('countless')
     autoload :Countish,  Pathname.new(__dir__).join('countish')
@@ -37,7 +38,7 @@ class Pagy
     alias pages last
 
     def records(collection)
-      collection.offset([@offset, @count].compact.min).limit(@limit)
+      collection.offset(@offset).limit(@limit)
     end
 
     protected
@@ -49,12 +50,13 @@ class Pagy
     end
 
     def assign_offset
-      @offset = (@limit * (@page - 1))
+      @offset = [@limit * (@page - 1), MAX_OFFSET].min
     end
 
     # Called by false in_range?
     def assign_empty_page_variables
       @in = @from = @to = 0     # options relative to the actual page
+      @offset   = [@count, MAX_OFFSET].min # the empty page starts right after the last record
       @previous = @last         # @previous relative to the actual page
     end
 
