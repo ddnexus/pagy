@@ -3,9 +3,9 @@ name: API Test
 on:
   workflow_dispatch:
   push:
-    branches: ['**']
+    branches: [ '**' ]
   pull_request:
-    branches: ['**']
+    branches: [ '**' ]
 
 jobs:
   skip_check:
@@ -20,21 +20,8 @@ jobs:
         with:
           concurrent_skipping: 'never'
           skip_after_successful_duplicate: 'true'
-          paths: '[
-            ".github/workflows/api-test.yml",
-            ".simplecov",
-            ".rubocop",
-            "gem/**",
-            "Gemfile.lock",
-            "test/unit/**",
-            "tasks/**"
-            ]'
-          paths_ignore: '[
-            "gem/config/**",
-            "gem/locales/**",
-            "!gem/locales/en.yml",
-            "**/*.md"
-            ]'
+          paths: '[ ".github/workflows/api-test.yml", ".simplecov", ".rubocop", "gem/**", "Gemfile.lock", "test/unit/**", "tasks/**" ]'
+          paths_ignore: '[ "gem/config/**", "gem/locales/**", "!gem/locales/en.yml", "**/*.md" ]'
           do_not_skip: '["workflow_dispatch"]'
 
   api_test:
@@ -44,12 +31,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['3.3', '3.4', '4.0']
+        ruby-version: [ '3.3', '3.4', '4.0' ]
       fail-fast: false
     steps:
       - uses: actions/checkout@v7
       - name: Set up ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@v1.329.0
         with:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically

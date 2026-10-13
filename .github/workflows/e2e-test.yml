@@ -3,9 +3,9 @@ name: E2E Test
 on:
   workflow_dispatch:
   push:
-    branches: ['**']
+    branches: [ '**' ]
   pull_request:
-    branches: ['**']
+    branches: [ '**' ]
 
 jobs:
   skip_check:
@@ -20,19 +20,8 @@ jobs:
         with:
           concurrent_skipping: 'never'
           skip_after_successful_duplicate: 'true'
-          paths: '[
-            ".github/workflows/e2e-test.yml",
-            "gem/**",
-            "test/e2e/**",
-            "Gemfile.lock",
-            "bun.lockb"
-            ]'
-          paths_ignore: '[
-            "gem/config/**",
-            "gem/locales/**",
-            "!gem/locales/en.yml",
-            "**/*.md"
-            ]'
+          paths: '[ ".github/workflows/e2e-test.yml", "gem/**", "test/e2e/**", "Gemfile.lock", "bun.lockb" ]'
+          paths_ignore: '[ "gem/config/**", "gem/locales/**", "!gem/locales/en.yml", "**/*.md" ]'
           do_not_skip: '["workflow_dispatch"]'
 
   e2e_test:
@@ -47,7 +36,7 @@ jobs:
         with:
           chrome-version: latest
       - name: Set up ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@v1.329.0
         with:
           ruby-version: '4.0'
           bundler-cache: true
