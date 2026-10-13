@@ -90,7 +90,7 @@ jobs:
 
       - name: Configure RubyGems credentials (fails before pushing anything if trusted publishing is not set up)
         if: ${{ !inputs.dry_run }}
-        uses: rubygems/configure-rubygems-credentials@v1.0.0
+        uses: rubygems/configure-rubygems-credentials@v2.1.0
 
       - name: Push master and tag
         if: ${{ !inputs.dry_run }}
