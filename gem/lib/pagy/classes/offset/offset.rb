@@ -55,9 +55,9 @@ class Pagy
 
     # Called by false in_range?
     def assign_empty_page_variables
-      @in = @from = @to = 0     # options relative to the actual page
+      @in = @from = @to = 0                # options relative to the actual page
       @offset   = [@count, MAX_OFFSET].min # the empty page starts right after the last record
-      @previous = @last         # @previous relative to the actual page
+      @previous = @last                    # @previous relative to the actual page
     end
 
     prepend Deprecated::Offset if defined?(Deprecated::Offset)
