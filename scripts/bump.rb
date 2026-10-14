@@ -121,6 +121,11 @@ confirm_to('update the "Top 100 contributors"') do
   require_relative 'update_top100'
 end
 
+# Optional update of top projects
+confirm_to('update the "Top Adopters"') do
+  require_relative 'update_top_adopters'
+end
+
 # Optional commit
 confirm_to('commit the changes') do
   system('git add -A')
