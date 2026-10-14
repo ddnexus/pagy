@@ -146,7 +146,7 @@ tiles_dir = ROOT.join(TILES_DIR)
 tiles_dir.mkpath
 tiles_dir.glob('*.svg').each(&:delete)
 wall = top.map do |repo|
-  file = "#{repo['full_name'].tr('/', '-')}.svg"
+  file = "#{repo['full_name'].tr('/', '-').downcase}.svg" # lowercase: retype lowercases the asset names it publishes
   tiles_dir.join(file).write(tile(repo))
   name  = repo['name'].tr('_-', '  ').split.map { |word| word.sub(/^./, &:upcase) }.join(' ') # title case
   title = [CGI.escapeHTML("#{name} ⭐ #{thousands(repo['stargazers_count'])}"),
