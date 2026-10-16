@@ -1,0 +1,26 @@
+# See https://ddnexus.github.io/pagy/resources/i18n
+
+ro:
+  pagy:
+    p11n: 'Romanian'
+    aria_label:
+      nav:
+        one: "Pagină"
+        few: "Pagini"
+        other: "Pagini"  # use the few variant as this word is used as a bare plural without the numeral
+      previous: "Anterioară"
+      next: "Următoare"
+    previous: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name:
+      one: "element"
+      few: "elemente"
+      other: "de elemente"
+    info_tag:
+      no_count: "Pagina %{page} din %{pages}"
+      no_items: "Nu s-au găsit %{item_name}"
+      single_page: "Se afișează %{count} %{item_name}"
+      multiple_pages: "Se afișează %{from}-%{to} din %{count} %{item_name} în total"
+    input_nav_js: "Pagina %{page_input} din %{pages}"
+    limit_tag_js: "Afișează %{limit_input} %{item_name} pe pagină"
