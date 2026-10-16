@@ -10,6 +10,7 @@ class Pagy
       autoload :OneUptoTwoOther, path.join('one_upto_two_other')
       autoload :Other,           path.join('other')
       autoload :Polish,          path.join('polish')
+      autoload :Romanian,        path.join('romanian')
       autoload :WestSlavic,      path.join('west_slavic')
     end
   end
