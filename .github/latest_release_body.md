@@ -1,7 +1,7 @@
-### Changes in 43.7.1
+### Changes in 43.8.0
 
 <!-- changes_start -->
-- Fix the database error on an out-of-range page with a huge page number (#929)
+- Add Romanian localization (#930)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
