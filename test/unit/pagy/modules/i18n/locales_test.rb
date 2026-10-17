@@ -12,6 +12,7 @@ describe 'locales' do
       'OneUptoTwoOther' => %w[one other],
       'Other'           => %w[other],
       'Polish'          => %w[one few many other],
+      'Romanian'        => %w[one few other],
       'WestSlavic'      => %w[one few other] }
   end
 
