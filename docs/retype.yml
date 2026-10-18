@@ -15,7 +15,7 @@ include:
   - "/gem/stylesheets/pagy-tailwind.css"
 
 exclude:
-  - "/CLAUDE.md"
+  - "CLAUDE*.md"
 
 branding:
   title: Pagy
