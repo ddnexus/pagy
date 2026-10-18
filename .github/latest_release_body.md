@@ -1,7 +1,7 @@
-### Changes in 43.8.0
+### Changes in 43.8.1
 
 <!-- changes_start -->
-- Add Romanian localization (#930)
+- Fix Active Record connection checkout in keyset pagination (#931)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

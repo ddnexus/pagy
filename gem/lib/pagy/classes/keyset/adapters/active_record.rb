@@ -16,8 +16,9 @@ class Pagy
         end
 
         def quoted_identifiers(table)
-          connection = @set.connection
-          @keyset.to_h { |column| [column, "#{connection.quote_table_name(table)}.#{connection.quote_column_name(column)}"] }
+          @set.model.connection_pool.with_connection do |connection|
+            @keyset.to_h { |column| [column, "#{connection.quote_table_name(table)}.#{connection.quote_column_name(column)}"] }
+          end
         end
 
         def typecast(attributes)
