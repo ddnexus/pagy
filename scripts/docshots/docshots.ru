@@ -4,7 +4,7 @@
 #    Screenshot tool for the pagy docs.
 #
 # DEV USAGE
-#    pagy docshots
+#    bundle exec ruby scripts/docshots/docshot.rb [OUTPUT_DIR]
 
 # Bundle
 require 'bundler/inline'

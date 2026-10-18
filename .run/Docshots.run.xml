@@ -1,11 +1,11 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Docshots" type="ShConfigurationType" folderName="Tools">
-    <option name="SCRIPT_TEXT" value="./docshots" />
+    <option name="SCRIPT_TEXT" value="bundle exec ruby scripts/docshots/docshot.rb" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="" />
     <option name="SCRIPT_OPTIONS" value="" />
     <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
-    <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/docshots" />
+    <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
     <option name="INTERPRETER_PATH" value="/usr/bin/zsh" />
     <option name="INTERPRETER_OPTIONS" value="" />
