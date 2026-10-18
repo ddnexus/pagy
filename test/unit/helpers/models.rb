@@ -5,6 +5,7 @@ require 'sequel'
 require 'sqlite3'
 
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
+ActiveRecord.permanent_connection_checkout = :disallowed
 Time.zone = 'Etc/UTC'
 
 Sequel.default_timezone = 'Etc/UTC'
