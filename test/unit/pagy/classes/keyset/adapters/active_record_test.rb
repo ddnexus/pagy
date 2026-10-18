@@ -53,6 +53,8 @@ describe 'Pagy::Keyset::Adapters::ActiveRecord Specs' do
   end
 
   describe '#quoted_identifiers' do
+    after { Pet.connection_pool.release_connection }
+
     it 'returns properly quoted identifiers' do
       host.keyset = { name: :asc, animal: :desc }
       quoted = host.send(:quoted_identifiers, 'pets')
@@ -60,6 +62,22 @@ describe 'Pagy::Keyset::Adapters::ActiveRecord Specs' do
       # SQLite usually uses double quotes
       _(quoted[:name]).must_match(/"pets"."name"/)
       _(quoted[:animal]).must_match(/"pets"."animal"/)
+    end
+
+    it 'returns a borrowed connection to the pool' do
+      pool = Pet.connection_pool
+      pool.release_connection
+
+      _(host.send(:quoted_identifiers, 'pets')).must_equal({ name: '"pets"."name"' })
+      refute_predicate pool, :active_connection?
+    end
+
+    it 'preserves an existing connection lease' do
+      pool = Pet.connection_pool
+      connection = pool.lease_connection
+
+      _(host.send(:quoted_identifiers, 'pets')).must_equal({ name: '"pets"."name"' })
+      _(pool.active_connection?).must_be_same_as connection
     end
   end
 
