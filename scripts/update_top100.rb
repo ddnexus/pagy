@@ -6,7 +6,8 @@ require 'net/http'
 require_relative 'scripty'
 include Scripty  # rubocop:disable Style/MixinUsage
 
-# Returns the top 100 contributors (by commits) with their weekly additions/deletions
+# Returns at most 100 contributors (the top ones by commits, bots included) with their weekly additions/deletions,
+# so after excluding dependabot the README section can hold fewer than MAX_COUNT entries
 STATS_URL       = 'https://api.github.com/repos/ddnexus/pagy/stats/contributors'
 COMMITS_URL_FMT = 'https://github.com/ddnexus/pagy/commits?author=%s'
 IMG_WIDTH = '40'
@@ -45,4 +46,4 @@ top100 << "\n"
 replace_section_in_file('README.md', 'top100', top100)
 
 count = [contributors.size, MAX_COUNT].min
-puts %("Top 100 Contributors" README section updated! (#{count}/#{MAX_COUNT}))
+puts %("Top 100 Contributors" README section updated! (listed #{count} contributors))

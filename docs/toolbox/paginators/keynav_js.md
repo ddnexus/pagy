@@ -2,10 +2,6 @@
 label: :keynav_js
 icon: key
 order: 70
-nav:
-  badge:
-    text: "NEW"
-    variant: info
 ---
 
 #

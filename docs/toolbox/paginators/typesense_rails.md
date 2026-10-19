@@ -2,10 +2,6 @@
 label: :typesense_rails
 icon: search
 order: 20
-nav:
-  badge:
-    text: "NEW"
-    variant: info
 ---
 
 #

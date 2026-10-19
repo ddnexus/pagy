@@ -2,10 +2,6 @@
 label: :countish
 icon: move-to-end-24
 order: 95
-nav:
-  badge:
-    text: "NEW"
-    variant: info
 ---
 
 #
