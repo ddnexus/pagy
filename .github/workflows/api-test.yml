@@ -4,29 +4,24 @@ on:
   workflow_dispatch:
   push:
     branches: [ '**' ]
+    paths: &paths
+      - '.github/workflows/api-test.yml'
+      - '.rubocop.yml'
+      - 'Gemfile.lock'
+      - 'gem/**'
+      - '!gem/config/**'
+      - '!gem/locales/**'
+      - 'gem/locales/en.yml'
+      - 'tasks/**'
+      - 'test/**'
+      - '!test/e2e/**'
+      - '!**/*.md'
   pull_request:
     branches: [ '**' ]
+    paths: *paths
 
 jobs:
-  skip_check:
-    name: Skip Check
-    continue-on-error: true
-    runs-on: ubuntu-latest
-    outputs:
-      should_skip: ${{ steps.skip_check.outputs.should_skip }}
-    steps:
-      - id: skip_check
-        uses: fkirc/skip-duplicate-actions@master
-        with:
-          concurrent_skipping: 'never'
-          skip_after_successful_duplicate: 'true'
-          paths: '[ ".github/workflows/api-test.yml", ".simplecov", ".rubocop", "gem/**", "Gemfile.lock", "test/unit/**", "tasks/**" ]'
-          paths_ignore: '[ "gem/config/**", "gem/locales/**", "!gem/locales/en.yml", "**/*.md" ]'
-          do_not_skip: '["workflow_dispatch"]'
-
   api_test:
-    needs: skip_check
-    if: ${{ needs.skip_check.outputs.should_skip != 'true' }}
     name: API ${{ matrix.ruby-version }} Test
     runs-on: ubuntu-latest
     strategy:

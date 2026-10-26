@@ -60,9 +60,13 @@ jobs:
           subject=$(git log -1 --format=%s "$sha")
           [[ "$subject" == "Version $VERSION" ]] || fail "dev HEAD is '$subject', not 'Version $VERSION'"
 
+          # Path-filtered workflows create no run for commits that do not touch their paths,
+          # so check the latest run on dev and require it to be an ancestor of the dev HEAD
           for wf in api-test.yml e2e-test.yml; do
-            conclusion=$(gh run list --commit "$sha" --workflow "$wf" --limit 1 --json conclusion --jq '.[0].conclusion // "missing"')
-            [[ "$conclusion" == "success" ]] || fail "$wf for dev $sha is '$conclusion', not 'success'"
+            read -r conclusion run_sha < <(gh run list --branch dev --workflow "$wf" --limit 1 \
+              --json conclusion,headSha --jq '.[0] // {} | "\(.conclusion | select(. != "") // "missing") \(.headSha // "none")"')
+            [[ "$conclusion" == "success" ]] || fail "$wf latest run on dev ($run_sha) is '$conclusion', not 'success'"
+            git merge-base --is-ancestor "$run_sha" "$sha" || fail "$wf latest run on dev ($run_sha) is not an ancestor of dev HEAD $sha"
           done
           echo "All checks passed for $VERSION ($sha)"
 

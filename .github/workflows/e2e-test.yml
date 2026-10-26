@@ -4,29 +4,24 @@ on:
   workflow_dispatch:
   push:
     branches: [ '**' ]
+    paths: &paths
+      - '.github/workflows/e2e-test.yml'
+      - 'Gemfile.lock'
+      - 'bun.lock'
+      - 'gem/**'
+      - '!gem/config/**'
+      - '!gem/locales/**'
+      - 'gem/locales/en.yml'
+      - 'tasks/**'
+      - 'test/e2e/**'
+      - 'test/test_helper.rb'
+      - '!**/*.md'
   pull_request:
     branches: [ '**' ]
+    paths: *paths
 
 jobs:
-  skip_check:
-    name: Skip Check
-    continue-on-error: true
-    runs-on: ubuntu-latest
-    outputs:
-      should_skip: ${{ steps.skip_check.outputs.should_skip }}
-    steps:
-      - id: skip_check
-        uses: fkirc/skip-duplicate-actions@v5.3.2
-        with:
-          concurrent_skipping: 'never'
-          skip_after_successful_duplicate: 'true'
-          paths: '[ ".github/workflows/e2e-test.yml", "gem/**", "test/e2e/**", "Gemfile.lock", "bun.lockb" ]'
-          paths_ignore: '[ "gem/config/**", "gem/locales/**", "!gem/locales/en.yml", "**/*.md" ]'
-          do_not_skip: '["workflow_dispatch"]'
-
   e2e_test:
-    needs: skip_check
-    if: ${{ needs.skip_check.outputs.should_skip != 'true' }}
     name: E2E Test
     runs-on: ubuntu-latest
     steps:
