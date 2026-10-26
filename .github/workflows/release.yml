@@ -77,7 +77,7 @@ jobs:
           git merge --no-ff origin/dev -m "Merge branch 'dev'"
 
       - name: Set up ruby
-        uses: ruby/setup-ruby@v1.329.0
+        uses: ruby/setup-ruby@v1.334.0
         with:
           ruby-version: '4.0'
 
