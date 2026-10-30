@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'cgi/escape'
 require 'uri'
 
 class Pagy
@@ -31,8 +32,13 @@ class Pagy
         end
       end
 
+      # CGI.escape is several times faster than URI.encode_www_form_component and returns the same bytes,
+      # except for '*' and '~', which are left to URI. URI returns US-ASCII, CGI the input encoding.
       def escape(str)
-        URI.encode_www_form_component(str)
+        bytes = str.to_s.b
+        return URI.encode_www_form_component(bytes) if bytes.match?(/[*~]/)
+
+        CGI.escape(bytes).force_encoding(Encoding::US_ASCII)
       end
     end
 

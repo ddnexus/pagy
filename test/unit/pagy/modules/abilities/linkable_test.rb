@@ -9,6 +9,33 @@ describe 'Pagy::Linkable Specs' do
     it 'escapes strings' do
       _(utils.escape('a b')).must_equal 'a+b'
       _(utils.escape('/?&')).must_equal '%2F%3F%26'
+      _(utils.escape('a*b~c')).must_equal 'a*b%7Ec'
+      _(utils.escape('café')).must_equal 'caf%C3%A9'
+      _(utils.escape(:alice)).must_equal 'alice'
+      _(utils.escape(42)).must_equal '42'
+      _(utils.escape("\xFF".b)).must_equal '%FF'
+    end
+
+    it 'escapes like URI.encode_www_form_component' do
+      [nil, '', '*', "a*\xFF", 'é~'.encode('UTF-16LE'), 'é'.encode('ISO-8859-1'), "\0 🙂"].each do |value|
+        expected = URI.encode_www_form_component(value)
+        escaped  = utils.escape(value)
+        _(escaped).must_equal expected
+        _(escaped.encoding).must_equal expected.encoding
+      end
+    end
+
+    it 'escapes random strings like URI.encode_www_form_component' do
+      random   = Random.new(42)
+      alphabet = [*'a'..'z', *'0'..'9', *" !\"\#$%&'()*+,-./:;<=>?@[\\]^_`{|}~".chars, 'é', '€', '日', '🙂', "\0"]
+      strings  = Array.new(3000) { Array.new(random.rand(0..12)) { alphabet.sample(random:) }.join }
+      strings += Array.new(500) { random.bytes(random.rand(0..8)) }
+      strings.each do |string|
+        expected = URI.encode_www_form_component(string)
+        escaped  = utils.escape(string)
+        _(escaped).must_equal expected
+        _(escaped.encoding).must_equal expected.encoding
+      end
     end
 
     it 'builds simple queries' do
