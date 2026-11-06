@@ -33,6 +33,11 @@ describe 'locales' do
         _(comment).must_match 'https://ddnexus.github.io/pagy/resources/i18n'
       end
 
+      it "uses only the placeholders that info_tag.no_count is given" do
+        placeholders = pagy.dig('info_tag', 'no_count').to_s.scan(/%\{(\w+)\}/).flatten
+        _(placeholders - %w[page pages]).must_be_empty
+      end
+
       it "implements the #{p11n} pluralization rules consistently" do
         count_keys = counts[p11n]
 
