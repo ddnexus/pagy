@@ -2,12 +2,26 @@
 # frozen_string_literal: true
 
 # Update the files related to version changes
-# Usage: scripts/bump.rb [patch|minor|major|X.Y.Z]
+# Usage: scripts/bump.rb [patch|minor|major|X.Y.Z] [options]
+# Each option answers one of the questions; a question with no option is asked at the terminal
 
+require 'optparse'
 require 'tempfile'
 require_relative 'scripty'
 require_relative '../gem/apps/index'
 include Scripty # rubocop:disable Style/MixinUsage
+
+##### OPTIONS
+QUESTIONS = { abort_on_unmarked: 'abort when a commit changes the gem without the 💎 in its subject',
+              edit:              'edit the gitlog and the release body',
+              top100:            'update the "Top 100 contributors"',
+              adopters:          'update the "Top Adopters"',
+              commit:            'commit the changes',
+              push:              'push the dev branch' }.freeze
+OptionParser.new do |parser|
+  parser.banner = 'Usage: scripts/bump.rb [patch|minor|major|X.Y.Z] [options]'
+  QUESTIONS.each { |key, action| parser.on("--[no-]#{key.to_s.tr('_', '-')}", action) { |yes| ANSWERS[key] = yes } }
+end.parse!
 
 # Abort if the working tree is dirty
 abort('Working tree dirty!') unless `git status --porcelain`.empty?
@@ -51,7 +65,7 @@ if gitlog.size.zero? # rubocop:disable Style/ZeroLengthPredicate -- (bug)
 end
 
 # Edit the gitlog?
-edit_file?(gitlog.path, 'Gitlog')
+edit_file?(:edit, gitlog.path, 'Gitlog')
 
 ##### VERSION UPDATES
 # Bump the version in files
@@ -100,7 +114,7 @@ replace_string_in_file(release_body_path, "### Changes in #{old_version}", "### 
 replace_section_in_file(release_body_path, 'changes', changes)
 
 # Edit the Release Body?
-edit_file?(release_body_path, 'Release Body')
+edit_file?(:edit, release_body_path, 'Release Body')
 
 ##### CHANGELOG
 # Add the changes to the CHANGELOG
@@ -117,22 +131,22 @@ end
 require_relative 'update_retype_head'
 
 # Optional update of top 100
-confirm_to('update the "Top 100 contributors"') do
+confirm_to(:top100, QUESTIONS[:top100]) do
   require_relative 'update_top100'
 end
 
 # Optional update of top projects
-confirm_to('update the "Top Adopters"') do
+confirm_to(:adopters, QUESTIONS[:adopters]) do
   require_relative 'update_top_adopters'
 end
 
 # Optional commit
-confirm_to('commit the changes') do
+confirm_to(:commit, QUESTIONS[:commit]) do
   system('git add -A')
   system("git commit -m 'Version #{new_version}'")
 
   # Optional push: when the CI passes, run the "Release" workflow
-  confirm_to('push the dev branch') do
+  confirm_to(:push, QUESTIONS[:push]) do
     system('git push origin dev') &&
       puts("\nWhen the CI passes, run: gh workflow run release.yml -f version=#{new_version}")
   end

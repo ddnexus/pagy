@@ -14,19 +14,28 @@ module Scripty
 
   module_function
 
+  # Answers to the questions, given on the command line (see bump.rb); a question with no answer is asked
+  ANSWERS = {} # rubocop:disable Style/MutableConstant -- filled by the command line options
+
+  # Answer the question identified by key: from ANSWERS, or asking at the terminal
+  def answer?(key, question)
+    ANSWERS.fetch(key) do
+      print "#{question} (y/n)> "
+      gets.chomp.start_with?(/y/i)
+    end
+  end
+
   # Ask for confirmation and do
-  def confirm_to(action)
-    print %(Do you want to #{action}? (y/n)> )
-    yield if gets.chomp.start_with?(/y/i)
+  def confirm_to(key, action)
+    yield if answer?(key, "Do you want to #{action}?")
   end
 
   # Optional edit
-  def edit_file?(filepath, caption = filepath)
+  def edit_file?(key, filepath, caption = filepath)
     filepath = ROOT.join(filepath)
     puts "\n#{caption}:"
     puts filepath.read
-    print "Do you want to edit #{caption.inspect}? (y/n)> "
-    return false unless gets.chomp.start_with?(/y/i)
+    return false unless answer?(key, "Do you want to edit #{caption.inspect}?")
 
     # Use the environment EDITOR or default to nano
     editor = ENV['EDITOR'] || 'nano'
@@ -83,8 +92,7 @@ module Scripty
     unless missing.empty?
       puts "\nThe following commits contain changes in the gem dir, but are not marked with the 💎:"
       puts missing
-      print 'Do you want to abort and manually edit the commit messages? (y/n)> '
-      if gets.chomp.start_with?(/y/i)
+      confirm_to(:abort_on_unmarked, 'abort and manually edit the commit messages') do
         system('git reset --hard')
         abort
       end
