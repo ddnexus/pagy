@@ -1,7 +1,9 @@
-### Changes in 43.8.1
+### Changes in 43.8.2
 
 <!-- changes_start -->
-- Fix Active Record connection checkout in keyset pagination (#931)
+- Fix the page placeholder in the Croatian info_tag.no_count (#937)
+- Require cgi/escape instead of cgi in a_lambda (#934)
+- Build page URLs 1.5x faster by escaping the query with CGI.escape (#933)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

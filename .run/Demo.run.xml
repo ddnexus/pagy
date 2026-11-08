@@ -29,7 +29,7 @@
     </EXTENSION>
     <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
     <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/scripts/runapp.rb" />
-    <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="demo -p 8001" />
+    <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="demo -p 8071" />
     <method v="2" />
   </configuration>
   <configuration default="false" name="Demo" type="ShConfigurationType" folderName="Test Apps">
