@@ -4,3 +4,4 @@
 /coverage/
 node_modules/
 ___*
+/.claude/settings.local.json
