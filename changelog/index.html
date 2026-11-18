@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.847425849039">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.848287685038">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -38,11 +38,11 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../resources/css/retype.css?v=4.6.0.847425849039" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=4.6.0.848287685038" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=4.6.0.847425849039" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=4.6.0.848287685038" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.6.0.847425849039" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.6.0.848287685038" data-turbo-eval="false" defer></script>
 
     <!-- ai_widget_start -->
     <!-- GENERATED FILE! DO NOT EDIT -->
@@ -215,7 +215,7 @@
                             <img class="max-h-10 md:inline-block" src="../assets/images/pagy-the-frog.png" alt="" width="43" height="40">
                         </span>
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">Pagy</span>
-                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.8.2</span>
+                    </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">43.8.3</span>
                 </div>
     
                 <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
@@ -390,7 +390,7 @@ or duration.</p>
 <p>We rarely deprecate elements (releasing a new MAJOR version is just simpler and more efficient). However, when we do, you can
 expect the old/deprecated functionality to be supported ONLY during the current MAJOR version.</p>
 <h3 id="recommended-version-constraint">Recommended Version Constraint</h3>
-<p>Given a version number <code translate="no" v-pre>MAJOR.MINOR.PATCH</code> (e.g. <code translate="no" v-pre>43.8.2</code>):</p>
+<p>Given a version number <code translate="no" v-pre>MAJOR.MINOR.PATCH</code> (e.g. <code translate="no" v-pre>43.8.3</code>):</p>
 <p>The <code translate="no" v-pre>gem 'pagy', '~&gt; 43.0'</code> Gemfile entry (without the PATCH number) ensures that the <code translate="no" v-pre>bundle update</code> command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.</p>
 <p>Increment the MAJOR version in your Gemfile ONLY when you are ready to handle the BREAKING CHANGES.</p>
@@ -442,6 +442,69 @@ from scratch might be faster.</p>
 </li>
 </ul>
 <hr>
+<h4 id="version-4383">Version 43.8.3</h4>
+<ul>
+<li>Check the position of all the cutoffs of the keynav page
+<ul>
+<li>The client stores its cutoffs at the positions from 1 to last - 1</li>
+<li>A page array with a cutoff missing from those positions, or present outside them, restarts from page 1</li>
+<li>A forged next cutoff can no longer produce a next page beyond the last one</li>
+<li>Noted by Zac (7a6163) in the review of the fix</li>
+</ul>
+</li>
+<li>Restart the keyset pagination when the page param is not a cutoff
+<ul>
+<li>A page param that decodes to an integer or a string no longer raises</li>
+<li>A page param that is not an array of the keyset size restarts from the first page</li>
+<li>Noted by Zac (7a6163) in the review of the fix</li>
+</ul>
+</li>
+<li>Restart the keynav pagination when the page cutoff does not match the page position
+<ul>
+<li>Only the last page has no cutoff: a page array that says otherwise restarts from page 1</li>
+<li>A forged page can no longer produce a next page beyond the last one</li>
+<li>Suggested by Zac (7a6163) in the review of the fix</li>
+</ul>
+</li>
+<li>Share the keynav storage key among the navs of the same pagination
+<ul>
+<li>The navs of a new pagination created a storage key each, leaving unused entries in the sessionStorage</li>
+<li>A re-rendered series_nav_js created a new one at each rendering</li>
+</ul>
+</li>
+<li>Merge the short and empty visited keynav pages
+<ul>
+<li>A short page is merged with the next page when their records fit in the limit</li>
+<li>An empty page is always replaced by the next page</li>
+<li>A short page followed by the last page is filled from it</li>
+<li>The clients that do not guard the updates keep their pages</li>
+</ul>
+</li>
+<li>Limit the records of the visited keynav pages
+<ul>
+<li>A visited page is fetched with a limit, so a forged cutoff cannot pull the whole set</li>
+<li>A page grown beyond the limit is split: its new cutoff is inserted before the old one</li>
+<li>The clients that do not guard the updates get the old cutoff replaced</li>
+<li>Reported by Zac (7a6163) in GHSA-v472-jp5g-c53f</li>
+</ul>
+</li>
+<li>Skip the keynav cutoffs update generated by a stale page
+<ul>
+<li>The client sends also the cutoff of the next page</li>
+<li>The server returns the cutoffs it received with the update</li>
+<li>The client updates its cutoffs only if they are still the ones the server received</li>
+<li>Reloading an old URL no longer overwrites the stored cutoffs</li>
+</ul>
+</li>
+<li>Validate the keynav page param and require a matching cookie
+<ul>
+<li>The page array restarts from page 1 when its types or its range are wrong</li>
+<li>A missing cookie no longer matches a null browser key</li>
+<li>A page param that does not decode to an array no longer raises</li>
+<li>Reported by Zac (7a6163) in GHSA-h648-g954-826q</li>
+</ul>
+</li>
+</ul>
 <h4 id="version-4382">Version 43.8.2</h4>
 <ul>
 <li>Fix the page placeholder in the Croatian info_tag.no_count (#937)</li>
@@ -867,8 +930,8 @@ app.</li>
 
                 <div id="retype-tags" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-6 mb-6 clear-both">
                 
-                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-11-08T11:01:03" title="2026-11-08" data-absolute-label="Last updated on 2026-11-08" data-absolute-label-html="Last updated on 2026-11-08" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
-                        Last updated on 2026-11-08
+                    <time id="retype-last-updated" class="text-sm whitespace-nowrap text-base-text-muted ml-auto" datetime="2026-11-18T10:25:09" title="2026-11-18" data-absolute-label="Last updated on 2026-11-18" data-absolute-label-html="Last updated on 2026-11-18" data-relative-template="Last updated {0}" data-relative-template-html="Last updated RETYPETEMPLATELASTUPDATEDVALUETOKEN">
+                        Last updated on 2026-11-18
                     </time>
                 </div>
 
