@@ -1,6 +1,7 @@
 export default (() => {
   const storageSupport = "sessionStorage" in window && "BroadcastChannel" in window;
   let pagy = "pagy", storage, sync, tabId;
+  let newKeys = {};
   if (storageSupport) {
     storage = sessionStorage;
     sync = new BroadcastChannel(pagy);
@@ -27,8 +28,9 @@ export default (() => {
   });
   const B64SafeEncode = (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode))).replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : ""), B64Decode = (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)));
   const randKey = () => Math.floor(Math.random() * 36 ** 3).toString(36);
-  const augmentKeynav = async (nav, [storageKey, rootKey, pageKey, last, spliceArgs]) => {
+  const augmentKeynav = async (nav, [storageKey, rootKey, pageKey, last, spliceArgs, seen]) => {
     let augmentPage;
+    const search = rootKey ? `${rootKey}%5B${pageKey}%5D` : pageKey;
     const browserKey = document.cookie.split(/;\s+/).find((row) => row.startsWith(pagy + "="))?.split("=")[1] ?? randKey();
     document.cookie = `${pagy}=${browserKey}`;
     if (storageKey && !(storageKey in storage)) {
@@ -41,13 +43,14 @@ export default (() => {
       }
     }
     if (!augmentPage) {
-      if (!storageKey) {
+      if (!storageKey && !(storageKey = newKeys[search])) {
         do {
           storageKey = randKey();
         } while (storageKey in storage);
+        newKeys[search] = storageKey;
       }
       const data = storage.getItem(storageKey), cutoffs = data ? JSON.parse(data) : [undefined];
-      if (spliceArgs) {
+      if (spliceArgs && (!seen || JSON.stringify(seen) == JSON.stringify([-1, 0, 1].map((i) => cutoffs[spliceArgs[0] + i])))) {
         cutoffs.splice(...spliceArgs);
         storage.setItem(storageKey, JSON.stringify(cutoffs));
       }
@@ -59,11 +62,11 @@ export default (() => {
           pageNum,
           cutoffs.length,
           cutoffs[pageNum - 1],
-          cutoffs[pageNum]
+          cutoffs[pageNum],
+          cutoffs[pageNum + 1]
         ]));
       };
     }
-    const search = rootKey ? `${rootKey}%5B${pageKey}%5D` : pageKey;
     const re = new RegExp(`(?<=\\?.*)(\\b${search}=)(\\d+)`);
     for (const a of nav.querySelectorAll("a[href]")) {
       a.href = a.href.replace(re, (_match, prefix, digit) => `${String(prefix)}${augmentPage(digit)}`);
@@ -136,6 +139,7 @@ export default (() => {
   return {
     version: "43.8.2",
     init(arg) {
+      newKeys = {};
       const target = arg instanceof HTMLElement ? arg : document, elements = target.querySelectorAll("[data-pagy]");
       for (const element of elements) {
         try {

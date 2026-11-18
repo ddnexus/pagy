@@ -48,6 +48,22 @@ describe "Pagy Keyset" do
           _(pagy.page).must_be_nil
           _(pagy.records.size).must_equal 5
         end
+
+        let(:not_cutoffs) do
+          { 'integer'     => 5,
+            'string'      => 'x',
+            'hash'        => { 'id' => 5 },
+            'short array' => [],
+            'long array'  => [5, 6] }
+        end
+
+        it 'treats a page param that is not a cutoff as first page' do
+          not_cutoffs.each do |reason, value|
+            pagy = Pagy::Keyset.new(model.order(:id), page: Pagy::B64.urlsafe_encode(value.to_json), limit: 5)
+
+            _(pagy.records.map(&:id)).must_equal [1, 2, 3, 4, 5], reason
+          end
+        end
       end
 
       describe 'uses optional options' do

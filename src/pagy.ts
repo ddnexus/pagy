@@ -13,17 +13,23 @@ type KeynavArgs = readonly [storageKey : string | null,
                             rootKey    : string | null,
                             pageKey    : string,
                             last       : number,
-                            spliceArgs?: SpliceArgs];
+                            spliceArgs?: SpliceArgs,
+                            seen?      : SeenCutoffs];
 type SpliceArgs = readonly [start      : number,
                             deleteCount: number,     // it would be optional, but ts complains
                             ...items:    Cutoff[]];
 type Cutoff = readonly (string | number | boolean)[];
+// The cutoffs received by the server with the page that generated the spliceArgs
+type SeenCutoffs = readonly [priorCutoff: Cutoff | null,
+                             pageCutoff : Cutoff | null,
+                             nextCutoff : Cutoff | null];
 type AugmentedPage = [browserId  : string,
                       storageKey : string,
                       pageNumber : number,
                       pages      : number,
                       priorCutoff: Cutoff | null,
-                      pageCutoff : Cutoff | null];
+                      pageCutoff : Cutoff | null,
+                      nextCutoff : Cutoff | null];
 type SeriesNavJsArgs = readonly [NavJsTokens, pageToken: string, NavJsSeries, KeynavArgs?];
 type NavJsSeries = readonly [widths: number[],
                              series: (string | number)[][],
@@ -50,6 +56,8 @@ export default (() => {
   const storageSupport = 'sessionStorage' in window && 'BroadcastChannel' in window;
   // eslint-disable-next-line prefer-const
   let pagy = "pagy", storage: Storage, sync: BroadcastChannel, tabId: number;
+  // The new storage keys generated since the last init: shared by the navs of the same pagination
+  let newKeys: Record<string, string> = {};
   if (storageSupport) {
     storage = sessionStorage; // shorten the compiled size
     sync    = new BroadcastChannel(pagy);
@@ -60,7 +68,7 @@ export default (() => {
       if (e.data.from) { // request cutoffs
         const cutoffs = storage.getItem(e.data.key);
         if (cutoffs) {
-          sync.postMessage(<SyncData>{to: e.data.from, key: e.data.key, str: cutoffs});
+          sync.postMessage({to: e.data.from, key: e.data.key, str: cutoffs} satisfies SyncData);
         } // send response
       } else if (e.data.to) {  // receive cutoffs
         if (e.data.to == tabId) {
@@ -94,16 +102,17 @@ export default (() => {
   const randKey = () => Math.floor(Math.random() * 36 ** 3).toString(36);
 
   // Manage the page augmentation for Keynav, called only if storageSupport
-  const augmentKeynav: AugmentKeynav = async (nav, [storageKey, rootKey, pageKey, last, spliceArgs]) => {
+  const augmentKeynav: AugmentKeynav = async (nav, [storageKey, rootKey, pageKey, last, spliceArgs, seen]) => {
     // eslint-disable-next-line align-assignments/align-assignments
     let augmentPage: (page: string) => string;
+    const search     = (rootKey) ? `${rootKey}%5B${pageKey}%5D` : pageKey;
     const browserKey = document.cookie.split(/;\s+/)  // it works even if malformed
                                .find((row) => row.startsWith(pagy + "="))
                                ?.split("=")[1] ?? randKey();
     document.cookie  = `${pagy}=${browserKey}`;  // Smaller .min size: set the cookie without checking
     if (storageKey && !(storageKey in storage)) {
       // Sync the sessiongStorage from other tabs/windows (e.g., open page in the new tab/window)
-      sync.postMessage(<SyncData>{ from: tabId, key: storageKey });
+      sync.postMessage({ from: tabId, key: storageKey } satisfies SyncData);
       // Wait for the listener to copy the cutoffs in the current sessionStorage
       await new Promise<string|null>((resolve) => setTimeout(() => { resolve("") }, 100));
       if (!(storageKey in storage)) { // the storageKey didn't get copied: fallback to countless pagination
@@ -112,10 +121,15 @@ export default (() => {
     // @ts-expect-error If it is not assigned it means it supports keynav
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!augmentPage) { // regular keynav pagination
-      if (!storageKey) { do { storageKey = randKey() } while (storageKey in storage) } // no dup keys
+      // Use a new key (no dup keys) shared by the navs of the same pagination
+      if (!storageKey && !(storageKey = newKeys[search])) {
+        do { storageKey = randKey() } while (storageKey in storage);
+        newKeys[search] = storageKey;
+      }
       const data = storage.getItem(storageKey),
           cutoffs = <Cutoff[]>(data ? JSON.parse(data) : [undefined]);
-      if (spliceArgs) {
+      // Skip the splice generated from cutoffs that changed in the meantime (e.g., reloaded page, other navs in the page)
+      if (spliceArgs && (!seen || JSON.stringify(seen) == JSON.stringify([-1, 0, 1].map(i => cutoffs[spliceArgs[0] + i])))) {
         cutoffs.splice(...spliceArgs);
         storage.setItem(storageKey, JSON.stringify(cutoffs));
       }
@@ -127,12 +141,12 @@ export default (() => {
                             storageKey,
                             pageNum,
                             cutoffs.length,       // pages/last
-                            cutoffs[pageNum - 1], // priorCutoff
-                            cutoffs[pageNum]]));  // pageCutoff
+                            cutoffs[pageNum - 1],     // priorCutoff
+                            cutoffs[pageNum],         // pageCutoff
+                            cutoffs[pageNum + 1]]));  // nextCutoff
       };
     }
-    const search = (rootKey) ? `${rootKey}%5B${pageKey}%5D` : pageKey;
-    const re     = new RegExp(`(?<=\\?.*)(\\b${search}=)(\\d+)`);
+    const re = new RegExp(`(?<=\\?.*)(\\b${search}=)(\\d+)`);
     // Augment the page param of each href
     for (const a of <NodeListOf<HTMLAnchorElement>><unknown>nav.querySelectorAll('a[href]')) {
       a.href = a.href.replace(re, (_match, prefix, digit): string => `${String(prefix)}${augmentPage(<string>digit)}`);
@@ -214,6 +228,8 @@ export default (() => {
 
     // Scan for elements with a "data-pagy" attribute and call their init functions with the decoded args
     init(arg?:HTMLElement) {
+      newKeys = {};  // new keys for each init
+
       const target = arg instanceof HTMLElement ? arg : document,
             elements = target.querySelectorAll("[data-pagy]");
       for (const element of <NodeListOf<HTMLElement>>elements) {

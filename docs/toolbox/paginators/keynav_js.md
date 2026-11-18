@@ -86,26 +86,80 @@ Indeed, not only have the results changed, but the cutoffs appear to have also s
 The main goal of pagination is to split the results into manageable chunks and ensure it is as fast and accurate as possible, so the variation in the page size doesn't seem relevant to that. However, should it be relevant to you, you can always use the classic OFFSET pagination and accept its slowness and inaccuracy.
 !!!
 
-Pagy keynav doesn't use the LIMIT to pull the records of already visited pages. Instead, it replaces the LIMIT with the same filter used for the `beginning` of the page, and compounds it with the negated filter of the `ending` of the page.
+Pagy keynav pulls the records of the already visited pages with the same filter used for the `beginning` of the page, compounded with the negated filter of the `ending` of the page. It also keeps the LIMIT, so a page never holds more records than the limit.
 
 For example, the filtering of the page could be logically described like:
 
 ```
-- Page #1 `WHERE NOT AFTER CUTOFF-X`                    <- only ending filter
-- Page #2 `WHERE AFTER CUTOFF-X AND NOT AFTER CUTOFF-Y` <- combined beginning + ending filter
-- Page #3 `WHERE AFTER CUTOFF-Y LIMIT 10`               <- regular beginning filter (no cutoff for last page)
+- Page #1 `WHERE NOT AFTER CUTOFF-X LIMIT 10`                    <- only ending filter
+- Page #2 `WHERE AFTER CUTOFF-X AND NOT AFTER CUTOFF-Y LIMIT 10` <- combined beginning + ending filter
+- Page #3 `WHERE AFTER CUTOFF-Y LIMIT 10`                        <- regular beginning filter (no cutoff for last page)
 ```
 
-!!! Implementing page-rebalancing
-When the number of records on a visited page has drastically changed, it would be helpful to mitigate the surprise effect on the user by:
+==- :icon-log:&nbsp; In Depth: Page Rebalancing
 
-- Automatically compacting the empty (or almost empty) visited pages.
-- Automatically splitting the excessively grown visited pages.
+When the number of records of a visited page has changed, Pagy rebalances that page at the moment you navigate to it.
+
+##### Splitting a grown page
+
+Let's suppose that 5 records were inserted in page #2, which now holds more records than the limit of 10:
+
+```
+                  │ page #1 (10)     >│ page #2 (15)               >│ page #3 (9)    >│
+beginning of set >[· · · · · · · · · X]· · · · · · · · · · · · · · Y]· · · · · · · · ·]< end of set
+                                      ▲                             ▲
+                                   cutoff-X                      cutoff-Y
+```
+
+When you navigate to page #2, Pagy pulls only its first 10 records and adds the new `cutoff-W` after them. The remaining 5 records become the new page #3, and the pages after it keep their records and shift their number by one:
+
+```
+                  │ page #1 (10)     >│ page #2 (10)     >│ #3 (5) >│ page #4 (9)    >│
+beginning of set >[· · · · · · · · · X]· · · · · · · · · W]· · · · Y]· · · · · · · · ·]< end of set
+                                      ▲                   ▲         ▲
+                                   cutoff-X            cutoff-W  cutoff-Y
+```
+
+##### Merging a short page
+
+Let's suppose that 5 records were deleted from page #2:
+
+```
+                  │ page #1 (10)     >│ #2 (5) >│ #3 (5) >│ page #4 (9)    >│
+beginning of set >[· · · · · · · · · X]· · · · W]· · · · Y]· · · · · · · · ·]< end of set
+                                      ▲         ▲         ▲
+                                   cutoff-X  cutoff-W  cutoff-Y
+```
+
+When you navigate to page #2, Pagy finds that its records and the records of page #3 fit together in the limit. It pulls them all as page #2 and removes the `cutoff-W`. The pages after it keep their records and shift their number back by one:
+
+```
+                  │ page #1 (10)     >│ page #2 (10)     >│ page #3 (9)    >│
+beginning of set >[· · · · · · · · · X]· · · · · · · · · Y]· · · · · · · · ·]< end of set
+                                      ▲                   ▲
+                                   cutoff-X            cutoff-Y
+```
+
+##### Rules
+
+- A page that holds more records than the limit is split.
+- A page that holds fewer records than the limit is merged with the next page, when the records of both fit in the limit. Otherwise it keeps its records.
+- An empty page is always removed, and the records of the next page take its place.
+- A page followed by the last page is filled with the records that follow it.
+
+Pagy never moves the cutoff between two visited pages that hold records, because that would change the records of all the pages after it.
+
+!!!warning Keep the Pagy JavaScript in sync with the gem
+The page rebalancing requires the [JavaScript](/resources/javascript.md) file of the same version of the gem. With an older file, a grown page is still limited, but its cutoff is moved instead of adding a new one, and the short and empty pages are not merged.
 !!!
 
 ==- :icon-alert:&nbsp; Caveat
 
 !!!warning Nav bar links beyond the highest visited page are not known/displayed.
+!!!
+
+!!!warning Only the page you navigate to is rebalanced.
+Each one of a few consecutive empty pages is removed when you navigate to it.
 !!!
 
 ===

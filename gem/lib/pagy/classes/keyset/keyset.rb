@@ -88,8 +88,10 @@ class Pagy
 
     def keyset? = true
 
+    # Decode the page, restarting from the first page if it is missing or malformed
     def assign_page
-      @prior_cutoff = Keyset.decode(@options[:page])
+      cutoff        = Keyset.decode(@options[:page])
+      @prior_cutoff = cutoff if cutoff.is_a?(Array) && cutoff.size == @keyset.size
     end
 
     def fetch_records
