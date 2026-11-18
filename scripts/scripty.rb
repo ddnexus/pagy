@@ -74,15 +74,12 @@ module Scripty
 
     commits.each do |commit|
       subject = `git show --no-patch --format="%s" #{commit}`.chomp
+      body    = `git show --no-patch --format="%b" #{commit}`.chomp
 
       if subject.start_with?('💎')
-        gitlog.puts "- #{subject.sub('💎', '').strip}"
-        body = `git show --no-patch --format="%b" #{commit}`.chomp
-        unless body.empty?
-          lines = body.split("\n")
-          body  = lines.map { |line| "  #{line}" }.join("\n")
-          gitlog.puts body
-        end
+        gitlog.puts log_entry(subject, body.split("\n"))
+      elsif (entries = squashed_entries(body)).any?
+        gitlog.puts entries
       elsif `git show --format="" -w -p --relative=gem #{commit}`.strip.length.positive?
         # If no diamond, but meaningful changes (ignoring whitespace) in gem/ detected
         missing << "- #{commit[0..6]} #{subject}"
@@ -100,5 +97,19 @@ module Scripty
 
     gitlog.close
     gitlog
+  end
+
+  # The gitlog entry of a 💎 commit: its subject and its indented body lines
+  def log_entry(subject, lines)
+    ["- #{subject.sub('💎', '').strip}", *lines.map { |line| "  #{line}" }].join("\n")
+  end
+
+  # The gitlog entries of the 💎 commits squashed in a commit (e.g., the merge of a security advisory),
+  # which lists their messages in its body as "* subject" + body, from the oldest to the newest
+  def squashed_entries(body)
+    body.split(/^(?=\* )/).reverse.filter_map do |message|
+      subject, *lines = message.delete_prefix('* ').split("\n").reject(&:empty?)
+      log_entry(subject, lines) if subject&.start_with?('💎')
+    end
   end
 end
