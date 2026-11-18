@@ -68,6 +68,27 @@ describe 'Keynav App' do
     _(cutoffs.call).must_equal merged # skipped by the client
   end
 
+  it "restarts from the first of two empty pages" do
+    visit('/')
+    3.times { settle { browser.at_css('#series-nav').at_xpath(".//a[contains(text(), '>')]").click } } # reach page 4
+    browser_key, storage_key = JSON.parse(Pagy::B64.urlsafe_decode(browser.current_url[/[?&]page=([^&]+)/, 1]))
+    cutoffs = -> { JSON.parse(browser.evaluate('sessionStorage.getItem(arguments[0])', storage_key)) }
+    stored  = cutoffs.call
+    # Page 2 and 3 as if their records were deleted: they end at the same cutoff of page 1
+    emptied = stored.dup.fill(stored[1], 2..3)
+    browser.evaluate('sessionStorage.setItem(arguments[0], arguments[1])', storage_key, emptied.to_json)
+    empty_page = Pagy::B64.urlsafe_encode([browser_key, storage_key, 2, emptied.size, *emptied[1..3]].to_json)
+    empty_page = browser.current_url.sub(/(?<=[?&]page=)[^&]+/, empty_page)
+    visit(empty_page)
+
+    _(browser.at_css('#records').inner_text.split(',').size).must_equal 4 # the next records, not an empty page
+    _(cutoffs.call).must_equal stored.first(3)                            # the cutoffs after page 2 are forgotten
+
+    visit(empty_page) # the reloaded page generates the same update
+
+    _(cutoffs.call).must_equal stored.first(3) # skipped by the client
+  end
+
   it "skips the cutoffs update of a stale page" do
     visit('/')
     2.times { settle { browser.at_css('#series-nav').at_xpath(".//a[contains(text(), '>')]").click } } # reach page 3
