@@ -11,10 +11,10 @@ class Pagy
 
       return CountlessPaginator.paginate(set, page:, **options) if page&.match(' ')  # countless fallback
 
-      if page.is_a?(String) && (page_arguments = Keyset.decode(page))
+      if page.is_a?(String) && (page_arguments = Keyset.decode(page)).is_a?(Array)
         # Restart the pagination from page 1/nil if the url has been requested from another browser
-        options[:page] = page_arguments \
-            if options[:request].cookie == page_arguments.shift # rubocop:disable Style/SoleNestedConditional
+        cookie         = options[:request].cookie
+        options[:page] = page_arguments if cookie && cookie == page_arguments.shift
       end
 
       options[:limit] = options[:request].resolve_limit

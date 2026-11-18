@@ -51,6 +51,52 @@ describe 'Pagy::KeynavJsPaginator Specs' do
     _(records.first.id).must_equal 1
   end
 
+  it 'resets pagination if the cookie is missing' do
+    # A null browserId must not match the missing cookie
+    token = Pagy::B64.urlsafe_encode([nil, 'store_key', 2, 2, [10], nil].to_json)
+    app   = MockApp.new(params: { page: token })
+
+    pagy, records = app.pagy(:keynav_js, collection, limit: 10)
+
+    _(pagy.page).must_equal 1
+    _(records.first.id).must_equal 1
+  end
+
+  it 'treats a page param that is not an array as first page' do
+    [5, 'key', true, { key: 1 }].each do |not_array|
+      token = Pagy::B64.urlsafe_encode(not_array.to_json)
+      app   = MockApp.new(params: { page: token }, cookies: { pagy: 'key' })
+
+      pagy, records = app.pagy(:keynav_js, collection, limit: 10)
+
+      _(pagy.page).must_equal 1
+      _(records.first.id).must_equal 1
+    end
+  end
+
+  it 'does not reflect a malformed last in the helpers' do
+    injection = '"><img src=x onerror=alert(1)>'
+    token     = Pagy::B64.urlsafe_encode(['key', 'store_key', 1, injection, nil, [50]].to_json)
+    app       = MockApp.new(params: { page: token }, cookies: { pagy: 'key' })
+
+    pagy, = app.pagy(:keynav_js, collection, limit: 10)
+
+    _(pagy.page).must_equal 1
+    _(pagy.last).must_equal 2 # the cutoff of the restarted page 1 has been added
+    _(pagy.info_tag).wont_include injection
+    _(pagy.input_nav_js).wont_include injection
+  end
+
+  it 'limits the records of a forged cutoff' do
+    token = Pagy::B64.urlsafe_encode(['key', 'store_key', 1, 2, nil, [1_000_000], nil].to_json)
+    app   = MockApp.new(params: { page: token }, cookies: { pagy: 'key' })
+
+    pagy, records = app.pagy(:keynav_js, collection, limit: 10)
+
+    _(pagy.page).must_equal 1
+    _(records.size).must_equal 10
+  end
+
   it 'falls back to Countless if page param contains space' do
     # '2 3' simulates a legacy/countless style param
     app = MockApp.new(params: { page: '2 3' })

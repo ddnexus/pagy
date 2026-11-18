@@ -5,3 +5,5 @@
 node_modules/
 ___*
 /.claude/settings.local.json
+/src/*.js
+/src/*.js.map
