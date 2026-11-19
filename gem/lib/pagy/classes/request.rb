@@ -20,7 +20,7 @@ class Pagy
 
     def resolve_page(force_integer: true)
       page_key = @options[:page_key] || DEFAULT[:page_key]
-      page     = @params.dig(@options[:root_key], page_key) || @params[page_key]
+      page     = fetch_param(page_key)
       return [page.to_s.to_i, 1].max if force_integer
 
       page if page.is_a?(String) && !page.empty?
@@ -32,11 +32,17 @@ class Pagy
       return default unless client_limit
 
       limit_key = @options[:limit_key] || DEFAULT[:limit_key]
-      limit     = (@params.dig(@options[:root_key], limit_key) || @params[limit_key]).to_s.to_i
-      limit.zero? ? default : [limit, client_limit].min
+      limit     = fetch_param(limit_key).to_s.to_i
+      limit.positive? ? [limit, client_limit].min : default
     end
 
     private
+
+    # The client may send a non-Hash value for the root_key (e.g. ?page=2 with the jsonapi root_key 'page')
+    def fetch_param(key)
+      scope = @params[@options[:root_key]]
+      (scope[key] if scope.is_a?(Hash)) || @params[key]
+    end
 
     # Overriding support
     def get_params(request)

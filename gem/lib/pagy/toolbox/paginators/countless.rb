@@ -9,7 +9,7 @@ class Pagy
 
       if options[:page].is_a?(String)
         page, last     = options[:page].split.map(&:to_i) # ' ' separator, (encoded as '+' by Countless#compose_page_param)
-        options[:page] = page
+        options[:page] = [page.to_i, 1].max # the client may send a malformed page
         options[:last] = last if last&.positive?
       end
 

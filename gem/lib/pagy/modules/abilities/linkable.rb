@@ -53,7 +53,8 @@ class Pagy
       params    = @request.params.clone(freeze: false)
       root_key  = opts[:root_key]
       container = if root_key
-                    params[root_key] = params[root_key]&.clone(freeze: false) || {}
+                    scope            = params[root_key]
+                    params[root_key] = scope.is_a?(Hash) ? scope.clone(freeze: false) : {} # the client may send a non-Hash
                   else
                     params
                   end
