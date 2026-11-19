@@ -140,6 +140,13 @@ describe 'Pagy::Linkable Specs' do
       _(url).must_equal_url '/foo?search%5Bterm%5D=foo&search%5Bpage%5D=3'
     end
 
+    it 'replaces a non-Hash root_key param' do
+      subject = linkable_class.new(request_params: { 'search' => 'foo' },
+                                   options:        { root_key: 'search' })
+      url = subject.call_compose_page_url(3)
+      _(url).must_equal_url '/foo?search%5Bpage%5D=3'
+    end
+
     it 'does not modify original params with root_key' do
       params = { 'search' => { 'term' => 'foo' } }
       subject = linkable_class.new(request_params: params,

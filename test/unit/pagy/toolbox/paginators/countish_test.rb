@@ -19,6 +19,14 @@ describe 'Pagy::CountishPaginator' do
       _(records.size).must_equal 20
     end
 
+    it 'serves page 1 for a malformed page param' do
+      %w[abc 0 -1].each do |page|
+        pagy, = MockApp.new(params: { page: "#{page} 50" }).pagy(:countish, collection)
+
+        _(pagy.page).must_equal 1
+      end
+    end
+
     it 'uses cached count without TTL (ongoing)' do
       # Param "2 100" -> Page 2, Count 100
       app = MockApp.new(params: { page: '2 100' })

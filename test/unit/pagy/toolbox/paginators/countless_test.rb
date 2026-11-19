@@ -39,6 +39,14 @@ describe 'Pagy::CountlessPaginator' do
       _(records.first.id).must_equal 21
     end
 
+    it 'serves page 1 for a malformed page param' do
+      %w[abc 0 -1].each do |page|
+        pagy, = MockApp.new(params: { page: }).pagy(:countless, collection)
+
+        _(pagy.page).must_equal 1
+      end
+    end
+
     it 'handles string page param without last hint' do
       app = MockApp.new(params: { page: '2' })
       pagy, records = app.pagy(:countless, collection)

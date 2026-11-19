@@ -78,7 +78,7 @@ class Pagy
         unit_conf           = conf[unit]
         unit_conf[:querify] = ->(up) { up.except!(*params_to_delete.map(&:to_s)) }
         unit_conf[:period]  = unit_object&.send(:active_period) || @period
-        unit_conf[:page]    = @params[unit_conf[:page_key]] # requested page
+        unit_conf[:page]    = [@params[unit_conf[:page_key]].to_s.to_i, 1].max # requested page, malformed as 1
         # Simplecov doesn't need to cover a fail block_given?
         # simplecov:disable
         unit_conf[:counts] = yield(unit, unit_conf[:period]) if block_given?
