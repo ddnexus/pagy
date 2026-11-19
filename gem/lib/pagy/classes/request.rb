@@ -13,14 +13,16 @@ class Pagy
         else
           [request.base_url, request.path, get_params(request), request.cookies['pagy']]
         end
+      # The client may send a non-Hash root_key param (e.g. ?page=2 with the jsonapi root_key 'page'): drop it
+      root_key = @options[:root_key]
+      @params  = @params.except(root_key).freeze unless @params.fetch(root_key, {}).is_a?(Hash)
       freeze
     end
 
     attr_reader :base_url, :path, :params, :cookie
 
-    def resolve_page(force_integer: true)
-      page_key = @options[:page_key] || DEFAULT[:page_key]
-      page     = fetch_param(page_key)
+    def resolve_page(page_key = @options[:page_key] || DEFAULT[:page_key], force_integer: true)
+      page = @params.dig(@options[:root_key], page_key) || @params[page_key]
       return [page.to_s.to_i, 1].max if force_integer
 
       page if page.is_a?(String) && !page.empty?
@@ -32,17 +34,11 @@ class Pagy
       return default unless client_limit
 
       limit_key = @options[:limit_key] || DEFAULT[:limit_key]
-      limit     = fetch_param(limit_key).to_s.to_i
+      limit     = (@params.dig(@options[:root_key], limit_key) || @params[limit_key]).to_s.to_i
       limit.positive? ? [limit, client_limit].min : default
     end
 
     private
-
-    # The client may send a non-Hash value for the root_key (e.g. ?page=2 with the jsonapi root_key 'page')
-    def fetch_param(key)
-      scope = @params[@options[:root_key]]
-      (scope[key] if scope.is_a?(Hash)) || @params[key]
-    end
 
     # Overriding support
     def get_params(request)

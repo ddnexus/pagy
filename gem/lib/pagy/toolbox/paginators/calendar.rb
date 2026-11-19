@@ -17,9 +17,8 @@ class Pagy
 
         unless config[:disabled]
           period = pagy_calendar_period(collection)
-          params = config[:request].params
 
-          calendar, from, to = Calendar.send(:init, config, period, params) do |unit, unit_period|
+          calendar, from, to = Calendar.send(:init, config, period) do |unit, unit_period|
                                  pagy_calendar_counts(collection, unit, *unit_period) if respond_to?(:pagy_calendar_counts)
                                end
 

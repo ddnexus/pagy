@@ -12,13 +12,12 @@ describe 'Pagy::Calendar Specs' do
     mock_app_req = MockApp.new.request
     request_hash = { base_url: mock_app_req.base_url,
                      path:     mock_app_req.path,
-                     params:   mock_app_req.params }
+                     params:   { 'year_page' => '2', 'month_page' => '3' } }
     { year:    { page_key: 'page' },
       month:   {},
       offset:  {},
       request: Pagy::Request.new(request: request_hash) }
   end
-  let(:params) { { 'year_page' => '2', 'month_page' => '3' } }
 
   before { Time.zone = 'Etc/GMT+5' }
   after { Time.zone = 'Etc/UTC' }
@@ -66,7 +65,7 @@ describe 'Pagy::Calendar Specs' do
 
   describe '#init (via class proxy)' do
     it 'initializes nested units correctly' do
-      calendar, from, to = Pagy::Calendar.send(:init, conf, period, params)
+      calendar, from, to = Pagy::Calendar.send(:init, conf, period)
 
       _(calendar).must_be_kind_of Pagy::Calendar
       _(calendar.keys).must_include :year
@@ -96,7 +95,7 @@ describe 'Pagy::Calendar Specs' do
   end
 
   describe 'instance methods' do
-    let(:calendar) { Pagy::Calendar.send(:init, conf, period, params)[0] }
+    let(:calendar) { Pagy::Calendar.send(:init, conf, period)[0] }
 
     it 'returns showtime' do
       _(calendar.showtime).must_equal calendar[:month].from

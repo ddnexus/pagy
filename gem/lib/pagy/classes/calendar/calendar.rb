@@ -60,11 +60,10 @@ class Pagy
     private
 
     # Create the calendar
-    def init(conf, period, params)
+    def init(conf, period)
       @conf     = conf
       @units    = Calendar::UNITS & conf.keys # get the units in time length desc order
       @period   = period
-      @params   = params
       @page_key = conf[:offset][:page_key] || DEFAULT[:page_key]
 
       # Set all the :page_key options for later deletion
@@ -78,7 +77,7 @@ class Pagy
         unit_conf           = conf[unit]
         unit_conf[:querify] = ->(up) { up.except!(*params_to_delete.map(&:to_s)) }
         unit_conf[:period]  = unit_object&.send(:active_period) || @period
-        unit_conf[:page]    = [@params[unit_conf[:page_key]].to_s.to_i, 1].max # requested page, malformed as 1
+        unit_conf[:page]    = conf[:request].resolve_page(unit_conf[:page_key]) # requested page
         # Simplecov doesn't need to cover a fail block_given?
         # simplecov:disable
         unit_conf[:counts] = yield(unit, unit_conf[:period]) if block_given?
