@@ -12,7 +12,7 @@ class Pagy
       if options[:page].is_a?(String)
         page, count, epoch = options[:page].split.map(&:to_i)
         options[:page]     = [page.to_i, 1].max # the client may send a malformed page
-        count              = nil if count&.negative? # a negative count triggers a recount
+        count              = nil if count.to_i.negative? # a negative count triggers a recount
       end
 
       options[:limit] = options[:request].resolve_limit
