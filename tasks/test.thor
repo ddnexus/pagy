@@ -5,9 +5,10 @@ require 'thor'
 class Test < Thor
   def self.exit_on_failure? = true
 
-  desc 'all', 'Test Rubocop + API + Coverage + E2E'
+  desc 'all', 'Test Rubocop + Src lint + API + Coverage + E2E'
   def all
     exit 1 unless system('rubocop')
+    exit 1 unless system('bun run src-lint')
     invoke 'test:api:coverage'
     invoke 'test:e2e:apps'
   end
