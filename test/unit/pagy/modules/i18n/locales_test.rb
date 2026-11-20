@@ -30,6 +30,10 @@ describe 'locales' do
                    end
                  end
 
+  # Collect all the strings of a node
+  strings      = ->(node) { node.is_a?(Hash) ? node.values.flat_map(&strings) : [node.to_s] }
+  scripts      = [/\p{Latin}/, /\p{Cyrillic}/, /\p{Greek}/]
+
   # Iterate over every YAML file in the locales directory
   Pagy::ROOT.join('locales').glob('*.yml').each do |file|
     locale  = file.basename('.yml').to_s
@@ -49,6 +53,13 @@ describe 'locales' do
 
       it "uses only the placeholders of the reference dictionary" do
         _(unknown.(pagy, reference)).must_be_empty
+      end
+
+      it "does not mix letters of different alphabets in a word" do
+        # e.g. a Latin "a" typed in a Cyrillic word: it looks the same, but it is a different letter
+        mixed = strings.(pagy).flat_map { |string| string.scan(/[\p{L}\p{M}]+/) }
+                .select { |word| scripts.count { |script| word.match?(script) } > 1 }
+        _(mixed).must_be_empty
       end
 
       it "implements the #{p11n} pluralization rules consistently" do

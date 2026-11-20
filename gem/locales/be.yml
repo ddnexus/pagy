@@ -6,9 +6,9 @@ be:
     aria_label:
       nav:
         one: "Старонка"
-        few: "Старонкi"
-        many: "Старонкi"
-        other: "Старонкi"
+        few: "Старонкі"
+        many: "Старонкі"
+        other: "Старонкі"
       previous: "Назад"
       next: "Наперад"
     previous: "&lt;"
