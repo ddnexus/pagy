@@ -27,6 +27,13 @@ describe 'Pagy::CountishPaginator' do
       end
     end
 
+    it 'recounts for a negative count param' do
+      pagy, = MockApp.new(params: { page: '3 -1' }).pagy(:countish, collection)
+
+      _(pagy.page).must_equal 3
+      _(pagy.count).must_equal 50
+    end
+
     it 'uses cached count without TTL (ongoing)' do
       # Param "2 100" -> Page 2, Count 100
       app = MockApp.new(params: { page: '2 100' })
