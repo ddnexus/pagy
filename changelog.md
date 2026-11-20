@@ -16,7 +16,7 @@ expect the old/deprecated functionality to be supported ONLY during the current 
 
 ### Recommended Version Constraint
 
-Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.8.3`):
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.8.4`):
 
 The `gem 'pagy', '~> 43.0'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.
@@ -51,6 +51,15 @@ If you upgrade from version `< 9.0.0` see the following:
   **IMPORTANT**: The [Issue #890](https://github.com/ddnexus/pagy/issues/890) still affect the `:max_pages` option, so stop using it ASAP.
 - `:client_max_limit` and `:max_limit` options: use `:client_limit` instead.
 <hr>
+
+#### Version 43.8.4
+
+- Restart the keynav pagination from the first of two empty pages
+  - A visited page is shown empty only when no records follow it
+  - The page shows the next records of the set, and the client forgets the visited pages after it
+  - The clients that do not guard the updates keep their pages
+- Handle the malformed params in the Request only
+- Handle malformed page and limit params instead of raising (#939)
 
 #### Version 43.8.3
 
