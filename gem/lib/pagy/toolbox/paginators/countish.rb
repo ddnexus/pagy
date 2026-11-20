@@ -11,7 +11,7 @@ class Pagy
 
       if options[:page].is_a?(String)
         page, count, epoch = options[:page].split.map(&:to_i)
-        options[:page]     = page
+        options[:page]     = [page.to_i, 1].max # the client may send a malformed page
       end
 
       options[:limit] = options[:request].resolve_limit

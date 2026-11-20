@@ -37,6 +37,14 @@ describe 'Pagy::CalendarPaginator' do
       end
     end
 
+    it 'serves page 1 for a malformed unit page param' do
+      %w[abc 0 -1].each do |page|
+        calendar, = MockApp::Calendar.new(params: { 'year_page' => page }).pagy(:calendar, collection, year: conf)
+
+        _(calendar[:year].page).must_equal 1
+      end
+    end
+
     it 'handles disabled: true' do
       # Default MockApp params: page 3
       app = MockApp::Calendar.new

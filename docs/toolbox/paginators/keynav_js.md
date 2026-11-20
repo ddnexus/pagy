@@ -146,6 +146,9 @@ beginning of set >[· · · · · · · · · X]· · · · · · · · · Y]· 
 - A page that holds fewer records than the limit is merged with the next page, when the records of both fit in the limit. Otherwise it keeps its records.
 - An empty page is always removed, and the records of the next page take its place.
 - A page followed by the last page is filled with the records that follow it.
+- Two empty pages in a row restart the pagination from the first one: it shows the next records of the set, and the visited pages after it are forgotten.
+
+So a page is empty only when no records follow it. The restart forgets the visited pages after it because the set changed too much to trust what the client knows about them: you find them again by navigating forward.
 
 Pagy never moves the cutoff between two visited pages that hold records, because that would change the records of all the pages after it.
 
@@ -159,7 +162,7 @@ The page rebalancing requires the [JavaScript](/resources/javascript.md) file of
 !!!
 
 !!!warning Only the page you navigate to is rebalanced.
-Each one of a few consecutive empty pages is removed when you navigate to it.
+The other visited pages keep their cutoffs until you navigate to them.
 !!!
 
 ===

@@ -284,6 +284,70 @@ describe "Pagy::Keyset::Keynav" do
         end
       end
 
+      describe 'two empty pages' do
+        # The set without the records of page 2 and 3
+        let(:holed_set) { model == Pet ? ordered_set.where.not(id: 11..30) : ordered_set.exclude(id: 11..30) }
+
+        it 'restarts from the page with the next records' do
+          pagy = Pagy::Keyset::Keynav.new(holed_set,
+                                          page:  ['key', 2, 6, [10], [20], [30]],
+                                          limit: 10)
+
+          _(pagy.records.map(&:id)).must_equal (31..40).to_a
+          _(pagy.last).must_equal 3
+          _(pagy.next).must_equal 3
+          # All the cutoffs from the page on are replaced by the cutoff of the page
+          _(pagy.update).must_equal ['key', nil, 'page', 3, [2, 4, [40]], [[10], [20], [30]]]
+          _(pagy.instance_variable_get(:@page_cutoff)).must_equal [40]
+        end
+
+        it 'restarts from the page with the last records' do
+          # 4 records after the empty page 2 and 3
+          short_set = model == Pet ? ordered_set.where.not(id: 11..46) : ordered_set.exclude(id: 11..46)
+          pagy      = Pagy::Keyset::Keynav.new(short_set,
+                                               page:  ['key', 2, 6, [10], [20], [30]],
+                                               limit: 10)
+
+          _(pagy.records.map(&:id)).must_equal (47..50).to_a
+          _(pagy.last).must_equal 2
+          _(pagy.next).must_be_nil
+          # All the cutoffs from the page on are deleted
+          _(pagy.update).must_equal ['key', nil, 'page', 2, [2, 4], [[10], [20], [30]]]
+          _(pagy.instance_variable_get(:@page_cutoff)).must_be_nil
+        end
+
+        it 'restarts from the page with no records' do
+          pagy = Pagy::Keyset::Keynav.new(ordered_set,
+                                          page:  ['key', 2, 6, [50], [60], [70]],
+                                          limit: 10)
+
+          _(pagy.records).must_be_empty
+          _(pagy.last).must_equal 2
+          _(pagy.next).must_be_nil
+          _(pagy.update).must_equal ['key', nil, 'page', 2, [2, 4], [[50], [60], [70]]]
+        end
+
+        it 'merges the empty page with the empty last page' do
+          pagy = Pagy::Keyset::Keynav.new(ordered_set,
+                                          page:  ['key', 2, 3, [50], [60], nil],
+                                          limit: 10)
+
+          _(pagy.records).must_be_empty
+          _(pagy.last).must_equal 2
+          _(pagy.next).must_be_nil
+          _(pagy.update).must_equal ['key', nil, 'page', 2, [2, 1], [[50], [60], nil]]
+        end
+
+        it 'keeps the empty pages for a client that does not guard the updates' do
+          pagy = Pagy::Keyset::Keynav.new(holed_set,
+                                          page:  ['key', 2, 6, [10], [20]],
+                                          limit: 10)
+
+          _(pagy.records).must_be_empty
+          _(pagy.update).must_equal ['key', nil, 'page']
+        end
+      end
+
       describe 'column selection' do
         it 'adds required keyset columns to select' do
           set = model.order(:animal, :name, :id).select(:name)

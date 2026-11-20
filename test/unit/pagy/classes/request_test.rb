@@ -82,6 +82,21 @@ describe 'Pagy::Request Specs' do
       _(req.resolve_page).must_equal 10
     end
 
+    it 'drops a non-Hash root_key param (e.g. ?page=2 with the jsonapi root_key)' do
+      ['2', ['2']].each do |value|
+        opts = default_options.merge(root_key: 'page', request: { params: { 'page' => value, 'a' => '1' } })
+        req = Pagy::Request.new(opts)
+        _(req.params).must_equal({ 'a' => '1' })
+        _(req.params).must_be :frozen?
+        _(req.resolve_page).must_equal 1
+      end
+    end
+
+    it 'resolves the page of a specific page_key' do
+      req = Pagy::Request.new(default_options.merge(request: { params: { 'page' => '5', 'year_page' => '2' } }))
+      _(req.resolve_page('year_page')).must_equal 2
+    end
+
     it 'returns raw value if force_integer is false' do
       req = Pagy::Request.new(default_options.merge(request: { params: { 'page' => '5' } }))
       _(req.resolve_page(force_integer: false)).must_equal '5'
@@ -125,6 +140,20 @@ describe 'Pagy::Request Specs' do
         opts[:request][:params] = { 'search' => { 'limit' => 40 } }
         req = Pagy::Request.new(opts)
         _(req.resolve_limit).must_equal 40
+      end
+
+      it 'returns options limit if params limit is negative' do
+        opts[:limit] = 20
+        opts[:request][:params] = { 'limit' => '-5' }
+        req = Pagy::Request.new(opts)
+        _(req.resolve_limit).must_equal 20
+      end
+
+      it 'ignores a non-Hash root_key param' do
+        opts[:root_key] = 'search'
+        opts[:request][:params] = { 'search' => 'foo', 'limit' => '30' }
+        req = Pagy::Request.new(opts)
+        _(req.resolve_limit).must_equal 30
       end
 
       it 'returns options limit if params missing' do

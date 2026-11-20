@@ -12,6 +12,7 @@ class Pagy
                  split:  [0, 1],          # insert the cutoff of a grown page before its old cutoff
                  move:   [1, 0],          # replace the cutoff of the page
                  merge:  [1, -1] }.freeze # delete the cutoff of a short page that fits with the next page
+      # The :reset update is calculated: it deletes all the cutoffs from the page on, and adds the cutoff of the page
 
       # Define empty subclasses to allow specific typing without triggering autoload
       class ActiveRecord < self; end
@@ -58,10 +59,10 @@ class Pagy
 
       # Add the change of the page cutoff to the @update for the client: last + splice arguments + guard
       def update_cutoffs
-        delete, increment = SPLICE[@splice]
-        cutoffs           = @splice == :merge ? [] : [extract_cutoff]
+        cutoffs           = @splice == :merge || !@more ? [] : [extract_cutoff]
+        delete, increment = SPLICE[@splice] || [@last - @page, @page + cutoffs.size - @last] # :reset
         seen              = [@prior_cutoff, @page_cutoff, @next_cutoff] # the cutoffs sent by the client
-        @page_cutoff      = cutoffs.first || @next_cutoff
+        @page_cutoff      = @splice == :merge ? @next_cutoff : cutoffs.first
         @last            += increment
         @splice           = nil # update once
         @update.push(@last, [@page, delete, *cutoffs], seen)
@@ -88,7 +89,11 @@ class Pagy
         elsif @guarded && records.size < @limit # short page
           room = @limit - records.size
           more = fetch_between(set, @page_cutoff, @next_cutoff, room + 1) # from the next page
-          if more.size <= room # the next page fits
+          if @next_cutoff && records.empty? && more.empty? # two empty pages: restart as the last known page
+            @set    = set
+            @splice = :reset
+            return super
+          elsif more.size <= room # the next page fits
             records.concat(more)
             @splice = :merge
             @more   = !@next_cutoff.nil? # merged with the last page

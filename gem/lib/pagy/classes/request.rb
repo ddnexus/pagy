@@ -13,14 +13,16 @@ class Pagy
         else
           [request.base_url, request.path, get_params(request), request.cookies['pagy']]
         end
+      # The client may send a non-Hash root_key param (e.g. ?page=2 with the jsonapi root_key 'page'): drop it
+      root_key = @options[:root_key]
+      @params  = @params.except(root_key).freeze unless @params.fetch(root_key, {}).is_a?(Hash)
       freeze
     end
 
     attr_reader :base_url, :path, :params, :cookie
 
-    def resolve_page(force_integer: true)
-      page_key = @options[:page_key] || DEFAULT[:page_key]
-      page     = @params.dig(@options[:root_key], page_key) || @params[page_key]
+    def resolve_page(page_key = @options[:page_key] || DEFAULT[:page_key], force_integer: true)
+      page = @params.dig(@options[:root_key], page_key) || @params[page_key]
       return [page.to_s.to_i, 1].max if force_integer
 
       page if page.is_a?(String) && !page.empty?
@@ -33,7 +35,7 @@ class Pagy
 
       limit_key = @options[:limit_key] || DEFAULT[:limit_key]
       limit     = (@params.dig(@options[:root_key], limit_key) || @params[limit_key]).to_s.to_i
-      limit.zero? ? default : [limit, client_limit].min
+      limit.positive? ? [limit, client_limit].min : default
     end
 
     private

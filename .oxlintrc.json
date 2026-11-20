@@ -5,7 +5,8 @@
     "correctness": "off"
   },
   "options": {
-    "typeAware": true
+    "typeAware": true,
+    "typeCheck": true
   },
   "env": {
     "builtin": true
