@@ -137,7 +137,7 @@ export default (() => {
     });
   };
   return {
-    version: "43.8.4",
+    version: "43.8.5",
     init(arg) {
       newKeys = {};
       const target = arg instanceof HTMLElement ? arg : document, elements = target.querySelectorAll("[data-pagy]");
