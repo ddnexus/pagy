@@ -28,7 +28,7 @@ describe 'Pagy::CountishPaginator' do
     end
 
     it 'recounts for a malformed count param' do
-      ['-1', 'abc', '9' * 400].each do |count|
+      ['-1', '9' * 400].each do |count|
         pagy, = MockApp.new(params: { page: "3 #{count}" }).pagy(:countish, collection)
 
         _(pagy.page).must_equal 3

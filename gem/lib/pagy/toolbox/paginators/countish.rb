@@ -10,7 +10,7 @@ class Pagy
       options[:page] ||= options[:request].resolve_page(force_integer: false)
 
       if options[:page].is_a?(String)
-        page, count, epoch = options[:page].split.map { |value| Integer(value, 10, exception: false) }
+        page, count, epoch = options[:page].split.map(&:to_i)
         options[:page]     = [page.to_i, 1].max # the client may send a malformed page
         count              = nil unless (0..Offset::MAX_OFFSET).cover?(count) # recount a malformed count
       end
