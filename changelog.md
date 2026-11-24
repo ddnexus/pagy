@@ -16,7 +16,7 @@ expect the old/deprecated functionality to be supported ONLY during the current 
 
 ### Recommended Version Constraint
 
-Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.8.6`):
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.8.7`):
 
 The `gem 'pagy', '~> 43.0'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.
@@ -51,6 +51,10 @@ If you upgrade from version `< 9.0.0` see the following:
   **IMPORTANT**: The [Issue #890](https://github.com/ddnexus/pagy/issues/890) still affect the `:max_pages` option, so stop using it ASAP.
 - `:client_max_limit` and `:max_limit` options: use `:client_limit` instead.
 <hr>
+
+#### Version 43.8.7
+
+- Fix Latin letters in the Serbian and Belarusian Cyrillic words (#942)
 
 #### Version 43.8.6
 

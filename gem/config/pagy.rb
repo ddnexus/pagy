@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (43.8.6)
+# Pagy initializer file (43.8.7)
 # See https://ddnexus.github.io/pagy/toolbox/configuration/initializer/
 
 
