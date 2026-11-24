@@ -1,7 +1,7 @@
-### Changes in 43.8.5
+### Changes in 43.8.6
 
 <!-- changes_start -->
-- Recount instead of raising on a negative countish page param count (#940)
+- Recount on an oversized countish count param (#941)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
