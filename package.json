@@ -4,8 +4,8 @@
     "@stylistic/eslint-plugin": "^6.0.1",
     "@types/node": "26.6.6",
     "eslint-plugin-align-assignments": "^1.1.2",
-    "oxlint": "1.94.0",
-    "oxlint-tsgolint": "7.0.2007",
+    "oxlint": "1.95.0",
+    "oxlint-tsgolint": "7.0.2008",
     "retypeapp-linux-x64": "^4.6.0",
     "taze": "^21.3.0",
     "typescript": "7.0.2"

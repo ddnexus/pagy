@@ -27,11 +27,13 @@ describe 'Pagy::CountishPaginator' do
       end
     end
 
-    it 'recounts for a negative count param' do
-      pagy, = MockApp.new(params: { page: '3 -1' }).pagy(:countish, collection)
+    it 'recounts for a malformed count param' do
+      ['-1', '9' * 400].each do |count|
+        pagy, = MockApp.new(params: { page: "3 #{count}" }).pagy(:countish, collection)
 
-      _(pagy.page).must_equal 3
-      _(pagy.count).must_equal 50
+        _(pagy.page).must_equal 3
+        _(pagy.count).must_equal 50
+      end
     end
 
     it 'uses cached count without TTL (ongoing)' do
