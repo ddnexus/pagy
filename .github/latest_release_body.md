@@ -1,7 +1,7 @@
-### Changes in 43.8.6
+### Changes in 43.8.7
 
 <!-- changes_start -->
-- Recount on an oversized countish count param (#941)
+- Fix Latin letters in the Serbian and Belarusian Cyrillic words (#942)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
