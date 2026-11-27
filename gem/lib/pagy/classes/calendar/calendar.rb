@@ -78,7 +78,7 @@ class Pagy
       @units.each_with_index do |unit, index|
         params_to_delete    = @units[(index + 1)..].map { conf[_1][:page_key] }
         unit_conf           = conf[unit]
-        unit_conf[:querify] = ->(up) { delete_offset_page(up.except!(*params_to_delete.map(&:to_s))) }
+        unit_conf[:querify] = ->(up) { delete_offset_page(up.except!(*params_to_delete)) }
         unit_conf[:period]  = unit_object&.send(:active_period) || @period
         unit_conf[:page]    = conf[:request].resolve_page(unit_conf[:page_key]) # requested page
         # Simplecov doesn't need to cover a fail block_given?
