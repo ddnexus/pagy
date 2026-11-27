@@ -16,7 +16,7 @@ expect the old/deprecated functionality to be supported ONLY during the current 
 
 ### Recommended Version Constraint
 
-Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.8.7`):
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `43.8.8`):
 
 The `gem 'pagy', '~> 43.0'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.
@@ -51,6 +51,14 @@ If you upgrade from version `< 9.0.0` see the following:
   **IMPORTANT**: The [Issue #890](https://github.com/ddnexus/pagy/issues/890) still affect the `:max_pages` option, so stop using it ASAP.
 - `:client_max_limit` and `:max_limit` options: use `:client_limit` instead.
 <hr>
+
+#### Version 43.8.8
+
+- Remove redundant to_s in calendar.rb
+- Drop the offset page param from the calendar links in every setup
+  - The links kept it with the page_key set in the Pagy::OPTIONS, with a root_key, and with jsonapi and a custom page_key
+  - The unit page params keep their names
+- Drop the offset page param from the calendar url_at (#944)
 
 #### Version 43.8.7
 
