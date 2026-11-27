@@ -9,7 +9,7 @@ require_relative 'pagy/toolbox/helpers/loaders'
 
 # Top superclass
 class Pagy
-  VERSION     = '43.8.7'
+  VERSION     = '43.8.8'
   ROOT        = Pathname.new(__dir__).parent.freeze
   DEFAULT     = { limit: 20, limit_key: 'limit', page_key: 'page' }.freeze
   JSONAPI_KEY = 'page' # the :root_key enforced by the :jsonapi option
