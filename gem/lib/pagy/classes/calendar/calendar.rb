@@ -51,7 +51,7 @@ class Pagy
         unit_conf[:page]   = page = create(unit, **unit_conf).send(:page_at, time, **)
 
         page_keys["#{unit}_#{@page_key}"] = page
-        unit_conf[:querify] = ->(params) { params.merge!(page_keys) }
+        unit_conf[:querify] = ->(params) { delete_offset_page(params).merge!(page_keys) }
 
         create(unit, **unit_conf)
       end.send(:compose_page_url, 1, **)
@@ -65,6 +65,9 @@ class Pagy
       @units    = Calendar::UNITS & conf.keys # get the units in time length desc order
       @period   = period
       @page_key = conf[:offset][:page_key] || DEFAULT[:page_key]
+      # The keys of the page param as the offset paginator will resolve them (it also merges the Pagy::OPTIONS)
+      offset       = OPTIONS.merge(conf[:offset])
+      @offset_keys = [offset[:jsonapi] ? JSONAPI_KEY : offset[:root_key], offset[:page_key] || DEFAULT[:page_key]]
 
       # Set all the :page_key options for later deletion
       @units.each { |unit| conf[unit][:page_key] = "#{unit}_#{@page_key}" }
@@ -73,9 +76,9 @@ class Pagy
       unit_object = nil
 
       @units.each_with_index do |unit, index|
-        params_to_delete    = @units[(index + 1)..].map { conf[_1][:page_key] } + [@page_key]
+        params_to_delete    = @units[(index + 1)..].map { conf[_1][:page_key] }
         unit_conf           = conf[unit]
-        unit_conf[:querify] = ->(up) { up.except!(*params_to_delete.map(&:to_s)) }
+        unit_conf[:querify] = ->(up) { delete_offset_page(up.except!(*params_to_delete)) }
         unit_conf[:period]  = unit_object&.send(:active_period) || @period
         unit_conf[:page]    = conf[:request].resolve_page(unit_conf[:page_key]) # requested page
         # Simplecov doesn't need to cover a fail block_given?
@@ -86,6 +89,18 @@ class Pagy
       end
 
       [replace(calendar), unit_object.from, unit_object.to]
+    end
+
+    # Delete the offset page param from the params of a calendar link, wherever the offset paginator puts it
+    def delete_offset_page(params)
+      root_key, page_key = @offset_keys
+      if root_key
+        # Replace the nested params: they belong to the request and must not be modified
+        params[root_key] = params[root_key].except(page_key) if params[root_key].is_a?(Hash)
+      else
+        params.delete(page_key)
+      end
+      params
     end
 
     # Create an instance of a Unit subclass by using its name (internal use)

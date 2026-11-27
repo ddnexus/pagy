@@ -88,4 +88,60 @@ describe 'Pagy::CalendarPaginator' do
       _(counts).must_be_nil
     end
   end
+
+  # A calendar link starts the new period from the first offset page
+  describe 'offset page param in the calendar links' do
+    let(:unit_params) { { 'year_page' => '2', 'month_page' => '3' } }
+    let(:clean_url)   { '/foo?year_page=2&month_page=5' }
+
+    # Return the month nav link and the url_at for the same month, and the offset pagy
+    def links_for(params, **offset)
+      calendar, pagy, = MockApp::Calendar.new(params:).pagy(:calendar, collection, year: {}, month: {}, offset:)
+      urls            = [calendar[:month].send(:compose_page_url, 5), calendar.url_at(Time.zone.local(2022, 5, 15))]
+      [urls.map { CGI.unescape(_1) }, pagy]
+    end
+
+    it 'drops it with the page_key set in the Pagy::OPTIONS' do
+      Pagy::OPTIONS[:page_key] = 'p'
+      urls, pagy = links_for(unit_params.merge('p' => '2'), limit: 2)
+
+      _(pagy.page).must_equal 2
+      _(urls).must_equal [clean_url, clean_url]
+    ensure
+      Pagy::OPTIONS.delete(:page_key)
+    end
+
+    it 'drops it with the root_key, keeping the other nested params and the request params' do
+      urls, pagy = links_for(unit_params.merge('r' => { 'page' => '2', 'foo' => 'bar' }), root_key: 'r', limit: 2)
+
+      _(pagy.page).must_equal 2
+      _(urls).must_equal ["#{clean_url}&r[foo]=bar"] * 2
+      _(CGI.unescape(pagy.send(:compose_page_url, 3))).must_equal '/foo?year_page=2&month_page=3&r[page]=3&r[foo]=bar'
+    end
+
+    it 'drops the root param left empty' do
+      urls, = links_for(unit_params.merge('r' => { 'page' => '2' }), root_key: 'r')
+
+      _(urls).must_equal [clean_url, clean_url]
+    end
+
+    it 'handles a missing or non-Hash root param' do
+      urls, = links_for(unit_params, root_key: 'r')
+
+      _(urls).must_equal [clean_url, clean_url]
+
+      urls, pagy = links_for(unit_params.merge('r' => '2'), root_key: 'r')
+
+      _(pagy.page).must_equal 1
+      _(urls).must_equal ["#{clean_url}&r=2"] * 2
+    end
+
+    it 'drops it with jsonapi and a custom page_key' do
+      params = { 'year_number' => '2', 'month_number' => '3', 'page' => { 'number' => '2', 'size' => '2' } }
+      urls, pagy = links_for(params, jsonapi: true, page_key: 'number', limit_key: 'size', client_limit: 10)
+
+      _(pagy.page).must_equal 2
+      _(urls).must_equal ['/foo?year_number=2&month_number=5&page[size]=2'] * 2
+    end
+  end
 end
