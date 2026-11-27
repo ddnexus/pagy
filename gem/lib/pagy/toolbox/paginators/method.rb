@@ -29,7 +29,7 @@ class Pagy
                              [collection, options = Pagy::OPTIONS.merge(options)]
                            end
 
-               options[:root_key]  = 'page' if options[:jsonapi] # enforce 'page' root_key for JSON:API
+               options[:root_key]  = JSONAPI_KEY if options[:jsonapi] # enforce the root_key for JSON:API
                options[:request] ||= request                     # custom request Hash or self.request
                options[:request]   = Request.new(options)        # Pagy::Request
 

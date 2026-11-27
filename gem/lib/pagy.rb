@@ -12,6 +12,7 @@ class Pagy
   VERSION     = '43.8.7'
   ROOT        = Pathname.new(__dir__).parent.freeze
   DEFAULT     = { limit: 20, limit_key: 'limit', page_key: 'page' }.freeze
+  JSONAPI_KEY = 'page' # the :root_key enforced by the :jsonapi option
   PAGE_TOKEN  = EscapedValue.new('P ')
   LIMIT_TOKEN = EscapedValue.new('L ')
   LABEL_TOKEN = 'L'
