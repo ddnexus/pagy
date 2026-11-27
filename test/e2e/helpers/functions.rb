@@ -30,7 +30,7 @@ module E2eFunctions
     from = nil unless navigating?(from)
     deadline = Time.now + PAGE_TIMEOUT
     until page_settled?(from)
-      flunk "Timeout waiting for the page to settle at #{browser.current_url}" if Time.now > deadline
+      flunk "Timeout waiting for the page to settle at #{browser.url}" if Time.now > deadline
 
       sleep 0.05
     end
@@ -51,7 +51,7 @@ module E2eFunctions
     false
   end
 
-  def visit(url) = settle { browser.goto(url) }
+  def visit(url) = settle { browser.go_to(url) }
 
   def goto_and_hold(id, path: '/', query: '')
     visit("#{path}#{query}")
@@ -78,7 +78,7 @@ module E2eFunctions
   end
 
   def location
-    loc = browser.current_url.sub(LOCATION_RE, '')
+    loc = browser.url.sub(LOCATION_RE, '')
 
     return loc unless %i[keyset keynav].include?(app_id) &&
                       (match = loc.match(/[?&]page=([^&]+)/))
@@ -101,10 +101,10 @@ module E2eFunctions
 
   def validate_html
     # Nokogiri::HTML5 uses the Gumbo parser (standard-compliant)
-    doc = Nokogiri::HTML5.parse(browser.body)
+    doc = Nokogiri::HTML5.parse(browser.html)
     errors = doc.errors
 
-    message = "HTML5 Validation failed at #{browser.current_url}:\n"
+    message = "HTML5 Validation failed at #{browser.url}:\n"
     message << errors.map { |e| "[Line #{e.line}, Col #{e.column}] #{e.message}" }.join("\n")
 
     assert_empty errors, message
@@ -119,7 +119,7 @@ module E2eFunctions
     # Hold content for each id
     ids.each do |id|
       element = browser.at_css(id)
-      refute_nil element, "Element #{id} not found at #{browser.current_url}"
+      refute_nil element, "Element #{id} not found at #{browser.url}"
 
       html = element.property('outerHTML')
       # Remove data-pagy and href attributes to avoid flakiness
@@ -137,7 +137,7 @@ module E2eFunctions
     if rjs
       [600, 700].each do |width|
         browser.resize(width: width, height: 1000)
-        settle { browser.reload }
+        settle { browser.refresh }
 
         interact_with_nav(id, pages)
       end
@@ -176,7 +176,7 @@ module E2eFunctions
 
       # We assert it's invalid OR that the browser blocked the input (value didn't change to the invalid string)
       assert (!is_valid || current_input.value != invalid), "Browser should have rejected or ignored '#{invalid}'"
-      assert_match(/page=3/, browser.current_url)
+      assert_match(/page=3/, browser.url)
     end
 
     # Test blur (re-finding again)
@@ -212,7 +212,7 @@ module E2eFunctions
           input.focus.type(invalid, :enter)
 
           refute_equal invalid, input.value
-          assert_match(/page=#{page}/, browser.current_url)
+          assert_match(/page=#{page}/, browser.url)
         end
       end
       interact_and_hold(id) do
@@ -228,12 +228,12 @@ module E2eFunctions
       end
 
       visit("#{path}?page=2&limit=10")
-      assert_match(/page=2/, browser.current_url)
+      assert_match(/page=2/, browser.url)
 
       interact_and_hold(id) do
         browser.at_css(input_selector).focus.type("5", :enter)
       end
-      assert_match(/page=3/, browser.current_url)
+      assert_match(/page=3/, browser.url)
     end
   end
 end

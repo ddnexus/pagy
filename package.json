@@ -2,10 +2,10 @@
   "description": "Javascript support files",
   "devDependencies": {
     "@stylistic/eslint-plugin": "^6.0.1",
-    "@types/node": "26.6.6",
+    "@types/node": "26.6.11",
     "eslint-plugin-align-assignments": "^1.1.2",
     "oxlint": "1.95.0",
-    "oxlint-tsgolint": "7.0.2008",
+    "oxlint-tsgolint": "7.0.2009",
     "retypeapp-linux-x64": "^4.6.0",
     "taze": "^21.3.0",
     "typescript": "7.0.2"
