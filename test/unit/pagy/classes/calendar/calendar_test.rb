@@ -109,5 +109,14 @@ describe 'Pagy::Calendar Specs' do
       _(url).must_include 'month_page=5'
       _(url).must_include '/foo'
     end
+
+    it 'removes the offset page param from url_at' do
+      conf[:request] = Pagy::Request.new(request: { base_url: 'http://example.com',
+                                                    path:     '/foo',
+                                                    params:   { 'year_page' => '2', 'month_page' => '3', 'page' => '4' } })
+      url = calendar.url_at(Time.zone.local(2022, 5, 15))
+
+      _(url).must_equal '/foo?year_page=2&month_page=5'
+    end
   end
 end

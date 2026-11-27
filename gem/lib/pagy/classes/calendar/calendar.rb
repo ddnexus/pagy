@@ -51,7 +51,7 @@ class Pagy
         unit_conf[:page]   = page = create(unit, **unit_conf).send(:page_at, time, **)
 
         page_keys["#{unit}_#{@page_key}"] = page
-        unit_conf[:querify] = ->(params) { params.merge!(page_keys) }
+        unit_conf[:querify] = ->(params) { params.except!(@page_key.to_s).merge!(page_keys) }
 
         create(unit, **unit_conf)
       end.send(:compose_page_url, 1, **)
